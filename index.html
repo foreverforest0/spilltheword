@@ -2375,14 +2375,14 @@ function shApply(s,full){shInit();if(!s)return;
 function shopSetup(){
  shInit();
  if(!SH.dept||!SHOP.depts.find(d=>d.id===SH.dept))SH.dept=SHOP.depts[0].id;
- setView(`<section class="panel k-card shop"><div class="shlogo"><img src="${SHOP.deco.logo}" alt=""></div>${shInfoHTML()}<div class="shbar"><div class="shdeps">${SHOP.depts.map(d=>`<button class="shdep${d.id===SH.dept?' on':''}" data-dep="${d.id}" style="--c:${d.color}">${esc(d.name)}</button>`).join('')}</div>
+ setView((ROOM.role==='guest'?'':roomHTML())+`<section class="panel k-card shop"><div class="shlogo"><img src="${SHOP.deco.logo}" alt=""></div>${shInfoHTML()}<div class="shbar"><div class="shdeps">${SHOP.depts.map(d=>`<button class="shdep${d.id===SH.dept?' on':''}" data-dep="${d.id}" style="--c:${d.color}">${esc(d.name)}</button>`).join('')}</div>
  <label class="shcurl">Currency <span class="fld k-sel"><select id="shcur"${ROOM.role==='guest'?' disabled':''}>${SHCUR.map(c=>`<option${c===shCur()?' selected':''}>${c}</option>`).join('')}</select></span></label>
  </div>
  <p class="muted small shhint">Drag a product into the basket (bottom right), or click it to zoom in and read the name.</p>
  <div class="shshelves" id="shsh"></div></section>`);
  $('#shcur').onchange=e=>{S.shopcur=e.target.value;save();shSend('cur');shopSetup();shCartRender()};
  document.querySelectorAll('.shdep').forEach(b=>b.onclick=()=>{SH.dept=b.dataset.dep;shopSetup()});
- shBind();shShelves();shCartRender()}
+ bindRoom();shBind();shShelves();shCartRender()}
 function shCols(){const w=($('#shsh')||{}).clientWidth||900;return Math.max(2,Math.min(6,Math.floor(w/185)))}
 function shShelves(){
  const d=SHOP.depts.find(x=>x.id===SH.dept),box=$('#shsh');if(!box)return;
