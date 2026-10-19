@@ -537,7 +537,10 @@ h2{font-size:32px}
 .stg .drawably-badge{font-size:16px}
 [hidden]{display:none!important}
 .student #nav{display:none}
-.embed header,.embed #foot{display:none!important}
+.embed header,.embed #foot,.embed #embbar,.student #embbar{display:none!important}
+#embbar{max-width:980px;margin:24px auto 0;padding:0 20px 20px;text-align:center}
+.embbtn{font:inherit;font-size:14px;padding:6px 14px;border:1.5px solid currentColor;border-radius:10px;background:none;color:inherit;cursor:pointer}
+#embpan{margin-top:10px}#embpan textarea{width:100%;max-width:760px;font:12px/1.4 monospace;padding:8px;border-radius:8px;border:1.5px solid #bbb;box-sizing:border-box}
 .embed body,body.embed{padding-top:0}
 .student [data-a="quit"],.student [data-a="jquit"]{display:none}
 #foot{max-width:980px;margin:0 auto 40px;padding:0 20px;text-align:center;font-size:12px}
@@ -674,6 +677,11 @@ section.home{min-height:100vh;display:grid;grid-template-columns:1fr auto 1fr;al
  <hr id="hdr-hr">
 </header>
 <main id="view"></main>
+<div id="embbar" hidden><button class="embbtn" id="embtog">&lt;/&gt; Embed</button>
+ <div id="embpan" hidden><p class="muted small">Copy this code and paste it into an iframe / HTML block on your platform (2easy).</p>
+  <textarea id="embcode" readonly rows="3"></textarea>
+  <div id="embc2" hidden><p class="muted small">Same game with the words and settings you have chosen now (create the student link first):</p><textarea id="embcode2" readonly rows="3"></textarea></div>
+  <button class="embbtn" id="embcp">Copy code</button></div></div>
 <div id="rpill" class="rpill" hidden></div>
 <footer id="foot" hidden><a href="#">✎ Open in the editor (for the teacher)</a></footer>
 
@@ -2474,7 +2482,16 @@ function homeHTML(){const b=(t,ic,n,v)=>`<button class="big" data-btn="${v}" dat
  return `<section class="home"><div class="hside hl">${b('alias','💬','Alias','solid')}${b('taboo','🚫','Taboo','o')}${b('emoji','😀','Emoji','solid')}${b('bingo','🎯','Bingo','o')}${b('jeo','🏆','Jeopardy','solid')}</div>
  <div class="hmid"><h1 class="hero">Let's <span id="hero-u">play</span></h1><img class="hgif" src="${HOMEGIF}" alt="" width="300" height="300"></div>
  <div class="hside hr">${b('ttt','❌','Tic-tac-toe','o')}${b('story','📖','Create a story','solid')}${b('gwho','🕵️','Guess Who','o')}${b('gif','🎞️','Describe the GIF','solid')}${b('speak','🗣️','Speaking','o')}${b('shop','🛒','Shop','solid')}${b('words','📚','Words','solid')}</div></section>`}
-function go(t){stopTimer();R=null;J=null;B=null;T=null;ST=null;GS=null;GF=null;tab=t;roomPush();try{shopVis(t==='shop')}catch(e){}
+
+function embFrame(u){return '<iframe src="'+u+'" width="100%" height="720" style="border:0" allow="clipboard-write; fullscreen"></iframe>'}
+function embUpdate(){const b=$('#embbar');if(!b)return;const on=tab&&tab!=='home';b.hidden=!on;if(!on)return;
+ const base=location.href.split('#')[0];$('#embcode').value=embFrame(base+'#g='+tab+'&embed');
+ const lk=$('#linkout'),v=lk&&lk.value;$('#embc2').hidden=!v;if(v)$('#embcode2').value=embFrame(v+'&embed')}
+document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('#embtog,#embcp,#mklink');if(!t)return;
+ if(t.id==='embtog'){embUpdate();$('#embpan').hidden=!$('#embpan').hidden}
+ else if(t.id==='mklink'){setTimeout(embUpdate,400)}
+ else{const a=$('#embcode');a.select();let ok=false;try{ok=document.execCommand('copy')}catch(x){}try{navigator.clipboard.writeText(a.value).catch(function(){})}catch(x){}t.textContent='Copied ✓';setTimeout(()=>{t.textContent='Copy code'},1500)}});
+function go(t){stopTimer();R=null;J=null;B=null;T=null;ST=null;GS=null;GF=null;tab=t;roomPush();try{shopVis(t==='shop')}catch(e){}try{$('#embpan').hidden=true;embUpdate()}catch(e){}
  document.body.classList.toggle('home',t==='home');
  if(t==='home'){NL&&NL.destroy();NR&&NR.destroy();NL=NR=null;setView(homeHTML());const u=$('#hero-u');if(u)sk(u,D.drawablyUnderline,{});window.scrollTo(0,0);return}
  navTabs.setActive(NAV.indexOf(t));
