@@ -652,9 +652,19 @@ section.home{min-height:100vh;display:grid;grid-template-columns:1fr auto 1fr;al
 .cboard{position:relative;width:100%;min-height:320px;touch-action:none}
 .cbc{position:absolute;border-radius:22px;padding:12px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px;box-shadow:0 4px 14px rgba(0,0,0,.18);cursor:grab;touch-action:none;user-select:none;transition:box-shadow .15s,opacity .2s}.cbc.drag{cursor:grabbing;box-shadow:0 12px 30px rgba(0,0,0,.3)}.cbc.done{opacity:.6}
 .cbi{position:relative;flex:1 1 auto;min-height:0}.cbi img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
-.cbt{flex:0 0 40%;overflow:hidden;font:600 22px/1.2 Inter,sans-serif;color:#232323;display:flex;align-items:center;text-align:left}
+.two{position:absolute;inset:0;display:flex;align-items:center;gap:3px}.two img{position:static!important;width:46%!important;height:100%!important;object-fit:contain}.two span{font:600 22px Inter,sans-serif;color:#232323}.cbphp{margin:10px 0}.cbt{flex:0 0 40%;overflow:hidden;font:600 22px/1.2 Inter,sans-serif;color:#232323;display:flex;align-items:center;text-align:left}
 .cbfocus{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px}.cbfocus[hidden]{display:none}
 .cbbig{width:min(94vw,560px);max-height:94vh;border-radius:28px;padding:20px;display:flex;flex-direction:column;gap:12px;box-sizing:border-box;color:#232323}.cbbig .cbi{height:min(42vh,340px);flex:0 0 auto}.cbt2{font:600 28px/1.25 Inter,sans-serif}.cba{font:500 18px/1.3 Inter,sans-serif;background:rgba(255,255,255,.55);padding:8px 12px;border-radius:12px}.cbbtn{display:flex;gap:10px;flex-wrap:wrap}
+
+.navl,.navr,#navL,#navR{display:none!important}.navwrap{grid-template-columns:1fr!important}
+.logo{color:var(--pen)!important;font-size:34px!important;text-align:center}
+h2{color:var(--pen)}
+.tabs.lvl{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 14px}.tabs.lvl button{font:600 17px Inter,sans-serif!important;padding:9px 22px!important;border-radius:999px;border:0;color:#333;cursor:pointer;opacity:.55;background:#CDE634;transition:opacity .12s,transform .12s}
+.tabs.lvl button:nth-child(2){background:#B4BEFB}.tabs.lvl button:nth-child(3){background:#A2E0D5}.tabs.lvl button:nth-child(4){background:#F9B1B2}.tabs.lvl button:nth-child(5){background:#FBD415}.tabs.lvl button:nth-child(6){background:#F49BC9}
+.tabs.lvl button.on{opacity:1;box-shadow:0 0 0 2.5px #333;transform:translateY(-1px)}
+#catT{display:none}
+.chips{gap:10px}.chip.pc{font:600 16px Inter,sans-serif!important;color:#333;padding:9px 18px!important;border-radius:999px;background:var(--pc);cursor:pointer;opacity:.5;display:inline-flex;align-items:center;gap:8px;transition:opacity .12s}.chip.pc input{position:absolute;opacity:0;pointer-events:none}.chip.pc .pcs{opacity:.35}.chip.pc:has(input:checked){opacity:1;color:#333!important;box-shadow:0 0 0 2.5px #333}.chip.pc:has(input:checked) .pcs{opacity:1}
+.pgrp{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 12px}.pp{font:600 16px Inter,sans-serif;color:#333;padding:9px 18px;border-radius:999px;border:0;background:var(--pc);cursor:pointer;opacity:.5;display:inline-flex;align-items:center;gap:8px;text-align:left;transition:opacity .12s}.pp .pcs{opacity:.35}.pp.on{opacity:1;box-shadow:0 0 0 2.5px #333}.pp.on .pcs{opacity:1}
 .gwcap,.gwhint{display:block;width:fit-content;max-width:100%;margin:10px auto 0;padding:8px 18px;border-radius:16px;background:#EDE0AB}.gwhint{background:#F0CBEE}.spw{display:grid;gap:18px;align-items:start}.spw.wm{grid-template-columns:minmax(0,1fr) 270px}.spp{min-width:0}.spf{margin:0}.spimg{max-height:56vh}.spc{margin-top:8px;font:600 20px/1.2 Inter,sans-serif;color:var(--ink)}.spcmp{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}.spcmp .spimg{max-height:44vh}.spar{font:600 34px/1 'Drawably Pen',Inter,sans-serif;color:var(--pen)}.spmk{text-align:left;border:2px dashed var(--pen);border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.45)}.spmk h4{margin:0 0 8px;font:600 22px/1.2 'Drawably Pen',Inter,sans-serif;color:var(--pen)}.spg{margin-bottom:10px}.spg b{display:block;font:600 13px/1.2 Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);opacity:.7;margin-bottom:4px}.spg>div{display:flex;flex-wrap:wrap;gap:6px}.spm{font:500 19px/1.2 'Drawably Pen',Inter,sans-serif;padding:2px 10px;border:1.5px solid var(--pen);border-radius:10px;color:var(--pen)}@media(max-width:760px){.spw.wm{grid-template-columns:1fr}}
 .gifp{padding:18px}.gifimg{display:block;margin:0 auto;max-width:100%;max-height:62vh;border-radius:12px;cursor:pointer}.gifw{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:18px 0 6px}.gtag{font:500 26px/1.2 'Drawably Pen',Inter,sans-serif;padding:6px 16px;border:2px solid var(--pen);border-radius:14px;color:var(--pen);background:rgba(255,255,255,.45)}.gifg{margin-top:14px;font:600 20px/1.3 Inter,sans-serif;color:var(--ink)}
 .rbox{background:rgba(255,255,255,.4);border-radius:10px;padding:10px 14px;margin:10px 0;word-break:break-all}
@@ -673,7 +683,7 @@ section.home{min-height:100vh;display:grid;grid-template-columns:1fr auto 1fr;al
     <button data-tab="bingo">Bingo</button>
     <button data-tab="jeo">Jeopardy</button>
    </nav>
-   <h1 class="logo">🎲 Let's <span id="logo-u">play</span></h1>
+   <h1 class="logo">spill the <span id="logo-u">word</span></h1>
    <nav class="tabs navr" id="navR">
     <button data-tab="ttt">XO</button>
     <button data-tab="story">Story</button>
@@ -681,7 +691,6 @@ section.home{min-height:100vh;display:grid;grid-template-columns:1fr auto 1fr;al
     <button data-tab="gif">GIF</button>
     <button data-tab="speak">Speaking</button>
     <button data-tab="shop">Shop</button>
-    <button data-tab="words">Words</button>
    </nav>
   </div>
  </div>
@@ -2328,7 +2337,18 @@ function skin(){
  MAP.forEach(([sel,fn,o])=>document.querySelectorAll('#view '+sel).forEach(el=>sk(el,fn,o)));
  document.querySelectorAll('#view button[data-btn]').forEach(b=>{const v=BV[b.dataset.btn]||BV.o;const h=sk(b,D.drawablyButton,v[0]);if(h&&v[1])h.setState(v[1])});
 }
-function setView(html){clearSk();$('#view').innerHTML=html;if(ROOM.role==='guest'){const al=allowedActs('guest');$('#view').querySelectorAll('[data-a]').forEach(el=>{if(!al.has(el.dataset.a))el.remove()})}skin()}
+
+function pillify(root){
+ const skip=new Set(['sptask','lpu','shcur','spscene']);
+ root.querySelectorAll('select').forEach(sel=>{
+  if(skip.has(sel.id)||sel.options.length>7||sel.options.length<2)return;
+  const fld=sel.closest('.fld'),g=document.createElement('div');g.className='pgrp';
+  [...sel.options].forEach((o,i)=>{const b=document.createElement('button');b.type='button';b.className='pp';b.style.setProperty('--pc',CBCOL[(i*4+sel.options.length)%CBCOL.length]);b.dataset.v=o.value;b.innerHTML='<span class="pcs">'+(i%2?'✸':'✦')+'</span>'+esc(o.textContent);
+   b.onclick=()=>{if(sel.disabled)return;sel.value=o.value;sel.dispatchEvent(new Event('change',{bubbles:true}));sync()};g.appendChild(b)});
+  const sync=()=>g.querySelectorAll('.pp').forEach(b=>b.classList.toggle('on',b.dataset.v===sel.value));
+  (fld||sel).after(g);if(fld)fld.hidden=true;else sel.hidden=true;
+  sel.addEventListener('change',sync);sync();setTimeout(sync,0);setTimeout(sync,250);setTimeout(sync,900)})}
+function setView(html){clearSk();$('#view').innerHTML=html;try{pillify($('#view'))}catch(e){console.warn('pillify',e)}if(ROOM.role==='guest'){const al=allowedActs('guest');$('#view').querySelectorAll('[data-a]').forEach(el=>{if(!al.has(el.dataset.a))el.remove()})}skin()}
 
 /* ===== Word pools ===== */
 function builtin(g){const out=[];S.sel[g].forEach(k=>{const [lv,cn]=k.split('|');if(lv!==S.level)return;const c=(BANK[lv]||[]).find(x=>x.name===cn);if(c)c.words.forEach(x=>out.push(Object.assign({cat:cn},x)))});return out}
@@ -2492,7 +2512,7 @@ D.drawablyDivider($('#hdr-hr'),{});
 function homeHTML(){const b=(t,ic,n,v)=>`<button class="big" data-btn="${v}" data-a="open" data-t="${t}">${ic} ${n}</button>`;
  return `<section class="home"><div class="hside hl">${b('alias','💬','Alias','solid')}${b('taboo','🚫','Taboo','o')}${b('emoji','😀','Emoji','solid')}${b('bingo','🎯','Bingo','o')}${b('jeo','🏆','Jeopardy','solid')}</div>
  <div class="hmid"><h1 class="hero">Let's <span id="hero-u">play</span></h1><img class="hgif" src="${HOMEGIF}" alt="" width="300" height="300"></div>
- <div class="hside hr">${b('ttt','❌','Tic-tac-toe','o')}${b('story','📖','Create a story','solid')}${b('gwho','🕵️','Guess Who','o')}${b('gif','🎞️','Describe the GIF','solid')}${b('speak','🗣️','Speaking','o')}${b('shop','🛒','Shop','solid')}${b('words','📚','Words','solid')}</div></section>`}
+ <div class="hside hr">${b('ttt','❌','Tic-tac-toe','o')}${b('story','📖','Create a story','solid')}${b('gwho','🕵️','Guess Who','o')}${b('gif','🎞️','Describe the GIF','solid')}${b('speak','🗣️','Speaking','o')}${b('shop','🛒','Shop','solid')}</div></section>`}
 
 function embFrame(u){return '<iframe src="'+u+'" width="100%" height="720" style="border:0" allow="clipboard-write; fullscreen"></iframe>'}
 function embUpdate(){const b=$('#embbar');if(!b)return;const on=tab&&tab!=='home';b.hidden=!on;if(!on)return;
@@ -2636,7 +2656,7 @@ function renderSetup(g){
   $('#pen').checked=S.penalty;$('#pen').onchange=e=>{S.penalty=e.target.checked;save()};
   $('#start').onclick=()=>startGame(g);
  }}
-let CATOPEN=false,LPOPEN=false,MWOPEN=false;
+let CATOPEN=true,LPOPEN=false,MWOPEN=false;
 function bindSetup(g){
  const st=g==='story'||g==='gif';
  const catLabel=()=>{if(st)return;const n=BANK[S.level].filter(c=>S.sel[g].includes(S.level+'|'+c.name)).length;$('#catTl').textContent=(CATOPEN?'▾ Hide categories':'▸ Categories')+' · '+n+' of '+BANK[S.level].length+' selected'};
@@ -2655,10 +2675,9 @@ function bindSetup(g){
   CHIPS.forEach(s=>{try{s.destroy()}catch(e){}});CHIPS=[];
   $('#catbox').hidden=!CATOPEN;
   if(!CATOPEN){$('#cats').innerHTML='';upd();return}
-  $('#cats').innerHTML=BANK[S.level].map(c=>{const k=S.level+'|'+c.name;return `<label class="chip"><span><input type="checkbox" data-k="${esc(k)}"${S.sel[g].includes(k)?' checked':''}></span> ${c.icon} ${esc(c.name)}</label>`}).join('');
-  document.querySelectorAll('#cats .chip').forEach(el=>{try{CHIPS.push(D.drawablyChip(el))}catch(e){console.warn('drawably',e)}});
+  $('#cats').innerHTML=BANK[S.level].map((c,i)=>{const k=S.level+'|'+c.name;return `<label class="chip pc" style="--pc:${CBCOL[(i+1)*5%CBCOL.length]}"><input type="checkbox" data-k="${esc(k)}"${S.sel[g].includes(k)?' checked':''}><span class="pcs">✦</span> ${c.icon} ${esc(c.name)}</label>`}).join('');
   upd()};
- const lvTabs=sk($('#lv'),D.drawablyTabs,{active:LEVELS.indexOf(S.level)});
+ const lvTabs={setActive(i){document.querySelectorAll('#lv button').forEach((b,j)=>b.classList.toggle('on',j===i))}};lvTabs.setActive(LEVELS.indexOf(S.level));
  $('#lv').onclick=e=>{const b=e.target.closest('button');if(!b)return;S.level=b.dataset.lv;
   if(lvTabs)lvTabs.setActive(LEVELS.indexOf(S.level));
   if(g==='jeo'&&matchSet()!=='custom'){S.tasks=TASKSETS[LV_TASK[S.level]].t.slice();fillTasks()}
@@ -3178,7 +3197,6 @@ const SPPRES=['What is she doing right now?','What is she doing at the moment?',
 const SPLV=[['kids','A1 Kids',['be','hab','pc','thr']],['a1','A1',['be','hab','rtn','pc','thr']],['a2','A2',['pas','cmp','mix','shd','ust']],['b1','B1',['ppc','ppf','ifw','pfm','rcl','gwt']],['b2','B2',[]],['c1','C1',[]]];
 const SPSHORT={pc:'Present Continuous',pas:'Past Continuous',cmp:'Present vs Past Cont.',mix:'Mix of tenses',ppc:'Present Perfect Cont.',ppf:'Past Perfect',shd:'Should / shouldn’t',be:'To be',hab:'Present Simple',rtn:'Daily routine',ifw:'If I were…',ust:'Used to',pfm:'Present Perfect memes',rcl:'Relative clauses',gwt:'Guess what?',thr:'There is / are'};
 const CBCOL=['#F7763F','#B85EF4','#B4BEFB','#DCFF6A','#A2E0D5','#B2D1FD','#DBBFBB','#A2CD1E','#F9B1B2','#F49BC9','#3FBCF4','#FBD415','#9CBA98'];
-const CARDS={rcl:1};
 function spSetup(){
  const lv=SPLV.find(x=>x[0]===S.splevel)||SPLV[3];
  setView(roomHTML()+`<section class="panel k-card"><h2>${GAMES.speak.icon} ${GAMES.speak.title}</h2>
@@ -3186,23 +3204,33 @@ function spSetup(){
  <div class="tprow">${lv[2].length?lv[2].map((id,i)=>`<button class="tpill" data-tp="${id}" style="background:${CBCOL[(i*3+SPLV.indexOf(lv))%CBCOL.length]}"><span class="tst">${i%2?'✸':'✦'}</span>${esc(SPSHORT[id]||id)}</button>`).join(''):'<p class="muted">Topics for this level are coming soon.</p>'}</div></section>`);
  bindRoom();
  document.querySelectorAll('[data-lv]').forEach(b=>b.onclick=()=>{S.splevel=b.dataset.lv;save();spSetup()});
- document.querySelectorAll('[data-tp]').forEach(b=>b.onclick=()=>{S.sptask=b.dataset.tp;save();if(CARDS[S.sptask])startCards(S.sptask);else spSetupTask()})}
+ document.querySelectorAll('[data-tp]').forEach(b=>b.onclick=()=>{S.sptask=b.dataset.tp;save();if(S.sptask!=='gwt')startCards(S.sptask);else spSetupTask()})}
 let CB=null;
 function startCards(id){CB={task:id,n:8,seen:{}};renderCards()}
-function cbItems(){const out=[];PHOTO[CB.task].forEach(sc=>sc.q.forEach(qa=>out.push({k:sc.k,t:qa[0],a:qa[1]})));return shuffle(out).slice(0,CB.n)}
+function cbItems(){const t=CB.task,n=CB.n;
+ if(PHOTO[t]||t==='thr'){const first=[],rest=[];(PHOTO[t]||SCENES).forEach(sc=>{const qs=shuffle(sc.q.slice());qs.forEach((qa,j)=>(j?rest:first).push({src:PICS[sc.k]||'',t:qa[0],a:qa[1]}))});return shuffle(first).concat(shuffle(rest)).slice(0,n)}
+ const L=shuffle(ACTIONS.map((_,i)=>i)),kinds=t==='mix'?['pc','pas','cmp']:[t],rnd=a=>a[Math.floor(Math.random()*a.length)],out=[];
+ for(let i=0;i<n;i++){const kd=rnd(kinds),a=ACTIONS[L[i]],b=ACTIONS[L[i+n]],tm=rnd(SPPAST);
+  if(kd==='pc')out.push({src:a[1],t:rnd(SPPRES),a:'She is '+a[0]+'.'});
+  else if(kd==='pas')out.push({src:a[1],t:'What was she doing '+tm+'?',a:'She was '+a[0]+'.'});
+  else out.push({src:a[1],src2:b[1],t:'What was she doing '+tm+'? And what is she doing now?',a:'She was '+a[0]+', but now she is '+b[0]+'.'})}
+ return out}
+function cbImg(it){return it.src2?`<div class="two"><img draggable="false" src="${it.src}" alt=""><span>→</span><img draggable="false" src="${it.src2}" alt=""></div>`:`<img draggable="false" src="${it.src}" alt="">`}
+function cbPhr(){const t=CB.task;return t==='pc'?SPM.pres:t==='pas'?SPM.past:(t==='cmp'||t==='mix')?SPM.past.concat(SPM.pres):(SPM[t]||[])}
 function fitText(el){let f=26;el.style.fontSize=f+'px';while(el.scrollHeight>el.clientHeight+1&&f>10){f--;el.style.fontSize=f+'px'}}
 function renderCards(){
  const t=SPT.find(x=>x.id===CB.task);
- setView(`<section class="panel k-card cbpanel"><div class="cbbar"><button class="lvb" id="cbback">← Topics</button><h2>${esc(SPSHORT[CB.task]||'')}</h2><button class="lvb" id="cbnew">↻ New cards</button></div>
+ setView(`<section class="panel k-card cbpanel"><div class="cbbar"><button class="lvb" id="cbback">← Topics</button><h2>${esc(SPSHORT[CB.task]||'')}</h2><div><button class="lvb" id="cbph">💬 Useful words</button> <button class="lvb" id="cbnew">↻ New cards</button></div></div>
+ <div class="spmk cbphp" id="cbphp" hidden><div class="spg"><div>${spChips(cbPhr())}</div></div></div>
  <p class="muted small">Drag the cards around. Tap a card to open it.</p><div class="cboard" id="cboard"></div></section><div class="cbfocus" id="cbfocus" hidden></div>`);
- $('#cbback').onclick=spSetup;$('#cbnew').onclick=renderCards;
+ $('#cbback').onclick=spSetup;$('#cbnew').onclick=renderCards;$('#cbph').onclick=()=>{$('#cbphp').hidden=!$('#cbphp').hidden};
  const bd=$('#cboard'),items=cbItems(),BW=bd.clientWidth||900,cols=Math.max(2,Math.min(4,Math.floor(BW/215))),rows=Math.ceil(items.length/cols),RH=310,cw=BW/cols;
  bd.style.height=(rows*RH+10)+'px';
  const cols2=shuffle(CBCOL.map((_,i)=>i));let z=1;
  items.forEach((it,i)=>{
   const w=Math.min(cw-12,[200,225,250][i*7%3]),h=[250,275,300][(i*5+1)%3],r=Math.floor(i/cols),c=i%cols;
   const d=document.createElement('div');d.className='cbc';d.style.cssText=`width:${w}px;height:${h}px;left:${c*cw+(cw-w)/2+(Math.random()*14-7)}px;top:${r*RH+(RH-h)/2+(Math.random()*10-5)}px;background:${CBCOL[cols2[i%cols2.length]]};transform:rotate(${(Math.random()*5-2.5).toFixed(1)}deg)`;
-  d.innerHTML=`<div class="cbi"><img draggable="false" src="${PICS[it.k]||''}" alt=""></div><div class="cbt">${esc(it.t)}</div>`;
+  d.innerHTML=`<div class="cbi">${cbImg(it)}</div><div class="cbt">${esc(it.t)}</div>`;
   bd.appendChild(d);fitText(d.querySelector('.cbt'));
   let sx,sy,ox,oy,mv=0,pid=null;
   d.onpointerdown=e=>{pid=e.pointerId;d.setPointerCapture(pid);sx=e.clientX;sy=e.clientY;ox=d.offsetLeft;oy=d.offsetTop;mv=0;d.style.zIndex=++z;d.classList.add('drag')};
@@ -3212,7 +3240,7 @@ function renderCards(){
   d.onpointercancel=()=>{pid=null;d.classList.remove('drag')}})}
 function openCard(it,d){
  const f=$('#cbfocus'),col=d.style.background;d.classList.add('done');
- f.innerHTML=`<div class="cbbig" style="background:${col}"><div class="cbi"><img src="${PICS[it.k]||''}" alt=""></div><div class="cbt2">${esc(it.t)}</div><div class="cba" hidden>💡 ${esc(it.a)}</div><div class="cbbtn"><button class="lvb" id="cbans">Show example answer</button><button class="lvb on" id="cbclose">✕ Close</button></div></div>`;
+ f.innerHTML=`<div class="cbbig" style="background:${col}"><div class="cbi">${cbImg(it)}</div><div class="cbt2">${esc(it.t)}</div><div class="cba" hidden>💡 ${esc(it.a)}</div><div class="cbbtn"><button class="lvb" id="cbans">Show example answer</button><button class="lvb on" id="cbclose">✕ Close</button></div></div>`;
  f.hidden=false;const big=f.querySelector('.cbbig');
  $('#cbans').onclick=()=>{f.querySelector('.cba').hidden=!f.querySelector('.cba').hidden};
  const close=()=>{f.hidden=true;document.removeEventListener('keydown',esc2)},esc2=e=>{if(e.key==='Escape')close()};
@@ -3553,9 +3581,9 @@ if(m.t==='resync'){roomPush();return}
  if(m.t==='shop'){shApply(m.s,false);return}
  if(m.t==='hello'){ROOM.guestName=String(m.name||'Student').slice(0,20);updRoomUI();roomPush()}
  else if(m.t==='act'){const al=allowedActs('guest');if(al&&al.has(m.a)&&!(m.a==='jtile'&&J&&J.open))doAct(m.a,Object.assign({},m.d||{},{from:'guest'}))}}
-function waitHTML(msg,btn){return `<section class="panel k-card center"><h2>🎲 Let's play</h2><p class="muted">${msg}</p>${btn||''}</section>`}
+function waitHTML(msg,btn){return `<section class="panel k-card center"><h2>spill the word</h2><p class="muted">${msg}</p>${btn||''}</section>`}
 function guestJoinScreen(code){
- setView(`<section class="panel k-card center"><h2>🎲 Let's play</h2><p class="muted">You’ve been invited to a game. What’s your name?</p>
+ setView(`<section class="panel k-card center"><h2>spill the word</h2><p class="muted">You’ve been invited to a game. What’s your name?</p>
  <label class="lbl" style="max-width:320px;margin:10px auto"><span class="fld k-in"><input id="gname" type="text" maxlength="20" placeholder="Name"></span></label>
  <button class="big" data-btn="solid" id="gjoin">Join the room</button></section>`);
  try{const v=localStorage.getItem('engGames.name');if(v)$('#gname').value=v}catch(e){}
