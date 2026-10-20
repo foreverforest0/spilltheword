@@ -721,6 +721,19 @@ button.tcell:hover{transform:translateY(-3px) rotate(-1deg)}
 .tcell .tg{font:400 .8em var(--pen-font);color:#232323}
 .bwrap .mono,.bwrap h4,.bwrap .small{font-family:var(--pen-font)!important;font-size:18px;letter-spacing:0;text-transform:none}
 .cat,.tbl{font-family:var(--pen-font)!important;font-size:18px;letter-spacing:0;text-transform:none}
+.exw{display:inline-block;margin:10px auto;padding:22px 44px;border-radius:26px;font:400 clamp(30px,6vw,52px)/1.15 var(--pen-font);color:#232323;box-shadow:0 6px 18px rgba(0,0,0,.16)}
+.exchips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:8px 0}
+.exc{display:inline-block;padding:6px 16px;border-radius:14px;font:400 22px/1.2 var(--pen-font);color:#232323;box-shadow:0 2px 6px rgba(0,0,0,.14)}.exc.big{font-size:30px;padding:8px 22px;margin:4px 6px}
+.exnow{font:400 24px/1.4 var(--pen-font);color:#2724d1;margin:10px 0}.exnow b{font-weight:400;text-decoration:underline}
+.exta{width:100%;max-width:640px;margin:8px auto;display:block;border:0;border-radius:18px;padding:12px 16px;background:#fff;font:400 20px/1.3 var(--pen-font);box-shadow:inset 0 0 0 2px rgba(39,36,209,.25);resize:vertical}
+.glsent,.glans{font-size:clamp(22px,4vw,34px)!important;padding:18px 30px;max-width:90%}
+.gldice{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin:12px 0}
+.gld{cursor:pointer;min-width:190px;max-width:280px;padding:18px 22px;border-radius:24px;font:400 28px/1.2 var(--pen-font);color:#232323;box-shadow:0 6px 16px rgba(0,0,0,.16);transition:transform .15s}.gld:hover{transform:rotate(-2deg) translateY(-3px)}.gld small{display:block;font:500 12px Inter,sans-serif;text-transform:uppercase;letter-spacing:.08em;opacity:.65;margin-bottom:6px}
+.glhint{font-size:20px;color:#232323}.glhint b{font-weight:600;font-family:Inter,sans-serif;font-size:16px}
+.cbc.txt{justify-content:center;text-align:center}.cbc.txt .cbt{flex:0 1 auto;font-size:22px}.cbq{margin-top:10px;font:400 18px/1.2 var(--pen-font);color:#2724d1;background:rgba(255,255,255,.65);border-radius:12px;padding:4px 12px;align-self:center}
+.cbq2{margin:10px auto;font:400 28px/1.2 var(--pen-font);color:#2724d1;background:rgba(255,255,255,.7);border-radius:16px;padding:6px 18px;width:fit-content}
+.cbi.ph img{object-fit:cover!important;border-radius:14px}
+.cbi.ph{height:min(36vh,260px)}.cbmodes{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:8px 0}
 </style>
 </head>
 <body>
@@ -743,6 +756,8 @@ button.tcell:hover{transform:translateY(-3px) rotate(-1deg)}
     <button data-tab="gif">GIF</button>
     <button data-tab="speak">Speaking</button>
     <button data-tab="shop">Shop</button>
+    <button data-tab="expand">Expander</button>
+    <button data-tab="gram">Grammar Lab</button>
    </nav>
   </div>
  </div>
@@ -2324,6 +2339,8 @@ const GAMES={
   fmt:'Format: word | emoji (the emoji is optional; without it the card shows only the word).',ph:'dragon | 🐉\nsuitcase | 🧳\nearly bird | 🐦⏰',ex:'dragon | 🐉\nsuitcase | 🧳\nearly bird | 🐦⏰'},
  gif:{title:'Describe the GIF',icon:'🎞️',desc:'A random GIF appears with words and/or a grammar topic from your lessons. Describe what is happening using them. Click the picture (or press Space) for the next one.',
   fmt:'Format: one word or phrase per line. Start a line with > to add your own grammar topic (for example > Present Perfect).',ph:'stubborn\nbreak the ice\n> Present Perfect',ex:'stubborn\nbreak the ice\n> Present Perfect'},
+ gram:{title:'Grammar Lab',icon:'🎲',desc:'Two oral grammar drills for all levels. Tense Switch: change the sentence as the card says. Grammar Dice: roll a grammar topic, a type of sentence and a word from your course, then say a sentence with all three.'},
+ expand:{title:'Sentence Expander',icon:'🧩',desc:'Pick your course and level. A word from your lessons appears: say a short sentence with it, then keep adding details (when? where? why?…) and repeat the whole, longer sentence out loud each time.'},
  shop:{title:'Shop',icon:'🛒',desc:'A supermarket: walk through the departments, drag products around, click to zoom in and read the name, put them in the basket.'},
  speak:{title:'Speaking',icon:'🗣️',desc:'Speaking practice by grammar topic. A picture and a question appear with the time markers; the student answers out loud. Click the picture (or press Space) for the next one.'},
  gwho:{title:'Guess Who',icon:'🕵️',desc:'Each player has a secret character. Ask each other yes/no questions out loud and flip down the cards. The first to guess the other player’s character wins.'},
@@ -2548,7 +2565,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#shz'))shZoomClo
 window.addEventListener('resize',()=>{if(tab==='shop'&&$('#shsh'))shShelves()});
 
 /* ===== Navigation ===== */
-const NAV=['alias','taboo','emoji','bingo','jeo','ttt','story','gwho','gif','speak','shop','words'];
+const NAV=['alias','taboo','emoji','bingo','jeo','ttt','story','gwho','gif','speak','shop','expand','gram','words'];
 let tab='alias',R=null,J=null,tmr=null;
 let NL=null,NR=null;
 const navTabs={setActive(i){
@@ -2563,7 +2580,7 @@ D.drawablyDivider($('#hdr-hr'),{});
 function homeHTML(){const b=(t,ic,n,v)=>`<button class="big" data-btn="${v}" data-a="open" data-t="${t}">${ic} ${n}</button>`;
  return `<section class="home"><div class="hside hl">${b('alias','💬','Alias','solid')}${b('taboo','🚫','Taboo','o')}${b('emoji','😀','Emoji','solid')}${b('bingo','🎯','Bingo','o')}${b('jeo','🏆','Jeopardy','solid')}</div>
  <div class="hmid"><h1 class="hero">Let's <span id="hero-u">play</span></h1><img class="hgif" src="${HOMEGIF}" alt="" width="300" height="300"></div>
- <div class="hside hr">${b('ttt','❌','Tic-tac-toe','o')}${b('story','📖','Create a story','solid')}${b('gwho','🕵️','Guess Who','o')}${b('gif','🎞️','Describe the GIF','solid')}${b('speak','🗣️','Speaking','o')}${b('shop','🛒','Shop','solid')}</div></section>`}
+ <div class="hside hr">${b('ttt','❌','Tic-tac-toe','o')}${b('story','📖','Create a story','solid')}${b('gwho','🕵️','Guess Who','o')}${b('gif','🎞️','Describe the GIF','solid')}${b('speak','🗣️','Speaking','o')}${b('shop','🛒','Shop','solid')}${b('expand','🧩','Sentence Expander','o')}${b('gram','🎲','Grammar Lab','solid')}</div></section>`}
 
 function embFrame(u){return '<iframe src="'+u+'" width="100%" height="720" style="border:0" allow="clipboard-write; fullscreen"></iframe>'}
 function embUpdate(){const b=$('#embbar');if(!b)return;const on=tab&&tab!=='home';b.hidden=!on;if(!on)return;
@@ -2573,7 +2590,7 @@ document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest
  if(t.id==='embtog'){embUpdate();$('#embpan').hidden=!$('#embpan').hidden}
  else if(t.id==='mklink'){setTimeout(embUpdate,400)}
  else{const a=$('#embcode');a.select();let ok=false;try{ok=document.execCommand('copy')}catch(x){}try{navigator.clipboard.writeText(a.value).catch(function(){})}catch(x){}t.textContent='Copied ✓';setTimeout(()=>{t.textContent='Copy code'},1500)}});
-function go(t){stopTimer();R=null;J=null;B=null;T=null;ST=null;GS=null;GF=null;tab=t;roomPush();try{shopVis(t==='shop')}catch(e){}try{$('#embpan').hidden=true;embUpdate()}catch(e){}
+function go(t){stopTimer();EX=null;GL=null;R=null;J=null;B=null;T=null;ST=null;GS=null;GF=null;tab=t;roomPush();try{shopVis(t==='shop')}catch(e){}try{$('#embpan').hidden=true;embUpdate()}catch(e){}
  document.body.classList.toggle('home',t==='home');
  if(t==='home'){NL&&NL.destroy();NR&&NR.destroy();NL=NR=null;setView(homeHTML());const u=$('#hero-u');if(u)sk(u,D.drawablyUnderline,{});window.scrollTo(0,0);return}
  navTabs.setActive(NAV.indexOf(t));
@@ -2675,6 +2692,8 @@ function renderSetup(g){
  if(g==='gwho'){gwSetup();return}
  if(g==='speak'){spSetup();return}
  if(g==='shop'){shopSetup();return}
+ if(g==='expand'){exSetup();return}
+ if(g==='gram'){glSetup();return}
  const duo=g==='bingo'||g==='ttt'||g==='story',gf=g==='gif';
  setView(roomHTML()+setupHTML(g)+(g==='jeo'?jeoExtraHTML():gf?gifPlayHTML():duo?duoPlayHTML(g):playHTML())+((duo||gf)?'':shareHTML()));
  bindRoom();
@@ -2929,6 +2948,540 @@ function _renderTtt(){
  if(over)h+=`<div class="ov"><div class="modal over k-card"><h2>${T.win?'🎉 '+esc(T.players[T.win.p])+' wins!':'🤝 Draw'}</h2><div class="actions"><button data-btn="solid" data-a="tagain">Play again</button><button data-btn="n" data-a="tquit">To settings</button></div></div></div>`;
  setView(h)}
 
+
+/* ===== Gerund / infinitive word lists (Speaking) ===== */
+const WDQ={wgv:'Make a sentence with this verb + -ing (about yourself or the picture).',wiv:'Make a sentence with this verb + to V (about yourself or the picture).',wbo:'Make two sentences: with -ing and with to V. How does the meaning change?',wpa:'Make a sentence with this phrase + -ing.',wpv:'Make a sentence with this phrase + -ing.',wpo:'Make a sentence with this word + -ing.'};
+const PWT={wgv:['gvb','gpr','gsm','gsb'],wiv:['ivb','iad','gdf','oin'],wbo:['gdf','gsm','gvb','ivb'],wpa:['gpr','gsm','gvb'],wpv:['gpr','gvb','oin','gpf'],wpo:['gpr','gvb','gsm','gdf']};
+function wdPicFor(w,t){const pool=GP.filter(g=>PWT[t].includes(g[1])).map(g=>g[0]);const wp=wordPic(w);if(wp&&pool.includes(wp))return wp;let h=0;for(const c of w)h=(h*31+c.charCodeAt(0))>>>0;return pool[h%pool.length]}
+const WDSKIP=new Set(['during','morning','evening','thing','something','anything','everything','nothing','king','ring','spring','bring','string','sing','wing','swing']);
+function wdStart(ex,t){const s=ex.split(' / ')[0].replace(/\s*\([^)]*\)/g,'');
+ if(t==='wiv'){const i=s.search(/\bto\b/);if(i>=0)return s.slice(0,i+2)+' …'}
+ const re=/[\w’']+ing\b/g;let m,last=null;while((m=re.exec(s))){if(!WDSKIP.has(m[0].toLowerCase()))last=m}
+ if(last&&last.index>0)return s.slice(0,last.index).trim()+' …';
+ const p=s.replace(/[.?!]$/,'').split(' ');p.pop();return p.join(' ')+' …'}
+let _WP=null;function wordPic(w){if(!_WP){_WP={};GP.forEach(g=>g[2].forEach(x=>{const k=x.toLowerCase();if(!_WP[k])_WP[k]=g[0]}))}return _WP[String(w).toLowerCase().replace(/^be /,'')]||0}
+function wdParse(t){return t.trim().split('\n').map(l=>{const i=l.indexOf('|');return [l.slice(0,i).trim(),l.slice(i+1).trim()]})}
+const WD={
+wgv:wdParse(`admit|He admitted breaking the window.
+appreciate|I appreciate having your help.
+avoid|I avoid driving at night.
+can’t bear|I can’t bear hearing that noise.
+can’t help|I can’t help laughing at his jokes.
+can’t stand|She can’t stand waiting in queues.
+carry on|He carried on working despite the noise.
+consider|We are considering moving abroad.
+delay|They delayed signing the contract.
+deny|He denied taking the money.
+detest|I detest getting up early.
+discuss|We discussed changing the plan.
+dislike|She dislikes cooking.
+dread|I dread going to the dentist.
+enjoy|I enjoy reading in the evening.
+escape|He narrowly escaped being caught.
+excuse|Please excuse my interrupting you.
+fancy|Do you fancy going out tonight?
+feel like|I feel like eating pizza.
+finish|Have you finished writing the report?
+forgive|Please forgive my being late.
+give up|She gave up smoking.
+imagine|Can you imagine living on Mars?
+involve|The job involves travelling a lot.
+keep|He kept talking all night.
+mention|She mentioned seeing him at the party.
+mind|Do you mind opening the window?
+miss|I miss living by the sea.
+postpone|They postponed leaving until Monday.
+practise|You should practise speaking every day.
+put off|Stop putting off doing your homework.
+quit|He quit working there.
+recall|I don’t recall meeting her.
+recommend|I recommend trying the soup.
+resent|She resents working at weekends.
+resist|I couldn’t resist buying the shoes.
+risk|You risk losing your job.
+suggest|He suggested going to the cinema.
+tolerate|I can’t tolerate being lied to.
+understand|I understand wanting a change.
+it’s worth|It’s worth visiting the museum.
+it’s no use|It’s no use crying.
+there’s no point in|There’s no point in arguing.
+spend time|She spends hours playing games.
+go (activity)|We go swimming every Sunday.`),
+wiv:wdParse(`afford|We can’t afford to buy a new car.
+agree|They agreed to meet at six.
+aim|She aims to finish by Friday.
+appear|He appears to be lost.
+arrange|I arranged to see him on Monday.
+ask|She asked to speak to the manager.
+attempt|He attempted to climb the wall.
+beg|The boy begged to stay up.
+care|Would you care to join us?
+choose|They chose to stay at home.
+claim|He claims to know the mayor.
+dare|I wouldn’t dare to ask her.
+decide|We decided to buy a flat.
+demand|She demanded to see the manager.
+deserve|You deserve to win.
+expect|I expect to arrive at noon.
+fail|He failed to pass the exam.
+happen|I happened to be there.
+help|Can you help me to move the sofa?
+hesitate|Don’t hesitate to call me.
+hope|I hope to see you soon.
+intend|I intend to apply for the job.
+learn|She is learning to drive.
+manage|I managed to find a taxi.
+mean|I didn’t mean to hurt you.
+need|You need to rest.
+offer|He offered to carry my bag.
+plan|We plan to travel in July.
+pretend|The child pretended to sleep.
+prepare|They prepared to leave.
+promise|He promised to call me.
+refuse|She refused to help us.
+seem|He seems to be tired.
+struggle|I struggled to understand him.
+swear|I swear to tell the truth.
+tend|I tend to forget names.
+threaten|He threatened to call the police.
+volunteer|She volunteered to help.
+wait|I can’t wait to see you.
+want|I want to go home.
+wish|I wish to speak to the director.
+would like|I’d like to book a table.
+would love|I’d love to visit Japan.
+would prefer|I’d prefer to stay in.
+turn out|The story turned out to be true.
+prove|The plan proved to be a mistake.`),
+wbo:wdParse(`like|I like swimming. / I like to swim in the morning.
+love|She loves dancing. / She loves to dance.
+hate|He hates waiting. / He hates to wait.
+prefer|I prefer walking. / I prefer to walk.
+start|It started raining. / It started to rain.
+begin|They began working. / They began to work.
+continue|He continued talking. / He continued to talk.
+bother|Don’t bother calling. / Don’t bother to call.
+stop|He stopped smoking (he quit). / He stopped to smoke (he paused in order to smoke).
+remember|I remember locking the door (I did it). / Remember to lock the door (don’t forget).
+forget|I’ll never forget meeting her. / I forgot to post the letter.
+try|Try adding some salt (an experiment). / She tried to open the window (an attempt).
+regret|I regret telling him. / I regret to inform you that the flight is cancelled.
+go on|He went on talking (he continued). / He went on to become a doctor (the next step).
+mean|This job means working at night. / I didn’t mean to hurt you.
+need|The car needs washing. / I need to wash the car.`),
+wpa:wdParse(`afraid of|She is afraid of flying.
+good at|He is good at drawing.
+bad at|I’m bad at remembering names.
+interested in|I’m interested in learning Japanese.
+keen on|He is keen on collecting stamps.
+fond of|She is fond of baking.
+tired of|I’m tired of waiting.
+bored with|He is bored with doing the same thing.
+fed up with|I’m fed up with studying.
+sick of|I’m sick of hearing about it.
+excited about|We’re excited about moving.
+worried about|She’s worried about failing the exam.
+nervous about|I’m nervous about speaking in public.
+proud of|He is proud of winning.
+ashamed of|She is ashamed of lying.
+guilty of|He was guilty of stealing.
+capable of|She is capable of running a marathon.
+responsible for|He is responsible for training new staff.
+famous for|The town is famous for making cheese.
+sorry for|I’m sorry for being late.
+angry about|She is angry about missing the bus.
+pleased with|I’m pleased with passing the test.
+disappointed with|He was disappointed with losing.
+terrified of|I’m terrified of speaking on stage.
+crazy about|She’s crazy about dancing.
+successful in|He was successful in getting the job.
+used to (be used to)|I’m used to getting up early.
+accustomed to|He is accustomed to working at night.
+dedicated to|She is dedicated to teaching children.
+committed to|He is committed to improving his English.
+devoted to|She is devoted to taking care of her dog.
+addicted to|I’m addicted to watching series.
+opposed to|They are opposed to building a new road.
+known for|He is known for telling funny stories.
+excellent at|She is excellent at solving puzzles.
+brilliant at|He’s brilliant at fixing computers.
+hopeless at|I’m hopeless at parking.
+terrible at|I’m terrible at getting up on time.
+skilled at|She is skilled at negotiating.
+clever at|He’s clever at hiding things.
+quick at|She’s quick at learning languages.
+slow at|I’m slow at replying to messages.
+experienced in|He is experienced in managing teams.
+enthusiastic about|She is enthusiastic about learning new things.
+passionate about|He is passionate about cooking.
+thrilled about|We’re thrilled about going on holiday.
+happy about|I’m not happy about waiting so long.
+upset about|She was upset about losing her phone.
+concerned about|They are concerned about losing customers.
+anxious about|I’m anxious about flying.
+serious about|He is serious about changing his life.
+mad about|He is mad about collecting cars.
+sure about|Are you sure about moving abroad?
+careful about|Be careful about leaving your bag.
+embarrassed about|I’m embarrassed about forgetting her name.
+sorry about|I’m sorry about forgetting your birthday.
+annoyed about|I’m annoyed about missing the train.
+furious about|He was furious about losing the match.
+scared of|The boy is scared of being alone.
+frightened of|She is frightened of driving at night.
+jealous of|He is jealous of being ignored.
+envious of|I’m envious of people living by the sea.
+conscious of|I’m conscious of making mistakes.
+aware of|She is aware of being watched.
+incapable of|He is incapable of telling a lie.
+grateful for|I’m grateful for having such a friend.
+thankful for|We are thankful for being safe.
+good for|This app is good for learning words.
+useful for|A dictionary is useful for checking words.
+satisfied with|She isn’t satisfied with working there.
+impressed by|He was impressed by her playing the piano.
+angry at|She was angry at being treated like that.
+surprised at|I was surprised at finding the door open.
+shocked at|They were shocked at hearing the news.
+amazed at|We were amazed at seeing the view.
+insistent on|He is insistent on paying.`),
+wpv:wdParse(`look forward to|I’m looking forward to seeing you.
+apologise for|He apologised for being late.
+thank sb for|Thank you for helping me.
+insist on|She insisted on paying.
+succeed in|They succeeded in finding the house.
+believe in|I believe in trying again.
+think of|I’m thinking of changing jobs.
+think about|Think about taking a break.
+talk about|We talked about going abroad.
+dream of|She dreams of becoming a pilot.
+depend on|It depends on getting a visa.
+rely on|You can’t rely on guessing.
+object to|He objects to paying so much.
+concentrate on|Concentrate on solving the problem.
+focus on|Let’s focus on speaking.
+prevent sb from|The rain prevented us from going out.
+stop sb from|Nothing can stop me from trying.
+accuse sb of|They accused him of stealing.
+blame sb for|She blamed him for losing the keys.
+congratulate sb on|I congratulated her on passing the exam.
+forgive sb for|I forgave him for forgetting.
+suspect sb of|They suspected him of lying.
+warn sb against|The guide warned us against swimming here.
+specialise in|She specialises in teaching children.
+result in|The mistake resulted in losing money.
+lead to|Eating too much leads to gaining weight.
+contribute to|Exercise contributes to staying healthy.
+confess to|He confessed to breaking the vase.
+get used to|I’m getting used to living alone.
+take part in|He took part in running the race.
+be in charge of|She is in charge of organising events.
+participate in|Everyone participated in cleaning the park.
+engage in|They engage in helping others.
+count on|I’m counting on you helping me.
+resort to|He resorted to cheating.
+adapt to|She adapted to living abroad.
+commit to|He committed to learning every day.
+be dedicated to|She is dedicated to teaching.
+criticise sb for|They criticised him for being late.
+punish sb for|The teacher punished him for cheating.
+praise sb for|She praised him for working hard.
+excuse sb for|Please excuse me for being late.
+discourage sb from|The rain discouraged us from going out.
+keep sb from|Noise keeps me from sleeping.
+ban sb from|They banned him from entering.
+boast about|He boasted about winning.
+complain about|She complained about waiting so long.
+worry about|I worry about losing my job.
+argue about|They argued about spending money.
+care about|He doesn’t care about being late.
+aim at|The campaign aims at reducing waste.
+be accused of|He was accused of cheating.
+be suspected of|She was suspected of stealing.
+come close to|He came close to winning.
+put up with|I can’t put up with waiting.
+get round to|I’ll get round to cleaning soon.
+end up|We ended up taking a taxi.
+waste time|He wastes time playing games.
+have trouble|I have trouble sleeping.
+have difficulty|She has difficulty understanding.
+have fun|We had fun swimming.
+be busy|She is busy cooking.`),
+wpo:wdParse(`instead of|Instead of watching TV, let’s go out.
+without|He left without saying goodbye.
+before|Before leaving, turn off the lights.
+after|After finishing, call me.
+by|You can improve by practising daily.
+besides|Besides working, he studies.
+despite|Despite being tired, she went out.
+in spite of|In spite of raining, we walked.
+apart from|Apart from cooking, he cleans.
+on / upon|On arriving, I called you.
+because of|He was late because of missing the bus.
+what’s the point of|What’s the point of waiting?
+how about|How about going for a walk?
+what about|What about trying again?
+in addition to|In addition to working, she studies.
+as well as|As well as being tired, he was hungry.
+with a view to|He saved money with a view to buying a car.
+through|She learned English through watching films.
+while|While waiting, I read a book.
+since|I haven’t played since leaving school.
+in favour of|He is in favour of working from home.
+against|She is against paying more.`)
+};
+
+/* ===== Picture cards for Gerund / Infinitive (Speaking) ===== */
+/* [n, topic, words(from the lists), [start, example], [word task, example], [free question, example]] */
+const GP=[
+[1,'gpr',['afraid of','avoid'],['The dog is afraid of …','The dog is afraid of the vacuum cleaner.'],['Use: afraid of · avoid','He avoids walking past the vacuum cleaner.'],['What are you afraid of? What do you avoid doing because of it?','I’m afraid of flying, so I avoid taking planes.']],
+[2,'gpr',['interested in','can’t help'],['The dog seems interested in …','The dog seems interested in looking at his reflection.'],['Use: can’t help · interested in','He can’t help staring at the other dog.'],['What do you do in front of the mirror every morning?','I brush my teeth and check my hair before leaving.']],
+[3,'gvb',['deny','admit'],['The dog denied …','The dog denied chewing the sofa.'],['Use: deny · admit','He denied chewing the sofa, but then he admitted hiding in it.'],['You broke something at home. What do you say? Use “I admit …” or “I didn’t mean to …”.','I admit breaking the vase, but I didn’t mean to.']],
+[4,'ivb',['refuse','can’t stand'],['The dog refuses …','The dog refuses to be touched.'],['Use: refuse · can’t stand','He refuses to move. He can’t stand being poked.'],['What do you refuse to do on a Monday morning?','I refuse to get up before seven.']],
+[5,'gvb',['practise','finish','keep'],['The dog is practising …','The dog is practising writing / studying for an exam.'],['Use: practise · finish · keep','He keeps working. He hasn’t finished practising yet.'],['What do you need to practise more? How do you practise it?','I need to practise speaking. I practise by talking to myself.']],
+[6,'ivb',['seem','appear'],['The dog seems …','The dog seems to be shocked.'],['Use: seem · appear','He appears to be worried about something.'],['What do you think happened before this photo? Use “He seems to …”.','He seems to have seen a ghost.']],
+[7,'gvb',['keep','can’t stand','suggest'],['The dogs keep …','The dogs keep arguing.'],['Use: keep · can’t stand · suggest','They keep arguing. One of them suggests going outside.'],['What do you argue about with your family? Use “keep” or “can’t stand”.','We keep arguing about doing the dishes.']],
+[8,'gvb',['feel like','dislike','tired of'],['The dog doesn’t feel like …','The dog doesn’t feel like getting up.'],['Use: feel like · dislike','He dislikes waking up early. He feels like sleeping more.'],['What don’t you feel like doing today? What do you feel like doing instead?','I don’t feel like cooking. I feel like ordering pizza.']],
+[9,'gvb',['can’t help','resist','keep'],['The dog can’t help …','The dog can’t help looking at the camera.'],['Use: can’t help · resist · keep','He couldn’t resist taking a selfie.'],['What can’t you help doing? (laughing, checking your phone, …)','I can’t help checking my phone every five minutes.']],
+[10,'gpr',['interested in','fancy','imagine'],['The cat is very interested in …','The cat is very interested in watching the goldfish.'],['Use: interested in · fancy','The cat fancies catching the fish.'],['What are you interested in? What do you fancy doing this weekend?','I’m interested in photography. I fancy going to the cinema.']],
+[11,'gpr',['think of','dream of','succeed in'],['The cat is thinking of …','The cat is thinking of catching the fish.'],['Use: think of · dream of','He dreams of eating the fish.'],['What are you thinking of doing next year? What do you dream of doing?','I’m thinking of changing my job. I dream of travelling around Japan.']],
+[12,'gpr',['good at','succeed in','risk'],['The raccoon is good at …','The raccoon is good at opening bins.'],['Use: good at · succeed in · risk','He succeeded in opening the bin, but he risks getting caught.'],['What are you good at? What are you bad at?','I’m good at cooking, but bad at singing.']],
+[13,'iad',['manage','fail'],['He ran … (purpose)','He ran to catch the lift. / He ran in order to catch the lift.'],['Use: manage · fail','He managed to jump in. He almost failed to catch the lift.'],['What do you do in order to be on time in the morning?','I set two alarms in order to wake up on time.']],
+[14,'gvb',['hate','avoid','can’t stand','dislike'],['The cat hates …','The cat hates getting wet.'],['Use: hate · avoid · can’t stand','He hates baths and avoids getting wet.'],['What do you hate doing? What chore do you avoid?','I hate washing the dishes. I avoid doing it at weekends.']],
+[15,'gsm',['love','enjoy','prefer','look forward to'],['The dog loves …','The dog loves riding in the car. / The dog loves to ride in the car.'],['Use: love · enjoy · prefer','He enjoys riding in the car. He prefers riding to staying at home.'],['Do you prefer travelling by car, train or plane? Why?','I prefer travelling by train because I can read.']],
+[16,'ivb',['wait','look forward to','would love'],['The dog can’t wait …','The dog can’t wait to get to the beach.'],['Use: can’t wait · look forward to','He is looking forward to arriving.'],['What are you looking forward to this month? What can’t you wait to do?','I’m looking forward to seeing my friends. I can’t wait to go on holiday.']],
+[17,'gvb',['avoid','pretend','put off'],['The man is avoiding …','The man is avoiding talking to his colleague.'],['Use: avoid · pretend · put off','He pretends to be busy and avoids meeting his boss.'],['Is there anyone or anything you avoid at work or school? Why?','I avoid talking to people before my first coffee.']],
+[18,'gdf',['try','attempt','dare'],['The man is trying …','The man is trying to cook standing on his head.'],['Use: try · attempt · dare','He attempted to cook upside down. I wouldn’t dare to try it.'],['What is the craziest thing you have ever tried to do? Would you dare to do it again?','I tried to bungee jump. I wouldn’t dare to do it again.']],
+[19,'ivb',['learn','aim','dare','attempt'],['The penguin is learning …','The penguin is learning to fly.'],['Use: learn · aim · dare','He dares to jump. He aims to land safely.'],['What did you learn to do last year? What do you want to learn to do?','I learned to cook pasta. I want to learn to drive.']],
+[20,'gvb',['keep','prevent sb from','stop sb from'],['The cat keeps …','The cat keeps sitting on the keyboard.'],['Use: keep · prevent sb from','The cat prevents me from working.'],['What stops you from working or studying? Use “prevent / stop … from”.','My phone prevents me from concentrating.']],
+[21,'gvb',['admit','resist','deny','enjoy'],['The dog admitted …','The dog admitted eating the peanut butter.'],['Use: admit · resist · deny','He couldn’t resist licking the jar, but he will deny doing it.'],['What food can’t you resist? Do you admit it or deny it?','I can’t resist chocolate. I admit eating it every day.']],
+[22,'ivb',['wait','promise','expect'],['The dog is waiting …','The dog is waiting to eat the cake.'],['Use: promise · wait · expect','He promised to wait. He expects to eat it soon.'],['What can’t you wait to do on your birthday? What do you promise to do?','I can’t wait to open the presents.']],
+[23,'gpr',['give up','regret','fed up with'],['He is fed up with …','He is fed up with looking for the document.'],['Use: give up · regret · fed up with','He regrets throwing it away. He wants to give up looking.'],['Have you ever lost something important? How did you look for it?','I lost my keys. I kept searching for an hour.']],
+[24,'gsb',['enjoy','prefer','love','dislike'],['… is his favourite hobby.','Sleeping is his favourite hobby.'],['Use: enjoy · prefer','He prefers sleeping to working. He enjoys doing nothing.'],['Describe your perfect lazy day. What do you love doing and what do you hate doing?','I love sleeping late and hate getting up early.']],
+[25,'gpr',['practise','good at','get used to','enjoy'],['The dog is good at …','The dog is good at doing yoga.'],['Use: practise · get used to','He practises every day. He is used to doing yoga.'],['What sport or hobby do you practise? How did you get used to it?','I practise swimming twice a week.']],
+[26,'gpr',['tired of','bored with','give up','put off'],['He is tired of …','He is tired of studying all night.'],['Use: tired of · bored with · give up','He is bored with reading. He almost gave up studying.'],['What are you tired of or bored with? What would you like to give up?','I’m tired of getting up early.']],
+[27,'iad',['struggle','manage'],['The cat is too fat …','The cat is too fat to get through the door.'],['Use: struggle · manage','He struggles to get through. He didn’t manage to get out.'],['What is too big, too small or too expensive for you? Use “too … to”.','This flat is too small to have guests.']],
+[28,'ivb',['want','beg','would like','insist on'],['The cat wants …','The cat wants to go out.'],['Use: want · beg · insist on','He begs to go out and insists on being let out.'],['What do you want to do right now? What would you like to do tomorrow?','I want to rest. I’d like to go for a walk.']],
+[29,'iad',['capable of','struggle','aim'],['The hamster is strong enough …','The hamster is strong enough to lift the weight.'],['Use: capable of · aim','He is capable of lifting heavy things. He aims to become a champion.'],['What are you old / tall / strong enough to do? What are you not … enough to do?','I’m old enough to vote. I’m not tall enough to reach the shelf.']],
+[30,'ivb',['pretend','in charge of','responsible for'],['The duck pretends …','The duck pretends to be an office worker.'],['Use: pretend · be in charge of','He is in charge of running the office.'],['Imagine you are the boss. What are you in charge of? What do you promise to do?','I’m in charge of hiring. I promise to give everyone a day off.']],
+[31,'gdf',['stop','can’t help','enjoy'],['The dog stopped …','The dog stopped to smell the flower. / The dog stopped smelling the flower.'],['Use: stop · can’t help','He stopped to smell the flower. He can’t help smelling everything.'],['Where were you going when you stopped to do something? What did you stop doing this year?','I stopped to buy coffee. I stopped eating sweets.']],
+[32,'ivb',['expect','demand','wait'],['The cat expects …','The cat expects to get food.'],['Use: expect · demand','He demands to be fed. He expects to eat now.'],['What do you expect to do this evening? What do you demand in a restaurant?','I expect to relax. I demand to be treated nicely.']],
+[33,'gdf',['forget','remember'],['The owner forgot …','The owner forgot to feed the cat on time.'],['Use: forget · remember','Remember to feed me! The cat reminds the owner.'],['What do you often forget to do? What do you always remember to do?','I often forget to take my keys. I always remember to lock the door.']],
+[34,'gvb',['keep','carry on','enjoy'],['The dog keeps …','The dog keeps digging holes in the garden.'],['Use: keep · carry on · enjoy','He carries on digging. He enjoys making holes.'],['What do you keep doing even though you shouldn’t?','I keep eating late at night.']],
+[35,'gdf',['try','manage','fail'],['He tried …','He tried to open the window, but it was stuck.'],['Use: try · manage · fail','He tried to open it, but he failed to.'],['Tell about something you tried to do but couldn’t. What did you try doing instead?','I tried to fix my bike. Then I tried asking a friend.']],
+[36,'ivb',['manage','risk','succeed in'],['The person managed …','The person managed to get through the window.'],['Use: manage · risk · succeed in','He succeeded in getting inside, but he risked falling.'],['Have you ever locked yourself out? How did you get in?','I locked myself out. I managed to climb in through the window.']],
+[37,'gdf',['try','can’t stand','feel like'],['He tried …','He tried wearing a blanket / He tried to get warm.'],['Use: try · can’t stand · feel like','He can’t stand being cold. He tried wearing a blanket.'],['Give advice to a friend who is cold, tired or can’t sleep. Use “Try -ing”.','Try drinking warm tea.']],
+[38,'gpr',['concentrate on','struggle','focus on'],['He can’t concentrate on …','He can’t concentrate on his work.'],['Use: concentrate on · struggle','He struggles to concentrate. He keeps thinking about the problem.'],['What helps you concentrate on studying? What distracts you?','Silence helps me concentrate on reading. My phone distracts me.']],
+[39,'gpr',['without','forget','regret'],['The boy fell asleep without …','The boy fell asleep without blowing out the candles.'],['Use: without · forget · regret','He forgot to blow out the candles. He will regret falling asleep.'],['Tell about a birthday you remember. What do you remember doing?','I remember blowing out candles with my grandma.']],
+[40,'gpr',['get used to','prefer','tolerate'],['He has got used to …','He has got used to taking a shower in a barrel.'],['Use: get used to · prefer','He got used to showering in a barrel.'],['What strange thing have you got used to? What can’t you get used to?','I got used to living alone. I can’t get used to waking up early.']],
+[41,'gdf',['remember','offer','afford'],['He remembered …','He remembered to bring the cake.'],['Use: remember · offer · afford','He offered to share the cake. He can’t afford to buy another one.'],['What do you remember to bring to a party? What do you offer to do for friends?','I remember to bring flowers. I offer to help with the dishes.']],
+[42,'gvb',['deny','admit','mention','apologise for'],['The dog denies …','The dog denies pushing the cat off the sofa.'],['Use: deny · admit · mention','He denied pushing the cat. He admitted sitting there.'],['Imagine someone asks, “Who sat on the sofa?” What does the dog say? Use “deny” or “admit”.','He says: I deny sitting on it!']],
+[43,'gsm',['love','enjoy','start','prefer'],['They love …','They love sleeping together. / They love to sleep together.'],['Use: love · enjoy · prefer','They started sleeping together and they love it.'],['What do you love doing with friends or pets? What do you prefer doing alone?','I love walking with my dog. I prefer reading alone.']],
+[44,'gsm',['start','begin','continue','regret'],['It started …','It started raining. / It started to rain.'],['Use: start · begin · continue · regret','It began to rain, but the cat continued sitting there.'],['What do you do when it starts raining? What do you regret doing?','When it starts to rain, I open my umbrella.']],
+[45,'oin',['accuse sb of','blame sb for','make','tell'],['The boss made …','The boss made him leave the office.'],['Use: accuse sb of · tell sb to','He accused him of stealing and told him to leave.'],['What do bosses make employees do? What do they not allow?','They make us work late. They don’t let us use our phones.']],
+[46,'oin',['stop sb from','prevent sb from','let'],['She stopped the cat from …','She stopped the cat from scratching the door.'],['Use: stop sb from · let','She doesn’t let him scratch the door.'],['What do your parents or teachers not let you do? Use “let”.','My mum doesn’t let me stay up late.']],
+[47,'oin',['let','allow','wait'],['She let …','She let the cat come in.'],['Use: let · allow','She allowed him to come in.'],['What do you allow your pet or children to do? What don’t you allow?','I allow my dog to sleep on the sofa.']],
+[48,'ivb',['seem','appear','pretend','in charge of'],['The bear seems …','The bear seems to be a librarian.'],['Use: seem · pretend · be in charge of','The bear pretends to work. He is in charge of the desk.'],['What is the strangest thing you have seen at an office?','I saw a dog sleeping under the desk.']],
+[49,'gpf',['resist','admit','fancy'],['The cat seems …','The cat seems to have eaten some fish.'],['Use: resist · admit','He couldn’t resist eating the fish. He admitted having stolen it.'],['What happened here? Make three guesses with “seems / appears to have”.','The cat seems to have taken a fish.']],
+[50,'gpf',['apologise for','regret','admit','deny'],['The dog admitted …','The dog admitted having made the mess.'],['Use: apologise for · regret · deny','He apologised for making the floor dirty.'],['Imagine the dog is in court. What does he deny, admit or regret?','He denied running through the mud, but he regretted coming home.']],
+[51,'gpr',['afraid of','object to','refuse','avoid'],['The dog is afraid of …','The dog is afraid of having a bath.'],['Use: object to · refuse · avoid','He objects to taking a bath. He refuses to get in.'],['What household chore do you object to? What do you avoid doing?','I object to ironing. I avoid doing it.']],
+[52,'gsm',['fond of','love','can’t help'],['The dog loves …','The dog loves playing in the mud. / The dog loves to play in the mud.'],['Use: be fond of · can’t help','He is fond of playing in the mud. He can’t help getting dirty.'],['What are you fond of doing outdoors? What do you do when you get dirty?','I’m fond of walking in the forest.']],
+[53,'gdf',['try','manage'],['The dog is trying …','The dog is trying to hide in the slipper.'],['Use: try · manage','He managed to fit inside. He tried to hide.'],['Where do you hide things at home? What did you try hiding as a child?','I hide chocolate in a box.']]
+];
+
+/* ===== Grammar Lab data ===== */
+const GLV=[['kids','A1 Kids'],['a1','A1'],['a2','A2'],['b1','B1'],['b2','B2'],['c1','C1'],['all','All']];
+const GT=[
+{id:'be',n:'To be',lv:['kids','a1'],f:'am / is / are (+ not) · Am / Is / Are + subject?',ex:'She is a teacher. Is she a teacher?'},
+{id:'ps',n:'Present Simple',lv:['kids','a1'],f:'V(s) · don’t / doesn’t + V · Do / Does + subject + V?',ex:'He plays chess. Does he play chess?'},
+{id:'pcn',n:'Present Continuous',lv:['kids','a1'],f:'am / is / are + V-ing',ex:'They are playing football now.'},
+{id:'thr',n:'There is / are',lv:['kids','a1'],f:'There is + singular · There are + plural · Is / Are there…?',ex:'There are two chairs in the room.'},
+{id:'can',n:'Can / can’t',lv:['kids','a1'],f:'can / can’t + V · Can + subject + V?',ex:'I can swim, but I can’t dive.'},
+{id:'hgt',n:'Have got',lv:['kids','a1'],f:'have / has got · haven’t / hasn’t got · Have / Has + subject + got?',ex:'She has got a red bike.'},
+{id:'psp',n:'Past Simple',lv:['a1','a2'],f:'V-ed / irregular · didn’t + V · Did + subject + V?',ex:'We watched a film yesterday.'},
+{id:'pasc',n:'Past Continuous',lv:['a2'],f:'was / were + V-ing',ex:'I was cooking when you called.'},
+{id:'fut',n:'Future: will / going to',lv:['a2'],f:'will + V (decision, prediction) · am / is / are going to + V (plan)',ex:'I’m going to visit Rome next year.'},
+{id:'cmp',n:'Comparatives & superlatives',lv:['a2'],f:'-er / more … than · the -est / the most … · as … as',ex:'This film is more interesting than that one.',ty:['comparative','superlative','as … as']},
+{id:'shd',n:'Should / must / have to',lv:['a2'],f:'should (advice) · must / have to (obligation) · mustn’t (forbidden) · don’t have to (not necessary)',ex:'You should drink more water.',ty:['advice','obligation','prohibition']},
+{id:'uto',n:'Used to',lv:['a2'],f:'used to + V · didn’t use to + V · Did … use to + V?',ex:'I used to play with toy cars.'},
+{id:'pfi',n:'Present Perfect',lv:['a2','b1'],f:'have / has + V3 · for / since · ever / never / just / already / yet',ex:'I have never been to Japan.'},
+{id:'ppc',n:'Present Perfect Continuous',lv:['b1'],f:'have / has been + V-ing',ex:'She has been learning English for two years.'},
+{id:'pperf',n:'Past Perfect',lv:['b1'],f:'had + V3 (the earlier past action)',ex:'When I arrived, the film had already started.'},
+{id:'cd1',n:'First Conditional',lv:['a2','b1'],f:'If + Present Simple, will + V',ex:'If it rains, we will stay at home.',ty:['if-clause first','result first','question']},
+{id:'cd2',n:'Second Conditional',lv:['b1'],f:'If + Past Simple, would + V',ex:'If I had a lot of money, I would travel.',ty:['if-clause first','result first','question']},
+{id:'pass',n:'Passive (simple tenses)',lv:['b1'],f:'am / is / are / was / were + V3 (+ by …)',ex:'The bridge was built in 1990.'},
+{id:'rep',n:'Reported statements',lv:['b1'],f:'said (that) + a step back in tense',ex:'She said she was tired.'},
+{id:'rcl',n:'Relative clauses',lv:['b1'],f:'who (people) · which / that (things) · where (places) · whose (belongs to)',ex:'The man who lives next door is my uncle.',ty:['who','which / that','where / whose']},
+{id:'mdd',n:'Modals of deduction',lv:['b1'],f:'must (sure) · might / could (possible) · can’t (impossible) + V',ex:'He must be at home. His car is outside.',ty:['sure','possible','impossible']},
+{id:'gpr',sp:1,n:'Gerund after prepositions',lv:['b1'],f:'preposition + V-ing: good at · interested in · afraid of · tired of · thank you for · apologise for · look forward to · instead of · without · before / after + V-ing',ex:'She is good at cooking. He left without saying goodbye.',ty:['adjective + prep + -ing','verb + prep + -ing','without / before / after + -ing']},
+{id:'gvb',sp:1,n:'Gerund after verbs',lv:['b1'],f:'enjoy · avoid · finish · mind · suggest · keep · practise · imagine · consider · miss · give up · can’t stand · admit · deny + V-ing',ex:'I enjoy reading. She gave up smoking.',ty:['statement','negative','question']},
+{id:'ivb',sp:1,n:'Infinitive after verbs',lv:['b1'],f:'want · decide · hope · plan · promise · refuse · manage · afford · learn · agree · expect · need · offer · would like · seem + to V',ex:'We decided to buy a flat.',ty:['statement','negative','question']},
+{id:'gsb',sp:1,n:'Gerund / infinitive as subject',lv:['b1'],f:'V-ing as subject: Swimming is fun. · It’s + adjective + to V: It’s easy to learn. · It takes + time + to V · It’s no use / no good + V-ing',ex:'Learning languages is useful. It’s important to be on time.',ty:['V-ing as the subject','It is + adjective + to V','It takes / It’s no use']},
+{id:'iad',sp:1,n:'Infinitive: adjectives, purpose, too / enough',lv:['b1'],f:'adjective + to V (happy to, ready to) · purpose: to V / in order to V · too + adj + to V · adj + enough + to V',ex:'I went to the shop to buy milk. He is too tired to drive.',ty:['adjective + to V','purpose (to / in order to)','too / enough']},
+{id:'gdf',sp:1,n:'Stop / remember / try: -ing vs to V',lv:['b1','b2'],f:'stop / remember / forget / try / regret / go on: V-ing = the action itself (or the past) · to V = purpose / the next action',ex:'Remember to lock the door. I remember locking it.',ty:['with -ing','with to V','explain the difference']},
+{id:'gsm',sp:1,n:'Like / start / prefer: both forms',lv:['b1'],f:'like · love · hate · prefer · start · begin · continue + V-ing or to V (almost the same meaning) · would like / would love + to V only',ex:'It started to rain. / It started raining.',ty:['with -ing','with to V']},
+{id:'oin',sp:1,n:'Verb + object + infinitive (make / let)',lv:['b2'],f:'want / tell / ask / allow / advise / persuade + sb + to V · make / let + sb + V (no to) · be made to V · be allowed to V',ex:'She told me to wait. He made us work late.',ty:['tell / ask / advise sb to','make / let sb','passive']},
+{id:'gpf',sp:1,n:'Perfect infinitive & gerund',lv:['c1'],f:'seems / appears / is said to have + V3 · sorry for / admit + having + V3 · to be + V-ing',ex:'She seems to have left. He admitted having lied.',ty:['to have + V3','having + V3','to be + V-ing']},
+{id:'tag',n:'Question tags',lv:['b1'],f:'positive sentence, negative tag · negative sentence, positive tag',ex:'You like tea, don’t you?',ty:['positive + tag','negative + tag']},
+{id:'wsh',n:'Wish + Past Simple',lv:['b1'],f:'I wish + Past Simple (a present situation I don’t like)',ex:'I wish I had a car.',ty:['about yourself','about a friend']},
+{id:'cd3',n:'Third Conditional',lv:['b2'],f:'If + Past Perfect, would have + V3',ex:'If I had studied, I would have passed.',ty:['if-clause first','result first','question']},
+{id:'cdm',n:'Mixed conditionals',lv:['b2'],f:'If + Past Perfect, would + V (past → present) · If + Past Simple, would have + V3 (present → past)',ex:'If I had studied, I would have a job now.',ty:['past → present','present → past','question']},
+{id:'pasa',n:'Passive (all tenses & modals)',lv:['b2'],f:'be + V3 in any tense · modal + be + V3 · It is said that…',ex:'A new bridge is being built.'},
+{id:'repq',n:'Reported questions & commands',lv:['b2'],f:'asked + if / wh- + statement order · told + me + (not) to V',ex:'She asked me where I lived.',ty:['statement','question','command']},
+{id:'fpf',n:'Future Perfect / Continuous',lv:['b2'],f:'will have + V3 (done by) · will be + V-ing (in progress at)',ex:'By Friday I will have finished.',ty:['by a deadline','at a moment']},
+{id:'wsp',n:'Wish / If only (Past Perfect)',lv:['b2'],f:'I wish + Past Perfect · If only + Past Perfect (regret)',ex:'I wish I had gone to the party.',ty:['about yourself','about a friend']},
+{id:'mdp',n:'Past modals of deduction',lv:['b2'],f:'must / might / could / can’t + have + V3 · should have + V3',ex:'He must have forgotten.',ty:['sure','possible','impossible']},
+{id:'cau',n:'Causative have / get',lv:['b2'],f:'have / get + something + V3',ex:'I had my car repaired.',ty:['statement','question']},
+{id:'cmx',n:'Comparison structures',lv:['b2'],f:'the more …, the more … · twice as … as · not quite as … as',ex:'The harder you work, the better you feel.',ty:['the … the …','twice as … as','not quite as … as']},
+{id:'inv',n:'Inversion',lv:['c1'],f:'Never / Rarely / Not only / No sooner / Under no circumstances + auxiliary + subject',ex:'Never have I seen such a view.',ty:['Never…','Not only…','Rarely / No sooner…']},
+{id:'cle',n:'Cleft sentences',lv:['c1'],f:'It was … who / that … · What … is …',ex:'What I need is some peace.',ty:['It was … who / that','What … is']},
+{id:'sbj',n:'It’s time / would rather / subjunctive',lv:['c1'],f:'It’s time + Past Simple · I’d rather + subject + Past Simple · suggest (that) he + V',ex:'It’s time we left.',ty:['It’s time','I’d rather','suggest / insist']},
+{id:'ptc',n:'Participle clauses',lv:['c1'],f:'V-ing … · Having + V3 … · reduced relative (the man standing there)',ex:'Feeling tired, she went to bed.',ty:['-ing clause','Having + V3','reduced relative']}
+];
+const TS={
+be:[['I am a student.','→ negative','I am not a student.'],['She is tall.','→ question','Is she tall?'],['They are at home.','→ negative','They aren’t at home.'],['Are you hungry?','→ short answer: yes','Yes, I am.'],['We are friends.','→ negative','We aren’t friends.'],['He is ten years old.','→ question about age','How old is he?']],
+ps:[['She plays tennis every day.','→ negative','She doesn’t play tennis every day.'],['They live in London.','→ question','Do they live in London?'],['He likes pizza.','→ negative','He doesn’t like pizza.'],['I get up at seven.','→ question (ask your partner)','Do you get up at seven?'],['Does she work here?','→ short answer: no','No, she doesn’t.'],['My dad cooks dinner.','→ question: who?','Who cooks dinner?']],
+pcn:[['She reads a book.','→ Present Continuous (now)','She is reading a book.'],['They are playing football.','→ negative','They aren’t playing football.'],['He is sleeping.','→ question','Is he sleeping?'],['I wash the dishes.','→ Present Continuous','I am washing the dishes.'],['We are eating lunch.','→ Present Simple (every day)','We eat lunch every day.'],['The dog runs in the park.','→ Present Continuous','The dog is running in the park.']],
+thr:[['There is a cat in the room.','→ negative','There isn’t a cat in the room.'],['There are two books on the table.','→ question','Are there any books on the table?'],['There is a lamp.','→ three lamps','There are three lamps.'],['There aren’t any chairs.','→ positive','There are some chairs.'],['There is milk in the fridge.','→ question','Is there any milk in the fridge?'],['Is there a park near your house?','→ short answer: yes','Yes, there is.']],
+can:[['I can swim.','→ negative','I can’t swim.'],['She can play the guitar.','→ question','Can she play the guitar?'],['They can’t drive.','→ positive','They can drive.'],['Can he speak English?','→ short answer: no','No, he can’t.'],['I can ride a horse.','→ question (ask your partner)','Can you ride a horse?'],['We can see the sea.','→ negative','We can’t see the sea.']],
+hgt:[['I have got a dog.','→ negative','I haven’t got a dog.'],['She has got two brothers.','→ question','Has she got two brothers?'],['They have got a big house.','→ negative','They haven’t got a big house.'],['Has he got a bike?','→ short answer: yes','Yes, he has.'],['He has got a computer.','→ negative','He hasn’t got a computer.'],['We have got a car.','→ question','Have we got a car?']],
+psp:[['I watch a film every Friday.','→ Past Simple (yesterday)','I watched a film yesterday.'],['She goes to school.','→ Past Simple','She went to school.'],['They played football.','→ negative','They didn’t play football.'],['He bought a new phone.','→ question','Did he buy a new phone?'],['We eat pizza.','→ Past Simple','We ate pizza.'],['Did you see Tom?','→ short answer: no','No, I didn’t.']],
+pasc:[['I watched TV at eight.','→ Past Continuous','I was watching TV at eight.'],['She was cooking dinner.','→ negative','She wasn’t cooking dinner.'],['They were playing outside.','→ question','Were they playing outside?'],['He read a book when I called.','→ Past Continuous for the long action','He was reading a book when I called.'],['It rained when we left.','→ Past Continuous','It was raining when we left.'],['I was sleeping when the phone rang.','→ question: What / you','What were you doing when the phone rang?']],
+fut:[['I will help you.','→ negative','I won’t help you.'],['She is going to travel.','→ question','Is she going to travel?'],['It is sunny.','→ will (tomorrow)','It will be sunny tomorrow.'],['We visit Rome next year.','→ going to (plan)','We are going to visit Rome next year.'],['They will win.','→ question','Will they win?'],['I am going to buy a car.','→ negative','I’m not going to buy a car.']],
+cmp:[['My bag is big. (than yours)','→ comparative','My bag is bigger than yours.'],['She is tall.','→ superlative (in the class)','She is the tallest in the class.'],['This film is interesting.','→ comparative (than that one)','This film is more interesting than that one.'],['He runs fast.','→ comparative','He runs faster than me.'],['It’s a good restaurant.','→ superlative (in town)','It’s the best restaurant in town.'],['A bike is cheap. A car is expensive.','→ not as … as','A bike is not as expensive as a car.']],
+shd:[['I eat fast food every day.','→ advice: shouldn’t','You shouldn’t eat fast food every day.'],['Students wear a uniform.','→ must','Students must wear a uniform.'],['He works on Sundays.','→ doesn’t have to','He doesn’t have to work on Sundays.'],['You park here.','→ mustn’t (forbidden)','You mustn’t park here.'],['Do I need to pay?','→ have to','Do I have to pay?'],['She studies more.','→ should (advice)','She should study more.']],
+uto:[['I played with dolls as a child.','→ used to','I used to play with dolls as a child.'],['He smokes.','→ used to (not now)','He used to smoke.'],['We lived in a small flat.','→ used to','We used to live in a small flat.'],['I used to walk to school.','→ negative','I didn’t use to walk to school.'],['She used to have long hair.','→ question','Did she use to have long hair?'],['They went to the beach every summer.','→ used to','They used to go to the beach every summer.']],
+pfi:[['She saw this film.','→ Present Perfect','She has seen this film.'],['They have finished.','→ negative','They haven’t finished.'],['He has lost his keys.','→ question','Has he lost his keys?'],['I went to Japan in 2019.','→ Present Perfect (life experience)','I have been to Japan.'],['We have lived here for five years.','→ question: how long?','How long have you lived here?'],['She has just left.','→ Past Simple (at five o’clock)','She left at five o’clock.']],
+ppc:[['I have waited for an hour.','→ Present Perfect Continuous','I have been waiting for an hour.'],['She has been working all day.','→ negative','She hasn’t been working all day.'],['They have been playing tennis.','→ question','Have they been playing tennis?'],['He studied English for three years. (still now)','→ Present Perfect Continuous','He has been studying English for three years.'],['We have been living here since 2020.','→ question: how long?','How long have you been living here?'],['It has been raining.','→ negative','It hasn’t been raining.']],
+pperf:[['She left before I arrived.','→ Past Perfect (she left first)','She had left before I arrived.'],['They had eaten.','→ negative','They hadn’t eaten.'],['He had finished his work.','→ question','Had he finished his work?'],['I forgot my keys, so I couldn’t enter.','→ Past Perfect for the first action','I had forgotten my keys, so I couldn’t enter.'],['When we arrived, the film started.','→ already','When we arrived, the film had already started.'],['She had never seen the sea before.','→ question: ever','Had she ever seen the sea before?']],
+cd1:[['If it rains, we stay at home.','→ First Conditional','If it rains, we will stay at home.'],['If you study, you will pass.','→ negative (both parts)','If you don’t study, you won’t pass.'],['If she calls, I will answer.','→ question: What will you do…?','What will you do if she calls?'],['We will go out if the weather is nice.','→ change the order','If the weather is nice, we will go out.'],['I will be late if I miss the bus.','→ unless','I will be late unless I catch the bus.'],['If I see him, I tell him.','→ correct it','If I see him, I will tell him.']],
+cd2:[['If I have a lot of money, I will travel.','→ Second Conditional','If I had a lot of money, I would travel.'],['If I knew the answer, I would tell you.','→ negative (both parts)','If I didn’t know the answer, I wouldn’t tell you.'],['If I were you, I would apologise.','→ question: What would you do…?','What would you do if you were me?'],['I would buy a house if I won the lottery.','→ change the order','If I won the lottery, I would buy a house.'],['He doesn’t have a car, so he walks.','→ Second Conditional','If he had a car, he wouldn’t walk.'],['We don’t live near the sea. We can’t swim every day.','→ Second Conditional','If we lived near the sea, we could swim every day.']],
+pass:[['People speak English here.','→ passive','English is spoken here.'],['Someone stole my bike.','→ passive','My bike was stolen.'],['They build houses.','→ passive','Houses are built.'],['The cake was eaten.','→ negative','The cake wasn’t eaten.'],['Do they clean the room every day?','→ passive','Is the room cleaned every day?'],['The chef cooked the meal.','→ passive (with by)','The meal was cooked by the chef.']],
+rep:[['“I am tired,” she said.','→ reported speech','She said (that) she was tired.'],['“We live in Rome,” they said.','→ reported speech','They said (that) they lived in Rome.'],['“I will call you,” he said.','→ reported speech','He said (that) he would call me.'],['“I have lost my keys,” she said.','→ reported speech','She said (that) she had lost her keys.'],['He said, “I am watching TV.”','→ reported speech','He said (that) he was watching TV.'],['“I can swim,” Tom said.','→ reported speech','Tom said (that) he could swim.']],
+rcl:[['The man is my uncle. He lives next door.','→ join with who','The man who lives next door is my uncle.'],['This is the book. I bought it yesterday.','→ join with that / which','This is the book (that) I bought yesterday.'],['The woman works here. Her car is red.','→ join with whose','The woman whose car is red works here.'],['That is the café. We met there.','→ join with where','That is the café where we met.'],['I know a boy. He speaks five languages.','→ join with who','I know a boy who speaks five languages.'],['The film was great. We watched it.','→ join with that','The film (that) we watched was great.']],
+mdd:[['I’m sure he is at home.','→ must','He must be at home.'],['Perhaps she is busy.','→ might','She might be busy.'],['It’s impossible that he is rich.','→ can’t','He can’t be rich.'],['I’m sure they are tired.','→ must','They must be tired.'],['Maybe it will rain.','→ might','It might rain.'],['It is possible that she knows the answer.','→ could','She could know the answer.']],
+gpr:[['She is good at (cook).','→ fill in the correct form','She is good at cooking.'],['I’m interested in (learn) Japanese.','→ fill in','I’m interested in learning Japanese.'],['He left without (say) goodbye.','→ fill in','He left without saying goodbye.'],['Thank you for (help) me.','→ fill in','Thank you for helping me.'],['We are looking forward to (see) you.','→ fill in','We are looking forward to seeing you.'],['Instead of (watch) TV, let’s go out.','→ fill in','Instead of watching TV, let’s go out.'],['She is afraid of (fly).','→ fill in','She is afraid of flying.'],['Before (leave), turn off the lights.','→ fill in','Before leaving, turn off the lights.'],['He apologised for (be) late.','→ fill in','He apologised for being late.'],['I’m used to (get up) early.','→ fill in','I’m used to getting up early.']],
+gvb:[['I enjoy (read) in the evening.','→ fill in','I enjoy reading in the evening.'],['She avoids (eat) sugar.','→ fill in','She avoids eating sugar.'],['Have you finished (write) the report?','→ fill in','Have you finished writing the report?'],['Do you mind (open) the window?','→ fill in','Do you mind opening the window?'],['He suggested (go) to the cinema.','→ fill in','He suggested going to the cinema.'],['They kept (talk) all night.','→ fill in','They kept talking all night.'],['I gave up (smoke) last year.','→ fill in','I gave up smoking last year.'],['She can’t stand (wait) in queues.','→ fill in','She can’t stand waiting in queues.'],['He denied (take) the money.','→ fill in','He denied taking the money.'],['I’m considering (move) to Berlin.','→ fill in','I’m considering moving to Berlin.']],
+ivb:[['I want (go) home.','→ fill in','I want to go home.'],['They decided (buy) a flat.','→ fill in','They decided to buy a flat.'],['She hopes (pass) the exam.','→ fill in','She hopes to pass the exam.'],['We can’t afford (travel) abroad.','→ fill in','We can’t afford to travel abroad.'],['He promised (call) me.','→ fill in','He promised to call me.'],['I managed (find) a taxi.','→ fill in','I managed to find a taxi.'],['She refused (help) us.','→ fill in','She refused to help us.'],['I’d like (book) a table.','→ fill in','I’d like to book a table.'],['He seems (be) tired.','→ fill in','He seems to be tired.'],['They agreed (meet) at six.','→ fill in','They agreed to meet at six.']],
+gsb:[['It is fun to swim.','→ gerund as the subject','Swimming is fun.'],['Smoking is bad for you.','→ It is … + infinitive','It is bad for you to smoke.'],['Learn languages is useful.','→ correct it','Learning languages is useful.'],['(Get up) early is hard for me.','→ fill in','Getting up early is hard for me.'],['It’s important (be) on time.','→ fill in','It’s important to be on time.'],['Cooking dinner takes an hour.','→ It takes … to V','It takes an hour to cook dinner.'],['It’s no use (cry).','→ fill in','It’s no use crying.'],['Is (travel) alone dangerous?','→ fill in','Is travelling alone dangerous?']],
+iad:[['I went to the shop. I wanted to buy milk.','→ join with the purpose (to V)','I went to the shop to buy milk.'],['She is happy. She meets you.','→ adjective + to V','She is happy to meet you.'],['He is too tired. He can’t drive.','→ too … to','He is too tired to drive.'],['She is old enough. She can vote.','→ enough … to','She is old enough to vote.'],['I called to (ask) about the price.','→ fill in','I called to ask about the price.'],['They saved money. They wanted to buy a car.','→ in order to','They saved money in order to buy a car.'],['I’m ready (start).','→ fill in','I’m ready to start.'],['The soup is too hot. I can’t eat it.','→ too … to','The soup is too hot to eat.']],
+gdf:[['He stopped smoking. (he quit)','→ change the meaning: he stopped in order to smoke','He stopped to smoke.'],['I remember (lock) the door. I did it.','→ fill in','I remember locking the door.'],['Remember (lock) the door! It’s a reminder.','→ fill in','Remember to lock the door!'],['I forgot (post) the letter. It’s still in my bag.','→ fill in','I forgot to post the letter.'],['I’ll never forget (meet) her.','→ fill in','I’ll never forget meeting her.'],['She tried (open) the window, but it was stuck.','→ fill in (an attempt)','She tried to open the window, but it was stuck.'],['Try (add) some salt. Maybe it will taste better.','→ fill in (an experiment)','Try adding some salt.'],['I regret (tell) him. It was a mistake.','→ fill in','I regret telling him.'],['I regret (inform) you that the flight is cancelled.','→ fill in (formal news)','I regret to inform you that the flight is cancelled.'],['He went on (talk) for hours.','→ fill in (continued)','He went on talking for hours.']],
+gsm:[['She likes dancing.','→ say it with the other form','She likes to dance.'],['I prefer to walk.','→ say it with the other form','I prefer walking.'],['It began to snow.','→ say it with the other form','It began snowing.'],['They love singing.','→ say it with the other form','They love to sing.'],['He continued working.','→ say it with the other form','He continued to work.'],['I hate to wait.','→ say it with the other form','I hate waiting.'],['It was starting to rain.','→ why not “starting raining”?','Two -ing forms in a row sound awkward, so we use to rain.'],['I would like going to the zoo.','→ correct it','I would like to go to the zoo.']],
+oin:[['My mum said to me: “Clean your room.”','→ tell sb to','My mum told me to clean my room.'],['They allowed us to enter.','→ let sb + V','They let us enter.'],['She made him apologise.','→ passive','He was made to apologise.'],['The teacher said to us: “Read more.”','→ advise sb to','The teacher advised us to read more.'],['I want you to wait.','→ negative','I don’t want you to wait.'],['He persuaded her. She joined the club.','→ persuade sb to','He persuaded her to join the club.'],['The boss made us work late.','→ question','Did the boss make you work late?'],['They let him go.','→ passive (allowed)','He was allowed to go.']],
+gpf:[['It seems that she has left.','→ seems to have','She seems to have left.'],['It is said that he was rich.','→ said to have been','He is said to have been rich.'],['I’m sorry that I forgot your birthday.','→ sorry for + having V3','I’m sorry for having forgotten your birthday.'],['She admitted that she had lied.','→ admit + having V3','She admitted having lied.'],['It appears that he is working hard these days.','→ to be + V-ing','He appears to be working hard these days.'],['People believe that they escaped.','→ passive: are believed to have','They are believed to have escaped.']],
+tag:[['You like tea,','→ add a question tag','You like tea, don’t you?'],['She isn’t here,','→ add a question tag','She isn’t here, is she?'],['They went home,','→ add a question tag','They went home, didn’t they?'],['He can swim,','→ add a question tag','He can swim, can’t he?'],['It’s cold today,','→ add a question tag','It’s cold today, isn’t it?'],['You haven’t finished,','→ add a question tag','You haven’t finished, have you?']],
+wsh:[['I don’t have a car. (I wish)','→ wish','I wish I had a car.'],['She lives far away. (I wish)','→ wish','I wish she didn’t live so far away.'],['We can’t swim. (We wish)','→ wish','We wish we could swim.'],['He is shy. (He wishes)','→ wish','He wishes he weren’t shy.'],['It rains every day. (I wish)','→ wish','I wish it didn’t rain every day.'],['I don’t know the answer. (I wish)','→ wish','I wish I knew the answer.']],
+cd3:[['I didn’t study, so I failed.','→ Third Conditional','If I had studied, I wouldn’t have failed.'],['If she had known, she would have come.','→ negative (both parts)','If she hadn’t known, she wouldn’t have come.'],['We missed the train, so we were late.','→ Third Conditional','If we hadn’t missed the train, we wouldn’t have been late.'],['If they had left earlier, they would have arrived on time.','→ change the order','They would have arrived on time if they had left earlier.'],['He ate too much and felt ill.','→ Third Conditional','If he hadn’t eaten so much, he wouldn’t have felt ill.'],['If I had had money, I would have bought it.','→ question: Would you…?','Would you have bought it if you had had money?']],
+cdm:[['I didn’t study, so now I have no job.','→ mixed (past → present)','If I had studied, I would have a job now.'],['He isn’t careful, so he broke the vase.','→ mixed (present → past)','If he were careful, he wouldn’t have broken the vase.'],['She didn’t take the job, so she lives in a small town.','→ mixed','If she had taken the job, she wouldn’t live in a small town.'],['I’m not a doctor, so I didn’t help him.','→ mixed','If I were a doctor, I would have helped him.'],['We didn’t book, so we are standing in line.','→ mixed','If we had booked, we wouldn’t be standing in line.'],['They moved abroad, so they don’t see us often.','→ mixed','If they hadn’t moved abroad, they would see us often.']],
+pasa:[['They are building a bridge.','→ passive (continuous)','A bridge is being built.'],['Someone has stolen my wallet.','→ passive (perfect)','My wallet has been stolen.'],['You must finish this today.','→ passive (modal)','This must be finished today.'],['They will announce the winner tomorrow.','→ passive (future)','The winner will be announced tomorrow.'],['People say he is rich.','→ impersonal passive','He is said to be rich. / It is said that he is rich.'],['They had repaired the car before we arrived.','→ passive (Past Perfect)','The car had been repaired before we arrived.']],
+repq:[['“Where do you live?” she asked me.','→ reported question','She asked me where I lived.'],['“Are you tired?” he asked.','→ reported question','He asked if / whether I was tired.'],['“Open the window,” she said to me.','→ reported command','She told me to open the window.'],['“Don’t be late,” Mum said.','→ reported command','Mum told me not to be late.'],['“What time does the film start?” he asked.','→ reported question','He asked what time the film started.'],['“Have you finished?” she asked.','→ reported question','She asked if / whether I had finished.']],
+fpf:[['I will finish by five.','→ Future Perfect','I will have finished by five.'],['At 8 tomorrow I will work.','→ Future Continuous','At 8 tomorrow I will be working.'],['She will graduate by June.','→ Future Perfect','She will have graduated by June.'],['This time next week we will lie on the beach.','→ Future Continuous','This time next week we will be lying on the beach.'],['They will build the house by next year.','→ Future Perfect passive','The house will have been built by next year.'],['Will you use the car tonight?','→ Future Continuous (polite)','Will you be using the car tonight?']],
+wsp:[['I didn’t go to the party. (I wish)','→ wish','I wish I had gone to the party.'],['He lost the match. (If only)','→ if only','If only he hadn’t lost the match.'],['I spent all the money. (I wish)','→ wish','I wish I hadn’t spent all the money.'],['We didn’t book earlier. (If only)','→ if only','If only we had booked earlier.'],['She said that. (She wishes)','→ wish','She wishes she hadn’t said that.'],['They missed the flight. (They wish)','→ wish','They wish they hadn’t missed the flight.']],
+mdp:[['I’m sure he forgot.','→ must have','He must have forgotten.'],['Perhaps she missed the bus.','→ might have','She might have missed the bus.'],['It was impossible that they saw us.','→ can’t have','They can’t have seen us.'],['It was wrong of you not to call.','→ should have','You should have called.'],['It wasn’t necessary to bring a gift, but he did.','→ needn’t have','He needn’t have brought a gift.'],['I’m sure they didn’t get the message.','→ can’t have','They can’t have got the message.']],
+cau:[['A mechanic repaired my car.','→ have something done','I had my car repaired.'],['Someone cut her hair.','→ get something done','She got her hair cut.'],['I will ask someone to paint the house.','→ have something done','I will have the house painted.'],['Someone cleaned their windows.','→ causative have','They had their windows cleaned.'],['A dentist checked his teeth.','→ have something done','He had his teeth checked.'],['I need someone to fix the roof.','→ causative','I need to have the roof fixed.']],
+cmx:[['As the weather gets hotter, I feel more tired.','→ the … the …','The hotter the weather gets, the more tired I feel.'],['If you practise more, you improve faster.','→ the more … the …','The more you practise, the faster you improve.'],['This is the most difficult test I’ve ever taken.','→ comparative: more … than any','This is more difficult than any test I’ve ever taken.'],['Tom is almost as tall as Dan.','→ not quite as … as','Tom isn’t quite as tall as Dan.'],['My brother is two metres. I am one metre.','→ twice as … as','My brother is twice as tall as me.'],['The more he eats, the fatter he gets.','→ rewrite with “as … gets”','As he eats more, he gets fatter.']],
+inv:[['I have never seen such a view.','→ inversion (Never…)','Never have I seen such a view.'],['She not only sings but also dances.','→ inversion','Not only does she sing, but she also dances.'],['We rarely go out on Mondays.','→ inversion (Rarely…)','Rarely do we go out on Mondays.'],['If I had known, I would have helped.','→ inversion (Had…)','Had I known, I would have helped.'],['He had no sooner arrived than it started to rain.','→ inversion (No sooner…)','No sooner had he arrived than it started to rain.'],['You should not open it under any circumstances.','→ inversion','Under no circumstances should you open it.']],
+cle:[['Tom broke the window.','→ cleft: It was … who','It was Tom who broke the window.'],['I need some peace.','→ cleft: What I need…','What I need is some peace.'],['She called me yesterday.','→ cleft: It was … that','It was yesterday that she called me.'],['His noise annoys me.','→ cleft: What annoys me…','What annoys me is his noise.'],['I want a holiday.','→ cleft: All I want…','All I want is a holiday.'],['They met in Rome.','→ cleft: It was … that','It was in Rome that they met.']],
+sbj:[['I should go home now.','→ It’s time','It’s time I went home.'],['I prefer to stay in.','→ would rather','I’d rather stay in.'],['I’d prefer you not to smoke here.','→ would rather','I’d rather you didn’t smoke here.'],['She is late.','→ It’s high time','It’s high time she arrived.'],['I suggest that he takes the exam.','→ subjunctive form','I suggest that he take the exam.'],['They insisted that she is present.','→ subjunctive form','They insisted that she be present.']],
+ptc:[['While I was walking home, I met Tom.','→ participle clause','Walking home, I met Tom.'],['Because she felt tired, she went to bed.','→ participle clause','Feeling tired, she went to bed.'],['After he had finished work, he went out.','→ participle clause (Having…)','Having finished work, he went out.'],['The man who is standing there is my boss.','→ reduced relative clause','The man standing there is my boss.'],['The letter that was written by Anna arrived.','→ reduced relative clause','The letter written by Anna arrived.'],['As he didn’t know the way, he asked for help.','→ participle clause (Not…)','Not knowing the way, he asked for help.']]
+};
+
+/* ===== Sentence Expander ===== */
+let EX=null;
+const EXLV={easy:{n:'Easy',d:'3 details',st:[['When?','yesterday, last week, every morning…'],['Where?','at school, in the park, at home…'],['Who with?','with my friend, with my sister…']]},
+ med:{n:'Medium',d:'5 details',st:[['When?','yesterday, last summer, at 7 o’clock…'],['Where?','in a café, on the bus, at the airport…'],['Who with?','with my brother, with my classmates…'],['Why?','because…, so that…'],['How?','quickly, happily, without a map…']]},
+ hard:{n:'Hard',d:'7 details',st:[['When?','while…, after…, by the time…'],['Where?','in the middle of…, next to…'],['Who with?','together with…, along with…'],['Why?','because…, since…, in order to…'],['How?','in a very… way, as if…'],['Contrast','but…, although…, even though…'],['Extra info','who… / which… / that…']]}};
+function exCourse(){const c=COURSES.find(x=>x.id===S.excourse)||COURSES[0];S.excourse=c.id;return c}
+function exWords(){const c=exCourse(),us=(S.exun||[]).filter(i=>c.units[i]);const use=us.length?us:c.units.map((_,i)=>i);const seen=new Set(),a=[];
+ use.forEach(ui=>c.units[ui].ls.forEach(l=>(l.v||[]).forEach(w=>{const k=String(w).toLowerCase();if(!seen.has(k)){seen.add(k);a.push(w)}})));return a}
+function exSetup(){
+ const c=exCourse();if(!EXLV[S.exlevel])S.exlevel='easy';S.exun=(S.exun||[]).filter(i=>c.units[i]);
+ setView(`<section class="panel k-card"><h2>${GAMES.expand.icon} ${GAMES.expand.title}</h2><p class="muted">${esc(GAMES.expand.desc)}</p>
+ <p class="muted small" style="margin:14px 0 6px">Course</p><div class="lpc" id="excs">${COURSES.map(x=>`<button class="lpb${x.id===c.id?' on':''}" data-c="${x.id}">${esc(x.name)}</button>`).join('')}</div>
+ <p class="muted small" style="margin:14px 0 6px">Units (none selected = the whole course)</p><div class="lpc" id="exus">${c.units.map((u,i)=>`<button class="lpb${S.exun.includes(i)?' on':''}" data-u="${i}">${esc(u.n)}</button>`).join('')}</div>
+ <p class="muted small" style="margin:14px 0 6px">Level</p><div class="lpc" id="exlv">${Object.keys(EXLV).map(k=>`<button class="lpb${S.exlevel===k?' on':''}" data-l="${k}">${EXLV[k].n} · ${EXLV[k].d}</button>`).join('')}</div>
+ <p class="muted" id="exn" style="margin-top:14px"></p>
+ <div class="row cc"><button data-btn="solid" id="exgo">Start</button></div></section>`);
+ const upd=()=>{const n=exWords().length;$('#exn').textContent=n+' words from your lessons will be used.';$('#exgo').disabled=!n};
+ $('#excs').onclick=e=>{const b=e.target.closest('[data-c]');if(!b)return;S.excourse=b.dataset.c;S.exun=[];save();exSetup()};
+ $('#exus').onclick=e=>{const b=e.target.closest('[data-u]');if(!b)return;const i=+b.dataset.u,k=S.exun.indexOf(i);if(k>=0)S.exun.splice(k,1);else S.exun.push(i);b.classList.toggle('on');save();upd()};
+ $('#exlv').onclick=e=>{const b=e.target.closest('[data-l]');if(!b)return;S.exlevel=b.dataset.l;save();document.querySelectorAll('#exlv .lpb').forEach(x=>x.classList.toggle('on',x===b))};
+ $('#exgo').onclick=()=>{EX={order:shuffle(exWords()),i:0,s:0,done:0,lv:S.exlevel,txt:''};exRender()};
+ upd()}
+function exRender(){
+ const L=EXLV[EX.lv],st=L.st,w=EX.order[EX.i%EX.order.length],all=EX.s>=st.length;
+ const chips=st.slice(0,all?EX.s:Math.max(0,EX.s-1)).map((x,k)=>`<span class="exc" style="background:${CBCOL[(k*3+EX.i)%13]};transform:rotate(${(k%2?1:-1)*(1+k%3)}deg)">${esc(x[0])}</span>`).join('');
+ const cur=all?`<div class="exnow">🎉 Now say the <b>whole</b> long sentence!</div>`:EX.s===0?`<div class="exnow">Say a short sentence with this word.</div>`
+  :`<div class="exnow">Add: <span class="exc big" style="background:${CBCOL[((EX.s-1)*3+EX.i)%13]}">${esc(st[EX.s-1][0])}</span><div class="muted small">${esc(st[EX.s-1][1])}</div><div>…and say the whole sentence again.</div></div>`;
+ setView(`<section class="panel k-card center"><p class="muted small">Word ${EX.i+1} of ${EX.order.length} · step ${Math.min(EX.s,st.length)} / ${st.length} · finished: ${EX.done}</p>
+ <div class="exw" style="background:${CBCOL[(EX.i*5)%13]}">${hw(w)}</div>
+ <div class="exchips">${chips}</div>${cur}
+ <textarea id="extxt" class="exta" rows="2" placeholder="Type your sentence here (optional)…">${esc(EX.txt)}</textarea><div class="muted small" id="exwc"></div>
+ <div class="row cc">${EX.s>0?'<button data-btn="n" id="exback">← Back</button>':''}${all?'<button data-btn="ok" id="exdone">✓ Done · next word</button>':'<button data-btn="solid" id="exadd">Add a detail →</button>'}<button data-btn="n" id="exskip">Skip word</button><button data-btn="n" id="exquit">← To settings</button></div></section>`);
+ const ta=$('#extxt'),wc=()=>{const n=ta.value.trim().split(/\s+/).filter(Boolean).length;$('#exwc').textContent=n?n+' words':''};
+ ta.oninput=()=>{EX.txt=ta.value;wc()};wc();
+ const nxt=()=>{EX.i++;EX.s=0;EX.txt='';exRender()};
+ const a=$('#exadd');if(a)a.onclick=()=>{EX.s++;exRender()};
+ const d=$('#exdone');if(d)d.onclick=()=>{EX.done++;nxt()};
+ const b=$('#exback');if(b)b.onclick=()=>{EX.s--;exRender()};
+ $('#exskip').onclick=nxt;$('#exquit').onclick=()=>{EX=null;exSetup()}}
+
+/* ===== Grammar Lab: Tense Switch + Grammar Dice ===== */
+let GL=null;
+function glTopics(){const lv=S.glevel||'b1';return GT.filter(t=>!t.sp&&(lv==='all'||t.lv.includes(lv)))}
+function glChosen(){const all=glTopics(),sel=(S.gtop||[]).filter(id=>all.some(t=>t.id===id));return sel.length?all.filter(t=>sel.includes(t.id)):all}
+function glSetup(){
+ if(!S.gmode)S.gmode='ts';if(!S.glevel)S.glevel='b1';const c=exCourse();S.exun=(S.exun||[]).filter(i=>c.units[i]);
+ S.gtop=(S.gtop||[]).filter(id=>glTopics().some(t=>t.id===id));
+ const dice=S.gmode==='dice';
+ setView(`<section class="panel k-card"><h2>${GAMES.gram.icon} ${GAMES.gram.title}</h2><p class="muted">${esc(GAMES.gram.desc)}</p>
+ <p class="muted small" style="margin:14px 0 6px">Exercise</p><div class="lpc" id="glm"><button class="lpb${!dice?' on':''}" data-m="ts">🔁 Tense Switch</button><button class="lpb${dice?' on':''}" data-m="dice">🎲 Grammar Dice</button></div>
+ <p class="muted small" style="margin:14px 0 6px">Level</p><div class="lpc" id="gll">${GLV.map(l=>`<button class="lpb${S.glevel===l[0]?' on':''}" data-l="${l[0]}">${l[1]}</button>`).join('')}</div>
+ <p class="muted small" style="margin:14px 0 6px">Topics (none selected = all topics of this level)</p><div class="lpc" id="glt">${glTopics().map(t=>`<button class="lpb${S.gtop.includes(t.id)?' on':''}" data-t="${t.id}">${esc(t.n)}</button>`).join('')}</div>
+ ${dice?`<p class="muted small" style="margin:14px 0 6px">Course (the words for the dice)</p><div class="lpc" id="glc">${COURSES.map(x=>`<button class="lpb${x.id===c.id?' on':''}" data-c="${x.id}">${esc(x.name)}</button>`).join('')}</div>
+ <p class="muted small" style="margin:14px 0 6px">Units (none selected = the whole course)</p><div class="lpc" id="glu">${c.units.map((u,i)=>`<button class="lpb${S.exun.includes(i)?' on':''}" data-u="${i}">${esc(u.n)}</button>`).join('')}</div>`:''}
+ <p class="muted" id="gln" style="margin-top:14px"></p><div class="row cc"><button data-btn="solid" id="glgo">Start</button></div></section>`);
+ const upd=()=>{const n=dice?exWords().length:glChosen().reduce((a,t)=>a+(TS[t.id]||[]).length,0);$('#gln').textContent=dice?n+' words and '+glChosen().length+' topics on the dice.':n+' tasks from '+glChosen().length+' topics.';$('#glgo').disabled=!n};
+ $('#glm').onclick=e=>{const b=e.target.closest('[data-m]');if(!b)return;S.gmode=b.dataset.m;save();glSetup()};
+ $('#gll').onclick=e=>{const b=e.target.closest('[data-l]');if(!b)return;S.glevel=b.dataset.l;S.gtop=[];save();glSetup()};
+ $('#glt').onclick=e=>{const b=e.target.closest('[data-t]');if(!b)return;const k=S.gtop.indexOf(b.dataset.t);if(k>=0)S.gtop.splice(k,1);else S.gtop.push(b.dataset.t);b.classList.toggle('on');save();upd()};
+ if(dice){$('#glc').onclick=e=>{const b=e.target.closest('[data-c]');if(!b)return;S.excourse=b.dataset.c;S.exun=[];save();glSetup()};
+  $('#glu').onclick=e=>{const b=e.target.closest('[data-u]');if(!b)return;const i=+b.dataset.u,k=S.exun.indexOf(i);if(k>=0)S.exun.splice(k,1);else S.exun.push(i);b.classList.toggle('on');save();upd()}}
+ $('#glgo').onclick=()=>{const tp=glChosen();
+  if(dice){GL={mode:'dice',tp,words:exWords(),ok:0,bad:0,hint:false};glRoll()}
+  else{const items=[];tp.forEach(t=>(TS[t.id]||[]).forEach(x=>items.push({t,s:x[0],q:x[1],a:x[2]})));GL={mode:'ts',items:shuffle(items),i:0,show:false,ok:0,bad:0};glRender()}};
+ upd()}
+const pick1=a=>a[Math.floor(Math.random()*a.length)];
+function glRoll(which){
+ const D=GL.d||{};
+ if(!which||which==='t'){D.t=pick1(GL.tp);D.ty=pick1(D.t.ty||['statement','negative','question']);}
+ else if(which==='y'){D.ty=pick1(D.t.ty||['statement','negative','question'])}
+ if(!which||which==='w')D.w=pick1(GL.words);
+ GL.d=D;GL.hint=false;glRender()}
+function glRender(){
+ if(GL.mode==='ts'){
+  const x=GL.items[GL.i%GL.items.length],col=k=>CBCOL[(GL.i*3+k)%13];
+  setView(`<section class="panel k-card center"><p class="muted small">Task ${GL.i+1} · ${esc(x.t.n)} · ✓ ${GL.ok} · ✗ ${GL.bad}</p>
+  <div class="exw glsent" style="background:${col(0)}">${esc(x.s)}</div>
+  <div class="exnow">${GL.show?'':'Say it out loud, then check:'}</div>
+  <div><span class="exc big" style="background:${col(5)}">${esc(x.q)}</span></div>
+  ${GL.show?`<div class="exw glans" style="background:${col(8)}">${esc(x.a)}</div>`:''}
+  <div class="row cc">${GL.show?'<button data-btn="ok" id="glok">✓ Correct</button><button data-btn="bad" id="glbad">✗ Not yet</button>':'<button data-btn="solid" id="glshow">Show the answer</button><button data-btn="n" id="glskip">Skip</button>'}<button data-btn="n" id="glrule">${GL.rule?'Hide':'Show'} the rule</button><button data-btn="n" id="glquit">← To settings</button></div>${GL.rule?`<div class="exnow glhint"><b>${esc(x.t.f)}</b><br>e.g. ${esc(x.t.ex)}</div>`:''}</section>`);
+  const nx=()=>{GL.i++;GL.show=false;glRender()};
+  $('#glrule').onclick=()=>{GL.rule=!GL.rule;glRender()};
+  const a=$('#glshow');if(a)a.onclick=()=>{GL.show=true;glRender()};
+  const k=$('#glok');if(k)k.onclick=()=>{GL.ok++;nx()};const b=$('#glbad');if(b)b.onclick=()=>{GL.bad++;nx()};const s=$('#glskip');if(s)s.onclick=nx;
+ }else{
+  const D=GL.d,col=k=>CBCOL[k%13];
+  setView(`<section class="panel k-card center"><p class="muted small">✓ ${GL.ok} · ✗ ${GL.bad} · click a card to roll only that one</p>
+  <div class="gldice"><div class="gld" data-w="t" style="background:${col(3)}"><small>Grammar</small>${esc(D.t.n)}</div><div class="gld" data-w="y" style="background:${col(9)}"><small>Say it as</small>${esc(D.ty)}</div><div class="gld" data-w="w" style="background:${col(5)}"><small>Use the word</small>${hw(D.w)}</div></div>
+  <p class="exnow">Make one sentence with all three cards and say it out loud.</p>
+  ${GL.hint?`<div class="exnow glhint"><b>${esc(D.t.f)}</b><br>e.g. ${esc(D.t.ex)}</div>`:''}
+  <div class="row cc"><button data-btn="ok" id="glok">✓ Correct</button><button data-btn="bad" id="glbad">✗ Not yet</button><button data-btn="solid" id="glroll">🎲 Roll all</button><button data-btn="n" id="glh">${GL.hint?'Hide':'Show'} the formula</button><button data-btn="n" id="glquit">← To settings</button></div></section>`);
+  document.querySelectorAll('.gld').forEach(el=>el.onclick=()=>glRoll(el.dataset.w));
+  $('#glok').onclick=()=>{GL.ok++;glRoll()};$('#glbad').onclick=()=>{GL.bad++;glRoll()};$('#glroll').onclick=()=>glRoll();$('#glh').onclick=()=>{GL.hint=!GL.hint;glRender()};
+ }
+ $('#glquit').onclick=()=>{GL=null;glSetup()}}
 
 /* ===== Create a story ===== */
 const STARTS={simple:['One day I saw a ...','Once there was a ...','Today I went to ...'],std:['Once upon a time ...','It was a strange day when ...','Nobody knew why ...'],adv:['It all started when ...','Looking back, nobody could have predicted that ...','Nobody would have believed it, but ...']};
@@ -3267,8 +3820,8 @@ const SPPAST=['at 7 pm yesterday','at 9 o’clock this morning','at midnight','t
 const SPPRES=['What is she doing right now?','What is she doing at the moment?','Look! What is she doing?','What is she doing today?'];
 
 /* ===== Speaking: levels -> topics -> cards ===== */
-const SPLV=[['kids','A1 Kids',['be','hab','pc','thr']],['a1','A1',['be','hab','rtn','pc','thr']],['a2','A2',['pas','cmp','mix','shd','ust']],['b1','B1',['ppc','ppf','ifw','pfm','rcl','gwt']],['b2','B2',[]],['c1','C1',[]]];
-const SPSHORT={pc:'Present Continuous',pas:'Past Continuous',cmp:'Present vs Past Cont.',mix:'Mix of tenses',ppc:'Present Perfect Cont.',ppf:'Past Perfect',shd:'Should / shouldn’t',be:'To be',hab:'Present Simple',rtn:'Daily routine',ifw:'If I were…',ust:'Used to',pfm:'Present Perfect memes',rcl:'Relative clauses',gwt:'Guess what?',thr:'There is / are'};
+const SPLV=[['kids','A1 Kids',['be','hab','pc','thr']],['a1','A1',['be','hab','rtn','pc','thr']],['a2','A2',['pas','cmp','mix','shd','ust']],['b1','B1',['ppc','ppf','ifw','pfm','rcl','gpr','gvb','ivb','gsb','iad','gdf','gsm','wgv','wiv','wbo','wpa','wpv','wpo','gwt']],['b2','B2',['gdf','oin']],['c1','C1',['gpf']]];
+const SPSHORT={pc:'Present Continuous',pas:'Past Continuous',cmp:'Present vs Past Cont.',mix:'Mix of tenses',ppc:'Present Perfect Cont.',ppf:'Past Perfect',shd:'Should / shouldn’t',be:'To be',hab:'Present Simple',rtn:'Daily routine',ifw:'If I were…',ust:'Used to',pfm:'Present Perfect memes',rcl:'Relative clauses',gpr:'Gerund after prepositions',wgv:'All verbs + -ing',wiv:'All verbs + to V',wbo:'Both forms / meaning',wpa:'Adjective + prep + -ing',wpv:'Verb + prep + -ing',wpo:'Other preps + -ing',gvb:'Gerund after verbs',ivb:'Infinitive after verbs',gsb:'Gerund / infinitive as subject',iad:'Infinitive: purpose, too / enough',gdf:'Stop / remember / try',gsm:'Like / start / prefer',oin:'Make / let / tell sb to',gpf:'Perfect infinitive & gerund',gwt:'Guess what?',thr:'There is / are'};
 const CBCOL=['#F7763F','#B85EF4','#B4BEFB','#DCFF6A','#A2E0D5','#B2D1FD','#DBBFBB','#A2CD1E','#F9B1B2','#F49BC9','#3FBCF4','#FBD415','#9CBA98'];
 function spSetup(){
  const lv=SPLV.find(x=>x[0]===S.splevel)||SPLV[3];
@@ -3281,6 +3834,13 @@ function spSetup(){
 let CB=null;
 function startCards(id){CB={task:id,n:8,seen:{}};renderCards()}
 function cbItems(){const t=CB.task,n=CB.n;
+ if(WD[t]){const L=WD[t];if(!CB.ord||CB.ord.length!==L.length){CB.ord=shuffle(L.map((_,i)=>i));CB.p=0}
+  if(CB.p>=CB.ord.length){CB.ord=shuffle(CB.ord);CB.p=0}
+  const b=Math.min(CB.p+n,CB.ord.length),a=Math.max(0,Math.min(CB.p,CB.ord.length-n)),out=CB.ord.slice(a,b).map(i=>{const w=L[i][0],ex=L[i][1],pn=wdPicFor(w,t);return {src:'gi/'+String(pn).padStart(2,'0')+'.jpg',photo:1,t:w,q:'',a:ex,modes:{s:[wdStart(ex,t),ex],w:['Use “'+w+'” to say something about the picture. '+(t==='wbo'?'Make two sentences: -ing and to V.':''),ex],f:['Tell your partner about yourself with “'+w+'”. '+WDQ[t],ex]}}});CB.p=b;CB.prog='Words '+(a+1)+'–'+b+' of '+L.length;return out}
+ if(TS[t]&&GT.some(x=>x.id===t&&x.sp)){
+  if(!CB.deck){const pics=GP.filter(g=>g[1]===t).map(g=>({src:'gi/'+String(g[0]).padStart(2,'0')+'.jpg',photo:1,t:g[3][0],a:g[3][1],modes:{s:[g[3][0],g[3][1]],w:[g[4][0],g[4][1]],f:[g[5][0],g[5][1]]}})),txt=TS[t].map(x=>({src:'',t:x[0],q:x[1],a:x[2]}));CB.deck=shuffle(pics).concat(shuffle(txt));CB.p=0}
+  if(CB.p>=CB.deck.length){CB.deck=shuffle(CB.deck);CB.p=0}
+  const b=Math.min(CB.p+n,CB.deck.length),a=Math.max(0,Math.min(CB.p,CB.deck.length-n)),out=CB.deck.slice(a,b);CB.p=b;CB.prog='Cards '+(a+1)+'–'+b+' of '+CB.deck.length;return out}
  if(PHOTO[t]||t==='thr'){const first=[],rest=[];(PHOTO[t]||SCENES).forEach(sc=>{const qs=shuffle(sc.q.slice());qs.forEach((qa,j)=>(j?rest:first).push({src:PICS[sc.k]||'',t:qa[0],a:qa[1]}))});return shuffle(first).concat(shuffle(rest)).slice(0,n)}
  const L=shuffle(ACTIONS.map((_,i)=>i)),kinds=t==='mix'?['pc','pas','cmp']:[t],rnd=a=>a[Math.floor(Math.random()*a.length)],out=[];
  for(let i=0;i<n;i++){const kd=rnd(kinds),a=ACTIONS[L[i]],b=ACTIONS[L[i+n]],tm=rnd(SPPAST);
@@ -3288,8 +3848,8 @@ function cbItems(){const t=CB.task,n=CB.n;
   else if(kd==='pas')out.push({src:a[1],t:'What was she doing '+tm+'?',a:'She was '+a[0]+'.'});
   else out.push({src:a[1],src2:b[1],t:'What was she doing '+tm+'? And what is she doing now?',a:'She was '+a[0]+', but now she is '+b[0]+'.'})}
  return out}
-function cbImg(it){return it.src2?`<div class="two"><img draggable="false" src="${it.src}" alt=""><span>→</span><img draggable="false" src="${it.src2}" alt=""></div>`:`<img draggable="false" src="${it.src}" alt="">`}
-function cbPhr(){const t=CB.task;return t==='pc'?SPM.pres:t==='pas'?SPM.past:(t==='cmp'||t==='mix')?SPM.past.concat(SPM.pres):(SPM[t]||[])}
+function cbImg(it){return !it.src?'':it.src2?`<div class="two"><img draggable="false" src="${it.src}" alt=""><span>→</span><img draggable="false" src="${it.src2}" alt=""></div>`:`<img draggable="false" src="${it.src}" alt="">`}
+function cbPhr(){const t=CB.task;if(WD[t])return WD[t].map(x=>[x[0],'']);const g=GT.find(x=>x.id===t&&x.sp);if(g)return g.f.split(' · ').map(x=>[x,'']).concat([['e.g. '+g.ex,'']]);return t==='pc'?SPM.pres:t==='pas'?SPM.past:(t==='cmp'||t==='mix')?SPM.past.concat(SPM.pres):(SPM[t]||[])}
 
 /* ===== Generic card table (draggable cards) ===== */
 function seedR(n){const x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x)}
@@ -3313,15 +3873,15 @@ function renderCards(){
  const t=SPT.find(x=>x.id===CB.task);
  setView(`<section class="panel k-card cbpanel"><div class="cbbar"><button class="lvb" id="cbback">← Topics</button><h2>${esc(SPSHORT[CB.task]||'')}</h2><div><button class="lvb" id="cbph">💬 Useful words</button> <button class="lvb" id="cbnew">↻ New cards</button></div></div>
  <div class="spmk cbphp" id="cbphp" hidden><div class="spg"><div>${spChips(cbPhr())}</div></div></div>
- <p class="muted small">Drag the cards around. Tap a card to open it.</p><div class="cboard" id="cboard"></div></section><div class="cbfocus" id="cbfocus" hidden></div>`);
+ <p class="muted small" id="cbprog">Drag the cards around. Tap a card to open it.</p><div class="cboard" id="cboard"></div></section><div class="cbfocus" id="cbfocus" hidden></div>`);
  $('#cbback').onclick=spSetup;$('#cbnew').onclick=renderCards;$('#cbph').onclick=()=>{$('#cbphp').hidden=!$('#cbphp').hidden};
- const bd=$('#cboard'),items=cbItems(),BW=bd.clientWidth||900,cols=Math.max(2,Math.min(4,Math.floor(BW/215))),rows=Math.ceil(items.length/cols),RH=310,cw=BW/cols;
+ const bd=$('#cboard'),items=cbItems();if(CB.prog)$('#cbprog').textContent=CB.prog+'. Drag the cards, tap a card to open it. “Useful words” shows the whole list.';const BW0=0,BW=bd.clientWidth||900,cols=Math.max(2,Math.min(4,Math.floor(BW/215))),rows=Math.ceil(items.length/cols),RH=310,cw=BW/cols;
  bd.style.height=(rows*RH+10)+'px';
  const cols2=shuffle(CBCOL.map((_,i)=>i));let z=1;
  items.forEach((it,i)=>{
   const w=Math.min(cw-12,[200,225,250][i*7%3]),h=[250,275,300][(i*5+1)%3],r=Math.floor(i/cols),c=i%cols;
   const d=document.createElement('div');d.className='cbc';d.style.cssText=`width:${w}px;height:${h}px;left:${c*cw+(cw-w)/2+(Math.random()*14-7)}px;top:${r*RH+(RH-h)/2+(Math.random()*10-5)}px;background:${CBCOL[cols2[i%cols2.length]]};transform:rotate(${(Math.random()*5-2.5).toFixed(1)}deg)`;
-  d.innerHTML=`<div class="cbi">${cbImg(it)}</div><div class="cbt">${esc(it.t)}</div>`;
+  if(!it.src)d.classList.add('txt');d.innerHTML=`${it.src?`<div class="cbi${it.photo?' ph':''}">${cbImg(it)}</div>`:''}<div class="cbt">${esc(it.t)}</div>${it.q?`<div class="cbq">${esc(it.q)}</div>`:''}`;
   bd.appendChild(d);fitText(d.querySelector('.cbt'));
   let sx,sy,ox,oy,mv=0,pid=null;
   d.onpointerdown=e=>{pid=e.pointerId;d.setPointerCapture(pid);sx=e.clientX;sy=e.clientY;ox=d.offsetLeft;oy=d.offsetTop;mv=0;d.style.zIndex=++z;d.classList.add('drag')};
@@ -3331,8 +3891,9 @@ function renderCards(){
   d.onpointercancel=()=>{pid=null;d.classList.remove('drag')}})}
 function openCard(it,d){
  const f=$('#cbfocus'),col=d.style.background;d.classList.add('done');
- f.innerHTML=`<div class="cbbig" style="background:${col}"><div class="cbi">${cbImg(it)}</div><div class="cbt2">${esc(it.t)}</div><div class="cba" hidden>💡 ${esc(it.a)}</div><div class="cbbtn"><button class="lvb" id="cbans">Show example answer</button><button class="lvb on" id="cbclose">✕ Close</button></div></div>`;
+ f.innerHTML=`<div class="cbbig" style="background:${col}">${it.src?`<div class="cbi${it.photo?' ph':''}">${cbImg(it)}</div>`:''}<div class="cbt2">${esc(it.t)}</div>${it.q?`<div class="cbq2">${esc(it.q)}</div>`:''}<div class="cba" hidden>💡 ${esc(it.a)}</div>${it.modes?'<div class="cbmodes"><button class="lvb on" data-m="s">Start of a phrase</button><button class="lvb" data-m="w">Word</button><button class="lvb" data-m="f">Free</button></div>':''}<div class="cbbtn"><button class="lvb" id="cbans">Show example answer</button><button class="lvb on" id="cbclose">✕ Close</button></div></div>`;
  f.hidden=false;const big=f.querySelector('.cbbig');
+ if(it.modes)f.querySelectorAll('.cbmodes [data-m]').forEach(b=>b.onclick=()=>{const m=it.modes[b.dataset.m];f.querySelectorAll('.cbmodes [data-m]').forEach(x=>x.classList.toggle('on',x===b));f.querySelector('.cbt2').textContent=m[0];f.querySelector('.cba').textContent='💡 '+m[1];f.querySelector('.cba').hidden=true});
  $('#cbans').onclick=()=>{f.querySelector('.cba').hidden=!f.querySelector('.cba').hidden};
  const close=()=>{f.hidden=true;document.removeEventListener('keydown',esc2)},esc2=e=>{if(e.key==='Escape')close()};
  $('#cbclose').onclick=close;f.onclick=e=>{if(e.target===f)close()};document.addEventListener('keydown',esc2)}
@@ -3631,7 +4192,7 @@ function pill(){
  if(ROOM.role==='host')t=ROOM.status==='err'?'🔴 Room: error':ROOM.conn&&ROOM.conn.open&&ROOM.guestName?'🟢 In the room: '+esc(ROOM.guestName):ROOM.status==='open'?'🟡 Waiting for the student':'🟡 Creating the room…';
  else t=ROOM.status==='open'?'🟢 Online: '+esc(ROOM.hostName||'teacher'):ROOM.status==='closed'?'🔴 Connection lost':'🟡 Connecting…';
  p.innerHTML=t}
-function updRoomUI(){pill();if(ROOM.role==='host'&&!R&&!J&&!B&&!T&&!ST&&!GS&&!GF&&GAMES[tab])renderSetup(tab)}
+function updRoomUI(){pill();if(ROOM.role==='host'&&!R&&!J&&!B&&!T&&!ST&&!GS&&!GF&&!EX&&!GL&&GAMES[tab])renderSetup(tab)}
 function roomLink(){return location.href.split('#')[0]+'#r='+ROOM.code}
 function roomHTML(){
  if(STUDENT)return '';
