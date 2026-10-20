@@ -696,6 +696,31 @@ label.chk:has(input:checked){background:#DCFF6A;opacity:1;box-shadow:0 0 0 2.5px
 .gifp{padding:18px}.gifimg{display:block;margin:0 auto;max-width:100%;max-height:62vh;border-radius:12px;cursor:pointer}.gifw{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:18px 0 6px}.gtag{font:500 26px/1.2 'Drawably Pen',Inter,sans-serif;padding:6px 16px;border:2px solid var(--pen);border-radius:14px;color:var(--pen);background:rgba(255,255,255,.45)}.gifg{margin-top:14px;font:600 20px/1.3 Inter,sans-serif;color:var(--ink)}
 .rbox{background:rgba(255,255,255,.4);border-radius:10px;padding:10px 14px;margin:10px 0;word-break:break-all}
 .rok{color:var(--ok)}.rbad{color:var(--err)}
+/* ===== style3: cards everywhere ===== */
+.kchip{display:inline-block;font:400 22px/1.2 var(--pen-font);padding:6px 16px;border-radius:14px;color:#232323;box-shadow:0 2px 5px rgba(0,0,0,.12);background:#B2D1FD}
+.tb .kchip:nth-child(3n+1){background:#DCFF6A}.tb .kchip:nth-child(3n+2){background:#F49BC9}.tb .kchip:nth-child(3n+3){background:#A2E0D5}
+.kchip.bad{background:#F9B1B2!important}
+.card{background:#fff!important;border-radius:22px!important;box-shadow:0 6px 18px rgba(0,0,0,.14)}
+.sbox{border-radius:999px;background:#B4BEFB;color:#232323;padding:8px 22px;box-shadow:0 2px 5px rgba(0,0,0,.1)}
+.sb .sbox:nth-child(2n){background:#F49BC9}.sb .sbox:nth-child(3n){background:#DCFF6A}
+.sbox b.k-hl{background:none!important}.sbox.act{box-shadow:0 0 0 3px #2724d1}
+.hd{border-radius:16px;background:#2724d1;color:#fff;box-shadow:0 2px 5px rgba(0,0,0,.12)}
+.spmk{border:0!important;background:none!important;padding:0!important}
+.spmk h4{font:400 22px/1.2 var(--pen-font)!important}
+.spmk>div,.spg>div{display:flex;flex-wrap:wrap;gap:8px}
+.spm{display:inline-block;border:0!important;border-radius:14px!important;padding:6px 14px!important;color:#232323!important;font:400 19px/1.2 var(--pen-font)!important;box-shadow:0 2px 5px rgba(0,0,0,.12);background:#B2D1FD}
+.spm:nth-child(13n+1){background:#F7763F}.spm:nth-child(13n+2){background:#B85EF4}.spm:nth-child(13n+3){background:#B4BEFB}.spm:nth-child(13n+4){background:#DCFF6A}.spm:nth-child(13n+5){background:#A2E0D5}.spm:nth-child(13n+6){background:#B2D1FD}.spm:nth-child(13n+7){background:#DBBFBB}.spm:nth-child(13n+8){background:#A2CD1E}.spm:nth-child(13n+9){background:#F9B1B2}.spm:nth-child(13n+10){background:#F49BC9}.spm:nth-child(13n+11){background:#3FBCF4}.spm:nth-child(13n+12){background:#FBD415}.spm:nth-child(13n+13){background:#9CBA98}
+.tgrid{gap:14px}
+.tcell{border:0!important;border-radius:22px!important;color:#232323!important;box-shadow:0 4px 12px rgba(0,0,0,.16);cursor:pointer;padding:10px 8px;font-family:var(--pen-font)!important;min-height:120px;transition:transform .12s}
+button.tcell:hover{transform:translateY(-3px) rotate(-1deg)}
+.tgrid .tcell:nth-child(9n+1){background:#FBD415}.tgrid .tcell:nth-child(9n+2){background:#F49BC9}.tgrid .tcell:nth-child(9n+3){background:#3FBCF4}.tgrid .tcell:nth-child(9n+4){background:#DCFF6A}.tgrid .tcell:nth-child(9n+5){background:#B85EF4}.tgrid .tcell:nth-child(9n+6){background:#A2E0D5}.tgrid .tcell:nth-child(9n+7){background:#F7763F}.tgrid .tcell:nth-child(9n+8){background:#B4BEFB}.tgrid .tcell:nth-child(9n+9){background:#A2CD1E}
+.tcell.dis{border:0!important;opacity:.55;box-shadow:none}
+.tcell.own{background:#fff!important;font-family:var(--pen-font)!important}
+.tcell.own.p0{color:#2724d1!important}.tcell.own.p1{color:#e0338a!important}
+.tcell.win{background:#DCFF6A!important}
+.tcell .tg{font:400 .8em var(--pen-font);color:#232323}
+.bwrap .mono,.bwrap h4,.bwrap .small{font-family:var(--pen-font)!important;font-size:18px;letter-spacing:0;text-transform:none}
+.cat,.tbl{font-family:var(--pen-font)!important;font-size:18px;letter-spacing:0;text-transform:none}
 </style>
 </head>
 <body>
@@ -2733,8 +2758,8 @@ function beep(){try{const a=new (window.AudioContext||window.webkitAudioContext)
 function startTimer(){stopTimer();if(!S.time)return;R.tl=S.time;tmr=setInterval(()=>{R.tl--;roomTick();const el=$('#tl'),w=$('#tlw');if(el){el.textContent=fmt(R.tl)}if(w){w.classList.toggle('low',R.tl<=10)}if(R.tl<=0){beep();endRound()}},1000)}
 function endRound(){stopTimer();if(R&&R.phase==='play'){R.phase='sum';renderRound()}}
 function mask(w){return w.split(' ').map(p=>p.split('').map((ch,i)=>i===0?ch:(/[A-Za-z]/.test(ch)?'_':ch)).join(' ')).join('   ')}
-function scoreboard(){return `<div class="sb">`+R.teams.map((t,i)=>{const live=R.alt?((R.phase==='play'||R.phase==='sum')?tpts(i):0):((i===R.turn&&(R.phase==='play'||R.phase==='sum'))?rs(R.res):0);const act=i===R.turn&&R.phase!=='end';return `<div class="sbox k-card"><b${act?' class="k-hl"':''}>${esc(t.n)}</b><span>${t.s+live}</span></div>`}).join('')+`</div>`}
-function startersHTML(){const set=STARTERS[LV_ST[R.lvl]||'std'];return `<div class="st k-card"><div class="mono muted small" style="margin-bottom:4px">How to start explaining</div>`+set.map(g=>`<div class="stg"><b>${esc(g[0])}</b>${g[1].map(x=>`<span class="k-tag">${esc(x)}</span>`).join('')}</div>`).join('')+`</div>`}
+function scoreboard(){return `<div class="sb">`+R.teams.map((t,i)=>{const live=R.alt?((R.phase==='play'||R.phase==='sum')?tpts(i):0):((i===R.turn&&(R.phase==='play'||R.phase==='sum'))?rs(R.res):0);const act=i===R.turn&&R.phase!=='end';return `<div class="sbox"><b${act?' class="k-hl"':''}>${esc(t.n)}</b><span>${t.s+live}</span></div>`}).join('')+`</div>`}
+function startersHTML(){const set=STARTERS[LV_ST[R.lvl]||'std'];return `<div class="st k-card"><div class="mono muted small" style="margin-bottom:4px">How to start explaining</div>`+set.map(g=>`<div class="stg"><b>${esc(g[0])}</b>${g[1].map(x=>`<span class="kchip">${esc(x)}</span>`).join('')}</div>`).join('')+`</div>`}
 const TIPS={alias:'Explain the word in English without saying it or words from the same root.',taboo:'Explain the word without using the taboo words. A foul costs a point.',emoji:'Guess the word or phrase from the emoji. You can take a hint.'};
 function lastRes(){const x=R.res[R.res.length-1];if(!x)return '';const m={ok:['✓','Correct!','ok'],skip:['⏭','Skipped','sk'],buzz:['🚫','Foul','bz']}[x.r];return `<div class="lastres ${m[2]}" key="${R.res.length}"><b>${m[0]} ${m[1]}</b> ${esc(x.w)}</div>`}
 function renderRound(){_renderRound();roomPush()}
@@ -2757,7 +2782,7 @@ function _renderRound(){
   const c=cur();let inner='',btns='';const tw=trOf(c);
     if(R.g==='alias'){inner=gs?`<div class="cat">${esc(c.cat||'')}</div><div class="word">🤔</div><p class="muted">Guess the word!</p>`:`<div class="cat">${esc(c.cat||'')}</div>${c.e&&c.e[0]==='@'?`<div class="emo">${ez(c.e)}</div>`:''}<div class="word">${hw(c.w,tw)}</div>`;
    btns=`<button data-btn="ok" data-a="ok">✓ Got it</button><button data-btn="n" data-a="skip">⏭ Skip</button>`}
-  if(R.g==='taboo'){inner=gs?`<div class="word">🤔</div><p class="muted">Guess the word!</p>`:`${c.e&&c.e[0]==='@'?`<div class="emo">${ez(c.e)}</div>`:''}<div class="word">${hw(c.w,tw)}</div><div class="tbl">Do not say</div><div class="tb">${c.t.length?c.t.map(x=>`<span class="k-tag-err">${hw(x)}</span>`).join(''):'<em class="muted">no taboo words, but you still can’t say the word itself</em>'}</div>`;
+  if(R.g==='taboo'){inner=gs?`<div class="word">🤔</div><p class="muted">Guess the word!</p>`:`${c.e&&c.e[0]==='@'?`<div class="emo">${ez(c.e)}</div>`:''}<div class="word">${hw(c.w,tw)}</div><div class="tbl">Do not say</div><div class="tb">${c.t.length?c.t.map(x=>`<span class="kchip bad">${hw(x)}</span>`).join(''):'<em class="muted">no taboo words, but you still can’t say the word itself</em>'}</div>`;
    btns=`<button data-btn="ok" data-a="ok">✓ Got it</button><button data-btn="bad" data-a="buzz">🚫 Foul</button><button data-btn="n" data-a="skip">⏭ Skip</button>`}
   if(R.g==='emoji'){inner=`<div class="emo">${ez(c.e)}</div>${R.hint&&!R.reveal?`<div class="hintw">${esc(c.hm||mask(c.w))}</div>`:''}${R.reveal?`<div class="word">${hw(c.w,tw)}</div>`:''}`;
    btns=`<button data-btn="n" data-a="hint">💡 Hint</button><button data-btn="n" data-a="reveal">👁 Answer</button><button data-btn="ok" data-a="ok">✓ Got it</button><button data-btn="n" data-a="skip">⏭ Skip</button>`}
@@ -2765,7 +2790,7 @@ function _renderRound(){
   if(R.deck&&!gs)btns+=`<button data-btn="n" data-a="unpick">↩ Back to cards</button>`;
   if(gs){btns='';inner+=lastRes()}
   const stp=(R.g!=='emoji'&&S.starters&&!gs)?startersHTML():'';
-  setView(`<section class="panel k-card center">${scoreboard()}<div class="timer k-circle${S.time&&R.tl<=10?' low':''}" id="tlw"><span id="tl">${S.time?fmt(R.tl):'∞'}</span></div><div class="card k-card">${inner}</div><div class="actions">${btns}</div>${stp}<p class="muted small"${ROOM.role==='guest'?' hidden':''}>Keys: Enter — correct · → — skip${R.g==='taboo'?' · B — foul':''}${R.g==='emoji'?' · space — answer':''}</p><button data-btn="n" data-a="end">End round</button></section>`);return}
+  setView(`<section class="panel k-card center">${scoreboard()}<div class="timer k-circle${S.time&&R.tl<=10?' low':''}" id="tlw"><span id="tl">${S.time?fmt(R.tl):'∞'}</span></div><div class="card">${inner}</div><div class="actions">${btns}</div>${stp}<p class="muted small"${ROOM.role==='guest'?' hidden':''}>Keys: Enter — correct · → — skip${R.g==='taboo'?' · B — foul':''}${R.g==='emoji'?' · space — answer':''}</p><button data-btn="n" data-a="end">End round</button></section>`);return}
  if(R.phase==='sum'){
   const ic={ok:'✓',skip:'⏭',buzz:'🚫'},bt={ok:'og',skip:'n',buzz:'d'};
   setView(`<section class="panel k-card center">${scoreboard()}<h2>${R.alt?'Round over: '+R.teams.map((t,i)=>esc(t.n)+' '+(tpts(i)>=0?'+':'')+tpts(i)).join(', '):'Round over: '+esc(R.teams[R.turn].n)+' '+(rs(R.res)>=0?'+':'')+rs(R.res)}</h2>
@@ -2773,7 +2798,7 @@ function _renderRound(){
   <div class="row cc"><button data-btn="solid" data-a="nextround">Next round →</button><button data-btn="n" data-a="finish">End the game</button></div></section>`);return}
  if(R.phase==='end'){
   const t=R.teams.slice().sort((a,b)=>b.s-a.s);
-  setView(`<section class="panel k-card center"><h2>🏁 Game over</h2>${t.length>1?`<p class="muted">Winner: <b class="k-hl">${esc(t[0].n)}</b></p>`:''}<div class="sb" style="margin-top:14px">${t.map(x=>`<div class="sbox k-card"><b>${esc(x.n)}</b><span>${x.s}</span></div>`).join('')}</div><div class="row cc"><button data-btn="solid" data-a="again">Play again</button><button data-btn="n" data-a="quit">← To settings</button></div></section>`)}}
+  setView(`<section class="panel k-card center"><h2>🏁 Game over</h2>${t.length>1?`<p class="muted">Winner: <b class="k-hl">${esc(t[0].n)}</b></p>`:''}<div class="sb" style="margin-top:14px">${t.map(x=>`<div class="sbox"><b>${esc(x.n)}</b><span>${x.s}</span></div>`).join('')}</div><div class="row cc"><button data-btn="solid" data-a="again">Play again</button><button data-btn="n" data-a="quit">← To settings</button></div></section>`)}}
 
 /* ===== Jeopardy ===== */
 const jsel=()=>S.sel.jeo.filter(k=>k.split('|')[0]===S.level);
@@ -2798,7 +2823,7 @@ function renderJeo(){_renderJeo();roomPush()}
 function _renderJeo(){
  const n=J.cols.length;
  let h=`<section class="panel k-card"><div class="sb">`+J.players.map((p,i)=>`<button class="tbtn" data-btn="${i===J.cur?'s':'o'}" data-a="jplayer" data-i="${i}"><b>${esc(p.n)}</b><span>${p.s}</span></button>`).join('')+`</div>`;
- h+=`<div class="board" style="grid-template-columns:repeat(${n},minmax(0,1fr))">`+J.cols.map(c=>`<div class="hd k-card">${esc(c.name)}</div>`).join('');
+ h+=`<div class="board" style="grid-template-columns:repeat(${n},minmax(0,1fr))">`+J.cols.map(c=>`<div class="hd">${esc(c.name)}</div>`).join('');
  for(let r=0;r<J.rows;r++)J.cols.forEach((c,ci)=>{const cell=c.cells[r];h+=cell?`<button class="tile" data-btn="${cell.done?'s':'o'}"${cell.done?' disabled':''} data-a="jtile" data-c="${ci}" data-r="${r}">${(r+1)*100}</button>`:'<div></div>'});
  h+=`</div><div class="row"><button data-btn="n" data-a="jquit">← To settings</button><span class="muted small">Click a player’s name to pass the turn.</span></div></section>`;
  if(J.open)h+=jeoModal();
@@ -2810,7 +2835,7 @@ function jeoModal(){
  else body=`<div class="mw">${cell.e?`<span class="me">${ez(cell.e)}</span>`:''}${hw(cell.w,cell.r)}</div><div class="mt" style="margin-bottom:14px">${esc(S.tasks[o.r]||'')}</div>`;
  return `<div class="ov"><div class="modal k-card"><div class="mh">${esc(col.name)} · ${pts} · ${esc(J.players[J.cur].n)}</div>${body}<div class="actions"><button data-btn="ok" data-a="jok">✓ Correct +${pts}</button><button data-btn="bad" data-a="jbad">✗ Wrong${S.jminus?' −'+pts:''}</button></div><button data-btn="n" data-a="jback">Back to the board</button></div></div>`}
 function jeoOver(){const t=J.players.slice().sort((a,b)=>b.s-a.s);
- return `<div class="ov"><div class="modal over k-card"><h2>🏁 Game over</h2>${t.length>1?`<p>Winner: <b class="k-hl">${esc(t[0].n)}</b></p>`:''}<div class="sb" style="margin-top:14px">${t.map(x=>`<div class="sbox k-card"><b>${esc(x.n)}</b><span>${x.s}</span></div>`).join('')}</div><div class="actions"><button data-btn="solid" data-a="jagain">New board</button><button data-btn="n" data-a="jquit">To settings</button></div></div></div>`}
+ return `<div class="ov"><div class="modal over k-card"><h2>🏁 Game over</h2>${t.length>1?`<p>Winner: <b class="k-hl">${esc(t[0].n)}</b></p>`:''}<div class="sb" style="margin-top:14px">${t.map(x=>`<div class="sbox"><b>${esc(x.n)}</b><span>${x.s}</span></div>`).join('')}</div><div class="actions"><button data-btn="solid" data-a="jagain">New board</button><button data-btn="n" data-a="jquit">To settings</button></div></div></div>`}
 function jeoDone(ok){const o=J.open,cell=J.cols[o.c].cells[o.r],pts=(o.r+1)*100;
  if(ok)J.players[J.cur].s+=pts;else if(S.jminus)J.players[J.cur].s-=pts;
  cell.done=true;J.open=null;J.cur=(J.cur+1)%J.players.length;
@@ -2855,11 +2880,11 @@ function _renderBingo(){
  let clue='';
  if(B.k<0)clue=`<p class="muted">${gst?'Waiting for the teacher to show the first clue.':'Press "Start" to see the first clue. Look for that word on your card.'}</p>`;
  else{const w=B.words[B.order[B.k]],auto=!w.e&&!w.t.length;
-  clue=`<div class="cat">Clue ${B.k+1} of ${B.order.length}${w.cat?' · '+esc(w.cat):''}</div>${w.e?`<div class="emo">${ez(w.e)}</div>`:''}${w.t.length?`<div class="tb">${w.t.map(x=>`<span class="k-tag">${hw(x)}</span>`).join('')}</div>`:''}${(B.hint||auto)?`<div class="hintw">${esc(mask(w.w))}</div>`:''}${(auto&&w.r)?`<div class="trl">${esc(w.r)}</div>`:''}`}
+  clue=`<div class="cat">Clue ${B.k+1} of ${B.order.length}${w.cat?' · '+esc(w.cat):''}</div>${w.e?`<div class="emo">${ez(w.e)}</div>`:''}${w.t.length?`<div class="tb">${w.t.map(x=>`<span class="kchip">${hw(x)}</span>`).join('')}</div>`:''}${(B.hint||auto)?`<div class="hintw">${esc(mask(w.w))}</div>`:''}${(auto&&w.r)?`<div class="trl">${esc(w.r)}</div>`:''}`}
  const msg=B.msg?`<p class="${B.msg.p<0?'muted':'rbad'}">${esc((B.msg.p>=0?B.players[B.msg.p].n+': ':'')+B.msg.t)}</p>`:'';
  const cards=B.local?bingoCard(0,true)+bingoCard(1,true):bingoCard(mine,true)+bingoCard(1-mine,false);
  const btns=`<button data-btn="solid" data-a="bnext">${B.k<0?'▶ Start':'⏭ Next clue'}</button><button data-btn="n" data-a="bhint">💡 Letters</button>`;
- let h=`<section class="panel k-card center"><div class="card k-card" style="min-height:160px">${clue}</div>${msg}<div class="actions">${btns}</div></section><section class="panel k-card"><div class="bwrap">${cards}</div><div class="row cc"><button data-btn="n" data-a="bquit">← To settings</button></div></section>`;
+ let h=`<section class="panel k-card center"><div class="card" style="min-height:160px">${clue}</div>${msg}<div class="actions">${btns}</div></section><section class="panel k-card"><div class="bwrap">${cards}</div><div class="row cc"><button data-btn="n" data-a="bquit">← To settings</button></div></section>`;
  if(B.win>=0)h+=`<div class="ov"><div class="modal over k-card"><h2>🎉 Bingo!</h2><p>Winner: <b class="k-hl">${esc(B.players[B.win].n)}</b></p><div class="actions"><button data-btn="solid" data-a="bagain">Play again</button><button data-btn="n" data-a="bquit">To settings</button></div></div></div>`;
  setView(h)}
 
@@ -2895,8 +2920,8 @@ function _renderTtt(){
  const cells=T.cells.map((c,i)=>{
   if(c.o>=0)return `<div class="tcell own${T.win&&T.win.line.includes(i)?' win':''} p${c.o}">${sym[c.o]}</div>`;
   const inner=`${c.e?`<span class="te">${ez(c.e)}</span>`:''}${c.w?hw(c.w,c.r):''}${c.g?`<span class="tg">${esc(c.g)}</span>`:''}`;
-  return mayClick?`<button class="tcell" data-btn="o" data-a="tcell" data-i="${i}">${inner}</button>`:`<div class="tcell dis">${inner}</div>`}).join('');
- const sb=`<div class="sb">`+T.players.map((n,i)=>`<div class="sbox k-card"><b${(!over&&i===T.cur)?' class="k-hl"':''}>${sym[i]} ${esc(n)}</b></div>`).join('')+`</div>`;
+  return mayClick?`<button class="tcell" data-a="tcell" data-i="${i}">${inner}</button>`:`<div class="tcell dis">${inner}</div>`}).join('');
+ const sb=`<div class="sb">`+T.players.map((n,i)=>`<div class="sbox${(!over&&i===T.cur)?' act':''}"><b>${sym[i]} ${esc(n)}</b></div>`).join('')+`</div>`;
  const turn=over?'':`<p class="muted">Turn: <b>${sym[T.cur]} ${esc(T.players[T.cur])}</b>. ${mayClick?'Pick a square.':'Waiting…'}</p>`;
  let h=`<section class="panel k-card center">${sb}${turn}<div class="tgrid">${cells}</div><div class="row cc"><button data-btn="n" data-a="tquit">← To settings</button></div></section>`;
  if(T.open>=0){const c=T.cells[T.open];
@@ -2937,7 +2962,7 @@ function _renderStory(){
   if(c.used>=0)return `<div class="scard used">${face(c)}<span class="sw sby">${esc(ST.names[c.used])}</span></div>`;
   return mine?`<button class="scard" data-btn="${ST.sel===i?'solid':'o'}" data-a="scard" data-i="${i}">${face(c)}</button>`:`<div class="scard dis">${face(c)}</div>`}).join('');
  const sents=ST.story.map(x=>`<span class="ss p${x.p}" title="${esc(ST.names[x.p])}">${hwText(x.t)}</span>`).join(' ');
- const who=`<div class="sb">`+ST.names.map((n,i)=>`<div class="sbox k-card"><b${(!over&&i===ST.cur)?' class="k-hl"':''}>${esc(n)}</b></div>`).join('')+`</div>`;
+ const who=`<div class="sb">`+ST.names.map((n,i)=>`<div class="sbox"><b${(!over&&i===ST.cur)?' class="k-hl"':''}>${esc(n)}</b></div>`).join('')+`</div>`;
  const goal=ST.goal?`<p class="mono small">Task: <b>${esc(ST.goal)}</b></p>`:'';
  let ctl='';
  if(over)ctl=`<h2>📖 The story is ready</h2><div class="row cc"><button data-btn="solid" data-a="scopy"><span>Copy text</span></button><button data-btn="o" data-a="sagain">New story</button><button data-btn="n" data-a="squit">To settings</button></div>`;
@@ -3437,7 +3462,7 @@ function _renderGw(){
  if(!over&&myTurn){
   if(GWUI.guess)ctl=GWUI.pend>=0?`<p>Is it <b>${esc(gwChar(GWUI.pend).name)}</b>? A wrong guess means you lose!</p><div class="actions"><button data-btn="ok" data-a="gconfirm">✓ Yes, that’s him / her</button><button data-btn="n" data-a="gcancel">Cancel</button></div>`:`<p class="muted">Pick the card you want to name.</p><div class="actions"><button data-btn="n" data-a="gcancel">Cancel</button></div>`;
   else ctl=`<div class="actions"><button data-btn="solid" data-a="gmode">🎯 Guess!</button><button data-btn="n" data-a="gpass">⏭ Pass the turn</button></div>`}
- let h=`<section class="panel k-card"><div class="sb"><div class="sbox k-card"><b${(!over&&GS.cur===0)?' class="k-hl"':''}>${esc(GS.names[0])}</b><span>${GS.down[0].filter(x=>!x).length}</span></div><div class="sbox k-card"><b${(!over&&GS.cur===1)?' class="k-hl"':''}>${esc(GS.names[1])}</b><span>${GS.down[1].filter(x=>!x).length}</span></div></div><p class="center muted small" style="margin:0">The number next to a name shows how many cards are still up.</p>${turn}<div class="center">${ctl}</div></section>
+ let h=`<section class="panel k-card"><div class="sb"><div class="sbox"><b${(!over&&GS.cur===0)?' class="k-hl"':''}>${esc(GS.names[0])}</b><span>${GS.down[0].filter(x=>!x).length}</span></div><div class="sbox"><b${(!over&&GS.cur===1)?' class="k-hl"':''}>${esc(GS.names[1])}</b><span>${GS.down[1].filter(x=>!x).length}</span></div></div><p class="center muted small" style="margin:0">The number next to a name shows how many cards are still up.</p>${turn}<div class="center">${ctl}</div></section>
  <section class="panel k-card"><div class="gwtop">${sec}${ideas}</div><div class="gwgrid" style="grid-template-columns:repeat(${cols},minmax(0,1fr))">${cards}</div><div class="row cc"><button data-btn="n" data-a="gquit">← To settings</button></div></section>`;
  if(over){const w=GS.win,l=1-w;
   h+=`<div class="ov"><div class="modal over k-card"><h2>${GS.why==='ok'?'🎉 '+esc(GS.names[w])+' guessed it!':'😅 '+esc(GS.names[l])+' made a mistake'}</h2><p class="muted">${GS.why==='ok'?'':'Chose '+esc(gwChar(GS.last).name)+'. '}Winner: <b class="k-hl">${esc(GS.names[w])}</b></p><div class="gwreveal"><div><div class="mono small">${esc(GS.names[0])}</div><div class="gwc ro">${cell(gwChar(GS.secret[0]))}</div></div><div><div class="mono small">${esc(GS.names[1])}</div><div class="gwc ro">${cell(gwChar(GS.secret[1]))}</div></div></div><div class="actions"><button data-btn="solid" data-a="gagain">Play again</button><button data-btn="n" data-a="gquit">To settings</button></div></div></div>`}
