@@ -740,6 +740,21 @@ button.tcell:hover{transform:translateY(-3px) rotate(-1deg)}
 .glcell{border:0;border-radius:20px;padding:18px 10px;min-height:84px;font:400 20px/1.15 var(--pen-font);color:#232323;box-shadow:0 4px 12px rgba(0,0,0,.15);cursor:pointer;transition:transform .12s}.glcell:hover{transform:translateY(-3px) rotate(-1deg)}
 .glcell.used{opacity:.4;text-decoration:line-through}.glcell.hit{outline:5px solid #2724d1;transform:scale(1.06)}
 .gtf{display:inline-block;padding:6px 18px;border-radius:999px;font:600 16px Inter,sans-serif;margin-bottom:10px}.gtf.t{background:#A2CD1E}.gtf.b{background:#F49BC9}
+.cbh{background:#fff9;border-radius:16px;padding:8px 14px;margin:8px 0;font:400 18px/1.25 var(--pen-font);color:#2724d1}.cbh div+div{margin-top:4px}
+.dmst{position:relative;height:540px;border-radius:24px;overflow:hidden;touch-action:none;user-select:none;margin-top:8px}.dmz{position:absolute;left:0;right:0;padding:10px 18px;font:400 24px var(--pen-font);color:#2324}
+.dmbk{text-align:center;color:#232323;font-size:30px;padding-top:12px}.dmo{position:absolute;cursor:grab;touch-action:none;z-index:5;filter:drop-shadow(0 5px 6px rgba(0,0,0,.28));transition:width .25s}.dmo img{width:100%;display:block;pointer-events:none}
+.dmb{position:absolute;z-index:50;background:#fff;border-radius:16px;padding:6px 12px;font:400 20px/1.15 var(--pen-font);color:#2724d1;box-shadow:0 3px 10px rgba(0,0,0,.2);width:180px;text-align:center}.dmb.ok{font-size:20px;z-index:70}
+.dmt{position:absolute;z-index:4;width:60px;text-align:center;background:#232323;color:#fff;border-radius:999px;font:600 11px Inter,sans-serif;padding:3px 0;letter-spacing:.06em}
+.dmscore{position:absolute;right:16px;top:12px;font:400 26px var(--pen-font);color:#2724d1}.dmwin{position:absolute;left:50%;top:150px;transform:translateX(-50%);z-index:60;background:#FBD415;border-radius:28px;padding:16px 28px;font:400 30px var(--pen-font);color:#232323;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+@keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}.dmo.shake{animation:shk .4s}
+.rmw{display:grid;grid-template-columns:minmax(0,700px) 1fr;gap:16px;margin-top:8px;align-items:start}@media(max-width:900px){.rmw{grid-template-columns:1fr}}
+.rmst{position:relative;border:4px solid #232a63;border-radius:18px;overflow:hidden;touch-action:none;user-select:none;background:#fff}.rmbg{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none}
+.rmi{position:absolute;transform:translate(-50%,-50%);cursor:grab;touch-action:none;filter:drop-shadow(0 4px 4px rgba(0,0,0,.25))}.rmi img{width:100%;display:block;pointer-events:none}.rmi.sel{outline:3px dashed #2724d1;outline-offset:3px;border-radius:6px}
+.rmlb{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);background:#fff;color:#2724d1;border-radius:999px;padding:1px 8px;font:400 15px var(--pen-font);white-space:nowrap;pointer-events:none}
+.rmctl{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.rmtray{display:flex;gap:10px;flex-wrap:wrap;max-height:640px;overflow:auto;padding:4px}
+.rmth{border:0;background:#fff;border-radius:18px;width:92px;padding:8px 6px 6px;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.12);display:flex;flex-direction:column;align-items:center;gap:4px}.rmth img{width:70px;height:62px;object-fit:contain}.rmth span{font:400 15px var(--pen-font);color:#232323}.rmth:hover{transform:translateY(-2px)}
+.tpill.on{outline:3px solid #2724d1}
+.cbi.ph.sc{height:min(54vh,420px)}.cbi.ph.sc img{object-fit:contain}
 </style>
 </head>
 <body>
@@ -3297,6 +3312,9 @@ const GP=[
 
 /* ===== Wheels and boards (Grammar Lab) ===== */
 const WG=[
+{k:'wheel',id:'fr',n:'Feelings Roulette',lv:['a1'],t:'To be',task:'Say how you feel in this situation with am / is / are. Then say it in the negative and ask your partner a question.',ex:'I am nervous at a job interview. I am not nervous on a flight. Are you nervous at an exam?',reels:[['tired','hungry','nervous','excited','bored','angry','happy','scared','embarrassed','surprised'].map(x=>[x]),[['Monday','on Monday morning'],['date','on a first date'],['flight','on a flight'],['interview','at a job interview'],['queue','in a long queue'],['party','at a birthday party'],['street','in a dark street'],['exam','at an exam'],['dinner','at a family dinner'],['gift','with a surprise gift']]]},
+{k:'board',id:'tbb',n:'Truth or Bluff',lv:['a1'],t:'To be',tf:true,task:'Talk about the topic with am / is / are. TRUE = tell the truth, BLUFF = make it up. Your partner asks questions (Are you …? Is your …?) and guesses.',ex:'I am 30. I am a teacher. I am from Moscow. I am not married.',cells:['your age','your job','your home town','your family','your best friend','your flat','your mood today','your phone'].map(x=>[x])},
+{k:'board',id:'ffb',n:'Fix the Fib',lv:['a1'],t:'To be',task:'Your partner says something wrong about you. Say NO and correct it: No, I’m not … / No, it isn’t … / No, they aren’t …',ex:'You are 12 years old. → No, I’m not 12. I’m 35.',cells:[['Pilot','You are a pilot.','No, I’m not a pilot. I’m a teacher.'],['Japan','You are from Japan.','No, I’m not from Japan. I’m from Russia.'],['Name','Your name is Bob.','No, it isn’t. My name is Lisa.'],['Café','You are in a café now.','No, I’m not in a café. I’m at home.'],['Teacher','Your teacher is a man.','No, she isn’t a man. She’s a woman.'],['Tired','You are very tired today.','No, I’m not tired. I’m fine!'],['Phone','Your phone is green.','No, it isn’t green. It’s black.'],['Age','You are five years old.','No, I’m not five. I’m thirty.'],['Moon','Your flat is on the moon.','No, it isn’t. It’s in Moscow.'],['Cats','You and your friends are cats.','No, we aren’t cats. We’re people.']]},
 {k:'wheel',id:'vr',n:'Verb Roulette',lv:['a2'],t:'Past Simple',task:'Make a Past Simple sentence with the verb. Then add 2–3 sentences and tell a mini-story.',ex:'I found a key in my pocket. It was old and rusty. I took it to the …',reels:[['bring','build','catch','choose','draw','drive','fall','feel','find','forget','hide','lose','meet','ring','steal','swim','throw','wake'].map(x=>[x])]},
 {k:'wheel',id:'ss',n:'Story Starters',lv:['a2'],t:'Past Simple',task:'Continue the story in Past Simple: at least three sentences. The crazier, the better!',ex:'…and it was the biggest surprise of my life. I opened it and found …',reels:[[['The elevator','On Tuesday the elevator stopped between floors six and seven, and …'],['Grandma’s attic','I opened the old suitcase in my grandma’s attic and …'],['The taxi driver','The taxi driver looked at me, smiled, and …'],['The window','When I woke up, my window was covered in …'],['The last train','The last train left, and I realised …'],['The envelope','At the café, a stranger gave me an envelope and …'],['Packing','I was packing for the trip when …'],['The school bus','Our school bus turned the wrong way, so …'],['The parcel','The parcel arrived with no name on it, so I …'],['My dog','Yesterday my dog came home with …']]]},
 {k:'wheel',id:'nw',n:'News From 2060',lv:['a2'],t:'Future Simple (will)',task:'You are a reporter. Report this news with “will”. Your partner asks you questions.',ex:'Cities will be much greener. People will travel by flying cars.',reels:[[['Cities'],['Schools'],['Cats'],['Money'],['Holidays'],['Food'],['Cars'],['Football']].map(x=>[x[0],x[0]+' will …'])]},
@@ -3329,7 +3347,7 @@ const WG=[
 ];
 
 /* ===== Grammar Lab data ===== */
-const GLV=[['kids','A1 Kids'],['a1','A1'],['a2','A2'],['b1','B1'],['b2','B2'],['c1','C1'],['all','All']];
+const GLV=[['kids','Kids'],['a1','A1'],['a2','A2'],['b1','B1'],['b2','B2'],['c1','C1'],['all','All']];
 const GT=[
 {id:'be',n:'To be',lv:['kids','a1'],f:'am / is / are (+ not) · Am / Is / Are + subject?',ex:'She is a teacher. Is she a teacher?'},
 {id:'ps',n:'Present Simple',lv:['kids','a1'],f:'V(s) · don’t / doesn’t + V · Do / Does + subject + V?',ex:'He plays chess. Does he play chess?'},
@@ -3510,11 +3528,11 @@ function glCellOpen(i){const g=GL.g,c=g.cells[i],f=$('#glfocus');if(!GL.used.inc
  const close=()=>{f.hidden=true;document.querySelectorAll('.glcell').forEach((b,k)=>{b.classList.toggle('used',GL.used.includes(k));b.classList.remove('hit')})};
  $('#gclose').onclick=close;$('#gokc').onclick=()=>{GL.ok++;close();glGameRender()};$('#gbadc').onclick=()=>{GL.bad++;close();glGameRender()};f.onclick=e=>{if(e.target===f)close()}}
 function glSetupG(){
- const wh=S.gmode==='wheel';if(!S.glevel||S.glevel==='kids'||S.glevel==='a1')S.glevel='a2';
+ const wh=S.gmode==='wheel';if(!S.glevel||S.glevel==='kids')S.glevel='a1';
  const games=WG.filter(g=>g.k===S.gmode&&(S.glevel==='all'||g.lv.includes(S.glevel)));if(!games.some(g=>g.id===S.ggame))S.ggame=games[0]?games[0].id:'';
  setView(`<section class="panel k-card"><h2>${GAMES.gram.icon} ${GAMES.gram.title}</h2><p class="muted">${esc(GAMES.gram.desc)}</p>
  <p class="muted small" style="margin:14px 0 6px">Exercise</p><div class="lpc" id="glm">${GLMODES.map(m=>`<button class="lpb${S.gmode===m[0]?' on':''}" data-m="${m[0]}">${m[1]}</button>`).join('')}</div>
- <p class="muted small" style="margin:14px 0 6px">Level</p><div class="lpc" id="gll">${GLV.filter(l=>l[0]==='a2'||l[0]==='b1'||l[0]==='b2'||l[0]==='all').map(l=>`<button class="lpb${S.glevel===l[0]?' on':''}" data-l="${l[0]}">${l[1]}</button>`).join('')}</div>
+ <p class="muted small" style="margin:14px 0 6px">Level</p><div class="lpc" id="gll">${GLV.filter(l=>l[0]==='a1'||l[0]==='a2'||l[0]==='b1'||l[0]==='b2'||l[0]==='all').map(l=>`<button class="lpb${S.glevel===l[0]?' on':''}" data-l="${l[0]}">${l[1]}</button>`).join('')}</div>
  <p class="muted small" style="margin:14px 0 6px">${wh?'Wheel':'Board game'}</p><div class="lpc" id="glg">${games.map(g=>`<button class="lpb${S.ggame===g.id?' on':''}" data-g="${g.id}">${esc(g.n)}</button>`).join('')||'<span class="muted">No games for this level yet.</span>'}</div>
  <p class="muted" id="gln" style="margin-top:14px"></p><div class="row cc"><button data-btn="solid" id="glgo">Start</button></div></section>`);
  const upd=()=>{const g=WG.find(x=>x.id===S.ggame);$('#gln').textContent=g?g.t+' · '+(g.k==='wheel'?g.reels.map(r=>r.length).join(' + ')+' slices':g.cells.length+' cards'):'';$('#glgo').disabled=!g};
@@ -3664,7 +3682,113 @@ function _renderGif(){
 
 
 /* ===== Speaking ===== */
+const CH=[
+['Sherlock Holmes','a detective','London, England','38','bored','You are a man from a TV series. You are British.','You are very clever. You solve crimes.'],
+['Elsa','a queen','Arendelle, a kingdom in the north','21','worried','You are a woman from an animated film. You have a sister.','You live in a palace. You rule a snowy kingdom.'],
+['Harry Potter','a student and a wizard','England','11','excited','You are a boy from a famous film. You are British.','You study at a magic school. You have an owl.'],
+['Woody','a sheriff (a toy cowboy)','the USA','30','angry','You are from an animated film. You are a toy.','You are a sheriff from the Wild West. You wear a hat.'],
+['Remy','a chef (a rat!)','Paris, France','3','hungry','You are an animal from an animated film. You are small and grey.','You work in a kitchen. You cook French food.'],
+['Spider-Man (Peter Parker)','a photographer and a superhero','New York, the USA','20','tired','You are a superhero. You live in a big city.','In the day you take photos for a newspaper.'],
+['Hermione Granger','a student and a witch','London, England','12','happy','You are a girl from a famous film. You love books.','You study at a magic school. You are very clever.'],
+['Santa Claus','a gift deliverer','the North Pole','very old','busy','You are an old man. You wear red. You live in the cold north.','You work once a year, at night in December. You carry presents.'],
+['Cinderella','a servant girl (later a princess)','a fairy-tale kingdom','19','tired','You are a girl from a fairy tale. You have two bad stepsisters.','You clean the house every day. You go to a ball.'],
+['SpongeBob','a fry cook','Bikini Bottom, under the sea','25','happy','You are a yellow cartoon character. You live under the sea.','You work in a restaurant. You make burgers.']];
+const SCN={
+sct:[
+[1,'What is there at the market? Name five things.','There is a flower stall. There are umbrellas, two dogs, pigeons and a bicycle.'],
+[1,'How many dogs are there? What colour are they?','There are two dogs: a black one and a white one.'],
+[1,'Is there a bicycle? Where is it?','Yes, there is. It is next to the flowers on the right.'],
+[1,'Are there any birds? Where are they?','Yes, there are. There are pigeons on the ground.'],
+[1,'Is there a boy in the picture? What is he holding?','Yes, there is. He is holding flowers.'],
+[1,'What is there under the red and white awning?','There are flowers and fruit. There is a man in an apron.'],
+[2,'How many people are there in the office? Are there more than ten?','Yes, there are. There are about fifteen people.'],
+[2,'Is there a printer? Where is it?','Yes, there is. It is at the back, next to the shelves.'],
+[2,'What is there on the desks?','There are computers, laptops, a cup and a notebook.'],
+[2,'Is there an animal in the office? Where is it?','Yes, there is. There is a cat on the desk.'],
+[2,'Are there any plants? Where are they?','Yes, there are. They are on the desks and near the windows.'],
+[2,'What is there outside the big windows?','There is a city. There are tall buildings.'],
+[3,'What furniture is there in the room?','There is a green sofa, a purple armchair and a coffee table.'],
+[3,'Is there a cat? Where is it?','Yes, there is. There is a black cat on the sofa.'],
+[3,'Is there a dog? Where is it?','Yes, there is. It is in its bed, on the right.'],
+[3,'What is there on the coffee table?','There is a cup and there are some books and flowers.'],
+[3,'Are there any toys on the floor? What are they?','Yes, there are. There is a teddy bear and a red toy car.'],
+[3,'What is there on the walls?','There is a picture and a small mirror. There are plants near the window.'],
+[4,'What is there in the background?','There is a big red brick building with a tower.'],
+[4,'How many students are there on the blanket on the left?','There are three students. There is a laptop in front of them.'],
+[4,'Is there a bike? Where is it?','Yes, there is. A person is riding it near the building.'],
+[4,'Are there any benches? Where are they?','Yes, there are. They are on the grass, next to the trees.'],
+[4,'What is there on the grass?','There are blankets, books, backpacks and a laptop.'],
+[4,'Is there a tree with pink flowers? Where is it?','Yes, there is. It is on the right.'],
+[5,'What is there on the lake?','There are sailboats and a small red boat.'],
+[5,'Is there a city in the picture? Where is it?','Yes, there is. It is far away, behind the lake.'],
+[5,'Are there any birds? Where are they?','Yes, there are. There are pigeons on the grass and birds in the sky.'],
+[5,'What is there in the sky?','There is a kite and there are some clouds.'],
+[5,'How many blankets are there on the grass?','There are two blankets.'],
+[5,'Is there a dog? Where is it?','Yes, there is. A woman is walking a brown dog on the path.'],
+[1,'Describe the whole picture: say five sentences with There is / There are.','There is a market. There are many people. There is a flower stall. There are two dogs. There is a bicycle.'],
+[2,'Describe the whole picture: say five sentences with There is / There are.','There is a big office. There are many desks. There are computers on the desks. There is a cat. There is a city outside.'],
+[3,'Describe the whole picture: say five sentences with There is / There are.','There is a green sofa. There is a cat on the sofa. There are books on the table. There is a rug. There is a dog in the bed.'],
+[4,'Describe the whole picture: say five sentences with There is / There are.','There is a university. There are many students. There are blankets on the grass. There is a bike. There are benches.'],
+[5,'Describe the whole picture: say five sentences with There is / There are.','There is a lake. There are boats on the lake. There are people on the grass. There is a bench. There is a kite.']],
+scp:[
+[1,'What is the woman in the red dress doing?','She is buying flowers. / She is standing at the stall.'],
+[1,'What is the man in the apron doing?','He is selling flowers.'],
+[1,'What is the boy in the blue cap doing?','He is holding flowers. / He is walking.'],
+[1,'What are the pigeons doing?','They are walking on the ground. / They are looking for food.'],
+[1,'What is the black dog doing?','It is walking next to the boy.'],
+[1,'What are the people near the umbrellas doing?','They are walking and shopping.'],
+[2,'What is the man with the tablet doing?','He is standing and looking at the tablet. / He is talking to his colleagues.'],
+[2,'What is the woman with the headphones doing?','She is working at her computer. / She is listening to music.'],
+[2,'What is the cat doing?','It is sleeping on the desk.'],
+[2,'What are most of the people doing?','They are working on their computers. / They are typing.'],
+[2,'What is the man in the green sweater doing?','He is working on his laptop.'],
+[2,'Is anybody drinking coffee? Is anybody sleeping?','Somebody is drinking coffee, I think. The cat is sleeping, but the people aren’t.'],
+[3,'What is the woman on the sofa doing?','She is reading a book.'],
+[3,'What is the child on the floor doing?','He / She is drawing.'],
+[3,'What is the black cat doing?','It is sleeping on the sofa.'],
+[3,'What is the dog doing?','It is sleeping in its bed.'],
+[3,'Is the woman sleeping? Is she watching TV?','No, she isn’t. She is reading.'],
+[3,'What isn’t the child doing?','The child isn’t reading or sleeping. He / She is drawing.'],
+[4,'What are the three students on the blanket doing?','They are studying. / They are working on a laptop and talking.'],
+[4,'What is the person on the bike doing?','He is riding a bike.'],
+[4,'What is the person lying on the blanket doing?','She is reading a book. / She is relaxing.'],
+[4,'What are the people on the bench doing?','They are sitting and talking.'],
+[4,'What is the person on the skateboard doing?','He is sitting on a skateboard and reading.'],
+[4,'What are the people in the background doing?','They are walking on the path.'],
+[5,'What is the woman with the dog doing?','She is walking her dog.'],
+[5,'What is the person on the bike doing?','He is riding a bike along the lake.'],
+[5,'What are the two people on the blanket doing?','They are sitting and reading. / They are having a picnic.'],
+[5,'What is the girl lying on the blanket doing?','She is reading a book.'],
+[5,'What are the boats doing?','They are sailing on the lake.'],
+[5,'What are the pigeons doing?','They are walking on the grass.'],
+[1,'Describe the whole picture: say what five different people or animals are doing.','A woman is buying flowers. A man is selling flowers. A boy is holding flowers. A dog is walking. Pigeons are looking for food.'],
+[2,'Describe the whole picture: say what five different people or animals are doing.','A man is standing. A woman is listening to music. A man is working on a laptop. A cat is sleeping. People are typing.'],
+[3,'Describe the whole picture: say what five different people or animals are doing.','A woman is reading. A child is drawing. A cat is sleeping. A dog is sleeping. A record player is playing music.'],
+[4,'Describe the whole picture: say what five different people are doing.','Three students are studying. A man is riding a bike. A girl is reading. Two people are sitting on a bench. Some students are walking.'],
+[5,'Describe the whole picture: say what five different people or animals are doing.','A woman is walking a dog. A man is riding a bike. Two people are having a picnic. A girl is reading. Boats are sailing.']]};
+const SCH={sct:['Use There is + one thing, There are + many things. Questions: Is there …? Are there …?','Add the place: in, on, next to, under, behind, in front of. For example: There is a cat on the sofa.'],scp:['Use am / is / are + verb-ing: She is reading. They are walking.','Look at one person: what is he / she doing right now? read → reading, sit → sitting, run → running.']};
+const CHT={gmj:'Guess my job',intv:'Interview',who:'Whose is it?'};
+const WH=[
+['Mr Bean','teddy bear','his','It is a teddy bear.','It is his teddy bear.'],
+['Homer Simpson','donut','his','It is a donut.','It is his donut.'],
+['Mario','cap','his','It is a cap. (Look, there is also a car.)','It is his cap. / It is his car.'],
+['Ted the bear','notebook','his','It is a notebook. (He also has glasses.)','It is his notebook. / These are his glasses.'],
+['Barbie','bag','her','It is a bag.','It is her bag.'],
+['Anna','fan','her','It is a fan. (There are also sweets.)','It is her fan. / They are her sweets.'],
+['Pikachu','apple','its','It is an apple.','It is its apple.'],
+['Winnie the Pooh','honey pot','his','It is a pot of honey.','It is his honey pot.'],
+['Jerry','cheese','his','It is cheese.','It is his cheese.'],
+['Tom and Jerry','cheese','their','It is cheese.','It is their cheese.'],
+['The Minions','banana','their','It is a banana.','It is their banana. (The Minion in the middle: his banana.)'],
+['Cookie Monster','cookies','his','They are cookies.','They are his cookies.']];
+const PNW={he:'a man or a boy → his',she:'a woman or a girl → her'};
+
 const SPT=[
+ {id:'who',n:'Pronouns: Whose is it?',d:'A character with an object appears. Say whose it is: his / her / its / their. Two hints are available.'},
+ {id:'sct',n:'There is / are: scenes',d:'A busy picture appears. Answer the question with there is / there are.'},
+ {id:'scp',n:'Present Continuous: scenes',d:'A busy picture appears. Say what the people and animals are doing.'},
+ {id:'gmj',n:'To be: Guess my job',d:'A famous character appears. Ask yes / no questions with am / is / are and guess the job. Two hints are available.'},
+ {id:'intv',n:'To be: Interview',d:'A famous character appears. Interview them: invent your own questions with am / is / are. Two hints are available.'},
  {id:'pc',n:'Present Continuous: what is she doing?',d:'Say what she is doing now.'},
  {id:'pas',n:'Past Continuous: what was she doing?',d:'Say what she was doing at a given time.'},
  {id:'cmp',n:'Present vs Past Continuous',d:'Compare: what she was doing then and what she is doing now.'},
@@ -3920,8 +4044,8 @@ const SPPAST=['at 7 pm yesterday','at 9 o’clock this morning','at midnight','t
 const SPPRES=['What is she doing right now?','What is she doing at the moment?','Look! What is she doing?','What is she doing today?'];
 
 /* ===== Speaking: levels -> topics -> cards ===== */
-const SPLV=[['kids','A1 Kids',['be','hab','pc','thr']],['a1','A1',['be','hab','rtn','pc','thr']],['a2','A2',['pas','cmp','mix','shd','ust']],['b1','B1',['ppc','ppf','ifw','pfm','rcl','gpr','gvb','ivb','gsb','iad','gdf','gsm','wgv','wiv','wbo','wpa','wpv','wpo','gwt']],['b2','B2',['gdf','oin']],['c1','C1',['gpf']]];
-const SPSHORT={pc:'Present Continuous',pas:'Past Continuous',cmp:'Present vs Past Cont.',mix:'Mix of tenses',ppc:'Present Perfect Cont.',ppf:'Past Perfect',shd:'Should / shouldn’t',be:'To be',hab:'Present Simple',rtn:'Daily routine',ifw:'If I were…',ust:'Used to',pfm:'Present Perfect memes',rcl:'Relative clauses',gpr:'Gerund after prepositions',wgv:'All verbs + -ing',wiv:'All verbs + to V',wbo:'Both forms / meaning',wpa:'Adjective + prep + -ing',wpv:'Verb + prep + -ing',wpo:'Other preps + -ing',gvb:'Gerund after verbs',ivb:'Infinitive after verbs',gsb:'Gerund / infinitive as subject',iad:'Infinitive: purpose, too / enough',gdf:'Stop / remember / try',gsm:'Like / start / prefer',oin:'Make / let / tell sb to',gpf:'Perfect infinitive & gerund',gwt:'Guess what?',thr:'There is / are'};
+const SPLV=[['kids','Kids',['be','hab','pc','thr']],['a1','A1',['gmj','intv','who','nof','fbk','room','sct','scp']],['a2','A2',['pas','cmp','mix','shd','ust']],['b1','B1',['ppc','ppf','ifw','pfm','rcl','gpr','gvb','ivb','gsb','iad','gdf','gsm','wgv','wiv','wbo','wpa','wpv','wpo','gwt']],['b2','B2',['gdf','oin']],['c1','C1',['gpf']]];
+const SPSHORT={sct:'There is / are: scenes',scp:'Present Continuous: scenes',room:'Furnish a room',nof:'Near or Far',fbk:'Four baskets',who:'Whose is it?',gmj:'Guess my job',intv:'Interview',pc:'Present Continuous',pas:'Past Continuous',cmp:'Present vs Past Cont.',mix:'Mix of tenses',ppc:'Present Perfect Cont.',ppf:'Past Perfect',shd:'Should / shouldn’t',be:'To be',hab:'Present Simple',rtn:'Daily routine',ifw:'If I were…',ust:'Used to',pfm:'Present Perfect memes',rcl:'Relative clauses',gpr:'Gerund after prepositions',wgv:'All verbs + -ing',wiv:'All verbs + to V',wbo:'Both forms / meaning',wpa:'Adjective + prep + -ing',wpv:'Verb + prep + -ing',wpo:'Other preps + -ing',gvb:'Gerund after verbs',ivb:'Infinitive after verbs',gsb:'Gerund / infinitive as subject',iad:'Infinitive: purpose, too / enough',gdf:'Stop / remember / try',gsm:'Like / start / prefer',oin:'Make / let / tell sb to',gpf:'Perfect infinitive & gerund',gwt:'Guess what?',thr:'There is / are'};
 const CBCOL=['#F7763F','#B85EF4','#B4BEFB','#DCFF6A','#A2E0D5','#B2D1FD','#DBBFBB','#A2CD1E','#F9B1B2','#F49BC9','#3FBCF4','#FBD415','#9CBA98'];
 function spSetup(){
  const lv=SPLV.find(x=>x[0]===S.splevel)||SPLV[3];
@@ -3930,10 +4054,15 @@ function spSetup(){
  <div class="tprow">${lv[2].length?lv[2].map((id,i)=>`<button class="tpill" data-tp="${id}" style="background:${CBCOL[(i*3+SPLV.indexOf(lv))%CBCOL.length]}"><span class="tst">${i%2?'✸':'✦'}</span>${esc(SPSHORT[id]||id)}</button>`).join(''):'<p class="muted">Topics for this level are coming soon.</p>'}</div></section>`);
  bindRoom();
  document.querySelectorAll('[data-lv]').forEach(b=>b.onclick=()=>{S.splevel=b.dataset.lv;save();spSetup()});
- document.querySelectorAll('[data-tp]').forEach(b=>b.onclick=()=>{S.sptask=b.dataset.tp;save();if(S.sptask!=='gwt')startCards(S.sptask);else spSetupTask()})}
+ document.querySelectorAll('[data-tp]').forEach(b=>b.onclick=()=>{S.sptask=b.dataset.tp;save();if(DMT[S.sptask]){DMTF[S.sptask]()}else if(S.sptask!=='gwt')startCards(S.sptask);else spSetupTask()})}
 let CB=null;
 function startCards(id){CB={task:id,n:8,seen:{}};renderCards()}
 function cbItems(){const t=CB.task,n=CB.n;
+ if(SCN[t]){if(!CB.deck){CB.deck=shuffle(SCN[t].map(x=>({src:'ch/sc'+x[0]+'.jpg',photo:1,sc:1,t:x[1],a:'✅ '+x[2],hints:SCH[t]})));CB.p=0}
+  if(CB.p>=CB.deck.length){CB.deck=shuffle(CB.deck);CB.p=0}
+  const b=Math.min(CB.p+n,CB.deck.length),a=Math.max(0,Math.min(CB.p,CB.deck.length-n)),out=CB.deck.slice(a,b);CB.p=b;CB.prog='Cards '+(a+1)+'–'+b+' of '+CB.deck.length;return out}
+ if(t==='who'){return shuffle(WH.map((w,i)=>({src:'ch/w'+String(i+1).padStart(2,'0')+'.jpg',photo:1,t:'Whose is it?',qo:'What is it? Whose is it? Say: It is his / her / its / their …',a:'✅ '+w[4],hints:[w[3],'Who has it? '+(w[2]==='his'?'A man → his':w[2]==='her'?'A woman → her':w[2]==='its'?'An animal → its':'Two or more → their')+'. Start: It is '+w[2]+' …']})))}
+ if(CHT[t]){return shuffle(CH.map((c,i)=>{const src='ch/'+String(i+1).padStart(2,'0')+'.jpg';return t==='gmj'?{src,photo:1,t:'Guess my job!',qo:'Ask yes / no questions: Are you a …? Is your job …? Your partner answers.',a:'✅ '+c[0]+' — '+c[1]+'. From '+c[2]+'.',hints:[c[5],c[6]]}:{src,photo:1,t:'Interview',qo:'Think of your own questions with am / is / are. Interview this person!',a:'✅ I am '+c[0]+'. I am '+c[3]+'. I am '+c[1]+'. I am from '+c[2]+'. Today I am '+c[4]+'.',hints:['Ask about: name · age · job · country · feelings.','Start with: Are you …? Is your …? Where are you from? How old are you?']}}))}
  if(WD[t]){const L=WD[t];if(!CB.ord||CB.ord.length!==L.length){CB.ord=shuffle(L.map((_,i)=>i));CB.p=0}
   if(CB.p>=CB.ord.length){CB.ord=shuffle(CB.ord);CB.p=0}
   const b=Math.min(CB.p+n,CB.ord.length),a=Math.max(0,Math.min(CB.p,CB.ord.length-n)),out=CB.ord.slice(a,b).map(i=>{const w=L[i][0],ex=L[i][1],pn=wdPicFor(w,t);return {src:'gi/'+String(pn).padStart(2,'0')+'.jpg',photo:1,t:w,q:'',a:ex,modes:{s:[wdStart(ex,t),ex],w:['Use “'+w+'” to say something about the picture. '+(t==='wbo'?'Make two sentences: -ing and to V.':''),ex],f:['Tell your partner about yourself with “'+w+'”. '+WDQ[t],ex]}}});CB.p=b;CB.prog='Words '+(a+1)+'–'+b+' of '+L.length;return out}
@@ -3950,6 +4079,105 @@ function cbItems(){const t=CB.task,n=CB.n;
  return out}
 function cbImg(it){return !it.src?'':it.src2?`<div class="two"><img draggable="false" src="${it.src}" alt=""><span>→</span><img draggable="false" src="${it.src2}" alt=""></div>`:`<img draggable="false" src="${it.src}" alt="">`}
 function cbPhr(){const t=CB.task;if(WD[t])return WD[t].map(x=>[x[0],'']);const g=GT.find(x=>x.id===t&&x.sp);if(g)return g.f.split(' · ').map(x=>[x,'']).concat([['e.g. '+g.ex,'']]);return t==='pc'?SPM.pres:t==='pas'?SPM.past:(t==='cmp'||t==='mix')?SPM.past.concat(SPM.pres):(SPM[t]||[])}
+
+
+/* ===== Demonstratives: movable objects ===== */
+const DMO=[['o01','s','a cat'],['o02','s','a cat'],['o03','s','a leaf'],['o04','p','apples'],['o05','p','carrots'],['o06','s','a latte'],['o07','p','cookies'],['o08','p','coffees'],['o09','s','a tea'],['o10','p','books'],['o11','p','toys'],['o12','s','a bunny'],['o13','s','a newspaper'],['o14','s','an umbrella'],['o15','s','a key'],['o16','s','a camera'],['o17','p','keys']];
+const DMT={nof:1,fbk:1,room:1};
+const DMHINT=['Near me → this / these. Far from me → that / those.','One thing → this / that (This is a …). Many things → these / those (These are …).'];
+function dmSent(o,near){const pl=o[1]==='p';return (near?(pl?'These are ':'This is '):(pl?'Those are ':'That is '))+o[2]+'.'}
+function dmShell(id,title,help){
+ setView(`<section class="panel k-card cbpanel"><div class="cbbar"><button class="lvb" id="dmback">← Topics</button><h2>${esc(title)}</h2><div><button class="lvb" id="dmhint">💡 Hint (2)</button> <button class="lvb" id="dmnew">↻ New objects</button></div></div>
+ <p class="muted small">${esc(help)}</p><div class="cbh" id="dmh" hidden></div><div class="dmst" id="dmst"></div></section>`);
+ $('#dmback').onclick=spSetup;$('#dmnew').onclick=()=>id==='nof'?dmNear():dmBask();
+ let hn=0;$('#dmhint').onclick=()=>{if(hn>=2)return;hn++;const h=$('#dmh');h.hidden=false;h.innerHTML=DMHINT.slice(0,hn).map((x,k)=>'<div>💡 Hint '+(k+1)+': '+esc(x)+'</div>').join('');$('#dmhint').textContent=hn<2?'💡 Hint ('+(2-hn)+')':'💡 No more hints'};
+ return $('#dmst')}
+function dmDrag(el,st,onDrop,onTap){let sx,sy,ox,oy,mv=0,pid=null;
+ el.onpointerdown=e=>{pid=e.pointerId;el.setPointerCapture(pid);sx=e.clientX;sy=e.clientY;ox=el.offsetLeft;oy=el.offsetTop;mv=0;el.style.zIndex=99;el.style.cursor='grabbing'};
+ el.onpointermove=e=>{if(pid!==e.pointerId)return;const dx=e.clientX-sx,dy=e.clientY-sy;if(Math.abs(dx)+Math.abs(dy)>5)mv=1;if(!mv)return;
+  el.style.left=Math.max(0,Math.min(st.clientWidth-el.offsetWidth,ox+dx))+'px';el.style.top=Math.max(0,Math.min(st.clientHeight-el.offsetHeight,oy+dy))+'px'};
+ el.onpointerup=e=>{if(pid!==e.pointerId)return;pid=null;el.style.zIndex=5;el.style.cursor='grab';if(mv)onDrop();else if(onTap)onTap()};
+ el.onpointercancel=()=>{pid=null}}
+function dmPlace(el,cx,cy,w){const im=el.firstChild,ar=(im.naturalHeight||1)/(im.naturalWidth||1);el.style.width=w+'px';el.style.left=(cx-w/2)+'px';el.style.top=(cy-w*ar/2)+'px'}
+function dmNear(){
+ const st=dmShell('nof','Near or Far','Drag each object HERE (near you) or THERE (far from you). Tap an object to see the sentence.');
+ const W=st.clientWidth||900,H=540,TH=170,NH=400,items=shuffle(DMO.slice()).slice(0,8),n=items.length;
+ st.innerHTML=`<div class="dmz" style="top:0;height:${TH}px;background:${CBCOL[5]}">THERE · that / those</div><div class="dmz" style="top:${TH}px;height:${NH-TH}px;background:${CBCOL[3]}">HERE · this / these</div><div class="dmz" style="top:${NH}px;height:${H-NH}px;background:${CBCOL[8]}">Drag the objects</div>`;
+ items.forEach((o,i)=>{const el=document.createElement('div');el.className='dmo';el.innerHTML=`<img draggable="false" src="ch/${o[0]}.webp" alt="">`;st.appendChild(el);
+  const w0=Math.min(88,W/n-10),cx0=(i+.5)*W/n,cy0=NH+80;el.dataset.z='tray';
+  const go=()=>dmPlace(el,cx0,cy0,w0);if(el.firstChild.complete)go();else el.firstChild.onload=go;
+  const bub=()=>{const b=st.querySelector('.dmb[data-i="'+i+'"]');if(b)b.remove()};
+  dmDrag(el,st,()=>{bub();const im=el.firstChild,ar=im.naturalHeight/im.naturalWidth,cx=el.offsetLeft+el.offsetWidth/2,cy=el.offsetTop+el.offsetHeight/2,z=cy<TH?'far':cy<NH?'near':'tray';el.dataset.z=z;
+   dmPlace(el,cx,cy,z==='far'?70:z==='near'?150:w0)},()=>{const b=st.querySelector('.dmb[data-i="'+i+'"]');if(b){b.remove();return}
+   const z=el.dataset.z;const t=z==='tray'?'Put me HERE or THERE first!':dmSent(o,z==='near');const d=document.createElement('div');d.className='dmb';d.dataset.i=i;d.textContent=t;
+   d.style.left=Math.max(4,Math.min(W-190,el.offsetLeft+el.offsetWidth/2-90))+'px';d.style.top=Math.max(2,el.offsetTop+el.offsetHeight+4)+'px';st.appendChild(d)})})}
+function dmBask(){
+ const st=dmShell('fbk','Four baskets','Each object is near or far, one or many. Drag it into the right basket: this, that, these or those.');
+ const W=st.clientWidth||900,H=540,BY=330,items=shuffle(DMO.slice()).slice(0,8),names=['this','that','these','those'];let ok=0,first=0,mist=0;const cnt=[0,0,0,0];
+ st.innerHTML=names.map((nm,i)=>`<div class="dmz dmbk" style="left:${i*W/4+4}px;width:${W/4-8}px;top:${BY}px;height:${H-BY-6}px;background:${CBCOL[[1,10,11,7][i]]};border-radius:22px">${nm}</div>`).join('')+`<div class="dmscore" id="dmsc">0 / ${items.length}</div>`;
+ items.forEach((o,i)=>{const near=Math.random()<.5,want=(o[1]==='p'?(near?'these':'those'):(near?'this':'that'));
+  const el=document.createElement('div');el.className='dmo';el.innerHTML=`<img draggable="false" src="ch/${o[0]}.webp" alt="">`;st.appendChild(el);
+  const tag=document.createElement('div');tag.className='dmt';tag.textContent=near?'NEAR':'FAR';st.appendChild(tag);
+  const cx0=((i%4)+.5)*W/4,cy0=80+Math.floor(i/4)*130,w0=near?125:62;let tried=0;
+  const go=()=>{dmPlace(el,cx0,cy0,w0);tag.style.left=(cx0-30)+'px';tag.style.top=(cy0+(near?62:34))+'px'};if(el.firstChild.complete)go();else el.firstChild.onload=go;
+  dmDrag(el,st,()=>{const cx=el.offsetLeft+el.offsetWidth/2,cy=el.offsetTop+el.offsetHeight/2;
+   if(cy>=BY){const bi=Math.min(3,Math.floor(cx/(W/4)));
+    if(names[bi]===want){ok++;if(!tried)first++;tag.remove();el.onpointerdown=null;const k=cnt[bi]++,sz=Math.min(58,(W/4-30)/3),bx=bi*W/4+16+sz/2+(k%3)*(sz+2),by=BY+78+Math.floor(k/3)*(sz+6);dmPlace(el,bx,by,sz);el.style.opacity=.95;$('#dmsc').textContent=ok+' / '+items.length;
+     const old=st.querySelector('.dmb.ok');if(old)old.remove();const b=document.createElement('div');b.className='dmb ok';b.textContent=dmSent(o,near);b.style.left=Math.max(4,Math.min(W-190,bi*W/4+W/8-90))+'px';b.style.top=(BY-58)+'px';st.appendChild(b);setTimeout(()=>b.remove(),2600);
+     if(ok===items.length){const f=document.createElement('div');f.className='dmwin';f.innerHTML='🎉 All in! First try: '+first+' / '+items.length;st.appendChild(f)};return}
+    tried=1;mist++;el.classList.add('shake');setTimeout(()=>el.classList.remove('shake'),500)}
+   dmPlace(el,cx0,cy0,w0)},null)})}
+
+
+/* ===== Furnish a room ===== */
+function rmSvg(inner,vb){const f='<filter id="w"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter>';return 'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+(vb||'0 0 200 160')+'"><defs>'+f+'</defs><g filter="url(#w)" stroke="#232a63" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">'+inner+'</g></svg>')}
+const RMSV={};
+const RMI={sofa:['sofa',36],armchair:['armchair',20],rocker:['rocking chair',17],pouf:['pouf',15],table:['table',22],chair1:['chair',13],chair2:['chair',13],rug1:['rug',34],rug2:['rug',30],shelf:['shelves',20],bookcase:['bookcase',30],monstera:['plant',17],plant:['plant',14],mirror:['mirror',11],lampg:['lamp',15],lampo:['lamp',15],floorlamp:['floor lamp',10],curtains:['curtains',26],pic1:['picture',12],pic2:['picture',16],pic3:['picture',10],pic4:['picture',12],flowers:['flowers',13],records:['records',15],piano:['piano',30],clock:['clock',10],radio:['radio',12],phone:['phone',14],camera:['camera',11],door:['door',14],fridge:['fridge',16],rack:['clothes',30],
+ cat:['cat',13,'ch/o02.webp'],books:['books',14,'ch/o10.webp'],toys:['toys',14,'ch/o11.webp'],apples:['apples',11,'ch/o04.webp'],cookies:['cookies',11,'ch/o07.webp'],coffees:['coffees',12,'ch/o08.webp'],latte:['latte',8,'ch/o06.webp'],tea:['tea',8,'ch/o09.webp'],carrots:['carrots',12,'ch/o05.webp'],newspaper:['newspaper',13,'ch/o13.webp'],keys:['keys',7,'ch/o17.webp'],umbrella:['umbrella',10,'ch/o14.webp'],
+ bed:['bed',34],wardrobe:['wardrobe',20],desk:['desk',26],stove:['cooker',17],sink:['sink',20],bath:['bath',36],toilet:['toilet',13],towels:['towels',17],cupboard:['cupboard',20],washer:['washing machine',15],sinkm:['sink',14],shower:['shower',17],nstand:['bedside table',14],tv:['TV',22],window:['window',22],ochair:['office chair',14],microwave:['microwave',14],kettle:['kettle',10],toaster:['toaster',11],coffee:['coffee machine',12],fryer:['air fryer',12],bin:['rubbish bin',9],basket:['laundry basket',13],aclock:['alarm clock',9],robot:['robot vacuum',12],speaker:['smart speaker',9],ac:['air conditioner',20],dryer:['hair dryer',11],computer:['computer',18],ctable:['coffee table',22],fireplace:['fireplace',22],coatstand:['coat stand',12],rug3:['rug',42],socket:['socket',7],chandelier:['chandelier',16],cat2:['cat',12],dog:['dog',13],hamster:['hamster',15]};
+function rmSrc(k){const d=RMI[k];return RMSV[k]||d[2]||'ch/r_'+(({lampg:'lampg',lampo:'lampo',floorlamp:'floorlamp'})[k]||k)+'.webp'}
+const RMR=[
+{id:'living',n:'Living room',img:'ch/bg_living.jpg',ar:1.748,wall:'#CFE0F5',side:'#B4C9E6',ceil:'#E4ECF8',floor:'#D9A877',tile:0,it:['socket','chandelier','cat2','dog','hamster','tv','fireplace','ctable','coatstand','robot','speaker','ac','rug3','window','sofa','armchair','rocker','pouf','table','rug1','rug2','shelf','bookcase','monstera','plant','mirror','lampg','floorlamp','curtains','pic1','pic2','pic3','pic4','flowers','records','piano','clock','radio','door','cat','books','newspaper','coffees'],
+ h:['Use: There is a … / There are … + in, on, next to, under, behind, in front of.','For example: There is a sofa in the middle. There are two plants next to the window. The cat is on the rug.']},
+{id:'bedroom',n:'Bedroom',img:'ch/bg_bedroom.jpg',ar:1.719,wall:'#F6D5DE',side:'#E8BECB',ceil:'#FAE6EB',floor:'#CBA27B',tile:0,it:['socket','chandelier','cat2','dog','hamster','bed','nstand','aclock','basket','dryer','coatstand','robot','speaker','ac','rug3','wardrobe','window','rack','rug1','rug2','mirror','curtains','lampo','floorlamp','plant','monstera','pic1','pic2','pic4','chair2','pouf','books','door','cat','toys','camera','clock','phone','flowers','shelf'],
+ h:['Use: There is a … / There are … + in, on, next to, under, behind, in front of.','For example: There is a big bed in the corner. There is a lamp next to the bed. My clothes are in the wardrobe.']},
+{id:'kitchen',n:'Kitchen',img:'ch/bg_kitchen.jpg',ar:1.613,wall:'#D9EBD2',side:'#BFD9B8',ceil:'#EAF4E5',floor:'#EADFC3',tile:1,it:['socket','chandelier','cat2','dog','fridge','microwave','kettle','toaster','coffee','fryer','bin','robot','speaker','rug3','stove','sink','cupboard','washer','window','table','chair1','chair2','lampg','lampo','curtains','clock','flowers','plant','rug2','apples','cookies','coffees','latte','tea','carrots','door','cat','radio','pic1','pic4','newspaper'],
+ h:['Use: There is a … / There are … + in, on, next to, under, behind, in front of.','For example: There is a fridge next to the cooker. There are four chairs around the table. The apples are on the table.']},
+{id:'bathroom',n:'Bathroom',img:'ch/bg_bathroom.jpg',ar:1.581,wall:'#CDE8EA',side:'#B2D4D7',ceil:'#E3F2F3',floor:'#F2F2EE',tile:1,it:['socket','chandelier','bath','toilet','dryer','basket','bin','rug3','sinkm','shower','washer','window','towels','mirror','plant','monstera','curtains','rug1','rug2','door','lampg','clock','flowers','pic2','cat','books','pouf'],
+ h:['Use: There is a … / There are … + in, on, next to, under, behind, in front of.','For example: There is a bath under the window. There is a mirror over the sink. The towels are next to the toilet.']},
+{id:'study',n:'Study',img:'ch/bg_study.jpg',ar:1.748,wall:'#F2E4B8',side:'#E2D09B',ceil:'#F8F0D4',floor:'#B98C5F',tile:0,it:['socket','chandelier','cat2','dog','hamster','desk','ochair','computer','aclock','speaker','ac','coatstand','robot','rug3','window','chair1','chair2','shelf','bookcase','floorlamp','lampg','clock','phone','radio','camera','books','newspaper','plant','monstera','rug1','rug2','pic1','pic3','mirror','cat','door','curtains','armchair','keys','umbrella'],
+ h:['Use: There is a … / There are … + in, on, next to, under, behind, in front of.','For example: There is a desk in front of the window. There are many books on the shelves. The lamp is next to the desk.']}];
+const RMS={};
+function rmBg(r){if(r.img)return `<img class="rmbg" src="${r.img}" alt="" draggable="false">`;let l='';for(let i=1;i<10;i++){l+=`<line x1="${i*10}" y1="100" x2="${14+i*7.2}" y2="72" stroke="#0002" stroke-width=".35"/>`}
+ if(r.tile)[78,84.5,92].forEach(y=>{const k=(y-72)/28,xa=14-14*k,xb=86+14*k;l+=`<line x1="${xa}" y1="${y}" x2="${xb}" y2="${y}" stroke="#0002" stroke-width=".35"/>`});
+ return `<svg viewBox="0 0 100 100" preserveAspectRatio="none" class="rmbg"><defs><filter id="rn"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="2"/><feColorMatrix values="0 0 0 0 .3  0 0 0 0 .25  0 0 0 0 .2  0 0 0 .22 0"/></filter></defs>
+ <polygon points="0,0 100,0 86,14 14,14" fill="${r.ceil}"/><polygon points="0,0 14,14 14,72 0,100" fill="${r.side}"/><polygon points="100,0 86,14 86,72 100,100" fill="${r.side}"/><rect x="14" y="14" width="72" height="58" fill="${r.wall}"/><polygon points="0,100 100,100 86,72 14,72" fill="${r.floor}"/>${l}
+ <rect x="14" y="70" width="72" height="2.4" fill="#fff8"/><polyline points="0,0 14,14 14,72 0,100" fill="none" stroke="#232a63" stroke-width=".5"/><polyline points="100,0 86,14 86,72 100,100" fill="none" stroke="#232a63" stroke-width=".5"/><rect x="14" y="14" width="72" height="58" fill="none" stroke="#232a63" stroke-width=".5"/><rect width="100" height="100" filter="url(#rn)"/></svg>`}
+function dmRoom(){
+ if(!S.rmroom||!RMR.some(r=>r.id===S.rmroom))S.rmroom='living';const r=RMR.find(x=>x.id===S.rmroom);const L=RMS[r.id]=RMS[r.id]||[];let sel=-1,words=false,z=1;
+ setView(`<section class="panel k-card cbpanel"><div class="cbbar"><button class="lvb" id="dmback">← Topics</button><h2>Furnish a room</h2><div><button class="lvb" id="dmhint">💡 Hint (2)</button> <button class="lvb" id="rmclr">🧹 Clear room</button></div></div>
+ <div class="tprow" id="rmtabs">${RMR.map((x,i)=>`<button class="tpill${x.id===r.id?' on':''}" data-r="${x.id}" style="background:${CBCOL[(i*3+4)%13]}"><span class="tst">${i%2?'✸':'✦'}</span>${x.n}</button>`).join('')}</div>
+ <p class="muted small">Furnish the room: tap an item to add it, drag it where you want. Then describe your room with There is / There are.</p><div class="cbh" id="dmh" hidden></div>
+ <div class="rmw"><div><div class="rmst" id="rmst" style="aspect-ratio:${r.ar}">${rmBg(r)}</div><div class="rmctl"><button class="lvb" id="rmmin">− smaller</button><button class="lvb" id="rmpl">+ bigger</button><button class="lvb" id="rmfl">↔ flip</button><button class="lvb" id="rmfr">⬆ to front</button><button class="lvb" id="rmdel">🗑 remove</button><button class="lvb" id="rmwd">🔤 Show words</button></div></div>
+ <div class="rmtray" id="rmtray">${r.it.map(k=>`<button class="rmth" data-k="${k}"><img src="${rmSrc(k)}" alt=""><span>${RMI[k][0]}</span></button>`).join('')}</div></div></section>`);
+ $('#dmback').onclick=spSetup;let hn=0;$('#dmhint').onclick=()=>{if(hn>=2)return;hn++;const h=$('#dmh');h.hidden=false;h.innerHTML=r.h.slice(0,hn).map((x,k)=>'<div>💡 Hint '+(k+1)+': '+esc(x)+'</div>').join('');$('#dmhint').textContent=hn<2?'💡 Hint ('+(2-hn)+')':'💡 No more hints'};
+ document.querySelectorAll('#rmtabs [data-r]').forEach(b=>b.onclick=()=>{S.rmroom=b.dataset.r;save();dmRoom()});
+ const st=$('#rmst');
+ function draw(){st.querySelectorAll('.rmi').forEach(e=>e.remove());L.forEach((o,i)=>{const d=RMI[o.k],el=document.createElement('div');el.className='rmi'+(i===sel?' sel':'');el.dataset.i=i;
+  el.style.cssText=`left:${o.x}%;top:${o.y}%;width:${d[1]*o.s}%;z-index:${o.z}`;el.innerHTML=`<img draggable="false" src="${rmSrc(o.k)}" alt="" style="${o.f?'transform:scaleX(-1)':''}">${words?`<span class="rmlb">${d[0]}</span>`:''}`;st.appendChild(el);
+  let sx,sy,ox,oy,mv=0,pid=null;
+  el.onpointerdown=e=>{pid=e.pointerId;el.setPointerCapture(pid);sx=e.clientX;sy=e.clientY;ox=o.x;oy=o.y;mv=0;if(sel!==i){sel=i;st.querySelectorAll('.rmi').forEach(x=>x.classList.toggle('sel',+x.dataset.i===i))}o.z=++z;el.style.zIndex=o.z};
+  el.onpointermove=e=>{if(pid!==e.pointerId)return;const W=st.clientWidth,H=st.clientHeight,dx=(e.clientX-sx)/W*100,dy=(e.clientY-sy)/H*100;if(Math.abs(e.clientX-sx)+Math.abs(e.clientY-sy)>4)mv=1;if(!mv)return;o.x=Math.max(2,Math.min(98,ox+dx));o.y=Math.max(4,Math.min(98,oy+dy));el.style.left=o.x+'%';el.style.top=o.y+'%'};
+  el.onpointerup=e=>{if(pid===e.pointerId)pid=null};el.onpointercancel=()=>{pid=null}})}
+ document.querySelectorAll('#rmtray .rmth').forEach(b=>b.onclick=()=>{const k=b.dataset.k;L.push({k,x:30+Math.random()*40,y:45+Math.random()*30,s:1,f:0,z:++z});sel=L.length-1;draw()});
+ const cur=()=>L[sel];
+ $('#rmmin').onclick=()=>{if(cur()){cur().s=Math.max(.4,cur().s*.88);draw()}};$('#rmpl').onclick=()=>{if(cur()){cur().s=Math.min(2.6,cur().s*1.14);draw()}};
+ $('#rmfl').onclick=()=>{if(cur()){cur().f=cur().f?0:1;draw()}};$('#rmfr').onclick=()=>{if(cur()){cur().z=++z;draw()}};
+ $('#rmdel').onclick=()=>{if(cur()){L.splice(sel,1);sel=-1;draw()}};$('#rmclr').onclick=()=>{L.length=0;sel=-1;draw()};
+ $('#rmwd').onclick=()=>{words=!words;$('#rmwd').classList.toggle('on',words);draw()};
+ st.addEventListener('pointerdown',e=>{if(e.target===st||e.target.closest('.rmbg')){sel=-1;st.querySelectorAll('.rmi').forEach(x=>x.classList.remove('sel'))}});
+ draw()}
+const DMTF={nof:dmNear,fbk:dmBask,room:dmRoom};
 
 /* ===== Generic card table (draggable cards) ===== */
 function seedR(n){const x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x)}
@@ -3991,9 +4219,10 @@ function renderCards(){
   d.onpointercancel=()=>{pid=null;d.classList.remove('drag')}})}
 function openCard(it,d){
  const f=$('#cbfocus'),col=d.style.background;d.classList.add('done');
- f.innerHTML=`<div class="cbbig" style="background:${col}">${it.src?`<div class="cbi${it.photo?' ph':''}">${cbImg(it)}</div>`:''}<div class="cbt2">${esc(it.t)}</div>${it.q?`<div class="cbq2">${esc(it.q)}</div>`:''}<div class="cba" hidden>💡 ${esc(it.a)}</div>${it.modes?'<div class="cbmodes"><button class="lvb on" data-m="s">Start of a phrase</button><button class="lvb" data-m="w">Word</button><button class="lvb" data-m="f">Free</button></div>':''}<div class="cbbtn"><button class="lvb" id="cbans">Show example answer</button><button class="lvb on" id="cbclose">✕ Close</button></div></div>`;
+ f.innerHTML=`<div class="cbbig" style="background:${col}">${it.src?`<div class="cbi${it.photo?' ph':''}${it.sc?' sc':''}">${cbImg(it)}</div>`:''}<div class="cbt2">${esc(it.t)}</div>${(it.qo||it.q)?`<div class="cbq2">${esc(it.qo||it.q)}</div>`:''}<div class="cbh" hidden></div><div class="cba" hidden>${it.hints?'':'💡 '}${esc(it.a)}</div>${it.modes?'<div class="cbmodes"><button class="lvb on" data-m="s">Start of a phrase</button><button class="lvb" data-m="w">Word</button><button class="lvb" data-m="f">Free</button></div>':''}<div class="cbbtn">${it.hints?'<button class="lvb" id="cbhint">💡 Hint (2)</button>':''}<button class="lvb" id="cbans">Show example answer</button><button class="lvb on" id="cbclose">✕ Close</button></div></div>`;
  f.hidden=false;const big=f.querySelector('.cbbig');
  if(it.modes)f.querySelectorAll('.cbmodes [data-m]').forEach(b=>b.onclick=()=>{const m=it.modes[b.dataset.m];f.querySelectorAll('.cbmodes [data-m]').forEach(x=>x.classList.toggle('on',x===b));f.querySelector('.cbt2').textContent=m[0];f.querySelector('.cba').textContent='💡 '+m[1];f.querySelector('.cba').hidden=true});
+ if(it.hints){let hn=0;$('#cbhint').onclick=()=>{if(hn>=2)return;hn++;const h=f.querySelector('.cbh');h.hidden=false;h.innerHTML=it.hints.slice(0,hn).map((x,k)=>'<div>💡 Hint '+(k+1)+': '+esc(x)+'</div>').join('');$('#cbhint').textContent=hn<2?'💡 Hint ('+(2-hn)+')':'💡 No more hints'}}
  $('#cbans').onclick=()=>{f.querySelector('.cba').hidden=!f.querySelector('.cba').hidden};
  const close=()=>{f.hidden=true;document.removeEventListener('keydown',esc2)},esc2=e=>{if(e.key==='Escape')close()};
  $('#cbclose').onclick=close;f.onclick=e=>{if(e.target===f)close()};document.addEventListener('keydown',esc2)}
