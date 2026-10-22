@@ -956,6 +956,57 @@ body.student #sndbtn{display:none}
 }
 @keyframes ppulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
 @media(prefers-reduced-motion:reduce){.pump,.sse,.abe,.seaarr{animation:none!important}}
+/* shelf home */
+body.home{background:#fff!important}
+.shome{max-width:1240px;margin:0 auto;padding:16px 12px 40px}
+.stitle{text-align:center;font:400 clamp(34px,6vw,64px)/1.1 var(--pen-font);color:var(--pen,#2724d1);margin:6px 0 8px}
+.stitle u{text-decoration:none;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='8'><path d='M0 4 Q3 0 6 4 T12 4 T18 4 T24 4' fill='none' stroke='%232724d1' stroke-width='2'/></svg>") repeat-x 0 100%;padding-bottom:10px}
+.shelf{position:relative;width:100%;aspect-ratio:1536/1024;container-type:inline-size}
+.sbg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;user-select:none}
+.so,.dc2{position:absolute;padding:0;border:0;background:none;margin:0}
+.so{cursor:pointer;transition:opacity .25s,transform .2s;transform:rotate(var(--r,0deg));z-index:2;-webkit-tap-highlight-color:transparent}
+.so .si,.dc2 img{display:block;width:100%;height:auto;position:relative;pointer-events:none;user-select:none}
+.so .sf{position:absolute;inset:0;background:var(--c);-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;opacity:0;transform:translate(.1cqw,.1cqw);transition:opacity .2s,transform .25s}
+.so .sfr{-webkit-mask:none;mask:none;border-radius:2px}
+.so .sgif{position:absolute;object-fit:cover;pointer-events:none}
+.so:hover,.so:focus-visible{z-index:5;outline:none;animation:swob .55s ease-in-out}
+.so:hover .sf,.so:focus-visible .sf{opacity:1;transform:translate(.45cqw,.45cqw)}
+.shelf:has(.so:hover) .so:not(:hover),.shelf:has(.so:hover) .dc2{opacity:.5}
+.so::after{content:attr(data-n);position:absolute;left:50%;bottom:100%;transform:translate(-50%,-.3cqw) scale(.9);white-space:nowrap;background:var(--pen,#2724d1);color:#fff;font:400 1.9cqw var(--pen-font);padding:.2cqw 1.2cqw;border-radius:99px;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}
+.so:hover::after{opacity:1;transform:translate(-50%,-.6cqw) scale(1)}
+@keyframes swob{0%{transform:rotate(var(--r,0deg))}25%{transform:rotate(calc(var(--r,0deg) - 3deg)) scale(1.04)}60%{transform:rotate(calc(var(--r,0deg) + 2.5deg)) scale(1.05)}100%{transform:rotate(var(--r,0deg)) scale(1.03)}}
+.dc2{pointer-events:none;transition:opacity .25s}
+.dc-cat img{animation:sbreath 4s ease-in-out infinite;transform-origin:50% 100%}
+.dc-plant img,.dc-hang img{animation:ssway 5s ease-in-out infinite;transform-origin:50% 100%}.dc-hang img{transform-origin:50% 0}
+.dc-doodle img{animation:stwink 3s ease-in-out infinite}
+@keyframes sbreath{0%,100%{transform:scale(1)}50%{transform:scale(1.03,1.05)}}
+@keyframes ssway{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.4deg)}}
+@keyframes stwink{0%,100%{opacity:1}50%{opacity:.45}}
+.sgrid{display:none}
+@media(max-width:720px){
+ .shelf{display:none}
+ .sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:6px 4px}
+ .sgb{border:0;background:none;padding:0;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;font:400 17px var(--pen-font);color:#232323}
+ .sgb .sgi{position:relative;width:100%;aspect-ratio:1;border-radius:22px;background:var(--c);overflow:hidden}
+ .sgb .sgi img{position:absolute;left:12px;top:12px;width:calc(100% - 24px);height:calc(100% - 24px);object-fit:contain}.sgb b{font-weight:400}
+}
+/* game card */
+.scard{position:fixed;inset:0;z-index:900;background:rgba(255,255,255,.9);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px}
+.scbox{position:relative;text-align:center;max-width:520px;width:100%}
+.scbox.fromr{animation:scin 0.35s ease-out}.scbox.froml{animation:scinl .35s ease-out}
+@keyframes scin{from{opacity:0;transform:translateX(60px)}}@keyframes scinl{from{opacity:0;transform:translateX(-60px)}}
+.scx{position:absolute;right:0;top:-6px;border:0;background:#EDE7DD;border-radius:50%;width:38px;height:38px;font-size:16px;cursor:pointer}
+.scobj{position:relative;width:min(300px,62vw);margin:0 auto 10px;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+.scobj>img:not(.sgif){position:relative;max-width:100%;max-height:100%;object-fit:contain}
+.scobj>.sf{position:absolute;inset:0;background:var(--c);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;transform:translate(10px,10px)}
+.scobj{animation:scfloat 3.5s ease-in-out infinite}
+@keyframes scfloat{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-8px) rotate(1.5deg)}}
+.scbox h2{font:400 clamp(34px,7vw,52px)/1.1 var(--pen-font);margin:6px 0 4px;color:var(--pen,#2724d1)}
+.scbox p{font-size:17px;max-width:420px;margin:0 auto 14px;color:#444}
+.scrow{display:flex;gap:10px;justify-content:center;align-items:center}
+.scp::before,.scn::before{display:none!important}
+.scdots{display:flex;gap:6px;justify-content:center;margin-top:14px}.scdots i{width:8px;height:8px;border-radius:50%;background:#d6d3cc}.scdots i.on{background:var(--pen,#2724d1)}
+.strow{display:flex;justify-content:space-between;gap:12px;padding:10px 4px;border-bottom:1.5px dashed #ddd;font-size:16px}.strow em{font-style:normal;color:#666}
 </style>
 </head>
 <body>
@@ -2847,8 +2898,98 @@ function sndInit(){
  document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('button[data-btn],.lpb,.lvb'))sfx('click')},true)}
 (document.body?sndInit():document.addEventListener('DOMContentLoaded',sndInit));
 
-let HBUSY=false;
+/* ===== Home: the blue shelf ===== */
+const HSM={alias:[381,337],taboo:[205,357],bingo:[317,334],jeo:[304,380],speak:[284,351],gifframe:[345,329],shop:[320,382],dice:[285,302],clock:[298,303],ruler:[335,300],flask:[201,424],scales:[348,345],helmet:[297,388],pumpkin:[320,375],jar:[240,349],books:[304,319],cat:[374,285],plant:[192,411],hang:[303,507],lamp:[311,365],mug:[223,347],doodle:[307,309],pic:[239,284]};
+const HSH={gifframe:[.1768,.1641,.6464,.6687]};
+const HSPAL=['#B4BEFB','#A2E0D5','#F9B1B2','#B2D1FD','#F4C9D2','#C9B8F0'];
+/* [key, centre x, bottom y (or top y for hanging), height]  in a 1536 x 1024 picture */
+const HSI=[
+ ['alias',300,306,140],['taboo',470,306,150],['bingo',645,306,140],['jeo',835,306,140],['lamp',1010,306,130],['hang',1240,150,150,'top'],
+ ['speak',330,497,150],['shop',500,497,150],['mug',660,497,100],
+ ['gifframe',900,490,148],['appearance',1110,490,140],['books',1262,490,110],
+ ['dice',300,672,120],['clock',470,672,140],['ruler',665,672,125],['flask',835,672,142],['cat',1010,672,90],['plant',1175,672,142],['doodle',1280,672,70],
+ ['scales',370,853,140],['helmet',754,853,142],['pumpkin',1075,853,118],['jar',1235,853,128]];
+const HSG={
+ alias:{n:'Alias',d:'Explain the word without saying it.',tab:'alias'},
+ taboo:{n:'Taboo',d:'Explain it, but skip the forbidden words.',tab:'taboo'},
+ bingo:{n:'Bingo',d:'Hear the clue, find it on your card.',tab:'bingo'},
+ jeo:{n:'Jeopardy',d:'Pick a tile, answer the task, win points.',tab:'jeo'},
+ speak:{n:'Grammar Speaking',d:'Grammar topics as speaking games.',tab:'speak'},
+ gifframe:{n:'Describe the GIF',d:'Say what is happening in the picture.',tab:'gif'},
+ shop:{n:'Shop',d:'Go shopping and talk about prices.',tab:'shop'},
+ appearance:{n:'Appearance',d:'Describe how people look: hair, eyes, glasses, clothes. Coming soon.',soon:true},
+ dice:{n:'Grammar Dice',d:'Roll the dice and make a sentence with the grammar and the word.',tab:'gram',mode:'dice'},
+ clock:{n:'Tense Switch',d:'Change the sentence into another tense.',tab:'gram',mode:'ts'},
+ ruler:{n:'Sentence Expander',d:'Make the sentence longer, one piece at a time.',tab:'gram',mode:'exp'},
+ flask:{n:'Word Craft',d:'Mix two words and make a new word or phrase.',tab:'gram',mode:'craft'},
+ scales:{n:'Absurd Choices',d:'Two crazy choices. Pick one and say why with the second conditional.',tab:'gram',mode:'absurd'},
+ helmet:{n:'Deep Sea',d:'Dive down and learn comparatives and superlatives.',tab:'gram',mode:'deep'},
+ pumpkin:{n:'The pumpkin',d:'Carve a face and light it up.',special:'pump'},
+ jar:{n:'My stars',d:'Your progress in the games.',special:'stars'}};
+const HSORD=['alias','taboo','bingo','jeo','speak','gifframe','shop','appearance','dice','clock','ruler','flask','scales','helmet'];
+let HSCUR=-1,HSKEY=false;
+function hsObj(k,i){const g=HSG[k];return g?g:null}
 function homeHTML(){
+ const pc=i=>HSPAL[i%HSPAL.length];
+ const items=HSI.map((it,i)=>{
+  const [k,cx,y,h,mode]=it,g=HSG[k];
+  const isA=k==='appearance',m=isA?[400,300]:HSM[k],w=h*m[0]/m[1];
+  const left=(cx-w/2)/1536*100,top=(mode==='top'?y:y-h)/1024*100,wd=w/1536*100;
+  const st=`left:${left.toFixed(2)}%;top:${top.toFixed(2)}%;width:${wd.toFixed(2)}%;--c:${pc(i)};--r:${(((i*37)%7)-3)*.6}deg`;
+  const inner=isA?`<span class="sf sfr"></span><img class="si" src="ch/sh_appearance.gif" alt="">`
+   :`<span class="sf" style="-webkit-mask-image:url(ch/sh_${k}_s.webp);mask-image:url(ch/sh_${k}_s.webp)"></span><img class="si" src="ch/sh_${k}.webp" alt="">`
+    +(k==='gifframe'?`<img class="sgif" id="sgif" alt="" style="left:${HSH.gifframe[0]*100}%;top:${HSH.gifframe[1]*100}%;width:${HSH.gifframe[2]*100}%;height:${HSH.gifframe[3]*100}%">`:'');
+  if(!g)return `<div class="dc2 dc-${k}" style="${st}"><img src="ch/sh_${k}.webp" alt="" draggable="false"></div>`;
+  return `<button class="so" data-k="${k}" data-n="${esc(g.n)}" style="${st}" aria-label="${esc(g.n)}">${inner}</button>`}).join('');
+ const grid=HSORD.concat(['pumpkin','jar']).map((k,i)=>{const g=HSG[k],isA=k==='appearance';
+  return `<button class="sgb" data-k="${k}" style="--c:${pc(i)}"><span class="sgi"><img src="${isA?'ch/sh_appearance.gif':'ch/sh_'+(k)+'.webp'}" alt=""></span><b>${esc(g.n)}</b></button>`}).join('');
+ return `<section class="shome" id="shome"><div class="stitle">spill the <u>word</u></div>
+ <div class="shelf" id="shelf"><img class="sbg" src="ch/sh_shelf.webp" alt="" draggable="false">${items}</div>
+ <div class="sgrid">${grid}</div></section>`}
+function hsMask(k){return k==='appearance'?'':''}
+function homeBind(){
+ const root=$('#shome');if(!root)return;
+ try{const g=$('#sgif');if(g&&GIFS.length)g.src=GIFS[Math.floor(Math.random()*GIFS.length)]}catch(e){}
+ root.onclick=e=>{const b=e.target.closest('[data-k]');if(!b)return;hsOpen(b.dataset.k,b)};
+ if(!HSKEY){HSKEY=true;document.addEventListener('keydown',e=>{if(!$('#scard'))return;
+  if(e.key==='Escape')hsClose();else if(e.key==='ArrowRight'){e.preventDefault();hsStep(1)}else if(e.key==='ArrowLeft'){e.preventDefault();hsStep(-1)}})}}
+function hsClose(){const c=$('#scard');if(c)c.remove();HSCUR=-1}
+function hsStep(d){const i=HSORD.indexOf(HSORD[HSCUR]);if(HSCUR<0)return;HSCUR=(HSCUR+d+HSORD.length)%HSORD.length;sfx('tick');hsCard(d)}
+function hsOpen(k,el){
+ sfx('pop');const g=HSG[k];if(!g)return;
+ if(g.special==='pump'){pumpOpen();return}
+ if(g.special==='stars'){starsOpen();return}
+ HSCUR=HSORD.indexOf(k);hsCard(0,el)}
+function hsImg(k){return k==='appearance'?`<img src="ch/sh_appearance.gif" alt="">`:`<span class="sf" style="-webkit-mask-image:url(ch/sh_${k}_s.webp);mask-image:url(ch/sh_${k}_s.webp)"></span><img src="ch/sh_${k}.webp" alt="">`+(k==='gifframe'?`<img class="sgif" alt="" src="${(window.HSGIFSRC||'')}" style="left:${HSH.gifframe[0]*100}%;top:${HSH.gifframe[1]*100}%;width:${HSH.gifframe[2]*100}%;height:${HSH.gifframe[3]*100}%">`:'')}
+function hsCard(dir,from){
+ const k=HSORD[HSCUR],g=HSG[k];let c=$('#scard');const fresh=!c;
+ if(fresh){c=document.createElement('div');c.id='scard';c.className='scard';document.body.appendChild(c)}
+ const pcol=HSPAL[HSI.findIndex(x=>x[0]===k)%HSPAL.length];
+ try{if(k==='gifframe')window.HSGIFSRC=($('#sgif')&&$('#sgif').src)||GIFS[0]}catch(e){}
+ c.innerHTML=`<div class="scbox${dir>0?' fromr':dir<0?' froml':''}" style="--c:${pcol}"><button class="scx" aria-label="Close">✕</button>
+ <div class="scobj">${hsImg(k)}</div>
+ <h2>${esc(g.n)}</h2><p>${esc(g.d)}</p>
+ <div class="scrow"><button data-btn="n" class="scp" aria-label="Previous">←</button><button data-btn="solid" class="big scgo"${g.soon?' disabled':''}>${g.soon?'Soon':'PLAY'}</button><button data-btn="n" class="scn" aria-label="Next">→</button></div>
+ <div class="scdots">${HSORD.map((x,i)=>`<i class="${i===HSCUR?'on':''}"></i>`).join('')}</div></div>`;
+ c.onclick=e=>{if(e.target===c||e.target.closest('.scx'))hsClose()};
+ c.querySelector('.scp').onclick=()=>hsStep(-1);c.querySelector('.scn').onclick=()=>hsStep(1);
+ const go2=c.querySelector('.scgo');go2.onclick=()=>{if(g.soon)return;sfx('boot');if(g.mode){S.gmode=g.mode;save()}hsClose();go(g.tab)};
+ let wt=0;c.onwheel=e=>{e.preventDefault();const n=Date.now();if(n-wt<450||Math.abs(e.deltaY)+Math.abs(e.deltaX)<8)return;wt=n;hsStep((e.deltaY+e.deltaX)>0?1:-1)};
+ let sx=null;c.ontouchstart=e=>{sx=e.touches[0].clientX};c.ontouchend=e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>50)hsStep(dx<0?1:-1)};
+ if(fresh&&from&&from.getBoundingClientRect&&c.animate){const o=c.querySelector('.scobj'),r=from.getBoundingClientRect(),t=o.getBoundingClientRect();
+  if(t.width){const sc=r.width/t.width,dx=r.left+r.width/2-(t.left+t.width/2),dy=r.top+r.height/2-(t.top+t.height/2);
+   o.animate([{transform:`translate(${dx}px,${dy}px) scale(${sc})`},{transform:'translate(0,0) scale(1.08) rotate(-3deg)',offset:.7},{transform:'translate(0,0) scale(1)'}],{duration:520,easing:'cubic-bezier(.2,.8,.3,1)'});
+   c.animate([{opacity:0},{opacity:1}],{duration:260})}}}
+function starsOpen(){
+ S.prog=S.prog||{};const wc=(S.wcf||[]).length,wt=(typeof WCR!=='undefined'?WCR.length:62);
+ const rows=[['🧪 Word Craft',wc+' of '+wt+' words found'],['🌊 Deep Sea',(S.prog.sea||0)+' dives to the bottom'],['⚖️ Absurd Choices',(S.prog.abs||0)+' rounds finished'],['🎃 Pumpkin',(S.pump&&S.pump.s&&S.pump.s.length)?'carved':'not carved yet']];
+ const stars=(wc>0?1:0)+((S.prog.sea||0)>0?1:0)+((S.prog.abs||0)>0?1:0)+((S.pump&&S.pump.s&&S.pump.s.length)?1:0);
+ const m=document.createElement('div');m.className='pmodal';m.id='pmodal';
+ m.innerHTML=`<div class="pbox"><div class="pbar"><b>⭐ My stars: ${stars} of 4</b><button class="pclose" id="pxx" aria-label="Close">✕</button></div>${rows.map(r=>`<div class="strow"><span>${r[0]}</span><em>${r[1]}</em></div>`).join('')}<p class="muted small" style="text-align:center;margin:10px 0 0">One star for every game you have tried.</p></div>`;
+ document.body.appendChild(m);const cl=()=>m.remove();$('#pxx').onclick=cl;m.addEventListener('pointerdown',e=>{if(e.target===m)cl()})}
+
+let HBUSY=false;
+function homeHTMLold(){
  const im=(n,c,st)=>`<img class="ci ${c}" src="ch/cons_${n}.webp" alt="" draggable="false"${st?` style="${st}"`:''}>`;
  const carts=CHN.map((c,i)=>`<button class="ci ccart cc${i+1}" data-ch="${i}" title="${esc(c.n)}" aria-label="${esc(c.n)}"><img src="ch/cons_cart${i+1}.webp" alt="" draggable="false"><span class="cle">${c.e}</span><span class="ccap">${esc(c.s)}</span></button>`).join('');
  return `<section class="cstage" id="cons">
@@ -2860,7 +3001,7 @@ function homeHTML(){
  <button class="ci cbn b-right" data-nav="next" title="Next" aria-label="Next game"><img src="ch/cons_btn_right.webp" alt="" draggable="false"></button>
  <button class="ci cbn b-rand" data-nav="rand" title="Surprise me" aria-label="Random game"><img src="ch/cons_btn_pink.webp" alt="" draggable="false"></button>
  <div class="chint">← swipe the TV →</div>${carts}</section>`}
-function homeBind(){
+function homeBindOld(){
  const st=$('#cons');if(!st)return;
  const scr=$('#scrin'),nz=$('#cnz');
  const set=(i,noise)=>{HIDX=(i+CHN.length)%CHN.length;const c=CHN[HIDX];
@@ -3997,7 +4138,7 @@ function seaSetup(){
   if(y<=cs[0])d=Math.max(0,SEA[0].d*(y/cs[0]));else if(y>=cs[cs.length-1])d=SEA[SEA.length-1].d;
   else{let k=0;while(k<cs.length-1&&y>cs[k+1])k++;const t=(y-cs[k])/(cs[k+1]-cs[k]);d=SEA[k].d+(SEA[k+1].d-SEA[k].d)*t}
   d=Math.round(d);$('#sead').textContent=d.toLocaleString('en');
-  const z=SEAZ.filter(x=>d>=x[0]).pop();$('#seaz').textContent=z[1];if(z[1]!==lz){if(lz)sfx('bubble');lz=z[1]}if(d>=SEA[SEA.length-1].d&&!won){won=true;sfx('win')}
+  const z=SEAZ.filter(x=>d>=x[0]).pop();$('#seaz').textContent=z[1];if(z[1]!==lz){if(lz)sfx('bubble');lz=z[1]}if(d>=SEA[SEA.length-1].d&&!won){won=true;sfx('win');S.prog=S.prog||{};S.prog.sea=(S.prog.sea||0)+1;save()}
   $('#seam').style.top=Math.min(100,d/SEA[SEA.length-1].d*100)+'%';
   secs.forEach(s=>{const r=s.getBoundingClientRect();s.classList.toggle('in',r.top<innerHeight*.78&&r.bottom>innerHeight*.15)})};
  SEAH=()=>{if(!tick){tick=true;requestAnimationFrame(upd)}};window.addEventListener('scroll',SEAH,{passive:true});
@@ -4033,7 +4174,7 @@ const ABS=[
 let ABR=null;
 function absSetup(){ABR={q:shuffle(ABS.slice()).slice(0,10),i:0,pick:-1,ex:false};absDraw()}
 function absDraw(){const q=ABR.q[ABR.i];
- if(!q){sfx('win');setView(`<section class="panel k-card ab">${gmBar()}<h3>⚖️ Absurd Choices</h3><div class="abend"><div style="font-size:64px">🎉</div><h2>That was ${ABR.q.length} crazy choices!</h2><p class="muted">Which one was the hardest to answer?</p><button class="lvb on" id="abagain">Play again</button></div></section>`);gmBind();$('#abagain').onclick=absSetup;return}
+ if(!q){sfx('win');if(!ABR.done){ABR.done=true;S.prog=S.prog||{};S.prog.abs=(S.prog.abs||0)+1;save()}setView(`<section class="panel k-card ab">${gmBar()}<h3>⚖️ Absurd Choices</h3><div class="abend"><div style="font-size:64px">🎉</div><h2>That was ${ABR.q.length} crazy choices!</h2><p class="muted">Which one was the hardest to answer?</p><button class="lvb on" id="abagain">Play again</button></div></section>`);gmBind();$('#abagain').onclick=absSetup;return}
  const p=ABR.pick,sel=p>=0;
  const card=k=>`<button class="abc c${k}${sel?(p===k?' on':' off'):''}" data-pick="${k}"><span class="abe">${q[k][0]}</span><b>${esc(q[k][1])}</b></button>`;
  setView(`<section class="panel k-card ab">${gmBar()}<h3>⚖️ Absurd Choices</h3><div class="abp">${ABR.i+1} / ${ABR.q.length}</div><h2 class="abq">Which one would you choose?</h2>
