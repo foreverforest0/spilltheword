@@ -442,7 +442,9 @@
 html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 15px/1.5 Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:-.01em}
 body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
-header{position:sticky;top:0;z-index:5;background:var(--paper)}
+header{display:none!important}
+#homeBtn{position:fixed;left:14px;top:12px;z-index:30;border:0;border-radius:999px;padding:8px 18px;background:#B4BEFB;color:#232323;font:400 20px var(--pen-font);cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.14)}
+body.home #homeBtn,.embed #homeBtn,.student #homeBtn{display:none}
 .top{max-width:980px;margin:auto;padding:16px 20px 6px}
 .navwrap{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center}
 .navl,.navr{flex-wrap:nowrap;gap:10px}.navwrap{gap:12px}.navl{justify-self:start}.navr{justify-self:end}.navwrap .logo{text-align:center;white-space:nowrap}
@@ -598,6 +600,7 @@ section.home{min-height:100vh;display:grid;grid-template-columns:1fr auto 1fr;al
 .tw{position:relative;cursor:help;border-bottom:1.5px dotted var(--ink-3)}
 .tw:hover::after,.tw:active::after{content:attr(data-tr);position:absolute;left:50%;bottom:calc(100% + 6px);transform:translateX(-50%);background:var(--ink);color:#fff;font:500 14px/1.3 Inter,sans-serif;letter-spacing:0;text-transform:none;text-decoration:none;padding:5px 10px;border-radius:8px;width:max-content;max-width:240px;text-align:center;white-space:normal;z-index:60;pointer-events:none}
 .lpc{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}.lpb{font:inherit;color:var(--ink-2);background:transparent;border:1.5px solid var(--ink-3);border-radius:999px;padding:4px 14px;cursor:pointer}.lpb.on{border-color:var(--pen);color:var(--pen);font-weight:600}
+.lph select{border:0!important;border-radius:999px!important;padding:10px 20px!important;background:#DCFF6A!important;color:#232323;font:600 15px Inter,sans-serif!important;max-width:100%}.lph select:nth-child(2){background:#B2D1FD!important}.lph select:nth-child(3){background:#F9B1B2!important}
 .lph{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0}.lph select{font:inherit;padding:5px 8px;border:1.5px solid var(--ink-3);border-radius:8px;background:rgba(255,255,255,.5)}.lph button{font:inherit;font-size:13px;background:transparent;border:1.5px solid var(--ink-3);border-radius:8px;padding:4px 10px;cursor:pointer;color:var(--ink-2)}
 .lpchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.lpchip{border:1.5px solid var(--pen);border-radius:10px;padding:2px 4px 2px 10px;color:var(--ink)}.lpchip button{background:none;border:0;cursor:pointer;color:var(--pen);font:inherit;padding:0 6px}
 .lpg{display:flex;flex-direction:column;gap:10px;margin:8px 0}.lpr{border-top:1px dashed var(--ink-3);padding-top:8px}.lpr.off{opacity:.55}.lpws{display:flex;flex-wrap:wrap;gap:4px 14px;margin:6px 0 0 26px}.lpw{display:flex;gap:5px;align-items:center;font-size:14px;cursor:pointer}.lpw input{accent-color:var(--pen)}.lpi{display:flex;gap:8px;align-items:flex-start;font-size:14px;cursor:pointer}.lpi.off{opacity:.5;cursor:default}.lpi input{margin-top:4px;accent-color:var(--pen)}
@@ -661,10 +664,10 @@ section.home{min-height:100vh;display:grid;grid-template-columns:1fr auto 1fr;al
 h2{color:var(--pen)}
 .tabs.lvl{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 14px}.tabs.lvl button{font:600 17px Inter,sans-serif!important;padding:9px 22px!important;border-radius:999px;border:0;color:#333;cursor:pointer;opacity:.55;background:#CDE634;transition:opacity .12s,transform .12s}
 .tabs.lvl button:nth-child(2){background:#B4BEFB}.tabs.lvl button:nth-child(3){background:#A2E0D5}.tabs.lvl button:nth-child(4){background:#F9B1B2}.tabs.lvl button:nth-child(5){background:#FBD415}.tabs.lvl button:nth-child(6){background:#F49BC9}
-.tabs.lvl button.on{opacity:1;box-shadow:0 0 0 2.5px #333;transform:translateY(-1px)}
+.tabs.lvl button.on{opacity:1;transform:translateY(-1px)}
 #catT{display:none}
-.chips{gap:10px}.chip.pc{font:600 16px Inter,sans-serif!important;color:#333;padding:9px 18px!important;border-radius:999px;background:var(--pc);cursor:pointer;opacity:.5;display:inline-flex;align-items:center;gap:8px;transition:opacity .12s}.chip.pc input{position:absolute;opacity:0;pointer-events:none}.chip.pc .pcs{opacity:.35}.chip.pc:has(input:checked){opacity:1;color:#333!important;box-shadow:0 0 0 2.5px #333}.chip.pc:has(input:checked) .pcs{opacity:1}
-.pgrp{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 12px}.pp{font:600 16px Inter,sans-serif;color:#333;padding:9px 18px;border-radius:999px;border:0;background:var(--pc);cursor:pointer;opacity:.5;display:inline-flex;align-items:center;gap:8px;text-align:left;transition:opacity .12s}.pp .pcs{opacity:.35}.pp.on{opacity:1;box-shadow:0 0 0 2.5px #333}.pp.on .pcs{opacity:1}
+.chips{gap:10px}.chip.pc{font:600 16px Inter,sans-serif!important;color:#333;padding:9px 18px!important;border-radius:999px;background:var(--pc);cursor:pointer;opacity:.5;display:inline-flex;align-items:center;gap:8px;transition:opacity .12s}.chip.pc input{position:absolute;opacity:0;pointer-events:none}.chip.pc .pcs{opacity:.35}.chip.pc:has(input:checked){opacity:1;color:#333!important}.chip.pc:has(input:checked) .pcs{opacity:1}
+.pgrp{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 12px}.pp{font:600 16px Inter,sans-serif;color:#333;padding:9px 18px;border-radius:999px;border:0;background:var(--pc);cursor:pointer;opacity:.5;display:inline-flex;align-items:center;gap:8px;text-align:left;transition:opacity .12s}.pp .pcs{opacity:.35}.pp.on{opacity:1}.pp.on .pcs{opacity:1}
 
 .rcw{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;font:400 28px/1.1 var(--pen-font);color:#232323;word-break:break-word;min-height:0}
 .rcat{font:500 13px Inter,sans-serif;color:#232323;opacity:.65;text-align:center}
@@ -672,8 +675,8 @@ h2{color:var(--pen)}
 .rct{flex:0 0 28%;font-size:15px!important;opacity:.8;justify-content:center;text-align:center}
 .cbt,.cbt2,.cba{font-family:var(--pen-font)!important;font-weight:400!important}.cbt{font-size:24px}
 .bcell.pcell{word-break:normal!important;overflow-wrap:normal!important;hyphens:none;border:0!important;border-radius:16px!important;background:var(--pc)!important;color:#232323!important;font:400 14px/1.15 var(--pen-font)!important;box-shadow:0 2px 6px rgba(0,0,0,.12);cursor:pointer;position:relative;opacity:.9}
-.bcell.pcell.on{opacity:1;box-shadow:0 0 0 3px #232323}.bck{position:absolute;top:4px;right:8px;font:700 16px Inter,sans-serif}
-.bro.pcell{border-radius:10px;background:var(--pc);color:#232323;font:400 13px var(--pen-font);padding:6px 3px;text-align:center;opacity:.5}.bro.pcell.on{opacity:1;box-shadow:0 0 0 2px #232323}
+.bcell.pcell.on{opacity:1;filter:saturate(1.25) brightness(.96)}.bcell.pcell:not(.on){opacity:.72}.bck{position:absolute;top:4px;right:8px;font:700 16px Inter,sans-serif}
+.bro.pcell{border-radius:10px;background:var(--pc);color:#232323;font:400 13px var(--pen-font);padding:6px 3px;text-align:center;opacity:.5}.bro.pcell.on{opacity:1}
 
 /* ===== new pill buttons ===== */
 button[data-btn],.lpb,.lvb{font:600 16px Inter,sans-serif!important;color:#232323!important;border:0!important;border-radius:999px!important;padding:11px 24px!important;background:var(--bc,#B4BEFB)!important;box-shadow:none!important;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px;line-height:1.2;transition:transform .12s,filter .12s;text-align:center;min-height:0}
@@ -687,11 +690,11 @@ button[data-btn="n"]{--bc:#B4BEFB}button[data-btn="n"]:nth-child(3n+2){--bc:#A2E
 button[data-btn="o"]{--bc:#FBD415}button[data-btn="o"]:nth-child(3n+2){--bc:#F49BC9}button[data-btn="o"]:nth-child(3n){--bc:#3FBCF4}
 button[data-btn="ghost"],button[data-btn="s"]{--bc:#DBBFBB}
 button[data-btn].big{font-size:20px!important;padding:14px 30px!important}
-.lpb{--bc:#DCFF6A}.lpb.on{box-shadow:0 0 0 2.5px #232323!important}.lvb{--bc:#B2D1FD}.lvb.on{background:#232323!important;color:#fff!important}
+.lpb{--bc:#DCFF6A}.lpb.on{opacity:1}.lpb:not(.on){opacity:.6}.lvb{--bc:#B2D1FD}.lvb.on{background:#232323!important;color:#fff!important}
 label.chk{display:inline-flex;align-items:center;gap:9px;padding:10px 20px;border-radius:999px;background:#E8E6D5;font:600 15px Inter,sans-serif;color:#232323;cursor:pointer;opacity:.7}
 label.chk .k-cb{position:absolute;opacity:0;width:1px;height:1px;overflow:hidden}
 label.chk::before{content:'✦';opacity:.4}
-label.chk:has(input:checked){background:#DCFF6A;opacity:1;box-shadow:0 0 0 2.5px #232323}label.chk:has(input:checked)::before{opacity:1;content:'✓'}
+label.chk:has(input:checked){background:#DCFF6A;opacity:1}label.chk:has(input:checked)::before{opacity:1;content:'✓'}
 .gwcap,.gwhint{display:block;width:fit-content;max-width:100%;margin:10px auto 0;padding:8px 18px;border-radius:16px;background:#EDE0AB}.gwhint{background:#F0CBEE}.spw{display:grid;gap:18px;align-items:start}.spw.wm{grid-template-columns:minmax(0,1fr) 270px}.spp{min-width:0}.spf{margin:0}.spimg{max-height:56vh}.spc{margin-top:8px;font:600 20px/1.2 Inter,sans-serif;color:var(--ink)}.spcmp{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}.spcmp .spimg{max-height:44vh}.spar{font:600 34px/1 'Drawably Pen',Inter,sans-serif;color:var(--pen)}.spmk{text-align:left;border:2px dashed var(--pen);border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.45)}.spmk h4{margin:0 0 8px;font:600 22px/1.2 'Drawably Pen',Inter,sans-serif;color:var(--pen)}.spg{margin-bottom:10px}.spg b{display:block;font:600 13px/1.2 Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);opacity:.7;margin-bottom:4px}.spg>div{display:flex;flex-wrap:wrap;gap:6px}.spm{font:500 19px/1.2 'Drawably Pen',Inter,sans-serif;padding:2px 10px;border:1.5px solid var(--pen);border-radius:10px;color:var(--pen)}@media(max-width:760px){.spw.wm{grid-template-columns:1fr}}
 .gifp{padding:18px}.gifimg{display:block;margin:0 auto;max-width:100%;max-height:62vh;border-radius:12px;cursor:pointer}.gifw{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:18px 0 6px}.gtag{font:500 26px/1.2 'Drawably Pen',Inter,sans-serif;padding:6px 16px;border:2px solid var(--pen);border-radius:14px;color:var(--pen);background:rgba(255,255,255,.45)}.gifg{margin-top:14px;font:600 20px/1.3 Inter,sans-serif;color:var(--ink)}
 .rbox{background:rgba(255,255,255,.4);border-radius:10px;padding:10px 14px;margin:10px 0;word-break:break-all}
@@ -788,6 +791,7 @@ button.tcell:hover{transform:translateY(-3px) rotate(-1deg)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><filter id="gwob" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/></filter></defs></svg>
+<button id="homeBtn" type="button">← Home</button>
 <header>
  <div class="top">
   <div id="nav" class="navwrap">
@@ -799,8 +803,6 @@ button.tcell:hover{transform:translateY(-3px) rotate(-1deg)}
    </nav>
    <h1 class="logo">spill the <span id="logo-u">word</span></h1>
    <nav class="tabs navr" id="navR">
-    <button data-tab="story">Story</button>
-    <button data-tab="gwho">Guess Who</button>
     <button data-tab="gif">GIF</button>
     <button data-tab="speak">Grammar Speaking</button>
     <button data-tab="shop">Shop</button>
@@ -2436,7 +2438,7 @@ const DEF={level:'B1',
  mine:{gif:'',alias:'',taboo:'',emoji:'',jeo:'',bingo:'',ttt:'',story:''},only:{gif:false,alias:false,taboo:false,emoji:false,jeo:false,bingo:false,ttt:false,story:false},les:{alias:[],taboo:[],emoji:[],jeo:[],bingo:[],ttt:[],story:[],gif:[]},lx:{alias:[],taboo:[],emoji:[],jeo:[],bingo:[],ttt:[],story:[],gif:[]},course:'b1',unit:0,bsize:4,gset:'people',gsize:24,scards:6,gmode:'both',gn:3,gcats:GIFCATS.map(c=>c.n),smode:'both',sgoal:'',
  teams:'Student, Teacher',time:60,penalty:false,tasks:DEFT.slice(),jplayers:'Student, Teacher',jminus:true,starters:true,tmode:'words',first:'student',tm:'round',gram:{ttt:'',gif:''}};
 let S=JSON.parse(JSON.stringify(DEF));
-try{const j=JSON.parse(localStorage.getItem(KEY)||'null');if(j){S=Object.assign(S,j);['sel','mine','only','les','lx','gram'].forEach(k=>S[k]=Object.assign({},DEF[k],j[k]||{}));if(!Array.isArray(S.tasks)||S.tasks.length<5)S.tasks=DEFT.slice();if(JSON.stringify(S.tasks.slice(0,5))===JSON.stringify(['Say the word. Repeat after me!','Show it or point to it!','Act it out (I guess!).','Say: "I see a ..." or "I like ...".','Draw it and tell me about it.']))S.tasks=TASKSETS.kids.t.slice()}}catch(e){}
+try{const j=JSON.parse(localStorage.getItem(KEY)||'null');if(j){S=Object.assign(S,j);['sel','mine','only','les','lx','gram'].forEach(k=>S[k]=Object.assign({},DEF[k],j[k]||{}));S.teams='Student, Teacher';S.jplayers='Student, Teacher';S.first='student';S.penalty=false;S.jminus=false;if(!Array.isArray(S.tasks)||S.tasks.length<5)S.tasks=DEFT.slice();if(JSON.stringify(S.tasks.slice(0,5))===JSON.stringify(['Say the word. Repeat after me!','Show it or point to it!','Act it out (I guess!).','Say: "I see a ..." or "I like ...".','Draw it and tell me about it.']))S.tasks=TASKSETS.kids.t.slice()}}catch(e){}
 (function(){if(S.mig2)return;S.mig2=1;const dd={story:['b1|0|0'],gif:['b1|0|0','b1|0|1']};
  Object.keys(dd).forEach(g=>{S.les[g]=(S.les[g]||[]).filter(id=>!dd[g].includes(id));S.lx[g]=(S.lx[g]||[]).filter(k=>!dd[g].some(id=>k.startsWith(id+'|')))})})();
 let STUDENT=false;
@@ -2456,7 +2458,7 @@ function skin(){
 function pillify(root){
  const skip=new Set(['sptask','lpu','shcur','spscene']);
  root.querySelectorAll('select').forEach(sel=>{
-  if(skip.has(sel.id)||sel.options.length>7||sel.options.length<2)return;
+  if(skip.has(sel.id)||sel.closest('.lph')||sel.options.length>7||sel.options.length<2)return;
   const fld=sel.closest('.fld'),g=document.createElement('div');g.className='pgrp';
   [...sel.options].forEach((o,i)=>{const b=document.createElement('button');b.type='button';b.className='pp';b.style.setProperty('--pc',CBCOL[(i*4+sel.options.length)%CBCOL.length]);b.dataset.v=o.value;b.innerHTML='<span class="pcs">'+(i%2?'✸':'✦')+'</span>'+esc(o.textContent);
    b.onclick=()=>{if(sel.disabled)return;sel.value=o.value;sel.dispatchEvent(new Event('change',{bubbles:true}));sync()};g.appendChild(b)});
@@ -2612,7 +2614,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#shz'))shZoomClo
 window.addEventListener('resize',()=>{if(tab==='shop'&&$('#shsh'))shShelves()});
 
 /* ===== Navigation ===== */
-const NAV=['alias','taboo','bingo','jeo','story','gwho','gif','speak','shop','gram','words'];
+const NAV=['alias','taboo','bingo','jeo','gif','speak','shop','gram','words'];
 let tab='alias',R=null,J=null,tmr=null;
 let NL=null,NR=null;
 const navTabs={setActive(i){
@@ -2622,12 +2624,12 @@ const navTabs={setActive(i){
  else{if(NL){try{NL.destroy()}catch(e){}NL=null}clear($('#navL'));if(NR)NR.setActive(i-4);else NR=mk($('#navR'),i-4)}}};
 navTabs.setActive(0);
 D.drawablyUnderline($('#logo-u'),{});
-$('.logo').style.cursor='pointer';$('.logo').onclick=()=>go('home');
+$('.logo').style.cursor='pointer';$('.logo').onclick=()=>go('home');$('#homeBtn').onclick=()=>go('home');
 D.drawablyDivider($('#hdr-hr'),{});
 function homeHTML(){const b=(t,ic,n,v)=>`<button class="big" data-btn="${v}" data-a="open" data-t="${t}">${ic} ${n}</button>`;
  return `<section class="home"><div class="hside hl">${b('alias','💬','Alias','solid')}${b('taboo','🚫','Taboo','o')}${b('bingo','🎯','Bingo','o')}${b('jeo','🏆','Jeopardy','solid')}</div>
- <div class="hmid"><h1 class="hero">Let's <span id="hero-u">play</span></h1><img class="hgif" src="${HOMEGIF}" alt="" width="300" height="300"></div>
- <div class="hside hr">${b('story','📖','Create a story','solid')}${b('gwho','🕵️','Guess Who','o')}${b('gif','🎞️','Describe the GIF','solid')}${b('speak','🗣️','Grammar Speaking','o')}${b('shop','🛒','Shop','solid')}${b('gram','🎲','Grammar Games','solid')}</div></section>`}
+ <div class="hmid"><h1 class="hero">spill the <span id="hero-u">word</span></h1><img class="hgif" src="${HOMEGIF}" alt="" width="300" height="300"></div>
+ <div class="hside hr">${b('gif','🎞️','Describe the GIF','solid')}${b('speak','🗣️','Grammar Speaking','o')}${b('shop','🛒','Shop','solid')}${b('gram','🎲','Grammar Games','solid')}</div></section>`}
 
 function embFrame(u){return '<iframe src="'+u+'" width="100%" height="720" style="border:0" allow="clipboard-write; fullscreen"></iframe>'}
 function embUpdate(){const b=$('#embbar');if(!b)return;const on=tab&&tab!=='home';b.hidden=!on;if(!on)return;
@@ -2647,8 +2649,7 @@ $('#nav').onclick=e=>{const b=e.target.closest('button');if(b)go(b.dataset.tab)}
 
 /* ===== Game setup ===== */
 function lessonPickerHTML(g){
- return `<div class="lpc" id="lpc">${COURSES.map(c=>`<button class="lpb" data-c="${c.id}">${esc(c.name)}</button>`).join('')}</div>
- <div id="lpbody"></div><p class="muted small" id="lpsel"></p>`}
+ return `<div id="lpbody"></div><p class="muted small" id="lpsel"></p>`}
 function bindLessons(g,upd){
  const sel=S.les[g],ex=S.lx[g];
  const drop=id=>{for(let i=ex.length-1;i>=0;i--)if(ex[i].startsWith(id+'|'))ex.splice(i,1)};
@@ -2656,17 +2657,14 @@ function bindLessons(g,upd){
   const c=COURSES.find(x=>x.id===S.course)||COURSES[0];S.course=c.id;
   if(!(S.unit>=0&&S.unit<c.units.length))S.unit=0;
   const u=c.units[S.unit];
-  document.querySelectorAll('#lpc .lpb').forEach(b=>b.classList.toggle('on',b.dataset.c===c.id));
-  const ids=u.ls.map((l,li)=>c.id+'|'+S.unit+'|'+li);
-  $('#lpbody').innerHTML=`<div class="lph"><select id="lpu">${c.units.map((x,i)=>`<option value="${i}"${i===S.unit?' selected':''}>${esc(x.n)}</option>`).join('')}</select><button id="lpall">Select the whole unit</button><button id="lpnone">Clear unit</button><button id="lpclr">Clear everything</button></div>
-  <p class="muted small" style="margin:2px 0 8px">Tick a lesson to take all its words, or tick / untick single words.</p>
-  <div class="lpg">${u.ls.map((l,li)=>{const id=ids[li],n=l.v.length,on=sel.includes(id),can=n||(GR(g)&&l.g);
-   return `<div class="lpr${can?'':' off'}"><label class="lpi"><input type="checkbox" data-id="${id}"${on&&can?' checked':''}${can?'':' disabled'}><span><b>${esc(l.n)}.</b> ${esc(l.t)} <span class="muted">· ${n} words${l.g?' · '+esc(l.g):''}</span></span></label>
-   ${n?`<div class="lpws">${l.v.map((w,wi)=>`<label class="lpw" title="${esc(TRMAP[w.toLowerCase()]||'')}"><input type="checkbox" data-w="${id}|${wi}"${on&&!ex.includes(id+'|'+wi)?' checked':''}> ${esc(w)}</label>`).join('')}</div>`:''}</div>`}).join('')}</div>`;
-  $('#lpu').onchange=e=>{S.unit=+e.target.value;save();draw()};
-  $('#lpall').onclick=()=>{u.ls.forEach((l,li)=>{const id=ids[li];if(l.v.length||(GR(g)&&l.g)){if(!sel.includes(id))sel.push(id);drop(id)}});save();draw();upd()};
-  $('#lpnone').onclick=()=>{ids.forEach(id=>{const i=sel.indexOf(id);if(i>=0)sel.splice(i,1);drop(id)});save();draw();upd()};
-  $('#lpclr').onclick=()=>{sel.length=0;ex.length=0;save();draw();upd()};
+  if(!(S.lsn>=0&&S.lsn<u.ls.length))S.lsn=0;
+  const li=S.lsn,l=u.ls[li],id=c.id+'|'+S.unit+'|'+li,n=l.v.length,on=sel.includes(id),can=n||(GR(g)&&l.g);
+  $('#lpbody').innerHTML=`<div class="lph"><select id="lpcs">${COURSES.map(x=>`<option value="${x.id}"${x.id===c.id?' selected':''}>${esc(x.name)}</option>`).join('')}</select><select id="lpu">${c.units.map((x,i)=>`<option value="${i}"${i===S.unit?' selected':''}>${esc(x.n)}</option>`).join('')}</select><select id="lpl">${u.ls.map((x,i)=>`<option value="${i}"${i===li?' selected':''}>${sel.includes(c.id+'|'+S.unit+'|'+i)?'✓ ':''}${esc(x.n)}. ${esc(x.t)}</option>`).join('')}</select></div>
+  <div class="lpg"><div class="lpr${can?'':' off'}"><label class="lpi"><input type="checkbox" data-id="${id}"${on&&can?' checked':''}${can?'':' disabled'}><span><b>${esc(l.n)}.</b> ${esc(l.t)} <span class="muted">· ${n} words${l.g?' · '+esc(l.g):''}</span></span></label>
+   ${n?`<div class="lpws">${l.v.map((w,wi)=>`<label class="lpw" title="${esc(TRMAP[w.toLowerCase()]||'')}"><input type="checkbox" data-w="${id}|${wi}"${on&&!ex.includes(id+'|'+wi)?' checked':''}> ${esc(w)}</label>`).join('')}</div>`:''}</div></div>`;
+  $('#lpcs').onchange=e=>{S.course=e.target.value;S.unit=0;S.lsn=0;save();draw()};
+  $('#lpu').onchange=e=>{S.unit=+e.target.value;S.lsn=0;save();draw()};
+  $('#lpl').onchange=e=>{S.lsn=+e.target.value;save();draw()};
   $('#lpbody').onchange=e=>{const i=e.target;
    if(i.dataset.id){const id=i.dataset.id;drop(id);const ix=sel.indexOf(id);if(i.checked&&ix<0)sel.push(id);if(!i.checked&&ix>=0)sel.splice(ix,1)}
    else if(i.dataset.w){const k=i.dataset.w,id=k.slice(0,k.lastIndexOf('|'));
@@ -2676,11 +2674,10 @@ function bindLessons(g,upd){
    save();draw();upd()};
   info()};
  const info=()=>{const ok=sel.filter(id=>LESMAP[id]);const w=lessonWords(g).length;const el=$('#lpsel');
-  if(!ok.length){el.textContent='Nothing selected yet. Pick a course and a unit, then tick lessons or single words.';return}
+  if(!ok.length){el.textContent='';return}
   el.innerHTML='Selected: <b>'+w+' words</b> from '+ok.length+' lesson'+(ok.length>1?'s':'')+'<div class="lpchips">'+ok.map(id=>{const m=LESMAP[id],n=incl(g,id).length,tot=m.l.v.length;return '<span class="lpchip">'+esc(m.c.name.replace(' Course','')+' '+m.u.n+' L'+m.l.n)+' · '+(tot&&n?(n===tot?n+' words':n+' of '+tot+' words'):'grammar only')+' <button data-rm="'+id+'" title="Remove this lesson">✕</button></span>'}).join('')+'</div>'};
  $('#lpsel').onclick=e=>{const b=e.target.closest('[data-rm]');if(!b)return;const id=b.dataset.rm,ix=sel.indexOf(id);if(ix>=0)sel.splice(ix,1);drop(id);save();draw();upd()};
  const upd0=upd;upd=()=>{upd0();info()};
- $('#lpc').onclick=e=>{const b=e.target.closest('.lpb');if(!b)return;S.course=b.dataset.c;S.unit=0;save();draw()};
  draw()}
 function setupHTML(g){const G=GAMES[g],st=g==='story'||g==='gif';
  return `<section class="panel k-card"><h2>${G.icon} ${G.title}</h2><p class="muted">${esc(G.desc)}</p>
@@ -2708,15 +2705,11 @@ function setupHTML(g){const G=GAMES[g],st=g==='story'||g==='gif';
  <p id="count" class="mono muted small" style="margin-top:14px"></p>
  </section>`}
 function playHTML(){return `<section class="panel k-card"><h3 style="margin-top:0">Game settings</h3>
- <div class="grid2"><label class="lbl"><span class="lt">Teams or players (comma-separated, up to 4)</span><span class="fld k-in"><input id="teams" type="text"></span></label>
- <label class="lbl"><span class="lt">Round time</span><span class="fld k-sel"><select id="time">${[30,60,90,120,0].map(t=>`<option value="${t}">${t?t+' sec':'no timer'}</option>`).join('')}</select></span></label></div>
+ <div class="grid2"><label class="lbl"><span class="lt">Round time</span><span class="fld k-sel"><select id="time">${[30,60,90,120,0].map(t=>`<option value="${t}">${t?t+' sec':'no timer'}</option>`).join('')}</select></span></label></div>
  <label class="lbl" style="max-width:340px"><span class="lt">Turns</span><span class="fld k-sel"><select id="tm"><option value="round">one player explains for the whole round</option><option value="word">players take turns word by word</option></select></span></label>
- <label class="lbl" style="max-width:340px"><span class="lt">In a room, who explains first</span><span class="fld k-sel"><select id="first"><option value="student">the student (sees the word)</option><option value="teacher">the teacher (student guesses)</option></select></span></label>
- <label class="chk"><span class="k-cb"><input type="checkbox" id="pen"></span> −1 penalty for a skip</label>
  <button class="big" data-btn="solid" id="start">▶ Start game</button></section>`}
 function duoPlayHTML(g){return `<section class="panel k-card"><h3 style="margin-top:0">Game settings</h3>
- <div class="grid2"><label class="lbl"><span class="lt">Players (two names, comma-separated; in a room the names come from the room)</span><span class="fld k-in"><input id="teams" type="text"></span></label>
- ${g==='bingo'?`<label class="lbl"><span class="lt">Card size</span><span class="fld k-sel"><select id="bsize">${[3,4,5].map(n=>`<option value="${n}">${n}×${n}</option>`).join('')}</select></span></label>`:''}
+ <div class="grid2">${g==='bingo'?`<label class="lbl"><span class="lt">Card size</span><span class="fld k-sel"><select id="bsize">${[3,4,5].map(n=>`<option value="${n}">${n}×${n}</option>`).join('')}</select></span></label>`:''}
  ${g==='story'?`<label class="lbl"><span class="lt">Cards in the game</span><span class="fld k-sel"><select id="scards">${[4,6,8,10].map(n=>`<option value="${n}">${n}</option>`).join('')}</select></span></label>
  <label class="lbl" style="grid-column:1/-1"><span class="lt">Grammar task (optional)</span><span class="fld k-in"><input id="sgoal" type="text" list="sgl" placeholder="e.g. Use Past Simple"><datalist id="sgl">${['Use Past Simple','Use only Present Simple','Use will / going to','Use Past Continuous (was/were + -ing)','Use comparatives and superlatives','Use Present Perfect','Use linking words (and, but, because, then)','Use at least one adjective in every sentence','Use Past Perfect','Use the passive voice','Use a conditional (if ...)'].map(x=>`<option value="${x}">`).join('')}</datalist></span></label>`:''}</div>
  <button class="big" data-btn="solid" id="start">▶ Start game</button></section>`}
@@ -2727,12 +2720,10 @@ function gifPlayHTML(){return `<section class="panel k-card"><h3 style="margin-t
  <p class="muted small" id="gcount"></p>
  <p class="muted small">During the game there are no buttons: click the picture or press Space / → for the next one.</p>
  <button class="big" data-btn="solid" id="start">▶ Start game</button></section>`}
-function jeoExtraHTML(){return `<section class="panel k-card"><h3 style="margin-top:0">Players and tasks</h3>
- <label class="lbl"><span class="lt">Players (comma-separated, up to 4)</span><span class="fld k-in"><input id="jpl" type="text"></span></label>
- <label class="lbl" style="margin-top:14px"><span class="lt">Task template</span><span class="fld k-sel"><select id="tset">${Object.keys(TASKSETS).map(k=>`<option value="${k}">${TASKSETS[k].n}</option>`).join('')}<option value="custom">Custom</option></select></span></label>
+function jeoExtraHTML(){return `<section class="panel k-card"><h3 style="margin-top:0">Tasks</h3>
+ <label class="lbl"><span class="lt">Task template</span><span class="fld k-sel"><select id="tset">${Object.keys(TASKSETS).map(k=>`<option value="${k}">${TASKSETS[k].n}</option>`).join('')}<option value="custom">Custom</option></select></span></label>
  <p class="muted small" style="margin:14px 0 4px">Tasks for word tiles (by row: 100, 200, 300, 400, 500):</p>
  ${[0,1,2,3,4].map(i=>`<label class="lbl"><span class="lt mono">${(i+1)*100}</span><span class="fld k-in"><input class="jt" data-i="${i}" type="text"></span></label>`).join('')}
- <label class="chk"><span class="k-cb"><input type="checkbox" id="jminus"></span> penalty for a wrong answer (minus the tile’s points)</label>
  <button class="big" data-btn="solid" id="start">▶ Start game</button></section>`}
 
 function renderSetup(g){
@@ -2742,15 +2733,14 @@ function renderSetup(g){
  if(g==='expand'){exSetup();return}
  if(g==='gram'){glSetup();return}
  const duo=g==='bingo'||g==='ttt'||g==='story',gf=g==='gif';
- setView(roomHTML()+setupHTML(g)+(g==='jeo'?jeoExtraHTML():gf?gifPlayHTML():duo?duoPlayHTML(g):playHTML())+((duo||gf)?'':shareHTML()));
+ setView(roomHTML((duo||gf)?'':g)+setupHTML(g)+(g==='jeo'?jeoExtraHTML():gf?gifPlayHTML():duo?duoPlayHTML(g):playHTML()));
  bindRoom();
  $('#mine').value=S.mine[g];const oc=$('#only');if(oc)oc.checked=S.only[g];
  bindSetup(g);if(!duo&&!gf)bindShare(g);
  if(g==='jeo'){
-  $('#jpl').value=S.jplayers;$('#jpl').oninput=e=>{S.jplayers=e.target.value;save()};
-  document.querySelectorAll('.jt').forEach(i=>{i.oninput=e=>{S.tasks[+i.dataset.i]=e.target.value;save();$('#tset').value=matchSet()}});fillTasks();
+    document.querySelectorAll('.jt').forEach(i=>{i.oninput=e=>{S.tasks[+i.dataset.i]=e.target.value;save();$('#tset').value=matchSet()}});fillTasks();
   $('#tset').onchange=e=>{const v=e.target.value;if(v!=='custom'){S.tasks=TASKSETS[v].t.slice();save();fillTasks()}};
-  $('#jminus').checked=S.jminus;$('#jminus').onchange=e=>{S.jminus=e.target.checked;save()};
+  S.jminus=false;
   $('#start').onclick=startJeo;
  }else if(gf){
   const gm=$('#gmode');gm.value=S.gmode;gm.onchange=e=>{S.gmode=e.target.value;save()};
@@ -2759,18 +2749,15 @@ function renderSetup(g){
   const gc=$('#gcats');if(gc)gc.onclick=e=>{const b=e.target.closest('.lpb');if(!b)return;const n=b.dataset.n,a=S.gcats,i=a.indexOf(n);if(i>=0)a.splice(i,1);else a.push(n);b.classList.toggle('on',i<0);save();gcc()};
   gcc();$('#start').onclick=startGif;
  }else if(duo){
-  $('#teams').value=S.teams;$('#teams').oninput=e=>{S.teams=e.target.value;save()};
   const bs=$('#bsize');if(bs){bs.value=String(S.bsize);bs.onchange=e=>{S.bsize=+e.target.value;save()}}
   const sc=$('#scards');if(sc){sc.value=String(S.scards);sc.onchange=e=>{S.scards=+e.target.value;save()}}
   const sm=$('#smode');if(sm){sm.value=S.smode;sm.onchange=e=>{S.smode=e.target.value;save()}}
   const sg=$('#sgoal');if(sg){sg.value=S.sgoal;sg.oninput=e=>{S.sgoal=e.target.value;save()}}
   $('#start').onclick=()=>g==='bingo'?startBingo():g==='ttt'?startTtt():startStory();
  }else{
-  $('#teams').value=S.teams;$('#teams').oninput=e=>{S.teams=e.target.value;save()};
   $('#time').value=String(S.time);$('#time').onchange=e=>{S.time=+e.target.value;save()};
   const tmS=$('#tm');tmS.value=S.tm||'round';tmS.onchange=e=>{S.tm=e.target.value;save()};
-  const fs=$('#first');fs.value=S.first||'student';fs.onchange=e=>{S.first=e.target.value;save()};
-  $('#pen').checked=S.penalty;$('#pen').onchange=e=>{S.penalty=e.target.checked;save()};
+  S.first='student';S.penalty=false;
   $('#start').onclick=()=>startGame(g);
  }}
 let CATOPEN=true,LPOPEN=false,MWOPEN=false;
@@ -3482,20 +3469,23 @@ const EXLV={easy:{n:'Easy',d:'3 details',st:[['When?','yesterday, last week, eve
  hard:{n:'Hard',d:'7 details',st:[['When?','while…, after…, by the time…'],['Where?','in the middle of…, next to…'],['Who with?','together with…, along with…'],['Why?','because…, since…, in order to…'],['How?','in a very… way, as if…'],['Contrast','but…, although…, even though…'],['Extra info','who… / which… / that…']]}};
 function exCourse(){const c=COURSES.find(x=>x.id===S.excourse)||COURSES[0];S.excourse=c.id;return c}
 function exWords(){const c=exCourse(),us=(S.exun||[]).filter(i=>c.units[i]);const use=us.length?us:c.units.map((_,i)=>i);const seen=new Set(),a=[];
- use.forEach(ui=>c.units[ui].ls.forEach(l=>(l.v||[]).forEach(w=>{const k=String(w).toLowerCase();if(!seen.has(k)){seen.add(k);a.push(w)}})));return a}
+ use.forEach(ui=>c.units[ui].ls.forEach((l,lj)=>{if(us.length===1&&S.exls>=0&&lj!==S.exls)return;(l.v||[]).forEach(w=>{const k=String(w).toLowerCase();if(!seen.has(k)){seen.add(k);a.push(w)}})}));return a}
+function exPickHTML(){const c=exCourse(),ui=(S.exun&&S.exun.length)?S.exun[0]:-1,u=ui>=0?c.units[ui]:null;if(!(S.exls>=0)||!u||S.exls>=u.ls.length)S.exls=-1;
+ return `<div class="lph" id="expk"><select id="expc">${COURSES.map(x=>`<option value="${x.id}"${x.id===c.id?' selected':''}>${esc(x.name)}</option>`).join('')}</select><select id="expu"><option value="-1">Whole course</option>${c.units.map((x,i)=>`<option value="${i}"${i===ui?' selected':''}>${esc(x.n)}</option>`).join('')}</select><select id="expl"${u?'':' disabled'}><option value="-1">All lessons of the unit</option>${u?u.ls.map((x,i)=>`<option value="${i}"${i===S.exls?' selected':''}>${esc(x.n)}. ${esc(x.t)}</option>`).join(''):''}</select></div>`}
+function exPickBind(again,upd){$('#expc').onchange=e=>{S.excourse=e.target.value;S.exun=[];S.exls=-1;save();again()};
+ $('#expu').onchange=e=>{const v=+e.target.value;S.exun=v>=0?[v]:[];S.exls=-1;save();again()};
+ $('#expl').onchange=e=>{S.exls=+e.target.value;save();upd()}}
 function exSetup(){
  const c=exCourse();if(!EXLV[S.exlevel])S.exlevel='easy';S.exun=(S.exun||[]).filter(i=>c.units[i]);
  S.gmode='exp';
  setView(`<section class="panel k-card"><h2>${GAMES.gram.icon} ${GAMES.gram.title}</h2><p class="muted small" style="margin:14px 0 6px">Exercise</p><div class="lpc" id="glm">${GLMODES.map(m=>`<button class="lpb${S.gmode===m[0]?' on':''}" data-m="${m[0]}">${m[1]}</button>`).join('')}</div><p class="muted" style="margin-top:10px">${esc(GAMES.expand.desc)}</p>
- <p class="muted small" style="margin:14px 0 6px">Course</p><div class="lpc" id="excs">${COURSES.map(x=>`<button class="lpb${x.id===c.id?' on':''}" data-c="${x.id}">${esc(x.name)}</button>`).join('')}</div>
- <p class="muted small" style="margin:14px 0 6px">Units (none selected = the whole course)</p><div class="lpc" id="exus">${c.units.map((u,i)=>`<button class="lpb${S.exun.includes(i)?' on':''}" data-u="${i}">${esc(u.n)}</button>`).join('')}</div>
+ <p class="muted small" style="margin:14px 0 6px">Words from your course</p>${exPickHTML()}
  <p class="muted small" style="margin:14px 0 6px">Level</p><div class="lpc" id="exlv">${Object.keys(EXLV).map(k=>`<button class="lpb${S.exlevel===k?' on':''}" data-l="${k}">${EXLV[k].n} · ${EXLV[k].d}</button>`).join('')}</div>
  <p class="muted" id="exn" style="margin-top:14px"></p>
  <div class="row cc"><button data-btn="solid" id="exgo">Start</button></div></section>`);
  const upd=()=>{const n=exWords().length;$('#exn').textContent=n+' words from your lessons will be used.';$('#exgo').disabled=!n};
  $('#glm').onclick=e=>{const b=e.target.closest('[data-m]');if(!b)return;S.gmode=b.dataset.m;save();glSetup()};
- $('#excs').onclick=e=>{const b=e.target.closest('[data-c]');if(!b)return;S.excourse=b.dataset.c;S.exun=[];save();exSetup()};
- $('#exus').onclick=e=>{const b=e.target.closest('[data-u]');if(!b)return;const i=+b.dataset.u,k=S.exun.indexOf(i);if(k>=0)S.exun.splice(k,1);else S.exun.push(i);b.classList.toggle('on');save();upd()};
+ exPickBind(exSetup,upd);
  $('#exlv').onclick=e=>{const b=e.target.closest('[data-l]');if(!b)return;S.exlevel=b.dataset.l;save();document.querySelectorAll('#exlv .lpb').forEach(x=>x.classList.toggle('on',x===b))};
  $('#exgo').onclick=()=>{EX={order:shuffle(exWords()),i:0,s:0,done:0,lv:S.exlevel,txt:''};exRender()};
  upd()}
@@ -3591,15 +3581,13 @@ function glSetup(){
  <p class="muted small" style="margin:14px 0 6px">Exercise</p><div class="lpc" id="glm">${GLMODES.map(m=>`<button class="lpb${S.gmode===m[0]?' on':''}" data-m="${m[0]}">${m[1]}</button>`).join('')}</div>
  <p class="muted small" style="margin:14px 0 6px">Level</p><div class="lpc" id="gll">${GLV.map(l=>`<button class="lpb${S.glevel===l[0]?' on':''}" data-l="${l[0]}">${l[1]}</button>`).join('')}</div>
  <p class="muted small" style="margin:14px 0 6px">Topics (none selected = all topics of this level)</p><div class="lpc" id="glt">${glTopics().map(t=>`<button class="lpb${S.gtop.includes(t.id)?' on':''}" data-t="${t.id}">${esc(t.n)}</button>`).join('')}</div>
- ${dice?`<p class="muted small" style="margin:14px 0 6px">Course (the words for the dice)</p><div class="lpc" id="glc">${COURSES.map(x=>`<button class="lpb${x.id===c.id?' on':''}" data-c="${x.id}">${esc(x.name)}</button>`).join('')}</div>
- <p class="muted small" style="margin:14px 0 6px">Units (none selected = the whole course)</p><div class="lpc" id="glu">${c.units.map((u,i)=>`<button class="lpb${S.exun.includes(i)?' on':''}" data-u="${i}">${esc(u.n)}</button>`).join('')}</div>`:''}
+ ${dice?`<p class="muted small" style="margin:14px 0 6px">Words for the dice (from your course)</p>${exPickHTML()}`:''}
  <p class="muted" id="gln" style="margin-top:14px"></p><div class="row cc"><button data-btn="solid" id="glgo">Start</button></div></section>`);
  const upd=()=>{const n=dice?exWords().length:glChosen().reduce((a,t)=>a+(TS[t.id]||[]).length,0);$('#gln').textContent=dice?n+' words and '+glChosen().length+' topics on the dice.':n+' tasks from '+glChosen().length+' topics.';$('#glgo').disabled=!n};
  $('#glm').onclick=e=>{const b=e.target.closest('[data-m]');if(!b)return;S.gmode=b.dataset.m;save();glSetup()};
  $('#gll').onclick=e=>{const b=e.target.closest('[data-l]');if(!b)return;S.glevel=b.dataset.l;S.gtop=[];save();glSetup()};
  $('#glt').onclick=e=>{const b=e.target.closest('[data-t]');if(!b)return;const k=S.gtop.indexOf(b.dataset.t);if(k>=0)S.gtop.splice(k,1);else S.gtop.push(b.dataset.t);b.classList.toggle('on');save();upd()};
- if(dice){$('#glc').onclick=e=>{const b=e.target.closest('[data-c]');if(!b)return;S.excourse=b.dataset.c;S.exun=[];save();glSetup()};
-  $('#glu').onclick=e=>{const b=e.target.closest('[data-u]');if(!b)return;const i=+b.dataset.u,k=S.exun.indexOf(i);if(k>=0)S.exun.splice(k,1);else S.exun.push(i);b.classList.toggle('on');save();upd()}}
+ if(dice)exPickBind(glSetup,upd);
  $('#glgo').onclick=()=>{const tp=glChosen();
   if(dice){GL={mode:'dice',tp,words:exWords(),ok:0,bad:0,hint:false};glRoll()}
   else{const items=[];tp.forEach(t=>(TS[t.id]||[]).forEach(x=>items.push({t,s:x[0],q:x[1],a:x[2]})));GL={mode:'ts',items:shuffle(items),i:0,show:false,ok:0,bad:0};glRender()}};
@@ -4886,7 +4874,7 @@ function pill(){
  p.innerHTML=t}
 function updRoomUI(){pill();if(ROOM.role==='host'&&!R&&!J&&!B&&!T&&!ST&&!GS&&!GF&&!EX&&!GL&&GAMES[tab])renderSetup(tab)}
 function roomLink(){return location.href.split('#')[0]+'#r='+ROOM.code}
-function roomHTML(){
+function roomHTML(sg){
  if(STUDENT)return '';
  let h=`<section class="panel k-card"><h3 style="margin-top:0">Room (play together online)</h3>`;
  if(!ROOM.role){
@@ -4900,7 +4888,7 @@ function roomHTML(){
   h+=`<p class="${ok?'rok':'muted'}">${ok?'🟢 '+esc(ROOM.guestName)+' is in the room. Start a game and the student will see it on their screen.':ROOM.status==='open'?'⏳ The room is ready. Send the link to your student and wait for them to join.':'⏳ Creating the room…'}</p>
   <div class="rbox mono small">${esc(roomLink())}</div>
   <div class="row"><button data-btn="n" id="rcopy"><span id="rcl">Copy link</span></button><button data-btn="n" id="rclose">Close room</button></div>`}
- return h+'</section>'}
+ return h+(sg?shareInner():'')+'</section>'}
 function bindRoom(){
  const rn=$('#rname');if(rn){rn.value=S.rname||'Teacher';rn.oninput=e=>{S.rname=e.target.value;save()}}
  const cr=$('#rcreate');if(cr)cr.onclick=roomCreate;
@@ -5008,17 +4996,17 @@ function applyConfig(c){
  if(g==='jeo'){
   if(c.jpl)S.jplayers=String(c.jpl);
   if(Array.isArray(c.tasks)&&c.tasks.length>=5)S.tasks=c.tasks.slice(0,5).map(String);
-  S.jminus=c.jm!==false}
+  S.jminus=false}
  else{
   if(c.teams)S.teams=String(c.teams);
   if(typeof c.time==='number')S.time=c.time;
-  S.penalty=!!c.pen;S.starters=c.st!==false}}
-function shareHTML(){return `<section class="panel k-card"><h3 style="margin-top:0">Link for the student</h3>
+  S.penalty=false;S.starters=c.st!==false}}
+function shareInner(){return `<hr class="k-hr"><h3>Link for the student</h3>
  <p class="muted small">The link contains the game, settings and words. The student opens it and lands straight in the ready game.</p>
  <div class="row"><button data-btn="solid" id="mklink">🔗 Create link</button></div>
  <div id="linkbox" hidden><span class="fld k-in"><input id="linkout" type="text" readonly></span>
  <div class="row"><button data-btn="n" id="cplink"><span id="cplbl">Copy</span></button><button data-btn="n" id="openlink">Open as a student</button></div>
- <p class="muted small" id="linknote"></p></div></section>`}
+ <p class="muted small" id="linknote"></p></div>`}
 function bindShare(g){
  const out=$('#linkout');
  $('#mklink').onclick=async()=>{
