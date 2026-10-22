@@ -1154,6 +1154,8 @@ button[data-btn],.lpb,.lvb{font:500 15px/1.2 var(--pen-font)!important;padding:1
 .bdover{padding:16px;border-radius:8px;background:#FBD415;text-align:center;font-size:18px;line-height:1.5}
 @media(max-width:800px){.bd .bdw{grid-template-columns:1fr}.bdr{width:42px;height:42px;font-size:22px}}
 .mgc{min-width:60px;box-sizing:border-box}
+.bdt.last{outline:3px solid #F7763F;outline-offset:-3px}
+.bdp{gap:10px}.bdp b{overflow:hidden;text-overflow:ellipsis;min-width:0}.bdp span{flex:none}
 </style>
 </head>
 <body>
@@ -4788,29 +4790,43 @@ const BDPREM=(()=>{const m={},put=(k,a)=>a.forEach(p=>{m[p[0]*15+p[1]]=k});
  put('TL',[[1,5],[1,9],[5,1],[5,5],[5,9],[5,13],[9,1],[9,5],[9,9],[9,13],[13,5],[13,9]]);
  put('DL',[[0,3],[0,11],[2,6],[2,8],[3,0],[3,7],[3,14],[6,2],[6,6],[6,8],[6,12],[7,3],[7,11],[8,2],[8,6],[8,8],[8,12],[11,0],[11,7],[11,14],[12,6],[12,8],[14,3],[14,11]]);
  m[112]='ST';return m})();
-let BDG=null,BDP=[],BDSEL=null,BDSW=null,BDASK=null,BDCOVER=false,BDMSG='',BDD=null,BDW=null,BDLOAD=null;
+let BDG=null,BDP=[],BDSEL=null,BDSW=null,BDASK=null,BDCOVER=false,BDMSG='',BDD=null,BDW=null,BDLOAD=null,BDTR={},BDBUSY=false;
+async function bdUnz(b64){const bin=atob(b64),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);
+ const ds=new DecompressionStream('gzip'),w=ds.writable.getWriter();w.write(u);w.close();return(await new Response(ds.readable).text()).split('\n')}
 function bdLoad(){
  if(BDD||BDLOAD)return BDLOAD||Promise.resolve();
- BDLOAD=(async()=>{try{
-  const bin=atob(SCRD),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);
-  const ds=new DecompressionStream('gzip'),w=ds.writable.getWriter();w.write(u);w.close();
-  const txt=await new Response(ds.readable).text();BDW=txt.split('\n');BDD=new Set(BDW)}catch(e){BDD='none';BDW=[]}
+ BDLOAD=(async()=>{try{BDW=await bdUnz(SCRD);BDD=new Set(BDW)}catch(e){BDD='none';BDW=[]}
   BDLOAD=null;if(BDG&&tab==='gram'&&S.gmode==='board')bdDraw()})();return BDLOAD}
-function bdNewGame(names,hide){
- let bag=[];for(const l in BDN)for(let i=0;i<BDN[l];i++)bag.push(l);bag=shuffle(bag);
- const G={b:Array(225).fill(null),names,hide:!!hide,sc:[0,0],t:0,pass:0,over:false,nid:0,log:[],racks:[[],[]],bag:bag.map(l=>l)};
- for(let p=0;p<2;p++)bdFill(G,p);return G}
+function bdSet(G){const s=BDD;return(!s||s==='none')?null:s}
+function bdWordList(G){return BDW}
+function bdTrie(G){const k='all';if(BDTR[k])return BDTR[k];const ws=bdWordList(G);let n=1,prev='';
+ for(const w of ws){let l=0;const m=Math.min(prev.length,w.length);while(l<m&&prev.charCodeAt(l)===w.charCodeAt(l))l++;n+=w.length-l;prev=w}
+ const L=new Uint8Array(n),FC=new Int32Array(n).fill(-1),NS=new Int32Array(n).fill(-1),LC=new Int32Array(n).fill(-1),E=new Uint8Array(n);let cnt=1;const path=[0];prev='';
+ for(const w of ws){let l=0;const m=Math.min(prev.length,w.length);while(l<m&&prev.charCodeAt(l)===w.charCodeAt(l))l++;path.length=l+1;
+  for(let d=l;d<w.length;d++){const par=path[d],id=cnt++;L[id]=w.charCodeAt(d)-96;if(FC[par]<0)FC[par]=id;else NS[LC[par]]=id;LC[par]=id;path[d+1]=id}
+  E[path[w.length]]=1;prev=w}
+ return BDTR[k]={L,FC,NS,E}}
+function bdNewGame(o){
+ let bag=[];for(const l in BDN)for(let i=0;i<BDN[l];i++)bag.push(l);bag=shuffle(bag);const n=o.mode==='solo'?1:2;
+ const G={b:Array(225).fill(null),mode:o.mode,n,dict:'all',level:o.level,names:o.names.slice(0,n),hide:o.mode==='two'&&!!o.hide,sc:Array(n).fill(0),t:0,pass:0,over:false,nid:0,last:[],racks:Array.from({length:n},()=>[]),bag};
+ for(let p=0;p<n;p++)bdFill(G,p);return G}
 function bdFill(G,p){while(G.racks[p].length<7&&G.bag.length)G.racks[p].push({id:++G.nid,l:G.bag.pop()})}
 function bdSetup(){
- seaOff();BDP=[];BDSEL=null;BDSW=null;BDASK=null;BDMSG='';bdLoad();
- if(S.bd&&!S.bd.over&&!S.bdsetup){BDG=S.bd;BDCOVER=false;bdView();return}
- const nm=(S.bdn||['Player 1','Player 2']);
- setView(`<section class="panel k-card bd">${gmBar()}<h3 style="margin:10px 0 2px">Word Board</h3>
- <p class="muted small" style="margin:0 0 12px">Take turns to build words on the board, like Scrabble. Use your letters and the letters already on the board. Every new word must connect to the others.</p>
- <div class="bdset"><label>Player 1<input id="bdn0" maxlength="14" value="${esc(nm[0])}"></label><label>Player 2<input id="bdn1" maxlength="14" value="${esc(nm[1])}"></label></div>
- <label class="bdchk"><input type="checkbox" id="bdhide"${S.bdh?' checked':''}> Hide the letters when the turn changes</label>
+ seaOff();BDP=[];BDSEL=null;BDSW=null;BDASK=null;BDMSG='';BDBUSY=false;bdLoad();
+ if(S.bd&&!S.bd.over&&!S.bdsetup){BDG=S.bd;BDCOVER=false;bdView();bdKick();return}
+ const o=Object.assign({mode:'two',level:'medium',hide:false,names:['Player 1','Player 2']},S.bdo||{});
+ const draw=()=>{setView(`<section class="panel k-card bd">${gmBar()}<h3 style="margin:10px 0 2px">Word Board</h3>
+ <p class="muted small" style="margin:0 0 12px">Build words on the board, like Scrabble. Use your letters and the letters already on the board. Every new word must touch the others.</p>
+ <p class="muted small" style="margin:10px 0 6px">Who plays?</p><div class="lpc" id="bdmo">${[['two','Two players'],['cpu','Play with the computer'],['solo','Play alone']].map(x=>`<button class="lpb${o.mode===x[0]?' on':''}" data-v="${x[0]}">${x[1]}</button>`).join('')}</div>
+ ${o.mode==='cpu'?`<p class="muted small" style="margin:10px 0 6px">Computer level</p><div class="lpc" id="bdlv">${[['easy','Easy'],['medium','Medium'],['hard','Hard']].map(x=>`<button class="lpb${o.level===x[0]?' on':''}" data-v="${x[0]}">${x[1]}</button>`).join('')}</div>`:''}
+ <div class="bdset"><label>${o.mode==='solo'||o.mode==='cpu'?'Your name':'Player 1'}<input id="bdn0" maxlength="14" value="${esc(o.names[0])}"></label>${o.mode==='two'?`<label>Player 2<input id="bdn1" maxlength="14" value="${esc(o.names[1])}"></label>`:''}</div>
+ ${o.mode==='two'?`<label class="bdchk"><input type="checkbox" id="bdhide"${o.hide?' checked':''}> Hide the letters when the turn changes</label>`:''}
  <div class="row cc"><button data-btn="solid" id="bdgo">Start</button></div></section>`);
- gmBind();$('#bdgo').onclick=()=>{const n=[($('#bdn0').value.trim()||'Player 1'),($('#bdn1').value.trim()||'Player 2')];S.bdn=n;S.bdh=$('#bdhide').checked;S.bdsetup=false;BDG=bdNewGame(n,S.bdh);S.bd=BDG;save();BDCOVER=BDG.hide;bdView()}}
+  gmBind();const keep=()=>{const a=$('#bdn0'),b=$('#bdn1'),h=$('#bdhide');if(a)o.names[0]=a.value;if(b)o.names[1]=b.value;if(h)o.hide=h.checked};
+  for(const [id,k] of [['bdmo','mode'],['bdlv','level']]){const el=$('#'+id);if(el)el.onclick=e=>{const b=e.target.closest('[data-v]');if(!b)return;keep();o[k]=b.dataset.v;draw()}}
+  $('#bdgo').onclick=()=>{keep();const nm=[(o.names[0]||'').trim()||(o.mode==='two'?'Player 1':'You'),o.mode==='cpu'?'Computer':((o.names[1]||'').trim()||'Player 2')];o.names=[nm[0],o.mode==='two'?nm[1]:(o.names[1]||'Player 2')];S.bdo=o;S.bdsetup=false;
+   BDG=bdNewGame({mode:o.mode,level:o.level,hide:o.hide,names:nm});S.bd=BDG;save();BDCOVER=BDG.hide;bdView();bdKick()}};
+ draw()}
 function bdView(){
  setView(`<section class="panel k-card bd">${gmBar()}<div class="bdw"><div class="bdbox"><div class="bdb" id="bdb"></div></div>
  <aside class="bds"><div class="bdsc" id="bdsc"></div><div class="bdrack" id="bdrk"></div><div class="bdbt" id="bdbt"></div><div class="bdmsg" id="bdmsg"></div></aside></div></section>`);
@@ -4819,17 +4835,19 @@ function bdTileV(t){return t.b?0:BDV[t.l]}
 function bdDraw(){
  const G=BDG;if(!G||!$('#bdb'))return;const pm={};BDP.forEach(p=>pm[p.i]=p);
  let h='';for(let i=0;i<225;i++){const c=G.b[i],p=pm[i],pr=BDPREM[i];
-  if(c)h+=`<div class="bdc"><div class="bdt${c.b?' bl':''}">${c.l}<sub>${bdTileV(c)||''}</sub></div></div>`;
+  if(c)h+=`<div class="bdc"><div class="bdt${c.b?' bl':''}${G.last&&G.last.includes(i)?' last':''}">${c.l}<sub>${bdTileV(c)||''}</sub></div></div>`;
   else if(p)h+=`<div class="bdc"><div class="bdt pend${p.t.b?' bl':''}" data-pi="${i}">${p.t.l}<sub>${bdTileV(p.t)||''}</sub></div></div>`;
   else h+=`<div class="bdc${pr?' p'+pr:''}" data-i="${i}">${pr==='ST'?'<span class="bdstar">★</span>':pr?`<span class="bdl">${pr}</span>`:''}</div>`}
  $('#bdb').innerHTML=h;
  $('#bdsc').innerHTML=G.names.map((n,i)=>`<div class="bdp${G.t===i&&!G.over?' on':''}"><b>${esc(n)}</b><span>${G.sc[i]}</span></div>`).join('')+`<div class="bdbag">Bag: ${G.bag.length}</div>`;
  const rack=G.racks[G.t].filter(t=>!BDP.some(p=>p.rid===t.id));
- if(G.over){const w=G.sc[0]===G.sc[1]?'It’s a draw!':esc(G.names[G.sc[0]>G.sc[1]?0:1])+' wins!';
-  $('#bdrk').innerHTML=`<div class="bdover">Game over<br><b>${w}</b><br>${esc(G.names[0])} ${G.sc[0]} : ${G.sc[1]} ${esc(G.names[1])}</div>`;
-  $('#bdbt').innerHTML='<button class="lvb on" id="bdnew">New game</button>';$('#bdnew').onclick=()=>{S.bdsetup=true;save();bdSetup()};return}
+ if(G.over){let msg;if(G.n===1){const k='all',bst=(S.bdbest||{})[k]||0;msg=`Your final score: <b>${G.sc[0]}</b><br>Best score: ${bst}`}
+  else{const w=G.sc[0]===G.sc[1]?'It’s a draw!':esc(G.names[G.sc[0]>G.sc[1]?0:1])+' wins!';msg=`<b>${w}</b><br>${esc(G.names[0])} ${G.sc[0]} : ${G.sc[1]} ${esc(G.names[1])}`}
+  $('#bdrk').innerHTML=`<div class="bdover">Game over<br>${msg}</div>`;
+  $('#bdbt').innerHTML='<button class="lvb on" id="bdnew2">New game</button>';$('#bdnew2').onclick=()=>{S.bdsetup=true;save();bdSetup()};return}
+ if(G.mode==='cpu'&&G.t===1){$('#bdrk').innerHTML='<div class="bdtitle">The computer is thinking…</div>';$('#bdbt').innerHTML='<button class="lvb" id="bdnew">New game</button>';$('#bdmsg').innerHTML=BDMSG;$('#bdnew').onclick=()=>{if(confirm('Start a new game? The current game will be lost.')){BDBUSY=false;S.bdsetup=true;save();bdSetup()}};return}
  if(BDCOVER){$('#bdrk').innerHTML=`<button class="bdcover" id="bdshow">${esc(G.names[G.t])}, tap to show your letters</button>`;$('#bdbt').innerHTML='';$('#bdshow').onclick=()=>{BDCOVER=false;bdDraw()};return}
- $('#bdrk').innerHTML=`<div class="bdtitle">${esc(G.names[G.t])}’s letters</div><div class="bdrr">${rack.map(t=>`<div class="bdr${BDSEL===t.id?' sel':''}${BDSW&&BDSW.has(t.id)?' sw':''}" data-rid="${t.id}">${t.l==='?'?'':t.l}<sub>${BDV[t.l]||''}</sub></div>`).join('')}</div>`;
+ $('#bdrk').innerHTML=`<div class="bdtitle">${G.mode==='cpu'||G.n===1?'Your letters':esc(G.names[G.t])+'’s letters'}</div><div class="bdrr">${rack.map(t=>`<div class="bdr${BDSEL===t.id?' sel':''}${BDSW&&BDSW.has(t.id)?' sw':''}" data-rid="${t.id}">${t.l==='?'?'':t.l}<sub>${BDV[t.l]||''}</sub></div>`).join('')}</div>`;
  const asking=BDASK?`<div class="bdask">Which letter is the blank?<div>${'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(l=>`<button data-bl="${l}">${l}</button>`).join('')}<button data-bl="" class="bdx">Cancel</button></div></div>`:'';
  $('#bdbt').innerHTML=BDSW?`<button class="lvb on" id="bdsw2">Swap ${BDSW.size} letter${BDSW.size===1?'':'s'}</button><button class="lvb" id="bdsw0">Cancel</button>`:
   `<button class="lvb on" id="bdplay">Play word</button><button class="lvb" id="bdrec">Take back</button><button class="lvb" id="bdshf">Shuffle</button><button class="lvb" id="bdswp">Swap letters</button><button class="lvb" id="bdpas">Pass</button><button class="lvb" id="bdhint">Hint</button><button class="lvb" id="bdnew">New game</button>`;
@@ -4888,28 +4906,79 @@ function bdCheck(G,P){
  for(const w of words){const str=w.map(i=>get(i).l).join('');let sc=0,wm=1;
   w.forEach(i=>{const t=get(i);let v=bdTileV(t);if(pm[i]){const pr=BDPREM[i];if(pr==='DL')v*=2;else if(pr==='TL')v*=3;else if(pr==='DW'||pr==='ST')wm*=2;else if(pr==='TW')wm*=3}sc+=v});
   sc*=wm;out.push({w:str,sc});total+=sc}
- const bad=out.filter(o=>BDD&&BDD!=='none'&&!BDD.has(o.w.toLowerCase()));
- if(bad.length)return{ok:false,msg:bad.map(o=>'“'+o.w+'”').join(', ')+(bad.length>1?' are':' is')+' not in the dictionary.'};
+ const dset=bdSet(G),bad=dset?out.filter(o=>!dset.has(o.w.toLowerCase())):[];
+ if(bad.length)return{ok:false,msg:bad.map(o=>'“'+o.w+'”').join(', ')+(bad.length>1?' are':' is')+' not in the '+(G.dict==='all'?'dictionary.':'dictionary.')};
  if(P.length===7){total+=50;out.push({w:'All 7 letters!',sc:50})}
  return{ok:true,words:out,total}}
 function bdPlay(){const G=BDG;
  if(BDD===null||BDLOAD){BDMSG='<div class="bdinfo">The dictionary is loading, try again in a second.</div>';bdDraw();return}
  const r=bdCheck(G,BDP);if(!r.ok){BDMSG=`<div class="bderr">${esc(r.msg)}</div>`;sfx('buzz');bdDraw();return}
- BDP.forEach(p=>{G.b[p.i]=p.t});G.racks[G.t]=G.racks[G.t].filter(t=>!BDP.some(p=>p.rid===t.id));G.sc[G.t]+=r.total;
+ G.last=BDP.map(p=>p.i);BDP.forEach(p=>{G.b[p.i]=p.t});G.racks[G.t]=G.racks[G.t].filter(t=>!BDP.some(p=>p.rid===t.id));G.sc[G.t]+=r.total;
  const txt=G.names[G.t]+': '+r.words.map(o=>o.w+' ('+o.sc+')').join(', ')+' = '+r.total+' points!';
  BDP=[];sfx('win');bdFill(G,G.t);bdEnd(txt,0,true)}
 function bdEnd(txt,pass,good){const G=BDG;G.pass=pass?G.pass+1:0;
  const out=G.racks[G.t].length===0&&G.bag.length===0;
- if(out||G.pass>=4){G.over=true;const bonus=[0,1].map(p=>G.racks[p].reduce((a,t)=>a+BDV[t.l],0));
-  if(out){G.sc[G.t]+=bonus[1-G.t];G.sc[1-G.t]-=bonus[1-G.t]}else{G.sc[0]-=bonus[0];G.sc[1]-=bonus[1]}
+ if(out||G.pass>=(G.n===1?3:4)){G.over=true;const bonus=G.racks.map(rk=>rk.reduce((a,t)=>a+BDV[t.l],0));
+  if(G.n===1)G.sc[0]-=bonus[0];
+  else if(out){for(let p=0;p<G.n;p++)if(p!==G.t){G.sc[G.t]+=bonus[p];G.sc[p]-=bonus[p]}}else G.sc=G.sc.map((v,p)=>v-bonus[p]);
+  if(G.n===1){S.bdbest=S.bdbest||{};const k='all';if(G.sc[0]>(S.bdbest[k]||0))S.bdbest[k]=G.sc[0]}
   S.bd=G;save();BDMSG='';bdDraw();return}
- G.t=1-G.t;BDSEL=null;BDCOVER=G.hide;BDMSG=`<div class="${good?'bdgood':'bdinfo'}">${esc(txt)}</div>`;S.bd=G;save();bdDraw()}
-function bdHint(){const G=BDG;if(!BDW||!BDW.length){BDMSG='<div class="bdinfo">The dictionary is loading, try again in a second.</div>';bdDraw();return}
+ G.t=(G.t+1)%G.n;BDSEL=null;BDCOVER=G.hide&&G.n===2;BDMSG=`<div class="${good?'bdgood':'bdinfo'}">${esc(txt)}</div>`;S.bd=G;save();bdDraw();bdKick()}
+function bdHint(){const G=BDG;if(!bdWordList(G)||!bdWordList(G).length){BDMSG='<div class="bdinfo">The dictionary is loading, try again in a second.</div>';bdDraw();return}
  const rack=G.racks[G.t].map(t=>t.l),blanks=rack.filter(l=>l==='?').length,cnt={};rack.forEach(l=>{if(l!=='?')cnt[l.toLowerCase()]=(cnt[l.toLowerCase()]||0)+1});
- const res=[];for(const w of BDW){if(w.length<3||w.length>rack.length)continue;const need={};for(const ch of w)need[ch]=(need[ch]||0)+1;let miss=0;for(const k in need)miss+=Math.max(0,need[k]-(cnt[k]||0));if(miss<=blanks)res.push(w)}
+ const res=[];for(const w of bdWordList(G)){if(w.length<3||w.length>rack.length)continue;const need={};for(const ch of w)need[ch]=(need[ch]||0)+1;let miss=0;for(const k in need)miss+=Math.max(0,need[k]-(cnt[k]||0));if(miss<=blanks)res.push(w)}
  const known=res.filter(w=>WCPOS[w]);const pool=(known.length>=3?known:res).sort((a,b)=>b.length-a.length).slice(0,14);
  const pick=shuffle(pool.slice()).slice(0,5);
  BDMSG=pick.length?`<div class="bdinfo">You can spell: <b>${pick.join(', ')}</b>. Now find a place for one of them on the board!</div>`:'<div class="bdinfo">No long words from these letters. Try swapping some letters.</div>';bdDraw()}
+
+/* ---- computer player ---- */
+function bdKick(){const G=BDG;if(!G||G.over||G.mode!=='cpu'||G.t!==1||BDBUSY)return;BDBUSY=true;
+ const go=()=>{if(BDD===null||BDLOAD){setTimeout(go,300);return}setTimeout(()=>{try{bdCpu()}catch(e){console.error(e);BDBUSY=false;bdEnd('The computer passed.',1)}},650)};go()}
+function bdGen(G){
+ const tr=bdTrie(G),{L,FC,NS,E}=tr,set=bdSet(G),moves=[],rack0=G.racks[G.t].map(t=>({l:t.l,id:t.id}));
+ const empty=G.b.every(x=>!x),child=(n,c)=>{for(let k=FC[n];k>=0;k=NS[k])if(L[k]===c)return k;return -1};
+ for(const T of [0,1]){
+  const idx=(r,c)=>T?c*15+r:r*15+c,at=(r,c)=>G.b[idx(r,c)];
+  const cc=new Int32Array(225).fill(-1);
+  for(let r=0;r<15;r++)for(let c=0;c<15;c++){if(at(r,c))continue;let up=r,dn=r;while(up>0&&at(up-1,c))up--;while(dn<14&&at(dn+1,c))dn++;
+   if(up===r&&dn===r)continue;let pre='',suf='';for(let k=up;k<r;k++)pre+=at(k,c).l.toLowerCase();for(let k=r+1;k<=dn;k++)suf+=at(k,c).l.toLowerCase();
+   let m=0;for(let x=0;x<26;x++){const ch=String.fromCharCode(97+x);if(!set||set.has(pre+ch+suf))m|=1<<x}cc[r*15+c]=m}
+  const isAnch=(r,c)=>{if(at(r,c))return false;if(empty)return r===7&&c===7;return(r>0&&at(r-1,c))||(r<14&&at(r+1,c))||(c>0&&at(r,c-1))||(c<14&&at(r,c+1))};
+  const rec=(pl)=>{const P=pl.map(p=>({i:idx(p.r,p.c),rid:p.id,t:{l:p.l.toUpperCase(),b:p.b}}));moves.push(P)};
+  const used=new Set();
+  const ext=(node,r,c,pl,ac)=>{
+   if(c>14||!at(r,c)){if(pl.length&&E[node]&&c!==ac)rec(pl.slice());
+    if(c>14)return;
+    const tried=new Set();
+    for(let k=0;k<rack0.length;k++){const t=rack0[k];if(used.has(t.id))continue;
+     if(t.l==='?'){for(let x=0;x<26;x++){if(!(cc[r*15+c]<0||(cc[r*15+c]>>x&1)))continue;const nx=child(node,x+1);if(nx<0)continue;used.add(t.id);pl.push({r,c,l:String.fromCharCode(97+x),b:true,id:t.id});ext(nx,r,c+1,pl,ac);pl.pop();used.delete(t.id)}}
+     else{const x=t.l.charCodeAt(0)-65;if(tried.has(x))continue;tried.add(x);if(!(cc[r*15+c]<0||(cc[r*15+c]>>x&1)))continue;const nx=child(node,x+1);if(nx<0)continue;
+      used.add(t.id);pl.push({r,c,l:t.l.toLowerCase(),b:false,id:t.id});ext(nx,r,c+1,pl,ac);pl.pop();used.delete(t.id);
+      /* same letter tiles are equal: only the first one is tried */}}
+   }else{const nx=child(node,at(r,c).l.charCodeAt(0)-64);if(nx>=0)ext(nx,r,c+1,pl,ac)}};
+  const left=(node,r,c,pl,lim)=>{pl.forEach((p,q)=>{p.c=c-pl.length+q});ext(node,r,c,pl,c);if(lim<=0)return;
+   for(let k=FC[node];k>=0;k=NS[k]){const x=L[k]-1;let did=false;
+    for(const t of rack0){if(used.has(t.id))continue;const isb=t.l==='?';
+     if(!isb){if(t.l.charCodeAt(0)-65!==x||did)continue;did=true}
+     used.add(t.id);pl.push({r,c:0,l:String.fromCharCode(97+x),b:isb,id:t.id});left(k,r,c,pl,lim-1);pl.pop();used.delete(t.id)}}};
+  for(let r=0;r<15;r++)for(let c=0;c<15;c++){if(!isAnch(r,c))continue;
+   if(c>0&&at(r,c-1)){let s=c;while(s>0&&at(r,s-1))s--;let node=0;for(let k=s;k<c;k++){node=child(node,at(r,k).l.charCodeAt(0)-64);if(node<0)break}if(node<0)continue;ext(node,r,c,[],c)}
+   else{let lim=0,k=c-1;while(k>=0&&!isAnch(r,k)&&!at(r,k)){lim++;k--}lim=Math.min(lim,rack0.length-1);left(0,r,c,[],lim)}}
+ }
+ return moves}
+function bdCpu(){const G=BDG;if(!G||G.over||G.mode!=='cpu'||G.t!==1){BDBUSY=false;return}
+ const cand=bdGen(G),scored=[],seen=new Set();
+ for(const P of cand){const k=P.map(p=>p.i+p.t.l+(p.t.b?'*':'')).sort().join();if(seen.has(k))continue;seen.add(k);const r=bdCheck(G,P);if(r.ok)scored.push({P,r})}
+ scored.sort((a,b)=>b.r.total-a.r.total);BDBUSY=false;
+ if(!scored.length){if(G.bag.length>=4){const n=Math.min(G.racks[1].length,Math.max(1,Math.min(4,G.bag.length)));const out=G.racks[1].slice(0,n);G.racks[1]=G.racks[1].slice(n);
+   const nw=[];for(let i=0;i<n;i++)nw.push({id:++G.nid,l:G.bag.pop()});G.racks[1].push(...nw);out.forEach(t=>G.bag.push(t.l));G.bag=shuffle(G.bag);bdEnd('The computer swapped '+n+' letters.',0);return}
+  bdEnd('The computer passed.',1);return}
+ let pick;const n=scored.length;
+ if(G.level==='hard')pick=scored[0];
+ else if(G.level==='medium')pick=scored[Math.floor(Math.random()*Math.max(1,Math.ceil(n*.25)))];
+ else{const lo=scored.slice(Math.floor(n*.5));pick=lo[Math.floor(Math.random()*lo.length)]||scored[n-1]}
+ const P=pick.P;G.last=P.map(p=>p.i);P.forEach(p=>{G.b[p.i]=p.t});G.racks[1]=G.racks[1].filter(t=>!P.some(p=>p.rid===t.id));G.sc[1]+=pick.r.total;bdFill(G,1);
+ sfx('pop');bdEnd('Computer: '+pick.r.words.map(o=>o.w+' ('+o.sc+')').join(', ')+' = '+pick.r.total+' points.',0,false)}
 
 /* ---------- Deep Sea ---------- */
 const SEAZ=[[0,'Sunlight zone'],[200,'Twilight zone'],[1000,'Midnight zone'],[4000,'Abyssal zone'],[6000,'Hadal zone']];
