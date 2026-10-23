@@ -4495,7 +4495,7 @@ function glSetupG(){
  $('#glg').onclick=e=>{const b=e.target.closest('[data-g]');if(!b)return;S.ggame=b.dataset.g;save();document.querySelectorAll('#glg .lpb').forEach(x=>x.classList.toggle('on',x===b));upd()};
  $('#glgo').onclick=()=>{const g=WG.find(x=>x.id===S.ggame);if(!g)return;GL={mode:g.k,g,ok:0,bad:0,used:[],rot:null};glGameRender()};
  upd()}
-const GLMODES=[['ts','Tense Switch'],['dice','Grammar Dice'],['exp','Sentence Expander'],['craft','Word Craft'],['board','Scrambl'],['deep','Deep Sea'],['absurd','Absurd Choices'],['spend','Spend a Fortune'],['town','Sunny Street'],['town3','Sunny Street 3D'],['city','Sunny City'],['desk','Grammar Desk']];
+const GLMODES=[['ts','Tense Switch'],['dice','Grammar Dice'],['exp','Sentence Expander'],['craft','Word Craft'],['board','Scrambl'],['deep','Deep Sea'],['absurd','Absurd Choices'],['spend','Spend a Fortune'],['town','Sunny Street'],['town3','Sunny Street 3D'],['city','Sunny City'],['desk','Grammar Desk'],['gacha','Gachapon']];
 
 /* ===== Grammar Lab: Tense Switch + Grammar Dice ===== */
 let GL=null;
@@ -4505,8 +4505,8 @@ function glChosen(){const all=glTopics(),sel=(S.gtop||[]).filter(id=>all.some(t=
 let SEAH=null;
 function gmBar(){return `<div class="lpc" id="glm">${GLMODES.map(m=>`<button class="lpb${S.gmode===m[0]?' on':''}" data-m="${m[0]}">${m[1]}</button>`).join('')}</div>`}
 function gmBind(){const g=$('#glm');if(g)g.onclick=e=>{const b=e.target.closest('[data-m]');if(!b)return;S.gmode=b.dataset.m;save();seaOff();glSetup()}}
-function seaOff(){try{TOWNS.t2.stop();TOWNS.t3.stop();TOWNS.t4.stop();TOWNS.sp3.stop()}catch(e){}try{deskOff()}catch(e){}document.body.classList.remove('sea');if(SEAH){window.removeEventListener('scroll',SEAH);SEAH=null}}
-function gmNew(){const m=S.gmode;seaOff();if(m==='craft')wcSetup();else if(m==='board')bdSetup();else if(m==='deep')seaSetup();else if(m==='absurd')absSetup();else if(m==='spend')foSetup();else if(m==='town')townSetup();else if(m==='town3')town3Setup();else if(m==='city')cityTownSetup();else if(m==='desk')deskSetup()}
+function seaOff(){try{TOWNS.t2.stop();TOWNS.t3.stop();TOWNS.t4.stop();TOWNS.sp3.stop()}catch(e){}try{deskOff()}catch(e){}try{gachaOff()}catch(e){}document.body.classList.remove('sea');if(SEAH){window.removeEventListener('scroll',SEAH);SEAH=null}}
+function gmNew(){const m=S.gmode;seaOff();if(m==='craft')wcSetup();else if(m==='board')bdSetup();else if(m==='deep')seaSetup();else if(m==='absurd')absSetup();else if(m==='spend')foSetup();else if(m==='town')townSetup();else if(m==='town3')town3Setup();else if(m==='city')cityTownSetup();else if(m==='desk')deskSetup();else if(m==='gacha')gachaSetup()}
 
 /* ---------- Word Craft ---------- */
 const WCT={v:'#E8837A',p:'#A2E0D5',a:'#F9B1B2',n:'#B2D1FD',j:'#B4BEFB'};
@@ -9294,6 +9294,88 @@ tag:{wt:'Key words',r:[['Rule','positive sentence → negative tag','You like te
  w:[['rising ↗','a real question','You’re coming, aren’t you? ↗'],['falling ↘','checking, you are sure','It’s cold, isn’t it? ↘'],['aren’t I?','I am','I’m late, <u>aren’t I</u>?'],['shall we?','Let’s','Let’s start, <u>shall we</u>?'],['will you?','after an order','Close the door, <u>will you</u>?']]},
 wsh:{wt:'Key words',r:[['Form','I wish + <b>Past Simple</b>','I wish I <b>had</b> a car.'],['Be','I wish I / he / she <b>were</b> …','I wish I <b>were</b> taller.'],['Use','A present situation you don’t like.','I wish I <b>could</b> fly.']],
  w:[['I wish','','<u>I wish</u> I lived by the sea.'],['If only','stronger','<u>If only</u> I had more time!'],['I wish I were','','<u>I wish I were</u> taller.'],['I wish I could','','<u>I wish I could</u> swim.'],['I wish you would','annoying habits','<u>I wish you would</u> stop.']]}};
+const GACHA_PLACE=0;
+const GACHA={
+pfi:{vt:'VERB',ct:'TYPE · TIME WORD',v:['see','eat','lose','visit','finish','buy','break','meet','try','write','win','forget'],c:['statement · just','statement · already','negative · yet','question · ever','negative · never','statement · for two years','statement · since 2020','question · How long…?','statement · this week','question · recently','statement · so far','negative · still']},
+ppc:{vt:'VERB',ct:'TYPE · TIME WORD',v:['wait','work','run','study','cook','live','learn','play','cry','build','sleep','paint'],c:['statement · for two hours','statement · since morning','question · How long…?','statement · all day','statement · lately','statement · recently','negative · since Monday','question · all night?','statement · for ages','context · you are tired / wet / dirty because…','statement · all week','question · What have you been…?']},
+pperf:{vt:'VERB',ct:'TYPE · LINKER / CONTEXT',v:['leave','finish','eat','forget','lose','arrive','call','break','lock','miss','win','spend'],c:['statement · before + past action','statement · after + past action','statement · because I had…','statement · I realized that…','statement · I found out that…','negative · by the time she came','negative · never… before','question · Had you…?','statement · already','statement · when I got there','context · a surprise at the party','context · a bad day at school']},
+cd1:{vt:'VERB',ct:'TYPE · KEY WORD / CONTEXT',v:['rain','study','miss','win','save','call','hurry','eat','try','lose','help','sleep'],c:['statement · if','statement · unless','statement · when','negative · won’t','question · What will happen if…?','question · Will you…if…?','context · a warning','context · a promise','context · weekend plans','context · exams','context · the weather','context · a holiday']},
+cd2:{vt:'VERB',ct:'TYPE · CONTEXT',v:['win','live','fly','have','be','buy','meet','know','travel','find','speak','own'],c:['statement · If I had…','statement · If I were you, I’d…','negative · wouldn’t','question · What would you do if…?','question · Would you…if…?','context · a million dollars','context · a superpower','context · a magic lamp','context · being invisible','context · an island','context · advice for a friend','context · a time machine']},
+pass:{vt:'VERB',ct:'TYPE · TIME / CONTEXT',v:['build','write','make','steal','clean','invent','paint','cook','send','find','speak','sell'],c:['statement · present passive','statement · past passive','negative · isn’t / wasn’t','question · Is / Was…?','question · Where / When…?','statement · every day','statement · yesterday','statement · by + a famous person','context · a museum','context · a restaurant','context · a factory','context · a crime story']},
+rep:{vt:'VERB',ct:'TYPE · CONTEXT',v:['say','tell','explain','mention','complain','promise','admit','add','claim','announce','warn','agree'],c:['statement · present → past','statement · will → would','statement · now → then','statement · today → that day','statement · tomorrow → the next day','negative · don’t → didn’t','context · a rumour at school','context · a phone call','context · a boss at work','context · a doctor','context · a friend’s secret','context · a news report']},
+rcl:{vt:'WHO / WHAT',ct:'TYPE · CONTEXT',v:['a teacher','a neighbour','a doctor','a dog','a book','a phone','a city','a café','a friend','a thief','a bag','a place'],c:['statement · describe it','statement · a funny fact','negative · what it isn’t','question · Do you know…?','context · a job','context · a hobby','context · a holiday','context · a secret','context · a favourite','context · a problem','context · a surprise','context · a mystery']},
+mdd:{vt:'VERB',ct:'TYPE · CLUE / CONTEXT',v:['be','have','sleep','work','cry','know','live','hide','study','cook','win','steal'],c:['statement · must (sure)','negative · can’t (sure not)','statement · might (maybe)','statement · could (possible)','question · Who could it be?','question · Can it be…?','context · a noise at night','context · a big smile','context · a closed shop','context · a detective clue','context · a friend is late','context · a strange message']},
+gpr:{vt:'PHRASE',ct:'TYPE · CONTEXT',v:['good at','interested in','afraid of','tired of','thank you for','apologise for','look forward to','instead of','worried about','dream of','succeed in','insist on'],c:['statement · about you','statement · about a friend','negative · not','question · Are you…?','question · What are you…?','context · a hobby','context · a holiday','context · a bad habit','context · school','context · a job','context · a pet','context · the future']},
+gvb:{vt:'VERB',ct:'TYPE · CONTEXT',v:['enjoy','avoid','finish','mind','suggest','keep','practise','imagine','consider','miss','give up','can’t stand'],c:['statement · about you','statement · about a friend','negative · don’t / doesn’t','question · Do you…?','question · Would you mind…?','context · a weekend','context · a diet','context · a dog','context · a job','context · a holiday','context · a bad habit','context · school']},
+ivb:{vt:'VERB',ct:'TYPE · CONTEXT',v:['want','decide','hope','plan','promise','refuse','manage','afford','learn','agree','need','would like'],c:['statement · about you','statement · about a pet','negative · don’t / can’t','question · Do you…?','question · What do you want…?','context · a holiday','context · a new job','context · money','context · a birthday','context · a promise','context · the future','context · a big problem']},
+gsb:{vt:'ACTION',ct:'PATTERN',v:['swim','get up early','learn English','cook','wait','travel alone','read','play games','sing','run','sleep late','drive'],c:['V-ing as subject: … is…','It’s + adjective + to V','It takes + time + to V','It’s no use / no good + V-ing','It’s worth + V-ing','negative · …isn’t…','question · Is…?','context · fun / boring','context · easy / hard','context · healthy / unhealthy','context · expensive / cheap','context · dangerous / safe']},
+iad:{vt:'ADJECTIVE / WORD',ct:'PATTERN',v:['happy','ready','glad','sorry','surprised','afraid','hot','small','tall','old','young','easy'],c:['adjective + to V','purpose: to V','purpose: in order to V','too + adjective + to V','adjective + enough + to V','negative · not enough','question · Are you…?','context · a dog and a bone','context · a pizza','context · a roller-coaster','context · a bus','context · a surprise']},
+gdf:{vt:'VERB',ct:'FORM · CONTEXT',v:['stop','remember','forget','try','regret','go on'],c:['+ V-ing (the action itself)','+ to V (purpose / next action)','past memory','a task you must do','a failed attempt','a bad surprise','negative · didn’t','question · Do you remember…?','context · the tap','context · a jar','context · jogging','context · grandma’s story']},
+gsm:{vt:'VERB',ct:'FORM · CONTEXT',v:['like','love','hate','prefer','start','begin','continue','can’t bear'],c:['+ V-ing','+ to V','would like + to V','statement · about you','negative · don’t','question · Do you…?','context · pets','context · weekend','context · food','context · music','context · weather','context · school']},
+tag:{vt:'VERB',ct:'TYPE · CONTEXT',v:['be','like','have','can','live','go','play','finish','know','forget','eat','work'],c:['positive statement → negative tag','negative statement → positive tag','statement · I think so…','statement · checking a fact','context · hot / cold weather','context · a party','context · a messy room','context · a guilty pet','context · a late friend','context · Let’s…, shall we?','context · I am…, aren’t I?','context · small talk']},
+wsh:{vt:'VERB',ct:'TYPE · CONTEXT',v:['have','be','live','can','know','speak','own','play'],c:['statement · I wish I…','statement · I wish I were…','negative · I wish I didn’t…','statement · She / He wishes…','question · Do you wish…?','context · homework','context · the weather','context · a bigger house','context · a pet','context · a superpower','context · being taller','context · a holiday']}
+};
+let GCCSS=false,GCT=[];
+function gachaOff(){GCT.forEach(clearTimeout);GCT=[]}
+function gachaSetup(){
+ gachaOff();
+ const ls=GT.filter(t=>t.lv.includes('b1')&&GACHA[t.id]);
+ let cur=S.gctopic==='all'||ls.some(t=>t.id===S.gctopic)?S.gctopic:'all';
+ if(!GCCSS){GCCSS=true;const st=document.createElement('style');st.textContent=`
+.gcw{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;align-items:flex-start;margin-top:12px}
+.gcm{position:relative;width:min(340px,86vw);aspect-ratio:660/850;flex:0 0 auto;user-select:none;-webkit-user-select:none}
+.gcm>img{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}.gcm{border-radius:18px;overflow:visible}.gcm>img{border-radius:18px}
+.gck{position:absolute;left:${(312-54)/6.6}%;top:${(557-54)/8.5}%;width:${108/6.6}%;aspect-ratio:1;border-radius:50%;background-image:url(ch/gacha/machine.png);background-size:${660/108*100}% auto;background-position:${(312-54)/(660-108)*100}% ${(557-54)/(850-108)*100}%;cursor:pointer;z-index:3}
+.gck.go{animation:gckturn .9s cubic-bezier(.5,0,.3,1)}@keyframes gckturn{to{transform:rotate(360deg)}}
+.gcm.shake{animation:gcsh .5s}@keyframes gcsh{20%{transform:translateX(-4px) rotate(-.6deg)}40%{transform:translateX(4px) rotate(.6deg)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+.gcc{position:absolute;width:${64/6.6}%;aspect-ratio:1;border-radius:50%;border:3px solid #232323;z-index:4;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.35);transition:top .6s cubic-bezier(.5,0,1,.6),transform .25s}
+.gcc:after{content:'';position:absolute;left:10%;right:10%;top:46%;height:3px;background:#232323;opacity:.7}
+.gcc.A{background:linear-gradient(#fff 48%,#f4a6b8 48%)}.gcc.B{background:linear-gradient(#fff 48%,#8ec6f0 48%)}
+.gcc.bn{animation:gccbn .5s}@keyframes gccbn{30%{transform:translateY(-14px)}60%{transform:translateY(0)}80%{transform:translateY(-5px)}}
+.gcc.op{transform:scale(1.6);opacity:0;transition:transform .35s,opacity .35s;pointer-events:none}
+.gcc.wg{animation:gccw 1s infinite}@keyframes gccw{50%{transform:rotate(14deg) scale(1.08)}}
+.gcr{flex:1 1 280px;max-width:430px;min-width:260px}
+.gct{font:700 22px 'Drawably Pen',Inter,sans-serif;margin:0 0 10px;min-height:28px}
+.gcs{position:relative;border:3px solid #232323;border-radius:14px;padding:10px 14px 12px;margin-bottom:12px;box-shadow:0 4px 0 #232323;min-height:74px;transition:transform .3s}
+.gcs.A{background:#fbd5df}.gcs.B{background:#cfe6f8}
+.gcs small{display:block;font:700 12px monospace;letter-spacing:.06em;opacity:.65}
+.gcs .gv{font:700 28px/1.15 'Drawably Pen',Inter,sans-serif;margin-top:2px}
+.gcs.em .gv{opacity:.25}.gcs.pop{animation:gcpop .5s cubic-bezier(.3,1.6,.5,1)}@keyframes gcpop{0%{transform:scale(.6) rotate(-4deg)}100%{transform:none}}
+.gcs .tp{position:absolute;right:10px;top:8px;font:700 11px monospace;background:#232323;color:#fff;border-radius:6px;padding:2px 6px}
+.gcrule{border:3px dashed #232323;border-radius:12px;padding:8px 12px;background:#fffaf0;font:600 14px/1.4 monospace}
+.gcrule b{display:block;margin-bottom:2px}`;document.head.appendChild(st)}
+ const chips=[['all','All B1 topics']].concat(ls.map(t=>[t.id,t.n]));
+ setView(`<section class="panel k-card">${gmBar()}<h2>Gachapon</h2><p class="muted small">Turn the handle. Two capsules drop: a WORD and a TYPE / TIME / CONTEXT. Open both and make one sentence. Say it out loud!</p><div class="lpc" id="gct">${chips.map(c=>`<button class="lpb${c[0]===cur?' on':''}" data-t="${c[0]}">${esc(c[1])}</button>`).join('')}</div>
+ <div class="gcw"><div class="gcm" id="gcm"><img src="ch/gacha/machine.png" alt=""><div class="gck" id="gck" title="Turn the handle"></div></div>
+ <div class="gcr"><div class="gct" id="gctx">Turn the handle!</div>
+ <div class="gcs A em" id="gs1"><small id="gl1">WORD</small><div class="gv" id="gv1">?</div></div>
+ <div class="gcs B em" id="gs2"><small id="gl2">TYPE · CONTEXT</small><div class="gv" id="gv2">?</div></div>
+ <div class="gcrule" id="gcrule" style="display:none"></div></div></div></section>`);
+ gmBind();
+ $('#gct').onclick=e=>{const b=e.target.closest('[data-t]');if(!b)return;S.gctopic=b.dataset.t;save();gachaSetup()};
+ const m=$('#gcm'),knob=$('#gck');let busy=0,cur2=null,got=[null,null],caps=[];
+ const reset=()=>{caps.forEach(c=>c.remove());caps=[];got=[null,null];['1','2'].forEach(i=>{const s=$('#gs'+i);s.classList.add('em');s.classList.remove('pop');$('#gv'+i).textContent='?';const t=s.querySelector('.tp');if(t)t.remove()});$('#gcrule').style.display='none'};
+ const open=i=>{const c=caps[i];if(!c||c.classList.contains('op'))return;sfx('ding');c.classList.remove('wg');c.classList.add('op');
+  const s=$('#gs'+(i+1));s.classList.remove('em');s.classList.remove('pop');void s.offsetWidth;s.classList.add('pop');$('#gv'+(i+1)).textContent=got[i];
+  if(i===0){$('#gl1').textContent=cur2.vt}else{$('#gl2').textContent=cur2.ct}
+  GCT.push(setTimeout(()=>c.remove(),400));
+  if(caps.every(x=>x.classList.contains('op'))){const t=GT.find(x=>x.id===cur2.id);$('#gctx').textContent='Make a sentence and say it!';
+   const r=$('#gcrule');r.style.display='block';r.innerHTML=`<b>${esc(t.n)}</b>${esc(t.f)}<br>e.g. ${esc(t.ex)}`}};
+ const turn=()=>{if(busy)return;busy=1;gachaOff();reset();
+  const id=cur==='all'?shuffle(ls.slice())[0].id:cur;cur2=Object.assign({id:id},GACHA[id]);
+  got=[cur2.v[Math.floor(Math.random()*cur2.v.length)],cur2.c[Math.floor(Math.random()*cur2.c.length)]];
+  $('#gctx').textContent=cur==='all'?GT.find(x=>x.id===id).n:'…';
+  sfx('click');knob.classList.remove('go');void knob.offsetWidth;knob.classList.add('go');m.classList.remove('shake');void m.offsetWidth;m.classList.add('shake');
+  [0,1].forEach(i=>GCT.push(setTimeout(()=>{
+   const c=document.createElement('div');c.className='gcc '+(i?'B':'A');c.style.left=((i?491:428)-32)/6.6+'%';c.style.top=(655/8.5)+'%';
+   c.onclick=()=>open(i);m.appendChild(c);caps[i]=c;sfx('door');
+   requestAnimationFrame(()=>requestAnimationFrame(()=>{c.style.top=((i?712:716)-32)/8.5+'%'}));
+   GCT.push(setTimeout(()=>{c.classList.add('bn');sfx('pop')},620));
+   GCT.push(setTimeout(()=>{c.classList.add('wg');if(i===1){busy=0;$('#gctx').textContent='Click the capsules to open them!'}},1150));
+  },700+i*900)))};
+ knob.onclick=turn;
+}
+
 let DESKT=[],DESKON=false,DESKRO=null,DESKCSS=false;
 function deskOff(){DESKT.forEach(clearTimeout);DESKT=[];if(DESKRO){DESKRO.disconnect();DESKRO=null}}
 function deskSetup(){
@@ -9511,9 +9593,9 @@ function pumpOpen(){sfx('pop');
  m.addEventListener('pointerdown',e=>{if(e.target===m)close()})}
 
 function glSetup(){
- seaOff();if(!['ts','dice','exp','craft','board','deep','absurd','spend','town','town3','city','desk'].includes(S.gmode))S.gmode='ts';
+ seaOff();if(!['ts','dice','exp','craft','board','deep','absurd','spend','town','town3','city','desk','gacha'].includes(S.gmode))S.gmode='ts';
  if(S.gmode==='exp'){exSetup();return}
- if(['craft','board','deep','absurd','spend','town','town3','city','desk'].includes(S.gmode)){gmNew();return}
+ if(['craft','board','deep','absurd','spend','town','town3','city','desk','gacha'].includes(S.gmode)){gmNew();return}
  if(!S.gmode)S.gmode='ts';if(!S.glevel)S.glevel='b1';const c=exCourse();S.exun=(S.exun||[]).filter(i=>c.units[i]);
  S.gtop=(S.gtop||[]).filter(id=>glTopics().some(t=>t.id===id));
  const dice=S.gmode==='dice';
