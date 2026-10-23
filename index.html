@@ -1157,6 +1157,52 @@ button[data-btn],.lpb,.lvb{font:500 15px/1.2 var(--pen-font)!important;padding:1
 .bdt.last{outline:3px solid #F7763F;outline-offset:-3px}
 .bdp{gap:10px}.bdp b{overflow:hidden;text-overflow:ellipsis;min-width:0}.bdp span{flex:none}
 .scobj>.sgif{position:absolute;object-fit:cover;pointer-events:none;z-index:1}
+/* evidence room */
+.evpanel .evw{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:14px;align-items:start;margin-top:8px}
+.evmode{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.evscene{position:relative;border-radius:10px;overflow:hidden;line-height:0;background:#222}
+.evscene .evbg{width:100%;display:block;user-select:none}
+.evh{position:absolute;background:transparent;border:0;padding:0;margin:0;cursor:pointer;z-index:2;border-radius:8px;-webkit-tap-highlight-color:transparent}
+.evh.pulse{animation:evp 1s ease-in-out 3;box-shadow:0 0 0 3px #FBD415,0 0 18px 8px rgba(251,212,21,.55)}
+@keyframes evp{0%,100%{opacity:.35}50%{opacity:1}}
+.evtoast{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);background:#fbf3dc;color:#2b2112;padding:9px 14px;border-radius:8px;font-size:14px;line-height:1.35;z-index:6;max-width:86%;text-align:center}
+.evintro{position:absolute;inset:0;background:rgba(15,12,6,.82);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fbf3dc;padding:20px;z-index:8;line-height:1.5}
+.evintro h3{margin:0 0 10px;font-size:22px}.evintro p{margin:4px 0}
+.evnb{background:#fbf3dc;border-radius:10px;padding:12px 14px;font-size:14px;line-height:1.45;color:#2b2112}
+.evol{margin:8px 0 0;padding-left:20px}.evol li{margin:0 0 8px}.evol li.evd{color:#8a7d66;list-style:none;margin-left:-4px}
+.evmod{position:fixed;inset:0;background:rgba(20,16,8,.8);display:flex;align-items:flex-start;justify-content:center;padding:14px;z-index:300;overflow:auto}
+.evbox{width:100%;max-width:680px;margin:auto;display:flex;flex-direction:column;gap:10px}
+.evcard{position:relative;background:url(ch/ev_card.webp) center/100% 100% no-repeat;aspect-ratio:792/609;box-sizing:border-box;padding:11% 12% 9% 13%;color:#3b2a14;display:flex;flex-direction:column;justify-content:center;gap:10px;filter:drop-shadow(0 8px 14px rgba(0,0,0,.5))}
+.evn{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.evsee{font-size:19px;line-height:1.4;font-weight:700}
+.evthink{font-size:17px;line-height:1.4;font-style:italic}
+.evtag{align-self:flex-start;font-size:12px;font-weight:700;padding:3px 10px;border-radius:12px;color:#222}
+.evans{background:#fbf3dc;border-radius:12px;padding:14px 16px;color:#2b2112}
+.evq{font-weight:700;margin-bottom:8px}
+.evcert{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.evc{border:0;border-radius:10px;padding:10px 8px;cursor:pointer;font:inherit;color:#222;display:flex;flex-direction:column;gap:2px;align-items:center;text-align:center}
+.evc span{font-size:12px;opacity:.75}
+.evc.shake,.evt.shake{animation:shk .4s}
+.evline{min-height:50px;border-radius:10px;background:#fff;padding:8px;display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;align-items:center}
+.evpool{display:flex;flex-wrap:wrap;gap:6px}
+.evt{border:0;border-radius:8px;padding:8px 12px;background:#B4BEFB;font:inherit;cursor:pointer;color:#222}
+.evt.in{background:#A2E0D5}
+.evin{width:100%;box-sizing:border-box;padding:10px 12px;font:inherit;border:2px solid #d9d0c4;border-radius:8px;background:#fff}
+.evbt{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.evfb{margin-top:8px;font-size:14px;line-height:1.4;min-height:18px}.evfb.bad{color:#b0301f}
+.evsent{font-size:19px;font-weight:700;margin:6px 0 10px}
+.evrep{background:#fbf3dc;border-radius:12px;padding:14px 16px;margin-top:14px;color:#2b2112}.evrep h3{margin:0 0 8px}
+.evrq{margin:10px 0}.evro{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.evopt{min-height:54px}
+.evend{margin-top:14px;padding:14px;border-radius:10px;background:#A2CD1E}.evend h3{margin:0 0 6px}
+.evstamp{position:absolute;left:50%;top:50%;width:58%;transform:translate(-50%,-50%) rotate(-8deg);animation:evst .5s ease-out;z-index:9;pointer-events:none}
+@keyframes evst{from{transform:translate(-50%,-50%) rotate(-8deg) scale(3);opacity:0}to{transform:translate(-50%,-50%) rotate(-8deg) scale(1);opacity:1}}
+@media(max-width:800px){.evpanel .evw{grid-template-columns:1fr}.evcert,.evro{grid-template-columns:1fr}.evsee{font-size:16px}.evthink{font-size:14px}.evcard{padding:10% 11% 8% 12%}}
+.evintro h3{color:#fbf3dc;text-transform:none}
+.evtxt{background:#e6d3a6;border-radius:6px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;box-shadow:0 0 0 6px #e6d3a6}
+.evcard{justify-content:center}
+.evrep h3{text-transform:none}
+
 </style>
 </head>
 <body>
@@ -5379,6 +5425,8 @@ const SPT=[
  {id:'ust',n:'Used to: things from the past',d:'A picture of an object. Finish the sentence with used to / didn’t use to, then answer the question (Did you use to …?).'},
  {id:'pfm',n:'Present Perfect: meme reactions',d:'A meme appears. Finish the sentence with the Present Perfect (has just, already, yet, ever, never) and answer the question.'},
  {id:'rcl',n:'Relative Clauses: define it',d:'A picture appears with a starter (for example “Netflix is a streaming service …”). Finish the sentence with a defining relative clause: who, which, that, where, whose.'},
+ {id:'evb',n:'Modals of deduction: Evidence Room (Where is the detective?)',d:'Find the objects you can tap in the detective’s office. Each clue card leads to the next one. Say how sure you are (must / might / can’t) and build the sentence.'},
+ {id:'evc',n:'Past modals of deduction: Evidence Room (The missing file)',d:'A file has disappeared from the office. Find the clues one by one and make past deductions (must have / might have / can’t have) to solve the case.'},
  {id:'gwt',n:'Guess what? (describe it, don’t name it)',d:'One player sees a picture and describes it with who / which / that / where / whose, without naming it. The other player guesses. In a room the guesser does not see the picture.'},
  {id:'thr',n:'There is / There are: describe the room',d:'A room appears with a question. Answer using there is / there are (and some, any, how many, prepositions of place).'}];
 const SPM={
@@ -5620,11 +5668,12 @@ const SPPAST=['at 7 pm yesterday','at 9 o’clock this morning','at midnight','t
 const SPPRES=['What is she doing right now?','What is she doing at the moment?','Look! What is she doing?','What is she doing today?'];
 
 /* ===== Speaking: levels -> topics -> cards ===== */
-const SPLV=[['kids','Kids',['be','hab','rtn','pc','thr']],['a1','A1',['gmj','intv','who','vpp','nof','fbk','sct','room','rmp','scp','bag','hwh','sjb','pfa','clk','tim','whn','fxt','bmd','pkb','how','opp','frg','vli','tbk','vqd','mgt','gws']],['a2','A2',['mga','pas','vps','pqg','pqs','cmp','mix','shd','ust']],['b1','B1',['ppc','ppf','ifw','pfm','rcl','gpr','gvb','ivb','gsb','iad','gdf','gsm','wgv','wiv','wbo','wpa','wpv','wpo','gwt']],['b2','B2',['gdf','oin']],['c1','C1',['gpf']]];
-const SPSHORT={fxt:'Time: Fix the time',opp:'Imperatives: Opposite orders',vpp:'Possessives: Vending machine',mgt:'Word order: Fridge magnets',mga:'Word order: Fridge magnets',pqg:'Past Simple: Did you…?',pqs:'Past Simple: Wh- questions',vps:'Past Simple: Vending machine',vqd:'Question words: Vending machine',vli:'Like + -ing: Vending machine',slt:'Like + -ing: Slot machine',tbk:'Like + -ing / to: Two baskets',pkb:'Imperatives: Pack the bag',how:'Imperatives: How to…?',gws:'Guess the word',rmp:'Prepositions of place: Furnish a room',frg:'Countable / uncountable: Fridge',clk:'Time: Clock hands',tim:'Time: What time is it?',whn:'Time: When…? at / on / in',bmd:'Time: Build my day',sjb:'Present Simple: Strange jobs',pfa:'Present Simple: Fact file',bag:'Have got: My bag',hwh:'Have got: Who has what?',sct:'There is / are: scenes',scp:'Present Continuous: scenes',room:'Furnish a room',nof:'Near or Far',fbk:'Four baskets',who:'Whose is it?',gmj:'Guess my job',intv:'Interview',pc:'Present Continuous',pas:'Past Continuous',cmp:'Present vs Past Cont.',mix:'Mix of tenses',ppc:'Present Perfect Cont.',ppf:'Past Perfect',shd:'Should / shouldn’t',be:'To be',hab:'Present Simple',rtn:'Daily routine',ifw:'If I were…',ust:'Used to',pfm:'Present Perfect memes',rcl:'Relative clauses',gpr:'Gerund after prepositions',wgv:'All verbs + -ing',wiv:'All verbs + to V',wbo:'Both forms / meaning',wpa:'Adjective + prep + -ing',wpv:'Verb + prep + -ing',wpo:'Other preps + -ing',gvb:'Gerund after verbs',ivb:'Infinitive after verbs',gsb:'Gerund / infinitive as subject',iad:'Infinitive: purpose, too / enough',gdf:'Stop / remember / try',gsm:'Like / start / prefer',oin:'Make / let / tell sb to',gpf:'Perfect infinitive & gerund',gwt:'Guess what?',thr:'There is / are'};
+const SPLV=[['kids','Kids',['be','hab','rtn','pc','thr']],['a1','A1',['gmj','intv','who','vpp','nof','fbk','sct','room','rmp','scp','bag','hwh','sjb','pfa','clk','tim','whn','fxt','bmd','pkb','how','opp','frg','vli','tbk','vqd','mgt','gws']],['a2','A2',['mga','pas','vps','pqg','pqs','cmp','mix','shd','ust']],['b1','B1',['ppc','ppf','ifw','pfm','rcl','gpr','gvb','ivb','gsb','iad','gdf','gsm','wgv','wiv','wbo','wpa','wpv','wpo','gwt','evb']],['b2','B2',['gdf','oin','evc']],['c1','C1',['gpf']]];
+const SPSHORT={fxt:'Time: Fix the time',opp:'Imperatives: Opposite orders',vpp:'Possessives: Vending machine',mgt:'Word order: Fridge magnets',mga:'Word order: Fridge magnets',pqg:'Past Simple: Did you…?',pqs:'Past Simple: Wh- questions',vps:'Past Simple: Vending machine',vqd:'Question words: Vending machine',vli:'Like + -ing: Vending machine',slt:'Like + -ing: Slot machine',tbk:'Like + -ing / to: Two baskets',pkb:'Imperatives: Pack the bag',how:'Imperatives: How to…?',gws:'Guess the word',rmp:'Prepositions of place: Furnish a room',frg:'Countable / uncountable: Fridge',clk:'Time: Clock hands',tim:'Time: What time is it?',whn:'Time: When…? at / on / in',bmd:'Time: Build my day',sjb:'Present Simple: Strange jobs',pfa:'Present Simple: Fact file',bag:'Have got: My bag',hwh:'Have got: Who has what?',sct:'There is / are: scenes',scp:'Present Continuous: scenes',room:'Furnish a room',nof:'Near or Far',fbk:'Four baskets',who:'Whose is it?',gmj:'Guess my job',intv:'Interview',pc:'Present Continuous',pas:'Past Continuous',cmp:'Present vs Past Cont.',mix:'Mix of tenses',ppc:'Present Perfect Cont.',ppf:'Past Perfect',shd:'Should / shouldn’t',be:'To be',hab:'Present Simple',rtn:'Daily routine',ifw:'If I were…',ust:'Used to',pfm:'Present Perfect memes',rcl:'Relative clauses',gpr:'Gerund after prepositions',wgv:'All verbs + -ing',wiv:'All verbs + to V',wbo:'Both forms / meaning',wpa:'Adjective + prep + -ing',wpv:'Verb + prep + -ing',wpo:'Other preps + -ing',gvb:'Gerund after verbs',ivb:'Infinitive after verbs',gsb:'Gerund / infinitive as subject',iad:'Infinitive: purpose, too / enough',gdf:'Stop / remember / try',gsm:'Like / start / prefer',oin:'Make / let / tell sb to',gpf:'Perfect infinitive & gerund',gwt:'Guess what?',evb:'Modals of deduction: Evidence Room',evc:'Past modals of deduction: Evidence Room',thr:'There is / are'};
 const SPGRP={a1:[['People & possessives',['gmj','intv','who','vpp']],['Places & things',['nof','fbk','sct','room','rmp']],['Present tenses',['scp','sjb','pfa','bag','hwh']],['Time',['clk','tim','whn','fxt','bmd']],['Imperatives',['pkb','how','opp']],['Food & likes',['frg','vli','tbk']],['Questions & words',['vqd','mgt','gws']]],
  a2:[['Past Simple',['vps','pqg','pqs']],['Tenses',['pas','cmp','mix']],['More grammar',['mga','shd','ust']]],
- b1:[['Perfect tenses',['ppc','ppf','pfm']],['Conditionals & clauses',['ifw','rcl']],['Gerund & infinitive',['gpr','gvb','ivb','gsb','iad','gdf','gsm','wgv','wiv','wbo','wpa','wpv','wpo']],['Fun',['gwt']]]};
+ b1:[['Perfect tenses',['ppc','ppf','pfm']],['Conditionals & clauses',['ifw','rcl']],['Gerund & infinitive',['gpr','gvb','ivb','gsb','iad','gdf','gsm','wgv','wiv','wbo','wpa','wpv','wpo']],['Modals of deduction',['evb']],['Fun',['gwt']]],
+ b2:[['Modals of deduction',['evc']],['Gerund & infinitive',['gdf','oin']]]};
 const SPGC=['#B4BEFB','#F9B1B2','#A2E0D5','#B2D1FD','#F49BC9','#DBBFBB','#B85EF4'];
 const CBCOL=['#F7763F','#B85EF4','#B4BEFB','#DCFF6A','#A2E0D5','#B2D1FD','#DBBFBB','#A2CD1E','#F9B1B2','#F49BC9','#3FBCF4','#FBD415','#9CBA98'];
 function spSetup(){
@@ -5678,7 +5727,7 @@ function cbPhr(){const t=CB.task;if(WD[t])return WD[t].map(x=>[x[0],'']);const g
 
 /* ===== Demonstratives: movable objects ===== */
 const DMO=[['o01','s','a cat'],['o02','s','a cat'],['o03','s','a leaf'],['o04','p','apples'],['o05','p','carrots'],['o06','s','a latte'],['o07','p','cookies'],['o08','p','coffees'],['o09','s','a tea'],['o10','p','books'],['o11','p','toys'],['o12','s','a bunny'],['o13','s','a newspaper'],['o14','s','an umbrella'],['o15','s','a key'],['o16','s','a camera'],['o17','p','keys']];
-const DMT={nof:1,fbk:1,room:1,bag:1,clk:1,bmd:1,frg:1,pkb:1,slt:1,vqd:1,vpp:1,mgt:1,mga:1,vps:1,vli:1,tbk:1,rmp:1};
+const DMT={nof:1,fbk:1,room:1,bag:1,clk:1,bmd:1,frg:1,pkb:1,slt:1,vqd:1,vpp:1,mgt:1,mga:1,vps:1,vli:1,tbk:1,rmp:1,evb:1,evc:1};
 const DMHINT=['Near me → this / these. Far from me → that / those.','One thing → this / that (This is a …). Many things → these / those (These are …).'];
 function dmSent(o,near){const pl=o[1]==='p';return (near?(pl?'These are ':'This is '):(pl?'Those are ':'That is '))+o[2]+'.'}
 function dmShell(id,title,help,hints){
@@ -6108,7 +6157,134 @@ const FXH=['AT: clock times (at 7 PM), at night, at the weekend. ON: days and da
 const OPP=[['Open the door.','Close the door.'],['Stand up!','Sit down!'],['Turn on the light.','Turn off the light.'],['Come in!','Go out!'],['Start the film.','Stop the film.'],['Go fast!','Go slowly!'],['Wake up!','Go to sleep!'],['Push the door.','Pull the door.'],['Give me the book.','Take the book.'],['Be quiet!','Be loud!'],['Put on your coat.','Take off your coat.'],['Buy the ticket.','Sell the ticket.']];
 const OPH=['Opposite verbs: open ↔ close, stand up ↔ sit down, turn on ↔ turn off, come in ↔ go out, start ↔ stop, push ↔ pull, give ↔ take.','Keep the same pattern: Verb + the thing. Add Don’t for a “no” command: Don’t open the door!'];
 
-const DMTF={nof:dmNear,fbk:dmBask,room:dmRoom,bag:dmBag,clk:dmClock,bmd:dmDay,frg:dmFridge,pkb:dmPackCmd,slt:dmSlot,vqd:dmVendQ,vpp:dmVendPoss,mgt:()=>dmMagnets('mgt','a1'),mga:()=>dmMagnets('mga','a2'),vps:dmVendP,vli:dmVendL,tbk:dmTwoBask,rmp:dmRoom};
+/* ===== Evidence Room (modals of deduction) ===== */
+const EVL={must:['I’m almost sure','must','#A2CD1E','STRONG evidence'],might:['Maybe','might / could','#FBD415','POSSIBLE'],cant:['No way','can’t / couldn’t','#F9B1B2','CONTRADICTS']};
+const EVS={must:'almost sure',might:'not sure, it is only possible',cant:'sure it is impossible'};
+const EVRX={must:"must(?:'ve)?",might:"might(?:'ve)?|may|could(?:'ve)?",cant:"can't|cannot|can not|couldn't"};
+const EVO={
+ b1:{
+  title:'Evidence Room: Where is the detective?',img:'ch/ev_office.webp',
+  q:'Where is Detective Marlowe? What is he doing?',
+  form:'Now: modal + be (He must be… / He might be… / He can’t be…).',fr:'\\bbe\\b',
+  clues:[
+   {n:'Ashtray',box:[12.5,51,8.5,18.5],loc:'Look at the desk, on the left.',s:'A cigarette is still burning in the ashtray. Smoke is going up.',t:'Is Marlowe near or far?',lv:'must',ok:['He must be near here','He must be nearby','He must be close','He must be around','He must be in the building'],dis:['might','can’t','far'],k:'near|close|here|around|building|office',h:'The smoke is still going up. Is the cigarette fresh? Are you almost sure, or just guessing?'},
+   {n:'Jacket',box:[26,43,11.5,18.5],loc:'Look at the chair behind the desk.',s:'His jacket is still on the chair. It is cold outside.',t:'Is he outside?',lv:'cant',ok:['He can’t be outside','He can’t be far away','He can’t be far','He can’t be out'],dis:['must','might','is'],k:'outside|far|out|away',h:'He did not take his jacket, and it is cold. Is it possible that he is outside?'},
+   {n:'Laptop',box:[31.3,52,22.5,16.5],loc:'Look at the computer on the desk.',s:'The laptop is still on. A report is open on the screen.',t:'Is he coming back?',lv:'must',ok:['He must be coming back soon','He must be coming back'],dis:['might','can’t','come'],k:'back|return|soon',h:'He left his work open. Is he coming back soon? How sure are you?'},
+   {n:'Door',box:[89,0,11,80],loc:'Look at the door on the right.',s:'The door is closed, but it isn’t locked. The key is still in the lock.',t:'Where could he be? Think of places in the building.',lv:'might',ok:['He might be in the corridor','He might be in the next room','He might be in the kitchen','He might be in the hall','He could be in the corridor','He could be in the next room','He could be in the kitchen','He could be in the hall','He may be in the corridor','He may be in the next room','He may be in the kitchen','He may be in the hall'],dis:['can’t','must','kitchen'],k:'corridor|hall|room|kitchen|office|building',h:'There are many possible places and you do not know exactly. Is it certain, or only possible?'},
+   {n:'Photo',box:[23.1,24.8,6.6,10.5],loc:'Look at the shelf on the left.',s:'A framed photo: Marlowe and a young woman. The caption says: “With Nina, my assistant”.',t:'Who might be with him?',lv:'might',ok:['Nina might be with him','Nina could be with him','Nina may be with him'],dis:['must','can’t','her'],k:'nina',h:'The photo shows them together, but you do not know where she is today. Is it possible or certain?'},
+   {n:'Note',box:[59.6,67.5,7.6,5.8],loc:'Look at the paper under the green lamp.',s:'A note under the lamp: “Getting coffee. Back in 5 minutes. –N”',t:'What is Nina doing?',lv:'must',ok:['Nina must be getting coffee','She must be getting coffee','Nina must be making coffee'],dis:['might','can’t','get'],k:'coffee',h:'The note says it clearly. Are you almost sure?'},
+   {n:'Answering machine',box:[69.8,63.5,10.6,8.4],loc:'Look at the red light on the desk.',s:'The answering machine is blinking. A message: “Marlowe, it’s Mr Grey. I’m coming up to your office now.”',t:'Is Mr Grey coming here?',lv:'must',ok:['Mr Grey must be coming here','Mr Grey must be on his way','Mr Grey must be coming up','Mr Grey must be coming'],dis:['might','can’t','going'],k:'grey|coming|way',h:'He says it himself on the message. Are you almost sure?'},
+   {n:'Filing cabinet',box:[69,29.5,16.5,15.5],loc:'Look at the filing cabinet on the right.',s:'A drawer is open. A folder labelled GREY is sticking out.',t:'Why is the folder out?',lv:'must',ok:['Marlowe must be preparing for Mr Grey','He must be preparing for Mr Grey','Marlowe must be getting ready for Mr Grey','He must be getting ready for Mr Grey'],dis:['might','can’t','prepared'],k:'prepar|ready|grey|meeting',h:'Mr Grey is coming and his file is out. What is Marlowe doing? How sure are you?'},
+   {n:'Window',box:[31.4,0,32,43.5],loc:'Look at the window.',s:'Bright stripes of sun come through the blinds.',t:'Is it night?',lv:'cant',ok:['It can’t be night','It can’t be evening','It can’t be late'],dis:['must','might','morning'],k:'night|evening|late|dark',h:'The sun is shining. Is it possible that it is night?'},
+   {n:'Receipt',box:[29,67.8,6.4,5.2],loc:'Look at the small paper on the desk.',s:'A café receipt: “2 coffees, 10:05”.',t:'Who is Marlowe having coffee with?',lv:'must',ok:['He must be having coffee with Nina','Marlowe must be having coffee with Nina','They must be having coffee together'],dis:['might','can’t','drinking'],k:'nina|together|coffee',h:'Two coffees, and Nina is getting coffee too. How sure are you?'}
+  ],
+  decoys:[{box:[0.5,14,7.5,21],m:'Just a dead plant.'},{box:[9.4,19.8,8.8,16],m:'An old fan. Nothing useful here.'},{box:[17.9,22.5,5,13],m:'A trophy. It does not help the case.'},{box:[5.8,0,20,19],m:'A painting of a city. Not a clue.'},{box:[25.8,49.5,4,17.5],m:'A bottle of whisky. Not important now.'},{box:[21.1,59,4.2,8.2],m:'An empty glass. Nothing to see.'},{box:[56.5,46.5,14.5,21.5],m:'A green lamp. It works fine.'},{box:[84.8,12.8,3.2,4.2],m:'An empty hook. Not now.'}],
+  rep:[{q:'Where is Marlowe?',o:['In the kitchen, having coffee with Nina','At home, asleep','In a bar with Mr Grey'],a:0},{q:'Who is coming to the office?',o:['A thief','Mr Grey','Nina’s mother'],a:1},{q:'When will Marlowe be back?',o:['Tomorrow morning','In about five minutes','Tonight at six'],a:1}],
+  story:'Detective Marlowe is next door with Nina, having coffee. Mr Grey is on his way up, so Marlowe will be back in five minutes with the file ready.',
+  talk:'Retell the case to your partner. Use must, might and can’t at least five times.'},
+ b2:{
+  title:'Evidence Room: The Missing File',img:'ch/ev_office.webp',
+  q:'What happened here? Someone was in this office a minute ago. What is missing, and why?',
+  form:'Past: modal + have + V3 (must have been / might have taken / can’t have come).',fr:"\\bhave\\b|'ve\\b",
+  clues:[
+   {n:'Ashtray',box:[12.5,51,8.5,18.5],loc:'Look at the desk, on the left.',s:'A cigarette is still burning in the ashtray. The smoke is still rising.',t:'How long ago was somebody here?',lv:'must',ok:['Someone must have been here a minute ago','Somebody must have been here a minute ago','Someone must have left a minute ago','Somebody must have left a minute ago'],dis:['might','can’t','be','gone'],k:'minute|recent|just|moment|ago|here|left',h:'The cigarette is still burning, so the visitor was here very recently. How sure can you be?'},
+   {n:'Bottle',box:[25.8,49.5,4,17.5],loc:'Look at the desk, next to the glass.',s:'The whisky bottle is almost full. The seal on the cap is unbroken.',t:'Did the visitor drink from the bottle?',lv:'cant',ok:['Nobody can have drunk from the bottle','Nobody can have opened the bottle','The visitor can’t have drunk from the bottle','The visitor can’t have opened the bottle','The visitor couldn’t have drunk from the bottle','Nobody could have drunk from the bottle'],dis:['must','might','drank','been'],k:'drunk|drink|opened|bottle',h:'The seal is unbroken. Is it possible that somebody drank from it?'},
+   {n:'Glass',box:[21.1,59,4.2,8.2],loc:'Look at the small glass on the desk.',s:'A glass with a red lipstick mark on the rim. It smells of water, not whisky.',t:'Who drank from it?',lv:'must',ok:['The visitor must have been a woman','A woman must have been here','A woman must have drunk water here','The visitor must have been female'],dis:['might','can’t','man','be'],k:'woman|female|lady|she',h:'There is lipstick on the glass. Are you almost sure about who it was?'},
+   {n:'Filing cabinet',box:[69,29.5,16.5,15.5],loc:'Look at the filing cabinet on the right.',s:'One drawer is half open. The hanging folder labelled GREY is missing.',t:'What happened to the file?',lv:'must',ok:['Someone must have taken the Grey file','Somebody must have taken the Grey file','The Grey file must have been taken','The Grey file must have been stolen','Someone must have removed the Grey file'],dis:['might','can’t','took','been'],k:'grey|file|folder|taken|stolen|removed',h:'The folder is empty and the drawer is open. How sure are you that someone took it?'},
+   {n:'Window',box:[31.4,0,32,43.5],loc:'Look at the window.',s:'The blinds are down. The dust on the window sill is untouched.',t:'Could the visitor have come in through the window?',lv:'cant',ok:['She can’t have come in through the window','She couldn’t have come in through the window','The visitor can’t have come in through the window','The visitor couldn’t have come in through the window','Nobody can have come in through the window'],dis:['must','might','gone','enter'],k:'window',h:'The dust has not been touched. Is it possible that she came in through the window?'},
+   {n:'Hook',box:[84.8,12.8,3.2,4.2],loc:'Look at the wall near the door.',s:'A small hook by the door is empty. The label under it says: SPARE KEY. The door has no marks.',t:'How did she get in?',lv:'must',ok:['She must have used the spare key','She must have got in with the spare key','She must have had the spare key','The visitor must have used the spare key','The visitor must have had the spare key'],dis:['might','can’t','use','took'],k:'key',h:'The spare key is missing and the door is undamaged. How sure are you?'},
+   {n:'Photo',box:[23.1,24.8,6.6,10.5],loc:'Look at the shelf on the left.',s:'A framed photo of Marlowe and a young woman. The caption says: “With Nina, my assistant”.',t:'Who else could have had access to the spare key?',lv:'might',ok:['Nina might have had the spare key','Nina could have had the spare key','Nina may have had the spare key','Nina might have used the spare key','Nina might have been the visitor','Nina could have been the visitor','Nina may have been the visitor'],dis:['must','can’t','been','has'],k:'nina',h:'You know that Nina works here, but you have no proof yet. Is it certain or only possible?'},
+   {n:'Note',box:[59.6,67.5,7.6,5.8],loc:'Look at the paper under the green lamp.',s:'A torn note under the lamp: “…ack at six. –N”',t:'Who wrote the note?',lv:'must',ok:['Nina must have written the note','The note must have been written by Nina','The note must be from Nina','Nina must have written it'],dis:['might','can’t','wrote','been'],k:'nina',h:'The note is signed N, and Nina is the only person with this name in the case. How sure are you?'},
+   {n:'Receipt',box:[29,67.8,6.4,5.2],loc:'Look at the small paper on the desk.',s:'A taxi receipt: “Grey Hotel, 18:05”.',t:'Where did she go after leaving the office?',lv:'must',ok:['She must have gone to the Grey Hotel','She must have taken a taxi to the Grey Hotel','Nina must have gone to the Grey Hotel','She must have been going to the Grey Hotel'],dis:['might','can’t','go','been'],k:'hotel|taxi',h:'The receipt shows exactly where the taxi went. Are you almost sure?'},
+   {n:'Answering machine',box:[69.8,63.5,10.6,8.4],loc:'Look at the red light on the desk.',s:'A message: “Marlowe, it’s Mr Grey. Please send my file to my hotel with Nina.”',t:'Was it really a theft?',lv:'cant',ok:['Nina can’t have stolen the file','Nina couldn’t have stolen the file','It can’t have been a theft','It couldn’t have been a theft','Nina can’t have stolen it','Nina couldn’t have stolen it'],dis:['must','might','steal','been'],k:'stole|theft|steal|stolen',h:'Mr Grey asked her to bring it. Is it possible that she stole it?'}
+  ],
+  decoys:[{box:[0.5,14,7.5,21],m:'Just a dead plant.'},{box:[9.4,19.8,8.8,16],m:'An old fan. Nothing useful here.'},{box:[17.9,22.5,5,13],m:'A trophy. It does not help the case.'},{box:[5.8,0,20,19],m:'A painting of a city. Not a clue.'},{box:[31.3,52,22.5,16.5],m:'A locked laptop. No password, no clue.'},{box:[26,43,11.5,18.5],m:'A jacket on a chair. Not relevant.'},{box:[56.5,46.5,14.5,21.5],m:'A green lamp. It works fine.'},{box:[89,0,11,80],m:'The door is shut. Nothing to see.'}],
+  rep:[{q:'Who took the file?',o:['Nina, Marlowe’s assistant','A stranger','Mr Grey himself'],a:0},{q:'What did she do?',o:['She used the spare key and took the Grey file','She climbed in through the window','She burned the file'],a:0},{q:'Why did she do it?',o:['Mr Grey had asked her to bring it, so it was not a theft','She wanted to sell it','She was angry with Marlowe'],a:0}],
+  story:'Nina came to the office with the spare key, took the Grey file and went to Mr Grey’s hotel by taxi. Mr Grey had asked for it, so there was no theft at all.',
+  talk:'Retell the case in four sentences. Use must have, might have and can’t have at least once each.'}
+};
+let EV=null;
+const evNorm=s=>String(s).toLowerCase().replace(/[’‘`]/g,"'").replace(/[.!?,;:]+$/,'').replace(/\s+/g,' ').trim();
+const evTok=s=>s.replace(/[.!?]+$/,'').split(' ');
+function evOk(c,s,typed){const n=evNorm(s);if(c.ok.some(o=>evNorm(o)===n))return true;if(!typed)return false;
+ return new RegExp('^(?=.*\\b(?:'+EVRX[c.lv]+')(?![a-z]))(?=.*(?:'+EV.C.fr+'))(?=.*(?:'+c.k+'))','i').test(n)}
+function evWhy(c,s){const n=evNorm(s),gs=Object.keys(EVRX).filter(g=>new RegExp("\\b(?:"+EVRX[g]+")(?![a-z])").test(n));
+ if(!gs.length)return 'Add a modal verb: '+EVL[c.lv][1].replace(/’/g,"'")+'.';
+ if(!gs.includes(c.lv))return 'Check the modal verb. You said you are '+EVS[c.lv]+'.';
+ if(!new RegExp(EV.C.fr,'i').test(n))return EV.C.form;
+ return 'The grammar is good, but read the clue again. What does it really show?'}
+function evStart(cid){const C=EVO[cid];EV={cid,C,i:0,stars:0,notes:[],fail:[],mode:S.evm||'n',started:false,hint:0};evScene()}
+function evToast(t){const sc=document.getElementById('evsc');if(!sc)return;const o=sc.querySelector('.evtoast');if(o)o.remove();const d=document.createElement('div');d.className='evtoast';d.textContent=t;sc.appendChild(d);setTimeout(()=>d.remove(),2400)}
+function evScene(){
+ const C=EV.C,N=C.clues.length;
+ if(EV.i>=N){evReport();return}
+ const hs=[];C.clues.forEach((c,i)=>hs.push({b:c.box,k:i}));C.decoys.forEach((d,j)=>hs.push({b:d.box,k:'d'+j}));
+ hs.sort((a,b)=>b.b[2]*b.b[3]-a.b[2]*a.b[3]);
+ const md=[['e','Easy'],['n','Normal'],['t','Type it']];
+ setView(`<section class="panel k-card cbpanel evpanel"><div class="cbbar"><button class="lvb" id="evback">← Topics</button><h2>${esc(C.title)}</h2><div><button class="lvb" id="evhint">💡 Hint</button></div></div>
+ <div class="evmode" id="evmode">${md.map(m=>`<button class="lvb${EV.mode===m[0]?' on':''}" data-m="${m[0]}">${m[1]}</button>`).join('')}<span class="muted small" id="evprog"></span></div>
+ <div class="evw"><div class="evscene" id="evsc"><img class="evbg" src="${C.img}" alt="" draggable="false">${hs.map(h=>`<button class="evh" data-k="${h.k}" aria-label="object" style="left:${h.b[0]}%;top:${h.b[1]}%;width:${h.b[2]}%;height:${h.b[3]}%"></button>`).join('')}
+ ${EV.started?'':`<div class="evintro"><h3>${esc(C.q)}</h3><p>Before you start, say what you think. <b>I think…</b></p><p class="small">Then find the objects you can tap. Each clue leads to the next one.</p><button class="big" data-btn="solid" id="evgo">Start investigating</button></div>`}</div>
+ <div class="evnb" id="evnb"></div></div></section>`);
+ $('#evback').onclick=spSetup;
+ const pr=()=>{$('#evprog').textContent=' Clue '+(EV.i+1)+' of '+N+' · stars '+EV.stars};pr();
+ const g=$('#evgo');if(g)g.onclick=()=>{EV.started=true;sfx('pop');evScene()};
+ document.querySelectorAll('#evmode [data-m]').forEach(b=>b.onclick=()=>{EV.mode=b.dataset.m;S.evm=EV.mode;save();document.querySelectorAll('#evmode [data-m]').forEach(x=>x.classList.toggle('on',x===b))});
+ $('#evhint').onclick=()=>{const c=C.clues[EV.i];EV.hint++;if(EV.hint===1)evToast('Hint: '+c.loc);else{const h=document.querySelector('.evh[data-k="'+EV.i+'"]');if(h){h.classList.remove('pulse');void h.offsetWidth;h.classList.add('pulse')}evToast('Look for the glowing spot.')}};
+ document.querySelectorAll('.evh').forEach(h=>h.onclick=()=>{if(!EV.started)return;const k=h.dataset.k;
+  if(k[0]==='d'){sfx('tick');evToast(C.decoys[+k.slice(1)].m);return}
+  const i=+k;if(i===EV.i){sfx('pop');EV.hint=0;evCard(i)}else if(i<EV.i){sfx('click');evCard(i,true)}else{sfx('buzz');evToast('Not yet. Follow the story: find the clue that fits your last deduction.')}});
+ const nb=$('#evnb');nb.innerHTML=`<b>Case notes</b><ol class="evol">${C.clues.map((c,i)=>i<EV.i?`<li><b>${esc(c.n)}</b><br>${esc(EV.notes[i])}</li>`:`<li class="evd">${i===EV.i?'Find the next clue…':'?'}</li>`).join('')}</ol>`}
+function evCard(i,ro){
+ const C=EV.C,c=C.clues[i];const old=document.getElementById('evmod');if(old)old.remove();
+ const m=document.createElement('div');m.id='evmod';m.className='evmod';
+ const tag=EV.mode==='e'&&!ro?`<span class="evtag" style="background:${EVL[c.lv][2]}">${EVL[c.lv][3]}</span>`:'';
+ m.innerHTML=`<div class="evbox"><div class="evcard"><div class="evtxt"><div class="evn">Clue ${i+1} of ${C.clues.length} · ${esc(c.n)}</div><div class="evsee">${esc(c.s)}</div><div class="evthink">${esc(c.t)}</div>${tag}</div></div><div class="evans" id="evans"></div></div>`;
+ document.body.appendChild(m);
+ const close=()=>m.remove(),ans=m.querySelector('#evans');
+ m.onclick=e=>{if(e.target===m)close()};
+ if(ro){ans.innerHTML=`<div class="evq">Your deduction</div><div class="evsent">${esc(EV.notes[i])}</div><button class="lvb on" id="evok">Close</button>`;$('#evok').onclick=close;return}
+ let t1=0,fails=0;
+ const step1=()=>{ans.innerHTML=`<div class="evq">1. How sure are you?</div><div class="evcert">${['must','might','cant'].map(k=>`<button class="evc" data-k="${k}" style="background:${EVL[k][2]}"><b>${EVL[k][0]}</b><span>${EVL[k][1]}</span></button>`).join('')}</div><div class="evfb" id="evfb"></div><div class="evbt"><button class="lvb" id="evx">Close</button></div>`;
+  $('#evx').onclick=close;
+  ans.querySelectorAll('.evc').forEach(b=>b.onclick=()=>{const k=b.dataset.k,fb=$('#evfb');
+   if(k===c.lv){sfx('pop');step2();return}
+   t1++;fails++;sfx('buzz');b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),500);fb.className='evfb bad';
+   if(t1===1)fb.textContent=c.h;
+   else if(t1===2)fb.textContent='must = you are almost sure. might / could = it is possible. can’t = it is impossible. Which one fits the clue?';
+   else{fb.textContent='Look: this clue shows “'+EVL[c.lv][0]+'”. Use '+EVL[c.lv][1]+'.';setTimeout(step2,1500)}})};
+ const step2=()=>{
+  const typed=EV.mode==='t';let pool=[],line=[];
+  if(!typed){const toks=evTok(c.ok[0]);pool=shuffle(toks.concat(EV.mode==='e'?c.dis.slice(0,2):c.dis)).map(w=>({w,u:0}))}
+  ans.innerHTML=`<div class="evq">2. Make the sentence <span class="muted small">${esc(C.form)}</span></div>${typed?`<input class="evin" id="evin" type="text" autocomplete="off" placeholder="Type your sentence…">`:`<div class="evline" id="evline"></div><div class="evpool" id="evpool"></div>`}
+  <div class="evbt">${typed?'':'<button class="lvb" id="evclr">Clear</button>'}<button class="lvb on" id="evchk">Check ✓</button></div><div class="evfb" id="evfb"></div>`;
+  const draw=()=>{if(typed)return;$('#evline').innerHTML=line.map(j=>`<button class="evt in" data-j="${j}">${esc(pool[j].w)}</button>`).join('')||'<span class="muted small">Tap the words below.</span>';
+   $('#evpool').innerHTML=pool.map((p,j)=>p.u?'':`<button class="evt" data-j="${j}">${esc(p.w)}</button>`).join('');
+   $('#evline').querySelectorAll('[data-j]').forEach(b=>b.onclick=()=>{const j=+b.dataset.j;pool[j].u=0;line.splice(line.indexOf(j),1);sfx('tick');draw()});
+   $('#evpool').querySelectorAll('[data-j]').forEach(b=>b.onclick=()=>{const j=+b.dataset.j;pool[j].u=1;line.push(j);sfx('tick');draw()})};draw();
+  if(!typed)$('#evclr').onclick=()=>{pool.forEach(p=>p.u=0);line=[];draw()};
+  const done=txt=>{const sent=txt.charAt(0).toUpperCase()+txt.slice(1)+(/[.!?]$/.test(txt)?'':'.');EV.notes[i]=sent;EV.fail[i]=fails;if(!fails)EV.stars++;sfx('win');
+   ans.innerHTML=`<div class="evq">✓ Saved in your notebook</div><div class="evsent">${esc(sent)}</div><p class="muted small">Read it aloud. Then say why: what in the picture shows it?</p><div class="evbt"><button class="lvb on" id="evnext">${i+1<C.clues.length?'Next clue →':'Close the case →'}</button></div>`;
+   $('#evnext').onclick=()=>{close();EV.i=i+1;EV.hint=0;evScene()}};
+  $('#evchk').onclick=()=>{const txt=typed?$('#evin').value:line.map(j=>pool[j].w).join(' '),fb=$('#evfb');
+   if(!txt.trim()){fb.className='evfb bad';fb.textContent=typed?'Type a sentence first.':'Tap some words first.';return}
+   if(evOk(c,txt,typed)){done(txt.trim())}else{fails++;sfx('buzz');fb.className='evfb bad';fb.textContent=evWhy(c,txt)}};
+  if(typed)$('#evin').addEventListener('keydown',e=>{if(e.key==='Enter')$('#evchk').click()})};
+ step1()}
+function evReport(){
+ const C=EV.C,ans=[];
+ setView(`<section class="panel k-card cbpanel evpanel"><div class="cbbar"><button class="lvb" id="evback">← Topics</button><h2>Case report</h2><div></div></div>
+ <div class="evw"><div class="evscene" id="evsc"><img class="evbg" src="${C.img}" alt="" draggable="false"></div><div class="evnb"><b>Case notes</b><ol class="evol">${C.clues.map((c,i)=>`<li><b>${esc(c.n)}</b><br>${esc(EV.notes[i])}</li>`).join('')}</ol></div></div>
+ <div class="evrep" id="evrep"><h3>Solve the case</h3>${C.rep.map((r,qi)=>`<div class="evrq"><div class="evq">${esc(r.q)}</div><div class="evro">${shuffle(r.o.map((o,oi)=>({o,oi}))).map(x=>`<button class="evc evopt" data-q="${qi}" data-o="${x.oi}" style="background:${CBCOL[(qi*3+x.oi*2+2)%13]}">${esc(x.o)}</button>`).join('')}</div></div>`).join('')}<div class="evfb" id="evfb"></div></div></section>`);
+ $('#evback').onclick=spSetup;
+ document.querySelectorAll('.evopt').forEach(b=>b.onclick=()=>{const q=+b.dataset.q,o=+b.dataset.o;
+  if(C.rep[q].a===o){sfx('pop');ans[q]=1;b.parentNode.querySelectorAll('.evopt').forEach(x=>{x.disabled=true;if(x!==b)x.style.opacity='.35'});
+   if(C.rep.every((_,k)=>ans[k]))evSolved()}else{sfx('buzz');b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),500);$('#evfb').className='evfb bad';$('#evfb').textContent='Not quite. Check your case notes.'}})}
+function evSolved(){const C=EV.C;sfx('win');const sc=$('#evsc');const st=document.createElement('img');st.src='ch/ev_stamp.webp';st.className='evstamp';sc.appendChild(st);
+ const r=$('#evrep');r.insertAdjacentHTML('beforeend',`<div class="evend"><h3>CASE SOLVED</h3><p>${esc(C.story)}</p><p><b>Your turn:</b> ${esc(C.talk)}</p><p class="muted small">Stars for first-try deductions: ${EV.stars} of ${C.clues.length}</p><div class="evbt"><button class="lvb on" id="evagain">↻ Play again</button><button class="lvb" id="evtop">← Topics</button></div></div>`);
+ $('#evagain').onclick=()=>evStart(EV.cid);$('#evtop').onclick=spSetup;r.scrollIntoView({behavior:'smooth',block:'nearest'})}
+
+const DMTF={nof:dmNear,fbk:dmBask,room:dmRoom,bag:dmBag,clk:dmClock,bmd:dmDay,frg:dmFridge,pkb:dmPackCmd,slt:dmSlot,vqd:dmVendQ,vpp:dmVendPoss,mgt:()=>dmMagnets('mgt','a1'),mga:()=>dmMagnets('mga','a2'),vps:dmVendP,vli:dmVendL,tbk:dmTwoBask,rmp:dmRoom,evb:()=>evStart('b1'),evc:()=>evStart('b2')};
 
 /* ===== Generic card table (draggable cards) ===== */
 function seedR(n){const x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x)}
