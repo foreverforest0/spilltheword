@@ -1388,6 +1388,34 @@ button[data-btn],.lpb,.lvb{font:500 15px/1.2 var(--pen-font)!important;padding:1
 .rchint{margin-top:10px;background:#fff6dc;border-radius:6px;padding:8px 12px}
 .rcx{margin-top:8px;font-size:14px;color:#8a5a1f}
 .rcok{margin-top:10px;background:#d3ecc4;border-radius:6px;padding:8px 12px;font-weight:600}
+/* spend game */
+.sp .sphd{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}
+.sp h2{margin:0}.sprt{display:flex;gap:8px}
+.spb{border:0;border-radius:6px;padding:9px 14px;font:600 16px 'Drawably Pen',Inter,sans-serif;color:#111;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.2)}
+.spbig{font:700 clamp(34px,7vw,68px)/1.1 'Plex Mono',ui-monospace,monospace;margin:12px 0 4px;color:#232323;word-break:break-all}.spbig small{font-size:.35em;font-weight:500}
+.spbar{height:10px;border-radius:6px;background:#e3dcc8;overflow:hidden}.spbar i{display:block;height:100%;background:#7bc47f;transition:width .35s}
+.spsub{margin:8px 0 14px;color:#4a4332}.spwd{background:#fff6dc;border-radius:4px;padding:1px 6px;margin-left:6px}
+.spmid{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}
+.spfig{flex:0 0 120px}.spsil{width:120px;height:auto;display:block}
+.spside{flex:1 1 320px;min-width:0}
+.spmodes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.spmodes button{border:0;border-radius:6px;padding:9px 14px;font:600 16px 'Drawably Pen',Inter,sans-serif;background:#e3dcc8;color:#111;cursor:pointer}
+.spmodes button.on{background:#B4BEFB}
+.spprompt{background:#fbf3dc;border-radius:8px;padding:12px 14px;color:#2b2112;min-height:90px}
+.spqt{font-size:19px;font-weight:600;margin-bottom:8px}.spsy{font-size:14px;opacity:.75;margin-bottom:6px}
+.spchips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.spchips span{background:#fff;border-radius:14px;padding:4px 10px;font-size:14px}
+.spans{margin-top:10px;background:#fff;border-radius:6px;padding:10px 12px;line-height:1.5}
+.spgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.spc{display:flex;flex-direction:column;gap:6px;min-height:0;padding:10px}
+.spc.got{background:#d3ecc4}
+.spimg{position:relative;height:110px;display:grid;place-items:center}.spimg img{max-width:100%;max-height:110px;object-fit:contain;border-radius:8px}
+.spq{position:absolute;right:0;top:0;font-style:normal;font-weight:700;background:#232323;color:#fff;border-radius:10px;padding:1px 8px;font-size:13px}.spq:empty{display:none}
+.spbt{display:flex;gap:6px}.spbt button,.spmult button{flex:1;border:0;border-radius:6px;padding:8px 4px;font:600 15px 'Drawably Pen',Inter,sans-serif;cursor:pointer;color:#111}
+.spbuy{background:#7bc47f}.spsell{background:#f9b1b2}.spmult{display:flex;gap:4px}.spmult button{background:#e3dcc8;font-size:13px}
+.spbt button:disabled,.spmult button:disabled{opacity:.4;cursor:default}
+.spbump{animation:fyok .35s}
+.spmk{font:700 26px 'Plex Mono',monospace;color:#7bc47f;letter-spacing:2px}
+.sprh{text-align:center;font-weight:700;letter-spacing:1px;font-size:14px;margin-bottom:2px}.spw{font-style:italic}
 </style>
 </head>
 <body>
@@ -4446,7 +4474,7 @@ function glSetupG(){
  $('#glg').onclick=e=>{const b=e.target.closest('[data-g]');if(!b)return;S.ggame=b.dataset.g;save();document.querySelectorAll('#glg .lpb').forEach(x=>x.classList.toggle('on',x===b));upd()};
  $('#glgo').onclick=()=>{const g=WG.find(x=>x.id===S.ggame);if(!g)return;GL={mode:g.k,g,ok:0,bad:0,used:[],rot:null};glGameRender()};
  upd()}
-const GLMODES=[['ts','Tense Switch'],['dice','Grammar Dice'],['exp','Sentence Expander'],['craft','Word Craft'],['board','Scrambl'],['deep','Deep Sea'],['absurd','Absurd Choices']];
+const GLMODES=[['ts','Tense Switch'],['dice','Grammar Dice'],['exp','Sentence Expander'],['craft','Word Craft'],['board','Scrambl'],['deep','Deep Sea'],['absurd','Absurd Choices'],['spend','Spend a Fortune']];
 
 /* ===== Grammar Lab: Tense Switch + Grammar Dice ===== */
 let GL=null;
@@ -4457,7 +4485,7 @@ let SEAH=null;
 function gmBar(){return `<div class="lpc" id="glm">${GLMODES.map(m=>`<button class="lpb${S.gmode===m[0]?' on':''}" data-m="${m[0]}">${m[1]}</button>`).join('')}</div>`}
 function gmBind(){const g=$('#glm');if(g)g.onclick=e=>{const b=e.target.closest('[data-m]');if(!b)return;S.gmode=b.dataset.m;save();seaOff();glSetup()}}
 function seaOff(){document.body.classList.remove('sea');if(SEAH){window.removeEventListener('scroll',SEAH);SEAH=null}}
-function gmNew(){const m=S.gmode;seaOff();if(m==='craft')wcSetup();else if(m==='board')bdSetup();else if(m==='deep')seaSetup();else if(m==='absurd')absSetup()}
+function gmNew(){const m=S.gmode;seaOff();if(m==='craft')wcSetup();else if(m==='board')bdSetup();else if(m==='deep')seaSetup();else if(m==='absurd')absSetup();else if(m==='spend')foSetup()}
 
 /* ---------- Word Craft ---------- */
 const WCT={v:'#E8837A',p:'#A2E0D5',a:'#F9B1B2',n:'#B2D1FD',j:'#B4BEFB'};
@@ -5335,6 +5363,109 @@ function absDraw(){const q=ABR.q[ABR.i];
  const ex=$('#abex');if(ex)ex.onclick=()=>{ABR.ex=!ABR.ex;absDraw()};
  const nx=$('#abnext');if(nx)nx.onclick=()=>{ABR.i++;ABR.pick=-1;ABR.ex=false;absDraw()}}
 
+/* ===== Spend Elon Musk's money ===== */
+const SPB=839e9;
+const SPI=[
+['coffee','cup of coffee','cups of coffee','a',5],['burger','burger','burgers','a',12],['ticket','cinema ticket','cinema tickets','a',15],
+['sneakers','pair of sneakers','pairs of sneakers','a',120],['console','game console','game consoles','a',500],['phone','smartphone','smartphones','a',1000],
+['bag','designer handbag','designer handbags','a',5000],['watch','luxury watch','luxury watches','a',30000],['cybertruck','electric car','electric cars','an',80000],
+['piano','grand piano','grand pianos','a',150000],['lambo','sports car','sports cars','a',250000],['necklace','diamond necklace','diamond necklaces','a',1e6],
+['apartment','apartment in New York','apartments in New York','an',3e6],['helicopter','helicopter','helicopters','a',5e6],['island','private island','private islands','a',30e6],
+['jet','private jet','private jets','a',70e6],['mansion','mansion in Beverly Hills','mansions in Beverly Hills','a',100e6],['yacht','superyacht','superyachts','a',300e6],
+['b747','Boeing 747','Boeing 747s','a',400e6],['painting','famous painting','famous paintings','a',450e6],['tower','skyscraper','skyscrapers','a',1e9],
+['club','football club','football clubs','a',3e9],['telescope','space telescope','space telescopes','a',10e9],['carrier','aircraft carrier','aircraft carriers','an',13e9],
+['social','social media company','social media companies','a',44e9],['park','amusement park chain','amusement park chains','an',60e9],['moonbase','moon base','moon bases','a',100e9],
+['mars','Mars mission','Mars missions','a',200e9],['lunch','year of free school lunches for the world','years of free school lunches for the world','a',300e9],['country','small country','small countries','a',400e9]
+].map(a=>({id:a[0],n:a[1],pl:a[2],a:a[3],p:a[4]}));
+const SPU=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'],SPTN=['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+function foW3(n){let s='';if(n>=100){s+=SPU[Math.floor(n/100)]+' hundred';n%=100;if(n)s+=' and '}if(n>=20){s+=SPTN[Math.floor(n/10)];if(n%10)s+='-'+SPU[n%10]}else if(n>0)s+=SPU[n];return s}
+function foW(n){n=Math.round(n);if(n===0)return'zero';const G=['','thousand','million','billion','trillion'],p=[];let i=0;while(n>0){const c=n%1000;if(c)p.unshift(foW3(c)+(G[i]?' '+G[i]:''));n=Math.floor(n/1000);i++}return p.join(', ')}
+const foM=n=>'$'+Math.round(n).toLocaleString('en-US');
+const foD=n=>foW(n)+(Math.round(n)===1?' dollar':' dollars');
+const foIt=id=>SPI.find(x=>x.id===id);
+const foN=(it,q)=>q===1?it.a+' '+it.n:q+' '+it.pl;
+const foSpent=()=>SPB-SPS.cash;
+let SPS=null;
+function foSil(){return `<svg class="spsil" viewBox="0 0 160 260" aria-hidden="true"><g fill="#2b2b2b" stroke="#232323" stroke-width="3" stroke-linejoin="round"><ellipse cx="80" cy="42" rx="26" ry="30"/><path d="M52 90 Q80 78 108 90 L124 130 L150 150 Q154 156 146 160 L116 150 L112 250 H48 L44 140 L34 175 Q30 182 24 178 Q18 172 22 164Z"/></g><path d="M72 88 L80 130 L88 88Z" fill="#fff"/><path d="M78 100 L82 100 L84 170 L80 176 L76 170Z" fill="#8a8a8a"/></svg>`}
+function foSetup(){
+ SPS={cash:SPB,q:{},last:[],mode:1,show:false,ask:null};
+ setView(`<section class="panel k-card sp">${gmBar()}
+ <div class="sphd"><div><h2>Spend Elon Musk’s money</h2><p class="muted small">He has about ${foM(SPB)}. Spend it all!</p></div><div class="sprt"><button class="spb" id="spnew" style="background:#e3dcc8">↺ Start again</button><button class="spb" id="sprc" style="background:#fde9a8">🧾 Receipt</button></div></div>
+ <div class="spbig" id="spbig"></div><div class="spbar"><i id="spfill"></i></div><div class="spsub" id="spsub"></div>
+ <div class="spmid"><div class="spfig">${foSil()}</div><div class="spside"><div class="spmodes" id="spmodes"><button data-m="1">1 · If I had…</button><button data-m="2">2 · How much?</button><button data-m="3">3 · Compare</button></div><div class="spprompt" id="spprompt"></div></div></div>
+ <div class="spgrid" id="spgrid">${SPI.map(it=>`<div class="shcard spc" id="spc-${it.id}"><div class="spimg"><img src="ch/sp_${it.id}.webp" alt="${esc(it.n)}" loading="lazy"><em class="spq" id="spq-${it.id}"></em></div><div class="shn">${esc(it.n)}</div><div class="shpr"><b>${foM(it.p)}</b></div>
+ <div class="spbt"><button class="spbuy" data-b="${it.id}:1">Buy</button><button class="spsell" data-s="${it.id}">Sell</button></div>
+ <div class="spmult">${[10,100,1000].map(n=>`<button data-b="${it.id}:${n}">×${n.toLocaleString('en-US')}</button>`).join('')}</div></div>`).join('')}</div></section>`);
+ gmBind();
+ $('#spgrid').onclick=e=>{const b=e.target.closest('button');if(!b||b.disabled)return;
+  if(b.dataset.b){const[id,n]=b.dataset.b.split(':');foBuy(id,+n)}else if(b.dataset.s)foSell(b.dataset.s)};
+ $('#spmodes').onclick=e=>{const b=e.target.closest('[data-m]');if(!b)return;SPS.mode=+b.dataset.m;SPS.show=false;sfx('pick');foUpd()};
+ $('#spnew').onclick=()=>{sfx('whoosh');foSetup()};
+ $('#sprc').onclick=()=>{if(foSpent()>0)foReceipt()};
+ foUpd()}
+function foTouch(id){SPS.last=SPS.last.filter(x=>x!==id);SPS.last.push(id);SPS.ask=id;SPS.show=false}
+function foBuy(id,n){const it=foIt(id);if(!it||it.p*n>SPS.cash)return;SPS.cash-=it.p*n;SPS.q[id]=(SPS.q[id]||0)+n;foTouch(id);sfx(it.p>=1e8?'ding':'pop');
+ const c=$('#spc-'+id);if(c){c.classList.remove('spbump');void c.offsetWidth;c.classList.add('spbump')}
+ foUpd();if(SPS.cash<=0){sfx('win');fxBurst($('#spbig'),.5,.5)}}
+function foSell(id){const it=foIt(id);if(!it||!SPS.q[id])return;SPS.q[id]--;SPS.cash+=it.p;if(!SPS.q[id]){delete SPS.q[id];SPS.last=SPS.last.filter(x=>x!==id);if(SPS.ask===id)SPS.ask=SPS.last[SPS.last.length-1]||null}else foTouch(id);sfx('tick');SPS.show=false;foUpd()}
+function foPrompt(){
+ const m=SPS.mode,L=SPS.last,cash=SPS.cash;let h='',ans='',sp='';
+ const tog=(t)=>`<button class="spb" id="spshow" style="background:#c8dcf5">${SPS.show?'Hide':t}</button>`;
+ if(m===1){const it=foIt(L[L.length-1]);
+  if(!it)h=`<div class="spqt">Buy something. Then say what you would do with the money.</div>`;
+  else{const q=SPS.q[it.id];h=`<div class="spqt">You bought ${esc(foN(it,q))}.</div><div class="spsy">Say it with the second conditional:</div><div class="spchips"><span>If I were Elon Musk, I would buy …</span><span>If I had …, I would …</span><span>… because …</span><span>I wouldn’t buy … because …</span></div>`;
+   ans=`If I were Elon Musk, I would buy ${foN(it,q)}. It costs ${foD(it.p*q)}. Because …`;h+=tog('Show an example')}}
+ else if(m===2){const it=foIt(SPS.ask||'')||(SPS.ask=SPI[Math.floor(Math.random()*SPI.length)].id,foIt(SPS.ask));const q=SPS.q[it.id]||1;
+  h=`<div class="spqt">How much is ${esc(it.a==='an'?'an':'a')} ${esc(it.n)}? Say the number!</div>`;
+  ans=`It costs ${foD(it.p)}. (${foM(it.p)})`+(q>1?` ${q} of them cost ${foD(it.p*q)}.`:'')+` Elon has ${foD(cash)} left.`;
+  h+=tog('Show the answer')+` <button class="spb" id="sprnd" style="background:#f4c9d2">🎲 Another item</button>`}
+ else{if(L.length<2)h=`<div class="spqt">Buy two different things. Then compare them.</div>`;
+  else{const a=foIt(L[L.length-1]),b=foIt(L[L.length-2]),hi=a.p>=b.p?a:b,lo=hi===a?b:a,n=Math.floor(hi.p/lo.p);
+   const best=L.map(foIt).sort((x,y)=>y.p-x.p),mx=best[0],mn=best[best.length-1];
+   h=`<div class="spqt">Compare ${esc(a.a+' '+a.n)} and ${esc(b.a+' '+b.n)}.</div><div class="spsy">Use:</div><div class="spchips"><span>… is more expensive than …</span><span>… is cheaper than …</span><span>… is the most expensive thing I bought</span></div>`;
+   ans=`${hi.a[0].toUpperCase()+hi.a.slice(1)} ${hi.n} is more expensive than ${lo.a} ${lo.n}. ${lo.a[0].toUpperCase()+lo.a.slice(1)} ${lo.n} is cheaper than ${hi.a} ${hi.n}. For the price of one ${hi.n} you can buy ${n.toLocaleString('en-US')} ${n===1?lo.n:lo.pl}. The most expensive thing you bought is ${mx.a} ${mx.n}.`;h+=tog('Show an example')}}
+ if(SPS.show&&ans)h+=`<div class="spans">${esc(ans)}<br><button class="spb" id="splis" style="background:#fde9a8">🔊 Listen</button></div>`;
+ return {h,ans}}
+function foUpd(){
+ const sp=foSpent();$('#spbig').innerHTML=`${foM(SPS.cash)} <small>left</small>`;$('#spfill').style.width=Math.min(100,sp/SPB*100)+'%';
+ $('#spsub').innerHTML=sp>0?`You have spent <b>${foM(sp)}</b> of ${foM(SPB)}.`+(SPS.mode===2?` <span class="spwd">${esc(foD(SPS.cash))} left</span>`:''):`You have ${esc(foD(SPB))}. Spend it by buying stuff below.`;
+ document.querySelectorAll('#spmodes [data-m]').forEach(b=>b.classList.toggle('on',+b.dataset.m===SPS.mode));
+ SPI.forEach(it=>{const c=$('#spc-'+it.id),q=SPS.q[it.id]||0;if(!c)return;c.classList.toggle('got',q>0);$('#spq-'+it.id).textContent=q?'×'+q.toLocaleString('en-US'):'';
+  c.querySelectorAll('[data-b]').forEach(b=>{const n=+b.dataset.b.split(':')[1];b.disabled=it.p*n>SPS.cash});c.querySelector('.spsell').disabled=!q});
+ const P=foPrompt(),box=$('#spprompt');box.innerHTML=P.h;
+ const s=$('#spshow');if(s)s.onclick=()=>{SPS.show=!SPS.show;foUpd()};
+ const r=$('#spnxt');const rd=$('#spnd');
+ const rn=$('#sprnd');if(rn)rn.onclick=()=>{SPS.ask=SPI[Math.floor(Math.random()*SPI.length)].id;SPS.show=false;sfx('pick');foUpd()};
+ const l=$('#splis');if(l)l.onclick=()=>elSpeak(P.ans);
+ $('#sprc').style.opacity=sp>0?1:.4}
+function foReceipt(){
+ rcClose();const rows=Object.keys(SPS.q).map(id=>({it:foIt(id),q:SPS.q[id]})).sort((a,b)=>b.it.p*b.q-a.it.p*a.q),tot=foSpent(),n=rows.reduce((s,r)=>s+r.q,0);
+ const ord='ORD-'+(1000+Math.floor(Math.random()*9000)),now=new Date();
+ const dt=now.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}).toUpperCase()+' · '+now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+ let seed=0;for(const ch of ord)seed=(seed*31+ch.charCodeAt(0))>>>0;const rnd=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};
+ let x=0,bars='';for(let i=0;i<48;i++){const w=1+Math.floor(rnd()*3);if(i%2===0)bars+=`<rect x="${x}" y="0" width="${w}" height="40"/>`;x+=w}
+ const lines=rows.map(r=>`<div class="rcl"><span>${r.q.toLocaleString('en-US')} × ${esc(r.it.n)}</span><b>${foM(r.q*r.it.p)}</b></div>`).join('');
+ const o=document.createElement('div');o.id='rcov';o._t=[];
+ o.innerHTML=`<div class="rcbox"><section class="rcp" data-stage="processing"><div class="rcm"><div class="rchd"><span class="spmk">$$$</span><button class="rcclose" id="rcclose">✕ Close</button></div>
+ <div class="rcsc"><div class="rcsl"><div><div class="rcn">Checkout</div><div class="rcs2">${n.toLocaleString('en-US')} item${n===1?'':'s'}</div></div><div class="rctt"><small>Total</small><b style="font-size:${tot>=1e9?'19px':'26px'}">${foM(tot)}</b></div></div><div class="rcst"><span class="rcic" id="rcic"><i class="rcspin"></i></span><span id="rctx" role="status" aria-live="polite">Processing your order</span></div></div><i class="rcslot"></i></div>
+ <div class="rco" id="rco"><div class="rcfeed"><article class="rcpaper" style="clip-path:${rcZig()}"><div class="sprh">SPEND ELON MUSK’S MONEY</div><div class="rcd"></div>${lines}<div class="rcd"></div>
+ <div class="rcl rcg"><b>TOTAL SPENT</b><b>${foM(tot)}</b></div><div class="rcl rcm3"><span>Money left</span><span>${foM(SPS.cash)}</span></div>
+ <div class="rcl rcm3 spw"><span>${esc(foD(tot))}</span></div><div class="rcd"></div>
+ <div class="rcl rcm3"><span>Order</span><span>${ord}</span></div><div class="rcl rcm3"><span>Date</span><span>${esc(dt)}</span></div>
+ <svg class="rcbc" viewBox="0 0 ${x} 40" preserveAspectRatio="none" aria-hidden="true">${bars}</svg><div class="rcbn">${ord.replace('-',' ')}</div><div class="rcth">Thank you for spending!</div></article></div></div></section>
+ <div class="rcbt" id="rcbt"></div><div class="rcsteps" id="rcsteps"></div></div>`;
+ document.body.appendChild(o);
+ const rco=$('#rco');rco.style.height=o.querySelector('.rcpaper').offsetHeight+'px';
+ const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,T=(f,ms)=>o._t.push(setTimeout(f,ms)),P=o.querySelector('.rcp');
+ o.onclick=e=>{if(e.target===o)rcClose()};$('#rcclose').onclick=rcClose;
+ const complete=()=>{P.dataset.stage='complete';$('#rcic').innerHTML='✓';$('#rctx').textContent='Order complete';sfx('ding');
+  $('#rcbt').innerHTML=`<button class="rcbtn" id="rcagain" style="background:#B4BEFB">↺ Spend again</button><button class="rcbtn" id="rccl" style="background:#e3dcc8">Close</button>`;
+  $('#rcagain').onclick=()=>{rcClose();foSetup()};$('#rccl').onclick=rcClose;
+  const st=$('#rcsteps');st.classList.add('on');const best=rows[0];
+  st.innerHTML=`<h3>🗣 Talk about it</h3><ol><li>What was the best thing you bought? Why?</li><li>What do you regret buying? Use: <i>I wish I hadn’t bought …</i></li><li>If you had only $1,000, what would you buy?</li>${best?`<li>The most expensive thing was ${esc(best.it.a+' '+best.it.n)}. How much was it? Say the number.</li>`:''}</ol>`};
+ if(reduce){P.dataset.stage='printing';$('#rctx').textContent='Printing your receipt';T(complete,200);return}
+ T(()=>{P.dataset.stage='printing';$('#rctx').textContent='Printing your receipt';[.075,.18,.285,.39,.495,.6,.705,.81,.915].forEach(f=>T(()=>sfx('print'),f*1750));T(complete,1900)},1300)}
+
 /* ===== Carvable pumpkin ===== */
 const PST={
  eye:[[-1,.9],[0,-1],[1,.9]],eyer:[[-1,-.1],[-.5,-.9],[.5,-.9],[1,-.1],[.5,.8],[-.5,.8]],
@@ -5394,9 +5525,9 @@ function pumpOpen(){sfx('pop');
  m.addEventListener('pointerdown',e=>{if(e.target===m)close()})}
 
 function glSetup(){
- seaOff();if(!['ts','dice','exp','craft','board','deep','absurd'].includes(S.gmode))S.gmode='ts';
+ seaOff();if(!['ts','dice','exp','craft','board','deep','absurd','spend'].includes(S.gmode))S.gmode='ts';
  if(S.gmode==='exp'){exSetup();return}
- if(['craft','board','deep','absurd'].includes(S.gmode)){gmNew();return}
+ if(['craft','board','deep','absurd','spend'].includes(S.gmode)){gmNew();return}
  if(!S.gmode)S.gmode='ts';if(!S.glevel)S.glevel='b1';const c=exCourse();S.exun=(S.exun||[]).filter(i=>c.units[i]);
  S.gtop=(S.gtop||[]).filter(id=>glTopics().some(t=>t.id===id));
  const dice=S.gmode==='dice';
