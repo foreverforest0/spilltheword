@@ -1337,6 +1337,57 @@ button[data-btn],.lpb,.lvb{font:500 15px/1.2 var(--pen-font)!important;padding:1
 .fzb{margin-top:12px}
 .fztask .evcert{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
 .fztask .evq{font-weight:700;margin-bottom:8px}
+/* receipt printer + recipes */
+#rcov{position:fixed;inset:0;z-index:400;background:rgba(20,16,8,.72);overflow:auto;padding:18px 12px;display:flex;justify-content:center;align-items:flex-start}
+.rcbox{width:100%;max-width:400px;margin:auto}
+.rcp{display:flex;flex-direction:column;align-items:center}
+.rcm{position:relative;isolation:isolate;width:100%;box-sizing:border-box;background:#3a3a3d;border-radius:24px;padding:12px 12px 30px;box-shadow:0 20px 36px -20px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.12),inset 0 -1px 0 rgba(0,0,0,.5);color:#f3efe4;font-family:'Plex Mono',ui-monospace,monospace}
+.rchd{display:flex;justify-content:space-between;align-items:flex-start;height:48px}
+.rclg img{height:40px;width:auto;border-radius:8px;display:block;opacity:.9}
+.rcclose{border:0;border-radius:12px;padding:10px 16px;background:#55554f;color:#f3efe4;font:inherit;font-size:14px;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.4)}
+.rcsc{background:#1e1e1f;border-radius:14px;padding:16px;box-shadow:inset 0 0 24px 4px rgba(0,0,0,.5)}
+.rcsl{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.rcn{font-size:20px}.rcs2{font-size:13px;opacity:.65}
+.rctt{text-align:right}.rctt small{display:block;opacity:.65;font-size:13px}.rctt b{font-size:26px}
+.rcst{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:13px;color:#b9b6ab}
+.rcic{width:20px;height:20px;display:grid;place-items:center;color:#4fb477;font-size:18px}
+.rcspin{width:14px;height:14px;border-radius:50%;border:2px solid #9a978c;border-top-color:transparent;animation:rcsp .8s linear infinite;display:block}
+@keyframes rcsp{to{transform:rotate(360deg)}}
+.rcslot{position:absolute;left:24px;right:24px;bottom:12px;height:8px;border-radius:4px;background:#0e0e0f;box-shadow:inset 0 1px 3px #000;z-index:4}
+.rco{position:relative;z-index:5;margin-top:-18px;width:calc(80% + 3rem);max-width:100%;overflow:hidden;padding:0 1.5rem;box-sizing:border-box;opacity:0}
+.rcp[data-stage=printing] .rco,.rcp[data-stage=complete] .rco{opacity:1;transition:opacity .16s}
+.rcfeed{transform:translateY(calc(-100% + 2px));filter:drop-shadow(0 8px 14px rgba(0,0,0,.3))}
+.rcp[data-stage=printing] .rcfeed{animation:rcfeed 1.75s linear forwards}
+.rcp[data-stage=complete] .rcfeed{transform:none}
+@keyframes rcfeed{0%{transform:translateY(calc(-100% + 2px))}7.5%,10.5%{transform:translateY(-91%)}18%,21%{transform:translateY(-81%)}28.5%,31.5%{transform:translateY(-70%)}39%,42%{transform:translateY(-58%)}49.5%,52.5%{transform:translateY(-45%)}60%,63%{transform:translateY(-32%)}70.5%,73.5%{transform:translateY(-20%)}81%,84%{transform:translateY(-10%)}91.5%,94.5%{transform:translateY(-3%)}100%{transform:translateY(0)}}
+.rcpaper{background:#fbfaf6;color:#1e1e1e;font:13px/1.5 'Plex Mono',ui-monospace,monospace;padding:22px 18px 30px;min-height:200px}
+.rcpl{display:block;margin:0 auto 4px;height:52px;width:auto;filter:grayscale(1) contrast(1.15)}
+.rcd{border-top:1px dashed #b8b4a8;margin:12px 0}
+.rcl{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.rcl span{min-width:0}.rcs3{color:#7a776c}.rcg{font-size:16px;margin-top:6px}.rcg b:last-child{font-size:22px}
+.rch2{margin-bottom:4px}.rcm2{color:#b0301f}.rcm3{font-size:12px;color:#6b685e}
+.rcbc{display:block;width:62%;height:42px;margin:16px auto 4px;fill:#1e1e1e}
+.rcbn{text-align:center;font-size:11px;letter-spacing:3px;color:#8a877c}.rcth{text-align:center;margin-top:12px;font-size:12px;color:#6b685e}
+.rcbt{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+.rcbtn{border:0;border-radius:10px;padding:11px 18px;font:400 17px var(--pen-font);cursor:pointer;background:#B4BEFB;color:#232323;box-shadow:0 3px 0 rgba(0,0,0,.25)}
+.rcsteps{display:none;background:#fbf3dc;border-radius:14px;padding:14px 18px;margin-top:12px;color:#2b2112}.rcsteps.on{display:block}
+.rcsteps h3{margin:0 0 8px}.rcsteps ol{margin:0 0 10px;padding-left:22px;line-height:1.5}.rcyt{margin:10px 0 0;font-size:15px}
+@media(prefers-reduced-motion:reduce){.rcp[data-stage=printing] .rcfeed{animation:none;transform:none}.rcspin{animation:none}}
+.shrcw{margin:6px 0 12px}
+.rcbar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;background:#fbf3dc;border-radius:6px;padding:10px 14px;color:#2b2112}
+.rcbar b{font:600 22px 'Drawably Pen',Inter,sans-serif}.rcbar .muted{flex:1 1 220px}
+.rcbtns{display:flex;gap:8px;flex-wrap:wrap}
+.rkb{border:0;border-radius:6px;padding:9px 14px;font:600 16px 'Drawably Pen',Inter,sans-serif;color:#111;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.2)}
+.rkw{background:color-mix(in srgb,var(--c) 40%,#fffaf0);border-radius:8px;padding:12px 14px 14px;color:#2b2112;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.rcht{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.rke{font-size:46px;line-height:1}.rctl{flex:1 1 180px;min-width:0}.rctl h3{margin:0;font:600 28px 'Drawably Pen',Inter,sans-serif}.rctag{font-size:14px;opacity:.75}
+.rkq{margin:10px 0 0}
+.rcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:2px}
+.rci{margin-top:8px;min-height:84px;transition:background .3s}
+.rci.got{animation:fyok .5s}
+.rchint{margin-top:10px;background:#fff6dc;border-radius:6px;padding:8px 12px}
+.rcx{margin-top:8px;font-size:14px;color:#8a5a1f}
+.rcok{margin-top:10px;background:#d3ecc4;border-radius:6px;padding:8px 12px;font-weight:600}
 </style>
 </head>
 <body>
@@ -3071,28 +3122,29 @@ function shBind(){
  const lt=$('#shlt');if(lt&&lt.tagName==='TEXTAREA')lt.oninput=()=>{SH.lt=lt.value;S.shlt=lt.value;save();shSend('lt')};
  const ls=$('#shls');if(ls&&ls.tagName==='TEXTAREA')ls.oninput=()=>{SH.ls=ls.value;S.shls=ls.value;save();shSend('ls')}}
 /* Shop sync in rooms: the cart is shared; budget, currency and the teacher's list belong to the teacher; the student's own list belongs to the student */
-function shGet(k){switch(k){case'c':return SH.cart;case'b':return SH.budget||0;case'cur':return shCur();case'lt':return SH.lt||'';case'ls':return SH.ls||'';case'p':return SH.paid?{t:SH.last,c:SH.lastCart}:null}}
-function shAll(){shInit();const o={};['c','b','cur','lt','ls','p'].forEach(k=>o[k]=shGet(k));return o}
+function shGet(k){switch(k){case'c':return SH.cart;case'b':return SH.budget||0;case'cur':return shCur();case'lt':return SH.lt||'';case'ls':return SH.ls||'';case'p':return SH.paid?{t:SH.last,c:SH.lastCart,o:SH.lastOrd}:null;case'r':return SH.rc||null}}
+function shAll(){shInit();const o={};['c','b','cur','lt','ls','p','r'].forEach(k=>o[k]=shGet(k));return o}
 function shOpen(){return!!(ROOM.role&&ROOM.conn&&ROOM.conn.open)}
 function shSend(f){if(!shOpen())return;SH.dirty[f]=1;clearTimeout(SH.tm);SH.tm=setTimeout(shFlush,120)}
-function shFlush(){const d=SH.dirty;SH.dirty={};if(!shOpen())return;const own=ROOM.role==='host'?['c','b','cur','lt','p']:['c','ls','p'],s={};
+function shFlush(){const d=SH.dirty;SH.dirty={};if(!shOpen())return;const own=ROOM.role==='host'?['c','b','cur','lt','p','r']:['c','ls','p','r'],s={};
  for(const k in d)if(own.includes(k))s[k]=shGet(k);if(Object.keys(s).length)roomSend({t:'shop',s})}
 function shApply(s,full){shInit();if(!s)return;
  if(ROOM.role==='guest'){if('c'in s)SH.cart=s.c||{};if('b'in s)SH.budget=+s.b||0;if('cur'in s)SH.cs=s.cur||null;if('lt'in s)SH.lt=s.lt||'';if(full&&s.ls&&!SH.ls)SH.ls=s.ls}
  else{if('c'in s)SH.cart=s.c||{};if('ls'in s)SH.ls=s.ls||''}
- if('p'in s){if(s.p){SH.paid=true;SH.last=s.p.t;SH.lastCart=s.p.c}else SH.paid=false}
- shCartRender();shInfoUpdate()}
+ if('r'in s){SH.rc=s.r||null;SH.rhint=''}
+ if('p'in s){if(s.p){const was=SH.paid;SH.paid=true;SH.last=s.p.t;SH.lastCart=s.p.c;SH.lastOrd=s.p.o;if(!was&&!full)setTimeout(()=>shReceipt(),50)}else{SH.paid=false;rcClose()}}
+ shCartRender();shInfoUpdate();shRcRender()}
 function shopSetup(){
  shInit();
  if(!SH.dept||!SHOP.depts.find(d=>d.id===SH.dept))SH.dept=SHOP.depts[0].id;
- setView((ROOM.role==='guest'?'':roomHTML())+`<section class="panel k-card shop"><div class="shlogo"><img src="${SHOP.deco.logo}" alt=""></div>${shInfoHTML()}<div class="shbar"><div class="shdeps">${SHOP.depts.map(d=>`<button class="shdep${d.id===SH.dept?' on':''}" data-dep="${d.id}" style="--c:${d.color}">${esc(d.name)}</button>`).join('')}</div>
+ setView((ROOM.role==='guest'?'':roomHTML())+`<section class="panel k-card shop"><div class="shlogo"><img src="${SHOP.deco.logo}" alt=""></div>${shInfoHTML()}<div class="shrcw" id="shrcw"></div><div class="shbar"><div class="shdeps">${SHOP.depts.map(d=>`<button class="shdep${d.id===SH.dept?' on':''}" data-dep="${d.id}" style="--c:${d.color}">${esc(d.name)}</button>`).join('')}</div>
  <label class="shcurl">Currency <span class="fld k-sel"><select id="shcur"${ROOM.role==='guest'?' disabled':''}>${SHCUR.map(c=>`<option${c===shCur()?' selected':''}>${c}</option>`).join('')}</select></span></label>
  </div>
  <p class="muted small shhint">Drag a product into the basket (bottom right), or click it to zoom in and read the name.</p>
  <div class="shshelves" id="shsh"></div></section>`);
  $('#shcur').onchange=e=>{S.shopcur=e.target.value;save();shSend('cur');shopSetup();shCartRender()};
  document.querySelectorAll('.shdep').forEach(b=>b.onclick=()=>{SH.dept=b.dataset.dep;shopSetup()});
- bindRoom();shBind();shShelves();shCartRender()}
+ bindRoom();shBind();shRcRender();shShelves();shCartRender()}
 function shCols(){const w=($('#shsh')||{}).clientWidth||900;return Math.max(2,Math.min(6,Math.floor(w/185)))}
 function shShelves(){
  const d=SHOP.depts.find(x=>x.id===SH.dept),box=$('#shsh');if(!box)return;
@@ -3123,7 +3175,7 @@ function shAdd(id,n){SH.paid=false;SH.cart[id]=Math.max(0,(SH.cart[id]||0)+(n||1
 function shTotals(){let n=0,t=0;for(const id in SH.cart){const f=shFind(id);if(!f)continue;n+=SH.cart[id];t+=SH.cart[id]*f[0].price}return{n,t}}
 function shCartEl(){let c=$('#shcart');if(c)return c;c=document.createElement('div');c.id='shcart';document.body.appendChild(c);
  c.onclick=e=>{const a=e.target.closest('[data-sa]');if(!a){return}const id=a.dataset.id;let ch=0;
-  switch(a.dataset.sa){case'tog':SH.open=!SH.open;SH.paid=SH.paid&&SH.open;break;case'inc':shAdd(id,1);return;case'dec':shAdd(id,-1);return;case'del':delete SH.cart[id];ch=1;break;case'zoom':shZoom(id,'remove');return;case'pay':if(shTotals().n){SH.paid=true;SH.last=shTotals();SH.lastCart=Object.assign({},SH.cart);SH.cart={};ch=1}break;case'new':SH.paid=false;SH.open=false;ch=1;break}
+  switch(a.dataset.sa){case'tog':SH.open=!SH.open;SH.paid=SH.paid&&SH.open;break;case'inc':shAdd(id,1);return;case'dec':shAdd(id,-1);return;case'del':delete SH.cart[id];ch=1;break;case'zoom':shZoom(id,'remove');return;case'pay':if(shTotals().n){SH.paid=true;SH.last=shTotals();SH.lastCart=Object.assign({},SH.cart);SH.lastOrd='ORD-'+(1000+Math.floor(Math.random()*9000));SH.cart={};SH.open=false;ch=1;setTimeout(()=>shReceipt(),50)}break;case'new':SH.paid=false;SH.open=false;rcClose();ch=1;break}
   shCartRender();if(ch){shSend('c');shSend('p')}};return c}
 function shBasketHTML(n,t){
  const ids=Object.keys(SH.cart).slice(-9),pos=[[18,24],[44,16],[68,26],[26,48],[52,44],[74,52],[16,66],[44,70],[70,72]];
@@ -3138,8 +3190,59 @@ function shCartRender(){
   else body=`<div class="shcb"><ul class="shlist rows">${Object.keys(SH.cart).map(id=>{const f=shFind(id);if(!f)return'';const[it,d]=f,q=SH.cart[id];
    return `<li><img data-sa="zoom" data-id="${id}" src="${it.img}" alt=""><div class="shi"><div class="shin">${esc(it.name)}</div><div class="shis">${shMoney(it.price)} <small>${esc(it.unit)}</small></div></div><div class="shq"><button data-sa="dec" data-id="${id}">−</button><span>${q}</span><button data-sa="inc" data-id="${id}">+</button></div><b class="shlt">${shMoney(q*it.price)}</b><button class="shx" data-sa="del" data-id="${id}" title="Remove">✕</button></li>`}).join('')}</ul>
    <div class="shtot"><span>Total</span><b>${shMoney(t)}</b></div>${SH.budget>0?`<div class="shtot shleft${t>SH.budget?' over':''}"><span>${t>SH.budget?'Over budget by':'Budget left'}</span><b>${shMoney(Math.abs(SH.budget-t))}</b></div>`:''}<button class="shbtn" data-sa="pay">Checkout</button></div>`}
- c.innerHTML=(SH.open?`<div class="shpanel">${body}</div>`:'')+shBasketHTML(n,t);shBudRender()}
+ c.innerHTML=(SH.open?`<div class="shpanel">${body}</div>`:'')+shBasketHTML(n,t);shBudRender();shRcRender()}
 function shopVis(on){document.body.classList.toggle('inshop',on);if(on)shCartRender();else shZoomClose()}
+const RCP=[{"id": "cake", "e": "🎂", "t": "Birthday cake", "k": "festive", "o": "Birthday", "c": "#f6c9d3", "i": [{"n": "flour", "q": "300 g", "ok": ["flour", "all-purpose-flour", "organic-flour"]}, {"n": "eggs", "q": "3", "ok": ["eggs-18-brown", "eggs-6-white", "eggs-12-brown", "eggs-12-organic", "eggs-6-organic"]}, {"n": "butter", "q": "200 g", "ok": ["butter-unsalted", "butter-salted", "salted-butter-block", "spreadable-butter"]}, {"n": "brown sugar", "q": "200 g", "ok": ["dark-brown-sugar", "soft-brown-sugar", "coconut-sugar"]}, {"n": "milk", "q": "100 ml", "ok": ["whole-milk", "milk-2-percent", "milk-gallon"]}, {"n": "baking powder", "q": "2 tsp", "ok": ["baking-powder"]}, {"n": "vanilla", "q": "1 tsp", "ok": ["vanilla-powder"]}, {"n": "sprinkles", "q": "to decorate", "ok": ["rainbow-sprinkles", "pastel-sprinkles", "blue-sprinkles"]}], "s": ["First, heat the oven to 180 degrees.", "Then mix the butter and the sugar.", "Next, add the eggs one by one.", "After that, add the flour, the baking powder, the vanilla and the milk.", "Bake it for 35 minutes.", "Finally, decorate the cake with sprinkles."]}, {"id": "olivier", "e": "🥗", "t": "Olivier salad", "k": "festive", "o": "New Year", "c": "#c8dcf5", "i": [{"n": "potatoes", "q": "4", "ok": ["baby-potatoes"]}, {"n": "carrots", "q": "2", "ok": ["sliced-carrots", "organic-carrots"]}, {"n": "eggs", "q": "4", "ok": ["eggs-18-brown", "eggs-6-white", "eggs-12-brown", "eggs-12-organic", "eggs-6-organic"]}, {"n": "pickles", "q": "3", "ok": ["pickles"]}, {"n": "cooked ham", "q": "200 g", "ok": ["cooked-ham"]}, {"n": "mayonnaise", "q": "4 tbsp", "ok": ["mayonnaise", "salad-cream"]}, {"n": "spring onions", "q": "a bunch", "ok": ["spring-onions"]}], "s": ["First, boil the potatoes, the carrots and the eggs.", "Then let them cool down.", "Next, cut everything into small cubes.", "After that, mix it with the mayonnaise.", "Finally, add salt and put it in the fridge."]}, {"id": "ginger", "e": "🍪", "t": "Gingerbread cookies", "k": "festive", "o": "Christmas", "c": "#fde9a8", "i": [{"n": "flour", "q": "300 g", "ok": ["flour", "all-purpose-flour", "organic-flour"]}, {"n": "butter", "q": "150 g", "ok": ["butter-unsalted", "butter-salted", "salted-butter-block", "spreadable-butter"]}, {"n": "brown sugar", "q": "100 g", "ok": ["dark-brown-sugar", "soft-brown-sugar", "coconut-sugar"]}, {"n": "honey", "q": "3 tbsp", "ok": ["honey-squeezer", "raw-honey", "clover-honey"]}, {"n": "ground ginger", "q": "2 tsp", "ok": ["ground-ginger"]}, {"n": "cinnamon", "q": "1 stick", "ok": ["cinnamon-sticks"]}, {"n": "egg", "q": "1", "ok": ["eggs-18-brown", "eggs-6-white", "eggs-12-brown", "eggs-12-organic", "eggs-6-organic"]}], "s": ["First, mix the butter, the sugar and the honey.", "Then add the egg, the ginger and the cinnamon.", "Next, add the flour and make the dough.", "After that, roll it out and cut out stars and trees.", "Bake the cookies for 10 minutes.", "Finally, let them cool and decorate them."]}, {"id": "pie", "e": "🥧", "t": "Sweet potato pie", "k": "festive", "o": "Thanksgiving", "c": "#d3ecc4", "i": [{"n": "sweet potatoes", "q": "3", "ok": ["sweet-potatoes"]}, {"n": "eggs", "q": "2", "ok": ["eggs-18-brown", "eggs-6-white", "eggs-12-brown", "eggs-12-organic", "eggs-6-organic"]}, {"n": "butter", "q": "100 g", "ok": ["butter-unsalted", "butter-salted", "salted-butter-block", "spreadable-butter"]}, {"n": "brown sugar", "q": "150 g", "ok": ["dark-brown-sugar", "soft-brown-sugar", "coconut-sugar"]}, {"n": "cream", "q": "200 ml", "ok": ["cooking-cream", "heavy-cream", "whipping-cream"]}, {"n": "cinnamon", "q": "1 stick", "ok": ["cinnamon-sticks"]}, {"n": "flour", "q": "200 g", "ok": ["flour", "all-purpose-flour", "organic-flour"]}], "s": ["First, bake the sweet potatoes and peel them.", "Then mash them with the butter.", "Next, add the eggs, the sugar, the cream and the cinnamon.", "After that, make the base with the flour and the butter.", "Pour the mixture on top and bake it for 45 minutes.", "Finally, serve the pie warm."]}, {"id": "pancakes", "e": "🥞", "t": "Pancakes", "k": "festive", "o": "Pancake Day", "c": "#fde9a8", "i": [{"n": "flour", "q": "250 g", "ok": ["flour", "all-purpose-flour", "organic-flour"]}, {"n": "eggs", "q": "2", "ok": ["eggs-18-brown", "eggs-6-white", "eggs-12-brown", "eggs-12-organic", "eggs-6-organic"]}, {"n": "milk", "q": "500 ml", "ok": ["whole-milk", "milk-2-percent", "milk-gallon"]}, {"n": "butter", "q": "50 g", "ok": ["butter-unsalted", "butter-salted", "salted-butter-block", "spreadable-butter"]}, {"n": "lemon", "q": "1", "ok": ["lemons", "lemons-limes"]}, {"n": "honey", "q": "to serve", "ok": ["honey-squeezer", "raw-honey", "clover-honey"]}], "s": ["First, mix the flour, the eggs and the milk.", "Then melt the butter and add it.", "Next, heat a pan.", "After that, fry the pancakes on both sides.", "Finally, serve them with lemon and honey."]}, {"id": "sundae", "e": "🍨", "t": "Ice cream sundae", "k": "festive", "o": "Party", "c": "#f6c9d3", "i": [{"n": "ice cream", "q": "1 tub", "ok": ["strawberry-ice-cream", "cookies-cream-ice-cream", "raspberry-ice-cream", "mint-chip-ice-cream", "apple-pie-ice-cream", "birthday-cake-ice-cream", "cookie-dough-ice-cream"]}, {"n": "chocolate syrup", "q": "to pour", "ok": ["chocolate-syrup"]}, {"n": "strawberries", "q": "a box", "ok": ["strawberries"]}, {"n": "whipped cream", "q": "to top", "ok": ["whipped-cream-spray"]}, {"n": "sprinkles", "q": "to decorate", "ok": ["rainbow-sprinkles", "pastel-sprinkles", "blue-sprinkles"]}, {"n": "cherries", "q": "4", "ok": ["cherries", "frozen-cherries"]}], "s": ["First, put three scoops of ice cream in a glass.", "Then add the strawberries.", "Next, pour the chocolate syrup on top.", "After that, add the whipped cream.", "Finally, decorate it with sprinkles and a cherry."]}, {"id": "board", "e": "🧀", "t": "Party cheese board", "k": "festive", "o": "Party", "c": "#c8dcf5", "i": [{"n": "camembert", "q": "1", "ok": ["camembert"]}, {"n": "Parma ham", "q": "70 g", "ok": ["parma-ham", "spanish-cured-ham"]}, {"n": "salami", "q": "100 g", "ok": ["salami", "salami-slices"]}, {"n": "grapes", "q": "a bunch", "ok": ["red-grapes"]}, {"n": "baguette", "q": "1", "ok": ["baguettes"]}, {"n": "walnuts", "q": "a handful", "ok": ["walnuts", "walnut-pieces"]}, {"n": "honey", "q": "to serve", "ok": ["honey-squeezer", "raw-honey", "clover-honey"]}], "s": ["First, put the cheese in the middle of a big board.", "Then fold the ham and the salami.", "Next, add the grapes and the walnuts.", "After that, cut the baguette into slices.", "Finally, put a little honey on the cheese."]}, {"id": "bbq", "e": "🍢", "t": "Barbecue skewers", "k": "festive", "o": "Summer party", "c": "#d3ecc4", "i": [{"n": "beef cubes", "q": "500 g", "ok": ["beef-cubes", "diced-beef"]}, {"n": "bell peppers", "q": "2", "ok": ["bell-peppers"]}, {"n": "onions", "q": "2", "ok": ["onions", "red-onions"]}, {"n": "mushrooms", "q": "200 g", "ok": ["mushrooms"]}, {"n": "zucchini", "q": "1", "ok": ["zucchini"]}, {"n": "olive oil", "q": "3 tbsp", "ok": ["olive-oil", "organic-olive-oil"]}, {"n": "paprika", "q": "1 tsp", "ok": ["paprika"]}, {"n": "salt", "q": "a pinch", "ok": ["iodized-salt", "sea-salt", "pink-salt"]}], "s": ["First, cut the meat and the vegetables into big pieces.", "Then mix them with the oil, the paprika and the salt.", "Next, put everything on the skewers.", "After that, grill them for 15 minutes.", "Finally, turn them over and serve them hot."]}, {"id": "omelette", "e": "🍳", "t": "Cheese omelette", "k": "basic", "o": "Breakfast", "c": "#fde9a8", "i": [{"n": "eggs", "q": "3", "ok": ["eggs-18-brown", "eggs-6-white", "eggs-12-brown", "eggs-12-organic", "eggs-6-organic"]}, {"n": "milk", "q": "50 ml", "ok": ["whole-milk", "milk-2-percent", "milk-gallon"]}, {"n": "butter", "q": "20 g", "ok": ["butter-unsalted", "butter-salted", "salted-butter-block", "spreadable-butter"]}, {"n": "cheddar", "q": "2 slices", "ok": ["cheddar-slices"]}, {"n": "mushrooms", "q": "100 g", "ok": ["mushrooms"]}, {"n": "salt", "q": "a pinch", "ok": ["iodized-salt", "sea-salt", "pink-salt"]}], "s": ["First, beat the eggs with the milk and the salt.", "Then fry the mushrooms in the butter.", "Next, pour the eggs into the pan.", "After that, add the cheese.", "Finally, fold the omelette and serve it."]}, {"id": "bolognese", "e": "🍝", "t": "Spaghetti Bolognese", "k": "basic", "o": "Dinner", "c": "#f6c9d3", "i": [{"n": "pasta", "q": "400 g", "ok": ["fusilli", "conchiglie", "fiorelli"]}, {"n": "ground beef", "q": "500 g", "ok": ["ground-beef"]}, {"n": "onion", "q": "1", "ok": ["onions", "red-onions"]}, {"n": "garlic", "q": "2 cloves", "ok": ["garlic", "garlic-paste"]}, {"n": "diced tomatoes", "q": "1 can", "ok": ["diced-tomatoes"]}, {"n": "olive oil", "q": "2 tbsp", "ok": ["olive-oil", "organic-olive-oil"]}, {"n": "Italian seasoning", "q": "1 tsp", "ok": ["italian-seasoning"]}], "s": ["First, fry the onion and the garlic in the oil.", "Then add the beef and cook it for 10 minutes.", "Next, add the tomatoes and the seasoning.", "After that, let the sauce cook for 20 minutes.", "Meanwhile, boil the pasta.", "Finally, put the sauce on the pasta."]}, {"id": "chicken", "e": "🍗", "t": "Chicken and rice", "k": "basic", "o": "Dinner", "c": "#c8dcf5", "i": [{"n": "chicken", "q": "400 g", "ok": ["chicken-breast-strips"]}, {"n": "rice", "q": "300 g", "ok": ["basmati-rice"]}, {"n": "bell peppers", "q": "2", "ok": ["bell-peppers"]}, {"n": "onion", "q": "1", "ok": ["onions", "red-onions"]}, {"n": "olive oil", "q": "2 tbsp", "ok": ["olive-oil", "organic-olive-oil"]}, {"n": "paprika", "q": "1 tsp", "ok": ["paprika"]}], "s": ["First, cut the onion and the peppers.", "Then fry the chicken with the paprika.", "Next, add the vegetables.", "After that, add the rice and some water.", "Cook it for 20 minutes.", "Finally, stir it and serve it."]}, {"id": "greek", "e": "🥗", "t": "Greek-style salad", "k": "basic", "o": "Lunch", "c": "#d3ecc4", "i": [{"n": "tomatoes", "q": "300 g", "ok": ["cherry-tomatoes", "plum-tomatoes"]}, {"n": "red onion", "q": "1", "ok": ["red-onions", "onions"]}, {"n": "bell pepper", "q": "1", "ok": ["bell-peppers"]}, {"n": "feta", "q": "200 g", "ok": ["feta"]}, {"n": "olives", "q": "a handful", "ok": ["green-olives"]}, {"n": "olive oil", "q": "3 tbsp", "ok": ["olive-oil", "organic-olive-oil"]}], "s": ["First, cut the tomatoes, the pepper and the onion.", "Then put them in a big bowl.", "Next, add the olives.", "After that, break the feta on top.", "Finally, pour the olive oil over the salad."]}, {"id": "soup", "e": "🍅", "t": "Tomato soup", "k": "basic", "o": "Lunch", "c": "#f6c9d3", "i": [{"n": "tomatoes", "q": "800 g", "ok": ["plum-tomatoes", "diced-tomatoes"]}, {"n": "onion", "q": "1", "ok": ["onions", "red-onions"]}, {"n": "garlic", "q": "2 cloves", "ok": ["garlic", "garlic-paste"]}, {"n": "cream", "q": "100 ml", "ok": ["cooking-cream", "heavy-cream", "whipping-cream"]}, {"n": "butter", "q": "30 g", "ok": ["butter-unsalted", "butter-salted", "salted-butter-block", "spreadable-butter"]}, {"n": "salt", "q": "a pinch", "ok": ["iodized-salt", "sea-salt", "pink-salt"]}], "s": ["First, fry the onion and the garlic in the butter.", "Then add the tomatoes.", "Next, cook everything for 20 minutes.", "After that, blend the soup until it is smooth.", "Finally, add the cream and the salt."]}, {"id": "guac", "e": "🥑", "t": "Guacamole", "k": "basic", "o": "Snack", "c": "#d3ecc4", "i": [{"n": "avocados", "q": "3", "ok": ["avocados", "hass-avocados", "ripe-avocado"]}, {"n": "lime juice", "q": "1 tbsp", "ok": ["lime-juice", "lemons-limes"]}, {"n": "red onion", "q": "1/2", "ok": ["red-onions", "onions"]}, {"n": "tomatoes", "q": "2", "ok": ["cherry-tomatoes", "plum-tomatoes"]}, {"n": "coriander", "q": "a bunch", "ok": ["coriander"]}, {"n": "salt", "q": "a pinch", "ok": ["iodized-salt", "sea-salt", "pink-salt"]}], "s": ["First, cut the avocados and mash them with a fork.", "Then chop the onion, the tomatoes and the coriander.", "Next, mix everything together.", "After that, add the lime juice and the salt.", "Finally, serve it with bread or chips."]}, {"id": "porridge", "e": "🥣", "t": "Porridge with fruit", "k": "basic", "o": "Breakfast", "c": "#fde9a8", "i": [{"n": "oatmeal", "q": "100 g", "ok": ["instant-oatmeal"]}, {"n": "milk", "q": "300 ml", "ok": ["whole-milk", "milk-2-percent", "milk-gallon"]}, {"n": "bananas", "q": "2", "ok": ["bananas", "organic-bananas"]}, {"n": "blueberries", "q": "a handful", "ok": ["blueberries"]}, {"n": "honey", "q": "1 tbsp", "ok": ["honey-squeezer", "raw-honey", "clover-honey"]}], "s": ["First, put the oatmeal and the milk in a pan.", "Then cook it for 5 minutes and stir it.", "Next, cut the banana.", "After that, put the porridge in a bowl.", "Finally, add the fruit and the honey."]}, {"id": "salmon", "e": "🐟", "t": "Baked salmon with vegetables", "k": "basic", "o": "Dinner", "c": "#c8dcf5", "i": [{"n": "salmon", "q": "2 fillets", "ok": ["norwegian-salmon", "salmon-fillets-tray", "atlantic-salmon", "fresh-salmon-fillets"]}, {"n": "lemon", "q": "1", "ok": ["lemons", "lemons-limes"]}, {"n": "broccoli", "q": "1", "ok": ["broccoli", "broccoli-florets"]}, {"n": "potatoes", "q": "500 g", "ok": ["baby-potatoes"]}, {"n": "garlic", "q": "2 cloves", "ok": ["garlic", "garlic-paste"]}, {"n": "olive oil", "q": "3 tbsp", "ok": ["olive-oil", "organic-olive-oil"]}, {"n": "salt", "q": "a pinch", "ok": ["iodized-salt", "sea-salt", "pink-salt"]}], "s": ["First, heat the oven to 200 degrees.", "Then put the potatoes and the broccoli on a tray.", "Next, add the oil, the garlic and the salt.", "After that, put the salmon on top with the lemon.", "Bake it for 20 minutes.", "Finally, serve it hot."]}, {"id": "cocoa", "e": "🍫", "t": "Hot chocolate", "k": "basic", "o": "Winter", "c": "#f6c9d3", "i": [{"n": "cocoa", "q": "3 tbsp", "ok": ["hot-cocoa", "cocoa-powder"]}, {"n": "milk", "q": "400 ml", "ok": ["whole-milk", "milk-2-percent", "milk-gallon"]}, {"n": "chocolate syrup", "q": "1 tbsp", "ok": ["chocolate-syrup"]}, {"n": "whipped cream", "q": "to top", "ok": ["whipped-cream-spray"]}, {"n": "cinnamon", "q": "1 stick", "ok": ["cinnamon-sticks"]}], "s": ["First, heat the milk in a pan.", "Then add the cocoa and the syrup and stir.", "Next, pour it into a big mug.", "After that, put the whipped cream on top.", "Finally, add the cinnamon."]}];
+const rcGet=id=>RCP.find(r=>r.id===id);
+const rcHave=(L,ing)=>ing.ok.some(id=>L&&L[id]>0);
+const rcDept=ing=>{for(const id of ing.ok){const f=shFind(id);if(f)return f[1].name}return''};
+function rcPick(kind){const pool=RCP.filter(r=>(kind==='any'||r.k===kind)&&r.id!==SH.rc);const r=pool[Math.floor(Math.random()*pool.length)];SH.rc=r.id;SH.rhint='';sfx('pop');shSend('r');shRcRender()}
+function shRcRender(){
+ const w=$('#shrcw');if(!w)return;const r=SH.rc&&rcGet(SH.rc);
+ if(!r){w.innerHTML=`<div class="rcbar"><b>🍳 Recipe game</b><span class="muted small">Get a random recipe, then find the ingredients in the shop and put them in the basket.</span><div class="rcbtns"><button class="rkb" data-rc="any" style="background:#fde9a8">🎲 Any recipe</button><button class="rkb" data-rc="festive" style="background:#f6c9d3">🎉 Festive</button><button class="rkb" data-rc="basic" style="background:#c8dcf5">🍽 Everyday</button></div></div>`}
+ else{
+  const have=r.i.map(ing=>rcHave(SH.cart,ing)),n=have.filter(Boolean).length;
+  const extras=Object.keys(SH.cart).filter(id=>SH.cart[id]>0&&!r.i.some(ing=>ing.ok.includes(id))).map(id=>shFind(id)).filter(Boolean).map(f=>f[0].name);
+  w.innerHTML=`<div class="rkw" style="--c:${r.c}"><div class="rcht"><span class="rke">${r.e}</span><div class="rctl"><h3>${esc(r.t)}</h3><span class="rctag">${r.k==='festive'?'🎉 Festive':'🍽 Everyday'} · ${esc(r.o)}</span></div><div class="rcbtns"><button class="rkb" data-rc="hint">💡 Hint</button><button class="rkb" data-rc="any">🎲 Another</button><button class="rkb" data-rc="close">✕</button></div></div>
+  <p class="rkq">Find all ${r.i.length} ingredients in the shop. <b>${n} / ${r.i.length}</b> in the basket</p>
+  <div class="rcgrid">${r.i.map((ing,k)=>`<div class="shcard rci${have[k]?' got':''}" style="background:${have[k]?'#d3ecc4':r.c}"><div class="shn">${esc(ing.n)}</div><div class="shpr"><small>${esc(ing.q)}</small><b>${have[k]?'✓':'?'}</b></div></div>`).join('')}</div>
+  ${SH.rhint?`<div class="rchint">${esc(SH.rhint)}</div>`:''}${extras.length?`<div class="rcx">Not in this recipe: ${esc(extras.join(', '))}</div>`:''}${n===r.i.length?`<div class="rcok">✓ You have everything! Open the basket and check out.</div>`:''}</div>`}
+ w.querySelectorAll('[data-rc]').forEach(b=>b.onclick=()=>{const k=b.dataset.rc;
+  if(k==='close'){SH.rc=null;SH.rhint='';shSend('r');shRcRender();return}
+  if(k==='hint'){const rr=rcGet(SH.rc),ing=rr&&rr.i.find(x=>!rcHave(SH.cart,x));SH.rhint=ing?'Look in “'+rcDept(ing)+'” for: '+ing.n+'.':'You have everything!';shRcRender();return}
+  rcPick(k)})}
+function rcClose(){const o=$('#rcov');if(o){(o._t||[]).forEach(clearTimeout);o.remove()}}
+function rcZig(){const n=40,d=4,p=[];for(let i=0;i<n*2;i++){const x=100-((i+1)*100)/(n*2);p.push(x+'% '+(i%2===0?'100%':'calc(100% - '+d+'px)'))}return 'polygon(0 0,100% 0,100% calc(100% - '+d+'px),'+p.join(',')+')'}
+function shReceipt(L,tot,ord){
+ rcClose();L=L||SH.lastCart||{};tot=tot||SH.last||{t:0,n:0};ord=ord||SH.lastOrd||'ORD-2048';
+ const rows=Object.keys(L).map(id=>{const f=shFind(id);return f?{n:f[0].name,q:L[id],p:f[0].price}:null}).filter(Boolean);
+ const r=SH.rc&&rcGet(SH.rc),now=new Date();
+ const dt=now.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}).toUpperCase()+' · '+now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+ let seed=0;for(const ch of ord)seed=(seed*31+ch.charCodeAt(0))>>>0;const rnd=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};
+ let x=0,bars='';for(let i=0;i<48;i++){const w=1+Math.floor(rnd()*3);if(i%2===0)bars+=`<rect x="${x}" y="0" width="${w}" height="40"/>`;x+=w}
+ const items=rows.map(it=>`<div class="rcl"><span>${it.q} × ${esc(it.n)}</span><b>${shMoney(it.q*it.p)}</b></div>`).join('');
+ const rb=r?`<div class="rcd"></div><div class="rcl rch2"><b>RECIPE</b><span>${esc(r.t)}</span></div>${r.i.map(ing=>{const h=rcHave(L,ing);return `<div class="rcl"><span>${h?'✓':'✗'} ${esc(ing.n)}</span><span class="rcm2">${h?'':'missing'}</span></div>`}).join('')}`:'';
+ const o=document.createElement('div');o.id='rcov';o._t=[];
+ o.innerHTML=`<div class="rcbox"><section class="rcp" data-stage="processing" aria-label="Receipt printer"><div class="rcm"><div class="rchd"><span class="rclg"><img src="${SHOP.deco.logo}" alt=""></span><button class="rcclose" id="rcclose">✕ Close</button></div>
+ <div class="rcsc"><div class="rcsl"><div><div class="rcn">Checkout</div><div class="rcs2">${tot.n} item${tot.n===1?'':'s'}</div></div><div class="rctt"><small>Total</small><b>${shMoney(tot.t)}</b></div></div><div class="rcst"><span class="rcic" id="rcic"><i class="rcspin"></i></span><span id="rctx" role="status" aria-live="polite">Processing your order</span></div></div><i class="rcslot"></i></div>
+ <div class="rco" id="rco"><div class="rcfeed" id="rcfeed"><article class="rcpaper" style="clip-path:${rcZig()}"><img class="rcpl" src="${SHOP.deco.logo}" alt="">
+ <div class="rcd"></div>${items}<div class="rcd"></div><div class="rcl rcs3"><span>Subtotal</span><span>${shMoney(tot.t)}</span></div>
+ <div class="rcl rcg"><b>TOTAL PAID</b><b>${shMoney(tot.t)}</b></div>${rb}<div class="rcd"></div>
+ <div class="rcl rcm3"><span>Order</span><span>${esc(ord)}</span></div><div class="rcl rcm3"><span>Paid with</span><span>Card</span></div><div class="rcl rcm3"><span>Date</span><span>${esc(dt)}</span></div>
+ <svg class="rcbc" viewBox="0 0 ${x} 40" preserveAspectRatio="none" aria-hidden="true">${bars}</svg><div class="rcbn">${esc(ord.replace('-',' '))}</div><div class="rcth">Thank you for shopping!</div></article></div></div></section>
+ <div class="rcbt" id="rcbt"></div><div class="rcsteps" id="rcsteps"></div></div>`;
+ document.body.appendChild(o);
+ const rco=$('#rco'),paper=o.querySelector('.rcpaper');rco.style.height=paper.offsetHeight+'px';
+ const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,T=(f,ms)=>{const id=setTimeout(f,ms);o._t.push(id)};
+ const P=o.querySelector('.rcp');
+ o.onclick=e=>{if(e.target===o)rcClose()};$('#rcclose').onclick=rcClose;
+ const complete=()=>{P.dataset.stage='complete';$('#rcic').innerHTML='✓';$('#rctx').textContent='Order complete';sfx('ding');
+  const bt=$('#rcbt');bt.innerHTML=`${r?'<button class="rcbtn" id="rchow" style="background:#fde9a8">📖 How to cook it</button>':''}<button class="rcbtn" id="rcnew">🛒 New basket</button><button class="rcbtn" id="rccl" style="background:#e3dcc8">Close</button>`;
+  $('#rcnew').onclick=()=>{SH.paid=false;SH.open=false;rcClose();shCartRender();shSend('c');shSend('p')};$('#rccl').onclick=rcClose;
+  if(r)$('#rchow').onclick=()=>{const s=$('#rcsteps');s.classList.toggle('on');if(!s.innerHTML){s.innerHTML=`<h3>${r.e} How to make: ${esc(r.t)}</h3><ol>${r.s.map(t=>`<li>${esc(t)}</li>`).join('')}</ol><button class="rcbtn" id="rcsp" style="background:#c8dcf5">🔊 Listen</button><p class="rcyt"><b>Your turn:</b> explain how to make it to your partner. Use First… Then… Next… After that… Finally…</p>`;$('#rcsp').onclick=()=>elSpeak(r.s.join(' '))}}};
+ if(reduce){P.dataset.stage='printing';$('#rctx').textContent='Printing your receipt';T(complete,200);return}
+ T(()=>{P.dataset.stage='printing';$('#rctx').textContent='Printing your receipt';[.075,.18,.285,.39,.495,.6,.705,.81,.915].forEach(f=>T(()=>sfx('print'),f*1750));T(complete,1900)},1300)}
+
 let SZ=null;
 function shZoom(id,mode){
  const f=shFind(id);if(!f)return;const[it,d]=f;shZoomClose();
@@ -3162,7 +3265,7 @@ function shZoom(id,mode){
  box.onpointerup=box.onpointercancel=e=>ps.delete(e.pointerId);
  SZ=m}
 function shZoomClose(){const m=$('#shz');if(m)m.remove();SZ=null}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#shz'))shZoomClose()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('#rcov'))rcClose();else if($('#shz'))shZoomClose()}});
 window.addEventListener('resize',()=>{if(tab==='shop'&&$('#shsh'))shShelves()});
 
 /* ===== Navigation ===== */
@@ -3225,6 +3328,7 @@ function sfx(n){
    case 'door':noise(.35,.04,700);tone(120,.3,'sine',.04,0,90);break
    case 'hum':tone(80,.75,'sawtooth',.03,0,115);break
    case 'floor':tone(700,.06,'sine',.06);break
+   case 'print':noise(.09,.08,1400);tone(160,.05,'square',.03);break
    case 'pick':tone(700,.07,'triangle',.08);tone(950,.1,'triangle',.08,.07);break}
  }catch(e){}}
 function sndInit(){
