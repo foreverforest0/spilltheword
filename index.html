@@ -6,7 +6,7 @@
 <title>English Games</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Special+Elite&display=swap">
 <style>
 /* drawably style.css (MIT, see licence in the script block below) */
 .drawably-host {
@@ -1456,6 +1456,7 @@ main:has(.sp){max-width:1280px}
     <button data-tab="speak">Grammar Speaking</button>
     <button data-tab="shop">Shop</button>
         <button data-tab="gram">Grammar Games</button>
+        <button data-tab="write">Creative Writing</button>
    </nav>
   </div>
  </div>
@@ -3040,6 +3041,7 @@ const GAMES={
  gram:{title:'Grammar Games',icon:'🎲',desc:'Oral grammar drills for all levels. Tense Switch: change the sentence as the card says. Grammar Dice: roll a topic, a type of sentence and a word from your course. Sentence Expander: a word appears, say a sentence and keep adding details.'},
  expand:{title:'Sentence Expander',icon:'🧩',desc:'Pick your course and level. A word from your lessons appears: say a short sentence with it, then keep adding details (when? where? why?…) and repeat the whole, longer sentence out loud each time.'},
  shop:{title:'Shop',icon:'🛒',desc:'A supermarket: walk through the departments, drag products around, click to zoom in and read the name, put them in the basket.'},
+ write:{title:'Creative Writing',icon:'⌨️',desc:'A vintage typewriter: type a story line by line. What you type stays for the next person.'},
  speak:{title:'Grammar Speaking',icon:'🗣️',desc:'Speaking practice by grammar topic. A picture and a question appear with the time markers; the student answers out loud. Click the picture (or press Space) for the next one.'},
  gwho:{title:'Guess Who',icon:'🕵️',desc:'Each player has a secret character. Ask each other yes/no questions out loud and flip down the cards. The first to guess the other player’s character wins.'},
  jeo:{title:'Jeopardy',icon:'🏆',desc:'A board of categories. Tiles reveal words and tasks (or your own questions). Up to 6 columns, 5 rows.',
@@ -3317,7 +3319,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('#rcov'))rcClo
 window.addEventListener('resize',()=>{if(tab==='shop'&&$('#shsh'))shShelves()});
 
 /* ===== Navigation ===== */
-const NAV=['alias','taboo','bingo','jeo','gif','speak','shop','gram','words'];
+const NAV=['alias','taboo','bingo','jeo','gif','speak','shop','gram','write','words'];
 let tab='alias',R=null,J=null,tmr=null;
 let NL=null,NR=null;
 const navTabs={setActive(i){
@@ -3338,7 +3340,8 @@ const CHN=[
  {t:'gif',n:'Describe the GIF',s:'GIF',e:'🎞️',d:'Say what is happening in the picture.'},
  {t:'speak',n:'Grammar Speaking',s:'Speaking',e:'🗣️',d:'Grammar topics as speaking games.'},
  {t:'shop',n:'Shop',s:'Shop',e:'🛒',d:'Go shopping and talk about prices.'},
- {t:'gram',n:'Grammar Games',s:'Games',e:'🎲',d:'Tense Switch, Dice, Sentence Expander.'}];
+ {t:'gram',n:'Grammar Games',s:'Games',e:'🎲',d:'Tense Switch, Dice, Sentence Expander.'},
+ {t:'write',n:'Creative Writing',s:'Writing',e:'⌨️',d:'Type a story on a vintage typewriter.'}];
 const CPV={
  alias:()=>`<div class="pvw"><i style="--d:0s">apple</i><i style="--d:.9s">happy</i><i style="--d:1.8s">run</i><i style="--d:2.7s">cold</i></div><div class="pvq">?</div>`,
  taboo:()=>`<div class="pvcard"><b>beach</b><span>sand</span><span>sea</span><span>sun</span><em>🚫</em></div>`,
@@ -3414,8 +3417,9 @@ const HSG={
  helmet:{n:'Deep Sea',d:'Dive down and learn comparatives and superlatives.',tab:'gram',mode:'deep'},
  cat:{n:'Sunny City',d:'Walk around a 3D city, go into the cafe, the shop, the bank and more, and practise giving directions.',tab:'gram',mode:'city'},
  pumpkin:{n:'The pumpkin',d:'Carve a face and light it up.',special:'pump'},
+ books:{n:'Creative Writing',d:'Type a story on a vintage typewriter. What you type stays for the next person.',tab:'write'},
  jar:{n:'My stars',d:'Your progress in the games.',special:'stars'}};
-const HSORD=['alias','taboo','bingo','jeo','speak','gifframe','shop','appearance','dice','clock','ruler','flask','scales','helmet','cat'];
+const HSORD=['alias','taboo','bingo','jeo','speak','gifframe','shop','books','appearance','dice','clock','ruler','flask','scales','helmet','cat'];
 let HSCUR=-1,HSKEY=false;
 function hsObj(k,i){const g=HSG[k];return g?g:null}
 function homeHTML(){
@@ -3650,6 +3654,7 @@ function jeoExtraHTML(){return `<section class="panel k-card"><div class="row" s
 function renderSetup(g){
  if(g==='gwho'){gwSetup();return}
  if(g==='speak'){spSetup();return}
+ if(g==='write'){tySetup();return}
  if(g==='shop'){shopSetup();return}
  if(g==='expand'){exSetup();return}
  if(g==='gram'){glSetup();return}
@@ -10394,6 +10399,135 @@ function m8Start(){
  inp.oninput=()=>{if(ball.classList.contains('ans')){ball.classList.remove('ans','liq')}};
  setTimeout(()=>inp.focus(),50)}
 
+/* ===== Creative Writing: "After You" typewriter ===== */
+const TYC=52,TYCW=10.5,TYLH=27,TYTOP=46,TYSX=380,TYSY=392,TYPW=620,TYML=36;
+const TYSTART=['It was raining when the doorbell rang.','Nobody believed me when I said','The last thing I expected to find in my bag was','When I opened the box,','I have never told anyone this, but','The cat looked at me and said,','If I could live anywhere for one year,','The best day of my life started badly.','On the way home, I found a key.','My neighbour has a very strange hobby:','The message said: "Don\'t open the door."','I woke up and everything was blue.','The day the internet stopped,','Dear future me,','I knew something was wrong when','There was a note in the library book:','Grandma had a secret, and it was','The robot wanted only one thing:','At exactly midnight, the lights went out.','If I had a time machine, the first thing I would do','The strangest job I have ever had','Everyone in the village was talking about','I should have listened to my mum.','It wasn\'t a normal Monday.'];
+let TY=null,TYGUEST=false,TYCSS=false,TYKEY=false,TYAUTO=null;
+function tyLoad(){if(TY)return TY;let d=null;try{d=JSON.parse(localStorage.getItem('engGames.typewriter')||'null')}catch(e){}
+ TY=d&&d.lines?d:{lines:[[]],L:0,col:0,ink:'k',snaps:[]};if(!TY.lines[TY.L])TY.lines[TY.L]=[];return TY}
+function tySave(){if(TYGUEST||!TY)return;try{localStorage.setItem('engGames.typewriter',JSON.stringify(TY))}catch(e){}}
+function tyState(){tyLoad();return {lines:TY.lines,L:TY.L,col:TY.col,ink:TY.ink,snaps:TY.snaps.slice(-30)}}
+function tySend(o){if(ROOM.role&&ROOM.conn&&ROOM.conn.open)roomSend({t:'ty',o})}
+function tyRand(n){const x=Math.sin(n*12.9898+78.233)*43758.5453;return x-Math.floor(x)}
+function tyCharHTML(L,c){const [col,ch,k]=c,s=L*131+col*7+ch.charCodeAt(0);const dy=(tyRand(s)-.5)*1.6,r=(tyRand(s+1)-.5)*4,o=.74+tyRand(s+2)*.26;
+ return `<i class="tyc${k==='r'?' r':''}" style="left:${TYML+col*TYCW}px;transform:translateY(${dy.toFixed(2)}px) rotate(${r.toFixed(1)}deg);opacity:${o.toFixed(2)}">${esc(ch)}</i>`}
+function tyLineHTML(L){return (TY.lines[L]||[]).map(c=>tyCharHTML(L,c)).join('')}
+function tySetup(guest){
+ TYGUEST=!!guest;tyLoad();
+ if(!TYCSS){TYCSS=true;const st=document.createElement('style');st.textContent=`
+.tywrap{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+.tyleft{flex:0 1 250px;min-width:220px}.tyleft h2{margin:0 0 2px}.tyleft .tysub{font:400 15px/1.55 Inter,sans-serif;color:#3a342c;margin:10px 0 16px}.tyleft .tysub p{margin:0 0 8px}
+.tyright{flex:1 1 520px;min-width:280px}
+.tybar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}.tybar button{border:2px solid #232323;border-radius:999px;background:#fffaf0;font:600 14px Inter,sans-serif;padding:6px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.tybar button:hover{background:#A2E0D5}.tydot{display:inline-block;width:12px;height:12px;border-radius:50%;background:#232323}.tydot.r{background:#e8462a}
+.tyfit{position:relative;width:100%;overflow:hidden;border:3px solid #232323;border-radius:16px;background:linear-gradient(#f4ead6,#efe1c6);box-shadow:0 5px 0 #232323}
+.tyst{position:absolute;left:0;top:0;width:760px;height:600px;transform-origin:0 0;overflow:hidden;cursor:text;touch-action:pan-y}
+.typ{position:absolute;width:${TYPW}px;background:#fffdf6;border:2px solid #2a2a2a;border-bottom:0;box-shadow:0 0 0 1px rgba(0,0,0,.04),4px 0 12px rgba(0,0,0,.12);transition:top .25s}
+.typ.anim{transition:left .38s cubic-bezier(.3,0,.2,1),top .3s}
+.tyl{position:absolute;left:0;right:0;height:${TYLH}px}
+.tyc{position:absolute;top:0;width:${TYCW}px;text-align:center;font:400 19px/27px 'Special Elite','Courier New',monospace;color:#1d1b1b;font-style:normal;pointer-events:none}.tyc.r{color:#d23a22}
+.tycar{position:absolute;top:${TYSY-26}px;height:60px;width:720px;cursor:grab}.tycar.anim{transition:left .38s cubic-bezier(.3,0,.2,1)}.tycar:active{cursor:grabbing}
+.tyhint{position:absolute;left:-70px;top:-50px;font:600 12px Inter,sans-serif;color:#5a5048;white-space:nowrap;pointer-events:none}
+.tybase{position:absolute;left:40px;top:${TYSY+12}px;width:680px;height:190px;pointer-events:none}
+.tykey{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:#fffaf0;border:3px solid #232323;box-shadow:0 4px 0 #232323;font:700 15px 'Special Elite','Courier New',monospace;display:grid;place-items:center;color:#232323;transition:transform .08s,box-shadow .08s}
+.tykey:after{content:'';position:absolute;inset:-7px;border-radius:50%;background:rgba(60,60,60,.28);opacity:0;transition:opacity .25s}
+.tykey.hit{transform:translateY(3px);box-shadow:0 1px 0 #232323}.tykey.hit:after{opacity:1;transition:none}
+.tykey.sp{width:300px;border-radius:20px;margin-left:-150px}
+.tymod{position:fixed;inset:0;z-index:300;background:rgba(40,30,20,.25);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);display:grid;place-items:center;padding:16px}
+.tymbox{width:min(880px,96vw);background:#fffaf0;border:3px solid #232323;border-radius:18px;box-shadow:0 6px 0 #232323;padding:16px 18px}
+.tymbox h3{margin:0 0 10px;display:flex;justify-content:space-between;align-items:center}
+.tygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-height:min(70vh,560px);overflow:auto;padding:4px}
+@media(max-width:640px){.tygrid{grid-template-columns:repeat(2,1fr)}}
+.tysn{background:#fffdf6;border:2px solid #2a2a2a;border-radius:4px;padding:8px 8px 6px;box-shadow:2px 3px 0 rgba(0,0,0,.18)}
+.tysn pre{margin:0;font:400 7.2px/1.32 'Special Elite','Courier New',monospace;white-space:pre;overflow:hidden;height:${15*9.5}px;color:#1d1b1b}
+.tysn pre b{font-weight:400;color:#d23a22}.tysn small{display:block;margin-top:6px;font:600 11px Inter,sans-serif;color:#6b6157}
+.tystack{position:relative;height:230px;margin-top:6px;cursor:pointer}.tystack .tysn{position:absolute;left:0;width:200px;transition:transform .2s}
+.tystack:hover .tysn:nth-child(1){transform:rotate(-5deg) translateX(-6px)}.tystack .tysn:nth-child(1){transform:rotate(-3deg)}.tystack .tysn:nth-child(2){transform:rotate(2deg) translate(10px,10px)}.tystack .tysn:nth-child(3){transform:rotate(-1deg) translate(20px,20px)}
+.tyempty{font:500 13px Inter,sans-serif;color:#7a7066;border:2px dashed #b9ae9a;border-radius:10px;padding:14px;margin-top:6px}
+.tylink{border:2px solid #232323;border-radius:999px;background:#fffaf0;font:600 14px Inter,sans-serif;padding:6px 14px;cursor:pointer}`;document.head.appendChild(st)}
+ const intro=`<p>Type as if someone will come after you.</p><p>Write a line, leave a thought, or finish someone else’s sentence.</p><p>What you type stays, waiting for the next person.</p><p>Use your keyboard like a typewriter. Drag the carriage (or press Enter) to return.</p>`;
+ setView((TYGUEST?'':roomHTML())+`<section class="panel k-card"><div class="tywrap">
+ <div class="tyleft"><h2>Creative Writing</h2><div style="font:700 26px 'Special Elite','Courier New',monospace">After You</div><div class="tysub">${intro}</div>
+  <button class="tylink" id="tysnaps">snapshots (<span id="tysn">0</span>)</button><div id="tystack"></div></div>
+ <div class="tyright"><div class="tybar"><button id="tyshot">📷 take a snapshot</button><button id="tyink">ink ribbon: <span class="tydot" id="tydot"></span></button><button id="tystart">✨ story starter</button></div>
+  <div class="tyfit" id="tyfit"><div class="tyst" id="tyst">
+   <div class="tycar" id="tycar"><svg width="800" height="60" viewBox="-80 0 800 60" style="position:absolute;left:-80px;top:0;overflow:visible">
+    <path d="M-6 22 L-52 -14" stroke="#232323" stroke-width="9" stroke-linecap="round"/><path d="M-6 22 L-52 -14" stroke="#c9c2b4" stroke-width="4" stroke-linecap="round"/><circle cx="-56" cy="-17" r="10" fill="#e8462a" stroke="#232323" stroke-width="3"/>
+    <rect x="0" y="6" width="720" height="44" rx="22" fill="#2f2f38" stroke="#232323" stroke-width="3"/><path d="M14 18h692" stroke="#5a5a66" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="-4" cy="28" r="20" fill="#f6b51e" stroke="#232323" stroke-width="3"/><circle cx="724" cy="28" r="20" fill="#f6b51e" stroke="#232323" stroke-width="3"/><circle cx="-4" cy="28" r="6" fill="#232323"/><circle cx="724" cy="28" r="6" fill="#232323"/></svg>
+    <div class="tyhint">drag → to return</div></div>
+   <div class="typ" id="typ"></div>
+   <div class="tybase" id="tybase"><svg width="680" height="190" viewBox="0 0 680 190" style="position:absolute;inset:0">
+    <path d="M40 4 H640 Q656 4 660 20 L678 170 Q680 186 664 186 H16 Q0 186 2 170 L20 20 Q24 4 40 4z" fill="#7ec8b8" stroke="#232323" stroke-width="3.4"/>
+    <path d="M30 22 H650" stroke="#232323" stroke-width="2" opacity=".35"/><rect x="290" y="-8" width="100" height="16" rx="6" fill="#c9c2b4" stroke="#232323" stroke-width="3"/><path d="M332 -8 l8 10 8 -10z" fill="#e8462a" stroke="#232323" stroke-width="2"/>
+    <circle id="tysp1" cx="120" cy="14" r="22" fill="#232323" stroke="#232323" stroke-width="3"/><circle cx="120" cy="14" r="7" fill="#c9c2b4"/><circle id="tysp2" cx="560" cy="14" r="22" fill="#232323" stroke="#232323" stroke-width="3"/><circle cx="560" cy="14" r="7" fill="#c9c2b4"/></svg></div>
+   <textarea id="tyta" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="position:absolute;left:${TYSX}px;top:${TYSY}px;width:2px;height:2px;opacity:0;border:0;padding:0;resize:none;font-size:16px"></textarea>
+  </div></div></div></div></section>`);
+ if(!TYGUEST)bindRoom();
+ // keys
+ const base=$('#tybase'),rows=['qwertyuiop','asdfghjkl','zxcvbnm'];
+ rows.forEach((r,ri)=>[...r].forEach((ch,ci)=>{const k=document.createElement('div');k.className='tykey';k.dataset.k=ch;k.textContent=ch.toUpperCase();const x=340+(ci-(r.length-1)/2)*50+ri*8,y=50+ri*42;k.style.left=x+'px';k.style.top=y+'px';base.appendChild(k)}));
+ {const k=document.createElement('div');k.className='tykey sp';k.dataset.k=' ';k.style.left='340px';k.style.top='168px';base.appendChild(k)}
+ // fit
+ const fit=$('#tyfit'),st=$('#tyst');const rs=()=>{const w=fit.clientWidth||760,s=Math.min(1,w/760);st.style.transform=`scale(${s})`;fit.style.height=(600*s)+'px'};rs();
+ if(window.TYRO)TYRO.disconnect();window.TYRO=new ResizeObserver(rs);TYRO.observe(fit);
+ tyRenderAll();tyInk();tySnapsUI();
+ const ta=$('#tyta');
+ st.onpointerdown=e=>{if(e.target.closest('#tycar'))return;setTimeout(()=>ta.focus({preventScroll:true}),0)};
+ ta.onkeydown=e=>{if(TYAUTO)return e.preventDefault();if(e.key==='Enter'){e.preventDefault();tyRet(true)}else if(e.key==='Backspace'){e.preventDefault();tyBack(true)}else if(e.key==='Tab'){e.preventDefault()}};
+ ta.oninput=()=>{const v=ta.value;ta.value='';if(TYAUTO||$('.tymod'))return;for(const ch of v){if(ch==='\n')tyRet(true);else tyType(ch,true)}};
+ st.onwheel=e=>{e.preventDefault();TY.scroll=Math.max(0,Math.min(TYTOP+TY.L*TYLH,(TY.scroll||0)-e.deltaY*.6));tyPos(false)};
+ // carriage drag
+ const car=$('#tycar');let dx0=null,dd=0;
+ car.onpointerdown=e=>{if(TYAUTO)return;dx0=e.clientX;dd=0;car.setPointerCapture(e.pointerId);e.preventDefault()};
+ car.onpointermove=e=>{if(dx0===null)return;const sc=st.getBoundingClientRect().width/760;dd=Math.max(0,(e.clientX-dx0)/sc);const lim=TY.col*TYCW;tyPos(false,Math.min(dd,lim+30))};
+ car.onpointerup=car.onpointercancel=e=>{if(dx0===null)return;dx0=null;if(dd>40||(TY.col>0&&dd>=TY.col*TYCW-2))tyRet(true);else tyPos(true);ta.focus({preventScroll:true})};
+ $('#tyink').onclick=()=>{TY.ink=TY.ink==='r'?'k':'r';tyInk();tySave();tySend({a:'k',k:TY.ink});sfx('click');ta.focus({preventScroll:true})};
+ $('#tyshot').onclick=()=>{tySnap(true)};
+ $('#tysnaps').onclick=tyModal;$('#tystack').onclick=tyModal;
+ $('#tystart').onclick=()=>{if(TYAUTO)return;tyAuto(TYSTART[Math.floor(Math.random()*TYSTART.length)])};
+ if(!TYKEY){TYKEY=true;document.addEventListener('keydown',e=>{const t=$('#tyta');if(!t||$('.tymod'))return;if(e.key==='Escape')return;const a=document.activeElement;if(a===t||/INPUT|TEXTAREA|SELECT/.test(a&&a.tagName))return;if(e.ctrlKey||e.metaKey||e.altKey)return;if(e.key.length===1||e.key==='Enter'||e.key==='Backspace'){t.focus({preventScroll:true});if(e.key==='Enter'||e.key==='Backspace'){e.preventDefault();e.key==='Enter'?tyRet(true):tyBack(true)}}},true)}
+ setTimeout(()=>ta.focus({preventScroll:true}),60);
+ if(!TYGUEST&&ROOM.role==='host')roomPush()}
+function tyInk(){const d=$('#tydot');if(!d)return;d.classList.toggle('r',TY.ink==='r');const c=TY.ink==='r'?'#e8462a':'#232323';['#tysp1','#tysp2'].forEach(s=>{const e=$(s);if(e)e.setAttribute('fill',c)})}
+function tyRenderAll(){const p=$('#typ');if(!p)return;const n=TY.lines.length;p.style.height=(TYTOP+(n+24)*TYLH)+'px';
+ p.innerHTML=TY.lines.map((_,L)=>`<div class="tyl" id="tyl${L}" style="top:${TYTOP+L*TYLH}px">${tyLineHTML(L)}</div>`).join('');tyPos(false)}
+function tyLine(L){const p=$('#typ');if(!p)return;let d=$('#tyl'+L);if(!d){d=document.createElement('div');d.className='tyl';d.id='tyl'+L;d.style.top=(TYTOP+L*TYLH)+'px';p.appendChild(d);p.style.height=(TYTOP+(TY.lines.length+24)*TYLH)+'px'}d.innerHTML=tyLineHTML(L)}
+function tyPos(anim,drag){const p=$('#typ'),c=$('#tycar');if(!p)return;const x=TYSX-(TYML+TY.col*TYCW+TYCW/2)+(drag||0),y=TYSY-(TYTOP+TY.L*TYLH)-21+(TY.scroll||0);
+ p.classList.toggle('anim',!!anim);c.classList.toggle('anim',!!anim);p.style.left=x+'px';p.style.top=y+'px';c.style.left=(x-50)+'px'}
+function tyHit(ch){const k=document.querySelector(`.tykey[data-k="${ch===' '?' ':CSS.escape(ch.toLowerCase())}"]`);if(!k)return;k.classList.add('hit');clearTimeout(k._t);k._t=setTimeout(()=>k.classList.remove('hit'),130)}
+function tyType(ch,local){tyLoad();if(TY.scroll){TY.scroll=0}
+ if(TY.col>=TYC){if(local)sfx('buzz');return}
+ if(ch!==' ')TY.lines[TY.L].push([TY.col,ch,TY.ink]);TY.col++;
+ if($('#typ')){tyLine(TY.L);tyPos(false);tyHit(ch)}
+ if(local){sfx('tick');tySend({a:'c',ch,k:TY.ink})}
+ if(TY.col===TYC-6)sfx('ding');tySave()}
+function tyBack(local){tyLoad();if(TY.col>0){TY.col--;TY.scroll=0;tyPos(false);if(local){sfx('click');tySend({a:'b'})}tySave()}}
+function tyRet(local){tyLoad();TY.scroll=0;TY.L++;TY.col=0;if(!TY.lines[TY.L])TY.lines[TY.L]=[];if($('#typ')){tyLine(TY.L);tyPos(true)}
+ if(local){sfx('whoosh');tySend({a:'r'});if(ROOM.role==='host')setTimeout(roomPush,450)}tySave()}
+function tySnap(local,snap){tyLoad();const s=snap||{t:Date.now(),lines:TY.lines.slice(Math.max(0,TY.L-14),TY.L+1)};TY.snaps.push(s);if(TY.snaps.length>200)TY.snaps.shift();tySave();tySnapsUI();
+ if(local){sfx('print');tySend({a:'s',s});const f=$('#tyfit');if(f){f.style.transition='filter .1s';f.style.filter='brightness(1.8)';setTimeout(()=>{f.style.filter=''},120)}}}
+function tySnapText(s){return s.lines.map(l=>{const a=Array(TYC).fill(' '),red=Array(TYC).fill(false);(l||[]).forEach(([c,ch,k])=>{if(c<TYC){a[c]=ch;if(k==='r')red[c]=true}});
+ let o='';for(let i=0;i<TYC;i++)o+=red[i]?'<b>'+esc(a[i])+'</b>':esc(a[i]);return o.replace(/\s+$/,'')}).join('\n')}
+function tySnapCard(s){const d=new Date(s.t);const ds=d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})+' · '+d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});return `<div class="tysn"><pre>${tySnapText(s)}</pre><small>${ds}</small></div>`}
+function tySnapsUI(){const n=$('#tysn');if(n)n.textContent=TY.snaps.length;const st=$('#tystack');if(!st)return;
+ st.className=TY.snaps.length?'tystack':'';st.innerHTML=TY.snaps.length?TY.snaps.slice(-3).reverse().map(tySnapCard).join(''):'<div class="tyempty">No snapshots yet. Press “take a snapshot” to keep the last 15 lines.</div>'}
+function tyModal(){if(!TY.snaps.length)return;try{document.activeElement.blur()}catch(e){}const m=document.createElement('div');m.className='tymod';
+ m.innerHTML=`<div class="tymbox"><h3><span>Snapshots</span><button class="tylink" id="tymclose">close</button></h3><div class="tygrid">${TY.snaps.slice().reverse().map(tySnapCard).join('')}</div></div>`;
+ document.body.appendChild(m);const close=()=>{m.remove();const t=$('#tyta');if(t)t.focus({preventScroll:true})};m.onclick=e=>{if(e.target===m)close()};$('#tymclose').onclick=close;
+ const esc2=e=>{if(e.key==='Escape'){close();document.removeEventListener('keydown',esc2)}};document.addEventListener('keydown',esc2)}
+function tyAuto(text){if(TY.col>0)tyRet(true);const words=text.split(' ');let q=[],col=0;
+ words.forEach((w,i)=>{if(col+w.length>TYC){q.push('\n');col=0}[...w].forEach(c=>q.push(c));col+=w.length;if(i<words.length-1){if(col<TYC){q.push(' ');col++}}});
+ if(col<TYC)q.push(' ');
+ const old=TY.ink;TY.ink='r';tyInk();tySend({a:'k',k:'r'});
+ TYAUTO=setInterval(()=>{if(!q.length||!$('#typ')){clearInterval(TYAUTO);TYAUTO=null;TY.ink=old;tyInk();tySend({a:'k',k:old});tySave();return}const c=q.shift();if(c==='\n')tyRet(true);else tyType(c,true)},55)}
+function tyRemote(o){if(!o)return;
+ if(ROOM.role==='guest'&&!$('#typ'))return;
+ if(o.a==='c')tyType(o.ch.slice(0,1),false);else if(o.a==='b')tyBack(false);else if(o.a==='r')tyRet(false);
+ else if(o.a==='k'){TY.ink=o.k==='r'?'r':'k';tyInk();tySave()}else if(o.a==='s'&&o.s&&o.s.lines){tySnap(false,o.s)}}
+function tyFromRemote(st){TY={lines:st.lines&&st.lines.length?st.lines:[[]],L:st.L||0,col:st.col||0,ink:st.ink||'k',snaps:st.snaps||[]};if(!TY.lines[TY.L])TY.lines[TY.L]=[];
+ if($('#typ')&&TYGUEST){tyRenderAll();tyInk();tySnapsUI()}else tySetup(true)}
+
 const DMHINT=['Near me → this / these. Far from me → that / those.','One thing → this / that (This is a …). Many things → these / those (These are …).'];
 function dmSent(o,near){const pl=o[1]==='p';return (near?(pl?'These are ':'This is '):(pl?'Those are ':'That is '))+o[2]+'.'}
 function dmShell(id,title,help,hints){
@@ -11560,6 +11694,7 @@ function snap(){
  if(GS){const g=JSON.parse(JSON.stringify(GS));if(g.win<0)g.secret[0]=-1;return{k:'W',tab,GS:g}}
  if(T)return{k:'T',tab,T};
  if(tab==='shop')return{k:'P',tab,sh:shAll()};
+ if(tab==='write')return{k:'TY',tab,ty:tyState()};
  return{k:'I',tab}}
 function roomPush(){if(ROOM.role!=='host'||!ROOM.conn||!ROOM.conn.open)return;ROOM.seq=(ROOM.seq||0)+1;roomSend({t:'state',s:snap(),q:ROOM.seq})}
 function roomTick(){if(ROOM.role==='host')roomSend({t:'tick',tl:R.tl,q:ROOM.seq})}
@@ -11616,6 +11751,7 @@ function onHostMsg(m){
  if(!m)return;
 if(m.t==='resync'){roomPush();return}
  if(m.t==='shop'){shApply(m.s,false);return}
+ if(m.t==='ty'){tyRemote(m.o);return}
  if(m.t==='hello'){ROOM.guestName=String(m.name||'Student').slice(0,20);updRoomUI();roomPush()}
  else if(m.t==='act'){const al=allowedActs('guest');if(al&&al.has(m.a)&&!(m.a==='jtile'&&J&&J.open))doAct(m.a,Object.assign({},m.d||{},{from:'guest'}))}}
 function waitHTML(msg,btn){return `<section class="panel k-card center"><h2>spill the word</h2><p class="muted">${msg}</p>${btn||''}</section>`}
@@ -11656,6 +11792,7 @@ function onGuestMsg(m){
  if(m.t==='busy'){guestFail('This room already has a student.');return}
  if((m.t==='tick'||m.t==='hb')&&m.q!==undefined&&m.q!==ROOM.gq&&Date.now()-(ROOM.rs||0)>1500){ROOM.rs=Date.now();roomSend({t:'resync'})}
  if(m.t==='hb')return;
+ if(m.t==='ty'){tyRemote(m.o);return}
  if(m.t==='shop'){shApply(m.s,false);return}
  if(m.t==='tick'){if(R){R.tl=m.tl;const el=$('#tl'),w=$('#tlw');if(el)el.textContent=fmt(R.tl);if(w)w.classList.toggle('low',R.tl<=10)}return}
  if(m.t==='state'){
@@ -11669,6 +11806,7 @@ function onGuestMsg(m){
   else if(s.k==='J'){R=null;B=null;T=null;ST=null;GS=null;GF=null;J=s.J;S.tasks=s.cfg.tasks;S.jminus=s.cfg.jm;tab='jeo';renderJeo()}
   else if(s.k==='F'){R=null;J=null;B=null;T=null;ST=null;GS=null;GF=s.GF;tab=s.tab||'gif';renderGif()}
   else if(s.k==='P'){R=null;J=null;B=null;T=null;ST=null;GS=null;GF=null;tab='shop';shApply(s.sh,true);shopVis(true);if(!$('#shsh'))shopSetup()}
+  else if(s.k==='TY'){R=null;J=null;B=null;T=null;ST=null;GS=null;GF=null;tab='write';tyFromRemote(s.ty)}
   else{R=null;J=null;B=null;T=null;ST=null;GS=null;GF=null;setView(waitHTML('The teacher is choosing a game…'))}}}
 
 /* ===== Student link: the game and settings are encoded in the address after # ===== */
