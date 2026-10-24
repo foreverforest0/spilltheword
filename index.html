@@ -12581,10 +12581,10 @@ const wvB64=u=>{let s='';for(let i=0;i<u.length;i+=8192)s+=String.fromCharCode.a
 const wvUn=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 async function wvInit(code){
  WV.code=code;const E=new TextEncoder();
- const th=wvHex(await crypto.subtle.digest('SHA-256',E.encode('t'+code))).slice(0,16);
+ WV.th=wvHex(await crypto.subtle.digest('SHA-256',E.encode('t'+code))).slice(0,20);
  const kb=await crypto.subtle.digest('SHA-256',E.encode('k'+code));
  WV.key=await crypto.subtle.importKey('raw',kb,'AES-GCM',false,['encrypt','decrypt']);
- WV.top='engames/v1/w/'+th}
+}
 async function wvEnc(o){
  const raw=new TextEncoder().encode(JSON.stringify(o));let data=raw,z=0;
  if(window.CompressionStream){const cs=new Blob([raw]).stream().pipeThrough(new CompressionStream('gzip'));data=new Uint8Array(await new Response(cs).arrayBuffer());z=1}
@@ -12603,42 +12603,67 @@ function wvSnap(){
  src.forEach((e,i)=>{const d=dst[i];if(!d)return;if(e.tagName==='TEXTAREA')d.textContent=e.value;else if(e.tagName==='SELECT'){[...d.options].forEach((o,j)=>{if(e.selectedIndex===j)o.setAttribute('selected','')})}else if(e.type==='checkbox'||e.type==='radio'){if(e.checked)d.setAttribute('checked','')}else d.setAttribute('value',e.value)});
  const h=c.innerHTML;
  return{h,cls:document.body.className,tab,task:BLOBID||'',lv:S.splevel||'',txt:(v.innerText||'').slice(0,200).replace(/\s+/g,' '),vw:innerWidth}}
+const FBCFG={apiKey:"AIzaSyBv7dzMXZwlAVo0ugN3JRjDtFib33URbPo",authDomain:"vocab-e1e70.firebaseapp.com",projectId:"vocab-e1e70",storageBucket:"vocab-e1e70.firebasestorage.app",messagingSenderId:"649460229924",appId:"1:649460229924:web:3025550edd36304bf575b1"};
+function fbLoad(){
+ if(WV.fb)return WV.fb;
+ return WV.fb=(async()=>{
+  const ld=u=>new Promise((res,rej)=>{const s=document.createElement('script');s.src=u;s.onload=res;s.onerror=()=>rej(new Error('load '+u));document.head.appendChild(s)});
+  const B='https://www.gstatic.com/firebasejs/10.12.2/';
+  await ld(B+'firebase-app-compat.js');await Promise.all([ld(B+'firebase-auth-compat.js'),ld(B+'firebase-firestore-compat.js')]);
+  const app=firebase.apps.find(a=>a.name==='wv')||firebase.initializeApp(FBCFG,'wv');
+  await app.auth().signInAnonymously();
+  return app.firestore()})().catch(e=>{WV.fb=null;throw e})}
+const wvCol=db=>db.collection('watch').doc(WV.th).collection('s');
 async function wvStudent(code){
- await wvInit(code);let last='',busy=false,tm=null;
+ await wvInit(code);let last='',busy=false,tm=null,lastAt=0,ref=null;
  const name=hq('n')||('Student '+WV.sid.slice(0,3));
- WV.relay=Relay(WV.top+'/down',WV.top+'/up',()=>{});
- const push=async(force)=>{if(busy||!WV.relay.up())return;const s=wvSnap();if(!s)return;const k=s.h+s.cls+s.tab;if(!force&&k===last)return;
-  busy=true;try{last=k;s.sid=WV.sid;s.name=name;s.ts=Date.now();if(s.h.length>400000){s.h='';}
-   WV.relay.send({w:await wvEnc(s)})}catch(e){console.warn('wv',e)}busy=false};
- const sched=()=>{clearTimeout(tm);tm=setTimeout(()=>push(false),700)};
+ const getRef=async()=>{if(ref)return ref;ref=wvCol(await fbLoad()).doc(WV.sid);return ref};
+ const push=async(force)=>{if(busy)return;const s=wvSnap();if(!s)return;const k=s.h+s.cls+s.tab;if(!force&&k===last)return;
+  if(Date.now()-lastAt<1500){sched();return}
+  busy=true;try{s.sid=WV.sid;s.name=name;s.ts=Date.now();if(s.h.length>500000)s.h='';
+   const w=await wvEnc(s);if(w.length>950000)throw new Error('too big');
+   await(await getRef()).set({w,ts:s.ts});last=k;lastAt=Date.now()}catch(e){console.warn('wv',e)}busy=false};
+ const sched=()=>{clearTimeout(tm);tm=setTimeout(()=>push(false),900)};
  const v=document.getElementById('view');
  new MutationObserver(sched).observe(v,{childList:true,subtree:true,attributes:true,characterData:true});
  document.addEventListener('input',sched,true);document.addEventListener('click',sched,true);
- setInterval(()=>push(true),6000);setTimeout(()=>push(true),1500)}
+ setInterval(()=>push(true),20000);setTimeout(()=>push(true),1200)}
 function wvQ(){return S.wcode?'&w='+S.wcode:''}
-function wvTeacher(){
- if(WV.panel){WV.panel.hidden=!WV.panel.hidden;return}
- if(!S.wcode){S.wcode=rnd(8);save()}
+function wvTeacher(code){
+ if(WV.panel)return;
+ if(!code){if(!S.wcode){S.wcode=rnd(8);save()}code=S.wcode}
+ document.title='Watch students';
  const p=document.createElement('div');p.className='wvp';WV.panel=p;
- p.innerHTML='<div class="wvh"><b>👁 Watch students</b><span class="muted small" id="wvst">connecting…</span><button class="embbtn" id="wvx">✕</button></div>'+
-  '<p class="muted small">Links and embed codes you create now include your private watch code <b>'+S.wcode+'</b>; the screens are encrypted. A student appears here when they open such a link. Click a screen to enlarge.</p><div id="wvg" class="wvg"></div>';
- document.body.appendChild(p);p.querySelector('#wvx').onclick=()=>p.hidden=true;
- wvInit(S.wcode).then(()=>{
-  WV.relay=Relay(WV.top+'/up',WV.top+'/down',async m=>{if(!m||!m.w)return;let s;try{s=await wvDec(m.w)}catch(e){return}wvTile(s)},()=>{const e=p.querySelector('#wvst');if(e)e.textContent=WV.relay.up()?'online':'connecting…'});
-  setInterval(()=>{const now=Date.now();Object.values(WV.tiles).forEach(t=>t.el.classList.toggle('off',now-t.seen>15000))},3000)})}
+ p.innerHTML='<div class="wvh"><b>👁 Watch students</b><span class="muted small" id="wvst">connecting…</span><button class="embbtn" id="wvclr">Clear all</button></div>'+
+  '<p class="muted small">Students appear here when they open a link or embed made with your watch code (<b>'+code+'</b>). Screens are encrypted. Click a screen to enlarge.</p><div id="wvg" class="wvg"></div>';
+ document.body.appendChild(p);const st=p.querySelector('#wvst');
+ wvInit(code).then(fbLoad).then(db=>{
+  const col=wvCol(db);
+  p.querySelector('#wvclr').onclick=()=>{col.get().then(q=>q.forEach(d=>d.ref.delete()))};
+  col.onSnapshot(q=>{st.textContent='online';q.docChanges().forEach(async ch=>{
+   const id=ch.doc.id;
+   if(ch.type==='removed'){const t=WV.tiles[id];if(t){t.el.remove();delete WV.tiles[id]}return}
+   const d=ch.doc.data();if(Date.now()-d.ts>86400000){ch.doc.ref.delete();return}
+   if(Date.now()-d.ts>10800000)return;
+   try{const s=await wvDec(d.w);wvTile(s)}catch(e){console.warn(e)}})},
+   e=>{st.textContent='error: '+(e.code||e.message)+(e.code==='permission-denied'?' (check Firestore rules)':'')})
+  setInterval(()=>{const now=Date.now();Object.values(WV.tiles).forEach(t=>t.el.classList.toggle('off',now-t.seen>45000))},4000)
+ }).catch(e=>{st.textContent='error: '+(e.code||e.message)})}
 function wvTile(s){
  let t=WV.tiles[s.sid];const g=document.getElementById('wvg');
  if(!t){const el=document.createElement('div');el.className='wvt';el.innerHTML='<div class="wvc"><b></b><span class="muted small"></span></div><div class="wvf"><iframe sandbox="" scrolling="no"></iframe></div>';
   el.onclick=()=>el.classList.toggle('big');g.appendChild(el);t=WV.tiles[s.sid]={el,fr:el.querySelector('iframe'),last:''}}
- t.seen=Date.now();t.el.classList.remove('off');
+ t.seen=s.ts;t.el.classList.toggle('off',Date.now()-s.ts>45000);
  t.el.querySelector('b').textContent=s.name;t.el.querySelector('span').textContent=(s.lv?s.lv.toUpperCase()+' · ':'')+(s.task||s.tab);
  if(s.h!==t.last||s.cls!==t.lcls){t.last=s.h;t.lcls=s.cls;const css=[...document.querySelectorAll('style')].map(x=>x.textContent).join('\n');
   t.fr.srcdoc='<!doctype html><html><head><base href="'+location.href.split('#')[0]+'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Special+Elite&display=swap"><style>'+css+'</style></head><body class="'+s.cls.replace(/"/g,'')+'"><main id="view">'+s.h+'</main></body></html>'}}
 (function(){const st=document.createElement('style');st.textContent='.wvb{position:fixed;left:14px;bottom:14px;z-index:30;background:var(--paper);border:1.5px solid var(--pen);border-radius:4px;padding:5px 12px;font-size:13px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.12)}.wvp{position:fixed;inset:0;z-index:60;background:var(--paper);overflow:auto;padding:16px}.wvp[hidden]{display:none}.wvh{display:flex;gap:14px;align-items:center;justify-content:space-between}.wvg{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px}.wvt{width:340px;border:1.5px solid var(--pen);border-radius:4px;cursor:pointer;background:#fff;overflow:hidden}.wvt.off{opacity:.45}.wvc{display:flex;justify-content:space-between;padding:4px 8px;border-bottom:1px solid var(--pen)}.wvf{width:340px;height:260px;overflow:hidden;position:relative}.wvf iframe{border:0;width:1000px;height:765px;transform:scale(.34);transform-origin:0 0;pointer-events:none}.wvt.big{width:min(1000px,96vw)}.wvt.big .wvf{width:100%;height:min(765px,80vh);overflow:auto}.wvt.big iframe{transform:none;pointer-events:auto}.embed .wvb{display:none}';document.head.appendChild(st);
- const b=document.createElement('button');b.className='wvb';b.textContent='👁 Watch students';b.hidden=true;b.id='wvbtn';b.onclick=wvTeacher;document.body.appendChild(b);WV.btn=b})();
+ const b=document.createElement('button');b.className='wvb';b.textContent='👁 Watch students';b.hidden=true;b.id='wvbtn';b.onclick=()=>window.open(location.href.split('#')[0]+'#watch','_blank');document.body.appendChild(b);WV.btn=b})();
 
 async function boot(){
  if(/[#&]embed\b/.test(location.hash))document.body.classList.add('embed');
+ {const wm=location.hash.match(/^#watch(?:=(\w+))?/);if(wm){wvTeacher(wm[1]);return}}
+ if(!S.wcode&&!hq('w')&&!hq('tp')&&!/^#[cr]=/.test(location.hash)){S.wcode=rnd(8);save()}
  if(!hq('w')&&!hq('tp')&&!/[#&]embed\b/.test(location.hash)&&!/^#[cr]=/.test(location.hash)){const b=document.getElementById('wvbtn');if(b)b.hidden=false}
  const wc=hq('w');if(wc){STUDENT=true;document.body.classList.add('student');wvStudent(wc).catch(e=>console.warn(e))}
  const gm=location.hash.match(/^#g=(\w+)/);
