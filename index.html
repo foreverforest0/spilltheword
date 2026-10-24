@@ -10399,126 +10399,166 @@ function m8Start(){
  inp.oninput=()=>{if(ball.classList.contains('ans')){ball.classList.remove('ans','liq')}};
  setTimeout(()=>inp.focus(),50)}
 
-/* ===== Creative Writing: "After You" typewriter ===== */
-const TYC=52,TYCW=10.5,TYLH=27,TYTOP=46,TYSX=390,TYSY=185,TYPW=620,TYML=36,TYW=780,TYH=775,TYBS=.8,TYBX=390-712*.8,TYBY=195-170*.8,TYCS=.91,TYCLIP=203;
+/* ===== Creative Writing: typewriter ===== */
+const TYC=44,TYCW=10.5,TYLH=27,TYTOP=40,TYW=780,TYCOV=230,TYH=685,TYBS=.62,TYBX=390-712*.62,TYBY=230-170*.62,TYCS=.82,TYML=37,TYPW=37*2+44*10.5,TYPX=390-(37*2+44*10.5)/2,TYLINE=230-46;
 const TYKEYS={'1':[387,497],'2':[447,497],'3':[507,497],'4':[565,497],'5':[624,497],'6':[683,497],'7':[742,497],'8':[800,497],'9':[860,497],'0':[918,497],'-':[978,497],'=':[1037,497],q:[412,567],w:[470,567],e:[530,567],r:[591,567],t:[651,567],y:[711,567],u:[771,567],i:[831,567],o:[891,567],p:[951,567],a:[421,633],s:[482,633],d:[541,633],f:[602,633],g:[662,633],h:[724,633],j:[785,633],k:[845,633],l:[906,633],';':[966,633],':':[966,633],z:[443,703],x:[503,703],c:[568,703],v:[630,703],b:[691,703],n:[752,703],m:[815,703],',':[878,703],'.':[938,703],'/':[1000,703],'?':[1000,703],'!':[387,497],' ':[717,785]};
-const TYSTART=['It was raining when the doorbell rang.','Nobody believed me when I said','The last thing I expected to find in my bag was','When I opened the box,','I have never told anyone this, but','The cat looked at me and said,','If I could live anywhere for one year,','The best day of my life started badly.','On the way home, I found a key.','My neighbour has a very strange hobby:','The message said: "Don\'t open the door."','I woke up and everything was blue.','The day the internet stopped,','Dear future me,','I knew something was wrong when','There was a note in the library book:','Grandma had a secret, and it was','The robot wanted only one thing:','At exactly midnight, the lights went out.','If I had a time machine, the first thing I would do','The strangest job I have ever had','Everyone in the village was talking about','I should have listened to my mum.','It wasn\'t a normal Monday.'];
+const TYLV=[['kids','Kids'],['a1','A1'],['a2','A2'],['b1','B1'],['b2','B2'],['c1','C1']];
+const TYTOPICS={
+ kids:[['My pet',['My pet is','It likes to','Every morning my pet']],['My best friend',['My best friend\'s name is','We like to play','My friend is funny because']],['My dream house',['My dream house is','In my house there is a','My room has']],['At the zoo',['At the zoo I can see','The biggest animal is','I like the monkeys because']],['My favourite food',['I love','For lunch I like','I don\'t like']],['A magic day',['One day I found a magic','I can fly to','The magic hat can']],['My family',['This is my family.','My mum is','My dad can']],['Seasons',['In winter I','My favourite season is','In summer it is']]],
+ a1:[['My weekend',['On Saturday I usually','My favourite day is','Last weekend I']],['My town',['My town is','There is a nice place near my house:','I like my town because']],['A perfect day',['My perfect day starts at','In the afternoon I','In the evening']],['Food and cooking',['For breakfast I usually','I can cook','My favourite café is']],['Holidays',['In summer I like to','My last holiday was','One day I want to visit']],['Hobbies',['In my free time I','I started my hobby when','My hobby is fun because']],['School or work',['My day starts at','I like my school because','My favourite teacher']],['Animals',['The best pet is','I am afraid of','Wild animals']]],
+ a2:[['A trip I will never forget',['Last year I went to','The most surprising thing was','When we arrived,']],['Social media',['I use social media to','Some people spend too much time','Yesterday I saw a post about']],['City or countryside?',['I would prefer to live in','In the city there are more','The countryside is quieter, but']],['My plans for the future',['Next year I\'m going to','I hope I will','In five years']],['What makes a good friend?',['A good friend should','I met my best friend when','We have known each other']],['A healthy lifestyle',['To stay healthy, you should','I used to eat a lot of','I never have time to']],['Shopping',['I prefer shopping online because','The last thing I bought was','The shops in my city']],['A person I admire',['The person I admire most is','He became famous when','I would like to ask her']]],
+ b1:[['Will AI replace humans?',['Some people believe that AI will','In my opinion, the one job AI can never do is','If robots did all the work,']],['Is it better to work from home?',['Working from home sounds great, but','The biggest advantage is','Since I started working from home,']],['Should homework be banned?',['Homework has always been','If there were no homework,','Teachers argue that']],['Travelling alone',['I have never travelled alone, but','The best thing about travelling alone is','Before you go, you should']],['Fast fashion',['Most of the clothes I own were made','People keep buying new clothes because','We could reduce waste by']],['The perfect job',['My dream job would be','Money isn\'t everything when','I realised that']],['A week without a phone',['On the first day without my phone,','I would probably miss','It might be a good idea because']],['Can money buy happiness?',['I think money can','The happiest people I know','If I won the lottery,']]],
+ b2:[['Will AI replace teachers?',['While AI can explain grammar perfectly,','What a machine will never be able to do is','By 2040, classrooms will have']],['Should zoos exist?',['Zoos are often criticised for keeping animals in cages, yet','Had it not been for zoos, some species','A fair compromise might be']],['The four-day working week',['Supporters of a four-day week claim that','However, employers are concerned that','If my company introduced it,']],['Fame: a blessing or a curse?',['Being famous might seem glamorous, but','Celebrities are constantly being','I wouldn\'t want to be famous unless']],['Cities of the future',['In thirty years, cities will have','Cars may well be replaced by','The biggest challenge will be']],['Is university still worth it?',['A degree used to guarantee','Nowadays, many employers','Looking back, I wish']],['Online friendships',['Friendships that start online are often','It can be easier to be honest with','Nothing can replace']],['Climate change: what can one person do?',['It is often said that individuals','If everyone made small changes,','Governments should be held responsible for']]],
+ c1:[['Will AI ever be truly creative?',['Creativity has long been regarded as','Not only does AI generate images and texts, but','What distinguishes human art is']],['The ethics of gene editing',['The prospect of designing babies raises','Were we to eliminate hereditary diseases,','Critics warn that']],['Privacy in the digital age',['We have, perhaps unwittingly, traded','It is not so much our data as','Unless stricter regulations are introduced,']],['Is happiness a choice?',['Contrary to popular belief, happiness','Much as we would like to control our moods,','What truly shapes our wellbeing is']],['The value of failure',['Failure is rarely celebrated, yet','Had I not failed at school,','The real lesson lies in']],['Should voting be compulsory?',['Compulsory voting is often presented as','Proponents argue that, whereas','Ultimately, a democracy depends on']],['Tourism: a blessing or a burden?',['Mass tourism has transformed','Little do visitors realise that','A more sustainable approach would be to']],['Living forever',['If science were to make us immortal,','The fear of death arguably','Life gains meaning precisely because']]]};
 let TY=null,TYGUEST=false,TYCSS=false,TYKEY=false,TYAUTO=null;
+// ---- typewriter sounds (Web Audio) ----
+function tyAC(){if(S.snd===false)return null;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();return AC}catch(e){return null}}
+function tyNoise(a,t,dur,f,q,v,type){const n=Math.floor(a.sampleRate*dur),b=a.createBuffer(1,n,a.sampleRate),d=b.getChannelData(0);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,3);
+ const s=a.createBufferSource();s.buffer=b;const fl=a.createBiquadFilter();fl.type=type||'bandpass';fl.frequency.value=f;fl.Q.value=q;const g=a.createGain();g.gain.value=v;s.connect(fl);fl.connect(g);g.connect(a.destination);s.start(t)}
+function tyThunk(a,t,f,v,dur){const o=a.createOscillator(),g=a.createGain();o.frequency.setValueAtTime(f,t);o.frequency.exponentialRampToValueAtTime(f*.45,t+dur);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+dur+.02)}
+function tySnd(k){const a=tyAC();if(!a)return;const t=a.currentTime+.002,r=Math.random();
+ if(k==='key'){tyNoise(a,t,.035,2600+r*900,1.2,.55);tyNoise(a,t+.004,.02,6000,0.8,.18,'highpass');tyThunk(a,t,150+r*30,.35,.06);tyNoise(a,t+.045+r*.01,.02,1400,2,.12)}
+ else if(k==='space'){tyNoise(a,t,.05,900,1,.45,'lowpass');tyThunk(a,t,110,.4,.08)}
+ else if(k==='back'){tyNoise(a,t,.025,1800,1.5,.3);tyThunk(a,t,200,.15,.04)}
+ else if(k==='bell'){[[1760,.25],[2637,.12],[3520,.06]].forEach(([f,v])=>{const o=a.createOscillator(),g=a.createGain();o.frequency.value=f;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+1.3);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+1.35)})}
+ else if(k==='ret'){for(let i=0;i<9;i++){tyNoise(a,t+i*.032,.018,3200+i*60,2,.22)}tyNoise(a,t,.32,700,.7,.25,'lowpass');tyThunk(a,t+.32,95,.5,.12);tyNoise(a,t+.32,.05,1500,1,.35)}
+ else if(k==='shot'){tyNoise(a,t,.08,4000,.8,.35);tyNoise(a,t+.09,.06,2500,.8,.25)}}
 function tyLoad(){if(TY)return TY;let d=null;try{d=JSON.parse(localStorage.getItem('engGames.typewriter')||'null')}catch(e){}
- TY=d&&d.lines?d:{lines:[[]],L:0,col:0,ink:'k',snaps:[]};if(!TY.lines[TY.L])TY.lines[TY.L]=[];return TY}
-function tySave(){if(TYGUEST||!TY)return;try{localStorage.setItem('engGames.typewriter',JSON.stringify(TY))}catch(e){}}
-function tyState(){tyLoad();return {lines:TY.lines,L:TY.L,col:TY.col,ink:TY.ink,snaps:TY.snaps.slice(-30)}}
+ TY=d&&d.lines?{lines:d.lines,L:d.L||0,col:Math.min(d.col||0,TYC),snaps:d.snaps||[],lv:d.lv||'b1',used:d.used||{}}:{lines:[[]],L:0,col:0,snaps:[],lv:'b1',used:{}};if(!TY.lines[TY.L])TY.lines[TY.L]=[];TY.lines=TY.lines.map(l=>(l||[]).map(c=>[c[0],c[1]]));return TY}
+function tySave(){if(TYGUEST||!TY)return;try{localStorage.setItem('engGames.typewriter',JSON.stringify({lines:TY.lines,L:TY.L,col:TY.col,snaps:TY.snaps.slice(-60),lv:TY.lv,used:TY.used}))}catch(e){}}
+function tyState(){tyLoad();return {lines:TY.lines,L:TY.L,col:TY.col,snaps:TY.snaps.slice(-20)}}
 function tySend(o){if(ROOM.role&&ROOM.conn&&ROOM.conn.open)roomSend({t:'ty',o})}
 function tyRand(n){const x=Math.sin(n*12.9898+78.233)*43758.5453;return x-Math.floor(x)}
-function tyCharHTML(L,c){const [col,ch,k]=c,s=L*131+col*7+ch.charCodeAt(0);const dy=(tyRand(s)-.5)*1.6,r=(tyRand(s+1)-.5)*4,o=.74+tyRand(s+2)*.26;
- return `<i class="tyc${k==='r'?' r':''}" style="left:${TYML+col*TYCW}px;transform:translateY(${dy.toFixed(2)}px) rotate(${r.toFixed(1)}deg);opacity:${o.toFixed(2)}">${esc(ch)}</i>`}
+function tyCharHTML(L,c){const [col,ch]=c,s=L*131+col*7+ch.charCodeAt(0);const dy=(tyRand(s)-.5)*1.1,r=(tyRand(s+1)-.5)*2.4,o=.8+tyRand(s+2)*.2;
+ return `<i class="tyc" style="left:${TYML+col*TYCW}px;transform:translateY(${dy.toFixed(2)}px) rotate(${r.toFixed(1)}deg);opacity:${o.toFixed(2)}">${esc(ch)}</i>`}
 function tyLineHTML(L){return (TY.lines[L]||[]).map(c=>tyCharHTML(L,c)).join('')}
+function tyLineStr(l){const a=[];(l||[]).forEach(([c,ch])=>{a[c]=ch});let s='';for(let i=0;i<a.length;i++)s+=a[i]||' ';return s.replace(/\s+$/,'')}
+function tySheetText(lines){return (lines||TY.lines).map(tyLineStr).join('\n').replace(/\s+$/,'')}
 function tySetup(guest){
  TYGUEST=!!guest;tyLoad();
  if(!TYCSS){TYCSS=true;const st=document.createElement('style');st.textContent=`
-.tywrap{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
-.tyleft{flex:0 1 250px;min-width:220px}.tyleft h2{margin:0 0 2px}.tyleft .tysub{font:400 15px/1.55 Inter,sans-serif;color:#3a342c;margin:10px 0 16px}.tyleft .tysub p{margin:0 0 8px}
-.tyright{flex:1 1 520px;min-width:280px}
-.tybar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}.tybar button{border:2px solid #232323;border-radius:999px;background:#fffaf0;font:600 14px Inter,sans-serif;padding:6px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
-.tybar button:hover{background:#A2E0D5}.tydot{display:inline-block;width:12px;height:12px;border-radius:50%;background:#232323}.tydot.r{background:#e8462a}
 @font-face{font-family:'TySpecialElite';src:url(ch/fonts/special-elite.woff2) format('woff2');font-display:swap}
-.tyfit{position:relative;width:100%;overflow:hidden;border-radius:16px;background:#f6f6f6}
-.tyst{position:absolute;left:0;top:0;width:${TYW}px;height:${TYH}px;transform-origin:0 0;overflow:hidden;cursor:text;touch-action:pan-y}
-.typ{position:absolute;width:${TYPW}px;background:#fffdf6;border:2px solid #2a2a2a;border-bottom:0;box-shadow:0 0 0 1px rgba(0,0,0,.04),4px 0 12px rgba(0,0,0,.12);transition:top .25s}
-.typ.anim{transition:left .38s cubic-bezier(.3,0,.2,1),top .3s}
+.tybar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px}.tybar button,.tybar select{border:2px solid #232323;border-radius:999px;background:#fffaf0;font:600 14px Inter,sans-serif;padding:6px 14px;cursor:pointer;color:#232323}.tybar button:hover{background:#A2E0D5}
+.tybar select{padding:6px 10px}.tybar .sep{width:1px;height:26px;background:#cbbd9f;margin:0 2px}
+.tyfit{position:relative;width:100%;overflow:hidden}
+.tyst{position:absolute;left:0;top:0;width:${TYW}px;height:${TYH}px;transform-origin:0 0;overflow:hidden;cursor:text}
+.tyclip{position:absolute;left:0;top:0;width:100%;height:${TYCOV+8}px;overflow:hidden;pointer-events:none}
+.typ{position:absolute;left:${TYPX}px;width:${TYPW}px;background:#fffdf6;border:2px solid #2a2a2a;border-bottom:0;box-shadow:4px 0 12px rgba(0,0,0,.08);transition:top .25s;pointer-events:auto}
 .tyl{position:absolute;left:0;right:0;height:${TYLH}px}
-.tyst .tyc{position:absolute;top:0;width:${TYCW}px;text-align:center;font:400 19px/27px 'TySpecialElite','Courier New',monospace!important;font-family:'TySpecialElite','Courier New',monospace!important;color:#1d1b1b;font-style:normal;pointer-events:none}.tyst .tyc.r{color:#d23a22}
-.tycar{position:absolute;top:${193-490*TYCS}px;width:${1440*TYCS}px;height:${1024*TYCS}px;pointer-events:none}.tycar>img{position:absolute;inset:0;width:100%;height:100%;display:block}.tycar.anim{transition:left .38s cubic-bezier(.3,0,.2,1)}
-.tyclip{position:absolute;left:0;top:0;width:100%;height:${TYCLIP}px;overflow:hidden;pointer-events:none}.tyclip .typ{pointer-events:auto}
-.tygrab{position:absolute;pointer-events:auto;cursor:grab;touch-action:none}.tygrab:active{cursor:grabbing}
-.tyhint{position:absolute;left:18px;top:16px;font:600 13px Inter,sans-serif;color:#5a5048;white-space:nowrap;pointer-events:none}
-.tybase{position:absolute;left:${TYBX}px;top:${TYBY}px;width:${1440*TYBS}px;height:${1024*TYBS}px;pointer-events:none}.tybase>img{position:absolute;inset:0;width:100%;height:100%;display:block;clip-path:polygon(22.22% 17.77%,23.47% 16.41%,77.22% 16.41%,78.33% 17.97%,78.47% 50.78%,81.94% 53.52%,82.92% 58.59%,82.92% 86.43%,17.22% 86.43%,17.22% 58.59%,18.19% 53.52%,21.81% 50.78%)}
+.tyst .tyc{position:absolute;top:0;width:${TYCW}px;text-align:center;font:400 19px/27px 'TySpecialElite','Courier New',monospace!important;font-family:'TySpecialElite','Courier New',monospace!important;color:#1d1b1b;font-style:normal;pointer-events:none}
+.tycaret{position:absolute;width:2px;height:21px;background:#e8462a;animation:tybl 1s steps(1) infinite;pointer-events:none}@keyframes tybl{50%{opacity:0}}
+.tycar{position:absolute;top:${TYCOV-7-490*TYCS}px;left:${390-822*TYCS}px;width:${1440*TYCS}px;height:${1024*TYCS}px;pointer-events:none;transition:left .3s cubic-bezier(.3,0,.2,1)}.tycar>img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.tyknob{position:absolute;left:${400*TYCS}px;top:${385*TYCS}px;width:${80*TYCS}px;height:${100*TYCS}px;pointer-events:auto;cursor:grab;touch-action:none;border-radius:14px}.tyknob:hover{box-shadow:0 0 0 3px rgba(232,70,42,.45)}.tyknob:active{cursor:grabbing}
+.tyhint{position:absolute;left:8px;top:${TYCOV-150}px;width:${TYPX-20}px;font:600 12px/1.35 Inter,sans-serif;color:#7a6a58;pointer-events:none;text-align:right}
+.tybase{position:absolute;left:${TYBX}px;top:${TYBY}px;width:${1440*TYBS}px;height:${1024*TYBS}px;pointer-events:none}.tybase>img{position:absolute;inset:0;width:100%;height:100%;display:block}
 .tyhit{position:absolute;width:${50*TYBS}px;height:${50*TYBS}px;margin:${-25*TYBS}px 0 0 ${-25*TYBS}px;border-radius:50%;background:rgba(70,70,70,.32);opacity:0;transition:opacity .3s}.tyhit.on{opacity:1;transition:none}.tyhit.sp{width:${480*TYBS}px;margin-left:${-240*TYBS}px;border-radius:${25*TYBS}px}
 .tymod{position:fixed;inset:0;z-index:300;background:rgba(40,30,20,.25);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);display:grid;place-items:center;padding:16px}
 .tymbox{width:min(880px,96vw);background:#fffaf0;border:3px solid #232323;border-radius:18px;box-shadow:0 6px 0 #232323;padding:16px 18px}
-.tymbox h3{margin:0 0 10px;display:flex;justify-content:space-between;align-items:center}
-.tygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-height:min(70vh,560px);overflow:auto;padding:4px}
-@media(max-width:640px){.tygrid{grid-template-columns:repeat(2,1fr)}}
+.tymbox h3{margin:0 0 10px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tysheet{background:#fffdf6;border:2px solid #2a2a2a;padding:22px 26px;max-height:min(70vh,620px);overflow:auto;white-space:pre-wrap;word-break:break-word;font:400 18px/1.5 'TySpecialElite','Courier New',monospace!important;font-family:'TySpecialElite','Courier New',monospace!important;color:#1d1b1b}
+.tygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-height:min(70vh,560px);overflow:auto;padding:4px}@media(max-width:640px){.tygrid{grid-template-columns:repeat(2,1fr)}}
 .tysn{background:#fffdf6;border:2px solid #2a2a2a;border-radius:4px;padding:8px 8px 6px;box-shadow:2px 3px 0 rgba(0,0,0,.18)}
-.tysn pre{margin:0;font:400 7.2px/1.32 'TySpecialElite','Courier New',monospace!important;font-family:'TySpecialElite','Courier New',monospace!important;white-space:pre;overflow:hidden;height:${15*9.5}px;color:#1d1b1b}
-.tysn pre b{font-weight:400;color:#d23a22}.tysn small{display:block;margin-top:6px;font:600 11px Inter,sans-serif;color:#6b6157}
-.tystack{position:relative;height:230px;margin-top:6px;cursor:pointer}.tystack .tysn{position:absolute;left:0;width:200px;transition:transform .2s}
-.tystack:hover .tysn:nth-child(1){transform:rotate(-5deg) translateX(-6px)}.tystack .tysn:nth-child(1){transform:rotate(-3deg)}.tystack .tysn:nth-child(2){transform:rotate(2deg) translate(10px,10px)}.tystack .tysn:nth-child(3){transform:rotate(-1deg) translate(20px,20px)}
-.tyempty{font:500 13px Inter,sans-serif;color:#7a7066;border:2px dashed #b9ae9a;border-radius:10px;padding:14px;margin-top:6px}
+.tysn pre{margin:0;font:400 7.4px/1.32 'TySpecialElite','Courier New',monospace!important;font-family:'TySpecialElite','Courier New',monospace!important;white-space:pre;overflow:hidden;height:${15*9.8}px;color:#1d1b1b}
+.tysn .ft{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font:600 11px Inter,sans-serif;color:#6b6157}.tysn .ft button{border:1.5px solid #232323;border-radius:999px;background:#fff;font:600 11px Inter,sans-serif;padding:3px 9px;cursor:pointer}
 .tylink{border:2px solid #232323;border-radius:999px;background:#fffaf0;font:600 14px Inter,sans-serif;padding:6px 14px;cursor:pointer}`;document.head.appendChild(st)}
- const intro=`<p>Type as if someone will come after you.</p><p>Write a line, leave a thought, or finish someone else’s sentence.</p><p>What you type stays, waiting for the next person.</p><p>Use your keyboard like a typewriter. Drag the carriage (or press Enter) to return.</p>`;
- setView((TYGUEST?'':roomHTML())+`<section class="panel k-card"><div class="tywrap">
- <div class="tyleft"><h2>Creative Writing</h2><div style="font:700 26px 'Special Elite','Courier New',monospace">After You</div><div class="tysub">${intro}</div>
-  <button class="tylink" id="tysnaps">snapshots (<span id="tysn">0</span>)</button><div id="tystack"></div></div>
- <div class="tyright"><div class="tybar"><button id="tyshot">📷 take a snapshot</button><button id="tyink">ink ribbon: <span class="tydot" id="tydot"></span></button><button id="tystart">✨ story starter</button></div>
+ setView((TYGUEST?'':roomHTML())+`<section class="panel k-card"><h2 style="margin:0 0 10px">Creative Writing</h2>
+ <div class="tybar"><select id="tylv" title="Level">${TYLV.map(l=>`<option value="${l[0]}"${l[0]===TY.lv?' selected':''}>${l[1]}</option>`).join('')}</select><button id="tytopic">✨ new topic</button><button id="tyidea">➕ next idea</button><span class="sep"></span>
+ <button id="tyshot">📷 take a snapshot</button><button id="tysnaps">🖼 snapshots (<span id="tysn">0</span>)</button><button id="tyread">📄 read the whole sheet</button><button id="tynew">↺ start over</button></div>
   <div class="tyfit" id="tyfit"><div class="tyst" id="tyst">
-   <div class="tycar" id="tycar"><img src="ch/ty/carriage.jpg" alt="" draggable="false"><div class="tygrab" id="tygrab" style="left:${90*TYCS}px;top:${370*TYCS}px;width:${1250*TYCS}px;height:${270*TYCS}px"></div></div><div class="tyhint">drag the carriage → to return</div>
+   <div class="tycar" id="tycar"><img src="ch/ty/carriage.webp" alt="" draggable="false"><div class="tyknob" id="tyknob" title="Drag to the right for a new line"></div></div>
+   <div class="tyhint">drag the red knob → or press Enter for a new line</div>
    <div class="tyclip"><div class="typ" id="typ"></div></div>
-   <div class="tybase" id="tybase"><img src="ch/ty/base.jpg" alt="" draggable="false"></div>
-   <textarea id="tyta" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="position:absolute;left:${TYSX}px;top:${TYSY-10}px;width:2px;height:2px;opacity:0;border:0;padding:0;resize:none;font-size:16px"></textarea>
-  </div></div></div></div></section>`);
+   <div class="tybase" id="tybase"><img src="ch/ty/base.webp" alt="" draggable="false"></div>
+   <textarea id="tyta" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="position:absolute;left:390px;top:${TYLINE}px;width:2px;height:2px;opacity:0;border:0;padding:0;resize:none;font-size:16px"></textarea>
+  </div></div></section>`);
  if(!TYGUEST)bindRoom();
- // keys
- const base=$('#tybase');Object.keys(TYKEYS).forEach(ch=>{if(base.querySelector(`[data-p="${TYKEYS[ch].join('_')}"]`))return;const k=document.createElement('div');k.className='tyhit'+(ch===' '?' sp':'');k.dataset.p=TYKEYS[ch].join('_');k.style.left=(TYKEYS[ch][0]*TYBS)+'px';k.style.top=(TYKEYS[ch][1]*TYBS)+'px';base.appendChild(k)});
- // fit
- const fit=$('#tyfit'),st=$('#tyst');const rs=()=>{const w=fit.clientWidth||TYW,s=Math.min(1,w/TYW);st.style.transform=`scale(${s})`;fit.style.height=(TYH*s)+'px'};rs();
+ const base=$('#tybase');Object.keys(TYKEYS).forEach(ch=>{const id=TYKEYS[ch].join('_');if(base.querySelector(`[data-p="${id}"]`))return;const k=document.createElement('div');k.className='tyhit'+(ch===' '?' sp':'');k.dataset.p=id;k.style.left=(TYKEYS[ch][0]*TYBS)+'px';k.style.top=(TYKEYS[ch][1]*TYBS)+'px';base.appendChild(k)});
+ const fit=$('#tyfit'),st=$('#tyst');const rs=()=>{const w=fit.clientWidth||TYW,s=Math.max(.3,Math.min(1,w/TYW,(window.innerHeight-130)/TYH));st.style.transform=`scale(${s})`;st.style.left=Math.max(0,(w-TYW*s)/2)+'px';fit.style.height=(TYH*s)+'px'};rs();
  if(window.TYRO)TYRO.disconnect();window.TYRO=new ResizeObserver(rs);TYRO.observe(fit);
- tyRenderAll();tyInk();tySnapsUI();
+ tyRenderAll();tySnapsUI();
  const ta=$('#tyta');
- st.onpointerdown=e=>{if(e.target.closest('#tygrab'))return;setTimeout(()=>ta.focus({preventScroll:true}),0)};
- ta.onkeydown=e=>{if(TYAUTO)return e.preventDefault();if(e.key==='Enter'){e.preventDefault();tyRet(true)}else if(e.key==='Backspace'){e.preventDefault();tyBack(true)}else if(e.key==='Tab'){e.preventDefault()}};
- ta.oninput=()=>{const v=ta.value;ta.value='';if(TYAUTO||$('.tymod'))return;for(const ch of v){if(ch==='\n')tyRet(true);else tyType(ch,true)}};
- st.onwheel=e=>{e.preventDefault();TY.scroll=Math.max(0,Math.min(TYTOP+TY.L*TYLH,(TY.scroll||0)-e.deltaY*.6));tyPos(false)};
- // carriage drag
- const car=$('#tygrab');let dx0=null,dd=0;
- car.onpointerdown=e=>{if(TYAUTO)return;dx0=e.clientX;dd=0;car.setPointerCapture(e.pointerId);e.preventDefault()};
- car.onpointermove=e=>{if(dx0===null)return;const sc=st.getBoundingClientRect().width/TYW;dd=Math.max(0,(e.clientX-dx0)/sc);const lim=TY.col*TYCW;tyPos(false,Math.min(dd,lim+30))};
- car.onpointerup=car.onpointercancel=e=>{if(dx0===null)return;dx0=null;if(dd>40||(TY.col>0&&dd>=TY.col*TYCW-2))tyRet(true);else tyPos(true);ta.focus({preventScroll:true})};
- $('#tyink').onclick=()=>{TY.ink=TY.ink==='r'?'k':'r';tyInk();tySave();tySend({a:'k',k:TY.ink});sfx('click');ta.focus({preventScroll:true})};
- $('#tyshot').onclick=()=>{tySnap(true)};
- $('#tysnaps').onclick=tyModal;$('#tystack').onclick=tyModal;
- $('#tystart').onclick=()=>{if(TYAUTO)return;tyAuto(TYSTART[Math.floor(Math.random()*TYSTART.length)])};
- if(!TYKEY){TYKEY=true;document.addEventListener('keydown',e=>{const t=$('#tyta');if(!t||$('.tymod'))return;if(e.key==='Escape')return;const a=document.activeElement;if(a===t||/INPUT|TEXTAREA|SELECT/.test(a&&a.tagName))return;if(e.ctrlKey||e.metaKey||e.altKey)return;if(e.key.length===1||e.key==='Enter'||e.key==='Backspace'){t.focus({preventScroll:true});if(e.key==='Enter'||e.key==='Backspace'){e.preventDefault();e.key==='Enter'?tyRet(true):tyBack(true)}}},true)}
+ st.onpointerdown=e=>{if(e.target.closest('#tyknob'))return;setTimeout(()=>ta.focus({preventScroll:true}),0)};
+ ta.onkeydown=e=>{if(TYAUTO){e.preventDefault();return}if(e.key==='Enter'){e.preventDefault();tyRet(true)}else if(e.key==='Backspace'){e.preventDefault();tyBack(true)}else if(e.key==='Tab'){e.preventDefault()}};
+ ta.oninput=()=>{const v=ta.value;ta.value='';if($('.tymod')||TYAUTO)return;for(const ch of v){if(ch==='\n')tyRet(true);else tyType(ch,true)}};
+ // knob drag (only the small red knob moves the carriage)
+ const kn=$('#tyknob'),car=$('#tycar'),L0=390-822*TYCS;let dx0=null,dd=0;
+ kn.onpointerdown=e=>{if(TYAUTO)return;dx0=e.clientX;dd=0;kn.setPointerCapture(e.pointerId);e.preventDefault();e.stopPropagation();car.style.transition='none'};
+ kn.onpointermove=e=>{if(dx0===null)return;const sc=st.getBoundingClientRect().width/TYW;dd=Math.max(0,Math.min(80,(e.clientX-dx0)/sc));car.style.left=(L0+dd)+'px'};
+ kn.onpointerup=kn.onpointercancel=()=>{if(dx0===null)return;dx0=null;car.style.transition='';car.style.left=L0+'px';if(dd>30)tyRet(true);ta.focus({preventScroll:true})};
+ $('#tylv').onchange=e=>{TY.lv=e.target.value;tySave();ta.focus({preventScroll:true})};
+ $('#tytopic').onclick=()=>tyTopic();$('#tyidea').onclick=()=>tyIdea();
+ $('#tyshot').onclick=()=>tySnap(true);$('#tysnaps').onclick=tySnapsModal;
+ $('#tyread').onclick=tyModal;
+ $('#tynew').onclick=()=>{if(TYAUTO)return;if(!confirm('Start a new sheet? Everything on this sheet will be deleted (snapshots stay).'))return;tyNew(true)};
+ if(!TYKEY){TYKEY=true;document.addEventListener('keydown',e=>{const t=$('#tyta');if(!t||$('.tymod'))return;const a=document.activeElement;if(a===t||/INPUT|TEXTAREA|SELECT/.test(a&&a.tagName))return;if(e.ctrlKey||e.metaKey||e.altKey)return;if(e.key.length===1||e.key==='Enter'||e.key==='Backspace'){t.focus({preventScroll:true});if(e.key==='Enter'||e.key==='Backspace'){e.preventDefault();if(TYAUTO)return;e.key==='Enter'?tyRet(true):tyBack(true)}}},true)}
  setTimeout(()=>ta.focus({preventScroll:true}),60);
  if(!TYGUEST&&ROOM.role==='host')roomPush()}
-function tyInk(){const d=$('#tydot');if(!d)return;d.classList.toggle('r',TY.ink==='r')}
-function tyRenderAll(){const p=$('#typ');if(!p)return;const n=TY.lines.length;p.style.height=(TYTOP+(n+24)*TYLH)+'px';
- p.innerHTML=TY.lines.map((_,L)=>`<div class="tyl" id="tyl${L}" style="top:${TYTOP+L*TYLH}px">${tyLineHTML(L)}</div>`).join('');tyPos(false)}
-function tyLine(L){const p=$('#typ');if(!p)return;let d=$('#tyl'+L);if(!d){d=document.createElement('div');d.className='tyl';d.id='tyl'+L;d.style.top=(TYTOP+L*TYLH)+'px';p.appendChild(d);p.style.height=(TYTOP+(TY.lines.length+24)*TYLH)+'px'}d.innerHTML=tyLineHTML(L)}
-function tyPos(anim,drag){const p=$('#typ'),c=$('#tycar');if(!p)return;const x=TYSX-(TYML+TY.col*TYCW+TYCW/2)+(drag||0),y=TYSY-(TYTOP+TY.L*TYLH)-21+(TY.scroll||0);
- p.classList.toggle('anim',!!anim);c.classList.toggle('anim',!!anim);p.style.left=x+'px';p.style.top=y+'px';c.style.left=(x-15-480*TYCS)+'px'}
+function tyRenderAll(){const p=$('#typ');if(!p)return;const n=TY.lines.length;p.style.height=(TYTOP+(n+30)*TYLH)+'px';
+ p.innerHTML=TY.lines.map((_,L)=>`<div class="tyl" id="tyl${L}" style="top:${TYTOP+L*TYLH}px">${tyLineHTML(L)}</div>`).join('')+'<div class="tycaret" id="tycaret"></div>';tyPos()}
+function tyLine(L){const p=$('#typ');if(!p)return;let d=$('#tyl'+L);if(!d){d=document.createElement('div');d.className='tyl';d.id='tyl'+L;d.style.top=(TYTOP+L*TYLH)+'px';p.insertBefore(d,$('#tycaret'));p.style.height=(TYTOP+(TY.lines.length+30)*TYLH)+'px'}d.innerHTML=tyLineHTML(L)}
+function tyPos(){const p=$('#typ');if(!p)return;p.style.top=(TYLINE-(TYTOP+TY.L*TYLH))+'px';
+ const c=$('#tycaret');if(c){c.style.left=(TYML+Math.min(TY.col,TYC)*TYCW)+'px';c.style.top=(TYTOP+TY.L*TYLH+4)+'px'}}
 function tyHit(ch){const p=TYKEYS[ch.toLowerCase()];if(!p)return;const k=document.querySelector(`.tyhit[data-p="${p.join('_')}"]`);if(!k)return;k.classList.add('on');clearTimeout(k._t);k._t=setTimeout(()=>k.classList.remove('on'),140)}
-function tyType(ch,local){tyLoad();if(TY.scroll){TY.scroll=0}
- if(TY.col>=TYC){if(local)sfx('buzz');return}
- if(ch!==' ')TY.lines[TY.L].push([TY.col,ch,TY.ink]);TY.col++;
- if($('#typ')){tyLine(TY.L);tyPos(false);tyHit(ch)}
- if(local){sfx('tick');tySend({a:'c',ch,k:TY.ink})}
- if(TY.col===TYC-6)sfx('ding');tySave()}
-function tyBack(local){tyLoad();if(TY.col>0){TY.col--;TY.scroll=0;tyPos(false);if(local){sfx('click');tySend({a:'b'})}tySave()}}
-function tyRet(local){tyLoad();TY.scroll=0;TY.L++;TY.col=0;if(!TY.lines[TY.L])TY.lines[TY.L]=[];if($('#typ')){tyLine(TY.L);tyPos(true)}
- if(local){sfx('whoosh');tySend({a:'r'});if(ROOM.role==='host')setTimeout(roomPush,450)}tySave()}
-function tySnap(local,snap){tyLoad();const s=snap||{t:Date.now(),lines:TY.lines.slice(Math.max(0,TY.L-14),TY.L+1)};TY.snaps.push(s);if(TY.snaps.length>200)TY.snaps.shift();tySave();tySnapsUI();
- if(local){sfx('print');tySend({a:'s',s});const f=$('#tyfit');if(f){f.style.transition='filter .1s';f.style.filter='brightness(1.8)';setTimeout(()=>{f.style.filter=''},120)}}}
-function tySnapText(s){return s.lines.map(l=>{const a=Array(TYC).fill(' '),red=Array(TYC).fill(false);(l||[]).forEach(([c,ch,k])=>{if(c<TYC){a[c]=ch;if(k==='r')red[c]=true}});
- let o='';for(let i=0;i<TYC;i++)o+=red[i]?'<b>'+esc(a[i])+'</b>':esc(a[i]);return o.replace(/\s+$/,'')}).join('\n')}
-function tySnapCard(s){const d=new Date(s.t);const ds=d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})+' · '+d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});return `<div class="tysn"><pre>${tySnapText(s)}</pre><small>${ds}</small></div>`}
-function tySnapsUI(){const n=$('#tysn');if(n)n.textContent=TY.snaps.length;const st=$('#tystack');if(!st)return;
- st.className=TY.snaps.length?'tystack':'';st.innerHTML=TY.snaps.length?TY.snaps.slice(-3).reverse().map(tySnapCard).join(''):'<div class="tyempty">No snapshots yet. Press “take a snapshot” to keep the last 15 lines.</div>'}
-function tyModal(){if(!TY.snaps.length)return;try{document.activeElement.blur()}catch(e){}const m=document.createElement('div');m.className='tymod';
- m.innerHTML=`<div class="tymbox"><h3><span>Snapshots</span><button class="tylink" id="tymclose">close</button></h3><div class="tygrid">${TY.snaps.slice().reverse().map(tySnapCard).join('')}</div></div>`;
- document.body.appendChild(m);const close=()=>{m.remove();const t=$('#tyta');if(t)t.focus({preventScroll:true})};m.onclick=e=>{if(e.target===m)close()};$('#tymclose').onclick=close;
- const esc2=e=>{if(e.key==='Escape'){close();document.removeEventListener('keydown',esc2)}};document.addEventListener('keydown',esc2)}
-function tyAuto(text){if(TY.col>0)tyRet(true);const words=text.split(' ');let q=[],col=0;
- words.forEach((w,i)=>{if(col+w.length>TYC){q.push('\n');col=0}[...w].forEach(c=>q.push(c));col+=w.length;if(i<words.length-1){if(col<TYC){q.push(' ');col++}}});
- if(col<TYC)q.push(' ');
- const old=TY.ink;TY.ink='r';tyInk();tySend({a:'k',k:'r'});
- TYAUTO=setInterval(()=>{if(!q.length||!$('#typ')){clearInterval(TYAUTO);TYAUTO=null;TY.ink=old;tyInk();tySend({a:'k',k:old});tySave();return}const c=q.shift();if(c==='\n')tyRet(true);else tyType(c,true)},55)}
-function tyRemote(o){if(!o)return;
- if(ROOM.role==='guest'&&!$('#typ')&&o.a!=='full'){tyLoad();}
- if(o.a==='c')tyType(o.ch.slice(0,1),false);else if(o.a==='b')tyBack(false);else if(o.a==='r')tyRet(false);
- else if(o.a==='k'){TY.ink=o.k==='r'?'r':'k';tyInk();tySave()}else if(o.a==='s'&&o.s&&o.s.lines){tySnap(false,o.s)}}
-function tyFromRemote(st){TY={lines:st.lines&&st.lines.length?st.lines:[[]],L:st.L||0,col:st.col||0,ink:st.ink||'k',snaps:st.snaps||[]};if(!TY.lines[TY.L])TY.lines[TY.L]=[];
- if($('#typ')&&TYGUEST){tyRenderAll();tyInk();tySnapsUI()}else tySetup(true)}
+function tyType(ch,local){tyLoad();const line=TY.lines[TY.L];
+ if(TY.col>=TYC){ // word wrap
+  if(ch===' '){tyRet(local,true);return}
+  const occ=new Set(line.map(c=>c[0]));let s=TYC-1;while(s>0&&occ.has(s-1))s--;
+  const moved=s>0?line.filter(c=>c[0]>=s):[];if(s>0)TY.lines[TY.L]=line.filter(c=>c[0]<s);
+  TY.L++;TY.lines.splice(TY.L,0,moved.map(c=>[c[0]-s,c[1]]));TY.col=moved.length;
+  if($('#typ'))tyRenderAll();if(local)tySnd('ret')}
+ const L2=TY.lines[TY.L];const i=L2.findIndex(c=>c[0]===TY.col);if(i>=0)L2.splice(i,1);
+ if(ch!==' ')L2.push([TY.col,ch]);TY.col++;
+ if($('#typ')){tyLine(TY.L);tyPos();tyHit(ch)}
+ if(local){tySnd(ch===' '?'space':'key');tySend({a:'c',ch})}
+ if(TY.col===TYC-5&&local)tySnd('bell');tySave()}
+function tyBack(local){tyLoad();
+ if(TY.col>0){TY.col--;const l=TY.lines[TY.L],i=l.findIndex(c=>c[0]===TY.col);if(i>=0)l.splice(i,1);if($('#typ'))tyLine(TY.L)}
+ else if(TY.L>0){if(!TY.lines[TY.L].length&&TY.L===TY.lines.length-1)TY.lines.pop();TY.L--;const l=TY.lines[TY.L];TY.col=l.length?Math.max(...l.map(c=>c[0]))+1:0;if(TY.col>TYC)TY.col=TYC;if($('#typ'))tyRenderAll()}
+ if($('#typ'))tyPos();if(local){tySnd('back');tySend({a:'b'})}tySave()}
+function tyRet(local,quiet){tyLoad();TY.L++;TY.col=0;if(!TY.lines[TY.L])TY.lines.splice(TY.L,0,[]);
+ if($('#typ')){tyRenderAll();const c=$('#tycar');if(c&&!quiet){c.style.transition='left .12s';c.style.left=(390-822*TYCS+40)+'px';setTimeout(()=>{c.style.transition='';c.style.left=(390-822*TYCS)+'px'},130)}}
+ if(local){if(!quiet)tySnd('ret');tySend({a:'r'});if(ROOM.role==='host')setTimeout(roomPush,450)}tySave()}
+function tyNew(local){TY.lines=[[]];TY.L=0;TY.col=0;tySave();if($('#typ'))tyRenderAll();if(local){tySnd('ret');tySend({a:'n'});const t=$('#tyta');if(t)t.focus({preventScroll:true})}}
+// ---- topics & starters (typed by the machine) ----
+function tyQueue(q){if(TYAUTO)return;
+ TYAUTO=setInterval(()=>{if(!q.length||!$('#typ')){clearInterval(TYAUTO);TYAUTO=null;tySave();const t=$('#tyta');if(t)t.focus({preventScroll:true});return}const c=q.shift();if(c==='\n')tyRet(true);else tyType(c,true)},38)}
+function tyWords(text,startCol){const q=[];let col=startCol||0;text.split(' ').forEach((w,i)=>{if(i>0){if(col+1+w.length>TYC){q.push('\n');col=0}else{q.push(' ');col++}}[...w].forEach(c=>{q.push(c);col++})});return q}
+function tyTopic(){if(TYAUTO)return;tyLoad();const lv=TY.lv||'b1',L=TYTOPICS[lv];let used=TY.used[lv]||[];if(used.length>=L.length)used=[];
+ const free=L.map((_,i)=>i).filter(i=>!used.includes(i)),k=free[Math.floor(Math.random()*free.length)];used.push(k);TY.used[lv]=used;TY.cur={lv,k,s:[]};
+ const [title]=L[k],T=title.toUpperCase().slice(0,TYC);const q=[];
+ const cur=TY.lines[TY.L]||[];if(TY.col>0||cur.length){q.push('\n');q.push('\n')}else if(TY.L>0&&(TY.lines[TY.L-1]||[]).length)q.push('\n');
+ const pad=Math.max(0,Math.floor((TYC-T.length)/2));for(let i=0;i<pad;i++)q.push(' ');[...T].forEach(c=>q.push(c));q.push('\n');q.push('\n');
+ q.push(...tyIdeaQ(lv,k));tyQueue(q)}
+function tyIdeaQ(lv,k){const ss=TYTOPICS[lv][k][1],used=TY.cur.s;let free=ss.map((_,i)=>i).filter(i=>!used.includes(i));if(!free.length){TY.cur.s=[];free=ss.map((_,i)=>i)}
+ const i=free[Math.floor(Math.random()*free.length)];TY.cur.s.push(i);return tyWords(ss[i]+' ',0)}
+function tyIdea(){if(TYAUTO)return;tyLoad();if(!TY.cur||!TYTOPICS[TY.cur.lv]){tyTopic();return}const q=[];const cur=TY.lines[TY.L]||[];if(TY.col>0||cur.length)q.push('\n');q.push(...tyIdeaQ(TY.cur.lv,TY.cur.k));tyQueue(q)}
+// ---- snapshots ----
+function tySnap(local,snap){tyLoad();const s=snap||{t:Date.now(),lines:TY.lines.slice(Math.max(0,TY.L-14),TY.L+1)};TY.snaps.push(s);if(TY.snaps.length>60)TY.snaps.shift();tySave();tySnapsUI();
+ if(local){tySnd('shot');tySend({a:'s',s});const f=$('#tyfit');if(f){f.style.transition='filter .1s';f.style.filter='brightness(1.6)';setTimeout(()=>{f.style.filter=''},120)}}}
+function tySnapsUI(){const n=$('#tysn');if(n)n.textContent=TY.snaps.length}
+function tyDate(t){const d=new Date(t);return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})+' · '+d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}
+function tySnapsModal(){if(!TY.snaps.length){const b=$('#tysnaps');if(b&&b.animate)b.animate([{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'none'}],{duration:250});return}
+ try{document.activeElement.blur()}catch(e){}const m=document.createElement('div');m.className='tymod';const L=TY.snaps.map((s,i)=>[s,i]).reverse();
+ m.innerHTML=`<div class="tymbox"><h3><span>Snapshots</span><button class="tylink" id="tymclose">close</button></h3><div class="tygrid">${L.map(([s,i])=>`<div class="tysn"><pre>${esc(tySheetText(s.lines))}</pre><div class="ft"><span>${tyDate(s.t)}</span><button data-dl="${i}">⬇ download</button></div></div>`).join('')}</div></div>`;
+ document.body.appendChild(m);const close=()=>{m.remove();document.removeEventListener('keydown',ek);const t=$('#tyta');if(t)t.focus({preventScroll:true})};const ek=e=>{if(e.key==='Escape')close()};
+ m.onclick=e=>{const b=e.target.closest('[data-dl]');if(b){const s=TY.snaps[+b.dataset.dl];tyPhoto(s.lines,s.t);return}if(e.target===m)close()};$('#tymclose').onclick=close;document.addEventListener('keydown',ek)}
+async function tyPhoto(lines,t){try{await document.fonts.load("20px TySpecialElite")}catch(e){}
+ const txt=tySheetText(lines).split('\n');while(txt.length&&!txt[txt.length-1].trim())txt.pop();
+ const S2=2,cw=11*S2,lh=30*S2,mx=60*S2,my=70*S2,W=Math.round(TYC*cw+mx*2),Hh=Math.round(my*2+Math.max(15,txt.length)*lh+30*S2);
+ const c=document.createElement('canvas');c.width=W;c.height=Hh;const x=c.getContext('2d');
+ x.fillStyle='#FBF1DC';x.fillRect(0,0,W,Hh);x.fillStyle='#fffdf6';x.strokeStyle='#2a2a2a';x.lineWidth=3*S2;x.fillRect(20*S2,20*S2,W-40*S2,Hh-40*S2);x.strokeRect(20*S2,20*S2,W-40*S2,Hh-40*S2);
+ x.fillStyle='#1d1b1b';x.font=`${20*S2}px TySpecialElite, "Courier New", monospace`;x.textBaseline='alphabetic';
+ txt.forEach((ln,i)=>{[...ln].forEach((ch,j)=>{if(ch===' ')return;const s=i*131+j*7+ch.charCodeAt(0);x.save();x.globalAlpha=.8+tyRand(s+2)*.2;x.translate(mx+j*cw+cw/2,my+i*lh+(tyRand(s)-.5)*1.5*S2);x.rotate((tyRand(s+1)-.5)*.04);x.textAlign='center';x.fillText(ch,0,0);x.restore()})});
+ x.globalAlpha=1;x.font=`600 ${12*S2}px Inter, sans-serif`;x.fillStyle='#8a7d6c';x.textAlign='right';x.fillText(tyDate(t||Date.now()),W-36*S2,Hh-34*S2);
+ c.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='typewriter-'+new Date(t||Date.now()).toISOString().slice(0,16).replace(/[:T]/g,'-')+'.png';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)},'image/png')}
+function tyModal(){try{document.activeElement.blur()}catch(e){}const m=document.createElement('div');m.className='tymod';const txt=tySheetText();
+ m.innerHTML=`<div class="tymbox"><h3><span>The whole sheet</span><span><button class="tylink" id="tymdl">⬇ download as photo</button> <button class="tylink" id="tymclose">close</button></span></h3><div class="tysheet">${txt?esc(txt):'<span style="opacity:.5">The sheet is empty.</span>'}</div></div>`;
+ document.body.appendChild(m);const close=()=>{m.remove();document.removeEventListener('keydown',ek);const t=$('#tyta');if(t)t.focus({preventScroll:true})};const ek=e=>{if(e.key==='Escape')close()};
+ m.onclick=e=>{if(e.target===m)close()};$('#tymclose').onclick=close;$('#tymdl').onclick=()=>tyPhoto(TY.lines,Date.now());document.addEventListener('keydown',ek)}
+function tyRemote(o){if(!o)return;if(ROOM.role==='guest'&&!$('#typ'))return;
+ if(o.a==='c')tyType(String(o.ch||'').slice(0,1)||' ',false);else if(o.a==='b')tyBack(false);else if(o.a==='r')tyRet(false);else if(o.a==='n')tyNew(false);else if(o.a==='s'&&o.s&&o.s.lines)tySnap(false,o.s)}
+function tyFromRemote(st){tyLoad();TY.lines=st.lines&&st.lines.length?st.lines:[[]];TY.L=st.L||0;TY.col=st.col||0;if(st.snaps)TY.snaps=st.snaps;if(!TY.lines[TY.L])TY.lines[TY.L]=[];
+ if($('#typ')&&TYGUEST){tyRenderAll();tySnapsUI()}else tySetup(true)}
 
 const DMHINT=['Near me → this / these. Far from me → that / those.','One thing → this / that (This is a …). Many things → these / those (These are …).'];
 function dmSent(o,near){const pl=o[1]==='p';return (near?(pl?'These are ':'This is '):(pl?'Those are ':'That is '))+o[2]+'.'}
