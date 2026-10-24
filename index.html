@@ -10400,7 +10400,8 @@ function m8Start(){
  setTimeout(()=>inp.focus(),50)}
 
 /* ===== Creative Writing: "After You" typewriter ===== */
-const TYC=52,TYCW=10.5,TYLH=27,TYTOP=46,TYSX=380,TYSY=392,TYPW=620,TYML=36;
+const TYC=52,TYCW=10.5,TYLH=27,TYTOP=46,TYSX=390,TYSY=185,TYPW=620,TYML=36,TYW=780,TYH=775,TYBS=.8,TYBX=390-712*.8,TYBY=195-170*.8,TYCS=.91,TYCLIP=203;
+const TYKEYS={'1':[387,497],'2':[447,497],'3':[507,497],'4':[565,497],'5':[624,497],'6':[683,497],'7':[742,497],'8':[800,497],'9':[860,497],'0':[918,497],'-':[978,497],'=':[1037,497],q:[412,567],w:[470,567],e:[530,567],r:[591,567],t:[651,567],y:[711,567],u:[771,567],i:[831,567],o:[891,567],p:[951,567],a:[421,633],s:[482,633],d:[541,633],f:[602,633],g:[662,633],h:[724,633],j:[785,633],k:[845,633],l:[906,633],';':[966,633],':':[966,633],z:[443,703],x:[503,703],c:[568,703],v:[630,703],b:[691,703],n:[752,703],m:[815,703],',':[878,703],'.':[938,703],'/':[1000,703],'?':[1000,703],'!':[387,497],' ':[717,785]};
 const TYSTART=['It was raining when the doorbell rang.','Nobody believed me when I said','The last thing I expected to find in my bag was','When I opened the box,','I have never told anyone this, but','The cat looked at me and said,','If I could live anywhere for one year,','The best day of my life started badly.','On the way home, I found a key.','My neighbour has a very strange hobby:','The message said: "Don\'t open the door."','I woke up and everything was blue.','The day the internet stopped,','Dear future me,','I knew something was wrong when','There was a note in the library book:','Grandma had a secret, and it was','The robot wanted only one thing:','At exactly midnight, the lights went out.','If I had a time machine, the first thing I would do','The strangest job I have ever had','Everyone in the village was talking about','I should have listened to my mum.','It wasn\'t a normal Monday.'];
 let TY=null,TYGUEST=false,TYCSS=false,TYKEY=false,TYAUTO=null;
 function tyLoad(){if(TY)return TY;let d=null;try{d=JSON.parse(localStorage.getItem('engGames.typewriter')||'null')}catch(e){}
@@ -10420,26 +10421,26 @@ function tySetup(guest){
 .tyright{flex:1 1 520px;min-width:280px}
 .tybar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}.tybar button{border:2px solid #232323;border-radius:999px;background:#fffaf0;font:600 14px Inter,sans-serif;padding:6px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 .tybar button:hover{background:#A2E0D5}.tydot{display:inline-block;width:12px;height:12px;border-radius:50%;background:#232323}.tydot.r{background:#e8462a}
-.tyfit{position:relative;width:100%;overflow:hidden;border:3px solid #232323;border-radius:16px;background:linear-gradient(#f4ead6,#efe1c6);box-shadow:0 5px 0 #232323}
-.tyst{position:absolute;left:0;top:0;width:760px;height:600px;transform-origin:0 0;overflow:hidden;cursor:text;touch-action:pan-y}
+@font-face{font-family:'TySpecialElite';src:url(ch/fonts/special-elite.woff2) format('woff2');font-display:swap}
+.tyfit{position:relative;width:100%;overflow:hidden;border-radius:16px;background:#f6f6f6}
+.tyst{position:absolute;left:0;top:0;width:${TYW}px;height:${TYH}px;transform-origin:0 0;overflow:hidden;cursor:text;touch-action:pan-y}
 .typ{position:absolute;width:${TYPW}px;background:#fffdf6;border:2px solid #2a2a2a;border-bottom:0;box-shadow:0 0 0 1px rgba(0,0,0,.04),4px 0 12px rgba(0,0,0,.12);transition:top .25s}
 .typ.anim{transition:left .38s cubic-bezier(.3,0,.2,1),top .3s}
 .tyl{position:absolute;left:0;right:0;height:${TYLH}px}
-.tyc{position:absolute;top:0;width:${TYCW}px;text-align:center;font:400 19px/27px 'Special Elite','Courier New',monospace;color:#1d1b1b;font-style:normal;pointer-events:none}.tyc.r{color:#d23a22}
-.tycar{position:absolute;top:${TYSY-26}px;height:60px;width:720px;cursor:grab}.tycar.anim{transition:left .38s cubic-bezier(.3,0,.2,1)}.tycar:active{cursor:grabbing}
-.tyhint{position:absolute;left:-70px;top:-50px;font:600 12px Inter,sans-serif;color:#5a5048;white-space:nowrap;pointer-events:none}
-.tybase{position:absolute;left:40px;top:${TYSY+12}px;width:680px;height:190px;pointer-events:none}
-.tykey{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:#fffaf0;border:3px solid #232323;box-shadow:0 4px 0 #232323;font:700 15px 'Special Elite','Courier New',monospace;display:grid;place-items:center;color:#232323;transition:transform .08s,box-shadow .08s}
-.tykey:after{content:'';position:absolute;inset:-7px;border-radius:50%;background:rgba(60,60,60,.28);opacity:0;transition:opacity .25s}
-.tykey.hit{transform:translateY(3px);box-shadow:0 1px 0 #232323}.tykey.hit:after{opacity:1;transition:none}
-.tykey.sp{width:300px;border-radius:20px;margin-left:-150px}
+.tyst .tyc{position:absolute;top:0;width:${TYCW}px;text-align:center;font:400 19px/27px 'TySpecialElite','Courier New',monospace!important;font-family:'TySpecialElite','Courier New',monospace!important;color:#1d1b1b;font-style:normal;pointer-events:none}.tyst .tyc.r{color:#d23a22}
+.tycar{position:absolute;top:${193-490*TYCS}px;width:${1440*TYCS}px;height:${1024*TYCS}px;pointer-events:none}.tycar>img{position:absolute;inset:0;width:100%;height:100%;display:block}.tycar.anim{transition:left .38s cubic-bezier(.3,0,.2,1)}
+.tyclip{position:absolute;left:0;top:0;width:100%;height:${TYCLIP}px;overflow:hidden;pointer-events:none}.tyclip .typ{pointer-events:auto}
+.tygrab{position:absolute;pointer-events:auto;cursor:grab;touch-action:none}.tygrab:active{cursor:grabbing}
+.tyhint{position:absolute;left:18px;top:16px;font:600 13px Inter,sans-serif;color:#5a5048;white-space:nowrap;pointer-events:none}
+.tybase{position:absolute;left:${TYBX}px;top:${TYBY}px;width:${1440*TYBS}px;height:${1024*TYBS}px;pointer-events:none}.tybase>img{position:absolute;inset:0;width:100%;height:100%;display:block;clip-path:polygon(22.22% 17.77%,23.47% 16.41%,77.22% 16.41%,78.33% 17.97%,78.47% 50.78%,81.94% 53.52%,82.92% 58.59%,82.92% 86.43%,17.22% 86.43%,17.22% 58.59%,18.19% 53.52%,21.81% 50.78%)}
+.tyhit{position:absolute;width:${50*TYBS}px;height:${50*TYBS}px;margin:${-25*TYBS}px 0 0 ${-25*TYBS}px;border-radius:50%;background:rgba(70,70,70,.32);opacity:0;transition:opacity .3s}.tyhit.on{opacity:1;transition:none}.tyhit.sp{width:${480*TYBS}px;margin-left:${-240*TYBS}px;border-radius:${25*TYBS}px}
 .tymod{position:fixed;inset:0;z-index:300;background:rgba(40,30,20,.25);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);display:grid;place-items:center;padding:16px}
 .tymbox{width:min(880px,96vw);background:#fffaf0;border:3px solid #232323;border-radius:18px;box-shadow:0 6px 0 #232323;padding:16px 18px}
 .tymbox h3{margin:0 0 10px;display:flex;justify-content:space-between;align-items:center}
 .tygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-height:min(70vh,560px);overflow:auto;padding:4px}
 @media(max-width:640px){.tygrid{grid-template-columns:repeat(2,1fr)}}
 .tysn{background:#fffdf6;border:2px solid #2a2a2a;border-radius:4px;padding:8px 8px 6px;box-shadow:2px 3px 0 rgba(0,0,0,.18)}
-.tysn pre{margin:0;font:400 7.2px/1.32 'Special Elite','Courier New',monospace;white-space:pre;overflow:hidden;height:${15*9.5}px;color:#1d1b1b}
+.tysn pre{margin:0;font:400 7.2px/1.32 'TySpecialElite','Courier New',monospace!important;font-family:'TySpecialElite','Courier New',monospace!important;white-space:pre;overflow:hidden;height:${15*9.5}px;color:#1d1b1b}
 .tysn pre b{font-weight:400;color:#d23a22}.tysn small{display:block;margin-top:6px;font:600 11px Inter,sans-serif;color:#6b6157}
 .tystack{position:relative;height:230px;margin-top:6px;cursor:pointer}.tystack .tysn{position:absolute;left:0;width:200px;transition:transform .2s}
 .tystack:hover .tysn:nth-child(1){transform:rotate(-5deg) translateX(-6px)}.tystack .tysn:nth-child(1){transform:rotate(-3deg)}.tystack .tysn:nth-child(2){transform:rotate(2deg) translate(10px,10px)}.tystack .tysn:nth-child(3){transform:rotate(-1deg) translate(20px,20px)}
@@ -10451,36 +10452,27 @@ function tySetup(guest){
   <button class="tylink" id="tysnaps">snapshots (<span id="tysn">0</span>)</button><div id="tystack"></div></div>
  <div class="tyright"><div class="tybar"><button id="tyshot">📷 take a snapshot</button><button id="tyink">ink ribbon: <span class="tydot" id="tydot"></span></button><button id="tystart">✨ story starter</button></div>
   <div class="tyfit" id="tyfit"><div class="tyst" id="tyst">
-   <div class="tycar" id="tycar"><svg width="800" height="60" viewBox="-80 0 800 60" style="position:absolute;left:-80px;top:0;overflow:visible">
-    <path d="M-6 22 L-52 -14" stroke="#232323" stroke-width="9" stroke-linecap="round"/><path d="M-6 22 L-52 -14" stroke="#c9c2b4" stroke-width="4" stroke-linecap="round"/><circle cx="-56" cy="-17" r="10" fill="#e8462a" stroke="#232323" stroke-width="3"/>
-    <rect x="0" y="6" width="720" height="44" rx="22" fill="#2f2f38" stroke="#232323" stroke-width="3"/><path d="M14 18h692" stroke="#5a5a66" stroke-width="5" stroke-linecap="round"/>
-    <circle cx="-4" cy="28" r="20" fill="#f6b51e" stroke="#232323" stroke-width="3"/><circle cx="724" cy="28" r="20" fill="#f6b51e" stroke="#232323" stroke-width="3"/><circle cx="-4" cy="28" r="6" fill="#232323"/><circle cx="724" cy="28" r="6" fill="#232323"/></svg>
-    <div class="tyhint">drag → to return</div></div>
-   <div class="typ" id="typ"></div>
-   <div class="tybase" id="tybase"><svg width="680" height="190" viewBox="0 0 680 190" style="position:absolute;inset:0">
-    <path d="M40 4 H640 Q656 4 660 20 L678 170 Q680 186 664 186 H16 Q0 186 2 170 L20 20 Q24 4 40 4z" fill="#7ec8b8" stroke="#232323" stroke-width="3.4"/>
-    <path d="M30 22 H650" stroke="#232323" stroke-width="2" opacity=".35"/><rect x="290" y="-8" width="100" height="16" rx="6" fill="#c9c2b4" stroke="#232323" stroke-width="3"/><path d="M332 -8 l8 10 8 -10z" fill="#e8462a" stroke="#232323" stroke-width="2"/>
-    <circle id="tysp1" cx="120" cy="14" r="22" fill="#232323" stroke="#232323" stroke-width="3"/><circle cx="120" cy="14" r="7" fill="#c9c2b4"/><circle id="tysp2" cx="560" cy="14" r="22" fill="#232323" stroke="#232323" stroke-width="3"/><circle cx="560" cy="14" r="7" fill="#c9c2b4"/></svg></div>
-   <textarea id="tyta" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="position:absolute;left:${TYSX}px;top:${TYSY}px;width:2px;height:2px;opacity:0;border:0;padding:0;resize:none;font-size:16px"></textarea>
+   <div class="tycar" id="tycar"><img src="ch/ty/carriage.jpg" alt="" draggable="false"><div class="tygrab" id="tygrab" style="left:${90*TYCS}px;top:${370*TYCS}px;width:${1250*TYCS}px;height:${270*TYCS}px"></div></div><div class="tyhint">drag the carriage → to return</div>
+   <div class="tyclip"><div class="typ" id="typ"></div></div>
+   <div class="tybase" id="tybase"><img src="ch/ty/base.jpg" alt="" draggable="false"></div>
+   <textarea id="tyta" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="position:absolute;left:${TYSX}px;top:${TYSY-10}px;width:2px;height:2px;opacity:0;border:0;padding:0;resize:none;font-size:16px"></textarea>
   </div></div></div></div></section>`);
  if(!TYGUEST)bindRoom();
  // keys
- const base=$('#tybase'),rows=['qwertyuiop','asdfghjkl','zxcvbnm'];
- rows.forEach((r,ri)=>[...r].forEach((ch,ci)=>{const k=document.createElement('div');k.className='tykey';k.dataset.k=ch;k.textContent=ch.toUpperCase();const x=340+(ci-(r.length-1)/2)*50+ri*8,y=50+ri*42;k.style.left=x+'px';k.style.top=y+'px';base.appendChild(k)}));
- {const k=document.createElement('div');k.className='tykey sp';k.dataset.k=' ';k.style.left='340px';k.style.top='168px';base.appendChild(k)}
+ const base=$('#tybase');Object.keys(TYKEYS).forEach(ch=>{if(base.querySelector(`[data-p="${TYKEYS[ch].join('_')}"]`))return;const k=document.createElement('div');k.className='tyhit'+(ch===' '?' sp':'');k.dataset.p=TYKEYS[ch].join('_');k.style.left=(TYKEYS[ch][0]*TYBS)+'px';k.style.top=(TYKEYS[ch][1]*TYBS)+'px';base.appendChild(k)});
  // fit
- const fit=$('#tyfit'),st=$('#tyst');const rs=()=>{const w=fit.clientWidth||760,s=Math.min(1,w/760);st.style.transform=`scale(${s})`;fit.style.height=(600*s)+'px'};rs();
+ const fit=$('#tyfit'),st=$('#tyst');const rs=()=>{const w=fit.clientWidth||TYW,s=Math.min(1,w/TYW);st.style.transform=`scale(${s})`;fit.style.height=(TYH*s)+'px'};rs();
  if(window.TYRO)TYRO.disconnect();window.TYRO=new ResizeObserver(rs);TYRO.observe(fit);
  tyRenderAll();tyInk();tySnapsUI();
  const ta=$('#tyta');
- st.onpointerdown=e=>{if(e.target.closest('#tycar'))return;setTimeout(()=>ta.focus({preventScroll:true}),0)};
+ st.onpointerdown=e=>{if(e.target.closest('#tygrab'))return;setTimeout(()=>ta.focus({preventScroll:true}),0)};
  ta.onkeydown=e=>{if(TYAUTO)return e.preventDefault();if(e.key==='Enter'){e.preventDefault();tyRet(true)}else if(e.key==='Backspace'){e.preventDefault();tyBack(true)}else if(e.key==='Tab'){e.preventDefault()}};
  ta.oninput=()=>{const v=ta.value;ta.value='';if(TYAUTO||$('.tymod'))return;for(const ch of v){if(ch==='\n')tyRet(true);else tyType(ch,true)}};
  st.onwheel=e=>{e.preventDefault();TY.scroll=Math.max(0,Math.min(TYTOP+TY.L*TYLH,(TY.scroll||0)-e.deltaY*.6));tyPos(false)};
  // carriage drag
- const car=$('#tycar');let dx0=null,dd=0;
+ const car=$('#tygrab');let dx0=null,dd=0;
  car.onpointerdown=e=>{if(TYAUTO)return;dx0=e.clientX;dd=0;car.setPointerCapture(e.pointerId);e.preventDefault()};
- car.onpointermove=e=>{if(dx0===null)return;const sc=st.getBoundingClientRect().width/760;dd=Math.max(0,(e.clientX-dx0)/sc);const lim=TY.col*TYCW;tyPos(false,Math.min(dd,lim+30))};
+ car.onpointermove=e=>{if(dx0===null)return;const sc=st.getBoundingClientRect().width/TYW;dd=Math.max(0,(e.clientX-dx0)/sc);const lim=TY.col*TYCW;tyPos(false,Math.min(dd,lim+30))};
  car.onpointerup=car.onpointercancel=e=>{if(dx0===null)return;dx0=null;if(dd>40||(TY.col>0&&dd>=TY.col*TYCW-2))tyRet(true);else tyPos(true);ta.focus({preventScroll:true})};
  $('#tyink').onclick=()=>{TY.ink=TY.ink==='r'?'k':'r';tyInk();tySave();tySend({a:'k',k:TY.ink});sfx('click');ta.focus({preventScroll:true})};
  $('#tyshot').onclick=()=>{tySnap(true)};
@@ -10489,13 +10481,13 @@ function tySetup(guest){
  if(!TYKEY){TYKEY=true;document.addEventListener('keydown',e=>{const t=$('#tyta');if(!t||$('.tymod'))return;if(e.key==='Escape')return;const a=document.activeElement;if(a===t||/INPUT|TEXTAREA|SELECT/.test(a&&a.tagName))return;if(e.ctrlKey||e.metaKey||e.altKey)return;if(e.key.length===1||e.key==='Enter'||e.key==='Backspace'){t.focus({preventScroll:true});if(e.key==='Enter'||e.key==='Backspace'){e.preventDefault();e.key==='Enter'?tyRet(true):tyBack(true)}}},true)}
  setTimeout(()=>ta.focus({preventScroll:true}),60);
  if(!TYGUEST&&ROOM.role==='host')roomPush()}
-function tyInk(){const d=$('#tydot');if(!d)return;d.classList.toggle('r',TY.ink==='r');const c=TY.ink==='r'?'#e8462a':'#232323';['#tysp1','#tysp2'].forEach(s=>{const e=$(s);if(e)e.setAttribute('fill',c)})}
+function tyInk(){const d=$('#tydot');if(!d)return;d.classList.toggle('r',TY.ink==='r')}
 function tyRenderAll(){const p=$('#typ');if(!p)return;const n=TY.lines.length;p.style.height=(TYTOP+(n+24)*TYLH)+'px';
  p.innerHTML=TY.lines.map((_,L)=>`<div class="tyl" id="tyl${L}" style="top:${TYTOP+L*TYLH}px">${tyLineHTML(L)}</div>`).join('');tyPos(false)}
 function tyLine(L){const p=$('#typ');if(!p)return;let d=$('#tyl'+L);if(!d){d=document.createElement('div');d.className='tyl';d.id='tyl'+L;d.style.top=(TYTOP+L*TYLH)+'px';p.appendChild(d);p.style.height=(TYTOP+(TY.lines.length+24)*TYLH)+'px'}d.innerHTML=tyLineHTML(L)}
 function tyPos(anim,drag){const p=$('#typ'),c=$('#tycar');if(!p)return;const x=TYSX-(TYML+TY.col*TYCW+TYCW/2)+(drag||0),y=TYSY-(TYTOP+TY.L*TYLH)-21+(TY.scroll||0);
- p.classList.toggle('anim',!!anim);c.classList.toggle('anim',!!anim);p.style.left=x+'px';p.style.top=y+'px';c.style.left=(x-50)+'px'}
-function tyHit(ch){const k=document.querySelector(`.tykey[data-k="${ch===' '?' ':CSS.escape(ch.toLowerCase())}"]`);if(!k)return;k.classList.add('hit');clearTimeout(k._t);k._t=setTimeout(()=>k.classList.remove('hit'),130)}
+ p.classList.toggle('anim',!!anim);c.classList.toggle('anim',!!anim);p.style.left=x+'px';p.style.top=y+'px';c.style.left=(x-15-480*TYCS)+'px'}
+function tyHit(ch){const p=TYKEYS[ch.toLowerCase()];if(!p)return;const k=document.querySelector(`.tyhit[data-p="${p.join('_')}"]`);if(!k)return;k.classList.add('on');clearTimeout(k._t);k._t=setTimeout(()=>k.classList.remove('on'),140)}
 function tyType(ch,local){tyLoad();if(TY.scroll){TY.scroll=0}
  if(TY.col>=TYC){if(local)sfx('buzz');return}
  if(ch!==' ')TY.lines[TY.L].push([TY.col,ch,TY.ink]);TY.col++;
@@ -10522,7 +10514,7 @@ function tyAuto(text){if(TY.col>0)tyRet(true);const words=text.split(' ');let q=
  const old=TY.ink;TY.ink='r';tyInk();tySend({a:'k',k:'r'});
  TYAUTO=setInterval(()=>{if(!q.length||!$('#typ')){clearInterval(TYAUTO);TYAUTO=null;TY.ink=old;tyInk();tySend({a:'k',k:old});tySave();return}const c=q.shift();if(c==='\n')tyRet(true);else tyType(c,true)},55)}
 function tyRemote(o){if(!o)return;
- if(ROOM.role==='guest'&&!$('#typ'))return;
+ if(ROOM.role==='guest'&&!$('#typ')&&o.a!=='full'){tyLoad();}
  if(o.a==='c')tyType(o.ch.slice(0,1),false);else if(o.a==='b')tyBack(false);else if(o.a==='r')tyRet(false);
  else if(o.a==='k'){TY.ink=o.k==='r'?'r':'k';tyInk();tySave()}else if(o.a==='s'&&o.s&&o.s.lines){tySnap(false,o.s)}}
 function tyFromRemote(st){TY={lines:st.lines&&st.lines.length?st.lines:[[]],L:st.L||0,col:st.col||0,ink:st.ink||'k',snaps:st.snaps||[]};if(!TY.lines[TY.L])TY.lines[TY.L]=[];
