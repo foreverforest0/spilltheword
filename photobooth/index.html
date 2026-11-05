@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Grammar Photobooth · B1</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><a href="../index.html" target="_top" class="back">← Spill the Word</a><p class="eyebrow">A LITTLE PRACTICE. THREE LITTLE PICTURES.</p><h1>Grammar Photobooth</h1><div class="settings"><label>Grammar topic<select id="topic"></select></label><label>Exercise mode<select id="mode"></select></label></div></header>
+<main>
+<section class="machine-area" aria-label="Illustrated photobooth">
+<div class="booth" id="booth" data-state="idle">
+<img class="cabinet" src="assets/booth.webp" alt="Orange vintage photobooth with pink trim" draggable="false">
+<div class="sign">PHOTOGRAPHS<small>THREE FRAMES · ONE LITTLE ACHIEVEMENT</small></div>
+<div class="preview"><img id="preview-image" alt=""><span id="preview-label">B1</span></div>
+<div class="lamps" aria-label="Completed pictures"><i></i><i></i><i></i></div>
+<div class="door"><div class="door-glow"></div><img class="curtain" src="assets/curtain.webp" alt="Pink curtain" draggable="false"><span class="countdown" id="countdown" aria-hidden="true"></span><div class="flash" id="flash"></div></div>
+<button class="coin" id="coin" aria-label="Insert a coin to start"><img src="assets/coin.webp" alt="" draggable="false"><span>INSERT COIN</span></button>
+<div class="printer" id="printer"><div class="paper" id="paper"><div class="paper-content" id="paper-content"></div></div></div>
+<div class="slot-lip" aria-hidden="true"></div>
+</div>
+<p class="machine-caption" id="machine-caption">A coin, a little grammar, and a keepsake.</p>
+</section>
+<section class="desk" aria-label="Grammar exercise">
+<p class="eyebrow" id="round-label">YOUR THREE-PICTURE SESSION</p><h2 id="task-title">A little magic,<br>one frame at a time.</h2>
+<p id="instruction">Choose a topic and an answer mode. Click the coin to begin.</p>
+<div class="task-scene" id="task-scene" hidden><img id="task-image" alt="Illustrated grammar scene"><span id="frame-number"></span></div>
+<p class="prompt" id="prompt" hidden></p>
+<form id="answer-form" hidden novalidate><label class="answer-label" for="answer">Your answer</label><input id="answer" type="text" autocomplete="off" spellcheck="false"><div class="choices" id="choices"></div><button class="primary" id="check" type="submit">Check & take a picture <span>✦</span></button></form>
+<p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+<div class="finish" id="finish" hidden><button class="primary" id="download">Save your photo strip ↓</button><button class="secondary" id="again">Another three pictures ↗</button></div>
+<p class="footnote" id="footnote">Complete three answers to print your illustrated photo strip.</p>
+</section>
+</main>
+<script src="data.js"></script><script src="app.js"></script>
+</body></html>

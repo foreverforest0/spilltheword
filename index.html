@@ -4514,7 +4514,7 @@ function glSetupG(){
  $('#glg').onclick=e=>{const b=e.target.closest('[data-g]');if(!b)return;S.ggame=b.dataset.g;save();document.querySelectorAll('#glg .lpb').forEach(x=>x.classList.toggle('on',x===b));upd()};
  $('#glgo').onclick=()=>{const g=WG.find(x=>x.id===S.ggame);if(!g)return;GL={mode:g.k,g,ok:0,bad:0,used:[],rot:null};glGameRender()};
  upd()}
-const GLMODES=[['ts','Tense Switch'],['dice','Grammar Dice'],['exp','Sentence Expander'],['craft','Word Craft'],['board','Scrambl'],['deep','Deep Sea'],['absurd','Absurd Choices'],['spend','Spend a Fortune'],['town','Sunny Street'],['town3','Sunny Street 3D'],['city','Sunny City'],['gacha','Gachapon']];
+const GLMODES=[['ts','Tense Switch'],['dice','Grammar Dice'],['exp','Sentence Expander'],['craft','Word Craft'],['board','Scrambl'],['deep','Deep Sea'],['absurd','Absurd Choices'],['spend','Spend a Fortune'],['town','Sunny Street'],['town3','Sunny Street 3D'],['city','Sunny City'],['gacha','Gachapon'],['photo','Photobooth']];
 
 /* ===== Grammar Lab: Tense Switch + Grammar Dice ===== */
 let GL=null;
@@ -4525,7 +4525,8 @@ let SEAH=null;
 function gmBar(){return `<div class="lpc" id="glm">${GLMODES.map(m=>`<button class="lpb${S.gmode===m[0]?' on':''}" data-m="${m[0]}">${m[1]}</button>`).join('')}</div>`}
 function gmBind(){const g=$('#glm');if(g)g.onclick=e=>{const b=e.target.closest('[data-m]');if(!b)return;S.gmode=b.dataset.m;save();seaOff();glSetup()}}
 function seaOff(){try{TOWNS.t2.stop();TOWNS.t3.stop();TOWNS.t4.stop();TOWNS.sp3.stop()}catch(e){}try{deskOff()}catch(e){}try{gachaOff()}catch(e){}document.body.classList.remove('sea');if(SEAH){window.removeEventListener('scroll',SEAH);SEAH=null}}
-function gmNew(){const m=S.gmode;seaOff();if(m==='craft')wcSetup();else if(m==='board')bdSetup();else if(m==='deep')seaSetup();else if(m==='absurd')absSetup();else if(m==='spend')foSetup();else if(m==='town')townSetup();else if(m==='town3')town3Setup();else if(m==='city')cityTownSetup();else if(m==='desk')deskSetup();else if(m==='gacha')gachaSetup()}
+function photoSetup(){setView(`<section class="panel k-card">${gmBar()}<iframe title="B1 Grammar Photobooth" src="photobooth/index.html" style="display:block;width:100%;border:0;height:1600px;border-radius:8px" onload="const f=this,d=f.contentDocument;d.body.style.minHeight='0';const r=()=>f.style.height=(d.body.scrollHeight+24)+'px';r();new f.contentWindow.ResizeObserver(r).observe(d.body)"></iframe></section>`);gmBind()}
+function gmNew(){const m=S.gmode;seaOff();if(m==='photo')photoSetup();else if(m==='craft')wcSetup();else if(m==='board')bdSetup();else if(m==='deep')seaSetup();else if(m==='absurd')absSetup();else if(m==='spend')foSetup();else if(m==='town')townSetup();else if(m==='town3')town3Setup();else if(m==='city')cityTownSetup();else if(m==='desk')deskSetup();else if(m==='gacha')gachaSetup()}
 
 /* ---------- Word Craft ---------- */
 const WCT={v:'#E8837A',p:'#A2E0D5',a:'#F9B1B2',n:'#B2D1FD',j:'#B4BEFB'};
@@ -9705,9 +9706,9 @@ function pumpOpen(){sfx('pop');
  m.addEventListener('pointerdown',e=>{if(e.target===m)close()})}
 
 function glSetup(){
- seaOff();if(!['ts','dice','exp','craft','board','deep','absurd','spend','town','town3','city','desk','gacha'].includes(S.gmode))S.gmode='ts';
+ seaOff();if(!['ts','dice','exp','craft','board','deep','absurd','spend','town','town3','city','desk','gacha','photo'].includes(S.gmode))S.gmode='ts';
  if(S.gmode==='exp'){exSetup();return}
- if(['craft','board','deep','absurd','spend','town','town3','city','desk','gacha'].includes(S.gmode)){gmNew();return}
+ if(['craft','board','deep','absurd','spend','town','town3','city','desk','gacha','photo'].includes(S.gmode)){gmNew();return}
  if(!S.gmode)S.gmode='ts';if(!S.glevel)S.glevel='b1';const c=exCourse();S.exun=(S.exun||[]).filter(i=>c.units[i]);
  S.gtop=(S.gtop||[]).filter(id=>glTopics().some(t=>t.id===id));
  const dice=S.gmode==='dice';
