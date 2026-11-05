@@ -11020,7 +11020,7 @@ const MGXC={
  mgc:{title:'Fridge magnets: Present Continuous',help:'Look at the picture (move the magnifier over it!) and build a sentence about the person. Pick a type: statement, negative or question. Then press Check.',hints:['Statement: She + is + V-ing. (She is dancing.) Negative: She + isn’t + V-ing.','Question: Is + she + V-ing? (Is she dancing?) Short answers: Yes, she is. / No, she isn’t.'],types:MGXT,pic:1,
   items:()=>{const o=[];ACTIONS.forEach(a=>{const n=a[0];o.push(['+',['She is '+n+'.'],a[1],n]);o.push(['-',['She isn’t '+n+'.','She is not '+n+'.'],a[1],n]);o.push(['?',['Is she '+n+'?'],a[1],n])});return o}}};
 const MGXQ={};
-function mgxPick(id,cfg){S.mgxt=S.mgxt||{};const t=S.mgxt[id]||'all',k=id+t;let q=MGXQ[k];if(!q||!q.length)q=MGXQ[k]=shuffle(cfg.items().filter(x=>t==='all'||x[0]===t));const it=q.pop();return {t:it[0],s:it[1],pic:it[2],pn:it[3]}}
+function mgxPick(id,cfg){S.mgxt=S.mgxt||{};const t=S.mgxt[id]||'all',k=id+t;let q=MGXQ[k];if(!q||!q.length)q=MGXQ[k]=shuffle(cfg.items().filter(x=>t==='all'||x[0]===t));const it=q.pop();return {t:it[0],s:it[1],pic:it[2],pn:it[3],extra:it[4]||{}}}
 const MGXN={'+':'statement','-':'negative sentence','?':'question','a':'statement'};
 /* ---- Past Simple forms of the 36 action pictures ---- */
 const PSV={'baking':['bake a cake','baked a cake'],'brushing her hair':['brush her hair','brushed her hair'],'brushing her teeth':['brush her teeth','brushed her teeth'],'carrying a box':['carry a box','carried a box'],'cooking soup':['cook soup','cooked soup'],'crying':['cry','cried'],'dancing':['dance','danced'],'doing yoga':['do yoga','did yoga'],'drawing a picture':['draw a picture','drew a picture'],'drinking coffee':['drink coffee','drank coffee'],'eating pizza':['eat pizza','ate pizza'],'knitting':['knit','knitted'],'laughing':['laugh','laughed'],'listening to music':['listen to music','listened to music'],'mopping the floor':['mop the floor','mopped the floor'],'packing a suitcase':['pack a suitcase','packed a suitcase'],'painting a wall':['paint a wall','painted a wall'],'petting a dog':['pet a dog','petted a dog'],'playing chess':['play chess','played chess'],'playing the guitar':['play the guitar','played the guitar'],'reading a book':['read a book','read a book'],'riding a bike':['ride a bike','rode a bike'],'running':['run','ran'],'shopping':['go shopping','went shopping'],'singing':['sing','sang'],'sleeping in an armchair':['sleep in an armchair','slept in an armchair'],'swimming':['swim','swam'],'taking a photo':['take a photo','took a photo'],'talking on the phone':['talk on the phone','talked on the phone'],'typing on a laptop':['type on a laptop','typed on a laptop'],'waiting for a bus':['wait for a bus','waited for a bus'],'washing the dishes':['wash the dishes','washed the dishes'],'watching TV':['watch TV','watched TV'],'watering the plants':['water the plants','watered the plants'],'waving':['wave','waved'],'writing in a notebook':['write in a notebook','wrote in a notebook']};
@@ -11607,10 +11607,11 @@ function dmMagnets(id,lv){
  const mb=document.createElement('div');mb.className='rmctl mgmodes';mb.innerHTML=`<button class="lvb${free?'':' on'}" data-m="sent">Sentences</button><button class="lvb${free?' on':''}" data-m="free">Free words</button>`;st.parentNode.insertBefore(mb,st);
  mb.onclick=e=>{const b=e.target.closest('[data-m]');if(!b)return;MGKEEP=null;S.mgmode=b.dataset.m==='free'?'free':'sent';save();dmMagnets(id,lv)};
  let P=null,sent,canon;
- if(X){S.mgxt=S.mgxt||{};const cur=S.mgxt[id]||'all';mb.innerHTML=X.types.map(x=>`<button class="lvb${cur===x[0]?' on':''}" data-t="${x[0]}">${esc(x[1])}</button>`).join('');
+ if(X){S.mgxt=S.mgxt||{};const cur=X.types.some(t=>t[0]===S.mgxt[id])?S.mgxt[id]:'all';S.mgxt[id]=cur;mb.innerHTML=X.types.map(x=>`<button class="lvb${cur===x[0]?' on':''}" data-t="${x[0]}">${esc(x[1])}</button>`).join('');
   mb.onclick=e=>{const b=e.target.closest('[data-t]');if(!b)return;S.mgxt[id]=b.dataset.t;save();delete MGXQ[id+b.dataset.t];dmMagnets(id,lv)};
   P=mgxPick(id,X);sent=P.s;canon=sent[0]}
  else{const L=MGS[lv];S.mgi=((S.mgi|0)+1)%L.length;sent=L[S.mgi];canon=sent[0]}
+ if(X&&X.b1){b1MagnetRound(st,mb,id,X,P);return}
  const W=st.clientWidth||900,H=720,FH=704,FW=Math.round(FH*560/1294),fx=(P&&P.pic)?Math.round(Math.min((W-FW)/2+90,W-FW-150)):Math.round((W-FW)/2),fy=8,RH=72,SH=RH*4+14,SX=fx+14,SW=FW-28,SY=Math.round(fy+FH*.4);
  st.style.height=H+'px';st.style.background='#EFE7D8';st.style.overflow='hidden';
  st.innerHTML=`<img src="ch/mf_fridge.webp" alt="" style="position:absolute;left:${fx}px;top:${fy}px;width:${FW}px;height:${FH}px;z-index:0;filter:drop-shadow(0 8px 12px #0004)"><div class="mgtl" style="left:10px;width:${Math.max(120,fx-20)}px;top:12px;text-align:left;color:#2724d1;font-size:22px;line-height:1.15">${free?'Build your own sentences!':(P?'Make the '+MGXN[P.t]+'!':'Make the sentence!')}</div><div class="mgst" id="mgst" style="left:${SX}px;top:${SY}px;width:${SW}px;height:${SH}px"></div>`;
@@ -12746,6 +12747,9 @@ async function boot(){
  }
  if(!STUDENT&&!document.body.classList.contains('embed')){const b=document.getElementById('wvbtn');if(b)b.hidden=false}
  go('home')}
+</script>
+<script src="b1-magnets.js"></script>
+<script>
 window.addEventListener('hashchange',()=>location.reload());
 boot();
 </script>
