@@ -232,14 +232,18 @@ b1Add('wf','Word Formation',11,[['prefix','Prefixes'],['suffix','Suffixes'],['sp
 const B1MAGSTYLE=document.createElement('style');
 B1MAGSTYLE.textContent=`
 .b1-context{font-size:18px;line-height:1.6;padding:14px;background:#fff7dc;border:2px solid #2724d1;border-radius:8px;margin:12px 0;overflow-wrap:anywhere}
-.b1-fridge{background:#e8ecdf;border:3px solid #343535;border-radius:22px;padding:24px 14px 16px;box-shadow:inset 8px 0 #c7cec1;min-height:380px}
-.b1-strip,.b1-bank{display:flex;gap:10px;flex-wrap:wrap;align-content:flex-start;padding:12px;min-height:110px;border:2px dashed #595975;border-radius:8px;background:#fffef7}
-.b1-bank{background:transparent;border:0;margin-top:20px;min-height:140px}
-.b1-magnet{position:relative;display:flex;align-items:center;gap:6px;padding:7px 10px!important;min-height:46px;background:#fff!important;color:#232323!important;border:1px solid #777!important;border-radius:7px!important;font:500 17px Inter,system-ui,sans-serif!important;box-shadow:2px 3px 0 #34353544;cursor:grab;touch-action:none;max-width:100%;overflow-wrap:anywhere}
-.b1-magnet img{width:26px;height:26px;object-fit:contain;pointer-events:none}.b1-magnet span{pointer-events:none}
-.b1-magnet:focus-visible{outline:3px solid #2724d1;outline-offset:3px}.b1-magnet.good{background:#DCFF6A!important}.b1-magnet.bad{background:#F9B1B2!important}
-.b1-prefix{font-size:19px;font-weight:600;margin:0 0 12px}.b1-empty{color:#666;pointer-events:none;font-size:16px}.b1-answer{padding:12px;font-size:18px;line-height:1.5}.b1-controls{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.b1-stage{height:auto!important;min-height:440px;overflow:visible!important}
-@media(max-width:500px){.b1-fridge{padding:16px 8px}.b1-strip,.b1-bank{gap:7px;padding:8px}.b1-magnet{font-size:15px!important;padding:6px!important}.b1-magnet img{width:20px;height:20px}}
+.b1-scene{display:grid;grid-template-columns:minmax(120px,1fr) minmax(260px,360px) minmax(120px,1fr);gap:12px;align-items:start;padding:12px;background:#EFE7D8;border-radius:12px}
+.b1-fridge{position:relative;width:100%;aspect-ratio:560/1294;grid-column:2;grid-row:1;filter:drop-shadow(0 8px 12px #0003)}
+.b1-fridge-img{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.b1-strip{position:absolute;left:5%;top:42%;width:90%;height:43%;box-sizing:border-box;display:flex;gap:5px;flex-wrap:wrap;align-content:flex-start;padding:8px;border:3px dashed #2724d166;border-radius:4px;background:#fff;box-shadow:inset 0 3px 8px #0002,0 3px 8px #0003;overflow:auto}
+.b1-bank{display:flex;gap:12px 8px;flex-wrap:wrap;align-content:flex-start;min-height:130px;padding:6px;grid-column:1;grid-row:1}.b1-bank-right{grid-column:3}
+.b1-magnet.mgc{position:relative!important;flex:0 0 auto;max-width:140px;white-space:normal;cursor:grab;touch-action:none;color:#232323!important}
+.b1-magnet span{overflow:visible!important;text-overflow:clip!important;overflow-wrap:anywhere;pointer-events:none}.b1-magnet img{pointer-events:none}
+.b1-magnet:focus-visible{outline:3px solid #2724d1;outline-offset:3px}.b1-magnet.good{outline:3px solid #2a2}.b1-magnet.bad{outline:3px solid #e22}
+.b1-prefix{position:absolute;left:8%;top:7%;width:84%;margin:0;font-size:19px;font-weight:600;line-height:1.4;overflow-wrap:anywhere}
+.b1-empty{color:#666;pointer-events:none;font-size:16px}.b1-answer{padding:12px;font-size:18px;line-height:1.5}.b1-controls{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.b1-stage{height:auto!important;min-height:440px;overflow:visible!important}
+.b1-magnet.mgc.b1-drag-ghost{position:fixed!important;z-index:10000!important;pointer-events:none!important;opacity:.95;transform:translate(-50%,-50%);cursor:grabbing}
+@media(max-width:680px){.b1-scene{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px;padding:8px}.b1-fridge{grid-column:1 / -1;width:min(100%,360px);justify-self:center}.b1-bank{grid-column:1;grid-row:2}.b1-bank-right{grid-column:2}.b1-prefix{font-size:17px}.b1-strip{gap:4px;padding:6px}}
 `;
 document.head.appendChild(B1MAGSTYLE);
 function b1MagnetRound(st,mb,id,cfg,round){
@@ -254,9 +258,9 @@ function b1MagnetRound(st,mb,id,cfg,round){
  const prompt=document.createElement('div');prompt.className='b1-context';
  prompt.textContent=extra.prompt||'Build the sentence. You can drag or tap magnets. Drag before another magnet to change the order.';
  st.before(prompt);
- st.innerHTML=`<div class="b1-fridge"><p class="b1-prefix"></p><div class="b1-strip" role="group" aria-label="Your answer"></div><div class="b1-bank" role="group" aria-label="Available magnets"></div></div><div class="b1-controls"><button class="lvb" id="mgchk">✓ Check</button><button class="lvb" id="mgans">Show answer</button><button class="lvb" id="b1undo">↶ Undo</button><button class="lvb" id="b1reset">Reset</button></div><div class="b1-answer" role="status" aria-live="polite"></div>`;
+ st.innerHTML=`<div class="b1-scene"><div class="b1-fridge"><img class="b1-fridge-img" src="ch/mf_fridge.webp" alt="Fridge: drag the magnets onto the white strip"><p class="b1-prefix"></p><div class="b1-strip" role="group" aria-label="Your answer"></div></div><div class="b1-bank" role="group" aria-label="Available magnets, left"></div><div class="b1-bank b1-bank-right" role="group" aria-label="Available magnets, right"></div></div><div class="b1-controls"><button class="lvb" id="mgchk">✓ Check</button><button class="lvb" id="mgans">Show answer</button><button class="lvb" id="b1undo">↶ Undo</button><button class="lvb" id="b1reset">Reset</button></div><div class="b1-answer" role="status" aria-live="polite"></div>`;
  const prefix=st.querySelector('.b1-prefix');prefix.textContent=extra.prefix||'';prefix.hidden=!extra.prefix;
- const strip=st.querySelector('.b1-strip'),bank=st.querySelector('.b1-bank'),result=st.querySelector('.b1-answer');
+ const strip=st.querySelector('.b1-strip'),banks=[...st.querySelectorAll('.b1-bank')],fridge=st.querySelector('.b1-fridge'),result=st.querySelector('.b1-answer');
  const tokens=extra.tokens||answers[0].replace(/[.,?!]/g,'').split(' ');
  const variants={reading:['read','reading','to read'],opening:['open','opening','to open'],driving:['drive','driving','to drive'],going:['go','going','to go'],learning:['learn','learning','to learn'],saying:['say','saying','to say'],seeing:['see','seeing','to see'],being:['be','being','to be'],Learning:['Learn','Learning','To learn'],raining:['rain','raining','to rain'],drinking:['drink','drinking','to drink'],locking:['lock','locking','to lock'], 'to take':['take','taking','to take'], 'to help':['help','helping','to help'], 'to finish':['finish','finishing','to finish'], 'to buy':['buy','buying','to buy'], 'to drive':['drive','driving','to drive'], 'to rent':['rent','renting','to rent'], 'to get':['get','getting','to get'], 'to dance':['dance','dancing','to dance'], 'to lock':['lock','locking','to lock']};
  let pieces=tokens.map((word,index)=>({word,index,forms:extra.forms&&variants[word]?variants[word]:[word],fi:0}));
@@ -272,32 +276,41 @@ function b1MagnetRound(st,mb,id,cfg,round){
  let order=[],history=[];
  const remember=()=>history.push({order:order.slice(),forms:pieces.map(p=>p.fi)});
  const paint=()=>{
-  strip.replaceChildren();bank.replaceChildren();
+  strip.replaceChildren();banks.forEach(bank=>bank.replaceChildren());
   if(!order.length){const hint=document.createElement('span');hint.className='b1-empty';hint.textContent=extra.word?'Build a word here':'Put your answer here';strip.append(hint)}
   [...order,...shuffle(pieces.filter(p=>!order.includes(p)))].forEach(p=>{
-   const on=order.includes(p),el=document.createElement('button');p.el=el;el.type='button';el.className='b1-magnet';el.dataset.piece=p.index;
+   const on=order.includes(p),el=document.createElement('button');p.el=el;el.type='button';el.className='mgc b1-magnet';el.dataset.piece=p.index;
    const pin=MGN[p.index%MGN.length];
-   el.innerHTML=`<img src="ch/mg_${pin}.webp" alt="" draggable="false"><span>${esc(p.word)}</span>`;
+   el.innerHTML=`<img class="mgp" src="ch/mg_${pin}.webp" alt="" draggable="false"><span>${esc(p.word)}</span>`;
    el.setAttribute('aria-label',p.word+(on?' — return to bank':' — add to answer'));
    el.onclick=()=>{remember();order=on?order.filter(x=>x!==p):[...order,p];result.textContent='';paint()};
-   // Pointer drag works with mouse and touch; a click remains a keyboard alternative.
-   let drag=null;
+   // Match the Kids magnets, with a moving preview for mouse and touch.
+   let drag=null,ghost=null,suppressClick=false;
+   const clean=()=>{if(ghost)ghost.remove();ghost=null;el.style.opacity='';};
+   const click=el.onclick;el.onclick=e=>{if(suppressClick){suppressClick=false;return}click(e)};
    el.onpointerdown=e=>{if(e.button!==0)return;drag={x:e.clientX,y:e.clientY};el.setPointerCapture(e.pointerId)};
+   el.onpointermove=e=>{
+    if(!drag||Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y)<=8&&!ghost)return;
+    if(!ghost){ghost=el.cloneNode(true);ghost.classList.add('b1-drag-ghost');ghost.removeAttribute('data-piece');document.body.append(ghost);el.style.opacity='.25'}
+    ghost.style.left=e.clientX+'px';ghost.style.top=e.clientY+'px';
+   };
+   el.onpointercancel=()=>{drag=null;clean()};
+   el.onlostpointercapture=()=>{drag=null;clean()};
    el.onpointerup=e=>{
-    if(!drag)return;const moved=Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y)>8;drag=null;if(!moved)return;
-    el.releasePointerCapture(e.pointerId);const target=document.elementFromPoint(e.clientX,e.clientY);
-    if(!target)return;
-    remember();
-    if(strip.contains(target)){
-     order=order.filter(x=>x!==p);const before=target.closest('[data-piece]');const pos=before?order.findIndex(x=>x.index===+before.dataset.piece):-1;
+    if(!drag)return;const moved=Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y)>8;drag=null;
+    if(!moved){clean();return}
+    suppressClick=true;clean();if(el.hasPointerCapture(e.pointerId))el.releasePointerCapture(e.pointerId);
+    const target=document.elementFromPoint(e.clientX,e.clientY);if(!target)return;
+    if(fridge.contains(target)){
+     remember();order=order.filter(x=>x!==p);const before=target.closest('[data-piece]');const pos=before?order.findIndex(x=>x.index===+before.dataset.piece):-1;
      if(pos<0)order.push(p);else order.splice(pos,0,p);
-    }else if(bank.contains(target))order=order.filter(x=>x!==p);
+    }else if(banks.some(bank=>bank.contains(target))){remember();order=order.filter(x=>x!==p)}
     result.textContent='';paint();
    };
-   (on?strip:bank).append(el);
+   (on?strip:banks[p.index%banks.length]).append(el);
    if(p.forms.length>1){
     const change=document.createElement('button');change.type='button';change.className='lvb';change.textContent='↻';change.setAttribute('aria-label','Change form of '+p.word);
-    change.onclick=()=>{remember();p.fi=(p.fi+1)%p.forms.length;p.word=p.forms[p.fi];result.textContent='';paint()};(on?strip:bank).append(change);
+    change.onclick=()=>{remember();p.fi=(p.fi+1)%p.forms.length;p.word=p.forms[p.fi];result.textContent='';paint()};(on?strip:banks[p.index%banks.length]).append(change);
    }
   });
  };
