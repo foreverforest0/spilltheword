@@ -124,7 +124,7 @@ with sync_playwright() as pw:
         for group in ['s','d','j','q']:
             count=page.evaluate('(g)=>FYO[1][g].items.length',group)
             for i in range(count-5,count):
-                it=page.evaluate('''([g,i])=>{fyStart(g,'1');FY.items=FY.G.items.slice();FY.i=i;FY.started=true;FY.mode='t';fyScene();FY.open=true;fyTask();return FY.items[i]}''',[group,i])
+                it=page.evaluate('''([g,i])=>{fyStart(g,'1');FY.items=FY.G.items.slice();FY.i=i;FY.started=true;FY.mode='t';FY.phase='revealed';FY.open=true;fyScene();fyTask();return FY.items[i]}''',[group,i])
                 if group=='s':page.locator(f'.fypb[data-k="{it["a"]}"]').click();continue
                 if group=='q':
                     page.locator(f'#fzans > .evcert [data-k="{0 if it["good"] else 1}"]').click()
