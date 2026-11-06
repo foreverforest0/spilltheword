@@ -1,47 +1,44 @@
-# The Midnight House — first playable room: Kitchen
+# The Midnight House — Kitchen
 
-A static illustrated vocabulary activity. No build step, API key, account, camera, or microphone is needed.
+A static illustrated vocabulary game. The house map has nine planned rooms; the kitchen is playable.
 
 ## Entry points
 
-- Home shelf → miniature **The Midnight House** (direct entry, no preview card).
+- Home shelf → miniature **The Midnight House** (direct entry).
 - Top navigation → **House**.
-- Grammar Speaking → **Kids** → **Fun** → The Midnight House: kitchen.
-- Grammar Speaking → **A1** → **Imperatives** → The Midnight House: kitchen.
+- Grammar Speaking → **Kids** → **Fun**, or **A1** → **Imperatives**.
 - Direct: `wizard-house/index.html`.
 
-The house illustration shows the agreed nine-room plan. Only the kitchen is playable in this first version; the other rooms are marked as planned and have no fake activities.
+## Room interface
 
-## Modes
+The kitchen fills the play area. Tools sit on the worktop alongside the containers and ingredients. Interactive objects and selected background items show their English names on hover or keyboard focus; selected objects show their names on touch screens. One compact instruction note contains the task selector, hint, optional device text-to-speech, feedback and Next button. House, mode, undo and reset controls stay available above the room.
+
+Mobile players can pan the room at a readable scale. Guided tasks pan towards the selected source and destination; dragging near an edge also pans horizontally. There are no side panels, external inventory, verb toolbar or visible notebook.
 
 Choose a mode before entering:
 
-- **Follow the instructions:** eight prepared scenes with automatic checks of the actual object interaction. An incorrect action does not change the scene. The experiment selector and navigation remain available during animations. Hints, optional device text-to-speech and Russian meanings are included.
-- **Free experiment:** combine objects, observe consequences, and read/say the resulting sentences. This mode does not grade the learner’s spoken English.
+- **Follow the instructions:** eight authored scenes with checks of the actual object interaction. Incorrect actions leave the scene unchanged. Select another task at any time, including during an animation.
+- **Free experiment:** combine objects, create spills, move tools around the worktop, and hear/read the sentences describing the results.
 
-Core vocabulary: **pour, spill, stir, strain, scoop out, rinse, wipe up, soak up**. Word cards include short paraphrased definitions, verb forms and contextual examples. Meanings were reviewed against Open English WordNet during preparation of the larger household-verb bank.
+Core words: **pour, spill, stir, strain, scoop out, rinse, wipe up, soak up**. Bonus interactions include adding ingredients, refilling the jug and dropping a cup. The word data retain reviewed definitions and forms for future expansion. The app checks performed actions; spoken language is assessed by the teacher.
 
-## Interaction and state
+## Visual physics
 
-Drag an object onto a destination, or tap/click the object and then the destination. Mobile screens also have explicit destination buttons. Keyboard users can activate source and destination buttons with Enter/Space.
+`physics.js` renders liquid separately from the painted objects:
 
-- Pouring transfers a unit of water and checks capacity.
-- Spilling creates a puddle and uses water from the jug.
-- Stirring mixes the contents and dissolves added sugar.
-- Straining transfers liquid to an empty receiving bowl and leaves berries in the sieve.
-- Scooping moves a berry from one bowl to the other without transferring all the liquid.
-- Rinsing uses the sink and clears the relevant tool/container state.
-- Wiping removes a puddle with a cloth; soaking up removes it with a sponge. These have distinct animations and wet-tool states. Both the puddle and its surrounding worktop are accepted as cleanup destinations.
-- Bonus free interactions: add sugar/berries, refill the jug, and drop a cup to change it from intact to cracked to broken.
+- Moving vessels pivot around a grip point. Their streams originate at their painted lip or spout, then follow a gravity-driven arc into the receiving container.
+- Water levels transfer continuously. In transparent vessels, polygon clipping keeps the free surface horizontal as the vessel tilts.
+- Bowl surfaces use damped waves and angular motion. Stirring moves the spoon partly behind the front rim; floating berries circulate and retain motion briefly afterwards. Added sugar disperses and dissolves.
+- Rinsing aligns the tool with the faucet stream; water deflects into the basin.
+- Separate spills create separate puddles beneath the objects. Wiping removes water along the cloth’s path; a sponge absorbs the selected puddle towards its contact point.
+- Source objects are hidden while being carried. Dropped cups fall, bounce briefly, change to a damaged painted state, and remain where they landed.
 
-The model is a set of authored interactions, not a fluid-physics engine. Water counters are local illustrative units. Reset restores the current scene. Undo restores the last completed object state. Discovered words remain discovered after undo and are saved locally; scene/history state is temporary. There is no live-room synchronization.
+These are authored 2D interactions with visual dynamics; the room is not a general-purpose fluid or rigid-body simulator. Render resolution is capped, idle animation stops after waves settle, and reduced-motion settings shorten the sequences.
 
-The wider room/vocabulary plan is retained in `house-plan.json` and `household-verbs.tsv`. Those planning files do not represent additional playable rooms or completed reviews of newly proposed household collocations.
+Undo restores the previous object state. Discovered words remain discovered and are saved locally. Free-play state is temporary; live-room synchronization and speech recognition are not included. Browser speech depends on installed voices.
 
-## Art
+## Art and planning
 
-Original generated assets use the agreed seven-color direction: midnight indigo `#191B32`, plum `#33283E`, moss `#4D5A40`, walnut `#785444`, antique gold `#C49A52`, dusty rose `#BC7F87`, parchment `#E4D0AA`. The kitchen and its separate transparent props share the same original storybook art direction as the house concept. Water, trails, particles and motion are drawn/animated in the browser. Glass and liquid are separate layers; the cup and cloth use alternate painted states.
+All assets use the approved original midnight-indigo, plum, moss, walnut, antique-gold, dusty-rose and parchment art direction. The wider vocabulary and room plan remain in `household-verbs.tsv` and `house-plan.json`; only the kitchen has implemented interactions.
 
-## Validation
-
-Checked all eight guided actions, rejection of incorrect actions, prerequisites, straining/berry retention, undo, cup states, pointer dragging, all eight tasks on a touch screen, keyboard access, animated pouring, cancellation during pouring/stirring/rinsing, mobile layout, and host entry points. Device speech availability depends on the browser and installed voices.
+Serve the repository with any static server. No build step, package installation, API key, camera or microphone is required.

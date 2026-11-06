@@ -12,7 +12,7 @@ const KITCHEN_VERBS=[
 const KITCHEN_OBJECTS={
  jug:{name:'Water jug',file:'jug',x:5.5,y:64,w:11,h:24},glass:{name:'Glass',file:'glass',x:19,y:72,w:6.4,h:17},bowl:{name:'Mixing bowl',file:'bowl',x:32,y:69,w:17,h:20},bowl2:{name:'Clean bowl',file:'bowl',x:56,y:71,w:15,h:18},cup:{name:'Cup',file:'cup',x:72,y:73,w:8,h:16},
  sugar:{name:'Sugar',file:'sugar',x:40,y:34,w:6,h:13},berries:{name:'Berries',file:'berries',x:49,y:34,w:6,h:13},
- spoon:{name:'Wooden spoon',file:'spoon'},sieve:{name:'Sieve',file:'sieve'},scoop:{name:'Scoop',file:'scoop'},cloth:{name:'Cloth',file:'cloth'},sponge:{name:'Sponge',file:'sponge'}
+ spoon:{name:'Wooden spoon',file:'spoon',x:24,y:60,w:7,h:16},sieve:{name:'Sieve',file:'sieve',x:49,y:59,w:9,h:15},scoop:{name:'Scoop',file:'scoop',x:64,y:58,w:8,h:15},cloth:{name:'Cloth',file:'cloth',x:4,y:85,w:12,h:9},sponge:{name:'Sponge',file:'sponge',x:82,y:80,w:7,h:10}
 };
 const HOUSE_ROOMS=[
  {id:'workshop',name:'Workshop',x:4,y:22,w:29,h:21,words:'mend · stick · peel off'},
