@@ -189,15 +189,15 @@ b1Add('tg','Question Tags',8,[['full','Whole sentence'],['tag','Tag only']],B1TA
 ]),['Positive statement → negative tag; negative statement → positive tag. Match the auxiliary and pronoun.','I am → aren’t I? Let’s → shall we?']);
 const B1DEDUCE=[
  ['must','The lights are on and I can hear music inside.','Someone must be at home.'],['might','Maybe Anna is on the bus. I’m not sure.','Anna might be on the bus.'],
- ['cant','This is not Tom’s bag. His bag is blue.','This can’t be Tom’s bag.'],['must','He has been running for an hour.','He must be tired.'],
+ ['cant','This is not Tom’s bag. His bag is blue.','This can’t be Tom’s bag.'],['must','He has been running for an hour without a break.','He must be tired.'],
  ['might','Perhaps they know the answer.','They might know the answer.'],['cant','I’ve just seen Mark in London.','He can’t be in Paris right now.'],
  ['must','She has won first prize and is smiling.','She must be happy.'],['might','Perhaps the shop is closed for lunch.','The shop might be closed for lunch.'],
- ['cant','I know Emma is only twelve.','She can’t be a university professor.'],['must','The dog hasn’t eaten for two days.','It must be hungry.'],
+ ['cant','We need the number twelve bus. This one is the number six.','This can’t be our bus.'],['must','The dog hasn’t eaten for two days.','It must be hungry.'],
  ['might','Maybe he is working late.','He might be working late.'],['cant','That house has no roof or windows.','It can’t be ready to live in.'],
  ['must','Everyone is wearing a coat and gloves.','It must be cold outside.'],['might','Perhaps the keys are in your pocket.','The keys might be in your pocket.'],
  ['cant','This cake contains nuts and Leo is allergic to nuts.','It can’t be safe for Leo.'],['must','She has been awake for thirty hours.','She must be sleepy.'],
  ['might','Maybe our train is delayed.','Our train might be delayed.'],['cant','That is my brother. His name is Max, not Ben.','He can’t be Ben.'],
- ['must','His coat is dripping and he has just come indoors.','It must be raining outside.'],['might','Perhaps she is studying in the library.','She might be studying in the library.'],
+ ['must','Rain is falling outside and his coat is dripping.','It must be raining outside.'],['might','Perhaps she is studying in the library.','She might be studying in the library.'],
  ['cant','The restaurant is empty and locked.','It can’t be open right now.'],['must','The phone is ringing inside his bag.','His phone must be in his bag.'],
  ['might','Maybe they are waiting at the wrong entrance.','They might be waiting at the wrong entrance.'],['cant','This is a photo of a desert with no water.','It can’t be a photo of the ocean.']
 ];
@@ -224,7 +224,7 @@ const B1WORDS=[
  ['suffix','The firefighter was very ___.','help','ful','helpful'],['suffix','He felt ___ because he could do nothing.','power','less','powerless'],
  ['suffix','We need a final ___ before Friday.','agree','ment','agreement'],['suffix','She spoke very ___ so everyone could hear.','clear','ly','clearly'],
  ['suffix','The sky is ___ today.','cloud','y','cloudy'],['suffix','His latest ___ is a new kind of robot.','invent','ion','invention'],
- ['spelling','We wish you health and ___.','happy','ness','happiness'],['spelling','Her ___ surprised everyone.','kind','ness','kindness'],
+ ['spelling','We wish you health and ___.','happy','ness','happiness'],['spelling','___, we caught the last bus home.','lucky','ly','luckily'],
  ['spelling','What was your final ___?','decide','ion','decision'],['spelling','He is a ___ musician.','fame','ous','famous'],
  ['spelling','The guide gave us useful ___.','inform','ation','information'],['spelling','___ is important when you ride a bike.','safe','ty','safety']
 ];
@@ -258,7 +258,7 @@ function b1MagnetRound(st,mb,id,cfg,round){
  const prefix=st.querySelector('.b1-prefix');prefix.textContent=extra.prefix||'';prefix.hidden=!extra.prefix;
  const strip=st.querySelector('.b1-strip'),bank=st.querySelector('.b1-bank'),result=st.querySelector('.b1-answer');
  const tokens=extra.tokens||answers[0].replace(/[.,?!]/g,'').split(' ');
- const variants={reading:['read','reading','to read'],opening:['open','opening','to open'],driving:['drive','driving','to drive'],going:['go','going','to go'],learning:['learn','learning','to learn'],saying:['say','saying','to say'],seeing:['see','seeing','to see'],being:['be','being','to be'],Learning:['Learn','Learning','To learn'],raining:['rain','raining','to rain'],drinking:['drink','drinking','to drink'],locking:['lock','locking','to lock'], 'to take':['take','taking','to take'], 'to help':['help','helping','to help'], 'to finish':['finish','finishing','to finish'], 'to buy':['buy','buying','to buy'], 'to drive':['drive','driving','to drive'], 'to rent':['rent','renting','to rent'], 'to get':['get','getting','to get'], 'to dance':['dance','dancing','to dance'], 'to lock':['lock','locking','to lock']};
+ const variants={reading:['read','reading','to read'],opening:['open','opening','to open'],driving:['drive','driving','to drive'],going:['go','going','to go'],learning:['learn','learning','to learn'],saying:['say','saying','to say'],seeing:['see','seeing','to see'],being:['be','being','to be'],Learning:['Learn','Learning','To learn'],raining:['rain','raining','to rain'],drinking:['drink','drinking','to drink'],locking:['lock','locking','to lock'], 'to take':['take','taking','to take'], 'to help':['help','helping','to help'], 'to finish':['finish','finishing','to finish'], 'to buy':['buy','buying','to buy'], 'to drive':['drive','driving','to drive'], 'to rent':['rent','renting','to rent'], 'to get':['get','getting','to get'], 'to dance':['dance','dancing','to dance'], 'to lock':['lock','locking','to lock'],turning:['turn','turning','to turn'],waiting:['wait','waiting','to wait'],restarting:['restart','restarting','to restart']};
  let pieces=tokens.map((word,index)=>({word,index,forms:extra.forms&&variants[word]?variants[word]:[word],fi:0}));
  if(extra.forms)pieces.forEach(p=>{p.fi=p.forms.indexOf(p.word)});
  // Each alternative answer is accepted with its own length (e.g. optional "that").

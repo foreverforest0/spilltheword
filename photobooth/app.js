@@ -7,6 +7,13 @@
  let phase = 'idle', frame = 0, round = 0, tasks = [], photos = [], selected = '', locked = false, session = 0, sessionTopic = '';
  const delay = ms => new Promise(r => setTimeout(r, reduced ? 12 : ms));
  const norm = s => String(s).toLowerCase().replace(/[’‘]/g,"'")
+  .replace(/\b(i|you|he|she|it|we|they)'ve\b/g,'$1 have')
+  .replace(/\b(i|you|he|she|it|we|they)'ll\b/g,'$1 will')
+  .replace(/\bi'm\b/g,'i am').replace(/\b(you|we|they)'re\b/g,'$1 are')
+  .replace(/\b(he|she|it|who|what)'s (?=(?:(?:just|already|never|ever) )?(?:been|got|had|made|sent|found|lost|broken|bought|eaten|spilled|spilt|finished)\b)/g,'$1 has ')
+  .replace(/\b(he|she|it|that|this|there|who|what)'s\b/g,'$1 is')
+  .replace(/\b(pumpkin|tea)'s (?=(?:huge|much|still)\b)/g,'$1 is ')
+
   .replace(/\b(can't|won't|shan't)\b/g, x => ({"can't":'cannot',"won't":'will not',"shan't":'shall not'}[x]))
   .replace(/\b(does|do|did|is|are|was|were|has|have|had|would|should|could|must)n't\b/g,'$1 not')
   .replace(/\b(i|you|he|she|it|we|they)'ll\b/g,'$1 will')
@@ -61,7 +68,7 @@
   if(phase!=='idle')return;
   const run=session;setPhase('starting');$('#coin').disabled=true;$('#coin').classList.add('inserted');sound('coin');
   const chosen=current(),m=mode.value,start=scene.value==='auto'?(round*3)%chosen.cases.length:+scene.value;sessionTopic=chosen.title;
-  tasks=Array.from({length:3},(_,i)=>{const index=(start+i)%chosen.cases.length,t=chosen.cases[index];return {...t,mode:m,sceneNumber:index+1,instruction:chosen.exerciseModes[+m].instruction,answers:m==='2'?[...new Set([t.correction,...t.answers.map(a=>t.correction.replace(t.answers[0],a))])]:t.answers,prompt:m==='2'?t.errorPrompt:t.prompt}});
+  tasks=Array.from({length:3},(_,i)=>{const index=(start+i)%chosen.cases.length,t=chosen.cases[index];return {...t,mode:m,sceneNumber:index+1,instruction:chosen.exerciseModes[+m].instruction,answers:m==='2'?(t.corrections||[t.correction]):t.answers,prompt:m==='2'?t.errorPrompt:t.prompt}});
   $('#machine-caption').textContent='Your session is starting…';if(!await pause(850,run))return;showTask();
  };
  function fillPaper(){
