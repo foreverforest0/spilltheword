@@ -20,3 +20,5 @@
 .ub-object>svg{display:block;width:100%;height:100%;overflow:hidden}.ub-postcard{padding:8px 8px 15px;background:#f9f3e5;border:1px solid #ae98724d;box-shadow:1px 6px 8px #3324162e;border-radius:2px;transform:translateY(12px) rotate(5deg)}.ub-postcard img{display:block;object-fit:contain;width:100%;height:90%}.ub-postcard span{display:block;text-align:center;font:italic 10px Georgia,serif;margin-top:2px}.ub-inner-card>.ub-sprite{position:absolute;inset:0;display:block!important;width:100%;height:100%;opacity:1!important;visibility:visible!important}.ub-page h2,.ub-page h3,.ub-instruction-note p,.ub-task .fzcard,.ub-task .evsent{font-family:Georgia,serif!important}.ub-instruction-note p{font-style:italic!important}.ub-page h2{font-weight:400!important}
 
 .ub-paper:disabled{opacity:1!important;cursor:default}
+
+.ub-task[data-topic]:before{content:attr(data-topic);text-transform:uppercase}

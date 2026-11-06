@@ -9,3 +9,9 @@ Transparent PNG assets are cropped in SVG at display time: `parts.png` contains 
 Mouse, touch and keyboard are supported. With the keyboard, focus the knife and press Enter, then press Enter on the parcel; focus the paper and press Enter to unwrap. Reduced-motion preferences shorten transitions. Sound respects the existing sound setting.
 
 Validation: `python scripts/check-unbox.py` (Python Playwright and Chromium), `python scripts/check-b1-content.py`, and `node --check unbox/app.js`.
+
+## Additional B1 collections
+
+`tasks.js` adds **Whose parcel is it?** (15 owner clues with `whose`) under Relative clauses, and **The story of an object** (20 fictional labels, Present/Past Simple Passive) under Passive. Both use the same unpacking and two answer formats. Passive instructions explicitly omit the agent and preserve the supplied label details. The task list is filtered by grammar topic and level; B2 stays unchanged.
+
+`finds-1.png` and `finds-2.png` are the two approved transparent twelve-object sheets. SVG crop rectangles account for the second sheet’s unequal row spacing. Preview Passive: `index.html?unbox=1&task=passive`. Validate with `python scripts/check-unbox-b1.py`.
