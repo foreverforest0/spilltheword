@@ -1,0 +1,250 @@
+{
+  "concept_image": "assets/house.webp",
+  "status": "Kitchen playable in two modes; the other eight rooms are planned.",
+  "palette": [
+    {
+      "name": "Midnight indigo",
+      "hex": "#191B32",
+      "role": "Ночь, крыша, контуры"
+    },
+    {
+      "name": "Dark plum",
+      "hex": "#33283E",
+      "role": "Стены и тени"
+    },
+    {
+      "name": "Moss green",
+      "hex": "#4D5A40",
+      "role": "Растения и ткани"
+    },
+    {
+      "name": "Walnut",
+      "hex": "#785444",
+      "role": "Дерево и мебель"
+    },
+    {
+      "name": "Antique gold",
+      "hex": "#C49A52",
+      "role": "Латунь, орнаменты и свет"
+    },
+    {
+      "name": "Dusty rose",
+      "hex": "#BC7F87",
+      "role": "Текстиль и керамика"
+    },
+    {
+      "name": "Warm parchment",
+      "hex": "#E4D0AA",
+      "role": "Светлые предметы и блики"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "workshop",
+      "name": "Мастерская",
+      "position": "upper-left",
+      "primary_checked_bank_verbs": [
+        "break",
+        "crack",
+        "smash",
+        "shatter",
+        "tear",
+        "peel off",
+        "stick",
+        "come off",
+        "bend",
+        "snap",
+        "smear",
+        "dab",
+        "wear off"
+      ],
+      "additional_household_phrases_to_review": [
+        "mend",
+        "sew",
+        "thread a needle",
+        "glue",
+        "sand"
+      ]
+    },
+    {
+      "id": "bedroom",
+      "name": "Спальня",
+      "position": "upper-middle",
+      "primary_checked_bank_verbs": [
+        "fold",
+        "stretch"
+      ],
+      "additional_household_phrases_to_review": [
+        "make the bed",
+        "change the sheets",
+        "tuck in",
+        "smooth out",
+        "hang up",
+        "put away"
+      ]
+    },
+    {
+      "id": "bathroom",
+      "name": "Ванная",
+      "position": "upper-right",
+      "primary_checked_bank_verbs": [
+        "rinse",
+        "rinse out",
+        "rinse off",
+        "wash",
+        "drip",
+        "leak",
+        "overflow",
+        "fill",
+        "empty",
+        "drain",
+        "splash"
+      ],
+      "additional_household_phrases_to_review": [
+        "turn on the tap",
+        "turn off the tap",
+        "brush",
+        "comb",
+        "flush",
+        "unclog"
+      ]
+    },
+    {
+      "id": "kitchen",
+      "name": "Кухня",
+      "position": "middle-left",
+      "primary_checked_bank_verbs": [
+        "pour",
+        "scoop out",
+        "strain",
+        "sift",
+        "drizzle",
+        "sprinkle",
+        "mix",
+        "stir",
+        "boil",
+        "simmer",
+        "peel",
+        "cut",
+        "slice",
+        "chop",
+        "grate",
+        "knead",
+        "roll out",
+        "crush",
+        "mash",
+        "crumble"
+      ],
+      "additional_household_phrases_to_review": [
+        "whisk",
+        "beat",
+        "spread"
+      ]
+    },
+    {
+      "id": "dining",
+      "name": "Столовая",
+      "position": "middle-middle",
+      "primary_checked_bank_verbs": [
+        "spill",
+        "drop",
+        "fall",
+        "knock over",
+        "tip over"
+      ],
+      "additional_household_phrases_to_review": [
+        "set the table",
+        "clear the table",
+        "serve",
+        "pass",
+        "dip"
+      ]
+    },
+    {
+      "id": "laundry",
+      "name": "Прачечная",
+      "position": "middle-right",
+      "primary_checked_bank_verbs": [
+        "soak",
+        "soak up",
+        "wring out",
+        "squeeze",
+        "stain",
+        "dirty",
+        "blot"
+      ],
+      "additional_household_phrases_to_review": [
+        "sort",
+        "hang out",
+        "peg out",
+        "iron",
+        "fold"
+      ]
+    },
+    {
+      "id": "living",
+      "name": "Гостиная-библиотека",
+      "position": "lower-left",
+      "primary_checked_bank_verbs": [
+        "wipe",
+        "wipe up",
+        "wipe off",
+        "scrub",
+        "rub",
+        "rub off",
+        "polish"
+      ],
+      "additional_household_phrases_to_review": [
+        "dust",
+        "sweep",
+        "vacuum",
+        "mop",
+        "pick up",
+        "tidy up"
+      ]
+    },
+    {
+      "id": "potions",
+      "name": "Комната зелий",
+      "position": "lower-middle",
+      "primary_checked_bank_verbs": [
+        "fish out",
+        "melt",
+        "dissolve",
+        "freeze",
+        "heat",
+        "cool",
+        "bubble",
+        "fizz",
+        "foam",
+        "steam",
+        "shake",
+        "dip",
+        "dunk",
+        "immerse",
+        "float",
+        "sink"
+      ],
+      "additional_household_phrases_to_review": []
+    },
+    {
+      "id": "greenhouse",
+      "name": "Оранжерея",
+      "position": "lower-right",
+      "primary_checked_bank_verbs": [
+        "scatter"
+      ],
+      "additional_household_phrases_to_review": [
+        "water",
+        "sow",
+        "plant",
+        "repot",
+        "prune",
+        "trim",
+        "weed",
+        "pick",
+        "spray"
+      ]
+    }
+  ]
+}
