@@ -2,7 +2,7 @@
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Grammar Photobooth · B1</title><link rel="stylesheet" href="style.css"></head>
 <body>
-<header><a href="../index.html" target="_top" class="back">← Spill the Word</a><p class="eyebrow">A LITTLE PRACTICE. THREE LITTLE PICTURES.</p><h1>Grammar Photobooth</h1><div class="settings"><label>Grammar topic<select id="topic"></select></label><label>Exercise mode<select id="mode"></select></label></div></header>
+<header><a href="../index.html" target="_top" class="back">← Spill the Word</a><p class="eyebrow">A LITTLE PRACTICE. THREE LITTLE PICTURES.</p><h1>Grammar Photobooth</h1><div class="settings"><label>Grammar topic<select id="topic"></select></label><label>Exercise mode<select id="mode"></select></label><label>Scene / task<select id="scene"></select></label></div></header>
 <main>
 <section class="machine-area" aria-label="Illustrated photobooth">
 <div class="booth" id="booth" data-state="idle">
@@ -25,7 +25,7 @@
 <form id="answer-form" hidden novalidate><label class="answer-label" for="answer">Your answer</label><input id="answer" type="text" autocomplete="off" spellcheck="false"><div class="choices" id="choices"></div><button class="primary" id="check" type="submit">Check & take a picture <span>✦</span></button></form>
 <p class="feedback" id="feedback" role="status" aria-live="polite"></p>
 <div class="finish" id="finish" hidden><button class="primary" id="download">Save your photo strip ↓</button><button class="secondary" id="again">Another three pictures ↗</button></div>
-<p class="footnote" id="footnote">Complete three answers to print your illustrated photo strip.</p>
+<button class="primary" id="next-frame" hidden>Next picture →</button><button class="secondary" id="change-task" type="button">← Change topic or task</button><p class="footnote" id="footnote">Complete three answers to print your illustrated photo strip.</p>
 </section>
 </main>
 <script src="data.js"></script><script src="app.js"></script>

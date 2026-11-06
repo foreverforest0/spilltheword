@@ -1,11 +1,11 @@
 # Grammar Photobooth
 
-A standalone B1 activity, linked from Grammar Games → Photobooth.
+Standalone B1 activity: Grammar Games → Photobooth.
 
-Insert the coin, answer three questions, watch the shutter/countdown/flash, then watch the completed strip feed smoothly out of the illustrated slot. The strip can be downloaded as a PNG. Topic and exercise mode are the only selectors.
+Choose a topic, mode and starting scene, then insert the coin. The curtain stays closed and both picture previews remain blurred while the learner completes the sentence. A correct answer develops the image, opens the curtain and smoothly feeds the next photograph from the slot. Press **Next picture** to close the curtain and start the following sentence. After three answers, save the complete strip as a PNG.
 
-The initial bank contains 20 topics with three illustrated cases each. Each case supports completion, multiple choice and correcting one mistake (180 exercise presentations). The asset library contains all 240 individually cropped scenes from the 20 generated illustration sheets; each case explicitly selects its corresponding image. Additional scene-specific cases can be added in `data.js`.
+Topic, exercise mode and scene can be changed at any time, including during countdowns and printing. **Change topic or task** cancels the current session and returns to the selectors. Pending animations cannot update the new session.
 
-No camera, external API, package installation, build step or authentication is needed. Serve this repository as a static site. `index.html`, `style.css`, `app.js`, `data.js` and `assets/` form the standalone folder.
+The bank uses **all 240 original illustrated scenes**: 20 topics × 12 scene-specific cases. Every case supports completion, multiple choice and correcting one mistake (720 exercise presentations). Automatic sessions cycle through groups of three scenes; the scene selector can start with any of the twelve pictures. The strip feeds bottom first, so the newest picture is at the top; PNG export preserves that arrangement.
 
-Verification: all 180 exercise presentations; wrong-answer rejection; coin/shutter/countdown/flash state transitions; intermediate and final printing positions; PNG download; 390px and 768px layouts; reduced motion; integrated entry and iframe resizing. Also verified a bundled single HTML with embedded assets and its PNG download.
+No camera, external API, package installation, build step or authentication is needed. Serve the repository as a static site. `index.html`, `style.css`, `app.js`, `data.js` and `assets/` form the standalone folder.
