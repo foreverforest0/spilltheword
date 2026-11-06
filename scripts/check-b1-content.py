@@ -88,23 +88,17 @@ with sync_playwright() as pw:
                 assert page.locator('#evnext').count(),(key,i,page.locator('#evfb').inner_text())
                 page.locator('#evnext').click()
         print('All 75 B1 evidence clues passed',flush=True)
-        # The first item in each magnet filter must be constructible, including form cycling.
+        # Every filter in the upgraded fridge remains constructible from plain word magnets.
         filters=page.evaluate('Object.entries(B1MAG).flatMap(([id,c])=>c.types.filter(x=>x[0]!=="all").map(([type])=>({id,type})))')
         for entry in filters:
             tokens=page.evaluate('''({id,type})=>{
-              S.mgxt=S.mgxt||{};S.mgxt[id]=type;S.b1challenge=S.b1challenge||{};S.b1challenge[id]='guided';
-              const row=B1MAG[id].items().filter(x=>x[0]===type).at(-1);MGXQ[id+type]=[row];dmMagnets(id,B1MAG[id]);
-              return row[4]?.tokens||row[1][0].replace(/[.,?!]/g,'').split(' ');
+              S.mgxt=S.mgxt||{};S.mgxt[id]=type;dmMagnets(id,B1MAG[id]);
+              return FRidge.run.pieces.map(p=>p.w);
             }''',entry)
-            for i,token in enumerate(tokens):
-                selector=f'.b1-bank [data-piece="{i}"]'
-                for _ in range(4):
-                    if page.locator(selector+' span').inner_text()==token:break
-                    page.locator(selector+' + button').click()
-                assert page.locator(selector+' span').inner_text()==token,(entry,token)
-                page.locator(selector).click()
+            for token in tokens:
+                page.evaluate('(w)=>{const b=[...document.querySelectorAll("#fm-bank .fm-magnet")].find(x=>x.textContent===w);if(!b)throw Error("Missing magnet "+w);b.click()}',token)
             page.locator('#mgchk').click()
-            assert re.search(r'Perfect|Correct',page.locator('.b1-answer').inner_text()),entry
+            assert re.search(r'Correct',page.locator('#fm-result').inner_text()),entry
         print(f'All {len(filters)} B1 magnet filters passed',flush=True)
         # CRT examples and all five new passengers.
         for key in page.evaluate('B1_CONTENT_AUDIT.filter(x=>x.bank==="desk-examples").map(x=>x.key)'):

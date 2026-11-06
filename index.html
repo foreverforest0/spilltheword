@@ -1451,6 +1451,7 @@ main:has(.sp){max-width:1280px}
 .sp .shcard.spc{flex:0 0 auto}
 </style>
 <link rel="stylesheet" href="unbox/style.css">
+<link rel="stylesheet" href="magnets/style.css">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><filter id="gwob" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/></filter></defs></svg>
@@ -3123,7 +3124,7 @@ function skin(){
 function pillify(root){
  const skip=new Set(['sptask','lpu','shcur','spscene']);
  root.querySelectorAll('select').forEach(sel=>{
-  if(skip.has(sel.id)||sel.closest('.lph')||sel.options.length>7||sel.options.length<2)return;
+  if(sel.hasAttribute('data-native-select')||skip.has(sel.id)||sel.closest('.lph')||sel.options.length>7||sel.options.length<2)return;
   const fld=sel.closest('.fld'),g=document.createElement('div');g.className='pgrp';
   [...sel.options].forEach((o,i)=>{const b=document.createElement('button');b.type='button';b.className='pp';b.style.setProperty('--pc',CBCOL[(i*4+sel.options.length)%CBCOL.length]);b.dataset.v=o.value;b.innerHTML='<span class="pcs">'+(i%2?'✸':'✦')+'</span>'+esc(o.textContent);
    b.onclick=()=>{if(sel.disabled)return;sel.value=o.value;sel.dispatchEvent(new Event('change',{bubbles:true}));sync()};g.appendChild(b)});
@@ -12636,6 +12637,8 @@ async function boot(){
 </script>
 <script src="b1-magnets.js"></script>
 <script src="b1-content.js"></script>
+<script src="magnets/data.js"></script>
+<script src="magnets/app.js"></script>
 <script src="unbox/tasks.js"></script>
 <script src="unbox/app.js"></script>
 <script>
