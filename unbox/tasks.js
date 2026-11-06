@@ -1,7 +1,7 @@
 /* B1 parcel collections. Label stories are fictional, not product-origin claims. */
 (() => {
  const whose = [
-  [0,'synthesizer','This synthesizer belongs to a musician.','Her band is playing tonight.','This synthesizer belongs to a musician whose band is playing tonight'],
+  [0,'synthesizer','This parcel belongs to a musician.','Her guitar was stolen.','This parcel belongs to a musician whose guitar was stolen'],
   [1,'camera','This camera belongs to a student.','His photos are in the school magazine.','This camera belongs to a student whose photos are in the school magazine'],
   [2,'trainers','These trainers belong to a runner.','Her next race is on Sunday.','These trainers belong to a runner whose next race is on Sunday'],
   [3,'skateboard','This skateboard belongs to a neighbour.','His sister teaches me Spanish.','This skateboard belongs to a neighbour whose sister teaches me Spanish'],
@@ -39,6 +39,32 @@
   [19,'headphones','The technician tested these headphones last Friday.','These headphones','test · last Friday','These headphones were tested last Friday','past'],
   [20,'photo printer','The library uses this photo printer for workshops.','This photo printer','use · for workshops','This photo printer is used for workshops','present']
  ];
- const build=(r,type)=>({art:r[0],n:r[1],im:'unbox-find-'+r[0],a:r[2],b:type==='w'?r[3]:r[4],start:type==='w'?'':r[3],ok:[type==='w'?r[4]:r[5]],tense:type==='p'?r[6]:null,dis:type==='w'?['who','which','her','his']:['is','are','was','were','be'].filter(w=>!(r[5].split(' ').includes(w))),hb:type==='w'?'Use whose + the thing belonging to the person. Do not keep her or his.':'Use am / is / are for a present routine, or was / were for a finished past action, followed by the past participle.',h2:type==='w'?'Keep the first sentence. Replace Her / His with whose and attach the second part to the person.':'Keep the words from the label. Check subject agreement and the past participle.'});
+ // Additional B1 passive forms. The tense is a cue, not another menu.
+ passive.push(
+  [1,'camera','','This camera','repair · at the repair shop · right now','This camera is being repaired at the repair shop right now','continuous'],
+  [2,'trainers','','These trainers','clean · at the studio · at the moment','These trainers are being cleaned at the studio at the moment','continuous'],
+  [6,'lamp','','This lamp','pack · at the warehouse · right now','This lamp is being packed at the warehouse right now','continuous'],
+  [9,'keyboard','','This keyboard','test · in the lab · at the moment','This keyboard is being tested in the lab at the moment','continuous'],
+  [15,'tote bag','','This tote bag','print · at the workshop · right now','This tote bag is being printed at the workshop right now','continuous'],
+  [19,'headphones','','These headphones','check · at the repair shop · at the moment','These headphones are being checked at the repair shop at the moment','continuous'],
+  [0,'synthesizer','','This synthesizer','repair · at the workshop · just','This synthesizer has just been repaired at the workshop','perfect'],
+  [3,'skateboard','','This skateboard','paint · at the studio · already','This skateboard has already been painted at the studio','perfect'],
+  [8,'mug','','This mug','sell · online · already','This mug has already been sold online','perfect'],
+  [14,'e-reader','','This e-reader','deliver · to the library · just','This e-reader has just been delivered to the library','perfect'],
+  [16,'glasses','','These glasses','adjust · at the optician’s · just','These glasses have just been adjusted at the optician’s','perfect'],
+  [20,'photo printer','','This photo printer','test · in the lab · already','This photo printer has already been tested in the lab','perfect'],
+  [4,'controller','','This controller','deliver · to your home · tomorrow','This controller will be delivered to your home tomorrow','future'],
+  [7,'cassette player','','This cassette player','repair · at the workshop · next week','This cassette player will be repaired at the workshop next week','future'],
+  [10,'chess piece','','This chess piece','print · at the studio · tomorrow','This chess piece will be printed at the studio tomorrow','future'],
+  [11,'decoration','','This decoration','use · at the party · next Saturday','This decoration will be used at the party next Saturday','future'],
+  [17,'notebook','','This notebook','send · to your office · tomorrow','This notebook will be sent to your office tomorrow','future'],
+  [19,'headphones','','These headphones','test · at the shop · next Monday','These headphones will be tested at the shop next Monday','future']
+ );
+ const tenseNames={present:'Present Simple Passive',past:'Past Simple Passive',continuous:'Present Continuous Passive',perfect:'Present Perfect Passive',future:'Future Simple Passive'};
+ const build=(r,type)=>{
+  const answer=type==='w'?r[4]:r[5],ok=[answer];
+  if(type==='p'&&r[6]==='perfect'&&answer.includes(' already '))ok.push(answer.replace(' already ',' ')+' already');
+  return {art:r[0],n:r[1],im:'unbox-find-'+r[0],a:r[2],b:type==='w'?r[3]:r[4],start:type==='w'?'':r[3],ok,tense:type==='p'?r[6]:null,tenseName:type==='p'?tenseNames[r[6]]:null,dis:[],hb:type==='w'?'Use whose + the thing belonging to the person. Do not keep her or his.':({present:'Use am / is / are + past participle for a routine or fact.',past:'Use was / were + past participle for a finished past action.',continuous:'Use am / is / are + being + past participle for an action happening now.',perfect:'Use has / have + been + past participle. Put just or already after has / have.',future:'Use will + be + past participle for the future.'}[r[6]]),h2:type==='w'?'Keep the first sentence. Replace Her / His with whose and attach the second part to the person.':'Keep the words from the label. Check subject agreement and the past participle.'};
+ };
  FYO['1'].w={items:whose.map(r=>build(r,'w'))};FYO['1'].p={items:passive.map(r=>build(r,'p'))};
 })();

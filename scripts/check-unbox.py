@@ -13,7 +13,13 @@ Thread(target=server.serve_forever,daemon=True).start();base=f'http://127.0.0.1:
 
 def wait_phase(p,phase):p.wait_for_function('(s)=>FY.phase===s',arg=phase)
 def start(p,g='d',lv='1',mode='t',contents='both',specific=None):
- p.evaluate('([g,lv])=>fyStart(g,lv)',[g,lv]);p.locator(f'[data-mode="{mode}"]').click() if g!='s' else None;p.locator(f'[data-contents="{contents}"]').click();p.locator('#ub-start').click()
+ p.evaluate('([g,lv])=>fyStart(g,lv)',[g,lv])
+ if g in ['w','p'] and lv=='1':
+  assert p.locator('#ub-start').count()==0
+  assert p.evaluate('FY.mode')=='t'
+ else:
+  p.locator(f'[data-mode="{mode}"]').click() if g!='s' else None
+  p.locator(f'[data-contents="{contents}"]').click();p.locator('#ub-start').click()
  if specific:
   p.evaluate('(im)=>{const i=FY.items.findIndex(x=>x.im===im);if(i>=0)[FY.items[0],FY.items[i]]=[FY.items[i],FY.items[0]];fyScene()}',specific)
  return p.evaluate('FY.items[0]')
