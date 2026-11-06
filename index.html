@@ -3403,7 +3403,7 @@ function sndInit(){
 (document.body?sndInit():document.addEventListener('DOMContentLoaded',sndInit));
 
 /* ===== Home: the blue shelf ===== */
-const HSM={alias:[381,337],taboo:[205,357],bingo:[317,334],jeo:[304,380],speak:[284,351],gifframe:[345,329],shop:[320,382],dice:[285,302],clock:[298,303],ruler:[335,300],flask:[201,424],scales:[348,345],helmet:[297,388],pumpkin:[520,472],jar:[240,349],books:[304,319],cat:[374,285],plant:[192,411],hang:[303,507],lamp:[311,365],mug:[223,347],doodle:[307,309],pic:[239,284]};
+const HSM={house:[515,560],alias:[381,337],taboo:[205,357],bingo:[317,334],jeo:[304,380],speak:[284,351],gifframe:[345,329],shop:[320,382],dice:[285,302],clock:[298,303],ruler:[335,300],flask:[201,424],scales:[348,345],helmet:[297,388],pumpkin:[520,472],jar:[240,349],books:[304,319],cat:[374,285],plant:[192,411],hang:[303,507],lamp:[311,365],mug:[223,347],doodle:[307,309],pic:[239,284]};
 const HSH={gifframe:[.1768,.1641,.6464,.6687]};
 const HSPAL=['#B4BEFB','#A2E0D5','#F9B1B2','#B2D1FD','#F4C9D2','#C9B8F0'];
 /* [key, centre x, bottom y (or top y for hanging), height]  in a 1536 x 1024 picture */
@@ -3412,9 +3412,9 @@ const HSI=[
  ['speak',330,497,150],['shop',500,497,150],['mug',660,497,100],
  ['gifframe',900,490,148],['appearance',1110,490,140],['books',1262,490,110],
  ['dice',300,672,120],['clock',470,672,140],['ruler',665,672,125],['flask',835,672,142],['cat',1010,672,90],['plant',1175,672,142],['doodle',1280,672,70],
- ['scales',370,853,140],['helmet',754,853,142],['pumpkin',1075,853,118],['jar',1235,853,128]];
+ ['scales',370,853,140],['house',565,853,144],['helmet',754,853,142],['pumpkin',1075,853,118],['jar',1235,853,128]];
 const HSG={
- house:{n:'The Midnight House',d:'Everyday actions in a wizard’s house. Enter the kitchen and bring eight verbs to life.',tab:'house'},
+ house:{n:'The Midnight House',d:'Everyday actions in a wizard’s house. Enter the kitchen and bring eight verbs to life.',tab:'house',direct:true},
  alias:{n:'Alias',d:'Explain the word without saying it.',tab:'alias'},
  taboo:{n:'Taboo',d:'Explain it, but skip the forbidden words.',tab:'taboo'},
  bingo:{n:'Bingo',d:'Hear the clue, find it on your card.',tab:'bingo'},
@@ -3443,16 +3443,16 @@ function homeHTML(){
   const isA=k==='appearance',m=isA?[400,300]:HSM[k],w=h*m[0]/m[1];
   const left=(cx-w/2)/1536*100,top=(mode==='top'?y:y-h)/1024*100,wd=w/1536*100;
   const st=`left:${left.toFixed(2)}%;top:${top.toFixed(2)}%;width:${wd.toFixed(2)}%;--c:${pc(i)};--r:${(((i*37)%7)-3)*.6}deg`;
-  const inner=k==='pumpkin'?`<canvas class="si" id="pumpc" width="520" height="472"></canvas>`:isA?`<span class="sf sfr"></span><img class="si" src="ch/sh_appearance.webp" alt="">`
+  const inner=k==='pumpkin'?`<canvas class="si" id="pumpc" width="520" height="472"></canvas>`:k==='house'?`<span class="sf" style="-webkit-mask-image:url(wizard-house/assets/house-mini-mask.webp);mask-image:url(wizard-house/assets/house-mini-mask.webp)"></span><img class="si" src="wizard-house/assets/house-mini.webp" alt="" draggable="false">`:isA?`<span class="sf sfr"></span><img class="si" src="ch/sh_appearance.webp" alt="">`
    :`<span class="sf" style="-webkit-mask-image:url(ch/sh_${k}_s.webp);mask-image:url(ch/sh_${k}_s.webp)"></span><img class="si" src="ch/sh_${k}.webp" alt="">`
     +(k==='gifframe'?`<img class="sgif" id="sgif" alt="" style="left:${HSH.gifframe[0]*100}%;top:${HSH.gifframe[1]*100}%;width:${HSH.gifframe[2]*100}%;height:${HSH.gifframe[3]*100}%">`:'');
   if(!g)return `<div class="dc2 dc-${k}" style="${st}"><img src="ch/sh_${k}.webp" alt="" draggable="false"></div>`;
   return `<button class="so" data-k="${k}" data-n="${esc(g.n)}" style="${st}" aria-label="${esc(g.n)}">${inner}</button>`}).join('');
  const grid=HSORD.concat(['pumpkin','jar']).map((k,i)=>{const g=HSG[k],isA=k==='appearance';
-  return `<button class="sgb" data-k="${k}" style="--c:${pc(i)}"><span class="sgi"><img src="${k==='house'?'wizard-house/assets/house.webp':isA?'ch/sh_appearance.webp':'ch/sh_'+(k)+'.webp'}" alt=""></span><b>${esc(g.n)}</b></button>`}).join('');
+  return `<button class="sgb" data-k="${k}" style="--c:${pc(i)}"><span class="sgi"><img src="${k==='house'?'wizard-house/assets/house-mini.webp':isA?'ch/sh_appearance.webp':'ch/sh_'+(k)+'.webp'}" alt=""></span><b>${esc(g.n)}</b></button>`}).join('');
  return `<section class="shome" id="shome"><div class="stitle">spill the <u>word</u></div>
  <div class="shelf" id="shelf"><img class="sbg" src="ch/sh_shelf.webp" alt="" draggable="false">${items}</div>
- <button class="wizard-launch" data-k="house" style="display:flex;align-items:center;gap:16px;width:360px;max-width:92%;margin:22px auto;padding:12px 20px;border:2px solid #191b32;border-radius:18px;background:#E4D0AA;color:#191b32;text-align:left;box-shadow:3px 4px 0 #191b32"><img src="wizard-house/assets/house.webp" alt="" style="width:65px;height:80px;object-fit:cover;border-radius:8px"><span><b style="display:block;font-size:19px">The Midnight House</b><span style="font-size:13px">Everyday actions · Enter the kitchen →</span></span></button><div class="sgrid">${grid}</div></section>`+(setTimeout(()=>{try{pumpCorner()}catch(e){}},0),'')}
+ <div class="sgrid">${grid}</div></section>`+(setTimeout(()=>{try{pumpCorner()}catch(e){}},0),'')}
 function roomFront(){
  const I='#1c1c1c',rug=[[640,190,'#F9B1B2'],[585,160,'#FFF6E3'],[525,135,'#A2E0D5'],[430,102,'#B4BEFB'],[330,72,'#FFF6E3'],[240,50,'#F49BC9']];
  let fr='';for(let i=0;i<46;i++){const a=(i/46)*Math.PI*2,c=Math.cos(a),s=Math.sin(a);if(Math.abs(s)>.55)continue;const x1=768+c*640,y1=330+s*190,x2=768+c*662,y2=330+s*204+ (i%2?6:-6);fr+=`<path d="M${x1.toFixed(0)} ${y1.toFixed(0)} L${x2.toFixed(0)} ${y2.toFixed(0)}"/>`}
@@ -3490,10 +3490,11 @@ function hsClose(){const c=$('#scard');if(c)c.remove();HSCUR=-1}
 function hsStep(d){const i=HSORD.indexOf(HSORD[HSCUR]);if(HSCUR<0)return;HSCUR=(HSCUR+d+HSORD.length)%HSORD.length;sfx('tick');hsCard(d)}
 function hsOpen(k,el){
  sfx('pop');const g=HSG[k];if(!g)return;
+ if(g.direct){hsClose();go(g.tab);return}
  if(g.special==='pump'){pumpOpen();return}
  if(g.special==='stars'){starsOpen();return}
  HSCUR=HSORD.indexOf(k);hsCard(0,el)}
-function hsImg(k){return k==='house'?`<img src="wizard-house/assets/house.webp" alt="">`:k==='appearance'?`<img src="ch/sh_appearance.webp" alt="">`:`<span class="sf" style="-webkit-mask-image:url(ch/sh_${k}_s.webp);mask-image:url(ch/sh_${k}_s.webp)"></span><img src="ch/sh_${k}.webp" alt="">`+(k==='gifframe'?`<img class="sgif" alt="" src="${(window.HSGIFSRC||'')}" style="left:${HSH.gifframe[0]*100}%;top:${HSH.gifframe[1]*100}%;width:${HSH.gifframe[2]*100}%;height:${HSH.gifframe[3]*100}%">`:'')}
+function hsImg(k){return k==='house'?`<img src="wizard-house/assets/house-mini.webp" alt="">`:k==='appearance'?`<img src="ch/sh_appearance.webp" alt="">`:`<span class="sf" style="-webkit-mask-image:url(ch/sh_${k}_s.webp);mask-image:url(ch/sh_${k}_s.webp)"></span><img src="ch/sh_${k}.webp" alt="">`+(k==='gifframe'?`<img class="sgif" alt="" src="${(window.HSGIFSRC||'')}" style="left:${HSH.gifframe[0]*100}%;top:${HSH.gifframe[1]*100}%;width:${HSH.gifframe[2]*100}%;height:${HSH.gifframe[3]*100}%">`:'')}
 function hsCard(dir,from){
  const k=HSORD[HSCUR],g=HSG[k];let c=$('#scard');const fresh=!c;
  if(fresh){c=document.createElement('div');c.id='scard';c.className='scard';document.body.appendChild(c)}

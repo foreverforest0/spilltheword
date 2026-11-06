@@ -4,7 +4,7 @@ A static illustrated vocabulary activity. No build step, API key, account, camer
 
 ## Entry points
 
-- Home shelf → **The Midnight House** → PLAY.
+- Home shelf → miniature **The Midnight House** (direct entry, no preview card).
 - Top navigation → **House**.
 - Grammar Speaking → **Kids** → **Fun** → The Midnight House: kitchen.
 - Grammar Speaking → **A1** → **Imperatives** → The Midnight House: kitchen.
