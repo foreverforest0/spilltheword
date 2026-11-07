@@ -1,42 +1,32 @@
 # Игры Spill the Word
 
-Список по текущему коду сайта. Не все игры выведены на стартовую книжную полку. Тематические варианты упражнений перечислены отдельно.
+Список после удаления выбранных игр. Наличие реализации в коде не означает наличие кнопки в текущем интерфейсе.
 
 ## Основные игры и разделы
 
 - The Midnight House
 - Alias
 - Taboo
-- Emoji
-- Bingo
-- Tic-tac-toe
-- Create a story
 - Describe the GIF
 - Grammar Games
 - Sentence Expander
 - Shop
 - Creative Writing
 - Grammar Speaking
-- Guess Who
 - Jeopardy
 
-## Игровые механики Grammar
+## Сохранённые механики Grammar
 
 - Tense Switch
 - Grammar Dice
 - Sentence Expander
 - Word Craft
 - Scrambl
-- Deep Sea
 - Absurd Choices
-- Spend a Fortune
-- Sunny Street
-- Sunny Street 3D
-- Sunny City
 - Gachapon
 - Photobooth
 
-## Грамматические мини-игры
+## Грамматические мини-игры — реализованы, вход в интерфейсе пока отсутствует
 
 - Fix the Time
 - Opposite Orders
@@ -72,7 +62,7 @@
 - If I’d Known
 - What Did They Say?
 
-## Тематические задания и варианты
+## Тематические задания и варианты Grammar Speaking
 
 - Describe the picture: Present Continuous
 - Describe the picture: There is / are
@@ -153,7 +143,3 @@
 - Fridge magnets: Word Formation
 - Unbox it: Whose parcel is it?
 - Unbox it: The story of an object
-
-## Дополнительная игра на главной
-
-- Scramble — сборка предложения из перемешанных слов. В коде также есть отдельный режим Scrambl.
