@@ -10972,9 +10972,9 @@ const MGXP=[
 ['?',['Did you watch a film yesterday?']],['?',['Did she go to the park?']],['?',['Where did you go on Sunday?']],['?',['What did he buy?']],['?',['Did they visit their grandma?']],['?',['Who did you meet?']],['?',['What time did the film start?']],['?',['Did your mum make a cake?']],['?',['When did you wake up?']],['?',['Did you play football after school?']]];
 const MGXT=[['all','All types'],['+','＋ Statements'],['-','－ Negatives'],['?','？ Questions']];
 const MGXC={
- mgb:{title:'Fridge magnets: To be',help:'Pick a sentence type (or all types). Drag the word magnets onto the white strip and put them in the right order. Then press Check.',hints:['Statement: Subject + am / is / are + the rest. (She is a teacher.) Negative: + not / isn’t / aren’t.','Question: am / is / are goes BEFORE the subject. (Is she a doctor?) With a question word: Where + is + subject? (Where is my phone?)'],types:MGXT,items:()=>MGXB},
- mgs:{title:'Fridge magnets: Present Simple',help:'Pick a sentence type: statements, negatives, questions or adverbs of frequency. Drag the magnets onto the white strip in the right order. Then press Check.',hints:['Statement: Subject + verb (+s for he / she / it) + the rest. Negative: don’t / doesn’t + verb. (She doesn’t eat breakfast.)','Question: Do / Does + subject + verb. (Does she speak English?) Adverbs of frequency (always, usually, often, sometimes, never) go BEFORE the main verb, but AFTER am / is / are.'],types:MGXT.concat([['a','⏱ Adverbs of frequency']]),items:()=>MGXS},
- mgp:{title:'Fridge magnets: Past Simple',help:'Pick a sentence type (or all types). Drag the magnets onto the white strip in the right order. Then press Check.',hints:['Statement: Subject + V2 (past form) + the rest. (I watched a film. She went to the park.)','Negative: didn’t + V1 (the first form!). Question: Did + subject + V1? (Did you watch it? What did he buy?)'],types:MGXT,items:()=>MGXP},
+ mgb:{title:'Fridge magnets: To be',help:'Pick a sentence type (or all types). Drag the word magnets onto the fridge door and put them in the right order. Then press Check.',hints:['Statement: Subject + am / is / are + the rest. (She is a teacher.) Negative: + not / isn’t / aren’t.','Question: am / is / are goes BEFORE the subject. (Is she a doctor?) With a question word: Where + is + subject? (Where is my phone?)'],types:MGXT,items:()=>MGXB},
+ mgs:{title:'Fridge magnets: Present Simple',help:'Pick a sentence type: statements, negatives, questions or adverbs of frequency. Drag the magnets onto the fridge door in the right order. Then press Check.',hints:['Statement: Subject + verb (+s for he / she / it) + the rest. Negative: don’t / doesn’t + verb. (She doesn’t eat breakfast.)','Question: Do / Does + subject + verb. (Does she speak English?) Adverbs of frequency (always, usually, often, sometimes, never) go BEFORE the main verb, but AFTER am / is / are.'],types:MGXT.concat([['a','⏱ Adverbs of frequency']]),items:()=>MGXS},
+ mgp:{title:'Fridge magnets: Past Simple',help:'Pick a sentence type (or all types). Drag the magnets onto the fridge door in the right order. Then press Check.',hints:['Statement: Subject + V2 (past form) + the rest. (I watched a film. She went to the park.)','Negative: didn’t + V1 (the first form!). Question: Did + subject + V1? (Did you watch it? What did he buy?)'],types:MGXT,items:()=>MGXP},
  mgc:{title:'Fridge magnets: Present Continuous',help:'Look at the picture (move the magnifier over it!) and build a sentence about the person. Pick a type: statement, negative or question. Then press Check.',hints:['Statement: She + is + V-ing. (She is dancing.) Negative: She + isn’t + V-ing.','Question: Is + she + V-ing? (Is she dancing?) Short answers: Yes, she is. / No, she isn’t.'],types:MGXT,pic:1,
   items:()=>{const o=[];ACTIONS.forEach(a=>{const n=a[0];o.push(['+',['She is '+n+'.'],a[1],n]);o.push(['-',['She isn’t '+n+'.','She is not '+n+'.'],a[1],n]);o.push(['?',['Is she '+n+'?'],a[1],n])});return o}}};
 const MGXQ={};
@@ -11191,11 +11191,11 @@ TYD.kig=tyMk('Typewriter: add -ing','Type the verb in brackets with -ing and pre
 ['She is ___ (read) a book.','reading','p'],['He is ___ (play) football.','playing','p'],['They are ___ (eat) lunch.','eating','p'],['I am ___ (listen) to music.','listening','p'],['The cat is ___ (sleep).','sleeping','p'],['We are ___ (walk) to school.','walking','p'],['The boy is ___ (draw).','drawing','p'],['She is ___ (cook) soup.','cooking','p'],['Mum is ___ (watch) TV.','watching','p'],['The dog is ___ (jump).','jumping','p'],
 ['They are ___ (dance).','dancing','e'],['I am ___ (make) a cake.','making','e'],['The girl is ___ (ride) a bike.','riding','e'],['He is ___ (write) a letter.','writing','e'],['We are ___ (bake) cookies.','baking','e'],['Mum is ___ (take) photos.','taking','e'],['She is ___ (have) a shower.','having','e'],['The boy is ___ (come) home.','coming','e'],['He is ___ (drive) a bus.','driving','e'],
 ['Fish are ___ (swim).','swimming','d'],['The dog is ___ (run).','running','d'],['She is ___ (sit) on the bed.','sitting','d'],['He is ___ (get) dressed.','getting','d'],['We are ___ (shop).','shopping','d'],['I am ___ (clap).','clapping','d'],['The baby is ___ (hug) a bear.','hugging','d'],['The kids are ___ (stop).','stopping','d']]);
-MGXC.mkb={title:'Fridge magnets: To be',help:'Pick a sentence type. Drag the word magnets onto the white strip and put them in the right order. Then press Check.',hints:['Statement: I am / He is / They are + the rest. (She is tall.) Negative: + not / isn’t / aren’t.','Question: Am / Is / Are goes FIRST. (Is it a crab?)'],types:MGXT,items:()=>[
+MGXC.mkb={title:'Fridge magnets: To be',help:'Pick a sentence type. Drag the word magnets onto the fridge door and put them in the right order. Then press Check.',hints:['Statement: I am / He is / They are + the rest. (She is tall.) Negative: + not / isn’t / aren’t.','Question: Am / Is / Are goes FIRST. (Is it a crab?)'],types:MGXT,items:()=>[
 ['+',['I am happy.']],['+',['She is tall.']],['+',['He is my dad.']],['+',['We are friends.']],['+',['They are crabs.']],['+',['It is a starfish.']],['+',['The cat is on the bed.']],['+',['You are funny.']],['+',['My mum is kind.']],['+',['I am nine.']],['+',['The sea is blue.']],['+',['The whale is big.']],
 ['-',['I am not sad.']],['-',['She isn’t tall.']],['-',['He isn’t my brother.']],['-',['They aren’t crabs.']],['-',['It isn’t a shark.']],['-',['We aren’t tired.']],['-',['The boat isn’t red.']],['-',['You aren’t late.']],
 ['?',['Is it a starfish?']],['?',['Are you happy?']],['?',['Is she tall?']],['?',['Are they dolphins?']],['?',['Is he your brother?']],['?',['Is the cat under the bed?']],['?',['Are we late?']],['?',['Is it a crab?']]]};
-MGXC.mks={title:'Fridge magnets: I like / I don’t like',help:'Pick a sentence type. Drag the word magnets onto the white strip and put them in the right order. Then press Check.',hints:['Statement: I like / She likes + the rest. (She likes soup.) Negative: don’t / doesn’t + like.','Question: Do / Does goes FIRST. (Does she like soup?)'],types:MGXT,items:()=>[
+MGXC.mks={title:'Fridge magnets: I like / I don’t like',help:'Pick a sentence type. Drag the word magnets onto the fridge door and put them in the right order. Then press Check.',hints:['Statement: I like / She likes + the rest. (She likes soup.) Negative: don’t / doesn’t + like.','Question: Do / Does goes FIRST. (Does she like soup?)'],types:MGXT,items:()=>[
 ['+',['I like pizza.']],['+',['She likes soup.']],['+',['He likes milk.']],['+',['We like cats.']],['+',['I play football.']],['+',['My dog likes bones.']],['+',['She eats an apple.']],['+',['They like chocolate.']],['+',['My mum cooks soup.']],['+',['I get up at seven.']],
 ['-',['I don’t like fish.']],['-',['She doesn’t like soup.']],['-',['He doesn’t like peas.']],['-',['We don’t like rain.']],['-',['They don’t play tennis.']],['-',['My cat doesn’t like milk.']],
 ['?',['Do you like pizza?']],['?',['Does she like soup?']],['?',['Do they like cats?']],['?',['Does he play football?']],['?',['Do you like yoghurt?']],['?',['Does your dog like bones?']]]};
@@ -11311,7 +11311,7 @@ function dmPicDesc(kind){
  setView(`<section class="panel k-card cbpanel"><div class="cbbar"><button class="lvb" id="dmback">← Topics</button><h2>${title}</h2><div></div></div>
  <div class="rmctl" id="dptabs"><button class="lvb${S.dpic==='park'?' on':''}" data-p="park">Park by the river</button><button class="lvb${S.dpic==='market'?' on':''}" data-p="market">Supermarket</button></div>
  <div class="dpw"><div id="dpscene" class="dpsc"></div><div class="dpr"><div class="drq" id="dpq"></div><div class="rmctl"><button class="lvb" id="dpnext">Next question →</button><button class="lvb" id="dpshow">👁 Show answer</button></div><div class="drq" id="dpa" hidden></div>
- <div class="fqph">${(kind==='pc'?['is / are + V-ing','in the middle','on the left / right','next to','behind','in front of']:['There is / There are','some / any','a lot of','on · under · next to','behind · in front of','between']).map(x=>`<span>${x}</span>`).join('')}</div></div></div></section>`);
+ ${kind==='pc'?'':`<div class="fqph">${(kind==='pc'?['is / are + V-ing','in the middle','on the left / right','next to','behind','in front of']:['There is / There are','some / any','a lot of','on · under · next to','behind · in front of','between']).map(x=>`<span>${x}</span>`).join('')}</div>`}</div></div></section>`);
  $('#dmback').onclick=spSetup;
  $('#dptabs').onclick=e=>{const b=e.target.closest('[data-p]');if(!b)return;S.dpic=b.dataset.p;save();dmPicDesc(kind)};
  const view=$('#view'),avail=Math.max(260,($('.dpw').clientWidth||900)),W=Math.round(Math.min(900,avail>=760?avail*.64:avail-6,(window.innerHeight-110)*P.w/P.h+40));
@@ -11560,59 +11560,30 @@ const MGFREE={
  small:['not','to','very','of','for','in','on','at','with','and','but','because']};
 let MGKEEP=null;
 function dmMagnets(id,lv){
- const X=lv&&typeof lv==='object'?lv:null;a1css();
- const free=!X&&S.mgmode==='free';
- const st=dmShell(id,X?X.title:'Fridge magnets: word order',X?X.help:free?'Free mode: put the word magnets on the white strip and build your own sentences. TAP a word to change it: the ending, the negative, a prefix, a suffix, the pronoun…':'Drag the word magnets onto the white strip on the fridge and put them in the right order. Then press Check.',X?X.hints:MGH);
+ a1css();const X=lv&&typeof lv==='object'?lv:null,free=!X&&S.mgmode==='free';
+ const cfg=X||{title:'Fridge magnets: word order',help:free?'Drag magnets onto the fridge door. Tap ↻ to change a word.':'Drag magnets onto the fridge door to build a sentence, then press Check.',hints:MGH};
+ const st=dmShell(id,cfg.title,cfg.help.replace(/fridge door/gi,'fridge door'),cfg.hints);
  $('#dmnew').textContent=free?'↻ New words':'↻ New sentence';
- const mb=document.createElement('div');mb.className='rmctl mgmodes';mb.innerHTML=`<button class="lvb${free?'':' on'}" data-m="sent">Sentences</button><button class="lvb${free?' on':''}" data-m="free">Free words</button>`;st.parentNode.insertBefore(mb,st);
- mb.onclick=e=>{const b=e.target.closest('[data-m]');if(!b)return;MGKEEP=null;S.mgmode=b.dataset.m==='free'?'free':'sent';save();dmMagnets(id,lv)};
- let P=null,sent,canon;
- if(X){S.mgxt=S.mgxt||{};const cur=X.types.some(t=>t[0]===S.mgxt[id])?S.mgxt[id]:'all';S.mgxt[id]=cur;mb.innerHTML=X.types.map(x=>`<button class="lvb${cur===x[0]?' on':''}" data-t="${x[0]}">${esc(x[1])}</button>`).join('');
+ const mb=document.createElement('div');mb.className='rmctl mgmodes';st.before(mb);
+ let round;
+ if(X){S.mgxt=S.mgxt||{};const cur=X.types.some(t=>t[0]===S.mgxt[id])?S.mgxt[id]:'all';S.mgxt[id]=cur;
+  mb.innerHTML=X.types.map(x=>`<button class="lvb${cur===x[0]?' on':''}" data-t="${x[0]}">${esc(x[1])}</button>`).join('');
   mb.onclick=e=>{const b=e.target.closest('[data-t]');if(!b)return;S.mgxt[id]=b.dataset.t;save();delete MGXQ[id+b.dataset.t];dmMagnets(id,lv)};
-  P=mgxPick(id,X);sent=P.s;canon=sent[0]}
- else{const L=MGS[lv];S.mgi=((S.mgi|0)+1)%L.length;sent=L[S.mgi];canon=sent[0]}
- if(X&&X.b1){b1MagnetRound(st,mb,id,X,P);return}
- const W=st.clientWidth||900,H=720,FH=704,FW=Math.round(FH*560/1294),fx=(P&&P.pic)?Math.round(Math.min((W-FW)/2+90,W-FW-150)):Math.round((W-FW)/2),fy=8,RH=72,SH=RH*4+14,SX=fx+14,SW=FW-28,SY=Math.round(fy+FH*.4);
- st.style.height=H+'px';st.style.background='#EFE7D8';st.style.overflow='hidden';
- st.innerHTML=`<img src="ch/mf_fridge.webp" alt="" style="position:absolute;left:${fx}px;top:${fy}px;width:${FW}px;height:${FH}px;z-index:0;filter:drop-shadow(0 8px 12px #0004)"><div class="mgtl" style="left:10px;width:${Math.max(120,fx-20)}px;top:12px;text-align:left;color:#2724d1;font-size:22px;line-height:1.15">${free?'Build your own sentences!':(P?'Make the '+MGXN[P.t]+'!':'Make the sentence!')}</div><div class="mgst" id="mgst" style="left:${SX}px;top:${SY}px;width:${SW}px;height:${SH}px"></div>`;
- let y0L=84;
- if(P&&P.pic){const ps=Math.min(380,fx-28);if(ps>=150){const pe=magPic(P.pic,ps,'🔍 move the lens over the picture');pe.style.cssText+=`;position:absolute;left:14px;top:62px;z-index:2`;st.appendChild(pe);y0L=62+ps+16}
-  else{const w=document.createElement('div');w.className='rmctl';w.style.justifyContent='center';w.appendChild(magPic(P.pic,Math.min(280,W-30),'🔍 move the lens over the picture'));st.parentNode.insertBefore(w,st)}}
- /* every chip is a word glued to one of the magnets */
- const mq=shuffle(MGN.slice()),pin=()=>{if(!mq.length)mq.push(...shuffle(MGN.slice()));return mq.pop()};
- let defs;
- if(free){const pk=(a,n)=>shuffle(a.slice()).slice(0,n),vb=m=>[m[0],m[1],m[2],m[3],'don’t '+m[0],'doesn’t '+m[0],'didn’t '+m[0]];
-  const rot=a=>{const k=Math.floor(Math.random()*a.length);return a.slice(k).concat(a.slice(0,k))};
-  defs=[].concat(MGFREE.pron,pk(MGV,4).map(vb),pk(MGFREE.aux,2),pk(MGFREE.noun,3),pk(MGFREE.adj,2),pk(MGFREE.affix,1),pk(MGFREE.adv,2),pk(MGFREE.prep,3),pk(MGFREE.conj,1),pk(MGFREE.det,1),pk(MGFREE.qw,1),pk(MGFREE.small,4).map(x=>[x]));
-  defs=defs.map(f=>{const g=f.length>1?rot(f):f;return {forms:g,fi:0,w:g[0]}});
-  if(MGKEEP&&MGKEEP.keep){MGKEEP.items.forEach((k,j)=>defs.push({forms:k.forms,fi:k.fi,w:k.w,pn:k.pn,keep:j}))}MGKEEP=null}
- else{const words=canon.split(' ').map((w,wi)=>w==='I'||/^I[’']/.test(w)||(X&&wi>0)?w:w.charAt(0).toLowerCase()+w.slice(1));defs=words.map(w=>({forms:[w],fi:0,w:w}))}
- const chips=shuffle(defs.map((o,i)=>{o.i=i;return o})).map((o,j)=>{const el=document.createElement('div');el.className='mgc';el.style.background=CBCOL[(o.i*3+j)%13];o.e=el;const paint=()=>{el.innerHTML=`<img class="mgp" draggable="false" src="ch/mg_${o.pn}.webp" alt=""><span>${esc(o.w)}</span>${o.forms.length>1?'<i class="mgx">↻</i>':''}`};o.pn=o.pn||pin();o.paint=paint;paint();st.appendChild(el);return o});
- const order=[];if(free)chips.filter(c=>c.keep!==undefined).sort((a,b)=>a.keep-b.keep).forEach(c=>order.push(c));
- const rowOf=cy=>Math.max(0,Math.min(3,Math.floor((cy-SY-6)/RH)));
- const lay=()=>{let r=0,cx=SX+8;order.forEach(c=>{const w=c.e.offsetWidth+6;if(cx+w>SX+SW-6&&cx>SX+8){r++;cx=SX+8}c.e.style.left=cx+'px';c.e.style.top=(SY+7+r*RH)+'px';c.e._r=r;cx+=w});
-  const reg=[[8,fx-8],[fx+FW+8,W-8]],pos=[[reg[0][0],y0L],[reg[1][0],14]];let side=0;
-  chips.filter(c=>!order.includes(c)).forEach((c,i)=>{const w=c.e.offsetWidth+18;let p=pos[side];if(p[0]+w>reg[side][1]&&p[0]>reg[side][0]){p[0]=reg[side][0];p[1]+=RH-4}
-   c.e.style.left=p[0]+'px';c.e.style.top=p[1]+'px';p[0]+=w;if(i%3===2)side=1-side})};
- chips.forEach(c=>dmDrag(c.e,st,()=>{const el=c.e,cx=el.offsetLeft+el.offsetWidth/2,cy=el.offsetTop+el.offsetHeight/2;el.classList.remove('mgok','mgno');
-  const k=order.indexOf(c);if(k>=0)order.splice(k,1);
-  if(cy>SY-14&&cy<SY+SH+14&&cx>SX-10&&cx<SX+SW+10){const key=rowOf(cy)*100000+cx;let idx=order.length;for(let t=0;t<order.length;t++){const o=order[t].e,ok=(o._r||0)*100000+o.offsetLeft+o.offsetWidth/2;if(ok>key){idx=t;break}}order.splice(idx,0,c)}
-  lay()},free?()=>{if(c.forms.length<2)return;c.fi=(c.fi+1)%c.forms.length;c.w=c.forms[c.fi];c.paint();try{sfx('click')}catch(e){}lay()}:null));
- lay();
- if(free)$('#dmnew').onclick=()=>{MGKEEP={keep:true,items:order.map(c=>({forms:c.forms,fi:c.fi,w:c.w,pn:c.pn}))};dmMagnets(id,lv)};
- const res=document.createElement('div');res.className='dmres';
- if(free){st.parentNode.appendChild(res);res.innerHTML='<div class="clkres">Tap a word with ↻ to change its form: -s, -ed, -ing, negative, prefix, suffix, pronoun…</div>';return}
- const row=document.createElement('div');row.className='rmctl';row.innerHTML='<button class="lvb" id="mgchk">✓ Check</button><button class="lvb" id="mgans">Show answer</button>';st.parentNode.appendChild(row);st.parentNode.appendChild(res);
- const words=canon.split(' ');
- const norm=a=>a.join(' ').toLowerCase().replace(/[.,?!]/g,'').replace(/\s+/g,' ').trim();
- $('#mgchk').onclick=()=>{if(!order.length){res.innerHTML='<div class="muted">Drag the words onto the white strip first.</div>';return}
-  const mine=norm(order.map(c=>c.w)),vs=sent.map(s=>norm(s.split(' ')));
-  chips.forEach(c=>c.e.classList.remove('mgok','mgno'));
-  if(vs.includes(mine)&&order.length===words.length){chips.forEach(c=>c.e.classList.add('mgok'));res.innerHTML=`<div class="clkres">Perfect! Read it aloud: <b>${esc(order.map(c=>c.w).join(' '))}</b></div>`}
-  else{const cl=w=>w.toLowerCase().replace(/[.,?!]/g,''),sc=a=>a.filter((w,i)=>order[i]&&cl(order[i].w)===w).length,best=sent.map(s=>s.split(' ').map(cl)).sort((a,b)=>sc(b)-sc(a))[0];
-   order.forEach((c,i)=>c.e.classList.add(best[i]===cl(c.w)?'mgok':'mgno'));
-   res.innerHTML=`<div class="clkres">${order.length<words.length?'Not all the words are on the strip yet. ':'Not yet. '}Green = right place, red = try another place.</div>`}};
- $('#mgans').onclick=()=>{res.innerHTML=`<div class="clkres">${esc(sent.join('  /  '))}</div>`}}
+  round=mgxPick(id,X);
+ }else{
+  mb.innerHTML=`<button class="lvb${free?'':' on'}" data-m="sent">Sentences</button><button class="lvb${free?' on':''}" data-m="free">Free words</button>`;
+  mb.onclick=e=>{const b=e.target.closest('[data-m]');if(!b)return;MGKEEP=null;S.mgmode=b.dataset.m;save();dmMagnets(id,lv)};
+  if(free){
+   const pickFree=(a,n)=>shuffle(a.slice()).slice(0,n);
+   const lists=[...MGFREE.pron,...shuffle(MGV.slice()).slice(0,4).map(v=>[v[0],v[1],v[2],v[3],'don’t '+v[0],'doesn’t '+v[0],'didn’t '+v[0]]),...pickFree(MGFREE.aux,2),...pickFree(MGFREE.noun,3),...pickFree(MGFREE.adj,2),...pickFree(MGFREE.affix,1),...pickFree(MGFREE.adv,1),...pickFree(MGFREE.prep,2),...pickFree(MGFREE.det,1),...pickFree(MGFREE.qw,1),...pickFree(MGFREE.small,4).map(x=>[x])];
+   const pieces=lists.map(forms=>({word:forms[0],forms,fi:0}));
+   if(MGKEEP){MGKEEP.items.forEach(p=>pieces.push({...p,keep:true}));MGKEEP=null}
+   round={t:'+',s:[''],extra:{free:true,freePieces:pieces}};
+  }else{const L=MGS[lv]||MGS.a1;S.mgi=((S.mgi|0)+1)%L.length;round={t:'+',s:L[S.mgi],extra:{}}}
+ }
+ if(id==='mgc')$('#dmhint').hidden=true;
+ b1MagnetRound(st,mb,id,cfg,round);
+}
 
 const PSO=[['I','my','mine'],['you','your','yours'],['he','his','his'],['she','her','hers'],['we','our','ours'],['they','their','theirs']];
 const PSN=[['phone',0],['laptop',0],['umbrella',0],['camera',0],['keys',1],['books',1],['notebook',0],['charger',0],['smart watch',0],['mirror',0],['kettle',0],['alarm clock',0],['computer',0],['cookies',1],['apples',1],['toys',1],['carrots',1],['coffee',0],['tea',0],['milk',0],['speaker',0],['AirPods',1],['backpack',0],['suitcase',0]];
@@ -12837,6 +12808,7 @@ async function boot(){
  go('home')}
 </script>
 <script src="b1-magnets.js"></script>
+<script src="grammar-practice-refresh.js"></script>
 <script src="b1-content.js"></script>
 <script src="unbox/tasks.js"></script>
 <script src="unbox/app.js"></script>

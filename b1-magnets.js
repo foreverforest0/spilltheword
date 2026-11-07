@@ -1,4 +1,4 @@
-/* B1 sentence magnets. Shared round UI, explicit answer banks, no remote services. */
+/* B1 sentence banks and shared fridge UI for all grammar levels. */
 const B1MAG = {};
 function b1Rows(type, text) {
  return text.trim().split('\n').map(line=>[type,line.split(' | ')]);
@@ -6,7 +6,7 @@ function b1Rows(type, text) {
 function b1Add(key,title,group,types,items,hints) {
  const id='mb1'+key;
  const cfg={title:'Fridge magnets: '+title,b1:true,types:[['all','Mixed / all types'],...types],items:()=>items,
-  help:'Choose a mode. Drag or tap magnets to build the answer, then press Check. Tap a magnet on the strip to return it. Try the challenge for extra forms.',
+  help:'Choose a mode. Drag or tap magnets to build the answer, then press Check. Tap a magnet on the door to return it. Try the challenge for extra forms.',
   hints:hints||['Read the context and find the subject and auxiliary first.','Check the word order, verb form and time words.']};
  B1MAG[id]=cfg;MGXC[id]=cfg;DMT[id]=1;DMTF[id]=()=>dmMagnets(id,cfg);
  SPSHORT[id]='Fridge magnets: '+title;SPGRP.b1[group][1].push(id);SPLV.find(l=>l[0]==='b1')[2].push(id);
@@ -231,35 +231,50 @@ const B1WORDS=[
 b1Add('wf','Word Formation',11,[['prefix','Prefixes'],['suffix','Suffixes'],['spelling','Word building / spelling']],B1WORDS.map(([t,p,a,b,word])=>[t,[a+' '+b],null,null,{prompt:p,tokens:[a,b],word,follow:'Read the complete sentence aloud.'}]),['Build the word from left to right, then use it in the gap.','Some spellings change: happy + ness → happiness; decide + ion → decision; fame + ous → famous.']);
 const B1MAGSTYLE=document.createElement('style');
 B1MAGSTYLE.textContent=`
-.b1-context{font-size:18px;line-height:1.6;padding:14px;background:#fff7dc;border:2px solid #2724d1;border-radius:8px;margin:12px 0;overflow-wrap:anywhere}
-.b1-fridge{background:#e8ecdf;border:3px solid #343535;border-radius:22px;padding:24px 14px 16px;box-shadow:inset 8px 0 #c7cec1;min-height:380px}
-.b1-strip,.b1-bank{display:flex;gap:10px;flex-wrap:wrap;align-content:flex-start;padding:12px;min-height:110px;border:2px dashed #595975;border-radius:8px;background:#fffef7}
-.b1-bank{background:transparent;border:0;margin-top:20px;min-height:140px}
-.b1-magnet{position:relative;display:flex;align-items:center;gap:6px;padding:7px 10px!important;min-height:46px;background:#fff!important;color:#232323!important;border:1px solid #777!important;border-radius:7px!important;font:500 17px Inter,system-ui,sans-serif!important;box-shadow:2px 3px 0 #34353544;cursor:grab;touch-action:none;max-width:100%;overflow-wrap:anywhere}
-.b1-magnet img{width:26px;height:26px;object-fit:contain;pointer-events:none}.b1-magnet span{pointer-events:none}
-.b1-magnet:focus-visible{outline:3px solid #2724d1;outline-offset:3px}.b1-magnet.good{background:#DCFF6A!important}.b1-magnet.bad{background:#F9B1B2!important}
-.b1-prefix{font-size:19px;font-weight:600;margin:0 0 12px}.b1-empty{color:#666;pointer-events:none;font-size:16px}.b1-answer{padding:12px;font-size:18px;line-height:1.5}.b1-controls{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.b1-stage{height:auto!important;min-height:440px;overflow:visible!important}
-@media(max-width:500px){.b1-fridge{padding:16px 8px}.b1-strip,.b1-bank{gap:7px;padding:8px}.b1-magnet{font-size:15px!important;padding:6px!important}.b1-magnet img{width:20px;height:20px}}
+.b1-context{font:19px/1.4 Georgia,serif;padding:14px;background:#CCE5FF;color:#70271F;border:0;margin:12px 0;overflow-wrap:anywhere}
+.b1-magnet-layout{display:grid;grid-template-columns:minmax(0,440px) minmax(220px,1fr);gap:26px;align-items:start;max-width:1040px;margin:auto}
+.b1-fridge{position:relative;width:100%;aspect-ratio:560/1294;background:transparent;border:0;padding:0;box-shadow:none}
+.magnet-fridge-art{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.b1-fridge.blue .magnet-fridge-art{filter:brightness(.6) sepia(1) saturate(5) hue-rotate(173deg) brightness(.85)}
+.b1-strip{position:absolute;inset:42% 6% 11%;display:flex;gap:9px;flex-wrap:wrap;align-content:flex-start;align-items:flex-start;padding:9px;background:transparent!important;border:0!important;box-shadow:none!important}
+.b1-bank{display:flex;gap:10px;flex-wrap:wrap;align-content:flex-start;padding:12px 0;min-height:210px;background:transparent;border:0}
+.b1-bank-side{position:sticky;top:20px;padding-top:12px}
+.b1-magnet{position:relative;display:flex;align-items:center;gap:5px;padding:8px 10px!important;min-height:44px;color:#70271F!important;border:0!important;border-radius:5px!important;font:18px/1.2 Georgia,serif!important;box-shadow:1px 3px 4px #26422B30;cursor:grab;touch-action:none;max-width:100%;overflow-wrap:anywhere;background:#CCE5FF!important}
+.b1-magnet:nth-child(3n+2){background:#F4DDF4!important}.b1-magnet:nth-child(3n){background:#F5E99A!important;color:#26422B!important}
+.b1-magnet img{width:25px;height:25px;object-fit:contain;pointer-events:none}.b1-magnet span{pointer-events:none}
+.b1-magnet:focus-visible{outline:2px solid #70271F;outline-offset:3px}.b1-magnet.good{background:#B2BC70!important}.b1-magnet.bad{background:#FF9275!important}
+.b1-prefix{position:absolute;top:14%;left:10%;right:10%;font:21px/1.35 Georgia,serif;color:#70271F;margin:0}.blue .b1-prefix,.blue .b1-empty{color:#F9F5E6}
+.b1-empty{color:#26422B;pointer-events:none;font:18px/1.4 Georgia,serif}.b1-answer{padding:12px;font:20px/1.4 Georgia,serif;color:#26422B}
+.b1-controls{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin:16px 0}.b1-check-row{display:flex;gap:10px;flex-wrap:wrap}.b1-new-row{display:block}
+.mgmodes .lvb.on,.b1-controls .lvb.on{background:#70271F!important;color:#F9F5E6!important}
+.b1-controls .lvb{background:#CCE5FF;color:#70271F;border:0;box-shadow:none;font:17px Georgia,serif}.b1-stage{height:auto!important;min-height:0;overflow:visible!important;background:transparent!important}
+.b1-drag-ghost{position:fixed;z-index:500;pointer-events:none;max-width:240px;opacity:.95}
+@media(max-width:620px){.b1-magnet-layout{grid-template-columns:minmax(0,1fr);gap:10px}.b1-fridge{max-width:420px;margin:auto}.b1-bank-side{position:sticky;top:60px;z-index:6;grid-row:1;padding-top:0;background:#F9F5E6}.b1-bank{gap:8px;min-height:80px;max-height:30vh;overflow:auto;padding:6px}.b1-strip{gap:7px;padding:5px}.b1-magnet{font-size:16px!important;padding:7px!important;min-height:36px}.b1-magnet img{width:20px;height:20px}.b1-context{font-size:17px}}
 `;
 document.head.appendChild(B1MAGSTYLE);
 function b1MagnetRound(st,mb,id,cfg,round){
- const extra=round.extra, answers=round.s;
+ const extra=round.extra||{}, answers=round.s;
  const norm=s=>s.toLowerCase().replace(/[.,?!]/g,'').replace(/[’‘]/g,"'").replace(/\s+/g,' ').trim();
  st.classList.add('b1-stage');
  const level=document.createElement('div');level.className='b1-controls';
  S.b1challenge=S.b1challenge||{};
  level.innerHTML=['guided','challenge'].map(m=>`<button class="lvb${(S.b1challenge[id]||'guided')===m?' on':''}" data-level="${m}">${m==='guided'?'Only needed magnets':'Challenge: extra forms'}</button>`).join('');
- mb.after(level);
+ if(cfg.b1)mb.after(level);
  level.onclick=e=>{const b=e.target.closest('[data-level]');if(!b)return;S.b1challenge[id]=b.dataset.level;save();dmMagnets(id,cfg)};
  const prompt=document.createElement('div');prompt.className='b1-context';
  prompt.textContent=extra.prompt||'Build the sentence. You can drag or tap magnets. Drag before another magnet to change the order.';
  st.before(prompt);
- st.innerHTML=`<div class="b1-fridge"><p class="b1-prefix"></p><div class="b1-strip" role="group" aria-label="Your answer"></div><div class="b1-bank" role="group" aria-label="Available magnets"></div></div><div class="b1-controls"><button class="lvb" id="mgchk">✓ Check</button><button class="lvb" id="mgans">Show answer</button><button class="lvb" id="b1undo">↶ Undo</button><button class="lvb" id="b1reset">Reset</button></div><div class="b1-answer" role="status" aria-live="polite"></div>`;
+ const blue=cfg.b1||['b1','b2','c1'].includes(S.splevel)||(!S.splevel&&['b1','b2','c1'].includes(S.glevel));
+ st.innerHTML=`<div class="b1-magnet-layout"><div class="b1-fridge${blue?' blue':''}" aria-label="${blue?'Blue':'Beige'} fridge"><img class="magnet-fridge-art" src="ch/mf_fridge.webp" alt=""><p class="b1-prefix"></p><div class="b1-strip" role="group" aria-label="Your answer on the fridge door"></div></div><div class="b1-bank-side"><div class="b1-magnet-picture"></div><div class="b1-bank" role="group" aria-label="Available magnets"></div></div></div><div class="b1-controls"><div class="b1-new-row"></div><div class="b1-check-row"><button class="lvb" id="mgchk">✓ Check</button><button class="lvb" id="mgans">Show answer</button><button class="lvb" id="b1undo">↶ Undo</button><button class="lvb" id="b1reset">Reset</button></div></div><div class="b1-answer" role="status" aria-live="polite"></div>`;
+ st.querySelector('.b1-new-row').appendChild($('#dmnew'));
+ if(round.pic){const box=st.querySelector('.b1-magnet-picture'),size=Math.max(180,Math.min(340,box.parentElement.clientWidth));box.appendChild(magPic(round.pic,size,''))}
+ if(extra.free){$('#mgchk').hidden=true;$('#mgans').hidden=true;$('#dmnew').onclick=()=>{MGKEEP={items:order.map(p=>({word:p.word,forms:p.forms,fi:p.fi}))};dmMagnets(id,null)}}
+
  const prefix=st.querySelector('.b1-prefix');prefix.textContent=extra.prefix||'';prefix.hidden=!extra.prefix;
  const strip=st.querySelector('.b1-strip'),bank=st.querySelector('.b1-bank'),result=st.querySelector('.b1-answer');
  const tokens=extra.tokens||answers[0].replace(/[.,?!]/g,'').split(' ');
  const variants={reading:['read','reading','to read'],opening:['open','opening','to open'],driving:['drive','driving','to drive'],going:['go','going','to go'],learning:['learn','learning','to learn'],saying:['say','saying','to say'],seeing:['see','seeing','to see'],being:['be','being','to be'],Learning:['Learn','Learning','To learn'],raining:['rain','raining','to rain'],drinking:['drink','drinking','to drink'],locking:['lock','locking','to lock'], 'to take':['take','taking','to take'], 'to help':['help','helping','to help'], 'to finish':['finish','finishing','to finish'], 'to buy':['buy','buying','to buy'], 'to drive':['drive','driving','to drive'], 'to rent':['rent','renting','to rent'], 'to get':['get','getting','to get'], 'to dance':['dance','dancing','to dance'], 'to lock':['lock','locking','to lock'],turning:['turn','turning','to turn'],waiting:['wait','waiting','to wait'],restarting:['restart','restarting','to restart']};
- let pieces=tokens.map((word,index)=>({word,index,forms:extra.forms&&variants[word]?variants[word]:[word],fi:0}));
+ let pieces=extra.freePieces?extra.freePieces.map((p,index)=>({...p,index})):tokens.map((word,index)=>({word,index,forms:extra.forms&&variants[word]?variants[word]:[word],fi:0}));
  if(extra.forms)pieces.forEach(p=>{p.fi=p.forms.indexOf(p.word)});
  // Each alternative answer is accepted with its own length (e.g. optional "that").
  
@@ -269,31 +284,34 @@ function b1MagnetRound(st,mb,id,cfg,round){
   pieces.push(...extras.map((word,i)=>({word,index:tokens.length+i,forms:[word],fi:0,extra:true})));
  }
  if(extra.forms)pieces.forEach(p=>{if(p.forms.length>1){p.fi=(p.fi+1)%p.forms.length;p.word=p.forms[p.fi]}});
- let order=[],history=[];
+ const bankOrder=shuffle(pieces.slice());
+ let order=pieces.filter(p=>p.keep),history=[];
  const remember=()=>history.push({order:order.slice(),forms:pieces.map(p=>p.fi)});
  const paint=()=>{
   strip.replaceChildren();bank.replaceChildren();
-  if(!order.length){const hint=document.createElement('span');hint.className='b1-empty';hint.textContent=extra.word?'Build a word here':'Put your answer here';strip.append(hint)}
-  [...order,...shuffle(pieces.filter(p=>!order.includes(p)))].forEach(p=>{
+  if(!order.length){const hint=document.createElement('span');hint.className='b1-empty';hint.textContent=extra.word?'Build the word on the door':'Drag magnets onto the door';strip.append(hint)}
+  [...order,...bankOrder.filter(p=>!order.includes(p))].forEach(p=>{
    const on=order.includes(p),el=document.createElement('button');p.el=el;el.type='button';el.className='b1-magnet';el.dataset.piece=p.index;
    const pin=MGN[p.index%MGN.length];
    el.innerHTML=`<img src="ch/mg_${pin}.webp" alt="" draggable="false"><span>${esc(p.word)}</span>`;
    el.setAttribute('aria-label',p.word+(on?' — return to bank':' — add to answer'));
-   el.onclick=()=>{remember();order=on?order.filter(x=>x!==p):[...order,p];result.textContent='';paint()};
+   let wasDragged=false;el.onclick=()=>{if(wasDragged){wasDragged=false;return}remember();order=on?order.filter(x=>x!==p):[...order,p];result.textContent='';paint()};
    // Pointer drag works with mouse and touch; a click remains a keyboard alternative.
-   let drag=null;
-   el.onpointerdown=e=>{if(e.button!==0)return;drag={x:e.clientX,y:e.clientY};el.setPointerCapture(e.pointerId)};
+   let drag=null,ghost=null;
+   const cleanup=()=>{if(ghost)ghost.remove();ghost=null;el.style.opacity=''};
+   el.onpointerdown=e=>{if(e.button!==0)return;drag={x:e.clientX,y:e.clientY};wasDragged=false;el.setPointerCapture(e.pointerId)};
+   el.onpointermove=e=>{if(!drag)return;if(Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y)>8){wasDragged=true;if(!ghost){ghost=el.cloneNode(true);ghost.classList.add('b1-drag-ghost');document.body.appendChild(ghost);el.style.opacity='.3'}ghost.style.left=(e.clientX-ghost.offsetWidth/2)+'px';ghost.style.top=(e.clientY-20)+'px'}};
    el.onpointerup=e=>{
-    if(!drag)return;const moved=Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y)>8;drag=null;if(!moved)return;
-    el.releasePointerCapture(e.pointerId);const target=document.elementFromPoint(e.clientX,e.clientY);
-    if(!target)return;
-    remember();
-    if(strip.contains(target)){
+    if(!drag)return;drag=null;if(!wasDragged)return;
+    cleanup();el.releasePointerCapture(e.pointerId);e.preventDefault();const target=document.elementFromPoint(e.clientX,e.clientY);if(!target)return;
+    const fridge=st.querySelector('.b1-fridge');remember();
+    if(fridge.contains(target)){
      order=order.filter(x=>x!==p);const before=target.closest('[data-piece]');const pos=before?order.findIndex(x=>x.index===+before.dataset.piece):-1;
      if(pos<0)order.push(p);else order.splice(pos,0,p);
     }else if(bank.contains(target))order=order.filter(x=>x!==p);
     result.textContent='';paint();
    };
+   el.onpointercancel=()=>{drag=null;wasDragged=false;cleanup()};
    (on?strip:bank).append(el);
    if(p.forms.length>1){
     const change=document.createElement('button');change.type='button';change.className='lvb';change.textContent='↻';change.setAttribute('aria-label','Change form of '+p.word);
@@ -306,7 +324,7 @@ function b1MagnetRound(st,mb,id,cfg,round){
  $('#b1reset').onclick=()=>{remember();order=[];result.textContent='';paint()};
  $('#mgans').onclick=()=>{result.textContent=extra.word?`${tokens.join(' + ')} → ${extra.word}. ${extra.prompt.replace('___',extra.word)}`:(extra.prefix?extra.prefix+' ':'')+answers.join(' / ')};
  $('#mgchk').onclick=()=>{
-  if(!order.length){result.textContent='Put some magnets on the strip first.';return}
+  if(!order.length){result.textContent='Put some magnets on the door first.';return}
   const mine=norm(order.map(p=>p.word).join(' '));
   const correct=answers.some(a=>norm(a)===mine);
   order.forEach(p=>p.el.classList.toggle('good',correct));
