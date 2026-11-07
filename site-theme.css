@@ -33,3 +33,38 @@ body.stw-site-theme #view .shbud{background:#CCE5FF}body.stw-site-theme #view .s
 body.stw-site-theme #view .shdep.on{background:#70271F;color:#F9F5E6}body.stw-site-theme #view .game-page-title{font:clamp(45px,6vw,78px) Georgia,serif;margin:16px auto 24px;text-align:center}
 body.stw-site-theme #view .shlogo img{height:130px}
 body.stw-site-theme #view .grammar-topic .stw-wavy-title{width:auto!important;max-width:100%;margin:0!important;text-align:left!important;font-size:inherit;line-height:1.4!important}
+/* Instructions occupy their own row and expand in the page flow. */
+body.stw-site-theme #view .blobw{position:relative;left:auto;top:auto;transform:none;margin:0 0 8px;z-index:auto;display:flex;align-items:center;gap:14px;min-height:48px;text-align:left}
+body.stw-site-theme #view .blobb{width:86px;height:48px;flex:none;filter:none;display:flex;align-items:center;gap:4px;overflow:visible}
+body.stw-site-theme #view .blobb img{width:33px;height:33px}
+body.stw-site-theme #view .blobhow{position:static;transform:none;color:#70271F;text-shadow:none;font:14px Georgia,serif;white-space:nowrap}
+body.stw-site-theme #view .blobt{position:static;left:auto;top:auto;width:auto;max-width:760px;border:0;border-radius:3px;background:#fff;box-shadow:none;color:#26422B;padding:10px 14px;font:18px/1.4 Georgia,serif;z-index:auto}
+body.stw-site-theme #view .blobt b{color:#70271F;font:16px Georgia,serif;margin-bottom:3px;text-transform:none}
+body.stw-site-theme #view .cbbar.hasb{padding-left:0;min-height:0}
+body.stw-site-theme #view .blobabs>h2:first-of-type{margin-left:0}
+@media(max-width:620px){body.stw-site-theme #view .blobw{gap:12px;align-items:flex-start}body.stw-site-theme #view .blobb{width:86px}body.stw-site-theme #view .blobt{font-size:16px}}
+/* Finish the A1 controls: no older blue ink or heavy black button borders. */
+body.stw-site-theme{display:flow-root}
+body.stw-site-theme #view:has(.b1-stage){padding-bottom:12px}
+body.stw-site-theme #view :is(.dkm button,#m8ask){border:0!important;box-shadow:none!important;border-radius:3px!important;background:#CCE5FF!important;color:#70271F!important;font:17px Georgia,serif!important;padding:9px 13px}
+body.stw-site-theme #view .dkm button.on{background:#70271F!important;color:#F9F5E6!important}
+body.stw-site-theme #view .dkm button:disabled{background:#F9F5E6!important;color:#26422B!important;opacity:.5}
+body.stw-site-theme #view #m8q{border:1px solid #70271F50!important;color:#70271F!important;box-shadow:none!important;border-radius:3px}
+body.stw-site-theme #view .dmst{background:transparent!important}
+body.stw-site-theme #view :is(.tbc,.dmz,.dmb,.vmt,.gcw,.clktask,.fqbox,.tytask){color:#70271F!important}
+body.stw-site-theme #view .tbc{border:0!important;background:#CCE5FF!important;box-shadow:none!important;border-radius:3px!important}
+body.stw-site-theme #view .dmz>div{color:#26422B!important}
+body.stw-site-theme #view .tytask{border:0!important;box-shadow:none!important;background:#fff;color:#70271F!important}
+body.stw-site-theme #view .b1-bank{flex:0 1 auto}
+body.stw-site-theme #view :is(.m8chips button,.mglight){border:0!important;box-shadow:none!important;background:#CCE5FF!important;color:#70271F!important;border-radius:3px!important;font:16px Georgia,serif!important;padding:8px 11px}
+body.stw-site-theme #view :is(.dmscore,.rmth span,.rmlb,.fcolon,.fap){color:#70271F!important}
+body.stw-site-theme #view .frtap{background:#CCE5FF;color:#70271F;border:0;box-shadow:none}
+body.stw-site-theme #view .tbc.frok{background:#B2BC70!important;color:#26422B!important}
+body.stw-site-theme #view .tbc.frno{background:#FF9275!important;color:#70271F!important}
+body.stw-site-theme #view .gtl button.used{pointer-events:auto}
+body.stw-site-theme #view .gcrule{border:0;box-shadow:none;border-radius:3px;background:#fff;color:#26422B}
+@media(max-width:620px){body.stw-site-theme #view .blobw{margin-top:44px}}
+body.stw-site-theme #view .fcard{background:#26422B;color:#F9F5E6;box-shadow:none}
+body.stw-site-theme #view .fcard::after{background:#F9F5E630}
+body.stw-site-theme #view .fap{background:#CCE5FF;border:0;color:#70271F}
+@media(max-width:620px){body.stw-site-theme #view .tbc{font-size:16px;white-space:normal}}
