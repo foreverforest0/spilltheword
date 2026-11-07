@@ -12718,6 +12718,7 @@ function scrambleRender(msg=''){
   body.grammar-style-active #view h2,body.grammar-style-active #view h3{font-family:Georgia,'Times New Roman',serif!important;font-weight:400!important;color:var(--gc-wine)!important;letter-spacing:normal!important;text-transform:none!important}
   body.grammar-style-active #view button[data-btn],body.grammar-style-active #view .lpb,body.grammar-style-active #view .lvb{font:16px Georgia,'Times New Roman',serif!important;color:var(--gc-wine)!important;border:0!important;border-radius:0!important;box-shadow:none!important}
   body.grammar-style-active #view .grammar-page{max-width:1020px;margin:0 auto;padding:28px 18px 54px;color:var(--gc-wine)}
+   body.grammar-style-active #view .grammar-live-head{display:block!important;width:100%;margin:0 auto 22px}body.grammar-style-active #view .grammar-live-head .grammar-title{width:100%!important;margin:18px auto 24px!important}
   body.grammar-style-active #view .grammar-title{font:400 clamp(52px,8vw,88px)/1 Georgia,'Times New Roman',serif!important;letter-spacing:-.045em!important;text-align:center;margin:10px 0 24px!important}
   body.grammar-style-active #view .grammar-levels{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:0 auto 24px}
   body.grammar-style-active #view .grammar-level{appearance:none;background:transparent;border:0;border-bottom:1px solid transparent;padding:6px 4px;color:var(--gc-green);font:400 16px Georgia,serif!important;cursor:pointer}
@@ -12751,30 +12752,21 @@ function scrambleRender(msg=''){
   `<path d="M7 28q5-16 11-1t11 0 14 1M8 36q5-11 10 0t10 0 14-1" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/><path d="M12 13q4-5 8 0t8 0 8 0" fill="none" stroke="var(--gc-orange)" stroke-width="2.2" stroke-linecap="round"/>`
  ];
  function topicDoodle(i){return `<svg viewBox="0 0 50 50" aria-hidden="true">${doodles[i%doodles.length]}</svg>`}
- glSetup=function(){
-  seaOff();document.body.classList.add('grammar-style-active');
-  if(!['ts','dice','exp','craft','board','deep','absurd','spend','town','town3','city','desk','gacha','photo'].includes(S.gmode))S.gmode='ts';
-  if(S.gmode==='exp'){exSetup();return}
-  if(['craft','board','deep','absurd','spend','town','town3','city','desk','gacha','photo'].includes(S.gmode)){gmNew();return}
-  if(!S.glevel||!GLV.some(x=>x[0]===S.glevel))S.glevel='b1';
-  const c=exCourse();S.exun=(S.exun||[]).filter(i=>c.units[i]);const dice=S.gmode==='dice';
-  const topics=glTopics();S.gtop=(S.gtop||[]).filter(id=>topics.some(t=>t.id===id));
-  const cells=topics.map((t,i)=>`<button type="button" class="grammar-topic${S.gtop.includes(t.id)?' selected':''}" data-topic="${t.id}" aria-pressed="${S.gtop.includes(t.id)}">${topicDoodle(i)}<span>${esc(t.n)}</span></button>`).join('');
-  setView(`<section class="grammar-page"><h1 class="grammar-title">Grammar</h1>
-   <div class="grammar-levels" role="tablist" aria-label="Choose level">${GLV.map(l=>`<button type="button" role="tab" aria-selected="${S.glevel===l[0]}" class="grammar-level${S.glevel===l[0]?' active':''}" data-level="${l[0]}">${l[1]}</button>`).join('')}</div>
-   <div class="grammar-controls"><select class="grammar-format" id="grammarFormat" aria-label="Practice activity">${GLMODES.map(m=>`<option value="${m[0]}"${m[0]===S.gmode?' selected':''}>${esc(m[1])}</option>`).join('')}</select></div>
-   <div class="grammar-topics" aria-label="Grammar topics">${cells}</div>
-   ${dice?`<div style="margin:20px 0">${exPickHTML()}</div>`:''}
-   <div class="grammar-actions"><button type="button" class="grammar-start" id="grammarStart">Practice →</button></div>
-  </section>`);
-  const refresh=()=>{const chosen=glChosen(),n=dice?exWords().length:chosen.reduce((a,t)=>a+(TS[t.id]||[]).length,0);$('#grammarStart').disabled=!n};
-  $('#grammarFormat').onchange=e=>{S.gmode=e.target.value;save();glSetup()};
-  $('#view .grammar-levels').onclick=e=>{const b=e.target.closest('[data-level]');if(!b)return;S.glevel=b.dataset.level;S.gtop=[];save();glSetup()};
-  $('#view .grammar-topics').onclick=e=>{const b=e.target.closest('[data-topic]');if(!b)return;const i=S.gtop.indexOf(b.dataset.topic);if(i<0)S.gtop.push(b.dataset.topic);else S.gtop.splice(i,1);save();b.classList.toggle('selected',i<0);b.setAttribute('aria-pressed',i<0?'true':'false');refresh()};
-  if(dice)exPickBind(glSetup,refresh);
-  $('#grammarStart').onclick=()=>{const tp=glChosen();if(dice){GL={mode:'dice',tp,words:exWords(),ok:0,bad:0,hint:false};glRoll()}else{const items=[];tp.forEach(t=>(TS[t.id]||[]).forEach(x=>items.push({t,s:x[0],q:x[1],a:x[2]})));GL={mode:'ts',items:shuffle(items),i:0,show:false,ok:0,bad:0};glRender()}};
-  refresh();
- };
+  const grammarTaskItems=()=>{const out=[];glTopics().forEach(t=>(TS[t.id]||[]).forEach(x=>out.push({t,s:x[0],q:x[1],a:x[2]})));return shuffle(out)};
+  const baseGrammarRender=glRender;
+  glRender=function(){baseGrammarRender();const panel=$('#view .panel');if(!panel)return;
+   const tabs=GLV.map(l=>`<button type="button" role="tab" aria-selected="${S.glevel===l[0]}" class="grammar-level${S.glevel===l[0]?' active':''}" data-live-level="${l[0]}">${l[1]}</button>`).join('');
+   panel.insertAdjacentHTML('afterbegin',`<div class="grammar-live-head"><h1 class="grammar-title">Grammar</h1><div class="grammar-levels" role="tablist" aria-label="Choose grammar level">${tabs}</div></div>`);
+   const head=panel.querySelector('.grammar-live-head');waveTitles(head);
+   head.onclick=e=>{const b=e.target.closest('[data-live-level]');if(!b)return;S.glevel=b.dataset.liveLevel;S.gmode='ts';S.gtop=[];save();GL={mode:'ts',items:grammarTaskItems(),i:0,show:false,ok:0,bad:0,rule:false};glRender()};
+   const quit=$('#glquit');if(quit){quit.textContent='↻ New set';quit.onclick=()=>glSetup()}
+  };
+  glSetup=function(){
+   seaOff();document.body.classList.add('grammar-style-active');
+   if(!S.glevel||!GLV.some(x=>x[0]===S.glevel))S.glevel='b1';
+   S.gmode='ts';S.gtop=[];save();
+   GL={mode:'ts',items:grammarTaskItems(),i:0,show:false,ok:0,bad:0,rule:false};glRender();
+  };
 })();
 async function boot(){
  if(/[#&]embed\b/.test(location.hash))document.body.classList.add('embed');
