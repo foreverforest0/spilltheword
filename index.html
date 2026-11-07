@@ -1467,10 +1467,21 @@ body.home #view{max-width:none!important;margin:0!important;padding:0!important}
 .stw-home .book:nth-child(1){--spine:var(--stw-green);height:clamp(196px,26vw,300px);transform:rotate(-2deg)}.stw-home .book:nth-child(2){--spine:var(--stw-blue);height:clamp(220px,29vw,342px);transform:rotate(-1deg)}.stw-home .book:nth-child(3){--spine:var(--stw-orange);height:clamp(184px,24vw,280px);transform:rotate(1deg)}.stw-home .book:nth-child(4){--spine:var(--stw-cream);height:clamp(226px,30vw,350px);transform:rotate(1.5deg)}.stw-home .book:nth-child(5){--spine:var(--stw-wine);height:clamp(192px,26vw,304px);transform:rotate(2deg)}.stw-home .book:nth-child(6){--spine:var(--stw-blue);height:clamp(214px,28vw,330px);transform:rotate(-1.5deg)}.stw-home .book:nth-child(7){--spine:var(--stw-green);height:clamp(202px,27vw,316px);transform:rotate(2deg)}
 .stw-home .book-body{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(82deg);transition:transform .82s cubic-bezier(.18,.68,.2,1)}.stw-home .book:hover .book-body,.stw-home .book:focus-visible .book-body{transform:rotateY(0)}
 .stw-home .spine{position:absolute;left:0;top:0;bottom:0;width:22px;z-index:2;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;background:var(--spine);color:var(--stw-cream);clip-path:polygon(3% 0,100% 1%,96% 14%,100% 31%,96% 49%,100% 68%,96% 99%,0 100%,3% 81%,0 64%,3% 46%,0 29%);transform:rotateY(-90deg);transform-origin:left center;font:400 9px/1 Georgia,'Times New Roman',serif!important;text-shadow:0 1px #0002;white-space:nowrap}.stw-home .book:nth-child(4) .spine{color:var(--stw-wine)}
-.stw-home .page-edge{position:absolute;right:0;top:4px;bottom:4px;width:8px;background:repeating-linear-gradient(180deg,var(--stw-cream) 0 2px,#e8deca 2px 3px);transform:rotateY(90deg);transform-origin:right center}
+.stw-home .page-edge{position:absolute;right:0;top:0;bottom:0;width:22px;background:var(--cover-color);transform:rotateY(90deg);transform-origin:right center}
 .stw-home .cover{position:absolute;inset:0 0 0 9px;transform:translateZ(7px);backface-visibility:hidden;display:grid;place-items:center;border:1.5px solid var(--stw-wine);clip-path:polygon(1% 0,100% 1%,99% 99%,0 100%,1% 72%,0 48%,1% 22%)}.stw-home .book:nth-child(1) .cover{background:var(--stw-blue)}.stw-home .book:nth-child(2) .cover{background:var(--stw-orange)}.stw-home .book:nth-child(3) .cover{background:var(--stw-cream)}.stw-home .book:nth-child(4) .cover{background:var(--stw-green)}.stw-home .book:nth-child(5) .cover{background:var(--stw-wine)}.stw-home .book:nth-child(6) .cover{background:var(--stw-blue)}.stw-home .book:nth-child(7) .cover{background:var(--stw-orange)}
 .stw-home .book-title{width:90%;padding:3px 2px;color:var(--stw-wine);font:400 clamp(10px,.92vw,13px)/1.08 Georgia,'Times New Roman',serif!important;text-align:center;overflow-wrap:anywhere}.stw-home .book:nth-child(2) .book-title,.stw-home .book:nth-child(4) .book-title,.stw-home .book:nth-child(5) .book-title{color:var(--stw-cream)}
-.stw-scramble{position:fixed;inset:0;z-index:999;background:#F9F5E6ef;display:grid;place-items:center;padding:16px}.stw-scramble[hidden]{display:none}.stw-scramble .box{width:min(680px,100%);padding:28px;background:#F9F5E6;border:2px solid #70271F;box-shadow:7px 7px 0 #70271F;text-align:center;color:#70271F}.stw-scramble h2{font:400 34px Georgia,serif!important;margin:0 0 8px}.stw-scramble .clue{font-size:19px;margin:12px 0}.stw-scramble .answer{min-height:46px;border-bottom:1px solid #70271F;margin:16px 0;padding:8px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.stw-scramble .tiles{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.stw-scramble button{border:1px solid #70271F;background:#CCE5FF;color:#26422B;padding:8px 12px;font:18px Georgia,serif;cursor:pointer}.stw-scramble .actions{display:flex;justify-content:center;gap:10px;margin-top:18px}.stw-scramble .feedback{min-height:28px;margin-top:10px}
+/* Closed book volume: every face meets at the same 22px depth. */
+.stw-home .book{--cover-color:var(--stw-blue)}
+.stw-home .book:nth-child(2),.stw-home .book:nth-child(7){--cover-color:var(--stw-orange)}
+.stw-home .book:nth-child(3){--cover-color:var(--stw-cream)}
+.stw-home .book:nth-child(4){--cover-color:var(--stw-green)}
+.stw-home .book:nth-child(5){--cover-color:var(--stw-wine)}
+.stw-home .cover{inset:0!important;transform:translateZ(22px);clip-path:none}
+.stw-home .spine{width:22px!important;clip-path:none}
+.stw-home .book-body::before{content:'';position:absolute;inset:0;background:var(--cover-color);transform:rotateY(180deg);backface-visibility:hidden}
+.stw-home .book-body::after,.stw-home .book-bottom{content:'';position:absolute;left:0;right:0;height:22px;background:var(--cover-color)}
+.stw-home .book-body::after{top:0;transform:rotateX(90deg);transform-origin:top center}
+.stw-home .book-bottom{bottom:0;transform:rotateX(-90deg);transform-origin:bottom center}
 @media(max-width:760px){.stw-home{padding:20px 8px}.stw-home h1{font-size:clamp(42px,11vw,72px);margin-bottom:62px}.stw-home .layout{grid-template-columns:30px minmax(0,1fr) 30px;gap:5px}.stw-home .category{writing-mode:vertical-rl;font-size:23px}.stw-home .books{gap:3px}.stw-home .book{width:clamp(38px,11.7vw,58px);height:clamp(178px,54vw,255px)}.stw-home .book:nth-child(1){height:clamp(170px,51vw,240px)}.stw-home .book:nth-child(2){height:clamp(193px,58vw,275px)}.stw-home .book:nth-child(3){height:clamp(163px,48vw,225px)}.stw-home .book:nth-child(4){height:clamp(199px,60vw,282px)}.stw-home .book:nth-child(5){height:clamp(174px,52vw,245px)}.stw-home .book:nth-child(6){height:clamp(190px,57vw,268px)}.stw-home .book:nth-child(7){height:clamp(181px,55vw,258px)}.stw-home .spine{width:13px;font-size:6px!important}.stw-home .cover{left:6px}.stw-home .book-title{font-size:clamp(7px,1.8vw,9px)!important}.stw-scramble .box{padding:20px 12px}}
 </style>
 </head>
@@ -1483,7 +1494,6 @@ body.home #view{max-width:none!important;margin:0!important;padding:0!important}
    <nav class="tabs navl" id="navL">
     <button data-tab="alias">Alias</button>
     <button data-tab="taboo">Taboo</button>
-    <button data-tab="bingo">Bingo</button>
     <button data-tab="jeo">Jeopardy</button>
    </nav>
    <h1 class="logo">spill the <span id="logo-u">word</span></h1>
@@ -3356,7 +3366,9 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('#rcov'))rcClo
 window.addEventListener('resize',()=>{if(tab==='shop'&&$('#shsh'))shShelves()});
 
 /* ===== Navigation ===== */
-const NAV=['alias','taboo','bingo','jeo','gif','speak','shop','gram','write','house','words'];
+const REMOVED_GAMES=new Set(['scramble','emoji','bingo','ttt','story','gwho']);
+for(const key of REMOVED_GAMES)delete GAMES[key];
+const NAV=['alias','taboo','jeo','gif','speak','shop','gram','write','house','words'];
 let tab='alias',R=null,J=null,tmr=null;
 let NL=null,NR=null;
 const navTabs={setActive(i){
@@ -3441,7 +3453,6 @@ const HSG={
  house:{n:'The Midnight House',d:'Everyday actions in a wizard’s house. Enter the kitchen and bring eight verbs to life.',tab:'house',direct:true},
  alias:{n:'Alias',d:'Explain the word without saying it.',tab:'alias'},
  taboo:{n:'Taboo',d:'Explain it, but skip the forbidden words.',tab:'taboo'},
- bingo:{n:'Bingo',d:'Hear the clue, find it on your card.',tab:'bingo'},
  jeo:{n:'Jeopardy',d:'Pick a tile, answer the task, win points.',tab:'jeo'},
  speak:{n:'Grammar Speaking',d:'Grammar topics as speaking games.',tab:'speak'},
  gifframe:{n:'Describe the GIF',d:'Say what is happening in the picture.',tab:'gif'},
@@ -3452,8 +3463,6 @@ const HSG={
  ruler:{n:'Sentence Expander',d:'Make the sentence longer, one piece at a time.',tab:'gram',mode:'exp'},
  flask:{n:'Word Craft',d:'Mix two words and make a new word or phrase.',tab:'gram',mode:'craft'},
  scales:{n:'Absurd Choices',d:'Two crazy choices. Pick one and say why with the second conditional.',tab:'gram',mode:'absurd'},
- helmet:{n:'Deep Sea',d:'Dive down and learn comparatives and superlatives.',tab:'gram',mode:'deep'},
- cat:{n:'Sunny City',d:'Walk around a 3D city, go into the cafe, the shop, the bank and more, and practise giving directions.',tab:'gram',mode:'city'},
  pumpkin:{n:'The pumpkin',d:'Carve a face and light it up.',special:'pump'},
  books:{n:'Creative Writing',d:'Type a story on a vintage typewriter. What you type stays for the next person.',tab:'write'},
  jar:{n:'My stars',d:'Your progress in the games.',special:'stars'}};
@@ -3604,7 +3613,7 @@ document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest
  if(t.id==='embtog'){embUpdate();$('#embpan').hidden=!$('#embpan').hidden}
  else if(t.id==='mklink'){setTimeout(embUpdate,400)}
  else{const a=$('#embcode');a.select();let ok=false;try{ok=document.execCommand('copy')}catch(x){}try{navigator.clipboard.writeText(a.value).catch(function(){})}catch(x){}t.textContent='Copied ✓';setTimeout(()=>{t.textContent='Copy code'},1500)}});
-function go(t){BLOBID=null;seaOff();clearInterval(HOMET);stopTimer();clearInterval(GLT);EX=null;GL=null;R=null;J=null;B=null;T=null;ST=null;GS=null;GF=null;tab=t;roomPush();try{shopVis(t==='shop')}catch(e){}try{$('#embpan').hidden=true;embUpdate()}catch(e){}
+function go(t){if(REMOVED_GAMES.has(t))t='home';BLOBID=null;seaOff();clearInterval(HOMET);stopTimer();clearInterval(GLT);EX=null;GL=null;R=null;J=null;B=null;T=null;ST=null;GS=null;GF=null;tab=t;roomPush();try{shopVis(t==='shop')}catch(e){}try{$('#embpan').hidden=true;embUpdate()}catch(e){}
  document.body.classList.toggle('home',t==='home');
  if(t==='home'){NL&&NL.destroy();NR&&NR.destroy();NL=NR=null;setView(homeHTML());homeBind();window.scrollTo(0,0);return}
  navTabs.setActive(NAV.indexOf(t));
@@ -3692,6 +3701,7 @@ function jeoExtraHTML(){return `<section class="panel k-card"><div class="row" s
  <button class="big" data-btn="solid" id="start">▶ Start game</button></section>`}
 
 function renderSetup(g){
+ if(REMOVED_GAMES.has(g)){go('home');return}
  if(g==='house'){wizardHouseSetup();return}
  if(g==='gwho'){gwSetup();return}
  if(g==='speak'){spSetup();return}
@@ -4489,7 +4499,7 @@ function glSetupG(){
  $('#glg').onclick=e=>{const b=e.target.closest('[data-g]');if(!b)return;S.ggame=b.dataset.g;save();document.querySelectorAll('#glg .lpb').forEach(x=>x.classList.toggle('on',x===b));upd()};
  $('#glgo').onclick=()=>{const g=WG.find(x=>x.id===S.ggame);if(!g)return;GL={mode:g.k,g,ok:0,bad:0,used:[],rot:null};glGameRender()};
  upd()}
-const GLMODES=[['ts','Tense Switch'],['dice','Grammar Dice'],['exp','Sentence Expander'],['craft','Word Craft'],['board','Scrambl'],['deep','Deep Sea'],['absurd','Absurd Choices'],['spend','Spend a Fortune'],['town','Sunny Street'],['town3','Sunny Street 3D'],['city','Sunny City'],['gacha','Gachapon'],['photo','Photobooth']];
+const GLMODES=[['ts','Tense Switch'],['dice','Grammar Dice'],['exp','Sentence Expander'],['craft','Word Craft'],['board','Scrambl'],['absurd','Absurd Choices'],['gacha','Gachapon'],['photo','Photobooth']];
 
 /* ===== Grammar Lab: Tense Switch + Grammar Dice ===== */
 let GL=null;
@@ -4501,7 +4511,7 @@ function gmBar(){return `<div class="lpc" id="glm">${GLMODES.map(m=>`<button cla
 function gmBind(){const g=$('#glm');if(g)g.onclick=e=>{const b=e.target.closest('[data-m]');if(!b)return;S.gmode=b.dataset.m;save();seaOff();glSetup()}}
 function seaOff(){try{TOWNS.t2.stop();TOWNS.t3.stop();TOWNS.t4.stop();TOWNS.sp3.stop()}catch(e){}try{deskOff()}catch(e){}try{gachaOff()}catch(e){}document.body.classList.remove('sea');if(SEAH){window.removeEventListener('scroll',SEAH);SEAH=null}}
 function photoSetup(){setView(`<section class="panel k-card">${gmBar()}<iframe title="B1 Grammar Photobooth" src="photobooth/index.html" style="display:block;width:100%;border:0;height:1600px;border-radius:8px" onload="const f=this,d=f.contentDocument;d.body.style.minHeight='0';const r=()=>f.style.height=(d.body.scrollHeight+24)+'px';r();new f.contentWindow.ResizeObserver(r).observe(d.body)"></iframe></section>`);gmBind()}
-function gmNew(){const m=S.gmode;seaOff();if(m==='photo')photoSetup();else if(m==='craft')wcSetup();else if(m==='board')bdSetup();else if(m==='deep')seaSetup();else if(m==='absurd')absSetup();else if(m==='spend')foSetup();else if(m==='town')townSetup();else if(m==='town3')town3Setup();else if(m==='city')cityTownSetup();else if(m==='desk')deskSetup();else if(m==='gacha')gachaSetup()}
+function gmNew(){const m=S.gmode;seaOff();if(m==='photo')photoSetup();else if(m==='craft')wcSetup();else if(m==='board')bdSetup();else if(m==='absurd')absSetup();else if(m==='desk')deskSetup();else if(m==='gacha')gachaSetup()}
 
 /* ---------- Word Craft ---------- */
 const WCT={v:'#E8837A',p:'#A2E0D5',a:'#F9B1B2',n:'#B2D1FD',j:'#B4BEFB'};
@@ -12634,40 +12644,21 @@ homeHTML=function(){
  const title=(word,start)=>`<span class="title-word">${[...word].map((c,i)=>`<span class="title-letter" style="--i:${start+i};--dy:${[-6,-3,2,5,2][(start+i)%5]}px">${c}</span>`).join('')}</span>`;
  const star=`<svg class="doodle d-star" viewBox="0 0 48 48" aria-hidden="true"><path d="M23 2 Q26 2 27 18 Q39 8 42 12 Q44 15 30 24 Q45 27 44 31 Q43 35 28 30 Q34 43 30 45 Q26 47 23 32 Q14 44 11 41 Q8 38 18 27 Q3 29 2 25 Q1 21 18 21 Q9 9 13 7 Q17 5 23 19 Z"/><path class="doodle-mark" d="M22 8 Q24 15 23 19 M7 24 Q14 22 18 23"/></svg>`;
  const flower=`<svg class="doodle d-flower" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3 Q29 3 28 17 Q39 8 42 13 Q45 17 31 23 Q45 26 42 31 Q40 36 29 29 Q33 43 27 44 Q22 46 22 31 Q12 41 9 36 Q6 32 18 25 Q3 25 4 20 Q5 15 19 20 Q11 8 16 5 Q20 2 23 17 Z"/><path class="doodle-mark" d="M23 8 Q24 14 23 18 M8 21 Q13 20 18 22"/></svg>`;
- const games=[['house','The Midnight House','house'],['write','Creative Writing','write'],['shop','Shop','shop'],['flask','Word Craft','gram','craft'],['scramble','Scramble','scramble'],['scales','Absurd Choices','gram','absurd'],['ruler','Sentence Expander','gram','exp']];
- const books=games.map(([key,name,tabName,mode],i)=>`<button class="book" data-book-game="${key}" data-tab="${tabName}"${mode?` data-mode="${mode}"`:''} aria-label="Open ${esc(name)}"><span class="book-body"><span class="spine">${esc(name)}</span><span class="page-edge"></span><span class="cover"><span class="book-title">${esc(name)}</span></span></span></button>`).join('');
- return `<section class="stw-home"><h1 aria-label="spill the word">${title('spill',0)}${star}${title('the',5)}${title('word',8)}${flower}</h1><div class="layout"><a class="category" href="#grammar" data-category="grammar">Grammar</a><div class="books">${books}</div><a class="category" href="#vocab" data-category="vocab">Vocab</a></div><div class="stw-scramble" id="stwScramble" hidden></div></section>`;
+ const games=[['house','The Midnight House','house'],['write','Creative Writing','write'],['shop','Shop','shop'],['flask','Word Craft','gram','craft'],['scales','Absurd Choices','gram','absurd'],['ruler','Sentence Expander','gram','exp']];
+ const books=games.map(([key,name,tabName,mode],i)=>`<button class="book" data-book-game="${key}" data-tab="${tabName}"${mode?` data-mode="${mode}"`:''} aria-label="Open ${esc(name)}"><span class="book-body"><span class="spine">${esc(name)}</span><span class="page-edge"></span><span class="book-bottom"></span><span class="cover"><span class="book-title">${esc(name)}</span></span></span></button>`).join('');
+ return `<section class="stw-home"><h1 aria-label="spill the word">${title('spill',0)}${star}${title('the',5)}${title('word',8)}${flower}</h1><div class="layout"><a class="category" href="#grammar" data-category="grammar">Grammar</a><div class="books">${books}</div><a class="category" href="#vocab" data-category="vocab">Vocab</a></div></section>`;
 };
 homeBind=function(){
  const root=$('#view .stw-home');if(!root)return;
  root.onclick=e=>{
   const book=e.target.closest('[data-book-game]');
   if(book){e.preventDefault();sfx('boot');const key=book.dataset.bookGame;
-   if(key==='scramble'){scrambleOpen();return}
    if(book.dataset.mode){S.gmode=book.dataset.mode;save()}
    go(book.dataset.tab);return;
   }
-  const cat=e.target.closest('[data-category]');if(cat){e.preventDefault();if(cat.dataset.category==='grammar')go('gram');else go('words')}
+  const cat=e.target.closest('[data-category]');if(cat){e.preventDefault();if(cat.dataset.category==='grammar'){S.gmode='ts';save();go('gram')}else go('words')}
  };
 };
-const SCRAMBLE_ROUNDS=[
- {clue:'Я уже отправила ей сообщение.',answer:'I have already sent her a message.'},
- {clue:'Если бы у нас было больше времени, мы бы остались.',answer:'If we had more time, we would stay.'},
- {clue:'Книга, которую ты мне одолжил, очень смешная.',answer:'The book you lent me is really funny.'},
- {clue:'К этому времени завтра они уже закончат работу.',answer:'By this time tomorrow, they will have finished work.'},
- {clue:'Его попросили не открывать окно.',answer:'He was asked not to open the window.'},
- {clue:'Я бы предпочла, чтобы ты сказал мне раньше.',answer:'I would rather you had told me earlier.'}
-];
-let scrambleIndex=0,scramblePicked=[];
-function scrambleOpen(){scrambleIndex=Math.floor(Math.random()*SCRAMBLE_ROUNDS.length);scrambleRender()}
-function scrambleRender(msg=''){
- const m=$('#stwScramble');if(!m)return;const item=SCRAMBLE_ROUNDS[scrambleIndex],words=item.answer.replace(/[.?!]$/,'').split(' ');
- if(!scramblePicked.length)scramblePicked=[];
- const remaining=words.map((w,i)=>({w,i})).filter(x=>!scramblePicked.some(p=>p.i===x.i)).sort(()=>Math.random()-.5);
- m.hidden=false;m.innerHTML=`<div class="box"><button class="close" aria-label="Close">×</button><h2>Scramble</h2><p class="clue">${esc(item.clue)}</p><div class="answer">${scramblePicked.map((p,i)=>`<button data-pick="${i}" title="Remove">${esc(p.w)}</button>`).join('')}</div><div class="tiles">${remaining.map(x=>`<button data-word="${x.i}">${esc(x.w)}</button>`).join('')}</div><div class="feedback">${esc(msg)}</div><div class="actions"><button data-action="clear">Clear</button><button data-action="check">Check</button><button data-action="next">Next</button></div></div>`;
- m.onclick=e=>{if(e.target.closest('.close')){m.hidden=true;return}const w=e.target.closest('[data-word]');if(w){const i=+w.dataset.word;scramblePicked.push({i,w:words[i]});scrambleRender();return}const p=e.target.closest('[data-pick]');if(p){scramblePicked.splice(+p.dataset.pick,1);scrambleRender();return}const a=e.target.closest('[data-action]')?.dataset.action;if(a==='clear'){scramblePicked=[];scrambleRender()}else if(a==='next'){scrambleIndex=(scrambleIndex+1)%SCRAMBLE_ROUNDS.length;scramblePicked=[];scrambleRender()}else if(a==='check'){const got=scramblePicked.map(x=>x.w).join(' ').toLowerCase().replace(/[.?!]$/,'');const want=item.answer.toLowerCase().replace(/[.?!]$/,'');scrambleRender(got===want?'That’s right!':'Not quite. Rearrange the words and try again.')}};
-}
-
 /* Grammar: compact, borderless topic cards in the same warm palette as the home page. */
 (function(){
  const css=document.createElement('style');css.textContent=`
@@ -12763,6 +12754,8 @@ function scrambleRender(msg=''){
   };
   glSetup=function(){
    seaOff();document.body.classList.add('grammar-style-active');
+   if(['craft','board','absurd','gacha','photo'].includes(S.gmode)){gmNew();return}
+   if(S.gmode==='exp'){exSetup();return}
    if(!S.glevel||!GLV.some(x=>x[0]===S.glevel))S.glevel='b1';
    S.gmode='ts';S.gtop=[];save();
    GL={mode:'ts',items:grammarTaskItems(),i:0,show:false,ok:0,bad:0,rule:false};glRender();
