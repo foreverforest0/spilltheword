@@ -3154,7 +3154,8 @@ function pillify(root){
   sel.addEventListener('change',sync);sync();setTimeout(sync,0);setTimeout(sync,250);setTimeout(sync,900)})}
 const EMO_KEEP=/[✓✗✦✕✔✘✎]/;
 function noEmo(root,sel){root.querySelectorAll(sel).forEach(el=>{const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){const v=n.nodeValue.replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B50}\u{2B06}\u{23E9}-\u{23FA}\u{FE0F}\u200D]\s?/gu,m=>EMO_KEEP.test(m)?m:'');if(v!==n.nodeValue)n.nodeValue=v}})}
-function setView(html){clearSk();if(typeof VMA!=='undefined'&&VMA&&VMA.stopSpeech)VMA.stopSpeech();$('#view').innerHTML=html;try{noEmo($('#view'),'h2,h3,option,summary,#glm .lpb,#cats .chip,.tabs.lvl button,.tpill,.gpill,.ab,.stitle')}catch(e){}try{pillify($('#view'))}catch(e){console.warn('pillify',e)}if(ROOM.role==='guest'){const al=allowedActs('guest');$('#view').querySelectorAll('[data-a]').forEach(el=>{if(!al.has(el.dataset.a))el.remove()})}skin();try{blobAttach()}catch(e){console.warn('blob',e)}}
+ function waveTitles(root){root.querySelectorAll('h1,h2').forEach(el=>{if(el.classList.contains('stw-wavy-title')||el.closest('.stw-prompt-card'))return;el.classList.add('stw-wavy-title');const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);const nodes=[];while(w.nextNode())if(w.currentNode.nodeValue.trim())nodes.push(w.currentNode);nodes.forEach(n=>{const f=document.createDocumentFragment();n.nodeValue.split(/(\s+)/).forEach(part=>{if(!part)return;if(/^\s+$/.test(part)){f.appendChild(document.createTextNode(part));return}Array.from(part).forEach((ch,i)=>{const s=document.createElement('span');s.className='stw-wave-letter';s.style.setProperty('--wave-i',i);s.textContent=ch;f.appendChild(s)})});n.parentNode.replaceChild(f,n)})})}
+ function setView(html){clearSk();if(typeof VMA!=='undefined'&&VMA&&VMA.stopSpeech)VMA.stopSpeech();$('#view').innerHTML=html;try{noEmo($('#view'),'h2,h3,option,summary,#glm .lpb,#cats .chip,.tabs.lvl button,.tpill,.gpill,.ab,.stitle')}catch(e){}try{pillify($('#view'))}catch(e){console.warn('pillify',e)}try{waveTitles($('#view'))}catch(e){}if(ROOM.role==='guest'){const al=allowedActs('guest');$('#view').querySelectorAll('[data-a]').forEach(el=>{if(!al.has(el.dataset.a))el.remove()})}skin();try{blobAttach()}catch(e){console.warn('blob',e)}}
 
 /* ===== Word pools ===== */
 function builtin(g){const out=[];S.sel[g].forEach(k=>{const [lv,cn]=k.split('|');if(lv!==S.level)return;const c=(BANK[lv]||[]).find(x=>x.name===cn);if(c)c.words.forEach(x=>out.push(Object.assign({cat:cn},x)))});return out}
@@ -9801,10 +9802,10 @@ function _renderGif(){
  const c=GF.cards?GF.cards[GF.open]:{g:GF.order[GF.k],words:GF.words,gram:GF.gram};
  const src=gs(c.g);
  try{if(!GF.cards)for(let d=1;d<=2;d++){const n=GIFS[GF.order[GF.k+d]];if(n&&n.slice(0,5)!=='data:')new Image().src=n}}catch(e){}
- setView(`<section class="panel k-card center gifp"><img class="gifimg" data-a="fnext" src="${src}" alt="">
- ${c.words&&c.words.length?`<div class="gifw">${c.words.map(x=>`<span class="gtag">${hw(x.w,x.r)}</span>`).join('')}</div>`:''}
+  setView(`<section class="panel k-card center gifp"><article class="stw-prompt-card" style="--stw-card-color:${qc(String(GF.k)+src)}"><div class="stw-prompt-media"><img class="gifimg" data-a="fnext" src="${src}" alt=""></div><div class="stw-prompt-copy">
+  ${c.words&&c.words.length?`<div class="gifw">${c.words.map(x=>`<span class="gtag">${hw(x.w,x.r)}</span>`).join('')}</div>`:''}
  ${c.gram?`<div class="gifg">${esc(c.gram)}</div>`:''}
- ${GF.cards?`<div class="actions"><button data-btn="solid" data-a="fnext">✓ Done, next card</button><button data-btn="n" data-a="fback">↩ Back to cards</button></div>`:''}</section>`)}
+  </div></article>${GF.cards?`<div class="actions"><button data-btn="solid" data-a="fnext">✓ Done, next card</button><button data-btn="n" data-a="fback">↩ Back to cards</button></div>`:''}</section>`)}
 
 
 /* ===== Speaking ===== */
@@ -11981,11 +11982,11 @@ const DMTF={wzh:wizardHouseSetup,app:appearanceSetup,vmr:vmStart,kts:()=>tyDrill
 function seedR(n){const x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x)}
 function mountBoard(bd,items,onOpen){
  bd.innerHTML='';bd.classList.add('cboard');
- const BW=bd.clientWidth||900,n=items.length,cols=BW<520?2:Math.max(2,Math.min(5,Math.floor(BW/265))),rows=Math.ceil(n/cols),cw=BW/cols,ph=items.some(it=>/class="cbi ph/.test(it.html||'')),RH=Math.round((cw-6)*(ph?.9:.68))+10;let z=1;
+ const BW=bd.clientWidth||900,n=items.length,cols=BW<520?2:Math.max(2,Math.min(5,Math.floor(BW/265))),rows=Math.ceil(n/cols),cw=BW/cols,ph=items.some(it=>/class="cbi ph/.test(it.html||'')),prompt=items.some(it=>/stw-board-card/.test(it.html||'')),RH=Math.round((cw-6)*(ph?.9:prompt?1.18:.68))+10;let z=1;
  bd.style.height=(rows*RH+10)+'px';bd._h=rows*RH+10;
  items.forEach((it,i)=>{
-  const sd=it.seed!==undefined?it.seed:i,w=Math.round(cw-6-(sd%3)*5),h=Math.round(w*(ph?[.8,.84,.88]:[.62,.66,.7])[(sd*2+1)%3]),r=Math.floor(i/cols),c=i%cols;
-  const d=document.createElement('div');d.className='cbc'+(it.cls?' '+it.cls:'');d.dataset.i=i;
+  const sd=it.seed!==undefined?it.seed:i,w=Math.round(cw-6-(sd%3)*5),h=Math.round(w*(ph?[.8,.84,.88]:prompt?[1.12,1.18,1.22][(sd*2+1)%3]:[.62,.66,.7][(sd*2+1)%3])),r=Math.floor(i/cols),c=i%cols;
+  const d=document.createElement('div');d.className='cbc'+(it.cls?' '+it.cls:'')+(/stw-board-card/.test(it.html||'')?' stw-card-shell':'');d.dataset.i=i;
   d.style.cssText=`width:${w}px;height:${h}px;left:${c*cw+(cw-w)/2+(seedR(sd+1)*8-4)}px;top:${r*RH+(RH-h)/2+(seedR(sd+9)*6-3)}px;background:${CBCOL[(it.col!==undefined?it.col:i*3)%CBCOL.length]};transform:rotate(${(seedR(sd+4)*5-2.5).toFixed(1)}deg)`;
   d.innerHTML=it.html;bd.appendChild(d);d.querySelectorAll('.cbt,.rcw').forEach(fitText);
   let sx,sy,ox,oy,mv=0,pid=null;
@@ -12016,17 +12017,18 @@ function renderCards(){
  const common=items.length>1&&items[0].qo&&items.every(x=>x.qo===items[0].qo)?items[0].qo:'';
  if(common)blobSet(common);
  const NOEX=['how','opp','who','intv'],KEEPPIC=['who','intv'];
- const front=it=>`${it.src?`<div class="cbi${it.photo?' ph':''}">${cbImg(it)}</div>`:(it.extra?`<div class="cbx">${it.extra}</div>`:'')}<div class="cbt">${esc(it.t)}</div>${it.q?`<div class="cbq">${esc(it.q)}</div>`:''}`;
+ const cardColor=i=>QCOL[(i*3+1)%QCOL.length];
+ const front=(it,i)=>`<article class="stw-prompt-card stw-board-card" style="--stw-card-color:${cardColor(i)}"><div class="stw-prompt-media">${it.src?cbImg(it):(it.extra?it.extra:`<span class="stw-word-art">${esc(it.t)}</span>`)}</div><div class="stw-prompt-copy"><div class="cbt">${esc(it.t)}</div>${it.q?`<div class="cbq">${esc(it.q)}</div>`:''}</div></article>`;
  const flip=(i,d)=>{const it=items[i];let hl=(it.hints||[]).slice(0,2).map((x,k)=>'Hint '+(k+1)+': '+x),label='Hints';
   if(CB.task==='intv'){hl=it.a?[String(it.a).replace(/^[^A-Za-z0-9“"‘']+/,'')]:[];label='Description'}
   else if(!NOEX.includes(CB.task)&&it.a)hl.push('Example: '+String(it.a).replace(/^[^A-Za-z0-9“"‘']+/,''));
   const pic=d.querySelector('.cbi'),keep=KEEPPIC.includes(CB.task)&&pic,ph=keep?pic.offsetHeight:0;
   const qo=common?'':(it.qo||it.q);
-  const inner=`<div class="cbbig inl">${it.src?`<div class="cbi${it.photo?' ph':''}${it.sc?' sc':''}"${keep?` style="height:${ph}px"`:''}>${cbImg(it)}</div>`:''}${it.extra?`<div class="cbx">${it.extra}</div>`:''}<div class="cbt2">${esc(it.t)}</div>${qo?`<div class="cbq2">${esc(qo)}</div>`:''}<div class="cbh" hidden></div><div class="cbbtn">${hl.length?`<button class="lvb" id="cbhint">${label}</button>`:''}<button class="lvb on" id="cbnext">Next →</button></div></div>`;
-  cardFlip(bd,d,inner,keep?Math.max(d.offsetWidth,330):520,keep?ph+215:(it.src?(it.photo?560:400):(qo?320:230)));
+  const inner=`<div class="cbbig inl stw-expanded-card"><article class="stw-prompt-card" style="--stw-card-color:${cardColor(i)}"><div class="stw-prompt-media">${it.src?cbImg(it):(it.extra?it.extra:`<span class="stw-word-art">${esc(it.t)}</span>`)}</div><div class="stw-prompt-copy"><div class="cbt2">${esc(it.t)}</div>${qo?`<div class="cbq2">${esc(qo)}</div>`:''}</div></article><div class="cbh" hidden></div><div class="cbbtn">${hl.length?`<button class="lvb" id="cbhint">${label}</button>`:''}<button class="lvb on" id="cbnext">Next →</button></div></div>`;
+  cardFlip(bd,d,inner,Math.min(390,Math.max(d.offsetWidth,320)),it.src?420:(qo?360:320));
   setTimeout(()=>{let hn=0;const hb=document.getElementById('cbhint');if(hb)hb.onclick=()=>{if(hn>=hl.length)return;hn++;const h=d.querySelector('.cbh');h.hidden=false;h.innerHTML=hl.slice(0,hn).map(x=>'<div>'+esc(x)+'</div>').join('');if(hn>=hl.length)hb.disabled=true};
    document.getElementById('cbnext').onclick=()=>{cardClose(bd,d);const kids=[...bd.children];let j=-1;for(let k=1;k<=kids.length;k++){const x=kids[(i+k)%kids.length];if(!x.classList.contains('done')){j=(i+k)%kids.length;break}}if(j>=0&&j!==i)flip(j,kids[j])}},260)};
- mountBoard(bd,items.map((it,i)=>({html:front(it),seed:i,col:cols2i(i)})),(i,it,d)=>flip(i,d))}
+ mountBoard(bd,items.map((it,i)=>({html:front(it,i),seed:i,col:cols2i(i)})),(i,it,d)=>flip(i,d))}
 const cols2i=i=>(i*5+3)%CBCOL.length;
 function spSetupTask(){
  setView(roomHTML()+`<section class="panel k-card"><div class="row"><button class="lvb" id="sptopics">← Topics</button></div><h2>${GAMES.speak.icon} ${GAMES.speak.title}</h2><p class="muted">${esc(GAMES.speak.desc)}</p>
@@ -12076,15 +12078,13 @@ function _renderGwt(){
  const q=GF.rev?'Was it correct?':isDesc?'Describe it! Use who, which, that, where, whose. Do not say its name.':'Guess what it is! Ask: Is it something that …? Is it a person who …?';
  const meDesc=GF.desc==='s'?'the student':'the teacher';
  const btns=`<div class="row" style="justify-content:center;gap:10px;margin-top:10px">${GF.rev?`<button data-btn="solid" data-a="gwyes">✓ Guessed</button><button data-btn="ghost" data-a="gwno">✗ Next picture</button>`:`<button data-btn="solid" data-a="gwrev">👁 Reveal</button>${inRoom?'':`<button data-btn="ghost" data-a="gwpeek">${GF.peek?'🙈 Hide':'🔎 Peek (describer only)'}</button>`}`}</div>`;
- setView(`<section class="panel k-card center gifp"><div class="spq" style="background:${qc(q+GF.k)}">${esc(q)}</div>
- <div class="spw${GF.mk?' wm':''} ppcw"><div class="spp"><figure class="spf">${pic}${cap}${hint}</figure>${btns}<p class="muted small">${esc(meDesc.charAt(0).toUpperCase()+meDesc.slice(1))} describes · Guessed: ${GF.got||0} / ${GF.tot||0}</p></div>${GF.mk?`<aside class="spmk"><h4>💬 Useful phrases</h4><div class="spg"><div>${spChips(SPM.gwt)}</div></div></aside>`:''}</div></section>`)}
-const QCOL=['#E8F2F1','#CDE634','#F7F2EB','#E8E6D5','#F0CBEE','#D4E9B2','#EDE0AB'];
+  setView(`<section class="panel k-card center gifp"><div class="spw${GF.mk?' wm':''} ppcw"><div class="spp"><article class="stw-prompt-card" style="--stw-card-color:${qc(q+GF.k)}"><div class="stw-prompt-media">${pic}${cap}${hint}</div><div class="stw-prompt-copy"><div class="spq">${esc(q)}</div></div></article>${btns}<p class="muted small">${esc(meDesc.charAt(0).toUpperCase()+meDesc.slice(1))} describes · Guessed: ${GF.got||0} / ${GF.tot||0}</p></div>${GF.mk?`<aside class="spmk"><h4>💬 Useful phrases</h4><div class="spg"><div>${spChips(SPM.gwt)}</div></div></aside>`:''}</div></section>`)}
+ const QCOL=['#BEC3EC','#FFFBCB','#B2BC70','#FF9275','#F4DDF4','#4A2B10','#F9F5E6','#CCE5FF','#F24E07','#26422B'];
 function qc(t){let h=0;for(const ch of String(t))h=(h*31+ch.charCodeAt(0))>>>0;return QCOL[h%QCOL.length]}
 function _renderSp(){
  if(GF.task==='gwt'){_renderGwt();return}
  if(GF.task==='thr'||PHOTO[GF.task]){const ppc=!!PHOTO[GF.task],it=GF.items[GF.k]||GF.items[0],sc=spSet()[it[0]],qa=sc.q[it[1]];
-  setView(`<section class="panel k-card center gifp"><div class="spq" style="background:${qc(sc.k+qa[0])}">${esc(qa[0])}</div>
-  <div class="spw${GF.mk?' wm':''}${ppc?' ppcw':''}"><div class="spp"><figure class="spf"><img class="gifimg spimg spscene" data-a="fnext" src="${PICS[sc.k]||''}" alt="" title="${esc(qa[1])}"></figure></div>${GF.mk?`<aside class="spmk"><h4>💬 ${ppc?'Useful words':'Useful phrases'}</h4><div class="spg"><div>${spChips(SPM[GF.task])}</div></div></aside>`:''}</div></section>`);return}
+  setView(`<section class="panel k-card center gifp"><div class="spw${GF.mk?' wm':''}${ppc?' ppcw':''}"><div class="spp"><article class="stw-prompt-card" style="--stw-card-color:${qc(sc.k+qa[0])}"><div class="stw-prompt-media"><img class="gifimg spimg spscene" data-a="fnext" src="${PICS[sc.k]||''}" alt="" title="${esc(qa[1])}"></div><div class="stw-prompt-copy"><div class="spq">${esc(qa[0])}</div></div></article></div>${GF.mk?`<aside class="spmk"><h4>💬 ${ppc?'Useful words':'Useful phrases'}</h4><div class="spg"><div>${spChips(SPM[GF.task])}</div></div></aside>`:''}</div></section>`);return}
  const c=GF.cur,A=i=>ACTIONS[GF.order[i]]||ACTIONS[0],a=A(GF.k),b=A(GF.k+1);
  const img=(x,cap,ans)=>`<figure class="spf"><img class="gifimg spimg" data-a="fnext" src="${x[1]}" alt="" title="${esc(ans)}">${cap?`<figcaption class="spc">${esc(cap)}</figcaption>`:''}</figure>`;
  let q,pics,mk,frame='';
@@ -12671,6 +12671,44 @@ function scrambleRender(msg=''){
 /* Grammar: compact, borderless topic cards in the same warm palette as the home page. */
 (function(){
  const css=document.createElement('style');css.textContent=`
+   .stw-wavy-title{width:max-content;max-width:100%;margin-inline:auto!important;text-align:center!important;font-family:Georgia,'Times New Roman',serif!important;font-weight:400!important;color:#70271F!important}
+   .stw-wave-letter{display:inline-block;animation:stw-letter-wave 3.2s ease-in-out infinite;animation-delay:calc(var(--wave-i)*-105ms);transform-origin:50% 75%}
+   @keyframes stw-letter-wave{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-1.6px) rotate(-.35deg)}62%{transform:translateY(.8px) rotate(.25deg)}}
+   .stw-prompt-card{--stw-card-color:#BEC3EC;width:min(100%,430px);margin:12px auto 16px;background:#fff;color:#70271F;text-align:left;overflow:hidden;box-shadow:0 2px 9px #70271F12}
+   .stw-prompt-media{height:clamp(148px,25vw,205px);background:var(--stw-card-color);display:flex;align-items:center;justify-content:center;overflow:hidden;padding:12px}
+   .stw-prompt-media>img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;margin:auto;border:0;box-shadow:none}
+   .stw-board-card{width:100%;height:100%;min-width:0;margin:0;display:flex;flex-direction:column;box-shadow:none}
+   .cbc.stw-card-shell{padding:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important}
+   .stw-board-card .stw-prompt-media{height:auto;min-height:0;flex:1 1 46%;padding:7px}
+   .stw-board-card .stw-prompt-media>.cbi{position:relative;inset:auto;width:100%;height:100%;min-height:0;flex:1 1 auto}
+   .stw-board-card .stw-prompt-media>.cbi img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+   .stw-board-card .stw-prompt-media>.two{display:flex;align-items:center;justify-content:center;gap:4px;width:100%;height:100%}
+   .stw-board-card .stw-prompt-media>.two img{max-width:44%;max-height:94%;object-fit:contain}
+   .stw-board-card .stw-prompt-copy{flex:1 1 54%;min-height:0;padding:8px 9px;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:3px;text-align:center}
+   .stw-board-card .cbt{flex:0 0 auto!important;height:auto!important;max-height:none!important;min-height:0;font:14px/1.15 Georgia,'Times New Roman',serif!important;color:#70271F!important;overflow-wrap:anywhere}
+   .stw-board-card .cbq{flex:0 0 auto!important;height:auto!important;max-height:none!important;margin:2px 0 0;font:11px/1.18 Georgia,'Times New Roman',serif!important;color:#26422B!important}
+   .stw-word-art{font:clamp(20px,4vw,34px)/1.1 Georgia,'Times New Roman',serif;color:#70271F;text-align:center;padding:10px;overflow-wrap:anywhere}
+   .stw-expanded-card{padding:0!important;gap:0!important;justify-content:flex-start!important;overflow:visible!important}
+   .stw-expanded-card>.stw-prompt-card{flex:none;width:100%;margin:0;box-shadow:none}
+   .stw-expanded-card .stw-prompt-copy{min-height:72px;padding:14px 18px}
+   .stw-expanded-card .cbi{position:relative;inset:auto;width:100%;height:100%;flex:1 1 auto;min-height:0}
+   .stw-expanded-card .cbi img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+   .stw-expanded-card .two{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:100%}
+   .stw-expanded-card .two img{max-width:43%;max-height:95%;object-fit:contain}
+   .stw-expanded-card .cbt2{font:19px/1.25 Georgia,'Times New Roman',serif;color:#70271F}
+   .stw-expanded-card .cbq2{margin:8px 0 0;padding:0;max-width:none;background:transparent;color:#26422B;font:16px/1.3 Georgia,'Times New Roman',serif;border:0}
+   .stw-expanded-card .cbh{font:14px/1.35 Georgia,serif;background:#F9F5E6;color:#26422B;padding:8px 12px}
+   .stw-expanded-card .cbbtn{display:flex;gap:10px;justify-content:center;margin:10px auto 0}
+   .stw-expanded-card .cbbtn .lvb{font:14px Georgia,serif!important;padding:6px 11px}
+   .stw-prompt-media .gwq{width:74px;height:74px;display:grid;place-items:center;background:#F9F5E6;color:#70271F;font:48px Georgia,serif;border-radius:50%}
+   .stw-prompt-copy{min-height:76px;padding:15px 18px 17px;background:#fff;color:#70271F;font:18px/1.35 Georgia,'Times New Roman',serif;text-align:left}
+   .stw-prompt-copy .spq{position:static;display:block;width:auto;max-width:none;margin:0;padding:0;background:transparent!important;border:0;border-radius:0;box-shadow:none;color:#70271F;font:18px/1.35 Georgia,'Times New Roman',serif}
+   .stw-prompt-copy .gifw{display:flex;gap:7px;flex-wrap:wrap;margin:0}
+   .stw-prompt-copy .gtag{background:#F9F5E6;color:#26422B;border:0;border-radius:2px;padding:5px 8px;font:16px Georgia,'Times New Roman',serif}
+   .stw-prompt-copy .gifg{margin:0;padding:0;background:transparent;color:#70271F;font:18px/1.35 Georgia,'Times New Roman',serif;border:0}
+   .stw-prompt-card+.actions{justify-content:center}
+   @media(max-width:520px){.stw-prompt-card{width:min(100%,360px);margin:8px auto 12px}.stw-prompt-media{height:clamp(138px,48vw,190px);padding:9px}.stw-prompt-copy{min-height:68px;padding:13px 14px 15px;font-size:17px}.stw-prompt-copy .spq,.stw-prompt-copy .gifg{font-size:17px}}
+   @media(prefers-reduced-motion:reduce){.stw-wave-letter{animation:none}}
   body.grammar-style-active{--gc-cream:#F9F5E6;--gc-wine:#70271F;--gc-blue:#CCE5FF;--gc-orange:#F24E07;--gc-green:#26422B;--gc-lilac:#BEC3EC;--gc-butter:#FFFBCB;--gc-sage:#B2BC70;--gc-peach:#FF9275;--gc-pink:#F4DDF4;--gc-choc:#4A2B10;background:var(--gc-cream)!important;color:var(--gc-wine)!important;font-family:Georgia,'Times New Roman',serif!important;letter-spacing:normal!important}
   body.grammar-style-active::after{opacity:.018}
   body.grammar-style-active #homeBtn{background:var(--gc-blue)!important;color:var(--gc-wine)!important;font:16px Georgia,serif!important;box-shadow:none!important}
