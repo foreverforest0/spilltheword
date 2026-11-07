@@ -13,7 +13,43 @@ function valid(p){return p&&Object.keys(DEFAULT).every(k=>{if(p[k]==='none')retu
 if(saved&&!valid(saved.person))saved=null;
 if(saved){person={...saved.person};name=String(saved.name||'My character').slice(0,30)}
 function portrait(p){return AppearanceParts.render(p)}
-function randomPerson(r=Math.random){return {...DEFAULT,face:pick(C.face,r).id,hair:pick(C.hair,r).id,eyes:pick(C.eyes.filter(x=>x.color!=='closed'),r).id,brows:pick(C.brows,r).id,nose:pick(C.nose.filter(x=>x.id!=='4'),r).id,mouth:pick(C.mouth,r).id,glasses:pick(['none','none','0','1','2','3'],r),hat:pick(['none','none','6','7','8','9','10','11'],r),cheeks:pick(['none','9','14'],r),facial:pick(['none','none','none','0','1','5','6'],r)}}
+// Ready-made people use complete, compatible profiles instead of independent random parts.
+const PORTRAIT_PROFILES=[
+ {gender:'girl',face:'0',hair:'15',eyes:'1',brows:'1',nose:'0',mouth:'1',hats:['none']},
+ {gender:'girl',face:'4',hair:'17',eyes:'2',brows:'2',nose:'1',mouth:'2',hats:['none']},
+ {gender:'girl',face:'9',hair:'18',eyes:'0',brows:'1',nose:'2',mouth:'1',hats:['none']},
+ {gender:'woman',face:'3',hair:'2',eyes:'6',brows:'3',nose:'3',mouth:'2',hats:['none','9']},
+ {gender:'woman',face:'5',hair:'4',eyes:'11',brows:'0',nose:'0',mouth:'3',hats:['none','10']},
+ {gender:'woman',face:'0',hair:'5',eyes:'1',brows:'1',nose:'1',mouth:'0',hats:['none']},
+ {gender:'woman',face:'6',hair:'8',eyes:'2',brows:'4',nose:'2',mouth:'1',hats:['none','9']},
+ {gender:'woman',face:'4',hair:'13',eyes:'8',brows:'2',nose:'0',mouth:'4',hats:['none']},
+ {gender:'woman',face:'8',hair:'12',eyes:'2',brows:'2',nose:'1',mouth:'2',hats:['none']},
+ {gender:'boy',face:'9',hair:'7',eyes:'1',brows:'1',nose:'0',mouth:'0',hats:['none','6','7']},
+ {gender:'boy',face:'2',hair:'6',eyes:'0',brows:'0',nose:'1',mouth:'4',hats:['none','6']},
+ {gender:'boy',face:'0',hair:'16',eyes:'2',brows:'3',nose:'2',mouth:'0',hats:['none','7']},
+ {gender:'man',face:'11',hair:'0',eyes:'0',brows:'0',nose:'5',mouth:'4',facial:'0',hats:['none','10']},
+ {gender:'man',face:'2',hair:'9',eyes:'6',brows:'3',nose:'6',mouth:'5',facial:'5',hats:['none']},
+ {gender:'man',face:'7',hair:'19',eyes:'8',brows:'5',nose:'7',mouth:'4',facial:'7',hats:['none']},
+ {gender:'man',face:'10',hair:'1',eyes:'1',brows:'4',nose:'5',mouth:'0',facial:'1',hats:['none','8']},
+ {gender:'man',face:'1',hair:'22',eyes:'11',brows:'0',nose:'6',mouth:'5',hats:['none','9']}
+];
+function randomPerson(r=Math.random){
+ const profile=pick(PORTRAIT_PROFILES,r),{hats,...features}=profile;
+ return {...DEFAULT,...features,facial:profile.gender==='man'?(profile.facial||'none'):'none',glasses:pick(['none','none','0','1','2','3'],r),hat:pick(hats,r),cheeks:pick(['none','none','9','14'],r)};
+}
+function choosePart(key,value){
+ person[key]=value;
+ if(value!=='none'){
+  const headgear=['hat','headband','headphones','decoration'];
+  if(headgear.includes(key))headgear.filter(k=>k!==key).forEach(k=>person[k]='none');
+  if(key==='headphones')person.earrings='none';if(key==='earrings')person.headphones='none';
+  if(key==='necklace')person.scarf='none';if(key==='scarf')person.necklace='none';
+ }
+ if(key==='hair'&&value==='none'){person.decoration='none';person.headband='none'}
+ if(key==='hair'&&value==='23'){person.headband='none';person.hat='none'}
+ if(key==='headband'&&value!=='none'&&person.hair==='23')person.hair='4';
+}
+
 function saveFree(){if(mode==='free'){saved={person:{...person},name};try{localStorage.setItem('stw-watercolor-appearance-v1',JSON.stringify(saved))}catch(e){}}}
 function hasFreckles(p){return !!AppearanceParts.find('cheeks',p.cheeks)?.freckles}
 function describe(p,who='This person',full=false){
@@ -23,7 +59,7 @@ function describe(p,who='This person',full=false){
  return text;
 }
 function signature(p){return PARTS.map(k=>k==='eyes'?AppearanceParts.find('eyes',p[k])?.color:k==='cheeks'?hasFreckles(p):p[k]).join('|')}
-function header(){return `<header class="masthead"><div><p class="eyebrow">Spill the Word · Kids</p><h1>Appearance</h1></div><span class="stamp">LITTLE<br>PORTRAIT<br>STUDIO</span></header>`}
+function header(){return `<header class="masthead"><div><p class="eyebrow">Spill the Word · Kids · Appearance</p><h1>Portrait Studio</h1></div></header>`}
 function footer(){return '<p class="footer-note">A little face. A big story. · Look, build and describe.</p>'}
 function home(){mode='';app.innerHTML=header()+`<div class="intro"><h2>Who shall we make today?</h2><p>Choose a game. Build a portrait, invent a character or play a guessing game together.</p></div><div class="modes"><button class="mode" data-mode="build"><span class="preview">${portrait({...DEFAULT,hair:'5',eyes:'1'})}</span><h2>Read & build</h2><p>Read the description. Find the right parts and make the person.</p><span>Open the description →</span></button><button class="mode" data-mode="free"><span class="preview">${portrait({...DEFAULT,hair:'13',glasses:'2'})}</span><h2>Make your own</h2><p>Your ideas, your character. Mix the parts and tell us about them.</p><span>Enter the studio →</span></button><button class="mode" data-mode="guess"><span class="preview trio">${[randomPerson(()=>.1),randomPerson(()=>.55),randomPerson(()=>.9)].map(portrait).join('')}</span><h2>Guess who?</h2><p>Ten faces. One secret person. Ask questions and cross people out.</p><span>Meet the characters →</span></button></div>`+footer();app.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>start(b.dataset.mode));updateURL();}
 function start(m){if('speechSynthesis' in window)speechSynthesis.cancel();mode=m;category='hair';if(m==='guess'){newBoard();return}if(m==='build'){round=0;newTask();return}if(saved?.person){person={...DEFAULT,...saved.person};name=saved.name||'My character'}else{person={...DEFAULT};name='My character'}builder();}
@@ -36,7 +72,7 @@ function builder(){updateURL();app.innerHTML=header()+`<div class="toolbar"><but
  renderParts();}
 function section(key,title,items,allowNone=false){return `<p class="section-label">${title}</p><div class="options">${(allowNone?[{id:'none',label:'None'},...items]:items).map(item=>`<button class="part${person[key]===item.id?' selected':''}" data-key="${key}" data-value="${item.id}" aria-pressed="${person[key]===item.id}">${item.src?`<img src="${item.src}" alt="" loading="lazy">`:'<span class="empty-part">∅</span>'}<span>${esc(item.label)}</span></button>`).join('')}</div>`}
 function renderParts(){document.querySelectorAll('[data-category]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.category===category)));$('#parts').innerHTML=category==='hair'?section('hair','Choose a hairstyle',C.hair,true):category==='face'?section('face','Face shapes',C.face)+section('eyes','Eyes',C.eyes):category==='features'?section('brows','Eyebrows',C.brows)+section('nose','Noses',C.nose)+section('mouth','Mouths',C.mouth)+section('cheeks','Cheeks & freckles',C.cheeks,true)+section('facial','Beards & moustaches',C.facial,true):['glasses','hat','headband','decoration','earrings','necklace','scarf','headphones'].map(g=>section(g,({glasses:'Glasses',hat:'Hats',headband:'Headbands',decoration:'Bows & clips',earrings:'Earrings',necklace:'Necklaces',scarf:'Scarves & bow ties',headphones:'Headphones'})[g],C.accessory.filter(a=>a.group===g),true)).join('');
- $('#parts').querySelectorAll('[data-key]').forEach(b=>b.onclick=()=>{person[b.dataset.key]=b.dataset.value;solved=false;saveFree();refreshPortrait();renderParts()});}
+ $('#parts').querySelectorAll('[data-key]').forEach(b=>b.onclick=()=>{choosePart(b.dataset.key,b.dataset.value);solved=false;saveFree();refreshPortrait();renderParts()});}
 function refreshPortrait(){$('#portrait').innerHTML=portrait(person);if(mode==='free')$('#free-description').textContent=describe(person,name||'This person',true);else{$('#feedback').textContent='';$('#feedback').classList.remove('success');$('#next').disabled=true;$('#check').disabled=false;}}
 function check(){const wrong=PARTS.filter(k=>k==='eyes'?AppearanceParts.find('eyes',person.eyes)?.color!==AppearanceParts.find('eyes',target.eyes)?.color:k==='cheeks'?hasFreckles(person)!==hasFreckles(target):person[k]!==target[k]);const f=$('#feedback');if(wrong.length){f.classList.remove('success');f.textContent=`Almost! Look again at: ${wrong.map(k=>LABELS[k]).join(', ')}.`}else{solved=true;f.classList.add('success');f.textContent='That’s the person! Well done. ✦';$('#next').disabled=false;$('#check').disabled=true;$('#portrait').classList.add('win')}}
 function seeded(seed){let t=2166136261;for(const c of seed){t^=c.charCodeAt(0);t=Math.imul(t,16777619)}return ()=>{t+=0x6D2B79F5;let x=t;x=Math.imul(x^x>>>15,x|1);x^=x+Math.imul(x^x>>>7,x|61);return ((x^x>>>14)>>>0)/4294967296}}
@@ -46,5 +82,5 @@ function drawBoard(){updateURL();app.innerHTML=header()+`<div class="toolbar"><b
  app.querySelectorAll('[data-person]').forEach(b=>b.onclick=()=>{const i=+b.dataset.person;if(guess){askGuess(i);return}eliminated.has(i)?eliminated.delete(i):eliminated.add(i);b.classList.toggle('eliminated',eliminated.has(i));b.setAttribute('aria-pressed',String(eliminated.has(i)));b.setAttribute('aria-label',board[i].name+(eliminated.has(i)?', crossed out':''));$('#board-feedback').textContent=`${10-eliminated.size} people left.`});}
 function askGuess(i){const p=board[i],dialog=document.createElement('dialog');dialog.innerHTML=`<p class="eyebrow">Ask your partner</p>${portrait(p)}<h2>Is it ${p.name}?</h2><p>The child answers.</p><div class="actions"><button id="yes" class="primary">Yes! That’s my person</button><button id="no">No, try again</button></div><button id="close-dialog" class="small" style="margin-top:16px">Cancel</button>`;document.body.appendChild(dialog);dialog.showModal();dialog.addEventListener('close',()=>dialog.remove());dialog.querySelector('#close-dialog').onclick=()=>dialog.close();dialog.querySelector('#yes').onclick=()=>{dialog.close();guess=false;drawBoard();$('#board-feedback').classList.add('success');$('#board-feedback').textContent=`You found ${p.name}! Choose a new secret person to play again. ✦`};dialog.querySelector('#no').onclick=()=>{dialog.close();eliminated.add(i);guess=false;drawBoard();$('#board-feedback').textContent='Keep asking questions!'};}
 async function copySheet(){try{const offline=location.protocol==='file:';await navigator.clipboard.writeText(offline?sheet:location.href);$('#board-feedback').textContent=offline?`Sheet code copied: ${sheet}. Open it in another copy of Appearance.`:'Sheet link copied. Both players will see the same characters.'}catch(e){$('#board-feedback').textContent=`Share this sheet code: ${sheet}`}}
-async function downloadPortrait(){const button=$('#download');button.disabled=true;try{const canvas=document.createElement('canvas');canvas.width=700;canvas.height=850;const ctx=canvas.getContext('2d');ctx.fillStyle='#fff8e9';ctx.fillRect(0,0,700,850);ctx.fillStyle='#f2b8cb';ctx.fillRect(45,45,610,675);const image=new Image();await new Promise((resolve,reject)=>{image.onload=resolve;image.onerror=reject;image.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(portrait(person))});ctx.drawImage(image,105,55,490,650);ctx.fillStyle='#343177';ctx.textAlign='center';ctx.font='bold 34px Georgia';ctx.fillText(name||'My character',350,775,610);ctx.font='16px sans-serif';ctx.fillText('APPEARANCE · SPILL THE WORD',350,815);const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download='my-character.png';a.click()}catch(e){$('#free-description').textContent='The portrait could not be saved. Please try again.'}finally{button.disabled=false}}
+async function downloadPortrait(){const button=$('#download');button.disabled=true;try{const canvas=document.createElement('canvas');canvas.width=700;canvas.height=850;const ctx=canvas.getContext('2d');ctx.fillStyle='#F9F5E6';ctx.fillRect(0,0,700,850);ctx.fillStyle='#CCE5FF';ctx.fillRect(45,45,610,675);const image=new Image();await new Promise((resolve,reject)=>{image.onload=resolve;image.onerror=reject;image.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(portrait(person))});ctx.drawImage(image,105,55,490,650);ctx.fillStyle='#70271F';ctx.textAlign='center';ctx.font='bold 34px Georgia';ctx.fillText(name||'My character',350,775,610);ctx.font='16px sans-serif';ctx.fillText('APPEARANCE · SPILL THE WORD',350,815);const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download='my-character.png';a.click()}catch(e){$('#free-description').textContent='The portrait could not be saved. Please try again.'}finally{button.disabled=false}}
 const params=new URLSearchParams(location.search);if(params.get('mode')==='guess'&&/^[A-Z0-9-]{1,12}$/i.test(params.get('sheet')||'')){mode='guess';newBoard(params.get('sheet').toUpperCase())}else home();

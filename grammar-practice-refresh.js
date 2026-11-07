@@ -17,7 +17,7 @@ practiceRefreshStyle.textContent=`
 #view .tybar button.on,#view .tylvm button.on{background:#F24E07;color:#F9F5E6}#view .tylvm{border:0!important;background:#F9F5E6;box-shadow:0 3px 15px #70271F20}
 .there-page{max-width:1060px;margin:auto;padding:20px 16px;color:#70271F}.there-page h2{font:34px Georgia,serif}.there-images{display:grid;gap:18px;grid-template-columns:repeat(2,minmax(0,1fr));margin:18px 0}.there-images.single{grid-template-columns:minmax(0,1fr);max-width:740px;margin:18px auto}
 .there-scene{margin:0;padding:12px;background:#CCE5FF;position:relative}.there-scene:nth-child(2){background:#F4DDF4}.there-scene img{display:block;width:100%;height:400px;object-fit:contain}.there-scene figcaption{font:18px Georgia,serif;margin-bottom:8px}
-.there-copy{background:#fff;padding:18px;font:23px/1.35 Georgia,serif}.there-controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.there-controls button{border:0;border-radius:3px;padding:10px 14px;background:#CCE5FF;color:#70271F;font:17px Georgia,serif}.there-controls button:nth-child(2){background:#F4DDF4}.there-example{font:21px/1.4 Georgia,serif;color:#26422B;margin-top:16px}.there-memory-cover{min-height:400px;display:grid;place-items:center;color:#26422B;font:30px Georgia,serif}.there-photo[hidden],.there-memory-cover[hidden]{display:none!important}
+.there-copy{background:#fff;padding:18px;font:23px/1.35 Georgia,serif}.there-controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.there-controls button{border:0;border-radius:3px;padding:10px 14px;background:#CCE5FF;color:#70271F;font:17px Georgia,serif}.there-controls button:nth-child(2){background:#F4DDF4}.there-example{font:21px/1.4 Georgia,serif;color:#26422B;margin-top:16px}.there-memory-cover{min-height:400px;display:grid;place-items:center;color:#26422B;font:30px Georgia,serif}.there-photo{transition:filter .35s}.there-scene.lights-off{background:#151b1c}.there-scene.lights-off .there-photo{filter:brightness(.07) saturate(.4)}.there-scene.lights-off figcaption{color:#F9F5E6}.there-photo[hidden],.there-memory-cover[hidden]{display:none!important}
 @media(max-width:620px){.there-images{grid-template-columns:minmax(0,1fr)}.there-scene img{height:300px}.there-copy{font-size:20px}.there-memory-cover{min-height:300px}}
 `;
 document.head.appendChild(practiceRefreshStyle);
@@ -31,18 +31,18 @@ function therePractice(mode){
  let round=0,hidden=false;const scenes=shuffle(SCENES.slice()),pairs=shuffle(THERE_COMPARE.slice());
  const questions=scene=>scene.q.filter(qa=>/^(Is there|Are there|How many)/.test(qa[0])).map(qa=>[qa[0].split('?')[0]+'?',qa[1]]);
  const draw=()=>{
-  const pair=pairs[round%pairs.length],scene=scenes[Math.floor(round/4)%scenes.length],qs=questions(scene),qa=qs[round%qs.length];
+  const pair=pairs[round%pairs.length],scene=scenes[Math.floor(round/4)%scenes.length],qs=questions(scene),qa=qs.length?qs[round%qs.length]:['What is there in the picture?',scene.q[0]?.[1]||'There are things in the room.'];
   const picture=(key,label)=>`<figure class="there-scene"><figcaption>${esc(label)}</figcaption><img class="there-photo" src="${PICS[key]}" alt="${esc(label)}"></figure>`;
   setView(`<section class="there-page"><button class="grammar-back" id="thereBack">← Exercises</button><h2>There is / There are: ${THERE_TITLES[mode]}</h2>
    <div class="there-images${mode==='compare'?'':' single'}">${mode==='compare'?picture(pair[0],'Picture A')+picture(pair[1],'Picture B'):picture(scene.k,scene.n)}</div>
-   <div class="there-copy"><div id="thereQuestion">${mode==='memory'?'Look carefully at the room. Hide the picture when you are ready.':esc(mode==='compare'?pair[2]:qa[0])}</div>
-   <div class="there-controls">${mode==='memory'?'<button id="thereHide">Hide picture</button>':''}<button id="thereExample"${mode==='memory'?' disabled':''}>Show an example</button><button id="thereNew">${mode==='compare'?'Another pair':'Another question'}</button></div><div class="there-example" id="thereAnswer" hidden></div></div></section>`);
+   <div class="there-copy"><div id="thereQuestion">${esc(mode==='compare'?pair[2]:qa[0])}</div>
+   <div class="there-controls">${mode==='memory'?'<button id="thereHide" aria-pressed="false">Turn light off</button>':''}<button id="thereExample">Show an example</button><button id="thereNew">${mode==='compare'?'Another pair':'Another question'}</button></div><div class="there-example" id="thereAnswer" hidden></div></div></section>`);
   $('#thereBack').onclick=spSetup;
   $('#thereNew').onclick=()=>{round++;hidden=false;draw()};
   $('#thereExample').onclick=()=>{const answer=$('#thereAnswer');answer.hidden=false;answer.textContent=mode==='compare'?pair[3]:qa[1]};
   if(mode==='memory'){
-   const fig=$('#view .there-scene'),cover=document.createElement('div');cover.className='there-memory-cover';cover.textContent='What do you remember?';cover.hidden=true;fig.appendChild(cover);
-   $('#thereHide').onclick=()=>{hidden=!hidden;fig.querySelector('img').hidden=hidden;cover.hidden=!hidden;$('#thereHide').textContent=hidden?'Show picture':'Hide picture';$('#thereQuestion').textContent=hidden?qa[0]:'Look carefully at the room. Hide the picture when you are ready.';$('#thereExample').disabled=!hidden;$('#thereAnswer').hidden=true};
+   const fig=$('#view .there-scene');
+   $('#thereHide').onclick=()=>{hidden=!hidden;fig.classList.toggle('lights-off',hidden);$('#thereHide').textContent=hidden?'Turn light on':'Turn light off';$('#thereHide').setAttribute('aria-pressed',String(hidden))};
   }
  };
  draw();

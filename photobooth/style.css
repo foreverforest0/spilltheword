@@ -7,3 +7,12 @@
 .machine-area:has(.booth[data-state=revealed]) .machine-caption{margin-top:40%}
 #change-task{margin-top:16px}.settings select{max-width:min(320px,85vw)}
 @media(max-width:700px){#change-task{position:fixed;right:14px;bottom:14px;width:auto;z-index:30;background:#fff1d9;box-shadow:0 3px 12px #71172530;padding:11px 16px}body{padding-bottom:55px}.settings select{max-width:none}}
+/* Shared Spill the Word UI; the illustrated booth itself remains the scene. */
+body.stw-site-theme{--ink:#70271F;--paper:#F9F5E6;--pink:#F4DDF4;--orange:#F24E07;--green:#26422B}
+body.stw-site-theme :is(.eyebrow,.back,.settings label,.machine-caption,.answer-label,.task-scene span){font-family:Georgia,serif;letter-spacing:0;color:#26422B;text-transform:none}
+body.stw-site-theme .settings select{border:0;border-bottom:1px solid #70271F50;background:#fff;font:16px Georgia,serif;color:#70271F}
+body.stw-site-theme button:not(.coin){border:0;border-radius:3px;box-shadow:none;background:#CCE5FF;color:#70271F;font-family:Georgia,serif}
+body.stw-site-theme button.primary{background:#70271F;color:#F9F5E6}body.stw-site-theme .choices button{font:17px/1.4 Georgia,serif;background:#CCE5FF;border:0;padding:13px}
+body.stw-site-theme .choices button[aria-pressed=true]{background:#B2BC70;color:#26422B;border:0;padding:13px}
+body.stw-site-theme .task-scene{border:0;background:#CCE5FF;border-radius:3px}body.stw-site-theme .desk{background:#fff;border:0;border-radius:3px;box-shadow:none}
+body.stw-site-theme :is(.desk,.settings,.paper,.machine-caption) *{font-family:Georgia,'Times New Roman',serif!important}
