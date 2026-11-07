@@ -12653,7 +12653,7 @@ homeBind=function(){
  root.onclick=e=>{
   const book=e.target.closest('[data-book-game]');
   if(book){e.preventDefault();sfx('boot');const key=book.dataset.bookGame;
-   if(book.dataset.mode){S.gmode=book.dataset.mode;save()}
+   if(book.dataset.mode){go('gram');S.gmode=book.dataset.mode;save();if(S.gmode==='exp')exSetup();else gmNew();return}
    go(book.dataset.tab);return;
   }
   const cat=e.target.closest('[data-category]');if(cat){e.preventDefault();if(cat.dataset.category==='grammar'){S.gmode='ts';save();go('gram')}else go('words')}
@@ -12710,7 +12710,7 @@ homeBind=function(){
   body.grammar-style-active #view button[data-btn],body.grammar-style-active #view .lpb,body.grammar-style-active #view .lvb{font:16px Georgia,'Times New Roman',serif!important;color:var(--gc-wine)!important;border:0!important;border-radius:0!important;box-shadow:none!important}
   body.grammar-style-active #view .grammar-page{max-width:1020px;margin:0 auto;padding:28px 18px 54px;color:var(--gc-wine)}
    body.grammar-style-active #view .grammar-live-head{display:block!important;width:100%;margin:0 auto 22px}body.grammar-style-active #view .grammar-live-head .grammar-title{width:100%!important;margin:18px auto 24px!important}
-  body.grammar-style-active #view .grammar-title{font:400 clamp(52px,8vw,88px)/1 Georgia,'Times New Roman',serif!important;letter-spacing:-.045em!important;text-align:center;margin:10px 0 24px!important}
+  body.grammar-style-active #view .grammar-title{width:100%!important;font:400 clamp(52px,8vw,88px)/1 Georgia,'Times New Roman',serif!important;letter-spacing:-.045em!important;text-align:center;margin:10px 0 24px!important}
   body.grammar-style-active #view .grammar-levels{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:0 auto 24px}
   body.grammar-style-active #view .grammar-level{appearance:none;background:transparent;border:0;border-bottom:1px solid transparent;padding:6px 4px;color:var(--gc-green);font:400 16px Georgia,serif!important;cursor:pointer}
   body.grammar-style-active #view .grammar-level:hover{border-color:var(--gc-orange)}
@@ -12724,6 +12724,9 @@ homeBind=function(){
   body.grammar-style-active #view .grammar-topic.selected{box-shadow:inset 0 -3px 0 var(--gc-orange)!important}
   body.grammar-style-active #view .grammar-topic svg{height:45px;width:48px;overflow:visible;align-self:flex-end;color:var(--gc-wine)}
   body.grammar-style-active #view .grammar-topic:nth-child(3n) svg{color:var(--gc-green)}body.grammar-style-active #view .grammar-topic:nth-child(4n) svg{color:var(--gc-orange)}
+  .grammar-back{border:0;background:transparent;color:#70271F;padding:8px 0;font:16px Georgia,serif;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+  .grammar-topic-heading{margin:12px auto 24px!important;font:32px Georgia,serif!important}
+  .grammar-exercise-back{max-width:1020px;margin:0 auto;padding:6px 18px}
   body.grammar-style-active #view .grammar-actions{display:flex;justify-content:center;margin:24px 0 0}
   body.grammar-style-active #view .grammar-start{appearance:none;border:0;background:var(--gc-wine);color:var(--gc-cream);padding:11px 24px;font:17px Georgia,serif;cursor:pointer;transition:background .16s}
   body.grammar-style-active #view .grammar-start:hover{background:var(--gc-orange)}body.grammar-style-active #view .grammar-start:disabled{opacity:.45;cursor:default}
@@ -12732,7 +12735,7 @@ homeBind=function(){
   @media(max-width:780px){body.grammar-style-active #view .grammar-topics{grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}body.grammar-style-active #view .grammar-topic{min-height:116px;font-size:16px!important}}
   @media(max-width:520px){body.grammar-style-active #view .grammar-page{padding:18px 12px 40px}body.grammar-style-active #view .grammar-title{margin-bottom:18px!important}body.grammar-style-active #view .grammar-levels{gap:11px;margin-bottom:18px}body.grammar-style-active #view .grammar-level{font-size:15px}body.grammar-style-active #view .grammar-topics{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}body.grammar-style-active #view .grammar-topic{min-height:112px;padding:11px;font-size:15px!important}body.grammar-style-active #view .grammar-topic svg{width:40px;height:38px}}
  `;document.head.appendChild(css);
- const oldGo=go;go=function(t){document.body.classList.toggle('grammar-style-active',t==='gram');return oldGo(t)};
+ const oldGo=go;go=function(t){grammarActivity=false;grammarCurrent=null;if(t==='gram')S.gmode='ts';document.body.classList.toggle('grammar-style-active',t==='gram');return oldGo(t)};
  const doodles=[
   `<path d="M23 3q4 0 4 10 9-8 13-4 3 4-5 11 12 2 11 7-1 4-12 3 6 10 2 13-4 3-10-6-4 11-8 9-4-1-3-12-9 7-12 3-2-4 6-10Q-2 26 2 22q2-4 13-1-7-9-3-12 4-3 10 6Z" fill="var(--gc-orange)" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/><path d="M22 13q3 4 2 8m-12 4q6-2 10-1" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>`,
   `<path d="M25 6c4 0 3 8 7 9 4-1 8-5 10-2 2 3-4 7-3 10 1 4 8 5 6 9-2 3-8 0-11 2-2 3 0 9-4 10-4 1-5-7-8-9-3 1-7 6-10 3-3-3 3-8 2-11-2-3-9-2-9-6s7-5 9-8c0-4-3-8 1-10 3-2 7 4 10 3Z" fill="var(--gc-pink)" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/><circle cx="25" cy="26" r="4" fill="var(--gc-butter)" stroke="currentColor" stroke-width="1.5"/>`,
@@ -12743,23 +12746,45 @@ homeBind=function(){
   `<path d="M7 28q5-16 11-1t11 0 14 1M8 36q5-11 10 0t10 0 14-1" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/><path d="M12 13q4-5 8 0t8 0 8 0" fill="none" stroke="var(--gc-orange)" stroke-width="2.2" stroke-linecap="round"/>`
  ];
  function topicDoodle(i){return `<svg viewBox="0 0 50 50" aria-hidden="true">${doodles[i%doodles.length]}</svg>`}
-  const grammarTaskItems=()=>{const out=[];glTopics().forEach(t=>(TS[t.id]||[]).forEach(x=>out.push({t,s:x[0],q:x[1],a:x[2]})));return shuffle(out)};
-  const baseGrammarRender=glRender;
-  glRender=function(){baseGrammarRender();const panel=$('#view .panel');if(!panel)return;
-   const tabs=GLV.map(l=>`<button type="button" role="tab" aria-selected="${S.glevel===l[0]}" class="grammar-level${S.glevel===l[0]?' active':''}" data-live-level="${l[0]}">${l[1]}</button>`).join('');
-   panel.insertAdjacentHTML('afterbegin',`<div class="grammar-live-head"><h1 class="grammar-title">Grammar</h1><div class="grammar-levels" role="tablist" aria-label="Choose grammar level">${tabs}</div></div>`);
-   const head=panel.querySelector('.grammar-live-head');waveTitles(head);
-   head.onclick=e=>{const b=e.target.closest('[data-live-level]');if(!b)return;S.glevel=b.dataset.liveLevel;S.gmode='ts';S.gtop=[];save();GL={mode:'ts',items:grammarTaskItems(),i:0,show:false,ok:0,bad:0,rule:false};glRender()};
-   const quit=$('#glquit');if(quit){quit.textContent='↻ New set';quit.onclick=()=>glSetup()}
+ let grammarCurrent=null,grammarActivity=false;
+ function grammarGroups(){
+  const levels=S.glevel==='all'?GLV.filter(l=>l[0]!=='all').map(l=>l[0]):[S.glevel];
+  return levels.flatMap(lv=>(SPGRP[lv]||[]).map((g,i)=>({key:lv+':'+i,lv,name:g[0].replace(/^\d+\s*·\s*/,''),ids:g[1]})).filter(g=>/^\d+\s*·/.test((SPGRP[lv]||[])[+g.key.split(':')[1]][0])));
+ }
+ function grammarCatalog(topic){
+  seaOff();grammarActivity=false;BLOBID=null;grammarCurrent=topic||null;
+  document.body.classList.add('grammar-style-active');
+  const groups=grammarGroups(),entries=topic?topic.ids.map(id=>({key:id,name:(SPSHORT[id]||(SPT.find(t=>t.id===id)||{}).n||id).replace(/^🖥\s*/u,'')})):groups;
+  setView(`<section class="grammar-page"><h1 class="grammar-title">Grammar</h1>
+   <div class="grammar-levels" role="tablist" aria-label="Choose grammar level">${GLV.map(l=>`<button type="button" role="tab" aria-selected="${S.glevel===l[0]}" class="grammar-level${S.glevel===l[0]?' active':''}" data-catalog-level="${l[0]}">${l[1]}</button>`).join('')}</div>
+   ${topic?`<button type="button" class="grammar-back" id="grammarTopicsBack">← All topics</button><h2 class="grammar-topic-heading">${esc(topic.name)}</h2>`:''}
+   <div class="grammar-topics" aria-label="${topic?'Choose an exercise':'Grammar topics'}">${entries.map((g,i)=>`<button type="button" class="grammar-topic" ${topic?'data-grammar-exercise':'data-grammar-topic'}="${esc(g.key)}">${topicDoodle(i)}<span>${esc(g.name)}${!topic&&S.glevel==='all'?` · ${g.lv.toUpperCase()}`:''}</span></button>`).join('')}</div>
+  </section>`);
+  $('#view .grammar-levels').onclick=e=>{const b=e.target.closest('[data-catalog-level]');if(!b)return;S.glevel=b.dataset.catalogLevel;save();grammarCatalog()};
+  const back=$('#grammarTopicsBack');if(back)back.onclick=()=>grammarCatalog();
+  $('#view .grammar-topics').onclick=e=>{
+   const topicButton=e.target.closest('[data-grammar-topic]');if(topicButton){grammarCatalog(groups.find(g=>g.key===topicButton.dataset.grammarTopic));return}
+   const exercise=e.target.closest('[data-grammar-exercise]');if(!exercise||!grammarCurrent)return;
+   S.splevel=grammarCurrent.lv;S.sptask=exercise.dataset.grammarExercise;save();grammarActivity=true;spOpen(S.sptask);
   };
-  glSetup=function(){
-   seaOff();document.body.classList.add('grammar-style-active');
-   if(['craft','board','absurd','gacha','photo'].includes(S.gmode)){gmNew();return}
-   if(S.gmode==='exp'){exSetup();return}
-   if(!S.glevel||!GLV.some(x=>x[0]===S.glevel))S.glevel='b1';
-   S.gmode='ts';S.gtop=[];save();
-   GL={mode:'ts',items:grammarTaskItems(),i:0,show:false,ok:0,bad:0,rule:false};glRender();
-  };
+ }
+ const baseSpeakingSetup=spSetup;
+ spSetup=function(){if(tab==='gram'&&grammarCurrent){grammarCatalog(grammarCurrent);return}return baseSpeakingSetup()};
+ const baseCatalogView=setView;
+ setView=function(html){baseCatalogView(html);if(tab!=='gram'||!grammarActivity||!grammarCurrent)return;
+  const bar=document.createElement('div');bar.className='grammar-exercise-back';
+  const back=document.createElement('button');back.type='button';back.className='grammar-back';back.textContent='← '+grammarCurrent.name;
+  back.onclick=()=>{deskOff();grammarCatalog(grammarCurrent)};bar.appendChild(back);$('#view').prepend(bar);
+ };
+ glSetup=function(){
+  grammarActivity=false;grammarCurrent=null;
+  seaOff();document.body.classList.add('grammar-style-active');
+  if(['craft','board','absurd','gacha','photo'].includes(S.gmode)){gmNew();return}
+  if(S.gmode==='exp'){exSetup();return}
+  if(!S.glevel||!GLV.some(x=>x[0]===S.glevel))S.glevel='b1';
+  S.gmode='ts';S.gtop=[];save();grammarCatalog();
+ };
+
 })();
 async function boot(){
  if(/[#&]embed\b/.test(location.hash))document.body.classList.add('embed');
