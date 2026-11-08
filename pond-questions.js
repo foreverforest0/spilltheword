@@ -254,8 +254,8 @@ What did you promise to do? | I / promise / do / my best | I promised to do my b
 How did Mia react? | She reacted ___ (expect). Use an adverb meaning not as expected. | She reacted unexpectedly.
 What has changed about the town? | The town has been ___ (develop). Add a prefix meaning again. | The town has been redeveloped.
 How does Ben approach the task? | His approach is very ___ (create). | His approach is very creative.`),
- inversion:read(`How can you emphasise that you had never seen it? | Start with Never: I had never seen such a view. | Never had I seen such a view.
-How can you emphasise the ban? | Start: Under no circumstances / you / open / this door. Use must. | Under no circumstances must you open this door.
+ inversion:read(`How can you emphasise that you had never seen it? | I had never seen such a view. Use inversion. | Never had I seen such a view.
+How can you emphasise the ban? | You must not open this door under any circumstances. Use inversion. | Under no circumstances must you open this door.
 How can you emphasise the timing? | No sooner / we / arrive / than / it / start / to rain | No sooner had we arrived than it started to rain.
 How can you introduce this condition formally? | If you need help, call me. Start with Should. | Should you need help, call me.`),
  cleft:read(`How can you emphasise Mia? | Mia broke the vase. Start: It was Mia… | It was Mia who broke the vase. ~ It was Mia that broke the vase.
@@ -277,6 +277,54 @@ What would you have liked to do? | I / would like / meet / her. Use a perfect in
  };
  const topics={kids:['be','pskids','pc','there','pastkids','plural','time','have','possessive'],a1:['be','wordorder','ps','pc','past','there','pronouns','prepositions','have','time','imperatives','count','gerund','questions'],a2:['ps','be','pc','mixpresent','wordorder','past','pastcontinuous','mixpast','modals','used','infinitive','perfect','comparison'],b1:['perfect','perfectcontinuous','pastperfect','conditional','passive','reported','relatives','tags','deduction','infinitive','wordformation'],b2:['third','mixed','wish','passiveall','reportedall','pastdeduction','relatives','infinitive','futureperfect','causative','comparisonadvanced','collocations','affixes'],c1:['inversion','cleft','subjunctive','participles','perfectgerund','reportedall']};
  const tsKeys={be:'be',ps:'ps',pc:'pcn',there:'thr',past:'psp',pastcontinuous:'pasc',modals:'shd',used:'uto',perfect:'pfi',comparison:'cmp',perfectcontinuous:'ppc',pastperfect:'pperf',conditional:'cd1',passive:'pass',reported:'rep',relatives:'rcl',tags:'tag',deduction:'mdd',third:'cd3',mixed:'cdm',wish:'wsp',passiveall:'pasa',pastdeduction:'mdp',futureperfect:'fpf',causative:'cau',comparisonadvanced:'cmx',inversion:'inv',cleft:'cle',subjunctive:'sbj',participles:'ptc'};
+ const patterns={
+  be:'Subject + am / is / are. In a short answer, repeat the correct form of be.',
+  pskids:'I / you / we / they + base verb. He / she / it + verb-s.',
+  ps:'Present Simple: he / she / it + verb-s; negatives use do not / does not + base verb.',
+  pc:'Subject + am / is / are + verb-ing.',there:'There is + singular. There are + plural.',
+  pastkids:'Subject + past verb. Regular verbs end in -ed.',past:'Past Simple: past verb; did not + base verb in negatives.',
+  plural:'Keep the number and use the plural noun.',time:'Say the time in words. Use at before a clock time in a full sentence.',
+  have:'Subject + have / has got + object.',possessive:'Use my / your / his / her before a noun; mine / yours / his / hers without a noun.',
+  wordorder:'Subject → verb → object → place → time.',pronouns:'Choose a subject, object or possessive pronoun to match the person.',
+  prepositions:'Subject + is / are + place phrase.',imperatives:'Use the base verb. Use Do not + base verb for a negative instruction.',
+  count:'There is + uncountable / singular. There are + plural. Check much / many and a little / a few.',
+  gerund:'Use verb-ing after enjoy, avoid, finish, suggest, or a preposition.',questions:'Question word + auxiliary + subject + main verb?',
+  mixpresent:'A routine uses Present Simple; an action happening now uses am / is / are + verb-ing.',
+  pastcontinuous:'Subject + was / were + verb-ing.',mixpast:'Past Continuous sets the scene; Past Simple describes the interrupting action.',
+  modals:'Modal + base verb. After has to / have to, use the base verb.',used:'used to + base verb; did not use to + base verb.',
+  infinitive:'Check the first verb: decide / hope + to + base verb; enjoy / avoid + verb-ing.',
+  perfect:'Subject + have / has + past participle (V3).',comparison:'Use -er / more … than, the -est / most …, or as … as.',
+  perfectcontinuous:'Subject + have / has been + verb-ing.',pastperfect:'Subject + had + past participle (V3).',
+  conditional:'First: if + Present Simple, will + base verb. Second: if + Past Simple, would + base verb.',
+  passive:'Subject + am / is / are / was / were + past participle (V3).',
+  reported:'said / told + subject + a tense one step back. Remember to change the pronouns.',
+  relatives:'who for people; which / that for things; where for places; whose for possession.',
+  tags:'Repeat the auxiliary and the subject pronoun; switch positive to negative, or negative to positive.',
+  deduction:'must / might / cannot + base verb. Choose the certainty given in the prompt.',
+  wordformation:'Choose the noun, adjective or adverb form that fits the gap.',
+  third:'If + had + V3, would have + V3.',mixed:'Past cause → present result: if + had + V3, would + base verb. Present condition → past result: if + Past Simple, would have + V3.',
+  wish:'A present wish uses Past Simple; a past regret uses had + V3; a desired change uses would + base verb.',
+  passiveall:'Keep the requested tense or modal, then use be / been / being + V3.',
+  reportedall:'Reported questions use statement word order. Commands use to + base verb, or not to + base verb.',
+  pastdeduction:'Modal + have + past participle (V3).',futureperfect:'Future Perfect: will have + V3. Future Continuous: will be + verb-ing.',
+  causative:'have / get + object + past participle (V3).',comparisonadvanced:'Use the comparison structure requested in the prompt.',
+  collocations:'Choose the correct form of make, do or take.',affixes:'Keep the required word class and add the requested prefix or suffix.',
+  inversion:'Negative / limiting phrase + auxiliary + subject + main verb.',cleft:'It was … who / that …; What … is / was …',
+  subjunctive:'It is time / would rather + subject + Past Simple; recommend / insist that + subject + base verb.',
+  participles:'Use verb-ing for an active clause, V3 for a passive clause, or having + V3 for an earlier action.',
+  perfectgerund:'Perfect gerund: having + V3. Perfect infinitive: to have + V3.'
+ };
+ function withHint(row,key){
+  let cue=row.cue.trim(),prompt='';
+  const starter=cue.match(/\bstart(?:\s+with|:)\s*([\s\S]*)/i);
+  if(starter){prompt=starter[1].trim();cue=cue.slice(0,starter.index).trim();}
+  else{
+   const answer=row.answers[0],comma=answer.indexOf(',');
+   if(/^If /i.test(answer)&&comma>0)prompt=answer.slice(0,comma+1)+' …';
+   else{const words=answer.replace(/[.!?]$/,'').split(/\s+/);prompt=words.slice(0,words.length<=3?1:2).join(' ')+' …';}
+  }
+  return {...row,cue,hint:prompt+(patterns[key]&&!/\bUse\b/i.test(prompt)?'\n'+patterns[key]:'')};
+ }
  window.PondQuestions={topics,bankFor(level,number){
   const key=topics[level]?.[number-1];if(!key||!bank[key])throw Error('No pond questions for '+level+':'+number);
   const own=bank[key].map(r=>({...r,answers:r.answers.slice()}));
@@ -288,6 +336,6 @@ What would you have liked to do? | I / would like / meet / her. Use a perfect in
     own.push({question:'How would you change this sentence?',cue:sentence+' '+instruction,answers});
    }
   }
-  return own;
+  return own.map(row=>withHint(row,key));
  }};
 })();

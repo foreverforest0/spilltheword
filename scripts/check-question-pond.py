@@ -26,7 +26,7 @@ with sync_playwright() as pw:
    const group=SPGRP[t.level].find(g=>g[0].startsWith(t.number+' ·'));
    if(!group[1].includes(t.id)||!DMTF[t.id]||!SPSHORT[t.id])fail('Missing route '+t.id);
    const bank=QuestionPond.bankFor(t.level,t.number);if(bank.length<4)fail('Small bank '+t.id);
-   for(const row of bank){rows++;if(!row.question||!row.cue||!row.answers.length)fail('Empty question '+t.id);if(row.answers.some(a=>a.includes('(that)')||a.includes(' / ')))fail('Unexpanded example alternatives');
+   for(const row of bank){rows++;if(!row.hint||/start(?: with|:)/i.test(row.cue)||/start(?: with|:)/i.test(row.hint))fail('Visible sentence starter');if(!row.question||(!row.cue&&!row.hint)||!row.answers.length)fail('Empty question '+t.id);if(row.answers.some(a=>a.includes('(that)')||a.includes(' / ')))fail('Unexpanded example alternatives');
     for(const answer of row.answers){if(!QuestionPond.matches(answer,row.answers))fail('Canonical answer rejected');if(!QuestionPond.matches(answer.toUpperCase().replace(/[.,?!]/g,''),row.answers))fail('Punctuation matching');}
     if(QuestionPond.matches('banana banana banana',row.answers))fail('False positive');
    }
@@ -55,19 +55,19 @@ with sync_playwright() as pw:
   x,y=points[0];p.mouse.move(r['x']+r['width']*x,r['y']+r['height']*y);p.mouse.down()
   for x,y in points[1:]:p.mouse.move(r['x']+r['width']*x,r['y']+r['height']*y,steps=6)
   p.mouse.up()
- route();assert p.locator('.pond-header h1').is_visible();assert p.locator('.pond-header .stw-wave-word').count()==2
+ route();assert p.locator('#pondWater').bounding_box()['width']>850;assert p.locator('.pond-header h1').is_visible();assert p.locator('.pond-header .stw-wave-word').count()==2
  assert p.locator('.pond-fish').count()==6
  assert p.locator('#pondHelp').is_hidden();p.locator('#pondHow').click();assert p.locator('#pondHelp').is_visible()
  assert p.locator('#pondHelp').bounding_box()['y']+p.locator('#pondHelp').bounding_box()['height']<=p.locator('#pondWater').bounding_box()['y']
  p.locator('#pondHow').click();seen=set()
  for _ in range(6):
-  catch();idx=p.locator('.pond-page').get_attribute('data-question-index');assert idx not in seen;seen.add(idx)
+  catch();assert p.locator('#pondHintText').is_hidden();p.locator('#pondHint').click();assert p.locator('#pondHintText').is_visible();p.locator('#pondHint').click();assert p.locator('#pondHintText').is_hidden();idx=p.locator('.pond-page').get_attribute('data-question-index');assert idx not in seen;seen.add(idx)
   p.locator('#pondAnswer').fill('He banana.');p.locator('#pondCheck').click();assert p.locator('.pond-page').get_attribute('data-outcome')=='incorrect'
   p.locator('#pondShowAnswer').click();assert p.locator('#pondFeedback').inner_text()==answer()
   p.locator('#pondAnswer').fill(answer());p.locator('#pondCheck').click();assert p.locator('.pond-page').get_attribute('data-phase')=='answered'
-  p.locator('#pondReturn').click();assert p.locator('.pond-fish:disabled').count()==0
+  p.locator('#pondReturn').click();p.wait_for_function("document.querySelector('.pond-page').dataset.phase==='idle'");assert p.locator('.pond-fish:disabled').count()==0
  # Keyboard access; focus pauses fish in addition to pointer hover.
- p.locator('.pond-fish').nth(1).focus();p.keyboard.press('Enter');p.wait_for_selector('#pondAnswer');p.locator('#pondReturn').click()
+ p.locator('.pond-fish').nth(1).focus();p.keyboard.press('Enter');p.wait_for_selector('#pondAnswer');p.locator('#pondReturn').click();p.wait_for_function("document.querySelector('.pond-page').dataset.phase==='idle'")
  p.locator('#pondDrawMode').click();catch();p.locator('#pondStartDrawing').click();assert p.locator('#pondStudio').is_hidden()
  p.locator('#pondAnswer').fill('Not an answer.');p.locator('#pondStartDrawing').click();assert p.locator('#pondCanvas').is_visible()
  p.locator('#pondRelease').click();assert 'Draw a little fish' in p.locator('#pondFeedback').inner_text()
@@ -92,12 +92,17 @@ with sync_playwright() as pw:
  p.emulate_media(reduced_motion='no-preference');route()
  f=p.locator('.pond-fish').first;p.mouse.move(5,5);x=f.bounding_box()['x'];p.wait_for_timeout(240);assert f.bounding_box()['x']!=x
  r=f.bounding_box();p.mouse.move(r['x']+r['width']/2,r['y']+r['height']/2);x=f.bounding_box()['x'];p.wait_for_timeout(220);assert abs(f.bounding_box()['x']-x)<1
- p.locator('#pondDrawMode').click();catch();p.locator('#pondAnswer').fill('Incorrect.');p.locator('#pondStartDrawing').click();draw();p.locator('#pondRelease').click();assert p.locator('.pond-own-fish.jumped').count()==1
+ p.locator('#pondDrawMode').click()
+ r=f.bounding_box();start_y=r['y'];p.mouse.click(r['x']+r['width']/2,r['y']+r['height']/2);p.wait_for_timeout(180)
+ assert p.locator('#pondRig').is_visible();first_path=p.locator('#pondLine').get_attribute('d');p.wait_for_timeout(460)
+ assert p.locator('#pondLine').get_attribute('d')!=first_path and f.bounding_box()['y']<start_y
+ p.wait_for_selector('#pondAnswer');assert p.locator('.pond-fish.caught').count()==1 and p.locator('#pondRig').is_visible()
+ p.locator('#pondAnswer').fill('Incorrect.');p.locator('#pondStartDrawing').click();draw();p.locator('#pondRelease').click();assert p.locator('.pond-own-fish.jumped').count()==1
  assert p.locator('.pond-own-fish.jumped .pond-fish-art').evaluate("e=>getComputedStyle(e).animationName")=='pond-jump'
  p.locator('#pondReturn').click();assert p.locator('.pond-page').get_attribute('data-phase')=='releasing'
  p.wait_for_function("document.querySelector('.pond-page').dataset.phase==='question'")
  p.locator('#pondAnswer').fill(answer());p.locator('#pondRelease').click();assert p.locator('.pond-own-fish.released').count()==1
- p.wait_for_function("document.querySelector('.pond-page').dataset.phase==='answered'");p.locator('#pondReturn').click()
+ p.wait_for_function("document.querySelector('.pond-page').dataset.phase==='answered'");p.locator('#pondReturn').click();p.wait_for_function("document.querySelector('.pond-page').dataset.phase==='idle'")
  p.screenshot(path='/tmp/question-pond-desktop.png',full_page=True)
  # Responsive layouts, no page overflow, question doesn't cover the pond.
  p.emulate_media(reduced_motion='reduce')
