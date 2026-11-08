@@ -250,8 +250,9 @@ body.stw-site-theme #view .b1-fridge.blue .b1-magnet{color:#F9F5E6!important;tex
 .mgmodes .lvb.on,.b1-controls .lvb.on{background:#70271F!important;color:#F9F5E6!important}.b1-settings .lvb{font-size:14px!important;padding:6px 9px!important}
 .b1-controls .lvb{background:#CCE5FF;color:#70271F;border:0;box-shadow:none;font:17px Georgia,serif}.b1-stage{height:auto!important;min-height:0;overflow:visible!important;background:transparent!important;padding:0!important}
 .b1-magnet-picture{flex:none}.b1-magnet-picture:empty{display:none}.b1-magnet-picture .mgpic{max-width:100%}
+.b1-habit-picture{margin:0;background:#fff;color:#70271F}.b1-habit-art{position:relative;overflow:hidden;padding:12px;background:#CCE5FF;box-sizing:border-box}.b1-habit-art img{display:block;position:absolute;inset:12px;width:calc(100% - 24px);height:calc(100% - 24px);object-fit:contain}.b1-habit-picture figcaption{padding:7px 8px;font:18px/1.2 Georgia,serif}
 .b1-drag-ghost{position:fixed!important;z-index:500;pointer-events:none;max-width:240px;opacity:.95}
-@media(max-width:620px){.b1-magnet-layout{gap:10px}.b1-bank-side{gap:8px}.b1-bank{gap:5px;padding:0}.b1-strip{gap:2px;padding:2px}body.stw-site-theme #view .b1-magnet{font-size:18px!important;gap:3px;padding:2px!important;min-height:36px}.b1-magnet img{width:27px;height:27px}.b1-context,.b1-prefix{font-size:16px}.b1-controls .lvb{font-size:15px!important;padding:7px 9px!important}.b1-check-row{gap:6px}.b1-answer{font-size:16px;max-height:75px}}
+@media(max-width:620px){.b1-habit-picture figcaption{font-size:16px}.b1-magnet-layout{gap:10px}.b1-bank-side{gap:8px}.b1-bank{gap:5px;padding:0}.b1-strip{gap:2px;padding:2px}body.stw-site-theme #view .b1-magnet{font-size:18px!important;gap:3px;padding:2px!important;min-height:36px}.b1-magnet img{width:27px;height:27px}.b1-context,.b1-prefix{font-size:16px}.b1-controls .lvb{font-size:15px!important;padding:7px 9px!important}.b1-check-row{gap:6px}.b1-answer{font-size:16px;max-height:75px}}
 `;
 let fridgeResizeCleanup=()=>{};
 document.head.appendChild(B1MAGSTYLE);
@@ -287,8 +288,17 @@ function b1MagnetRound(st,mb,id,cfg,round){
   layout.style.setProperty('--fridge-height',width/aspect+'px');
   if(round.pic){
    const box=st.querySelector('.b1-magnet-picture');
-   const size=Math.round(Math.max(70,Math.min(240,box.parentElement.clientWidth,available*.25)));
-   if(box.dataset.pictureSize!==String(size)){box.dataset.pictureSize=String(size);box.replaceChildren(magPic(round.pic,size,''))}
+   const size=Math.round(Math.max(70,Math.min(extra.pictureStyle==='plain'&&w<620?110:240,box.parentElement.clientWidth,available*.25)));
+   if(box.dataset.pictureSize!==String(size)){
+    box.dataset.pictureSize=String(size);
+    if(extra.pictureStyle==='plain'){
+     const figure=document.createElement('figure');figure.className='b1-habit-picture';figure.style.width=size+'px';
+     const art=document.createElement('div');art.className='b1-habit-art';art.style.height=size+'px';
+     const img=document.createElement('img');img.src=round.pic;img.alt=extra.pictureAlt||'';img.draggable=false;
+     const caption=document.createElement('figcaption');caption.textContent=extra.pictureCaption||'';
+     art.append(img);figure.append(art,caption);box.replaceChildren(figure);
+    }else box.replaceChildren(magPic(round.pic,size,''));
+   }
   }
  };
  const observer=new ResizeObserver(fit);observer.observe(st.closest('.cbpanel'));window.addEventListener('resize',fit);fridgeResizeCleanup=()=>{observer.disconnect();window.removeEventListener('resize',fit)};
@@ -352,9 +362,14 @@ function b1MagnetRound(st,mb,id,cfg,round){
   order.forEach(p=>p.el.classList.toggle('good',correct));
   if(correct){
    result.textContent=extra.word?`Correct: ${tokens.join(' + ')} → ${extra.word}. ${extra.prompt.replace('___',extra.word)} Read it aloud.`:`Perfect! ${(extra.prefix?extra.prefix+' ':'')+order.map(p=>p.word).join(' ')}. Read it aloud, then make a similar example of your own.`;
+   if(extra.agreement){const a=extra.agreement;result.textContent='Yes! '+a.subject+' → '+a.verb+'. Read: '+answers[0]}
   }else{
-   const expected=norm(answers[0]).split(' ');order.forEach((p,i)=>p.el.classList.add(norm(p.word)===expected[i]?'good':'bad'));
+   const expected=(extra.tokens||norm(answers[0]).split(' ')).map(norm);order.forEach((p,i)=>p.el.classList.add(norm(p.word)===expected[i]?'good':'bad'));
    result.textContent='Not yet. Check the order and verb forms. Straight underline = correct position; wavy underline = try again.';
+   if(extra.agreement){
+    const a=extra.agreement;
+    result.textContent=order.some(p=>p.word===a.wrong)?(a.addS?a.subject+' is one person. Add -s to the verb.':'I / you / we / they: use the verb without -s.'):'Use three magnets: who + action + what. Leave one verb in the bank.';
+   }
   }
  };
 }
