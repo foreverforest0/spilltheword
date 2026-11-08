@@ -10261,7 +10261,11 @@ function cbItems(){const t=CB.task,n=CB.n;
   if(CB.p>=CB.deck.length){CB.deck=shuffle(CB.deck);CB.p=0}
   const b=Math.min(CB.p+n,CB.deck.length),a=Math.max(0,Math.min(CB.p,CB.deck.length-n)),out=CB.deck.slice(a,b);CB.p=b;CB.prog='Cards '+(a+1)+'–'+b+' of '+CB.deck.length;return out}
  if(t==='who'){return shuffle(WH.map((w,i)=>({src:'ch/w'+String(i+1).padStart(2,'0')+'.jpg',photo:1,t:'Whose is it?',qo:'What is it? Whose is it? Say: It is his / her / its / their …',a:'✅ '+w[4],hints:[w[3],'Who has it? '+(w[2]==='his'?'A man → his':w[2]==='her'?'A woman → her':w[2]==='its'?'An animal → its':'Two or more → their')+'. Start: It is '+w[2]+' …']})))}
- if(CHT[t]){return shuffle(CH.map((c,i)=>{const src='ch/'+String(i+1).padStart(2,'0')+'.jpg';return t==='gmj'?{src,photo:1,t:'Guess my job!',qo:'Ask yes / no questions: Are you a …? Is your job …? Your partner answers.',a:'✅ '+c[0]+' — '+c[1]+'. From '+c[2]+'.',hints:[c[5],c[6]]}:{src,photo:1,t:'Interview',qo:'Think of your own questions with am / is / are. Interview this person!',a:'✅ I am '+c[0]+'. I am '+c[3]+'. I am '+c[1]+'. I am from '+c[2]+'. Today I am '+c[4]+'.',hints:['Ask about: name · age · job · country · feelings.','Start with: Are you …? Is your …? Where are you from? How old are you?']}}))}
+ if(CHT[t]){return shuffle(CH.map((c,i)=>{
+  const src='ch/'+String(i+1).padStart(2,'0')+'.jpg';
+  if(t==='gmj')return {src,photo:1,t:c[5].replace(/You are/g,'I am').replace(/You/g,'I'),sharedHints:true,hints:[c[6],c[0]+' is '+c[1]+'.']};
+  return {src,photo:1,t:'',frontImageOnly:true,sharedHints:true,answers:['My name is '+c[0]+'.','I am '+c[3]+(/^[0-9]+$/.test(c[3])?' years old.':'.'),'I am '+c[1]+'.','I am from '+c[2]+'.','Today I am '+c[4]+'.'],hints:['What is your name? How old are you?','What is your job? Where are you from? How are you today?']};
+ }))}
  if(WD[t]){const L=WD[t];if(!CB.ord||CB.ord.length!==L.length){CB.ord=shuffle(L.map((_,i)=>i));CB.p=0}
   if(CB.p>=CB.ord.length){CB.ord=shuffle(CB.ord);CB.p=0}
   const b=Math.min(CB.p+n,CB.ord.length),a=Math.max(0,Math.min(CB.p,CB.ord.length-n)),out=CB.ord.slice(a,b).map(i=>{const w=L[i][0],ex=L[i][1],pn=wdPicFor(w,t);return {src:'gi/'+String(pn).padStart(2,'0')+'.jpg',photo:1,t:w,q:'',a:ex,modes:{s:[wdStart(ex,t),ex],w:['Use “'+w+'” to say something about the picture. '+(t==='wbo'?'Make two sentences: -ing and to V.':''),ex],f:['Tell your partner about yourself with “'+w+'”. '+WDQ[t],ex]}}});CB.p=b;CB.prog='Words '+(a+1)+'–'+b+' of '+L.length;return out}
@@ -11995,22 +11999,28 @@ function cardFlip(bd,d,inner,w,h,quick){
 function cardClose(bd,d){if(!d||!d._o)return;const o=d._o;d.classList.remove('flipped');d.innerHTML=o.html;d.style.width=o.w;d.style.height=o.h;d.style.left=o.l;d.style.top=o.t;d.style.transform=o.tr;d.style.zIndex=1;d.classList.add('done');if(bd._h)bd.style.height=bd._h+'px';d.querySelectorAll('.cbt,.rcw').forEach(fitText)}
 function fitText(el){let f=26;el.style.fontSize=f+'px';el.style.overflowWrap='normal';el.style.wordBreak='normal';while((el.scrollHeight>el.clientHeight+1||el.scrollWidth>el.clientWidth+1)&&f>10){f--;el.style.fontSize=f+'px'}}
 function renderCards(){
- const t=SPT.find(x=>x.id===CB.task);
- setView(`<section class="panel k-card cbpanel"><div class="cbbar"><button class="lvb" id="cbback">← Topics</button><h2>${esc(SPSHORT[CB.task]||'')}</h2><div><button class="lvb" id="cbnew">↻ New cards</button></div></div>${CB&&VCUR&&VG[VCUR.g][1].some(v=>v[0]===CB.task)?vBar():''}
- <p class="muted small" id="cbprog">Drag the cards around. Click to open; click again to put it back.</p><div class="cbtask" id="cbtask" hidden></div><div class="cboard" id="cboard"></div></section>`);vBind();
+ const t=SPT.find(x=>x.id===CB.task),shared=CB.task==='gmj'||CB.task==='intv';let active=0,hintCount=0;
+ setView(`<section class="panel k-card cbpanel"><div class="cbbar"><button class="lvb" id="cbback">← Topics</button><h2>${esc(SPSHORT[CB.task]||'')}</h2><div>${shared?'<button class="lvb" id="cbsharedhint">Hint</button> ':''}<button class="lvb" id="cbnew">↻ New cards</button></div></div>${CB&&VCUR&&VG[VCUR.g][1].some(v=>v[0]===CB.task)?vBar():''}
+ <p class="muted small" id="cbprog">Drag the cards around. Click to open; click again to put it back.</p><div class="cbtask" id="cbtask" hidden></div><div class="cbh" id="cbsharedh" hidden role="status"></div><div class="cboard" id="cboard"></div></section>`);vBind();
  $('#cbback').onclick=spSetup;$('#cbnew').onclick=renderCards;
- const bd=$('#cboard'),items=cbItems();if(CB.prog)$('#cbprog').textContent=CB.prog+'. Click a card to open it; click again to put it back.';
+ const bd=$('#cboard'),items=cbItems();CB.currentItems=items;
+ if(CB.task==='who')blobSet('Turn a picture over. Complete both sentences using the owner and speaking role shown on the back.');
+ if(shared){
+  blobSet(CB.task==='intv'?'Click a picture to turn it over. Read the answers and make a question for each one.':'Read the character description and guess the job. Click a card to select it; use Hint if you need help.');
+  $('#cbsharedhint').onclick=()=>{const box=$('#cbsharedh'),hints=items[active].hints;box.hidden=false;box.textContent=(CB.task==='gmj'?'Card '+(active+1)+': ':'')+hints[Math.min(hintCount++,hints.length-1)]};
+ }
+if(CB.prog)$('#cbprog').textContent=CB.prog+'. Click a card to open it; click again to put it back.';
  /* one task for all the cards: show it above the cards, not on every card */
  const common=items.length>1&&items[0].qo&&items.every(x=>x.qo===items[0].qo)?items[0].qo:'';
  if(common)blobSet(common);
  const cardColor=i=>QCOL[i%QCOL.length];
  const captionTitle=it=>(it.qo||it.q)&&it.t===SPSHORT[CB.task]?'':it.t;
- const front=(it,i)=>`<article class="stw-prompt-card stw-board-card" style="--stw-card-color:${cardColor(i)}"><div class="stw-prompt-media">${it.src?cbImg(it):(it.extra?it.extra:`<span class="stw-word-art">${esc(it.t)}</span>`)}</div><div class="stw-prompt-copy">${captionTitle(it)?`<div class="cbt">${esc(captionTitle(it))}</div>`:''}${(it.qo||it.q)&&it.t!==(it.qo||it.q)?`<div class="cbq">${esc(it.qo||it.q)}</div>`:''}</div></article>`;
- const flip=(i,d)=>{const it=items[i],hl=(it.hints||[]).slice(0,2).map((x,k)=>'Hint '+(k+1)+': '+x);
+ const front=(it,i)=>`<article class="stw-prompt-card stw-board-card" style="--stw-card-color:${cardColor(i)}"><div class="stw-prompt-media">${it.src?cbImg(it):(it.extra?it.extra:`<span class="stw-word-art">${esc(it.t)}</span>`)}</div>${it.frontImageOnly?'':`<div class="stw-prompt-copy">${captionTitle(it)?`<div class="cbt">${esc(captionTitle(it))}</div>`:''}${(it.qo||it.q)&&it.t!==(it.qo||it.q)?`<div class="cbq">${esc(it.qo||it.q)}</div>`:''}</div>`}</article>`;
+ const flip=(i,d)=>{if(shared&&active!==i){hintCount=0;$('#cbsharedh').hidden=true}active=i;const it=items[i],hl=(it.hints||[]).slice(0,2).map((x,k)=>'Hint '+(k+1)+': '+x);
   if(it.a)hl.push(String(it.a).replace(/^[^A-Za-z0-9“"‘']+/,''));
   if(!hl.length){const phr=cbPhr();hl.push(phr.length?'Useful language: '+phr.slice(0,5).map(x=>x[0]).join(' · '):'Look at the picture and answer in a full sentence.')}
   const qo=it.qo||it.q;
-  const inner=`<div class="cbbig inl stw-expanded-card"><article class="stw-prompt-card" style="--stw-card-color:${cardColor(i)}"><div class="stw-prompt-media">${it.src?cbImg(it):(it.extra?it.extra:`<span class="stw-word-art">${esc(it.t)}</span>`)}</div><div class="stw-prompt-copy">${captionTitle(it)?`<div class="cbt2">${esc(captionTitle(it))}</div>`:''}${qo&&qo!==it.t?`<div class="cbq2">${esc(qo)}</div>`:''}<div class="cbh" hidden></div><div class="cbbtn"><button class="lvb" id="cbhint">Hints</button></div></div></article></div>`;
+  const inner=it.noHints?`<div class="cbbig inl stw-expanded-card"><article class="stw-prompt-card"><div class="stw-prompt-media">${cbImg(it)}</div><div class="stw-prompt-copy"><p class="ownership-context">${esc(it.ownerContext)}</p>${it.backPrompts.map(p=>`<p class="ownership-prompt">${esc(p)}</p>`).join('')}</div></article></div>`:it.sharedHints?`<div class="cbbig inl stw-expanded-card"><article class="stw-prompt-card" style="--stw-card-color:${cardColor(i)}"><div class="stw-prompt-media">${cbImg(it)}</div><div class="stw-prompt-copy">${it.answers?`<ul class="interview-answers">${it.answers.map(a=>`<li>${esc(a)}</li>`).join('')}</ul>`:`<div class="cbt2">${esc(it.t)}</div>`}</div></article></div>`:`<div class="cbbig inl stw-expanded-card"><article class="stw-prompt-card" style="--stw-card-color:${cardColor(i)}"><div class="stw-prompt-media">${it.src?cbImg(it):(it.extra?it.extra:`<span class="stw-word-art">${esc(it.t)}</span>`)}</div><div class="stw-prompt-copy">${captionTitle(it)?`<div class="cbt2">${esc(captionTitle(it))}</div>`:''}${qo&&qo!==it.t?`<div class="cbq2">${esc(qo)}</div>`:''}<div class="cbh" hidden></div><div class="cbbtn"><button class="lvb" id="cbhint">Hints</button></div></div></article></div>`;
   cardFlip(bd,d,inner,Math.min(420,Math.max(d.offsetWidth,320)),380);
   const resize=()=>{const box=d.querySelector('.stw-expanded-card');if(!box)return;d.style.height=box.scrollHeight+'px';bd.style.height=Math.max(bd._h||0,d.offsetTop+box.scrollHeight+12)+'px'};
   setTimeout(()=>{resize();let hn=0;const hb=d.querySelector('#cbhint');if(hb)hb.onclick=e=>{e.stopPropagation();if(hn>=hl.length)return;hn++;const h=d.querySelector('.cbh');h.hidden=false;h.innerHTML=hl.slice(0,hn).map(x=>'<div>'+esc(x)+'</div>').join('');if(hn>=hl.length)hb.disabled=true;resize()}},240)};
@@ -12148,7 +12158,7 @@ function _renderGw(){
 
 /* ===== Words tab ===== */
 function wordsView(){
- return `<section class="panel k-card"><h2>📚 Words by level</h2><p class="muted">Everything already built into the games. Your own words are added on each game’s page.</p>`+
+ return `<section class="panel k-card"><h2 class="vocabulary-title">Vocabulary</h2><p class="muted">Everything already built into the games. Your own words are added on each game’s page.</p>`+
  LEVELS.map(l=>`<h3>${LVL[l]}</h3>`+BANK[l].map(c=>`<details><summary>${c.icon} ${esc(c.name)} <span class="mono muted small">${c.words.length}</span></summary><div class="wl">${c.words.map(w=>`<span class="wchip">${w.e?ez(w.e)+' ':''}${esc(w.w)}${w.r?` <span class="muted">· ${esc(w.r)}</span>`:''}</span>`).join('')}</div></details>`).join('')).join('')+`</section>`}
 function bindWords(){document.querySelectorAll('#view details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open&&!d.dataset.sk){d.dataset.sk='1';d.querySelectorAll('.wchip').forEach(w=>sk(w,D.drawablyBadge,{roughness:.8}))}}))}
 
@@ -12622,7 +12632,7 @@ homeHTML=function(){
  const flower=`<svg class="doodle d-flower" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3 Q29 3 28 17 Q39 8 42 13 Q45 17 31 23 Q45 26 42 31 Q40 36 29 29 Q33 43 27 44 Q22 46 22 31 Q12 41 9 36 Q6 32 18 25 Q3 25 4 20 Q5 15 19 20 Q11 8 16 5 Q20 2 23 17 Z"/><path class="doodle-mark" d="M23 8 Q24 14 23 18 M8 21 Q13 20 18 22"/></svg>`;
  const games=[['house','The Midnight House','house'],['write','Creative Writing','write'],['shop','Shop','shop'],['flask','Word Craft','gram','craft'],['scales','Absurd Choices','gram','absurd'],['ruler','Sentence Expander','gram','exp']];
  const books=games.map(([key,name,tabName,mode],i)=>`<button class="book" data-book-game="${key}" data-tab="${tabName}"${mode?` data-mode="${mode}"`:''} aria-label="Open ${esc(name)}"><span class="book-body"><span class="spine">${esc(name)}</span><span class="page-edge"></span><span class="book-bottom"></span><span class="cover"><span class="book-title">${esc(name)}</span></span></span></button>`).join('');
- return `<section class="stw-home"><h1 aria-label="spill the word">${title('spill',0)}${star}${title('the',5)}${title('word',8)}${flower}</h1><div class="layout"><a class="category" href="#grammar" data-category="grammar">Grammar</a><div class="books">${books}</div><a class="category" href="#vocab" data-category="vocab">Vocab</a></div></section>`;
+ return `<section class="stw-home"><h1 aria-label="spill the word">${title('spill',0)}${star}${title('the',5)}${title('word',8)}${flower}</h1><div class="layout"><a class="category" href="#grammar" data-category="grammar">Grammar</a><div class="books">${books}</div><a class="category" href="#vocab" data-category="vocab">Vocabulary</a></div></section>`;
 };
 homeBind=function(){
  const root=$('#view .stw-home');if(!root)return;
@@ -12740,7 +12750,7 @@ homeBind=function(){
   `<path d="M15 6q-4 0-4 4v30q0 4 4 4h20q4 0 4-4V10q0-4-4-4Z" fill="var(--gc-peach)" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/><path d="M16 13q2 3 0 6t0 6m7-12q2 3 0 6t0 6m7-12q2 3 0 6t0 6m-13 9 13 1m-13 4 9 1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>`,
   `<path d="M7 28q5-16 11-1t11 0 14 1M8 36q5-11 10 0t10 0 14-1" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/><path d="M12 13q4-5 8 0t8 0 8 0" fill="none" stroke="var(--gc-orange)" stroke-width="2.2" stroke-linecap="round"/>`
  ];
- function topicDoodle(i){return `<svg viewBox="0 0 50 50" aria-hidden="true">${doodles[i%doodles.length]}</svg>`}
+ function topicDoodle(i){return `<span class="topic-emotion" aria-hidden="true" style="--shape-x:${(i%8)/7*100}%;--shape-y:${Math.floor(i%32/8)/3*100}%"></span>`}
  let grammarCurrent=null,grammarActivity=false;
  function grammarGroups(){
   const levels=S.glevel==='all'?GLV.filter(l=>l[0]!=='all').map(l=>l[0]):[S.glevel];
@@ -12812,6 +12822,9 @@ async function boot(){
 <script src="b1-magnets.js"></script>
 <script src="grammar-practice-refresh.js"></script>
 <script src="kids-present-simple.js"></script>
+<script src="grammar-scenes-booth.js"></script>
+<script src="grammar-spatial-refresh.js"></script>
+<script src="room-workshop.js"></script>
 <script src="b1-content.js"></script>
 <script src="unbox/tasks.js"></script>
 <script src="unbox/app.js"></script>

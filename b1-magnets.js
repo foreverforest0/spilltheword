@@ -288,7 +288,8 @@ function b1MagnetRound(st,mb,id,cfg,round){
   layout.style.setProperty('--fridge-height',width/aspect+'px');
   if(round.pic){
    const box=st.querySelector('.b1-magnet-picture');
-   const size=Math.round(Math.max(70,Math.min(extra.pictureStyle==='plain'&&w<620?110:240,box.parentElement.clientWidth,available*.25)));
+   const largeKidsPicture=id==='mgc'&&S.splevel==='kids';
+   const size=Math.round(Math.max(70,Math.min(extra.pictureStyle==='plain'&&w<620?110:largeKidsPicture?360:240,box.parentElement.clientWidth,available*(largeKidsPicture ? .42 : .25))));
    if(box.dataset.pictureSize!==String(size)){
     box.dataset.pictureSize=String(size);
     if(extra.pictureStyle==='plain'){
