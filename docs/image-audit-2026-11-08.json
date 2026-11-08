@@ -1,0 +1,3807 @@
+{
+  "date": "2026-11-08",
+  "raster_images_scanned": 1829,
+  "scan_errors": [],
+  "review_scope": "Local raster files plus embedded raster data in HTML/JS/CSS. Contact sheets use the first frame of animations. Inline SVG and intentional facial-feature sprites are not evaluated as isolated objects. Source review does not guarantee every rendered crop in every game state.",
+  "replacement_policy": "Keep referenced originals until replacement images arrive. No destructive removals or broken image URLs.",
+  "needs_new_or_clean_source": [
+    {
+      "audit_id": 172,
+      "name": "Body wash pump bottle",
+      "source": "ch/b_bodywash.webp",
+      "group": "New source / tight crop",
+      "reason": "Part of the silhouette is missing or the crop touches the object.",
+      "action": "Send an uncropped original with room around every edge.",
+      "number": "R001",
+      "filename": "R001-body-wash-pump-bottle.webp"
+    },
+    {
+      "audit_id": 175,
+      "name": "Moisturising cream",
+      "source": "ch/b_cream.webp",
+      "group": "New source / tight crop",
+      "reason": "Part of the silhouette is missing or the crop touches the object.",
+      "action": "Send an uncropped original with room around every edge.",
+      "number": "R002",
+      "filename": "R002-moisturising-cream.webp"
+    },
+    {
+      "audit_id": 176,
+      "name": "Face wash tube",
+      "source": "ch/b_facewash.webp",
+      "group": "New source / tight crop",
+      "reason": "Part of the silhouette is missing or the crop touches the object.",
+      "action": "Send an uncropped original with room around every edge.",
+      "number": "R003",
+      "filename": "R003-face-wash-tube.webp"
+    },
+    {
+      "audit_id": 207,
+      "name": "Towel on a rail",
+      "source": "ch/b_towel2.webp",
+      "group": "New source / tight crop",
+      "reason": "Part of the silhouette is missing or the crop touches the object.",
+      "action": "Send an uncropped original with room around every edge.",
+      "number": "R004",
+      "filename": "R004-towel-on-a-rail.webp"
+    },
+    {
+      "audit_id": 210,
+      "name": "Toothpaste tube",
+      "source": "ch/b_tpaste.webp",
+      "group": "New source / tight crop",
+      "reason": "Part of the silhouette is missing or the crop touches the object.",
+      "action": "Send an uncropped original with room around every edge.",
+      "number": "R005",
+      "filename": "R005-toothpaste-tube.webp"
+    },
+    {
+      "audit_id": 446,
+      "name": "Black cat",
+      "source": "ch/o01.webp",
+      "group": "New source / tight crop",
+      "reason": "Part of the silhouette is missing or the crop touches the object.",
+      "action": "Send an uncropped original with room around every edge.",
+      "number": "R006",
+      "filename": "R006-black-cat.webp"
+    },
+    {
+      "audit_id": 472,
+      "name": "Milk carton",
+      "source": "ch/p_milk.webp",
+      "group": "New source / tight crop",
+      "reason": "Part of the silhouette is missing or the crop touches the object.",
+      "action": "Send an uncropped original with room around every edge.",
+      "number": "R007",
+      "filename": "R007-milk-carton.webp"
+    },
+    {
+      "audit_id": 506,
+      "name": "Floor lamp",
+      "source": "ch/r_floorlamp.webp",
+      "group": "New source / tight crop",
+      "reason": "Part of the silhouette is missing or the crop touches the object.",
+      "action": "Send an uncropped original with room around every edge.",
+      "number": "R008",
+      "filename": "R008-floor-lamp.webp"
+    },
+    {
+      "audit_id": 527,
+      "name": "Clothes rail",
+      "source": "ch/r_rack.webp",
+      "group": "New source / tight crop",
+      "reason": "Part of the silhouette is missing or the crop touches the object.",
+      "action": "Send an uncropped original with room around every edge.",
+      "number": "R009",
+      "filename": "R009-clothes-rail.webp"
+    },
+    {
+      "audit_id": 1359,
+      "name": "Soft brown sugar",
+      "source": "shop/baking/soft-brown-sugar.webp",
+      "group": "New source / tight crop",
+      "reason": "Part of the silhouette is missing or the crop touches the object.",
+      "action": "Send an uncropped original with room around every edge.",
+      "number": "R010",
+      "filename": "R010-soft-brown-sugar.webp"
+    },
+    {
+      "audit_id": 197,
+      "name": "Slippers",
+      "source": "ch/b_slippers.webp",
+      "group": "New source / low quality",
+      "reason": "Source is visibly blurred or too small.",
+      "action": "Send a larger, sharper original.",
+      "number": "R011",
+      "filename": "R011-slippers.webp"
+    },
+    {
+      "audit_id": 528,
+      "name": "Portable radio",
+      "source": "ch/r_radio.webp",
+      "group": "New source / low quality",
+      "reason": "Source is visibly blurred or too small.",
+      "action": "Send a larger, sharper original.",
+      "number": "R012",
+      "filename": "R012-portable-radio.webp"
+    },
+    {
+      "audit_id": 173,
+      "name": "Shelf with bottles",
+      "source": "ch/b_bottles.webp",
+      "group": "Recut",
+      "reason": "Visible pale fringe or scraps of the original background.",
+      "action": "Recut existing source; send a new source if available.",
+      "number": "R013",
+      "filename": "R013-shelf-with-bottles.webp"
+    },
+    {
+      "audit_id": 180,
+      "name": "Laundry hamper",
+      "source": "ch/b_hamper.webp",
+      "group": "Recut",
+      "reason": "Visible pale fringe or scraps of the original background.",
+      "action": "Recut existing source; send a new source if available.",
+      "number": "R014",
+      "filename": "R014-laundry-hamper.webp"
+    },
+    {
+      "audit_id": 190,
+      "name": "Pedestal sink and mirror",
+      "source": "ch/b_pedmir.webp",
+      "group": "Recut",
+      "reason": "Visible pale fringe or scraps of the original background.",
+      "action": "Recut existing source; send a new source if available.",
+      "number": "R015",
+      "filename": "R015-pedestal-sink-and-mirror.webp"
+    },
+    {
+      "audit_id": 196,
+      "name": "Sink with drawers",
+      "source": "ch/b_sinkdr.webp",
+      "group": "Recut",
+      "reason": "Visible pale fringe or scraps of the original background.",
+      "action": "Recut existing source; send a new source if available.",
+      "number": "R016",
+      "filename": "R016-sink-with-drawers.webp"
+    },
+    {
+      "audit_id": 211,
+      "name": "Bathroom vanity",
+      "source": "ch/b_vanity.webp",
+      "group": "Recut",
+      "reason": "Visible pale fringe or scraps of the original background.",
+      "action": "Recut existing source; send a new source if available.",
+      "number": "R017",
+      "filename": "R017-bathroom-vanity.webp"
+    },
+    {
+      "audit_id": 213,
+      "name": "Washing machine and laundry basket",
+      "source": "ch/b_washbk.webp",
+      "group": "Recut",
+      "reason": "Visible pale fringe or scraps of the original background.",
+      "action": "Recut existing source; send a new source if available.",
+      "number": "R018",
+      "filename": "R018-washing-machine-and-laundry-basket.webp"
+    },
+    {
+      "audit_id": 214,
+      "name": "Bathroom shelves",
+      "source": "ch/b_wshelf.webp",
+      "group": "Recut",
+      "reason": "Visible pale fringe or scraps of the original background.",
+      "action": "Recut existing source; send a new source if available.",
+      "number": "R019",
+      "filename": "R019-bathroom-shelves.webp"
+    },
+    {
+      "audit_id": 363,
+      "name": "Smartphone",
+      "source": "ch/g_phone.webp",
+      "group": "Recut",
+      "reason": "Visible pale fringe or scraps of the original background.",
+      "action": "Recut existing source; send a new source if available.",
+      "number": "R020",
+      "filename": "R020-smartphone.webp"
+    },
+    {
+      "audit_id": 524,
+      "name": "Framed sunflower picture",
+      "source": "ch/r_pic4.webp",
+      "group": "Recut",
+      "reason": "Visible pale fringe or scraps of the original background.",
+      "action": "Recut existing source; send a new source if available.",
+      "number": "R021",
+      "filename": "R021-framed-sunflower-picture.webp"
+    },
+    {
+      "audit_id": 482,
+      "name": "Alarm clock",
+      "source": "ch/r_aclock.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R022",
+      "filename": "R022-alarm-clock.webp"
+    },
+    {
+      "audit_id": 483,
+      "name": "Armchair",
+      "source": "ch/r_armchair.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R023",
+      "filename": "R023-armchair.webp"
+    },
+    {
+      "audit_id": 484,
+      "name": "Laundry basket",
+      "source": "ch/r_basket.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R024",
+      "filename": "R024-laundry-basket.webp"
+    },
+    {
+      "audit_id": 485,
+      "name": "Bathtub",
+      "source": "ch/r_bath.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R025",
+      "filename": "R025-bathtub.webp"
+    },
+    {
+      "audit_id": 486,
+      "name": "Bed",
+      "source": "ch/r_bed.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R026",
+      "filename": "R026-bed.webp"
+    },
+    {
+      "audit_id": 487,
+      "name": "Pedal bin",
+      "source": "ch/r_bin.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R027",
+      "filename": "R027-pedal-bin.webp"
+    },
+    {
+      "audit_id": 488,
+      "name": "Bookcase",
+      "source": "ch/r_bookcase.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R028",
+      "filename": "R028-bookcase.webp"
+    },
+    {
+      "audit_id": 490,
+      "name": "Ginger cat",
+      "source": "ch/r_cat2.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R029",
+      "filename": "R029-ginger-cat.webp"
+    },
+    {
+      "audit_id": 491,
+      "name": "Dining chair",
+      "source": "ch/r_chair1.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R030",
+      "filename": "R030-dining-chair.webp"
+    },
+    {
+      "audit_id": 492,
+      "name": "Wooden chair",
+      "source": "ch/r_chair2.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R031",
+      "filename": "R031-wooden-chair.webp"
+    },
+    {
+      "audit_id": 495,
+      "name": "Coat stand",
+      "source": "ch/r_coatstand.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R032",
+      "filename": "R032-coat-stand.webp"
+    },
+    {
+      "audit_id": 496,
+      "name": "Coffee maker",
+      "source": "ch/r_coffee.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R033",
+      "filename": "R033-coffee-maker.webp"
+    },
+    {
+      "audit_id": 498,
+      "name": "Coffee table",
+      "source": "ch/r_ctable.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R034",
+      "filename": "R034-coffee-table.webp"
+    },
+    {
+      "audit_id": 499,
+      "name": "Cupboard",
+      "source": "ch/r_cupboard.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R035",
+      "filename": "R035-cupboard.webp"
+    },
+    {
+      "audit_id": 501,
+      "name": "Desk with laptop",
+      "source": "ch/r_desk.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R036",
+      "filename": "R036-desk-with-laptop.webp"
+    },
+    {
+      "audit_id": 502,
+      "name": "Dog",
+      "source": "ch/r_dog.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R037",
+      "filename": "R037-dog.webp"
+    },
+    {
+      "audit_id": 505,
+      "name": "Fireplace",
+      "source": "ch/r_fireplace.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R038",
+      "filename": "R038-fireplace.webp"
+    },
+    {
+      "audit_id": 509,
+      "name": "Air fryer",
+      "source": "ch/r_fryer.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R039",
+      "filename": "R039-air-fryer.webp"
+    },
+    {
+      "audit_id": 510,
+      "name": "Hamster cage",
+      "source": "ch/r_hamster.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R040",
+      "filename": "R040-hamster-cage.webp"
+    },
+    {
+      "audit_id": 511,
+      "name": "Kettle",
+      "source": "ch/r_kettle.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R041",
+      "filename": "R041-kettle.webp"
+    },
+    {
+      "audit_id": 514,
+      "name": "Microwave",
+      "source": "ch/r_microwave.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R042",
+      "filename": "R042-microwave.webp"
+    },
+    {
+      "audit_id": 516,
+      "name": "Monstera plant",
+      "source": "ch/r_monstera.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R043",
+      "filename": "R043-monstera-plant.webp"
+    },
+    {
+      "audit_id": 517,
+      "name": "Bedside table",
+      "source": "ch/r_nstand.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R044",
+      "filename": "R044-bedside-table.webp"
+    },
+    {
+      "audit_id": 518,
+      "name": "Office chair",
+      "source": "ch/r_ochair.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R045",
+      "filename": "R045-office-chair.webp"
+    },
+    {
+      "audit_id": 525,
+      "name": "Potted plant",
+      "source": "ch/r_plant.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R046",
+      "filename": "R046-potted-plant.webp"
+    },
+    {
+      "audit_id": 526,
+      "name": "Pouffe",
+      "source": "ch/r_pouf.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R047",
+      "filename": "R047-pouffe.webp"
+    },
+    {
+      "audit_id": 529,
+      "name": "Record basket",
+      "source": "ch/r_records.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R048",
+      "filename": "R048-record-basket.webp"
+    },
+    {
+      "audit_id": 530,
+      "name": "Robot vacuum cleaner",
+      "source": "ch/r_robot.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R049",
+      "filename": "R049-robot-vacuum-cleaner.webp"
+    },
+    {
+      "audit_id": 531,
+      "name": "Rocking chair",
+      "source": "ch/r_rocker.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R050",
+      "filename": "R050-rocking-chair.webp"
+    },
+    {
+      "audit_id": 535,
+      "name": "Shelving unit",
+      "source": "ch/r_shelf.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R051",
+      "filename": "R051-shelving-unit.webp"
+    },
+    {
+      "audit_id": 536,
+      "name": "Shower",
+      "source": "ch/r_shower.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R052",
+      "filename": "R052-shower.webp"
+    },
+    {
+      "audit_id": 537,
+      "name": "Kitchen sink",
+      "source": "ch/r_sink.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R053",
+      "filename": "R053-kitchen-sink.webp"
+    },
+    {
+      "audit_id": 538,
+      "name": "Bathroom sink",
+      "source": "ch/r_sinkm.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R054",
+      "filename": "R054-bathroom-sink.webp"
+    },
+    {
+      "audit_id": 539,
+      "name": "Power socket and plug",
+      "source": "ch/r_socket.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R055",
+      "filename": "R055-power-socket-and-plug.webp"
+    },
+    {
+      "audit_id": 540,
+      "name": "Sofa",
+      "source": "ch/r_sofa.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R056",
+      "filename": "R056-sofa.webp"
+    },
+    {
+      "audit_id": 541,
+      "name": "Smart speaker",
+      "source": "ch/r_speaker.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R057",
+      "filename": "R057-smart-speaker.webp"
+    },
+    {
+      "audit_id": 542,
+      "name": "Cooker",
+      "source": "ch/r_stove.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R058",
+      "filename": "R058-cooker.webp"
+    },
+    {
+      "audit_id": 543,
+      "name": "Round table",
+      "source": "ch/r_table.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R059",
+      "filename": "R059-round-table.webp"
+    },
+    {
+      "audit_id": 544,
+      "name": "Toaster",
+      "source": "ch/r_toaster.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R060",
+      "filename": "R060-toaster.webp"
+    },
+    {
+      "audit_id": 545,
+      "name": "Toilet",
+      "source": "ch/r_toilet.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R061",
+      "filename": "R061-toilet.webp"
+    },
+    {
+      "audit_id": 547,
+      "name": "Television and TV stand",
+      "source": "ch/r_tv.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R062",
+      "filename": "R062-television-and-tv-stand.webp"
+    },
+    {
+      "audit_id": 548,
+      "name": "Wardrobe",
+      "source": "ch/r_wardrobe.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R063",
+      "filename": "R063-wardrobe.webp"
+    },
+    {
+      "audit_id": 549,
+      "name": "Washing machine",
+      "source": "ch/r_washer.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R064",
+      "filename": "R064-washing-machine.webp"
+    },
+    {
+      "audit_id": 550,
+      "name": "Window",
+      "source": "ch/r_window.webp",
+      "group": "Clean isolation",
+      "reason": "A pale painted ground patch extends beyond the object.",
+      "action": "Recut the ground patch, or supply a clean isolated version.",
+      "number": "R065",
+      "filename": "R065-window.webp"
+    }
+  ],
+  "paper_to_recut": [
+    {
+      "audit_id": 875,
+      "name": "Avocado",
+      "source": "index.html:embedded-037",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P001",
+      "filename": "P001-avocado.webp"
+    },
+    {
+      "audit_id": 876,
+      "name": "Backpack",
+      "source": "index.html:embedded-038",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P002",
+      "filename": "P002-backpack.webp"
+    },
+    {
+      "audit_id": 877,
+      "name": "Balloon",
+      "source": "index.html:embedded-039",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P003",
+      "filename": "P003-balloon.webp"
+    },
+    {
+      "audit_id": 878,
+      "name": "Banana",
+      "source": "index.html:embedded-040",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P004",
+      "filename": "P004-banana.webp"
+    },
+    {
+      "audit_id": 879,
+      "name": "Couple Scarves",
+      "source": "index.html:embedded-041",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P005",
+      "filename": "P005-couple-scarves.webp"
+    },
+    {
+      "audit_id": 880,
+      "name": "Mother Baby",
+      "source": "index.html:embedded-042",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P006",
+      "filename": "P006-mother-baby.webp"
+    },
+    {
+      "audit_id": 881,
+      "name": "Old Man Cup",
+      "source": "index.html:embedded-043",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P007",
+      "filename": "P007-old-man-cup.webp"
+    },
+    {
+      "audit_id": 882,
+      "name": "Sad Man",
+      "source": "index.html:embedded-044",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P008",
+      "filename": "P008-sad-man.webp"
+    },
+    {
+      "audit_id": 883,
+      "name": "Woman Glasses",
+      "source": "index.html:embedded-045",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P009",
+      "filename": "P009-woman-glasses.webp"
+    },
+    {
+      "audit_id": 884,
+      "name": "Woman Headband",
+      "source": "index.html:embedded-046",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P010",
+      "filename": "P010-woman-headband.webp"
+    },
+    {
+      "audit_id": 885,
+      "name": "Bicycle",
+      "source": "index.html:embedded-047",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P011",
+      "filename": "P011-bicycle.webp"
+    },
+    {
+      "audit_id": 886,
+      "name": "Book",
+      "source": "index.html:embedded-048",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P012",
+      "filename": "P012-book.webp"
+    },
+    {
+      "audit_id": 887,
+      "name": "Burger",
+      "source": "index.html:embedded-049",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P013",
+      "filename": "P013-burger.webp"
+    },
+    {
+      "audit_id": 888,
+      "name": "Carrot",
+      "source": "index.html:embedded-050",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P014",
+      "filename": "P014-carrot.webp"
+    },
+    {
+      "audit_id": 889,
+      "name": "Cat",
+      "source": "index.html:embedded-051",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P015",
+      "filename": "P015-cat.webp"
+    },
+    {
+      "audit_id": 890,
+      "name": "Cheese",
+      "source": "index.html:embedded-052",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P016",
+      "filename": "P016-cheese.webp"
+    },
+    {
+      "audit_id": 891,
+      "name": "Chocolate",
+      "source": "index.html:embedded-053",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P017",
+      "filename": "P017-chocolate.webp"
+    },
+    {
+      "audit_id": 892,
+      "name": "Climb A Tree",
+      "source": "index.html:embedded-054",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P018",
+      "filename": "P018-climb-a-tree.webp"
+    },
+    {
+      "audit_id": 893,
+      "name": "Coffee",
+      "source": "index.html:embedded-055",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P019",
+      "filename": "P019-coffee.webp"
+    },
+    {
+      "audit_id": 894,
+      "name": "Cook",
+      "source": "index.html:embedded-056",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P020",
+      "filename": "P020-cook.webp"
+    },
+    {
+      "audit_id": 895,
+      "name": "Cookie",
+      "source": "index.html:embedded-057",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P021",
+      "filename": "P021-cookie.webp"
+    },
+    {
+      "audit_id": 896,
+      "name": "Croissant",
+      "source": "index.html:embedded-058",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P022",
+      "filename": "P022-croissant.webp"
+    },
+    {
+      "audit_id": 897,
+      "name": "Cucumber",
+      "source": "index.html:embedded-059",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P023",
+      "filename": "P023-cucumber.webp"
+    },
+    {
+      "audit_id": 898,
+      "name": "Cupcake",
+      "source": "index.html:embedded-060",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P024",
+      "filename": "P024-cupcake.webp"
+    },
+    {
+      "audit_id": 899,
+      "name": "Dance",
+      "source": "index.html:embedded-061",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P025",
+      "filename": "P025-dance.webp"
+    },
+    {
+      "audit_id": 900,
+      "name": "Dog",
+      "source": "index.html:embedded-062",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P026",
+      "filename": "P026-dog.webp"
+    },
+    {
+      "audit_id": 901,
+      "name": "Draw",
+      "source": "index.html:embedded-063",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P027",
+      "filename": "P027-draw.webp"
+    },
+    {
+      "audit_id": 902,
+      "name": "Flowers",
+      "source": "index.html:embedded-064",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P028",
+      "filename": "P028-flowers.webp"
+    },
+    {
+      "audit_id": 903,
+      "name": "Fly",
+      "source": "index.html:embedded-065",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P029",
+      "filename": "P029-fly.webp"
+    },
+    {
+      "audit_id": 904,
+      "name": "French Fries",
+      "source": "index.html:embedded-066",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P030",
+      "filename": "P030-french-fries.webp"
+    },
+    {
+      "audit_id": 905,
+      "name": "Guitar",
+      "source": "index.html:embedded-067",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P031",
+      "filename": "P031-guitar.webp"
+    },
+    {
+      "audit_id": 927,
+      "name": "Cook",
+      "source": "index.html:embedded-089",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P032",
+      "filename": "P032-cook.webp"
+    },
+    {
+      "audit_id": 928,
+      "name": "Guitar",
+      "source": "index.html:embedded-090",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P033",
+      "filename": "P033-guitar.webp"
+    },
+    {
+      "audit_id": 929,
+      "name": "Late",
+      "source": "index.html:embedded-091",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P034",
+      "filename": "P034-late.webp"
+    },
+    {
+      "audit_id": 930,
+      "name": "Sad",
+      "source": "index.html:embedded-092",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P035",
+      "filename": "P035-sad.webp"
+    },
+    {
+      "audit_id": 931,
+      "name": "Sleep Lamp",
+      "source": "index.html:embedded-093",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P036",
+      "filename": "P036-sleep-lamp.webp"
+    },
+    {
+      "audit_id": 932,
+      "name": "Thumbs Up",
+      "source": "index.html:embedded-094",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P037",
+      "filename": "P037-thumbs-up.webp"
+    },
+    {
+      "audit_id": 933,
+      "name": "Wake Up",
+      "source": "index.html:embedded-095",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P038",
+      "filename": "P038-wake-up.webp"
+    },
+    {
+      "audit_id": 934,
+      "name": "Yoga",
+      "source": "index.html:embedded-096",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P039",
+      "filename": "P039-yoga.webp"
+    },
+    {
+      "audit_id": 935,
+      "name": "Hot Dog",
+      "source": "index.html:embedded-097",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P040",
+      "filename": "P040-hot-dog.webp"
+    },
+    {
+      "audit_id": 936,
+      "name": "Ice Cream Cone",
+      "source": "index.html:embedded-098",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P041",
+      "filename": "P041-ice-cream-cone.webp"
+    },
+    {
+      "audit_id": 937,
+      "name": "Ice Cream",
+      "source": "index.html:embedded-099",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P042",
+      "filename": "P042-ice-cream.webp"
+    },
+    {
+      "audit_id": 956,
+      "name": "Juggle",
+      "source": "index.html:embedded-118",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P043",
+      "filename": "P043-juggle.webp"
+    },
+    {
+      "audit_id": 957,
+      "name": "Juice",
+      "source": "index.html:embedded-119",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P044",
+      "filename": "P044-juice.webp"
+    },
+    {
+      "audit_id": 958,
+      "name": "Jump",
+      "source": "index.html:embedded-120",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P045",
+      "filename": "P045-jump.webp"
+    },
+    {
+      "audit_id": 959,
+      "name": "Kite",
+      "source": "index.html:embedded-121",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P046",
+      "filename": "P046-kite.webp"
+    },
+    {
+      "audit_id": 980,
+      "name": "Milk",
+      "source": "index.html:embedded-142",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P047",
+      "filename": "P047-milk.webp"
+    },
+    {
+      "audit_id": 981,
+      "name": "Pancakes",
+      "source": "index.html:embedded-143",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P048",
+      "filename": "P048-pancakes.webp"
+    },
+    {
+      "audit_id": 982,
+      "name": "Pizza",
+      "source": "index.html:embedded-144",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P049",
+      "filename": "P049-pizza.webp"
+    },
+    {
+      "audit_id": 983,
+      "name": "Popcorn",
+      "source": "index.html:embedded-145",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P050",
+      "filename": "P050-popcorn.webp"
+    },
+    {
+      "audit_id": 1000,
+      "name": "Rice",
+      "source": "index.html:embedded-162",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P051",
+      "filename": "P051-rice.webp"
+    },
+    {
+      "audit_id": 1001,
+      "name": "Ride A Bike",
+      "source": "index.html:embedded-163",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P052",
+      "filename": "P052-ride-a-bike.webp"
+    },
+    {
+      "audit_id": 1002,
+      "name": "Breakfast",
+      "source": "index.html:embedded-164",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P053",
+      "filename": "P053-breakfast.webp"
+    },
+    {
+      "audit_id": 1003,
+      "name": "Cook",
+      "source": "index.html:embedded-165",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P054",
+      "filename": "P054-cook.webp"
+    },
+    {
+      "audit_id": 1004,
+      "name": "Home Door",
+      "source": "index.html:embedded-166",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P055",
+      "filename": "P055-home-door.webp"
+    },
+    {
+      "audit_id": 1005,
+      "name": "Laptop",
+      "source": "index.html:embedded-167",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P056",
+      "filename": "P056-laptop.webp"
+    },
+    {
+      "audit_id": 1006,
+      "name": "Lunch",
+      "source": "index.html:embedded-168",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P057",
+      "filename": "P057-lunch.webp"
+    },
+    {
+      "audit_id": 1007,
+      "name": "Read",
+      "source": "index.html:embedded-169",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P058",
+      "filename": "P058-read.webp"
+    },
+    {
+      "audit_id": 1008,
+      "name": "Shopping",
+      "source": "index.html:embedded-170",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P059",
+      "filename": "P059-shopping.webp"
+    },
+    {
+      "audit_id": 1009,
+      "name": "Sleep",
+      "source": "index.html:embedded-171",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P060",
+      "filename": "P060-sleep.webp"
+    },
+    {
+      "audit_id": 1010,
+      "name": "Teeth",
+      "source": "index.html:embedded-172",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P061",
+      "filename": "P061-teeth.webp"
+    },
+    {
+      "audit_id": 1011,
+      "name": "Tv",
+      "source": "index.html:embedded-173",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P062",
+      "filename": "P062-tv.webp"
+    },
+    {
+      "audit_id": 1012,
+      "name": "Wake Up",
+      "source": "index.html:embedded-174",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P063",
+      "filename": "P063-wake-up.webp"
+    },
+    {
+      "audit_id": 1013,
+      "name": "Walk To Work",
+      "source": "index.html:embedded-175",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P064",
+      "filename": "P064-walk-to-work.webp"
+    },
+    {
+      "audit_id": 1014,
+      "name": "Run",
+      "source": "index.html:embedded-176",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P065",
+      "filename": "P065-run.webp"
+    },
+    {
+      "audit_id": 1015,
+      "name": "Salad",
+      "source": "index.html:embedded-177",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P066",
+      "filename": "P066-salad.webp"
+    },
+    {
+      "audit_id": 1016,
+      "name": "Sandwich",
+      "source": "index.html:embedded-178",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P067",
+      "filename": "P067-sandwich.webp"
+    },
+    {
+      "audit_id": 1029,
+      "name": "Sing",
+      "source": "index.html:embedded-191",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P068",
+      "filename": "P068-sing.webp"
+    },
+    {
+      "audit_id": 1030,
+      "name": "Spaghetti",
+      "source": "index.html:embedded-192",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P069",
+      "filename": "P069-spaghetti.webp"
+    },
+    {
+      "audit_id": 1031,
+      "name": "Stand On One Leg",
+      "source": "index.html:embedded-193",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P070",
+      "filename": "P070-stand-on-one-leg.webp"
+    },
+    {
+      "audit_id": 1032,
+      "name": "Swim",
+      "source": "index.html:embedded-194",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P071",
+      "filename": "P071-swim.webp"
+    },
+    {
+      "audit_id": 1033,
+      "name": "Teddy Bear",
+      "source": "index.html:embedded-195",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P072",
+      "filename": "P072-teddy-bear.webp"
+    },
+    {
+      "audit_id": 1034,
+      "name": "Tomato",
+      "source": "index.html:embedded-196",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P073",
+      "filename": "P073-tomato.webp"
+    },
+    {
+      "audit_id": 1035,
+      "name": "Umbrella",
+      "source": "index.html:embedded-197",
+      "group": "Paper background",
+      "reason": "Opaque beige paper square. Illustration itself is complete.",
+      "action": "Recut existing source; no replacement original required.",
+      "number": "P074",
+      "filename": "P074-umbrella.webp"
+    }
+  ],
+  "photobooth_optional_batch": [
+    {
+      "audit_id": 1056,
+      "name": "He’s just eaten the last biscuit. There are only crumbs left.",
+      "source": "photobooth/assets/01-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B001",
+      "filename": "B001-he-s-just-eaten-the-last-biscuit-there-are-only-crumbs-left.webp"
+    },
+    {
+      "audit_id": 1057,
+      "name": "He has built a house for the snail.",
+      "source": "photobooth/assets/01-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B002",
+      "filename": "B002-he-has-built-a-house-for-the-snail.webp"
+    },
+    {
+      "audit_id": 1058,
+      "name": "Oh no, he’s broken the flowerpot again!",
+      "source": "photobooth/assets/01-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B003",
+      "filename": "B003-oh-no-he-s-broken-the-flowerpot-again.webp"
+    },
+    {
+      "audit_id": 1059,
+      "name": "He has caught a tiny star in his net.",
+      "source": "photobooth/assets/01-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B004",
+      "filename": "B004-he-has-caught-a-tiny-star-in-his-net.webp"
+    },
+    {
+      "audit_id": 1060,
+      "name": "He hasn’t found his boot yet. He’s still looking.",
+      "source": "photobooth/assets/01-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B005",
+      "filename": "B005-he-hasn-t-found-his-boot-yet-he-s-still-looking.webp"
+    },
+    {
+      "audit_id": 1061,
+      "name": "He has built a tower of teacups.",
+      "source": "photobooth/assets/01-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B006",
+      "filename": "B006-he-has-built-a-tower-of-teacups.webp"
+    },
+    {
+      "audit_id": 1062,
+      "name": "He has opened the mysterious walnut.",
+      "source": "photobooth/assets/01-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B007",
+      "filename": "B007-he-has-opened-the-mysterious-walnut.webp"
+    },
+    {
+      "audit_id": 1063,
+      "name": "He has planted a row of flowers.",
+      "source": "photobooth/assets/01-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B008",
+      "filename": "B008-he-has-planted-a-row-of-flowers.webp"
+    },
+    {
+      "audit_id": 1064,
+      "name": "Who has spilled jam all over the table?",
+      "source": "photobooth/assets/01-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B009",
+      "filename": "B009-who-has-spilled-jam-all-over-the-table.webp"
+    },
+    {
+      "audit_id": 1065,
+      "name": "He has sewn a button onto the coat.",
+      "source": "photobooth/assets/01-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B010",
+      "filename": "B010-he-has-sewn-a-button-onto-the-coat.webp"
+    },
+    {
+      "audit_id": 1066,
+      "name": "He has discovered a pearl in the teapot.",
+      "source": "photobooth/assets/01-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B011",
+      "filename": "B011-he-has-discovered-a-pearl-in-the-teapot.webp"
+    },
+    {
+      "audit_id": 1067,
+      "name": "He’s already made a crown for his friend.",
+      "source": "photobooth/assets/01-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B012",
+      "filename": "B012-he-s-already-made-a-crown-for-his-friend.webp"
+    },
+    {
+      "audit_id": 1068,
+      "name": "He’s been winding that yarn for ages. Is he nearly done?",
+      "source": "photobooth/assets/02-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B013",
+      "filename": "B013-he-s-been-winding-that-yarn-for-ages-is-he-nearly-done.webp"
+    },
+    {
+      "audit_id": 1069,
+      "name": "He has been cleaning the shell all morning.",
+      "source": "photobooth/assets/02-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B014",
+      "filename": "B014-he-has-been-cleaning-the-shell-all-morning.webp"
+    },
+    {
+      "audit_id": 1070,
+      "name": "How long has he been playing the violin?",
+      "source": "photobooth/assets/02-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B015",
+      "filename": "B015-how-long-has-he-been-playing-the-violin.webp"
+    },
+    {
+      "audit_id": 1071,
+      "name": "He has been digging with a spoon for an hour.",
+      "source": "photobooth/assets/02-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B016",
+      "filename": "B016-he-has-been-digging-with-a-spoon-for-an-hour.webp"
+    },
+    {
+      "audit_id": 1072,
+      "name": "He’s been stirring the batter since breakfast. His arm must hurt!",
+      "source": "photobooth/assets/02-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B017",
+      "filename": "B017-he-s-been-stirring-the-batter-since-breakfast-his-arm-must-hurt.webp"
+    },
+    {
+      "audit_id": 1073,
+      "name": "He has been pushing the cart all morning.",
+      "source": "photobooth/assets/02-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B018",
+      "filename": "B018-he-has-been-pushing-the-cart-all-morning.webp"
+    },
+    {
+      "audit_id": 1074,
+      "name": "Has he been knitting that scarf all week?",
+      "source": "photobooth/assets/02-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B019",
+      "filename": "B019-has-he-been-knitting-that-scarf-all-week.webp"
+    },
+    {
+      "audit_id": 1075,
+      "name": "He has been sweeping petals for an hour.",
+      "source": "photobooth/assets/02-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B020",
+      "filename": "B020-he-has-been-sweeping-petals-for-an-hour.webp"
+    },
+    {
+      "audit_id": 1076,
+      "name": "He has been rowing the nutshell boat all afternoon.",
+      "source": "photobooth/assets/02-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B021",
+      "filename": "B021-he-has-been-rowing-the-nutshell-boat-all-afternoon.webp"
+    },
+    {
+      "audit_id": 1077,
+      "name": "He has been polishing the acorn since lunch.",
+      "source": "photobooth/assets/02-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B022",
+      "filename": "B022-he-has-been-polishing-the-acorn-since-lunch.webp"
+    },
+    {
+      "audit_id": 1078,
+      "name": "He hasn’t been pedalling for long, but he’s already tired.",
+      "source": "photobooth/assets/02-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B023",
+      "filename": "B023-he-hasn-t-been-pedalling-for-long-but-he-s-already-tired.webp"
+    },
+    {
+      "audit_id": 1079,
+      "name": "He has been carrying buckets since dawn.",
+      "source": "photobooth/assets/02-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B024",
+      "filename": "B024-he-has-been-carrying-buckets-since-dawn.webp"
+    },
+    {
+      "audit_id": 1080,
+      "name": "He couldn’t catch the boat because it had already left.",
+      "source": "photobooth/assets/03-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B025",
+      "filename": "B025-he-couldn-t-catch-the-boat-because-it-had-already-left.webp"
+    },
+    {
+      "audit_id": 1081,
+      "name": "There was no cake left. The rabbit had eaten it all.",
+      "source": "photobooth/assets/03-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B026",
+      "filename": "B026-there-was-no-cake-left-the-rabbit-had-eaten-it-all.webp"
+    },
+    {
+      "audit_id": 1082,
+      "name": "He opened the box after the bird had escaped.",
+      "source": "photobooth/assets/03-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B027",
+      "filename": "B027-he-opened-the-box-after-the-bird-had-escaped.webp"
+    },
+    {
+      "audit_id": 1083,
+      "name": "When he reached the flower, the bee had already collected the pollen.",
+      "source": "photobooth/assets/03-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B028",
+      "filename": "B028-when-he-reached-the-flower-the-bee-had-already-collected-the-pollen.webp"
+    },
+    {
+      "audit_id": 1084,
+      "name": "Before he found the cup, the rain had filled it.",
+      "source": "photobooth/assets/03-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B029",
+      "filename": "B029-before-he-found-the-cup-the-rain-had-filled-it.webp"
+    },
+    {
+      "audit_id": 1085,
+      "name": "By the time he came back with a carrot, the snowman had melted.",
+      "source": "photobooth/assets/03-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B030",
+      "filename": "B030-by-the-time-he-came-back-with-a-carrot-the-snowman-had-melted.webp"
+    },
+    {
+      "audit_id": 1086,
+      "name": "When he reached the tree, all the apples had fallen.",
+      "source": "photobooth/assets/03-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B031",
+      "filename": "B031-when-he-reached-the-tree-all-the-apples-had-fallen.webp"
+    },
+    {
+      "audit_id": 1087,
+      "name": "He was relieved to see that his friend had brought him a blanket.",
+      "source": "photobooth/assets/03-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B032",
+      "filename": "B032-he-was-relieved-to-see-that-his-friend-had-brought-him-a-blanket.webp"
+    },
+    {
+      "audit_id": 1088,
+      "name": "When he found the nest, the chicks had already flown away.",
+      "source": "photobooth/assets/03-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B033",
+      "filename": "B033-when-he-found-the-nest-the-chicks-had-already-flown-away.webp"
+    },
+    {
+      "audit_id": 1089,
+      "name": "The gate had closed before he arrived.",
+      "source": "photobooth/assets/03-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B034",
+      "filename": "B034-the-gate-had-closed-before-he-arrived.webp"
+    },
+    {
+      "audit_id": 1090,
+      "name": "He found crumbs where he had left his biscuit.",
+      "source": "photobooth/assets/03-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B035",
+      "filename": "B035-he-found-crumbs-where-he-had-left-his-biscuit.webp"
+    },
+    {
+      "audit_id": 1091,
+      "name": "The seed had grown into a beanstalk before he returned.",
+      "source": "photobooth/assets/03-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B036",
+      "filename": "B036-the-seed-had-grown-into-a-beanstalk-before-he-returned.webp"
+    },
+    {
+      "audit_id": 1092,
+      "name": "He was carrying the bowls when the squirrel grabbed his scarf.",
+      "source": "photobooth/assets/04-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B037",
+      "filename": "B037-he-was-carrying-the-bowls-when-the-squirrel-grabbed-his-scarf.webp"
+    },
+    {
+      "audit_id": 1093,
+      "name": "He was watering the flowers when the mushroom opened.",
+      "source": "photobooth/assets/04-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B038",
+      "filename": "B038-he-was-watering-the-flowers-when-the-mushroom-opened.webp"
+    },
+    {
+      "audit_id": 1094,
+      "name": "An apple fell into his lap while he was reading.",
+      "source": "photobooth/assets/04-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B039",
+      "filename": "B039-an-apple-fell-into-his-lap-while-he-was-reading.webp"
+    },
+    {
+      "audit_id": 1095,
+      "name": "He was crossing the bridge when a fish jumped.",
+      "source": "photobooth/assets/04-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B040",
+      "filename": "B040-he-was-crossing-the-bridge-when-a-fish-jumped.webp"
+    },
+    {
+      "audit_id": 1096,
+      "name": "While he was painting the fence, the goat licked his brush.",
+      "source": "photobooth/assets/04-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B041",
+      "filename": "B041-while-he-was-painting-the-fence-the-goat-licked-his-brush.webp"
+    },
+    {
+      "audit_id": 1097,
+      "name": "He was carrying a lantern when an owl landed on his shoulder.",
+      "source": "photobooth/assets/04-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B042",
+      "filename": "B042-he-was-carrying-a-lantern-when-an-owl-landed-on-his-shoulder.webp"
+    },
+    {
+      "audit_id": 1098,
+      "name": "He was serving soup when a butterfly landed on the spoon.",
+      "source": "photobooth/assets/04-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B043",
+      "filename": "B043-he-was-serving-soup-when-a-butterfly-landed-on-the-spoon.webp"
+    },
+    {
+      "audit_id": 1099,
+      "name": "He was climbing the ladder when a bird stole his ribbon.",
+      "source": "photobooth/assets/04-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B044",
+      "filename": "B044-he-was-climbing-the-ladder-when-a-bird-stole-his-ribbon.webp"
+    },
+    {
+      "audit_id": 1100,
+      "name": "He was playing the flute when he noticed a snail on his boot.",
+      "source": "photobooth/assets/04-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B045",
+      "filename": "B045-he-was-playing-the-flute-when-he-noticed-a-snail-on-his-boot.webp"
+    },
+    {
+      "audit_id": 1101,
+      "name": "He was hanging out the washing when a sock blew away.",
+      "source": "photobooth/assets/04-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B046",
+      "filename": "B046-he-was-hanging-out-the-washing-when-a-sock-blew-away.webp"
+    },
+    {
+      "audit_id": 1102,
+      "name": "He was picking berries when a hedgehog rolled past.",
+      "source": "photobooth/assets/04-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B047",
+      "filename": "B047-he-was-picking-berries-when-a-hedgehog-rolled-past.webp"
+    },
+    {
+      "audit_id": 1103,
+      "name": "He was walking with his basket when a frog jumped out.",
+      "source": "photobooth/assets/04-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B048",
+      "filename": "B048-he-was-walking-with-his-basket-when-a-frog-jumped-out.webp"
+    },
+    {
+      "audit_id": 1104,
+      "name": "He normally waters the flowers before breakfast.",
+      "source": "photobooth/assets/05-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B049",
+      "filename": "B049-he-normally-waters-the-flowers-before-breakfast.webp"
+    },
+    {
+      "audit_id": 1105,
+      "name": "Look! The flower is moving away from the water.",
+      "source": "photobooth/assets/05-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B050",
+      "filename": "B050-look-the-flower-is-moving-away-from-the-water.webp"
+    },
+    {
+      "audit_id": 1106,
+      "name": "He prepares breakfast every morning.",
+      "source": "photobooth/assets/05-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B051",
+      "filename": "B051-he-prepares-breakfast-every-morning.webp"
+    },
+    {
+      "audit_id": 1107,
+      "name": "Careful! That pancake is sliding off the plate.",
+      "source": "photobooth/assets/05-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B052",
+      "filename": "B052-careful-that-pancake-is-sliding-off-the-plate.webp"
+    },
+    {
+      "audit_id": 1108,
+      "name": "He never finds matching socks.",
+      "source": "photobooth/assets/05-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B053",
+      "filename": "B053-he-never-finds-matching-socks.webp"
+    },
+    {
+      "audit_id": 1109,
+      "name": "Right now, he is chasing a snail with his sock.",
+      "source": "photobooth/assets/05-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B054",
+      "filename": "B054-right-now-he-is-chasing-a-snail-with-his-sock.webp"
+    },
+    {
+      "audit_id": 1110,
+      "name": "He brushes his boots every morning.",
+      "source": "photobooth/assets/05-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B055",
+      "filename": "B055-he-brushes-his-boots-every-morning.webp"
+    },
+    {
+      "audit_id": 1111,
+      "name": "Look! He is rescuing his boot from a puddle.",
+      "source": "photobooth/assets/05-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B056",
+      "filename": "B056-look-he-is-rescuing-his-boot-from-a-puddle.webp"
+    },
+    {
+      "audit_id": 1112,
+      "name": "He usually feeds the birds from a dish.",
+      "source": "photobooth/assets/05-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B057",
+      "filename": "B057-he-usually-feeds-the-birds-from-a-dish.webp"
+    },
+    {
+      "audit_id": 1113,
+      "name": "Look! The crow is taking his seeds again.",
+      "source": "photobooth/assets/05-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B058",
+      "filename": "B058-look-the-crow-is-taking-his-seeds-again.webp"
+    },
+    {
+      "audit_id": 1114,
+      "name": "He folds his blanket every morning.",
+      "source": "photobooth/assets/05-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B059",
+      "filename": "B059-he-folds-his-blanket-every-morning.webp"
+    },
+    {
+      "audit_id": 1115,
+      "name": "At the moment, he is giving his friend a blanket.",
+      "source": "photobooth/assets/05-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B060",
+      "filename": "B060-at-the-moment-he-is-giving-his-friend-a-blanket.webp"
+    },
+    {
+      "audit_id": 1116,
+      "name": "He’s bought all the food. He is going to have a picnic tomorrow.",
+      "source": "photobooth/assets/06-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B061",
+      "filename": "B061-he-s-bought-all-the-food-he-is-going-to-have-a-picnic-tomorrow.webp"
+    },
+    {
+      "audit_id": 1117,
+      "name": "He is meeting his friends at the show tomorrow.",
+      "source": "photobooth/assets/06-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B062",
+      "filename": "B062-he-is-meeting-his-friends-at-the-show-tomorrow.webp"
+    },
+    {
+      "audit_id": 1118,
+      "name": "“Don’t worry, I will catch it!” he says as the cup falls.",
+      "source": "photobooth/assets/06-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B063",
+      "filename": "B063-don-t-worry-i-will-catch-it-he-says-as-the-cup-falls.webp"
+    },
+    {
+      "audit_id": 1119,
+      "name": "Look at those dark clouds! It is going to rain.",
+      "source": "photobooth/assets/06-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B064",
+      "filename": "B064-look-at-those-dark-clouds-it-is-going-to-rain.webp"
+    },
+    {
+      "audit_id": 1120,
+      "name": "He is going to plant a seed by the climbing frame.",
+      "source": "photobooth/assets/06-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B065",
+      "filename": "B065-he-is-going-to-plant-a-seed-by-the-climbing-frame.webp"
+    },
+    {
+      "audit_id": 1121,
+      "name": "“That looks heavy. I will carry your basket,” he offers.",
+      "source": "photobooth/assets/06-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B066",
+      "filename": "B066-that-looks-heavy-i-will-carry-your-basket-he-offers.webp"
+    },
+    {
+      "audit_id": 1122,
+      "name": "He is going to paint the dollhouse.",
+      "source": "photobooth/assets/06-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B067",
+      "filename": "B067-he-is-going-to-paint-the-dollhouse.webp"
+    },
+    {
+      "audit_id": 1123,
+      "name": "The mouse is visiting him tomorrow; they’ve arranged the visit.",
+      "source": "photobooth/assets/06-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B068",
+      "filename": "B068-the-mouse-is-visiting-him-tomorrow-they-ve-arranged-the-visit.webp"
+    },
+    {
+      "audit_id": 1124,
+      "name": "Look at that snowcloud! It is going to snow.",
+      "source": "photobooth/assets/06-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B069",
+      "filename": "B069-look-at-that-snowcloud-it-is-going-to-snow.webp"
+    },
+    {
+      "audit_id": 1125,
+      "name": "“I will lend you my spare mitten,” he offers.",
+      "source": "photobooth/assets/06-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B070",
+      "filename": "B070-i-will-lend-you-my-spare-mitten-he-offers.webp"
+    },
+    {
+      "audit_id": 1126,
+      "name": "He is sailing with his friend tomorrow; it’s all arranged.",
+      "source": "photobooth/assets/06-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B071",
+      "filename": "B071-he-is-sailing-with-his-friend-tomorrow-it-s-all-arranged.webp"
+    },
+    {
+      "audit_id": 1127,
+      "name": "He is going to sow the seeds in this garden bed.",
+      "source": "photobooth/assets/06-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B072",
+      "filename": "B072-he-is-going-to-sow-the-seeds-in-this-garden-bed.webp"
+    },
+    {
+      "audit_id": 1128,
+      "name": "He used to ride that rocking snail every evening as a child.",
+      "source": "photobooth/assets/07-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B073",
+      "filename": "B073-he-used-to-ride-that-rocking-snail-every-evening-as-a-child.webp"
+    },
+    {
+      "audit_id": 1129,
+      "name": "Now he rides a real snail.",
+      "source": "photobooth/assets/07-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B074",
+      "filename": "B074-now-he-rides-a-real-snail.webp"
+    },
+    {
+      "audit_id": 1130,
+      "name": "He could not reach the high shelf when he was little.",
+      "source": "photobooth/assets/07-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B075",
+      "filename": "B075-he-could-not-reach-the-high-shelf-when-he-was-little.webp"
+    },
+    {
+      "audit_id": 1131,
+      "name": "He could not reach the high shelf before, but now he can.",
+      "source": "photobooth/assets/07-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B076",
+      "filename": "B076-he-could-not-reach-the-high-shelf-before-but-now-he-can.webp"
+    },
+    {
+      "audit_id": 1132,
+      "name": "Did he use to sleep in a tulip when he was little?",
+      "source": "photobooth/assets/07-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B077",
+      "filename": "B077-did-he-use-to-sleep-in-a-tulip-when-he-was-little.webp"
+    },
+    {
+      "audit_id": 1133,
+      "name": "He didn’t use to have a proper bed when he was small.",
+      "source": "photobooth/assets/07-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B078",
+      "filename": "B078-he-didn-t-use-to-have-a-proper-bed-when-he-was-small.webp"
+    },
+    {
+      "audit_id": 1134,
+      "name": "When he was little, he used to draw tiny scribbles.",
+      "source": "photobooth/assets/07-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B079",
+      "filename": "B079-when-he-was-little-he-used-to-draw-tiny-scribbles.webp"
+    },
+    {
+      "audit_id": 1135,
+      "name": "He did not use to paint large pictures.",
+      "source": "photobooth/assets/07-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B080",
+      "filename": "B080-he-did-not-use-to-paint-large-pictures.webp"
+    },
+    {
+      "audit_id": 1136,
+      "name": "He used to pull a little cart, but now he pulls a huge wagon.",
+      "source": "photobooth/assets/07-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B081",
+      "filename": "B081-he-used-to-pull-a-little-cart-but-now-he-pulls-a-huge-wagon.webp"
+    },
+    {
+      "audit_id": 1137,
+      "name": "He did not use to pull such a heavy wagon.",
+      "source": "photobooth/assets/07-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B082",
+      "filename": "B082-he-did-not-use-to-pull-such-a-heavy-wagon.webp"
+    },
+    {
+      "audit_id": 1138,
+      "name": "When he was little, he used to wear oversized boots.",
+      "source": "photobooth/assets/07-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B083",
+      "filename": "B083-when-he-was-little-he-used-to-wear-oversized-boots.webp"
+    },
+    {
+      "audit_id": 1139,
+      "name": "He doesn’t wear those old boots any more.",
+      "source": "photobooth/assets/07-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B084",
+      "filename": "B084-he-doesn-t-wear-those-old-boots-any-more.webp"
+    },
+    {
+      "audit_id": 1140,
+      "name": "If he forgets to water the plant tomorrow, it will be thirsty.",
+      "source": "photobooth/assets/08-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B085",
+      "filename": "B085-if-he-forgets-to-water-the-plant-tomorrow-it-will-be-thirsty.webp"
+    },
+    {
+      "audit_id": 1141,
+      "name": "If it rains tomorrow, he will take an umbrella.",
+      "source": "photobooth/assets/08-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B086",
+      "filename": "B086-if-it-rains-tomorrow-he-will-take-an-umbrella.webp"
+    },
+    {
+      "audit_id": 1142,
+      "name": "If he had a ladder, he would reach those apples.",
+      "source": "photobooth/assets/08-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B087",
+      "filename": "B087-if-he-had-a-ladder-he-would-reach-those-apples.webp"
+    },
+    {
+      "audit_id": 1143,
+      "name": "If he had wings, he would fly over the flowers.",
+      "source": "photobooth/assets/08-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B088",
+      "filename": "B088-if-he-had-wings-he-would-fly-over-the-flowers.webp"
+    },
+    {
+      "audit_id": 1144,
+      "name": "If he pushes this end down, the other end will rise.",
+      "source": "photobooth/assets/08-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B089",
+      "filename": "B089-if-he-pushes-this-end-down-the-other-end-will-rise.webp"
+    },
+    {
+      "audit_id": 1145,
+      "name": "If he pulls the cord, the bell will ring.",
+      "source": "photobooth/assets/08-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B090",
+      "filename": "B090-if-he-pulls-the-cord-the-bell-will-ring.webp"
+    },
+    {
+      "audit_id": 1146,
+      "name": "If he plays the accordion, the petals will flutter.",
+      "source": "photobooth/assets/08-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B091",
+      "filename": "B091-if-he-plays-the-accordion-the-petals-will-flutter.webp"
+    },
+    {
+      "audit_id": 1147,
+      "name": "If he leaves the snowball in the sun, it will melt.",
+      "source": "photobooth/assets/08-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B092",
+      "filename": "B092-if-he-leaves-the-snowball-in-the-sun-it-will-melt.webp"
+    },
+    {
+      "audit_id": 1148,
+      "name": "If he puts the acorn on the scales, that side will fall.",
+      "source": "photobooth/assets/08-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B093",
+      "filename": "B093-if-he-puts-the-acorn-on-the-scales-that-side-will-fall.webp"
+    },
+    {
+      "audit_id": 1149,
+      "name": "If he blows on the dandelion, the seeds will fly away.",
+      "source": "photobooth/assets/08-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B094",
+      "filename": "B094-if-he-blows-on-the-dandelion-the-seeds-will-fly-away.webp"
+    },
+    {
+      "audit_id": 1150,
+      "name": "What would happen if he left the gate open?",
+      "source": "photobooth/assets/08-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B095",
+      "filename": "B095-what-would-happen-if-he-left-the-gate-open.webp"
+    },
+    {
+      "audit_id": 1151,
+      "name": "If he lights the lantern, he’ll be able to see the path.",
+      "source": "photobooth/assets/08-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B096",
+      "filename": "B096-if-he-lights-the-lantern-he-ll-be-able-to-see-the-path.webp"
+    },
+    {
+      "audit_id": 1152,
+      "name": "The chair is being painted right now, so don’t sit on it.",
+      "source": "photobooth/assets/09-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B097",
+      "filename": "B097-the-chair-is-being-painted-right-now-so-don-t-sit-on-it.webp"
+    },
+    {
+      "audit_id": 1153,
+      "name": "The parcel is being wrapped.",
+      "source": "photobooth/assets/09-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B098",
+      "filename": "B098-the-parcel-is-being-wrapped.webp"
+    },
+    {
+      "audit_id": 1154,
+      "name": "The cake has already been decorated. It’s ready for the party.",
+      "source": "photobooth/assets/09-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B099",
+      "filename": "B099-the-cake-has-already-been-decorated-it-s-ready-for-the-party.webp"
+    },
+    {
+      "audit_id": 1155,
+      "name": "The leaf umbrella is being mended.",
+      "source": "photobooth/assets/09-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B100",
+      "filename": "B100-the-leaf-umbrella-is-being-mended.webp"
+    },
+    {
+      "audit_id": 1156,
+      "name": "The garden gate is being built.",
+      "source": "photobooth/assets/09-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B101",
+      "filename": "B101-the-garden-gate-is-being-built.webp"
+    },
+    {
+      "audit_id": 1157,
+      "name": "These mugs are washed every evening.",
+      "source": "photobooth/assets/09-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B102",
+      "filename": "B102-these-mugs-are-washed-every-evening.webp"
+    },
+    {
+      "audit_id": 1158,
+      "name": "The scarf is being knitted.",
+      "source": "photobooth/assets/09-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B103",
+      "filename": "B103-the-scarf-is-being-knitted.webp"
+    },
+    {
+      "audit_id": 1159,
+      "name": "The branch is being carried by two elves at the moment.",
+      "source": "photobooth/assets/09-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B104",
+      "filename": "B104-the-branch-is-being-carried-by-two-elves-at-the-moment.webp"
+    },
+    {
+      "audit_id": 1160,
+      "name": "A wheel is being attached to the cart.",
+      "source": "photobooth/assets/09-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B105",
+      "filename": "B105-a-wheel-is-being-attached-to-the-cart.webp"
+    },
+    {
+      "audit_id": 1161,
+      "name": "A seed is being planted in the pot.",
+      "source": "photobooth/assets/09-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B106",
+      "filename": "B106-a-seed-is-being-planted-in-the-pot.webp"
+    },
+    {
+      "audit_id": 1162,
+      "name": "The jam is being poured into jars.",
+      "source": "photobooth/assets/09-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B107",
+      "filename": "B107-the-jam-is-being-poured-into-jars.webp"
+    },
+    {
+      "audit_id": 1163,
+      "name": "The blanket was hung on the line yesterday.",
+      "source": "photobooth/assets/09-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B108",
+      "filename": "B108-the-blanket-was-hung-on-the-line-yesterday.webp"
+    },
+    {
+      "audit_id": 1164,
+      "name": "He said he was exhausted.",
+      "source": "photobooth/assets/10-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B109",
+      "filename": "B109-he-said-he-was-exhausted.webp"
+    },
+    {
+      "audit_id": 1165,
+      "name": "He said he would tell her.",
+      "source": "photobooth/assets/10-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B110",
+      "filename": "B110-he-said-he-would-tell-her.webp"
+    },
+    {
+      "audit_id": 1166,
+      "name": "He said he hadn’t sent the note.",
+      "source": "photobooth/assets/10-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B111",
+      "filename": "B111-he-said-he-hadn-t-sent-the-note.webp"
+    },
+    {
+      "audit_id": 1167,
+      "name": "He said the gate was open.",
+      "source": "photobooth/assets/10-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B112",
+      "filename": "B112-he-said-the-gate-was-open.webp"
+    },
+    {
+      "audit_id": 1168,
+      "name": "She said she would pick up the berries.",
+      "source": "photobooth/assets/10-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B113",
+      "filename": "B113-she-said-she-would-pick-up-the-berries.webp"
+    },
+    {
+      "audit_id": 1169,
+      "name": "He said he would tell him.",
+      "source": "photobooth/assets/10-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B114",
+      "filename": "B114-he-said-he-would-tell-him.webp"
+    },
+    {
+      "audit_id": 1170,
+      "name": "The caller said they couldn’t hear me.",
+      "source": "photobooth/assets/10-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B115",
+      "filename": "B115-the-caller-said-they-couldn-t-hear-me.webp"
+    },
+    {
+      "audit_id": 1171,
+      "name": "He said the caller could help.",
+      "source": "photobooth/assets/10-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B116",
+      "filename": "B116-he-said-the-caller-could-help.webp"
+    },
+    {
+      "audit_id": 1172,
+      "name": "The owl said it was hungry.",
+      "source": "photobooth/assets/10-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B117",
+      "filename": "B117-the-owl-said-it-was-hungry.webp"
+    },
+    {
+      "audit_id": 1173,
+      "name": "He said the owl wanted food.",
+      "source": "photobooth/assets/10-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B118",
+      "filename": "B118-he-said-the-owl-wanted-food.webp"
+    },
+    {
+      "audit_id": 1174,
+      "name": "She said she had broken the cart.",
+      "source": "photobooth/assets/10-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B119",
+      "filename": "B119-she-said-she-had-broken-the-cart.webp"
+    },
+    {
+      "audit_id": 1175,
+      "name": "He said the cart needed a wheel.",
+      "source": "photobooth/assets/10-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B120",
+      "filename": "B120-he-said-the-cart-needed-a-wheel.webp"
+    },
+    {
+      "audit_id": 1176,
+      "name": "That’s the gnome who taught me to play the accordion.",
+      "source": "photobooth/assets/11-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B121",
+      "filename": "B121-that-s-the-gnome-who-taught-me-to-play-the-accordion.webp"
+    },
+    {
+      "audit_id": 1177,
+      "name": "Is that the boot which you’ve been looking for?",
+      "source": "photobooth/assets/11-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B122",
+      "filename": "B122-is-that-the-boot-which-you-ve-been-looking-for.webp"
+    },
+    {
+      "audit_id": 1178,
+      "name": "This is the house where we usually meet for tea.",
+      "source": "photobooth/assets/11-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B123",
+      "filename": "B123-this-is-the-house-where-we-usually-meet-for-tea.webp"
+    },
+    {
+      "audit_id": 1179,
+      "name": "Do you know the gnome whose scarf has stripes?",
+      "source": "photobooth/assets/11-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B124",
+      "filename": "B124-do-you-know-the-gnome-whose-scarf-has-stripes.webp"
+    },
+    {
+      "audit_id": 1180,
+      "name": "This is the teapot which has a bird-shaped spout.",
+      "source": "photobooth/assets/11-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B125",
+      "filename": "B125-this-is-the-teapot-which-has-a-bird-shaped-spout.webp"
+    },
+    {
+      "audit_id": 1181,
+      "name": "This is the tree where he likes to read.",
+      "source": "photobooth/assets/11-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B126",
+      "filename": "B126-this-is-the-tree-where-he-likes-to-read.webp"
+    },
+    {
+      "audit_id": 1182,
+      "name": "This is the mouse who is carrying a red umbrella.",
+      "source": "photobooth/assets/11-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B127",
+      "filename": "B127-this-is-the-mouse-who-is-carrying-a-red-umbrella.webp"
+    },
+    {
+      "audit_id": 1183,
+      "name": "The basket which the rabbit is sleeping in belongs to my friend.",
+      "source": "photobooth/assets/11-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B128",
+      "filename": "B128-the-basket-which-the-rabbit-is-sleeping-in-belongs-to-my-friend.webp"
+    },
+    {
+      "audit_id": 1184,
+      "name": "This is the chair which has a tall back.",
+      "source": "photobooth/assets/11-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B129",
+      "filename": "B129-this-is-the-chair-which-has-a-tall-back.webp"
+    },
+    {
+      "audit_id": 1185,
+      "name": "This is the flower where the bee is sleeping.",
+      "source": "photobooth/assets/11-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B130",
+      "filename": "B130-this-is-the-flower-where-the-bee-is-sleeping.webp"
+    },
+    {
+      "audit_id": 1186,
+      "name": "This is the friend whose hat contains a nest.",
+      "source": "photobooth/assets/11-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B131",
+      "filename": "B131-this-is-the-friend-whose-hat-contains-a-nest.webp"
+    },
+    {
+      "audit_id": 1187,
+      "name": "This is the boat which is made from a leaf.",
+      "source": "photobooth/assets/11-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B132",
+      "filename": "B132-this-is-the-boat-which-is-made-from-a-leaf.webp"
+    },
+    {
+      "audit_id": 1188,
+      "name": "That pumpkin’s huge, isn’t it?",
+      "source": "photobooth/assets/12-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B133",
+      "filename": "B133-that-pumpkin-s-huge-isn-t-it.webp"
+    },
+    {
+      "audit_id": 1189,
+      "name": "You like pancakes, don't you?",
+      "source": "photobooth/assets/12-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B134",
+      "filename": "B134-you-like-pancakes-don-t-you.webp"
+    },
+    {
+      "audit_id": 1190,
+      "name": "It is raining, isn't it?",
+      "source": "photobooth/assets/12-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B135",
+      "filename": "B135-it-is-raining-isn-t-it.webp"
+    },
+    {
+      "audit_id": 1191,
+      "name": "You haven’t finished your tea, have you?",
+      "source": "photobooth/assets/12-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B136",
+      "filename": "B136-you-haven-t-finished-your-tea-have-you.webp"
+    },
+    {
+      "audit_id": 1192,
+      "name": "The honey jar is empty, isn't it?",
+      "source": "photobooth/assets/12-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B137",
+      "filename": "B137-the-honey-jar-is-empty-isn-t-it.webp"
+    },
+    {
+      "audit_id": 1193,
+      "name": "Let’s take the longer path, shall we?",
+      "source": "photobooth/assets/12-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B138",
+      "filename": "B138-let-s-take-the-longer-path-shall-we.webp"
+    },
+    {
+      "audit_id": 1194,
+      "name": "Your boots are wet, aren't they?",
+      "source": "photobooth/assets/12-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B139",
+      "filename": "B139-your-boots-are-wet-aren-t-they.webp"
+    },
+    {
+      "audit_id": 1195,
+      "name": "He didn’t close the gate, did he?",
+      "source": "photobooth/assets/12-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B140",
+      "filename": "B140-he-didn-t-close-the-gate-did-he.webp"
+    },
+    {
+      "audit_id": 1196,
+      "name": "The cat is sleeping, isn't it?",
+      "source": "photobooth/assets/12-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B141",
+      "filename": "B141-the-cat-is-sleeping-isn-t-it.webp"
+    },
+    {
+      "audit_id": 1197,
+      "name": "She has finished the scarf, hasn't she?",
+      "source": "photobooth/assets/12-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B142",
+      "filename": "B142-she-has-finished-the-scarf-hasn-t-she.webp"
+    },
+    {
+      "audit_id": 1198,
+      "name": "They repaired the wheel, didn't they?",
+      "source": "photobooth/assets/12-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B143",
+      "filename": "B143-they-repaired-the-wheel-didn-t-they.webp"
+    },
+    {
+      "audit_id": 1199,
+      "name": "I’m allowed to borrow this blanket, aren’t I?",
+      "source": "photobooth/assets/12-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B144",
+      "filename": "B144-i-m-allowed-to-borrow-this-blanket-aren-t-i.webp"
+    },
+    {
+      "audit_id": 1200,
+      "name": "The rabbit’s fur is covered in mud. It can’t be clean.",
+      "source": "photobooth/assets/13-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B145",
+      "filename": "B145-the-rabbit-s-fur-is-covered-in-mud-it-can-t-be-clean.webp"
+    },
+    {
+      "audit_id": 1201,
+      "name": "Someone might be inside. I am not sure.",
+      "source": "photobooth/assets/13-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B146",
+      "filename": "B146-someone-might-be-inside-i-am-not-sure.webp"
+    },
+    {
+      "audit_id": 1202,
+      "name": "The cat might be hungry after eating: it is possible.",
+      "source": "photobooth/assets/13-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B147",
+      "filename": "B147-the-cat-might-be-hungry-after-eating-it-is-possible.webp"
+    },
+    {
+      "audit_id": 1203,
+      "name": "The tea’s still steaming. It must be hot.",
+      "source": "photobooth/assets/13-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B148",
+      "filename": "B148-the-tea-s-still-steaming-it-must-be-hot.webp"
+    },
+    {
+      "audit_id": 1204,
+      "name": "There might be a present in the parcel, but I’m not sure.",
+      "source": "photobooth/assets/13-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B149",
+      "filename": "B149-there-might-be-a-present-in-the-parcel-but-i-m-not-sure.webp"
+    },
+    {
+      "audit_id": 1205,
+      "name": "That footprint cannot belong to a tiny mouse: it is enormous.",
+      "source": "photobooth/assets/13-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B150",
+      "filename": "B150-that-footprint-cannot-belong-to-a-tiny-mouse-it-is-enormous.webp"
+    },
+    {
+      "audit_id": 1206,
+      "name": "It must be raining: drops are falling outside and her umbrella is dripping.",
+      "source": "photobooth/assets/13-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B151",
+      "filename": "B151-it-must-be-raining-drops-are-falling-outside-and-her-umbrella-is-dripping.webp"
+    },
+    {
+      "audit_id": 1207,
+      "name": "The scattered feathers might be decorations; I am not sure.",
+      "source": "photobooth/assets/13-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B152",
+      "filename": "B152-the-scattered-feathers-might-be-decorations-i-am-not-sure.webp"
+    },
+    {
+      "audit_id": 1208,
+      "name": "Someone must be baking: I can smell fresh bread and hear the oven timer.",
+      "source": "photobooth/assets/13-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B153",
+      "filename": "B153-someone-must-be-baking-i-can-smell-fresh-bread-and-hear-the-oven-timer.webp"
+    },
+    {
+      "audit_id": 1209,
+      "name": "I can see long ears sticking out. There must be a rabbit in the basket.",
+      "source": "photobooth/assets/13-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B154",
+      "filename": "B154-i-can-see-long-ears-sticking-out-there-must-be-a-rabbit-in-the-basket.webp"
+    },
+    {
+      "audit_id": 1210,
+      "name": "The yarn might lead to a cat, but I am not sure.",
+      "source": "photobooth/assets/13-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B155",
+      "filename": "B155-the-yarn-might-lead-to-a-cat-but-i-am-not-sure.webp"
+    },
+    {
+      "audit_id": 1211,
+      "name": "The lantern’s on, but nobody answers. Someone might be asleep inside.",
+      "source": "photobooth/assets/13-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B156",
+      "filename": "B156-the-lantern-s-on-but-nobody-answers-someone-might-be-asleep-inside.webp"
+    },
+    {
+      "audit_id": 1212,
+      "name": "You mustn’t touch that plant. The sign says it’s poisonous.",
+      "source": "photobooth/assets/14-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B157",
+      "filename": "B157-you-mustn-t-touch-that-plant-the-sign-says-it-s-poisonous.webp"
+    },
+    {
+      "audit_id": 1213,
+      "name": "You have to wear a safety rope here. It is required.",
+      "source": "photobooth/assets/14-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B158",
+      "filename": "B158-you-have-to-wear-a-safety-rope-here-it-is-required.webp"
+    },
+    {
+      "audit_id": 1214,
+      "name": "You look worn out. You should take a break.",
+      "source": "photobooth/assets/14-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B159",
+      "filename": "B159-you-look-worn-out-you-should-take-a-break.webp"
+    },
+    {
+      "audit_id": 1215,
+      "name": "You should wear gloves when handling a cactus.",
+      "source": "photobooth/assets/14-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B160",
+      "filename": "B160-you-should-wear-gloves-when-handling-a-cactus.webp"
+    },
+    {
+      "audit_id": 1216,
+      "name": "He can balance on the rope.",
+      "source": "photobooth/assets/14-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B161",
+      "filename": "B161-he-can-balance-on-the-rope.webp"
+    },
+    {
+      "audit_id": 1217,
+      "name": "You don’t have to use the stool if you can reach the shelf without it.",
+      "source": "photobooth/assets/14-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B162",
+      "filename": "B162-you-don-t-have-to-use-the-stool-if-you-can-reach-the-shelf-without-it.webp"
+    },
+    {
+      "audit_id": 1218,
+      "name": "You must wear a helmet before riding.",
+      "source": "photobooth/assets/14-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B163",
+      "filename": "B163-you-must-wear-a-helmet-before-riding.webp"
+    },
+    {
+      "audit_id": 1219,
+      "name": "You should take an umbrella in the rain.",
+      "source": "photobooth/assets/14-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B164",
+      "filename": "B164-you-should-take-an-umbrella-in-the-rain.webp"
+    },
+    {
+      "audit_id": 1220,
+      "name": "Could you give me a hand with this basket?",
+      "source": "photobooth/assets/14-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B165",
+      "filename": "B165-could-you-give-me-a-hand-with-this-basket.webp"
+    },
+    {
+      "audit_id": 1221,
+      "name": "He should rest his sore foot.",
+      "source": "photobooth/assets/14-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B166",
+      "filename": "B166-he-should-rest-his-sore-foot.webp"
+    },
+    {
+      "audit_id": 1222,
+      "name": "You must use oven gloves for a hot pie.",
+      "source": "photobooth/assets/14-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B167",
+      "filename": "B167-you-must-use-oven-gloves-for-a-hot-pie.webp"
+    },
+    {
+      "audit_id": 1223,
+      "name": "He can’t balance that spoon yet. He needs more practice.",
+      "source": "photobooth/assets/14-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B168",
+      "filename": "B168-he-can-t-balance-that-spoon-yet-he-needs-more-practice.webp"
+    },
+    {
+      "audit_id": 1224,
+      "name": "He can’t help laughing when the mushroom starts dancing.",
+      "source": "photobooth/assets/15-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B169",
+      "filename": "B169-he-can-t-help-laughing-when-the-mushroom-starts-dancing.webp"
+    },
+    {
+      "audit_id": 1225,
+      "name": "He wants to learn to juggle.",
+      "source": "photobooth/assets/15-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B170",
+      "filename": "B170-he-wants-to-learn-to-juggle.webp"
+    },
+    {
+      "audit_id": 1226,
+      "name": "Would he mind holding that basket for a minute?",
+      "source": "photobooth/assets/15-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B171",
+      "filename": "B171-would-he-mind-holding-that-basket-for-a-minute.webp"
+    },
+    {
+      "audit_id": 1227,
+      "name": "He stopped knitting to smell the flower.",
+      "source": "photobooth/assets/15-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B172",
+      "filename": "B172-he-stopped-knitting-to-smell-the-flower.webp"
+    },
+    {
+      "audit_id": 1228,
+      "name": "He hopes to plant the tree before lunch.",
+      "source": "photobooth/assets/15-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B173",
+      "filename": "B173-he-hopes-to-plant-the-tree-before-lunch.webp"
+    },
+    {
+      "audit_id": 1229,
+      "name": "Thanks for bringing my glove back!",
+      "source": "photobooth/assets/15-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B174",
+      "filename": "B174-thanks-for-bringing-my-glove-back.webp"
+    },
+    {
+      "audit_id": 1230,
+      "name": "He tried to stack the acorns, but they kept falling.",
+      "source": "photobooth/assets/15-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B175",
+      "filename": "B175-he-tried-to-stack-the-acorns-but-they-kept-falling.webp"
+    },
+    {
+      "audit_id": 1231,
+      "name": "He enjoys swinging in the hammock.",
+      "source": "photobooth/assets/15-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B176",
+      "filename": "B176-he-enjoys-swinging-in-the-hammock.webp"
+    },
+    {
+      "audit_id": 1232,
+      "name": "He cannot decide which box to choose.",
+      "source": "photobooth/assets/15-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B177",
+      "filename": "B177-he-cannot-decide-which-box-to-choose.webp"
+    },
+    {
+      "audit_id": 1233,
+      "name": "He helped the mouse to climb the ramp.",
+      "source": "photobooth/assets/15-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B178",
+      "filename": "B178-he-helped-the-mouse-to-climb-the-ramp.webp"
+    },
+    {
+      "audit_id": 1234,
+      "name": "He avoids stepping on flowers.",
+      "source": "photobooth/assets/15-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B179",
+      "filename": "B179-he-avoids-stepping-on-flowers.webp"
+    },
+    {
+      "audit_id": 1235,
+      "name": "He remembered to take his umbrella before leaving.",
+      "source": "photobooth/assets/15-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B180",
+      "filename": "B180-he-remembered-to-take-his-umbrella-before-leaving.webp"
+    },
+    {
+      "audit_id": 1236,
+      "name": "Do you know where I left my key?",
+      "source": "photobooth/assets/16-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B181",
+      "filename": "B181-do-you-know-where-i-left-my-key.webp"
+    },
+    {
+      "audit_id": 1237,
+      "name": "What did he find yesterday?",
+      "source": "photobooth/assets/16-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B182",
+      "filename": "B182-what-did-he-find-yesterday.webp"
+    },
+    {
+      "audit_id": 1238,
+      "name": "Could you tell me what is inside this teapot?",
+      "source": "photobooth/assets/16-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B183",
+      "filename": "B183-could-you-tell-me-what-is-inside-this-teapot.webp"
+    },
+    {
+      "audit_id": 1239,
+      "name": "Do you know when the information desk opens?",
+      "source": "photobooth/assets/16-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B184",
+      "filename": "B184-do-you-know-when-the-information-desk-opens.webp"
+    },
+    {
+      "audit_id": 1240,
+      "name": "Which basket contains the glove?",
+      "source": "photobooth/assets/16-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B185",
+      "filename": "B185-which-basket-contains-the-glove.webp"
+    },
+    {
+      "audit_id": 1241,
+      "name": "Which path leads to the village?",
+      "source": "photobooth/assets/16-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B186",
+      "filename": "B186-which-path-leads-to-the-village.webp"
+    },
+    {
+      "audit_id": 1242,
+      "name": "What is hiding under the leaf?",
+      "source": "photobooth/assets/16-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B187",
+      "filename": "B187-what-is-hiding-under-the-leaf.webp"
+    },
+    {
+      "audit_id": 1243,
+      "name": "Whose mitten is on the bench?",
+      "source": "photobooth/assets/16-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B188",
+      "filename": "B188-whose-mitten-is-on-the-bench.webp"
+    },
+    {
+      "audit_id": 1244,
+      "name": "Do you know why the box is ticking?",
+      "source": "photobooth/assets/16-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B189",
+      "filename": "B189-do-you-know-why-the-box-is-ticking.webp"
+    },
+    {
+      "audit_id": 1245,
+      "name": "What did he find inside the pumpkin yesterday?",
+      "source": "photobooth/assets/16-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B190",
+      "filename": "B190-what-did-he-find-inside-the-pumpkin-yesterday.webp"
+    },
+    {
+      "audit_id": 1246,
+      "name": "Could you tell me how long it takes to reach the treehouse?",
+      "source": "photobooth/assets/16-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B191",
+      "filename": "B191-could-you-tell-me-how-long-it-takes-to-reach-the-treehouse.webp"
+    },
+    {
+      "audit_id": 1247,
+      "name": "Do you know what is inside the hat?",
+      "source": "photobooth/assets/16-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B192",
+      "filename": "B192-do-you-know-what-is-inside-the-hat.webp"
+    },
+    {
+      "audit_id": 1248,
+      "name": "This pumpkin’s much heavier than I expected.",
+      "source": "photobooth/assets/17-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B193",
+      "filename": "B193-this-pumpkin-s-much-heavier-than-i-expected.webp"
+    },
+    {
+      "audit_id": 1249,
+      "name": "This mitten’s too big for me. I need a smaller one.",
+      "source": "photobooth/assets/17-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B194",
+      "filename": "B194-this-mitten-s-too-big-for-me-i-need-a-smaller-one.webp"
+    },
+    {
+      "audit_id": 1250,
+      "name": "The vase isn’t wide enough for all these flowers.",
+      "source": "photobooth/assets/17-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B195",
+      "filename": "B195-the-vase-isn-t-wide-enough-for-all-these-flowers.webp"
+    },
+    {
+      "audit_id": 1251,
+      "name": "He is not tall enough to reach the jar.",
+      "source": "photobooth/assets/17-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B196",
+      "filename": "B196-he-is-not-tall-enough-to-reach-the-jar.webp"
+    },
+    {
+      "audit_id": 1252,
+      "name": "The ribbons are as long as each other.",
+      "source": "photobooth/assets/17-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B197",
+      "filename": "B197-the-ribbons-are-as-long-as-each-other.webp"
+    },
+    {
+      "audit_id": 1253,
+      "name": "The stone is heavier than one feather.",
+      "source": "photobooth/assets/17-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B198",
+      "filename": "B198-the-stone-is-heavier-than-one-feather.webp"
+    },
+    {
+      "audit_id": 1254,
+      "name": "This umbrella is larger than that one.",
+      "source": "photobooth/assets/17-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B199",
+      "filename": "B199-this-umbrella-is-larger-than-that-one.webp"
+    },
+    {
+      "audit_id": 1255,
+      "name": "The spoon is too big for the cup.",
+      "source": "photobooth/assets/17-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B200",
+      "filename": "B200-the-spoon-is-too-big-for-the-cup.webp"
+    },
+    {
+      "audit_id": 1256,
+      "name": "The scarf is not long enough for two people.",
+      "source": "photobooth/assets/17-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B201",
+      "filename": "B201-the-scarf-is-not-long-enough-for-two-people.webp"
+    },
+    {
+      "audit_id": 1257,
+      "name": "That’s the biggest mushroom I’ve ever seen!",
+      "source": "photobooth/assets/17-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B202",
+      "filename": "B202-that-s-the-biggest-mushroom-i-ve-ever-seen.webp"
+    },
+    {
+      "audit_id": 1258,
+      "name": "The empty basket is lighter than the full one.",
+      "source": "photobooth/assets/17-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B203",
+      "filename": "B203-the-empty-basket-is-lighter-than-the-full-one.webp"
+    },
+    {
+      "audit_id": 1259,
+      "name": "Is this blanket big enough for both of us?",
+      "source": "photobooth/assets/17-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B204",
+      "filename": "B204-is-this-blanket-big-enough-for-both-of-us.webp"
+    },
+    {
+      "audit_id": 1260,
+      "name": "Would you like an apple?",
+      "source": "photobooth/assets/18-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B205",
+      "filename": "B205-would-you-like-an-apple.webp"
+    },
+    {
+      "audit_id": 1261,
+      "name": "He is holding an umbrella-shaped mushroom.",
+      "source": "photobooth/assets/18-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B206",
+      "filename": "B206-he-is-holding-an-umbrella-shaped-mushroom.webp"
+    },
+    {
+      "audit_id": 1262,
+      "name": "We’ve only got a little milk left, so don’t use it all.",
+      "source": "photobooth/assets/18-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B207",
+      "filename": "B207-we-ve-only-got-a-little-milk-left-so-don-t-use-it-all.webp"
+    },
+    {
+      "audit_id": 1263,
+      "name": "There aren’t many berries left. Shall we pick some more?",
+      "source": "photobooth/assets/18-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B208",
+      "filename": "B208-there-aren-t-many-berries-left-shall-we-pick-some-more.webp"
+    },
+    {
+      "audit_id": 1264,
+      "name": "There are many cups in the basket.",
+      "source": "photobooth/assets/18-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B209",
+      "filename": "B209-there-are-many-cups-in-the-basket.webp"
+    },
+    {
+      "audit_id": 1265,
+      "name": "There is not any water in the can.",
+      "source": "photobooth/assets/18-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B210",
+      "filename": "B210-there-is-not-any-water-in-the-can.webp"
+    },
+    {
+      "audit_id": 1266,
+      "name": "Help yourself. There are a few biscuits in the basket.",
+      "source": "photobooth/assets/18-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B211",
+      "filename": "B211-help-yourself-there-are-a-few-biscuits-in-the-basket.webp"
+    },
+    {
+      "audit_id": 1267,
+      "name": "There is very little honey left.",
+      "source": "photobooth/assets/18-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B212",
+      "filename": "B212-there-is-very-little-honey-left.webp"
+    },
+    {
+      "audit_id": 1268,
+      "name": "Have you seen the red button I left on the table?",
+      "source": "photobooth/assets/18-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B213",
+      "filename": "B213-have-you-seen-the-red-button-i-left-on-the-table.webp"
+    },
+    {
+      "audit_id": 1269,
+      "name": "One basket is empty, but the other is full.",
+      "source": "photobooth/assets/18-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B214",
+      "filename": "B214-one-basket-is-empty-but-the-other-is-full.webp"
+    },
+    {
+      "audit_id": 1270,
+      "name": "There is a lot of tea in the cup.",
+      "source": "photobooth/assets/18-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B215",
+      "filename": "B215-there-is-a-lot-of-tea-in-the-cup.webp"
+    },
+    {
+      "audit_id": 1271,
+      "name": "He has many acorns to sort.",
+      "source": "photobooth/assets/18-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B216",
+      "filename": "B216-he-has-many-acorns-to-sort.webp"
+    },
+    {
+      "audit_id": 1272,
+      "name": "Did he make that crown all by himself?",
+      "source": "photobooth/assets/19-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B217",
+      "filename": "B217-did-he-make-that-crown-all-by-himself.webp"
+    },
+    {
+      "audit_id": 1273,
+      "name": "The two friends knitted mittens for each other.",
+      "source": "photobooth/assets/19-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B218",
+      "filename": "B218-the-two-friends-knitted-mittens-for-each-other.webp"
+    },
+    {
+      "audit_id": 1274,
+      "name": "He is hiding behind the leaf.",
+      "source": "photobooth/assets/19-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B219",
+      "filename": "B219-he-is-hiding-behind-the-leaf.webp"
+    },
+    {
+      "audit_id": 1275,
+      "name": "He is looking under the table for his glove.",
+      "source": "photobooth/assets/19-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B220",
+      "filename": "B220-he-is-looking-under-the-table-for-his-glove.webp"
+    },
+    {
+      "audit_id": 1276,
+      "name": "There’s just enough room between the two flowers.",
+      "source": "photobooth/assets/19-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B221",
+      "filename": "B221-there-s-just-enough-room-between-the-two-flowers.webp"
+    },
+    {
+      "audit_id": 1277,
+      "name": "The snail is inside the basket.",
+      "source": "photobooth/assets/19-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B222",
+      "filename": "B222-the-snail-is-inside-the-basket.webp"
+    },
+    {
+      "audit_id": 1278,
+      "name": "The lantern is above the door.",
+      "source": "photobooth/assets/19-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B223",
+      "filename": "B223-the-lantern-is-above-the-door.webp"
+    },
+    {
+      "audit_id": 1279,
+      "name": "He is standing beside the cart.",
+      "source": "photobooth/assets/19-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B224",
+      "filename": "B224-he-is-standing-beside-the-cart.webp"
+    },
+    {
+      "audit_id": 1280,
+      "name": "He’s looking at himself in the pond.",
+      "source": "photobooth/assets/19-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B225",
+      "filename": "B225-he-s-looking-at-himself-in-the-pond.webp"
+    },
+    {
+      "audit_id": 1281,
+      "name": "The two gnomes are helping each other.",
+      "source": "photobooth/assets/19-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B226",
+      "filename": "B226-the-two-gnomes-are-helping-each-other.webp"
+    },
+    {
+      "audit_id": 1282,
+      "name": "Could you put this cup on the shelf, please?",
+      "source": "photobooth/assets/19-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B227",
+      "filename": "B227-could-you-put-this-cup-on-the-shelf-please.webp"
+    },
+    {
+      "audit_id": 1283,
+      "name": "The ball is under the bench.",
+      "source": "photobooth/assets/19-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B228",
+      "filename": "B228-the-ball-is-under-the-bench.webp"
+    },
+    {
+      "audit_id": 1284,
+      "name": "He looks really amused by the puppet show.",
+      "source": "photobooth/assets/20-01.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B229",
+      "filename": "B229-he-looks-really-amused-by-the-puppet-show.webp"
+    },
+    {
+      "audit_id": 1285,
+      "name": "The snail moves slowly.",
+      "source": "photobooth/assets/20-02.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B230",
+      "filename": "B230-the-snail-moves-slowly.webp"
+    },
+    {
+      "audit_id": 1286,
+      "name": "Carry that cup carefully. It’s full to the top.",
+      "source": "photobooth/assets/20-03.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B231",
+      "filename": "B231-carry-that-cup-carefully-it-s-full-to-the-top.webp"
+    },
+    {
+      "audit_id": 1287,
+      "name": "He runs quickly along the path.",
+      "source": "photobooth/assets/20-04.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B232",
+      "filename": "B232-he-runs-quickly-along-the-path.webp"
+    },
+    {
+      "audit_id": 1288,
+      "name": "He walks cheerfully through the rain.",
+      "source": "photobooth/assets/20-05.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B233",
+      "filename": "B233-he-walks-cheerfully-through-the-rain.webp"
+    },
+    {
+      "audit_id": 1289,
+      "name": "Moving all that wood was really tiring.",
+      "source": "photobooth/assets/20-06.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B234",
+      "filename": "B234-moving-all-that-wood-was-really-tiring.webp"
+    },
+    {
+      "audit_id": 1290,
+      "name": "He is excited about the flower opening.",
+      "source": "photobooth/assets/20-07.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B235",
+      "filename": "B235-he-is-excited-about-the-flower-opening.webp"
+    },
+    {
+      "audit_id": 1291,
+      "name": "Please walk quietly; the rabbit’s asleep.",
+      "source": "photobooth/assets/20-08.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B236",
+      "filename": "B236-please-walk-quietly-the-rabbit-s-asleep.webp"
+    },
+    {
+      "audit_id": 1292,
+      "name": "He drops the cushions clumsily.",
+      "source": "photobooth/assets/20-09.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B237",
+      "filename": "B237-he-drops-the-cushions-clumsily.webp"
+    },
+    {
+      "audit_id": 1293,
+      "name": "He is proud of his neatly folded blankets.",
+      "source": "photobooth/assets/20-10.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B238",
+      "filename": "B238-he-is-proud-of-his-neatly-folded-blankets.webp"
+    },
+    {
+      "audit_id": 1294,
+      "name": "What a surprising place to find a bird’s nest!",
+      "source": "photobooth/assets/20-11.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B239",
+      "filename": "B239-what-a-surprising-place-to-find-a-bird-s-nest.webp"
+    },
+    {
+      "audit_id": 1295,
+      "name": "He waits patiently while his friend taps a boot.",
+      "source": "photobooth/assets/20-12.webp",
+      "group": "Photobooth paper",
+      "reason": "Intentional cream paper backdrop on a complete scene.",
+      "action": "Keep as a scene, or batch recut existing source. No new picture needed.",
+      "number": "B240",
+      "filename": "B240-he-waits-patiently-while-his-friend-taps-a-boot.webp"
+    }
+  ],
+  "extra_source_needed": [
+    "Lip gloss: temporary SVG placeholder in the new packing game."
+  ],
+  "exclusions": "Memes, GIF scenes, room backgrounds, logos, deliberately cropped character portraits and facial-feature sprites. Retired Spend a Fortune background photos are not requested as replacements for active games."
+}
