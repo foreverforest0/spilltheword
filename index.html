@@ -12004,6 +12004,7 @@ function renderCards(){
  <p class="muted small" id="cbprog">Drag the cards around. Click to open; click again to put it back.</p><div class="cbtask" id="cbtask" hidden></div><div class="cbh" id="cbsharedh" hidden role="status"></div><div class="cboard" id="cboard"></div></section>`);vBind();
  $('#cbback').onclick=spSetup;$('#cbnew').onclick=renderCards;
  const bd=$('#cboard'),items=cbItems();CB.currentItems=items;
+ if(CB.task==='who')blobSet('Turn a picture over. Complete both sentences using the owner and speaking role shown on the back.');
  if(shared){
   blobSet(CB.task==='intv'?'Click a picture to turn it over. Read the answers and make a question for each one.':'Read the character description and guess the job. Click a card to select it; use Hint if you need help.');
   $('#cbsharedhint').onclick=()=>{const box=$('#cbsharedh'),hints=items[active].hints;box.hidden=false;box.textContent=(CB.task==='gmj'?'Card '+(active+1)+': ':'')+hints[Math.min(hintCount++,hints.length-1)]};
@@ -12019,7 +12020,7 @@ if(CB.prog)$('#cbprog').textContent=CB.prog+'. Click a card to open it; click ag
   if(it.a)hl.push(String(it.a).replace(/^[^A-Za-z0-9“"‘']+/,''));
   if(!hl.length){const phr=cbPhr();hl.push(phr.length?'Useful language: '+phr.slice(0,5).map(x=>x[0]).join(' · '):'Look at the picture and answer in a full sentence.')}
   const qo=it.qo||it.q;
-  const inner=it.sharedHints?`<div class="cbbig inl stw-expanded-card"><article class="stw-prompt-card" style="--stw-card-color:${cardColor(i)}"><div class="stw-prompt-media">${cbImg(it)}</div><div class="stw-prompt-copy">${it.answers?`<ul class="interview-answers">${it.answers.map(a=>`<li>${esc(a)}</li>`).join('')}</ul>`:`<div class="cbt2">${esc(it.t)}</div>`}</div></article></div>`:`<div class="cbbig inl stw-expanded-card"><article class="stw-prompt-card" style="--stw-card-color:${cardColor(i)}"><div class="stw-prompt-media">${it.src?cbImg(it):(it.extra?it.extra:`<span class="stw-word-art">${esc(it.t)}</span>`)}</div><div class="stw-prompt-copy">${captionTitle(it)?`<div class="cbt2">${esc(captionTitle(it))}</div>`:''}${qo&&qo!==it.t?`<div class="cbq2">${esc(qo)}</div>`:''}<div class="cbh" hidden></div><div class="cbbtn"><button class="lvb" id="cbhint">Hints</button></div></div></article></div>`;
+  const inner=it.noHints?`<div class="cbbig inl stw-expanded-card"><article class="stw-prompt-card"><div class="stw-prompt-media">${cbImg(it)}</div><div class="stw-prompt-copy"><p class="ownership-context">${esc(it.ownerContext)}</p>${it.backPrompts.map(p=>`<p class="ownership-prompt">${esc(p)}</p>`).join('')}</div></article></div>`:it.sharedHints?`<div class="cbbig inl stw-expanded-card"><article class="stw-prompt-card" style="--stw-card-color:${cardColor(i)}"><div class="stw-prompt-media">${cbImg(it)}</div><div class="stw-prompt-copy">${it.answers?`<ul class="interview-answers">${it.answers.map(a=>`<li>${esc(a)}</li>`).join('')}</ul>`:`<div class="cbt2">${esc(it.t)}</div>`}</div></article></div>`:`<div class="cbbig inl stw-expanded-card"><article class="stw-prompt-card" style="--stw-card-color:${cardColor(i)}"><div class="stw-prompt-media">${it.src?cbImg(it):(it.extra?it.extra:`<span class="stw-word-art">${esc(it.t)}</span>`)}</div><div class="stw-prompt-copy">${captionTitle(it)?`<div class="cbt2">${esc(captionTitle(it))}</div>`:''}${qo&&qo!==it.t?`<div class="cbq2">${esc(qo)}</div>`:''}<div class="cbh" hidden></div><div class="cbbtn"><button class="lvb" id="cbhint">Hints</button></div></div></article></div>`;
   cardFlip(bd,d,inner,Math.min(420,Math.max(d.offsetWidth,320)),380);
   const resize=()=>{const box=d.querySelector('.stw-expanded-card');if(!box)return;d.style.height=box.scrollHeight+'px';bd.style.height=Math.max(bd._h||0,d.offsetTop+box.scrollHeight+12)+'px'};
   setTimeout(()=>{resize();let hn=0;const hb=d.querySelector('#cbhint');if(hb)hb.onclick=e=>{e.stopPropagation();if(hn>=hl.length)return;hn++;const h=d.querySelector('.cbh');h.hidden=false;h.innerHTML=hl.slice(0,hn).map(x=>'<div>'+esc(x)+'</div>').join('');if(hn>=hl.length)hb.disabled=true;resize()}},240)};
@@ -12749,7 +12750,7 @@ homeBind=function(){
   `<path d="M15 6q-4 0-4 4v30q0 4 4 4h20q4 0 4-4V10q0-4-4-4Z" fill="var(--gc-peach)" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/><path d="M16 13q2 3 0 6t0 6m7-12q2 3 0 6t0 6m7-12q2 3 0 6t0 6m-13 9 13 1m-13 4 9 1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>`,
   `<path d="M7 28q5-16 11-1t11 0 14 1M8 36q5-11 10 0t10 0 14-1" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/><path d="M12 13q4-5 8 0t8 0 8 0" fill="none" stroke="var(--gc-orange)" stroke-width="2.2" stroke-linecap="round"/>`
  ];
- function topicDoodle(i){return `<svg viewBox="0 0 50 50" aria-hidden="true">${doodles[i%doodles.length]}</svg>`}
+ function topicDoodle(i){return `<span class="topic-emotion" aria-hidden="true" style="--shape-x:${(i%8)/7*100}%;--shape-y:${Math.floor(i%32/8)/3*100}%"></span>`}
  let grammarCurrent=null,grammarActivity=false;
  function grammarGroups(){
   const levels=S.glevel==='all'?GLV.filter(l=>l[0]!=='all').map(l=>l[0]):[S.glevel];
@@ -12822,6 +12823,8 @@ async function boot(){
 <script src="grammar-practice-refresh.js"></script>
 <script src="kids-present-simple.js"></script>
 <script src="grammar-scenes-booth.js"></script>
+<script src="grammar-spatial-refresh.js"></script>
+<script src="room-workshop.js"></script>
 <script src="b1-content.js"></script>
 <script src="unbox/tasks.js"></script>
 <script src="unbox/app.js"></script>

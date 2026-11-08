@@ -12,3 +12,5 @@ Use these when they serve the learning goal. This records the selection; it does
 Keep the cream background, Georgia serif type, wavy headings, existing illustrated marks and the agreed palette. Fridge words have no colored boxes; controls sit to the right and instructions expand inside How to. Kids, A1 and A2 use the beige fridge; B1, B2 and C1 use the blue fridge.
 
 Section headings (including Grammar and Vocabulary) use the homepage letter wave. Topic and exercise card labels stay straight. New emotion-shape assets require the user’s visual approval before replacing the existing marks.
+
+On 2026-11-08 the user approved the lightly textured emotion shapes. The approved sheet is installed as `assets/emotion-shapes.png` on topic and exercise cards.
