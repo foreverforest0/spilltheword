@@ -1,0 +1,59 @@
+/* Paper pond, pencil fish, and the site's five original colours. */
+#view .pond-page{max-width:1200px;margin:0 auto;padding:16px 18px 28px;color:#70271F}
+.pond-header{position:relative;text-align:center;padding:0 100px 12px}
+#view .pond-header h1{font:clamp(38px,5.6vw,64px)/1.25 Georgia,serif;margin:0 auto 12px}
+.pond-topic-label{display:block;color:#26422B;font-size:17px;line-height:1.4}
+.pond-back,.pond-text-button{font:16px Georgia,serif;border:0;background:none;color:#70271F;padding:9px 4px;cursor:pointer;text-underline-offset:4px}
+.pond-back:hover,.pond-text-button:hover{text-decoration:underline}.pond-back{position:absolute;left:0;top:10px}
+.pond-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 16px;flex-wrap:wrap}.pond-toolbar nav{display:flex;gap:8px;flex-wrap:wrap}
+#view .pond-button{padding:11px 16px;background:#CCE5FF;color:#70271F;border:0;border-radius:3px;box-shadow:none;cursor:pointer;font:17px/1.2 Georgia,serif;min-height:42px}
+#view .pond-button.active,#view .pond-button.primary{background:#70271F!important;color:#F9F5E6!important}
+#view .pond-button:disabled{cursor:default;opacity:.65}#view .pond-button:focus-visible,.pond-fish:focus-visible{outline:3px solid #F24E07;outline-offset:3px}
+.pond-help{padding:15px 18px;margin:0 0 16px;background:#CCE5FF;color:#26422B;font-size:17px;line-height:1.5}
+.pond-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,1fr);gap:24px;align-items:start}
+.pond-water{position:relative;isolation:isolate;width:100%;aspect-ratio:3/2;background:url('assets/pond/pond-paper.png') center/100% 100% no-repeat;overflow:hidden;border-radius:20px 29px 17px 23px;touch-action:manipulation}
+.pond-water[data-can-catch=true]{cursor:crosshair}
+.pond-school{position:absolute;inset:0}
+#view .pond-fish{position:absolute;padding:0;border:0;border-radius:50%;background:transparent!important;box-shadow:none;cursor:pointer;touch-action:manipulation;outline-offset:-6px;will-change:left,top;z-index:1;opacity:1!important}
+#view .pond-fish:disabled{cursor:default}#view .pond-fish:focus-visible{z-index:3;background:#f9f5e633!important}
+.pond-fish-art{position:absolute;inset:0;pointer-events:none;display:block;transform-origin:60% 50%;filter:drop-shadow(0 3px 0 #26422b08)}
+.pond-house-fish,.pond-idle-fish{background-image:url('assets/pond/fish-sheet.png');background-size:300% 200%;background-repeat:no-repeat}
+.pond-fish-art>img{display:block;width:100%;height:100%;object-fit:contain}
+.pond-fish:not(:disabled):hover .pond-fish-art{filter:drop-shadow(0 0 5px #f9f5e6);scale:1.08}
+.pond-idle-fish{display:block;width:150px;height:150px;margin:auto;background-position:50% 0;transform:rotate(-10deg)}
+.pond-ripple{position:absolute;width:24px;height:12px;border:2px solid #F9F5E6;border-radius:50%;opacity:0;pointer-events:none;z-index:0}
+.pond-ripple.show{animation:pond-ripple .8s ease-out}
+.pond-line{position:absolute;width:1px;height:0;background:#70271F;top:var(--line-top);left:var(--line-left);opacity:0;pointer-events:none;transform-origin:bottom}
+.pond-line.show{opacity:.4;height:32%;transform:rotate(22deg);transition:height .25s}
+.pond-fish.caught .pond-fish-art{animation:pond-caught .52s ease-out}
+.pond-fish.released .pond-fish-art{animation:pond-release .65s ease-out}
+.pond-fish.jumped{z-index:4}
+.pond-fish.jumped .pond-fish-art{animation:pond-jump 1.1s ease-in forwards}
+.pond-status{margin:11px 8px 0;color:#26422B;text-align:center;font-size:17px;min-height:26px;line-height:1.5}
+#view .pond-question{min-width:0;min-height:220px;background:#fff;overflow:visible;border-radius:5px 9px 5px 7px}
+.pond-empty{padding:35px 16px;text-align:center;color:#26422B;font-size:19px}
+.pond-card-copy{padding:23px 23px 20px}
+#view .pond-question-text{font:26px/1.22 Georgia,serif;margin:0 0 15px;color:#70271F}
+#view .pond-cue{font-size:18px;line-height:1.45;margin:0 0 20px;padding:11px 13px;background:#CCE5FF;color:#26422B;white-space:normal;overflow-wrap:anywhere}
+.pond-card-copy>label{font-size:15px;display:block;margin:0 0 7px;color:#26422B}
+#view #pondAnswer{width:100%;box-sizing:border-box;min-height:80px;padding:12px;font:21px/1.35 Georgia,serif!important;background:#F9F5E6!important;border:0!important;border-radius:3px;resize:vertical;color:#70271F}
+.pond-answer-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:13px 0 0}
+.pond-feedback{color:#70271F;line-height:1.4;font-size:17px;margin:14px 0 0;min-height:24px}
+.pond-page[data-outcome=correct] .pond-feedback{color:#26422B}.pond-page[data-outcome=incorrect] .pond-feedback{border-left:3px solid #F24E07;padding-left:10px}
+.pond-draw-label{font-size:17px;color:#26422B;margin:14px 0 10px}
+.pond-drawing-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.pond-colors{display:flex;gap:4px}.pond-swatch{width:29px;height:29px;background:var(--swatch)!important;border:3px solid #fff;outline:0;border-radius:50%;cursor:pointer;padding:0}.pond-swatch.active{outline:1.5px solid #70271F;outline-offset:1px}
+.pond-width-label{display:flex;align-items:center;gap:5px;font-size:14px}.pond-width-label input{width:65px;accent-color:#70271F}
+.pond-drawing-tools .pond-text-button{font-size:14px;padding:7px 2px}.pond-drawing-tools button[aria-pressed=true]:not(.pond-swatch){color:#26422B;text-decoration:underline}
+#pondCanvas{display:block;width:100%;aspect-ratio:5/3;height:auto;background:#F9F5E6;touch-action:none;cursor:crosshair;border-radius:4px;margin:0 0 12px;outline:1px dashed #70271F35;outline-offset:-7px}
+.pond-page [hidden]{display:none!important}
+@keyframes pond-ripple{0%{opacity:.8;transform:translate(-50%,-50%) scale(.5)}100%{opacity:0;transform:translate(-50%,-50%) scale(6)}}
+@keyframes pond-caught{0%{translate:0 0}50%{translate:0 -45%;rotate:-10deg}100%{translate:0 0}}
+@keyframes pond-release{0%{opacity:0;translate:0 -85%;scale:.8}65%{opacity:1;translate:0 12%}100%{translate:0 0;scale:1}}
+@keyframes pond-jump{0%{translate:0 0;rotate:0deg;opacity:1}40%{translate:0 -150%;rotate:-30deg;opacity:1}80%{translate:50% 20%;rotate:70deg;opacity:1}100%{translate:80% 180%;rotate:110deg;opacity:0}}
+@media(min-width:1100px){.pond-page:has(#pondStudio:not([hidden])) .pond-layout{grid-template-columns:minmax(0,1.4fr) minmax(360px,1fr)}}
+@media(max-width:760px){#view .pond-page{padding:10px 8px 22px}.pond-header{padding:45px 0 10px}.pond-back{top:0}.pond-layout{grid-template-columns:minmax(0,1fr);gap:14px}.pond-water{max-height:480px}.pond-question-text{font-size:25px}.pond-card-copy{padding:20px}.pond-toolbar{margin-bottom:12px}.pond-empty{padding:15px}.pond-empty .pond-idle-fish{width:90px;height:90px}.pond-empty p{margin:4px}.pond-toolbar nav{gap:6px}#view .pond-button{font-size:16px;padding:10px 12px}.pond-status{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.pond-page *{animation:none!important;transition:none!important}.pond-fish.jumped .pond-fish-art{opacity:.25!important;translate:0 -15%!important}.pond-fish.released .pond-fish-art{opacity:1!important}}
+.pond-idle-fish{clip-path:inset(0 4% 0 0)}
+/* Keep the site's Home control from covering a question while the phone scrolls. */
+@media(max-width:760px){body:has(.pond-page) #homeBtn{position:absolute}body:has(.pond-page) .grammar-exercise-back{padding-left:112px;min-height:34px}}
