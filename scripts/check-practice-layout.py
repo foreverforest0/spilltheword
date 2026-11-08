@@ -31,6 +31,65 @@ with sync_playwright() as pw:
         page.evaluate("([id,lv])=>{go('gram');S.splevel=lv;spOpen(id)}", [task, level])
         page.wait_for_timeout(80)
 
+    # Reach the additional Kids activity through the same catalog as a learner.
+    page.evaluate("go('gram')")
+    page.locator('[data-catalog-level="kids"]').click()
+    page.locator('[data-grammar-topic="kids:2"]').click()
+    page.locator('[data-grammar-exercise="mkhabit"]').click()
+    page.wait_for_timeout(100)
+    assert page.locator(".b1-habit-picture img").evaluate("e=>e.complete&&e.naturalWidth>0")
+    assert page.locator(".mglight").count() == 0
+    page.locator("#mgans").click()
+    assert page.locator(".b1-answer").inner_text().endswith(".")
+    page.locator("#dmnew").click()
+    assert page.locator(".b1-answer").inner_text() == ""
+    kids_report = page.evaluate("""()=>{
+      const items=kidsHabitItems(),cfg=MGXC.mkhabit;
+      const choose=(st,words)=>words.forEach(word=>{
+        const b=[...st.querySelectorAll('.b1-bank .b1-magnet')].find(e=>e.querySelector('span').textContent===word);
+        if(!b)throw Error('Missing Kids magnet '+word);b.click();
+      });
+      for(const item of items){
+        const extra=item[4],a=extra.agreement;
+        if(a.addS!==['He','She','Tom','Mum'].includes(a.subject))throw Error('Wrong agreement group');
+        const st=dmShell('mkhabit',cfg.title,cfg.help,cfg.hints),mb=document.createElement('div');st.before(mb);
+        b1MagnetRound(st,mb,'mkhabit',cfg,{s:item[1],pic:item[2],extra});
+        choose(st,[a.subject,a.wrong,extra.tokens[2]]);st.querySelector('#mgchk').click();
+        if(st.querySelector('.b1-answer').textContent.startsWith('Yes!'))throw Error('Wrong verb accepted');
+        // Return the incorrect verb, select the correct form and put it before the object.
+        [...st.querySelectorAll('.b1-strip .b1-magnet')].find(e=>e.querySelector('span').textContent===a.wrong).click();
+        [...st.querySelectorAll('.b1-strip .b1-magnet')].find(e=>e.querySelector('span').textContent===extra.tokens[2]).click();
+        choose(st,[a.verb,extra.tokens[2]]);st.querySelector('#mgchk').click();
+        if(!st.querySelector('.b1-answer').textContent.startsWith('Yes!'))throw Error('Correct Kids answer rejected');
+        if(st.querySelectorAll('.b1-bank .b1-magnet').length!==1)throw Error('The unused verb should stay in the bank');
+      }
+      return items.length;
+    }""")
+    assert kids_report == 56
+    activity("mkhabit", "kids")
+    page.locator(".b1-settings summary").click()
+    page.locator('[data-t="s"]').click()
+    assert page.locator(".b1-habit-picture figcaption").inner_text().split(" · ")[1] in ["He", "She", "Tom", "Mum"]
+    page.locator(".b1-settings summary").click()
+    page.locator('[data-t="base"]').click()
+    assert page.locator(".b1-habit-picture figcaption").inner_text().split(" · ")[1] in ["I", "You", "We", "They"]
+    page.set_viewport_size({"width": 390, "height": 844})
+    page.wait_for_timeout(100)
+    assert page.evaluate("document.documentElement.scrollWidth<=innerWidth")
+    assert page.evaluate("document.querySelector('#mgans').getBoundingClientRect().bottom<=innerHeight")
+    assert page.locator(".b1-bank .b1-magnet").evaluate_all("""els=>els.every(e=>{
+      const r=e.getBoundingClientRect(),bank=e.parentElement.getBoundingClientRect();
+      return r.top>=bank.top-1&&r.bottom<=bank.bottom+1;
+    })""")
+    assert page.locator(".b1-habit-art img").evaluate("""e=>{
+      const r=e.getBoundingClientRect(),art=e.parentElement.getBoundingClientRect();
+      return r.top>=art.top&&r.bottom<=art.bottom&&r.right<=art.right;
+    }""")
+    page.screenshot(path="/tmp/kids-habits-mobile.png", full_page=True)
+    page.set_viewport_size({"width": 1365, "height": 900})
+    page.wait_for_timeout(80)
+    page.screenshot(path="/tmp/kids-habits-desktop.png", full_page=True)
+
     for mode in ["compare", "find", "memory"]:
         activity("there" + mode)
         question = page.locator("#thereQuestion").inner_text()
@@ -89,7 +148,7 @@ with sync_playwright() as pw:
                 continue
             assert button.evaluate("e=>getComputedStyle(e).borderWidth") == "0px", (task, button.inner_text())
     assert not errors, errors
-    print(f"Passed: {len(ids)} A1 activities, six fridge levels, drag/return, responsive layout and room controls.")
+    print(f"Passed: {kids_report} Kids habit rounds, {len(ids)} A1 activities, six fridge levels, drag/return, responsive layout and room controls.")
     browser.close()
 
 server.shutdown()
