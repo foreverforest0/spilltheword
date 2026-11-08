@@ -34,6 +34,7 @@ with sync_playwright() as pw:
  p.screenshot(path='/tmp/workshop-whose.png',full_page=True)
  for task in ['nof','fbk']:
   p.evaluate("id=>{go('gram');S.splevel='a1';spOpen(id)}",task);p.wait_for_timeout(80)
+  p.locator('[data-spatial-variant="old"]').click()
   assert p.locator('.spatial-item').count()==8
   if task=='nof':
    item=p.locator('.spatial-item').first;start=item.bounding_box();target=p.locator('[data-spatial-zone="near"]').bounding_box()

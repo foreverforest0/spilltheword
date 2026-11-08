@@ -1,0 +1,9 @@
+# Reporter, viewpoint and listening practice
+
+- **Correct the reporter** is available under Present Continuous in Kids, A1 and A2. One picture and a false report are shown. The learner writes a negative correction followed by a positive description. Sixteen picture/report pairs are available. Both `isn't` and `is not`, positive `she's`/`he's`, straight or curly apostrophes, and the listed natural descriptions are accepted. A grammar hint is optional.
+- **Near or Far → Change viewpoint** keeps all eight objects fixed. Only the observer moves between the two ends. The learner changes this/that/these/those for the highlighted object. New object selects another target without rearranging the board. The original dragging game remains under **Move objects**.
+- **Four baskets → Listen and sort** plays a full sentence, such as “Those are keys.” The learner must match both the picture and its basket. Each round has two correct items per basket. No distance labels or visible transcript give away the instruction; **Show text** is available on request. **Listen** repeats the current sentence. The original visual sorting game remains under **Look and sort**.
+
+Listening uses sixteen bundled MP3 files (see `assets/basket-audio/README.md` and `manifest.json`). Browser speech synthesis is a fallback if a clip cannot play; if playback is unavailable, the interface offers retry and the optional transcript. Playback and pending round timers stop when leaving the game.
+
+Verification: `scripts/check-grammar-perspectives.py` checks the real catalog entry, all reporter pictures, static board coordinates, observer animation, MP3 durations and actual browser playback, balanced sorting, speech fallback, legacy variants, cleanup and responsive layouts. `scripts/check-spatial-workshop.py` explicitly selects the original modes before verifying their existing drag interactions.
