@@ -214,10 +214,10 @@ What is important here? | Your ___ (safe) is important. | Your safety is importa
 What would have happened with an umbrella? | If / I / take / an umbrella / I / not get / wet | If I had taken an umbrella, I would not have got wet. ~ If I had taken an umbrella, I would not have gotten wet.
 What if Ben had studied? | If / he / study / he / pass / the test | If he had studied, he would have passed the test.
 What if they had booked? | If / they / book / earlier / they / get / a table | If they had booked earlier, they would have got a table. ~ If they had booked earlier, they would have gotten a table.`),
- mixed:read(`Why is Ben tired now? | He went to bed late. If / he / go to bed / earlier / he / not be / tired now | If he had gone to bed earlier, he would not be tired now.
-Why can't you call Mia now? | I lost her number. If / I / not lose / her number / I / call / her now | If I had not lost her number, I would call her now.
-Why didn't Anna take the job? | She doesn't speak French. If / she / speak / French / she / take / the job | If she spoke French, she would have taken the job.
-Why are they lost now? | They didn't bring a map. If / they / bring / a map / they / not be / lost now | If they had brought a map, they would not be lost now.`),
+ mixed:read(`Why is Ben tired now? | He went to bed late. Imagine the opposite past action and its result now. Start: If he had gone to bed earlier, … Use would not + be + tired now. | If he had gone to bed earlier, he would not be tired now.
+Why can't you call Mia now? | I lost her number. Imagine I did not lose her number and can call her now. Start: If I had not lost her number, … Use would + base verb. | If I had not lost her number, I would call her now.
+Why didn't Anna take the job? | She does not speak French. Imagine she speaks French now and change the past result. Start: If she spoke French, … Use would have + V3. | If she spoke French, she would have taken the job.
+Why are they lost now? | They did not bring a map. Imagine they brought a map and are not lost now. Start: If they had brought a map, … Use would not + be + lost now. | If they had brought a map, they would not be lost now.`),
  wish:read(`What does Mia regret? | She didn't study. Start: She wishes… | She wishes she had studied.
 What would you change about your flat? | I / wish / my flat / be / bigger | I wish my flat were bigger. ~ I wish my flat was bigger.
 What does Ben regret? | He sold his bike. Start: He wishes… | He wishes he had not sold his bike.
