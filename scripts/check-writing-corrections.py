@@ -33,7 +33,7 @@ with sync_playwright() as pw:
  for name,t in [('wr-writer-eyes',2.98),('wr-poet-eyes',3.65),('wr-woman-eyes',4.82)]:
   run('t=>document.querySelector(".wr-room-overlays").setCurrentTime(t)',t);assert run('name=>+getComputedStyle(document.querySelector(`[data-blink="${name}"]`)).opacity',name)>.9
  run('()=>document.querySelector(".wr-room-overlays").setCurrentTime(0)');y=run('()=>document.querySelector("[data-finger=wr-middle]>g").getCTM().f');run('()=>document.querySelector(".wr-room-overlays").setCurrentTime(1.6)');assert abs(run('()=>document.querySelector("[data-finger=wr-middle]>g").getCTM().f')-y)>.1;run('()=>document.querySelector(".wr-room-overlays").setCurrentTime(0)');p.screenshot(path=str(OUT/'animated-room.png'),full_page=True)
- f.locator('#wr-enter').click();assert run('()=>document.querySelector(".wr-room-overlays").animationsPaused()')
+ f.locator('#wr-enter').click();f.locator('#wr-take-quill').click();assert run('()=>document.querySelector(".wr-room-overlays").animationsPaused()')
  # Detail changes keep the source sentence and draft, and survive level navigation.
  f.locator('#wr-answer').fill('Keep this draft.');old=f.locator('#wr-detail').inner_text();source=f.locator('#wr-source').inner_text();f.locator('#wr-detail-next').click();detail=f.locator('#wr-detail').inner_text();assert detail!=old and f.locator('#wr-answer').input_value()=='Keep this draft.' and f.locator('#wr-source').inner_text()==source;f.locator('[data-level=b2]').click();f.locator('[data-level=b1]').click();assert f.locator('#wr-detail').inner_text()==detail
  # Three different server categories are all marked; none can silently earn a signature.

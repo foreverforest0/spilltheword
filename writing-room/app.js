@@ -4,19 +4,26 @@
 const $=s=>document.querySelector(s),root=$('#writing-room'),scene=$('.wr-scene'),paper=$('#wr-manuscript'),input=$('#wr-answer'),feedback=$('#wr-feedback'),check=$('#wr-check');
 const reduce=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
 const video=$('#wr-room-video'),roomMotion=BardRoomMotion.create($('#wr-enter'));let motionPaused=reduce();
-let level='b1',index=0,busy=false,alive=true,penTimer=0,request=null,replayQueue=[];const cursors={b1:0,b2:0,c1:0},drafts=new Map(),signed=[],checks=new Map(),history=[];
+let level='b1',index=0,busy=false,alive=true,quillReady=false,penTimer=0,request=null,replayQueue=[];const cursors={b1:0,b2:0,c1:0},drafts=new Map(),signed=[],checks=new Map(),history=[];
 const detailChoices=new Map();
 const proof=BardReview.create({paper,input,onChange:remaining=>{keep();updateWords();root.dataset.phase=remaining?'review':'writing';feedback.textContent=remaining?remaining+' marked issue(s) left.':'Corrections applied. Check the revised version before signing.';check.textContent='Check again'},onEdit:()=>{root.dataset.phase='writing';feedback.textContent='Edit your draft, then check again.';check.textContent='Check again'}});
 const key=()=>level+':'+index,task=()=>BardTasks[level][index],wait=ms=>new Promise(r=>setTimeout(r,reduce()?0:ms));
 try{replayQueue=parent.WritingRoomBridge?.replayChecks?.()||[]}catch{}
-function setBusy(on){$('#wr-review').inert=on;$('#wr-error-popup').inert=on;busy=on;root.setAttribute('aria-busy',String(on));input.readOnly=on;root.querySelectorAll('button').forEach(b=>b.disabled=on)}
+function syncQuill(){root.dataset.quill=quillReady?'ready':'ink';input.readOnly=busy||!quillReady;input.placeholder=quillReady?'Your new version…':'Take the quill to begin…';check.disabled=busy||!quillReady;$('#wr-take-quill').setAttribute('aria-pressed',String(quillReady));$('#wr-take-quill').setAttribute('aria-label',quillReady?'Quill ready. Return to your writing.':'Take the quill from the inkwell to begin writing');$('#wr-quill').hidden=!quillReady}
+function setBusy(on){$('#wr-review').inert=on;$('#wr-error-popup').inert=on;busy=on;root.setAttribute('aria-busy',String(on));root.querySelectorAll('button').forEach(b=>b.disabled=on);syncQuill()}
 function updateWords(){const text=input.value.toLowerCase();$('#wr-words').querySelectorAll('button').forEach((b,i)=>{const phrase=task().words[i][0].toLowerCase(),base=phrase.split(' ')[0];b.classList.toggle('used',text.includes(phrase)||(phrase.split(' ').length===1&&new RegExp('\\b'+base+'(?:s|d|ed|ing)?\\b','i').test(text)))})}
 function render(){
  proof.clear();const row=task();root.dataset.level=level;root.dataset.task=index;root.dataset.phase='writing';$('#wr-source').textContent=row.source;renderDetail();
  document.querySelectorAll('[data-level]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.level===level)));
  $('#wr-words').replaceChildren(...row.words.map(([word,meaning])=>{const b=document.createElement('button');b.type='button';b.className='wr-word';b.textContent=word;b.onclick=()=>{const box=$('#wr-gloss');box.hidden=box.dataset.word===word&&!box.hidden;box.dataset.word=word;box.textContent=meaning};return b}));
- input.value=drafts.get(key())||'';feedback.textContent='';$('#wr-gloss').hidden=true;$('#wr-signature').classList.remove('signed');$('#wr-signature').setAttribute('aria-hidden','true');paper.style.opacity='';paper.style.transform='';updateWords();placePen();
+ input.value=drafts.get(key())||'';feedback.textContent='';$('#wr-gloss').hidden=true;$('#wr-signature').classList.remove('signed');$('#wr-signature').setAttribute('aria-hidden','true');paper.style.opacity='';paper.style.transform='';syncQuill();updateWords();placePen();
 }
+$('#wr-take-quill').onclick=()=>{
+ if(busy)return;const origin=$('.wr-docked-quill').getBoundingClientRect(),first=!quillReady;quillReady=true;syncQuill();input.focus({preventScroll:true});placePen();
+ if(first){feedback.textContent='The quill is yours. Write your new version on the parchment.';if(!reduce()){const quill=$('#wr-quill'),target=quill.getBoundingClientRect();quill.animate([{transform:`translate(${origin.left-target.left}px,${origin.top-target.top}px) rotate(-12deg)`,opacity:1},{transform:'translate(0,-12px) rotate(-5deg)',offset:.7,opacity:1},{transform:'none',opacity:.75}],{duration:550,easing:'ease-in-out'})}}
+ revealSource();
+};
+input.addEventListener('click',()=>{if(!quillReady){feedback.textContent='First, take the quill from the inkwell.';$('#wr-take-quill').focus({preventScroll:true})}});
 function renderDetail(){const options=task().details||[{kind:'Add a detail',text:task().detail}],choice=(detailChoices.get(key())||0)%options.length;$('#wr-detail-kind').textContent=options[choice].kind;$('#wr-detail').textContent=options[choice].text;$('#wr-detail-next').hidden=options.length<2}
 $('#wr-detail-next').onclick=()=>{detailChoices.set(key(),(detailChoices.get(key())||0)+1);renderDetail();if(!reduce())$('.wr-detail-note').animate([{transform:'rotate(0)'},{transform:'rotate(-2deg)'},{transform:'rotate(0)'}],{duration:260})};
 function keep(){drafts.set(key(),input.value)}
@@ -67,7 +74,7 @@ async function animateAccept(text){
  signed.push({level,text,source:task().source});$('#wr-count').textContent=signed.length;$('#wr-stack').setAttribute('aria-label','Open '+signed.length+' signed pages');drafts.delete(key());index=(index+1)%BardTasks[level].length;cursors[level]=index;paper.getAnimations().forEach(a=>a.cancel());render();feedback.textContent='Signed. A fresh page is ready.';
 }
 check.onclick=async()=>{
- if(busy)return;const text=input.value;if(!text.trim()){feedback.textContent='Write your new version first.';input.focus();return}
+ if(busy)return;if(!quillReady){feedback.textContent='First, take the quill from the inkwell.';return}const text=input.value;if(!text.trim()){feedback.textContent='Write your new version first.';input.focus();return}
  keep();proof.close();setBusy(true);check.textContent='Checking…';feedback.textContent='';root.dataset.phase='checking';
  try{
   const issues=await checkedGrammar(text);if(!alive)return;
@@ -83,7 +90,7 @@ $('#wr-stack').onclick=()=>{
  for(const row of signed){const article=document.createElement('article'),level=document.createElement('small'),text=document.createElement('p');level.textContent=row.level.toUpperCase();text.textContent=row.text;article.append(level,text);list.append(article)}
  archive.hidden=!archive.hidden;if(!archive.hidden)archive.scrollIntoView({behavior:reduce()?'instant':'smooth',block:'nearest'});
 };$('#wr-close-pages').onclick=()=>{$('#wr-signed-pages').hidden=true;$('#wr-stack').focus()};
-window.WritingRoom={get busy(){return busy},exportChecks:()=>history.slice(),revealSource,get state(){return {view:root.dataset.view,level,index,draft:input.value,signed:signed.slice()}}};
+window.WritingRoom={get busy(){return busy},exportChecks:()=>history.slice(),revealSource,get state(){return {view:root.dataset.view,level,index,quillReady,draft:input.value,signed:signed.slice()}}};
 window.addEventListener('pagehide',()=>{alive=false;request?.abort();clearTimeout(penTimer);proof.destroy();video.pause();roomMotion.destroy();resize.disconnect()},{once:true});
 const resize=new ResizeObserver(()=>{try{if(parent!==window)parent.postMessage({type:'writing-room-height',height:Math.ceil(root.getBoundingClientRect().height)},location.origin)}catch{}});resize.observe(root);
 render();try{parent.SharedGame?.attachFrame(window)}catch{}
