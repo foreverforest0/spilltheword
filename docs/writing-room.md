@@ -1,8 +1,10 @@
 # The Writing Room
 
-The new home-shelf book opens `go('bard')`, an embedded Shakespeare vocabulary activity in `writing-room/`. The writing view contains a single large illustrated desk, paper and writing objects. Portraits and the arched window from the original room decorate the wall behind it; the side-by-side room scene and its video control are removed from the writing view.
+The home-shelf book opens `go('bard')`, an embedded Shakespeare vocabulary activity in `writing-room/`. It starts with the animated full-room illustration and an explicit **Open the letter** button. Opening it switches to the desk-only writing view; **← Room** returns without losing the draft. The room video pauses while writing and respects reduced motion.
 
-The source sentence, extra context and instructions live inside the closed **how to?** disclosure. It expands in normal flow above the scene. Three curated prompts per level are included for B1, B2 and C1. The word parchment offers short definitions and highlights words when used; it does not grade vocabulary or semantic accuracy.
+The source sentence is always visible at the top of the parchment. The extra context is on the blue note beside it. An explicit **how to?** button toggles instructions with `aria-expanded` and a controlled section, including mouse, keyboard and shared-link replay. The section expands above the scene without covering it. Opening the letter brings the original sentence into view; the parent iframe bridge validates message origin/source before scrolling, including after shared-link restoration. B1, B2 and C1 each have three curated prompts. The word parchment offers definitions and usage highlights without grading vocabulary or meaning.
+
+The working view contains only the desk, writing objects, two wall portraits and a complete arched window to the right of the desk. The window is a separate transparent asset with the formerly occluding books removed, so all four sides remain visible. The previous full room is not shown beside the letter. Styles/scripts and the iframe entry carry a version query to avoid mixing cached revisions after deployment.
 
 The answer is a real labelled textarea drawn transparently over the illustrated parchment, using the locally hosted OFL-licensed **La Belle Aurore** handwriting font. Its caret, selection, multiline input, paste and scrolling remain native. A quill follows the measured caret position. Drafts are retained per level and prompt during a game.
 
@@ -20,6 +22,6 @@ Copy link records the iframe's normal inputs and navigation. The bridge addition
 
 ## Assets and validation
 
-The user-approved generated assets are packaged losslessly as WebP; the original source files remain in `/workspace/generated_images`. Basket layers retain the same full canvas and align exactly. The original room image supplies the decorative wall crops; its animation asset is retained for future use outside the writing view. Font attribution and license are in `writing-room/fonts/OFL.txt`.
+The user-approved generated assets are packaged losslessly as WebP; the original source files remain in `/workspace/generated_images`. Basket layers retain the same full canvas and align exactly. The original room image supplies the two portrait crops; its animation is used on the entrance screen. Font attribution and license are in `writing-room/fonts/OFL.txt`.
 
 `python scripts/check-writing-room.py` covers the real home-book entry, all three levels, hidden instructions, transparent handwriting editor, quill movement, draft retention, grammar-only decisions, failed/incomplete service responses, real paper animations, signed-page reading, matching shared-link replay without repeated API calls and mobile layout. API responses are mocked for this test. The managed environment denied access to `api.languagetool.org` (HTTP CONNECT 403); production LanguageTool connectivity and coverage remain unverified.
