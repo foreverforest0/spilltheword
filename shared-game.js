@@ -89,6 +89,7 @@
   if(!recipe)throw Error('Open a game first.');
   if(recipe.events.length>5000)throw Error('This session is too long. Start a fresh round before copying.');
   const data=copy(recipe);data.tab=recipe.tab;
+  if(data.route==='go'&&data.args[0]==='bard')data.bardChecks=await WritingRoomBridge.exportChecks();
   const token=await encodeCfg(data);if(token.length>90000)throw Error('This session is too long. Start a fresh round before copying.');
   if(!student){lastSharedWatch=data.watch;try{sessionStorage.setItem('stw-last-shared-watch',data.watch)}catch{}}
   return location.href.split('#')[0]+'#play='+token;
@@ -120,6 +121,7 @@
    S=Object.assign(copy(DEF),data.settings);delete S.wcode;delete S.rname;
    for(const k of storageKeys)try{const v=data.stores?.[k];if(v===null)localStorage.removeItem(k);else if(typeof v==='string'&&v.length<200000)localStorage.setItem(k,v)}catch{}
    rng=random(data.seed);tab=data.tab;
+   if(data.route==='go'&&data.args[0]==='bard')WritingRoomBridge.prepareReplay(data.bardChecks||[]);
    if(data.route==='spOpen'&&data.tab==='gram')window.openSharedGrammar(data.args[0],S.splevel);
    else if(data.route==='spOpen'){go('speak');rng=random(data.seed);spOpen(data.args[0])}
    else if(data.route==='go')go(data.args[0]);
@@ -145,7 +147,7 @@
     }else if(['dragstart','drop','dragend'].includes(e.type)){el.dispatchEvent(new win.DragEvent(e.type,{bubbles:true,cancelable:true,dataTransfer:transfer}));if(e.type==='dragend')transfer=new DataTransfer()}
     else el.dispatchEvent(new win.MouseEvent('click',{bubbles:true,cancelable:true,view:win}));
    }
-   await waitFor(()=>!document.querySelector('#view [aria-busy=true]'));
+   await waitFor(()=>!document.querySelector('#view [aria-busy=true]')&&!document.getElementById('writing-room-frame')?.contentWindow?.WritingRoom?.busy);
    cover.remove();replaying=false;lastEvent=performance.now();toolbar();window.scrollTo(0,0);document.dispatchEvent(new Event('stw:shared-restored'));if(data.watch)SharedLive.publish(data.watch);
   }catch(e){replaying=false;cover.textContent=e.message||'Could not open this game link.';const back=document.createElement('button');back.textContent='Back to games';back.onclick=()=>{cover.remove();history.replaceState(null,'',location.pathname);go('home')};cover.appendChild(back);console.warn('Shared game:',e)}
  }
