@@ -1,8 +1,9 @@
-/* A single writing desk; prompts stay in How to, writing happens on the parchment. */
+/* Room → letter. The sentence stays visible; How to opens explicit instructions. */
 (()=>{
 'use strict';
 const $=s=>document.querySelector(s),root=$('#writing-room'),scene=$('.wr-scene'),paper=$('#wr-manuscript'),input=$('#wr-answer'),feedback=$('#wr-feedback'),check=$('#wr-check');
 const reduce=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+const video=$('#wr-room-video');let motionPaused=reduce();
 let level='b1',index=0,busy=false,alive=true,penTimer=0,request=null,replayQueue=[];const cursors={b1:0,b2:0,c1:0},drafts=new Map(),signed=[],checks=new Map(),history=[];
 const key=()=>level+':'+index,task=()=>BardTasks[level][index],wait=ms=>new Promise(r=>setTimeout(r,reduce()?0:ms));
 try{replayQueue=parent.WritingRoomBridge?.replayChecks?.()||[]}catch{}
@@ -27,6 +28,18 @@ input.addEventListener('input',()=>{keep();feedback.textContent='';updateWords()
 for(const type of ['click','keyup','focus','blur','scroll','select'])input.addEventListener(type,placePen);document.fonts.ready.then(placePen);window.addEventListener('resize',placePen);
 $('#wr-new').onclick=()=>{keep();index=(index+1)%BardTasks[level].length;cursors[level]=index;render()};
 for(const b of document.querySelectorAll('[data-level]'))b.onclick=()=>{keep();level=b.dataset.level;index=cursors[level];render()};
+function videoState(){const stopped=video.paused;$('#wr-pause').textContent=stopped?'Play scene':'Pause scene';$('#wr-pause').setAttribute('aria-pressed',String(stopped))}
+function revealSource(){requestAnimationFrame(()=>{placePen();if(parent!==window)parent.postMessage({type:'writing-room-focus-source'},location.origin);else $('#wr-source').scrollIntoView({block:'center',behavior:reduce()?'instant':'smooth'})})}
+function roomView(open){
+ root.dataset.view=open?'room':'writing';$('#wr-intro').hidden=!open;$('#wr-work').hidden=open;$('#wr-new').hidden=open;
+ if(open){if(!motionPaused)video.play().catch(()=>{});$('#wr-enter').focus({preventScroll:true})}else{video.pause();$('#wr-source').focus({preventScroll:true});revealSource()}
+}
+$('#wr-enter').onclick=()=>roomView(false);
+$('#wr-room-back').onclick=()=>{keep();roomView(true)};
+$('#wr-pause').onclick=()=>{motionPaused=!video.paused;if(motionPaused)video.pause();else video.play().catch(()=>{});setTimeout(videoState,0)};
+video.addEventListener('pause',videoState);video.addEventListener('play',videoState);
+if(reduce()){video.removeAttribute('autoplay');video.pause()}videoState();
+$('#wr-how-toggle').onclick=()=>{const help=$('#wr-help');help.hidden=!help.hidden;$('#wr-how-toggle').setAttribute('aria-expanded',String(!help.hidden))};
 async function grammar(text){
  if(checks.has(text))return checks.get(text);
  request=new AbortController();const timeout=setTimeout(()=>request?.abort(),12000);
@@ -75,8 +88,8 @@ $('#wr-stack').onclick=()=>{
  for(const row of signed){const article=document.createElement('article'),level=document.createElement('small'),text=document.createElement('p');level.textContent=row.level.toUpperCase();text.textContent=row.text;article.append(level,text);list.append(article)}
  archive.hidden=!archive.hidden;if(!archive.hidden)archive.scrollIntoView({behavior:reduce()?'instant':'smooth',block:'nearest'});
 };$('#wr-close-pages').onclick=()=>{$('#wr-signed-pages').hidden=true;$('#wr-stack').focus()};
-window.WritingRoom={get busy(){return busy},exportChecks:()=>history.slice(),get state(){return {level,index,draft:input.value,signed:signed.slice()}}};
-window.addEventListener('pagehide',()=>{alive=false;request?.abort();clearTimeout(penTimer);resize.disconnect()},{once:true});
+window.WritingRoom={get busy(){return busy},exportChecks:()=>history.slice(),revealSource,get state(){return {view:root.dataset.view,level,index,draft:input.value,signed:signed.slice()}}};
+window.addEventListener('pagehide',()=>{alive=false;request?.abort();clearTimeout(penTimer);video.pause();resize.disconnect()},{once:true});
 const resize=new ResizeObserver(()=>{try{if(parent!==window)parent.postMessage({type:'writing-room-height',height:Math.ceil(root.getBoundingClientRect().height)},location.origin)}catch{}});resize.observe(root);
 render();try{parent.SharedGame?.attachFrame(window)}catch{}
 })();

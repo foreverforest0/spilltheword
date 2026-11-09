@@ -9,5 +9,14 @@
   },
   replayChecks(){const rows=replay;replay=[];return rows}
  };
- window.addEventListener('message',event=>{const frame=document.getElementById('writing-room-frame');if(!frame||event.origin!==location.origin||event.source!==frame.contentWindow||event.data?.type!=='writing-room-height')return;const height=Number(event.data.height);if(Number.isFinite(height))frame.style.height=Math.min(3000,Math.max(600,height))+'px'});
+ window.addEventListener('message',event=>{
+  const frame=document.getElementById('writing-room-frame');if(!frame||event.origin!==location.origin||event.source!==frame.contentWindow)return;
+  if(event.data?.type==='writing-room-height'){const height=Number(event.data.height);if(Number.isFinite(height))frame.style.height=Math.min(3000,Math.max(600,height))+'px'}
+  if(event.data?.type==='writing-room-focus-source'){
+   const source=frame.contentDocument?.getElementById('wr-source');if(!source||frame.contentWindow.WritingRoom?.state.view!=='writing')return;
+   const top=scrollY+frame.getBoundingClientRect().top+source.getBoundingClientRect().top-innerHeight*.32;
+   window.scrollTo({top:Math.max(0,top),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+  }
+ });
+ document.addEventListener('stw:shared-restored',()=>{const game=document.getElementById('writing-room-frame')?.contentWindow?.WritingRoom;if(game?.state.view==='writing')game.revealSource()});
 })();
