@@ -4,14 +4,14 @@
 const $=s=>document.querySelector(s),root=$('#writing-room'),scene=$('.wr-scene'),paper=$('#wr-manuscript'),input=$('#wr-answer'),feedback=$('#wr-feedback'),check=$('#wr-check');
 const reduce=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
 const video=$('#wr-room-video'),roomMotion=BardRoomMotion.create($('#wr-enter'));let motionPaused=reduce();
-let level='b1',index=0,busy=false,alive=true,quillReady=false,penTimer=0,request=null,replayQueue=[];const cursors={b1:0,b2:0,c1:0},drafts=new Map(),signed=[],checks=new Map(),history=[];
+let level='b1',index=0,busy=false,alive=true,quillReady=false,rejected=null,penTimer=0,request=null,replayQueue=[];const cursors={b1:0,b2:0,c1:0},drafts=new Map(),signed=[],checks=new Map(),history=[];
 const detailChoices=new Map();
 const proof=BardReview.create({paper,input,onChange:remaining=>{keep();updateWords();root.dataset.phase=remaining?'review':'writing';feedback.textContent=remaining?remaining+' marked issue(s) left.':'Corrections applied. Check the revised version before signing.';check.textContent='Check again'},onEdit:()=>{root.dataset.phase='writing';feedback.textContent='Edit your draft, then check again.';check.textContent='Check again'}});
-const key=()=>level+':'+index,task=()=>BardTasks[level][index],wait=ms=>new Promise(r=>setTimeout(r,reduce()?0:ms));
+const key=()=>level+':'+index,task=()=>BardTasks[level][index],instant=()=>reduce()||parent.SharedGame?.replaying,wait=ms=>new Promise(r=>setTimeout(r,instant()?0:ms));
 try{replayQueue=parent.WritingRoomBridge?.replayChecks?.()||[]}catch{}
-function syncQuill(){root.dataset.quill=quillReady?'ready':'ink';input.readOnly=busy||!quillReady;input.placeholder=quillReady?'Your new version…':'Take the quill to begin…';check.disabled=busy||!quillReady;$('#wr-take-quill').setAttribute('aria-pressed',String(quillReady));$('#wr-take-quill').setAttribute('aria-label',quillReady?'Quill ready. Return to your writing.':'Take the quill from the inkwell to begin writing');$('#wr-quill').hidden=!quillReady}
-function setBusy(on){$('#wr-review').inert=on;$('#wr-error-popup').inert=on;busy=on;root.setAttribute('aria-busy',String(on));root.querySelectorAll('button').forEach(b=>b.disabled=on);syncQuill()}
-function updateWords(){const text=input.value.toLowerCase();$('#wr-words').querySelectorAll('button').forEach((b,i)=>{const phrase=task().words[i][0].toLowerCase(),base=phrase.split(' ')[0];b.classList.toggle('used',text.includes(phrase)||(phrase.split(' ').length===1&&new RegExp('\\b'+base+'(?:s|d|ed|ing)?\\b','i').test(text)))})}
+function syncQuill(){root.dataset.quill=quillReady?'ready':'ink';input.readOnly=busy||!quillReady||!!rejected;input.placeholder=quillReady?'Your new version…':'Take the quill to begin…';check.disabled=busy||!quillReady||!!rejected;$('#wr-take-quill').setAttribute('aria-pressed',String(quillReady));$('#wr-take-quill').setAttribute('aria-label',quillReady?'Quill ready. Return to your writing.':'Take the quill from the inkwell to begin writing');$('#wr-quill').hidden=!quillReady}
+function setBusy(on){$('#wr-review').inert=on;$('#wr-error-popup').inert=on;paper.inert=on||!!rejected;busy=on;root.setAttribute('aria-busy',String(on));root.querySelectorAll('button').forEach(b=>b.disabled=on);if(rejected)root.querySelectorAll('#wr-new,[data-level],#wr-detail-next,#wr-take-quill').forEach(b=>b.disabled=true);$('#wr-retrieve').disabled=on||!rejected;syncQuill()}
+function updateWords(){const text=input.value;$('#wr-words').querySelectorAll('button').forEach((b,i)=>{const phrase=task().words[i][0],used=BardVocabulary.used(text,phrase);b.classList.toggle('used',used);b.dataset.used=String(used);b.setAttribute('aria-label',phrase+(used?' — used in your draft':''))})}
 function render(){
  proof.clear();const row=task();root.dataset.level=level;root.dataset.task=index;root.dataset.phase='writing';$('#wr-source').textContent=row.source;renderDetail();
  document.querySelectorAll('[data-level]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.level===level)));
@@ -41,9 +41,10 @@ $('#wr-new').onclick=()=>{keep();index=(index+1)%BardTasks[level].length;cursors
 for(const b of document.querySelectorAll('[data-level]'))b.onclick=()=>{keep();level=b.dataset.level;index=cursors[level];render()};
 function videoState(){const stopped=video.paused;if(stopped)roomMotion.pause();else roomMotion.play();$('#wr-pause').textContent=stopped?'Play scene':'Pause scene';$('#wr-pause').setAttribute('aria-pressed',String(stopped))}
 function revealSource(){requestAnimationFrame(()=>{placePen();proof.refresh();if(parent!==window)parent.postMessage({type:'writing-room-focus-source'},location.origin);else $('#wr-source').scrollIntoView({block:'center',behavior:reduce()?'instant':'smooth'})})}
+function revealBasket(){requestAnimationFrame(()=>{if(parent!==window)parent.postMessage({type:'writing-room-focus-target',target:'wr-retrieve'},location.origin);else $('#wr-retrieve').scrollIntoView({block:'center',behavior:reduce()?'instant':'smooth'})})}
 function roomView(open){
  root.dataset.view=open?'room':'writing';$('#wr-intro').hidden=!open;$('#wr-work').hidden=open;$('#wr-new').hidden=open;
- if(open){proof.close();if(!motionPaused)video.play().catch(()=>{});$('#wr-enter').focus({preventScroll:true})}else{video.pause();$('#wr-source').focus({preventScroll:true});revealSource()}
+ if(open){proof.close();if(!motionPaused)video.play().catch(()=>{});$('#wr-enter').focus({preventScroll:true})}else{video.pause();if(rejected)revealBasket();else{$('#wr-source').focus({preventScroll:true});revealSource()}}
 }
 $('#wr-enter').onclick=()=>roomView(false);
 $('#wr-room-back').onclick=()=>{keep();roomView(true)};
@@ -73,15 +74,34 @@ async function animateAccept(text){
  if(!reduce())await paper.animate([{transform:'none',opacity:1},{transform:'translateY(-25px) rotate(-3deg)',offset:.2,opacity:1},{transform:`translate(${stack.left+stack.width/2-box.left-box.width/2}px,${stack.top+stack.height/2-box.top-box.height/2}px) rotate(4deg) scale(.17)`,opacity:0}],{duration:900,easing:'ease-in-out',fill:'forwards'}).finished;
  signed.push({level,text,source:task().source});$('#wr-count').textContent=signed.length;$('#wr-stack').setAttribute('aria-label','Open '+signed.length+' signed pages');drafts.delete(key());index=(index+1)%BardTasks[level].length;cursors[level]=index;paper.getAnimations().forEach(a=>a.cancel());render();feedback.textContent='Signed. A fresh page is ready.';
 }
+async function move(element,frames,duration){if(!instant())await element.animate(frames,{duration,easing:'ease-in-out',fill:'forwards'}).finished}
+function clearMotion(element){element.getAnimations().forEach(a=>a.cancel())}
+function flightPoints(){const s=scene.getBoundingClientRect(),p=paper.getBoundingClientRect(),b=$('.wr-basket-back').getBoundingClientRect(),size=innerWidth<700?45:65;return {size,x:p.left-s.left+p.width*.5-size*.5,y:p.top-s.top+p.height*.45-size*.5,bx:b.left-s.left+b.width*.5-size*.5,by:b.top-s.top+b.height*.22-size*.5}}
+function putBall(x,y,size){const ball=$('#wr-ball');clearMotion(ball);ball.style.transform='none';ball.style.left=x+'px';ball.style.top=y+'px';ball.style.width=ball.style.height=size+'px';ball.hidden=false;return ball}
+async function discard(text,issues){
+ rejected={text,issues};proof.clear();root.dataset.phase='crumpling';$('#wr-basket-message').hidden=true;
+ await move(paper,[{transform:'none',opacity:1},{transform:'rotate(-6deg) scale(.8,.86)',offset:.35,opacity:1},{transform:'rotate(16deg) scale(.11,.06)',opacity:0}],650);if(!alive)return;
+ const {size,x,y,bx,by}=flightPoints();root.dataset.phase='throwing';clearMotion(paper);const ball=putBall(x,y,size),dx=bx-x,dy=by-y;
+ await move(ball,[{transform:'none',opacity:1},{transform:`translate(${dx*.5}px,${Math.min(-90,dy*.25-100)}px) rotate(110deg)`,offset:.45,opacity:1},{transform:`translate(${dx}px,${dy}px) rotate(220deg)`,offset:.86,opacity:1},{transform:`translate(${dx}px,${dy+size*.6}px) rotate(240deg) scale(.8)`,opacity:0}],850);if(!alive)return;
+ putBall(bx,by,size).style.transform='scale(.55)';root.dataset.phase='basket';$('#wr-retrieve').hidden=false;$('#wr-basket-message').hidden=false;$('#wr-basket-message').textContent='Your page needs another look. Click the basket to bring it back.';revealBasket();$('#wr-retrieve').focus({preventScroll:true});
+}
+$('#wr-retrieve').onclick=async()=>{
+ if(busy||!rejected)return;const row=rejected;setBusy(true);$('#wr-retrieve').hidden=true;$('#wr-basket-message').hidden=true;root.dataset.phase='retrieving';
+ try{const {size,x,y,bx,by}=flightPoints(),ball=putBall(bx,by,size),dx=x-bx,dy=y-by;
+  await move(ball,[{transform:'translateY(25px) scale(.8)',opacity:0},{transform:'none',offset:.18,opacity:1},{transform:`translate(${dx*.55}px,${dy*.5-100}px) rotate(-130deg)`,offset:.6,opacity:1},{transform:`translate(${dx}px,${dy}px) rotate(-240deg)`,opacity:1}],650);if(!alive)return;
+  ball.hidden=true;clearMotion(ball);root.dataset.phase='unfolding';await move(paper,[{transform:'rotate(-10deg) scale(.12,.1)',opacity:.3},{transform:'none',opacity:1}],450);if(!alive)return;
+  clearMotion(paper);rejected=null;root.dataset.phase='review';proof.show(row.issues);check.textContent='Check again';feedback.textContent=row.issues.length+' issue(s) found. Click a marked phrase to correct it.';revealSource();
+ }finally{if(alive)setBusy(false)}
+};
 check.onclick=async()=>{
- if(busy)return;if(!quillReady){feedback.textContent='First, take the quill from the inkwell.';return}const text=input.value;if(!text.trim()){feedback.textContent='Write your new version first.';input.focus();return}
+ if(busy||rejected)return;if(!quillReady){feedback.textContent='First, take the quill from the inkwell.';return}const text=input.value;if(!text.trim()){feedback.textContent='Write your new version first.';input.focus();return}
  keep();proof.close();setBusy(true);check.textContent='Checking…';feedback.textContent='';root.dataset.phase='checking';
  try{
   const issues=await checkedGrammar(text);if(!alive)return;
-  if(issues.length){root.dataset.phase='review';proof.show(issues);feedback.textContent=issues.length+' issue(s) found. Click a marked phrase to correct it.'}
+  if(issues.length)await discard(text,issues);
   else await animateAccept(text);
  }catch(e){if(alive){root.dataset.phase='writing';feedback.textContent=e.message||'Grammar checking is unavailable. Your draft is safe.'}}
- finally{if(alive){setBusy(false);check.textContent=proof.active?'Check again':'Check'}}
+ finally{if(alive){setBusy(false);if(rejected)$('#wr-retrieve').focus({preventScroll:true});check.textContent=proof.active?'Check again':'Check'}}
 };
 input.onkeydown=e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();check.click()}};
 $('#wr-stack').onclick=()=>{
@@ -90,7 +110,7 @@ $('#wr-stack').onclick=()=>{
  for(const row of signed){const article=document.createElement('article'),level=document.createElement('small'),text=document.createElement('p');level.textContent=row.level.toUpperCase();text.textContent=row.text;article.append(level,text);list.append(article)}
  archive.hidden=!archive.hidden;if(!archive.hidden)archive.scrollIntoView({behavior:reduce()?'instant':'smooth',block:'nearest'});
 };$('#wr-close-pages').onclick=()=>{$('#wr-signed-pages').hidden=true;$('#wr-stack').focus()};
-window.WritingRoom={get busy(){return busy},exportChecks:()=>history.slice(),revealSource,get state(){return {view:root.dataset.view,level,index,quillReady,draft:input.value,signed:signed.slice()}}};
+window.WritingRoom={get busy(){return busy},exportChecks:()=>history.slice(),revealSource,revealBasket,get state(){return {view:root.dataset.view,phase:root.dataset.phase,level,index,quillReady,draft:input.value,signed:signed.slice()}}};
 window.addEventListener('pagehide',()=>{alive=false;request?.abort();clearTimeout(penTimer);proof.destroy();video.pause();roomMotion.destroy();resize.disconnect()},{once:true});
 const resize=new ResizeObserver(()=>{try{if(parent!==window)parent.postMessage({type:'writing-room-height',height:Math.ceil(root.getBoundingClientRect().height)},location.origin)}catch{}});resize.observe(root);
 render();try{parent.SharedGame?.attachFrame(window)}catch{}
