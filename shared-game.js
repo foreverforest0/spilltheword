@@ -130,6 +130,7 @@
     await delay(e.wait);
     const win=await waitFor(()=>e.frame==='main'?window:[...document.querySelectorAll('#view iframe')].map(f=>f.contentWindow).find(w=>{try{return w.location.pathname===e.frame&&w.document.readyState==='complete'}catch{return false}}));
     const root=rootFor(win),el=await waitFor(()=>root?.querySelector(e.path));
+    if(e.type==='click')await waitFor(()=>!el.closest('button')?.disabled);
     if(el.closest('[data-no-share-replay],input[type=file],input[type=password],a[href],.rmwrap,#wvpanel,#download,[download]'))throw Error('Unsupported game action.');
     if(win===window)rng=random(e.seed);else{attachFrame(win);contexts.get(win).rng=random(e.seed)}
     if(e.type==='input'||e.type==='change'){el.value=String(e.value??'');if('checked'in el)el.checked=e.checked;el.dispatchEvent(new win.Event(e.type,{bubbles:true}));}
@@ -142,7 +143,8 @@
     }else if(['dragstart','drop','dragend'].includes(e.type)){el.dispatchEvent(new win.DragEvent(e.type,{bubbles:true,cancelable:true,dataTransfer:transfer}));if(e.type==='dragend')transfer=new DataTransfer()}
     else el.dispatchEvent(new win.MouseEvent('click',{bubbles:true,cancelable:true,view:win}));
    }
-   cover.remove();replaying=false;lastEvent=performance.now();toolbar();window.scrollTo(0,0);if(data.watch)SharedLive.publish(data.watch);
+   await waitFor(()=>!document.querySelector('#view [aria-busy=true]'));
+   cover.remove();replaying=false;lastEvent=performance.now();toolbar();window.scrollTo(0,0);document.dispatchEvent(new Event('stw:shared-restored'));if(data.watch)SharedLive.publish(data.watch);
   }catch(e){replaying=false;cover.textContent=e.message||'Could not open this game link.';const back=document.createElement('button');back.textContent='Back to games';back.onclick=()=>{cover.remove();history.replaceState(null,'',location.pathname);go('home')};cover.appendChild(back);console.warn('Shared game:',e)}
  }
  window.SharedGame={getLink,restore,attachFrame,get replaying(){return replaying},get isStudent(){return student},get eventCount(){return recipe?.events.length||0}};
