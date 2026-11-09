@@ -88,3 +88,27 @@ body.stw-site-theme .wr-signed-pages article p{font-family:'La Belle Aurore',cur
  .wr-signed-pages article p{font-size:27px}
  .wr-writing-quill{height:95px}
 }
+/* Proofreading is drawn on the same parchment, rather than accepting discarded categories. */
+.wr-editor{position:relative;display:flex;flex:1;min-height:160px;flex-direction:column}
+.wr-page-content .wr-editor textarea{height:100%;min-height:160px}
+.wr-review{height:100%;min-height:160px;flex:1;overflow:auto;white-space:pre-wrap;overflow-wrap:break-word;padding:3px 3px 12px;color:#70271F;font:32px/1.55 'La Belle Aurore',cursive!important;scrollbar-width:thin;scrollbar-color:#70271F55 transparent}
+.wr-error{cursor:pointer;border-radius:2px;outline-offset:4px}
+.wr-error:focus-visible{outline:2px dotted #26422B}
+.wr-check-actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:12px}
+.wr-check-actions #wr-check{margin-top:0}
+.wr-root #wr-edit{font-size:14px;padding:10px 12px}
+.wr-error-popup{position:absolute;z-index:40;background:#CCE5FF;color:#26422B;padding:26px 14px 14px;border-radius:4px;font:15px/1.4 Georgia,serif;max-height:310px;overflow:auto;box-shadow:0 4px 16px #70271F20}
+.wr-error-popup p{margin:0 0 10px;font:15px/1.4 Georgia,serif}
+.wr-root #wr-error-close{position:absolute;right:4px;top:2px;padding:2px 8px;font-size:22px;background:transparent;color:#70271F}
+#wr-replacements{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px}
+.wr-root #wr-replacements button{background:#F9F5E6;color:#26422B;font-size:17px;padding:7px 9px;overflow-wrap:anywhere;max-width:100%}
+.wr-error-popup label{font:13px Georgia,serif}
+body.stw-site-theme #wr-replacement{display:block;width:100%;background:#F9F5E6;border:0;color:#70271F;font:19px/1.4 Georgia,serif;padding:7px 9px;margin:5px 0 9px;min-width:0}
+.wr-root #wr-apply{background:#26422B;color:#F9F5E6;font-size:15px;padding:9px 12px;width:100%}
+.wr-detail-note>div{display:flex;flex-direction:column;align-items:flex-start}
+.wr-detail-note p{font-size:16px;line-height:1.35;flex:1;margin-bottom:7px}
+.wr-root #wr-detail-next{font:12px/1.3 Georgia,serif;padding:6px 7px;background:#F9F5E6;color:#26422B;margin-top:auto}
+@media(max-width:699px){.wr-review{font-size:29px!important;line-height:1.5!important}.wr-root .wr-error-popup button{font-size:15px}.wr-detail-note p{font-size:15px}.wr-root #wr-detail-next{font-size:12px;padding:5px 6px}}
+.wr-room-overlays{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.wr-enter>span{z-index:2}
+.wr-root[aria-busy=true] .wr-review{pointer-events:none}

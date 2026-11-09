@@ -1,27 +1,34 @@
 # The Writing Room
 
-The home-shelf book opens `go('bard')`, an embedded Shakespeare vocabulary activity in `writing-room/`. It starts with the animated full-room illustration and an explicit **Open the letter** button. Opening it switches to the desk-only writing view; **← Room** returns without losing the draft. The room video pauses while writing and respects reduced motion.
+The home-shelf book opens `go('bard')`. The entrance shows the full room and an **Open the letter** button. Its original head-scratching video is supplemented by local SVG motion: the globe map rotates within its stationary frame, both portraits and Shakespeare blink, and three fingertips tap with staggered timing. Pause controls both the video and SVG timeline; the scene pauses while writing and starts paused with reduced motion.
 
-The source sentence is always visible at the top of the parchment. The extra context is on the blue note beside it. An explicit **how to?** button toggles instructions with `aria-expanded` and a controlled section, including mouse, keyboard and shared-link replay. The section expands above the scene without covering it. Opening the letter brings the original sentence into view; the parent iframe bridge validates message origin/source before scrolling, including after shared-link restoration. B1, B2 and C1 each have three curated prompts. The word parchment offers definitions and usage highlights without grading vocabulary or meaning.
+The writing view contains the desk, two portraits and a complete window to the right. The source sentence remains visible on the parchment. How to is an explicit button that expands instructions in normal flow. The iframe bridge brings the source into view after entry/restoration and verifies message origin and source.
 
-The working view contains only the desk, writing objects, two wall portraits and a complete arched window to the right of the desk. The window is a separate transparent asset with the formerly occluding books removed, so all four sides remain visible. The previous full room is not shown beside the letter. Styles/scripts and the iframe entry carry a version query to avoid mixing cached revisions after deployment.
+B1, B2 and C1 each have three prompts. Every prompt now has three short detail choices: an action, emotion, reason or related context. **Another detail** changes the blue note without clearing the draft or source. Choices persist across level and room navigation within a session. Hint definitions and usage highlights do not grade vocabulary or meaning.
 
-The answer is a real labelled textarea drawn transparently over the illustrated parchment, using the locally hosted OFL-licensed **La Belle Aurore** handwriting font. Its caret, selection, multiline input, paste and scrolling remain native. A quill follows the measured caret position. Drafts are retained per level and prompt during a game.
+The answer is a real labelled textarea, transparently overlaid on the illustrated parchment, using the locally hosted OFL-licensed La Belle Aurore font. The quill follows its measured caret. Drafts are retained per level and prompt.
 
-## Checking and paper animation
+## Grammar and corrections
 
-An explicit Check sends the current text to LanguageTool's public English-GB endpoint. Only matches with `rule.issueType === 'grammar'` reject a page. Style, spelling, punctuation and vocabulary suggestions do not reject it. No grammar match means no issue was detected by that service, not a guarantee of correctness. Meaning preservation and the task's vocabulary are not automatically graded.
+Check requests LanguageTool English-GB with `level=picky`. The former exact `issueType === 'grammar'` filter discarded spelling, typographical and uncategorized corrections. The response adapter now retains error categories, offsets and replacement candidates while excluding optional style/register/locale/formatting suggestions. Invalid ranges, malformed responses, incomplete results, non-English detection, service failures, rate limits and timeouts cannot earn a signature.
 
-On rejection the page crumples and a paper ball flies between the basket's back and front layers. The draft is retained and the first reported issue is selected for correction. On acceptance a decorative W. Shakespeare signature appears, the page moves to the stack, and a fresh prompt opens. Signed pages can be read from the stack.
+A small conservative set of local form guards supplements the service for common agreement, auxiliary and participle errors. It preserves valid conditional/mandative subjunctives. These guards are not a complete grammar checker. If the service fails but the guards find errors, the page can still show those known issues; a clean local result alone cannot pass an unavailable service.
 
-HTTP errors, rate limits, timeouts, malformed responses and incomplete-result warnings never count as acceptance. The draft stays in place with an error message. The endpoint can be replaced with a project-owned checker later; no secret is placed in browser code.
+Errors remain on the parchment as clickable spans, marked with the existing Rough Notation library: circle, strike-through or crossed-off. Clicking a mark opens the explanation, suggested replacements and an editable correction field. Applying a replacement updates later issue offsets and preserves all other text. Edit draft returns to normal typing. Corrected text must be checked again before signing; neither applying a suggestion nor clearing visible marks grants acceptance. The page is no longer thrown away before the learner can review its errors.
 
-## Shared sessions
+A successfully rechecked page receives a decorative signature, moves into the stack, and opens a fresh prompt. The stack retains signed versions for reading. The checker does not grade meaning preservation or CEFR appropriateness.
 
-Copy link records the iframe's normal inputs and navigation. The bridge additionally includes a bounded ordered history of completed grammar verdicts, including failures. Replay uses those historical outcomes without repeating network requests; a subsequent new check still uses the live service. The parent waits for checking and paper animation to settle. Iframe height messages verify origin and source. Signed text and checker messages are rendered as text, not HTML.
+## Sharing and assets
 
-## Assets and validation
+Copy link records normal iframe actions and an ordered, bounded history of completed checks, including replacements and failures. Checker history version 2 is required; older filtered acceptance histories are rejected with a request for a fresh game rather than replayed as correct. Replays use recorded outcomes without repeating network requests. New checks still use the live checker. Popup content, suggestions and drafts are rendered as text, never remote HTML.
 
-The user-approved generated assets are packaged losslessly as WebP; the original source files remain in `/workspace/generated_images`. Basket layers retain the same full canvas and align exactly. The original room image supplies the two portrait crops; its animation is used on the entrance screen. Font attribution and license are in `writing-room/fonts/OFL.txt`.
+Generated artwork is packaged losslessly as WebP; originals remain in `/workspace/generated_images`. The basket layers retain identical full canvases. The room artwork and video are reused by the SVG motion layer. The window is a separate transparent asset. Font licensing is in `writing-room/fonts/OFL.txt`. Version query strings prevent mixing cached iframe, stylesheet and script revisions.
 
-`python scripts/check-writing-room.py` covers the real home-book entry, all three levels, hidden instructions, transparent handwriting editor, quill movement, draft retention, grammar-only decisions, failed/incomplete service responses, real paper animations, signed-page reading, matching shared-link replay without repeated API calls and mobile layout. API responses are mocked for this test. The managed environment denied access to `api.languagetool.org` (HTTP CONNECT 403); production LanguageTool connectivity and coverage remain unverified.
+## Verification
+
+- `python scripts/check-writing-room.py`: real book/room entry, visible source, mouse/keyboard How to, B1/B2/C1 drafts, handwriting, correction-first behaviour, failed/incomplete service responses, signed-page animation, shared verdict replay and mobile layout.
+- `python scripts/check-writing-corrections.py`: local form guards and valid subjunctives; spelling/typographical/uncategorized service matches; all three annotation types; replacement offsets; manual correction; mandatory recheck; shared correction actions; detail choices; actual globe/blink/finger timelines; mobile popup containment.
+
+Browser tests mock remote grammar responses. The managed environment denied `api.languagetool.org` with HTTP CONNECT 403 in this session; live production service availability and coverage remain unverified. Local form guards and the correction interface are tested independently of that access.
+
+The same Rough Notation correction interaction is also used by **Grammar → A1 → 10 · Time → Fix the time**, including its legacy Grammar Lab `ftt` entry.
