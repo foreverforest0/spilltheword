@@ -73,3 +73,10 @@
 @media(max-width:760px){body:has(.pond-page) #homeBtn{position:absolute}body:has(.pond-page) .grammar-exercise-back{padding-left:112px;min-height:34px}}
 #view:has(.pond-page)>.grammar-exercise-back{padding-left:104px;min-height:34px}
 .pond-fish.caught .pond-fish-art{filter:drop-shadow(0 12px 5px #26422b28)}
+
+/* The caught fish stays beside the exercise until the answer is complete. */
+.pond-caught-preview{position:relative;width:128px;height:118px;margin:5px auto -10px;flex:none}
+.pond-caught-preview .pond-fish-art{filter:none}
+#view .pond-fish.in-card{visibility:hidden;pointer-events:none}
+.pond-return-flight{position:fixed;z-index:500;pointer-events:none;will-change:top,left;filter:drop-shadow(0 8px 4px #26422b18)}
+.pond-return-flight .pond-fish-art{transform-origin:center}

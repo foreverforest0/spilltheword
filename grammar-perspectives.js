@@ -37,20 +37,7 @@
   ['running','She','sleeping',['running','jogging']]
  ].map(([key,subject,wrong,answers])=>({key,subject,wrong,answers,src:ACTIONS.find(a=>a[0]===key)[1]}));
  const reporterNorm=s=>String(s).toLowerCase().trim().replace(/[’‘]/g,"'").replace(/\b(she|he)'s\b/g,'$1 is').replace(/\bisn't\b/g,'is not').replace(/\b(?:but|and)\b/g,' ').replace(/[^a-z\s]/g,' ').replace(/\s+/g,' ').trim();
- let reporterQueue=[];
- function reporter(){
-  if(!reporterQueue.length)reporterQueue=shuffle(reporterRows.slice());const row=reporterQueue.pop(),subject=row.subject.toLowerCase();
-  setView(`<section class="panel k-card cbpanel reporter-page"><div class="cbbar"><button class="lvb" id="reporterBack">← Topics</button><h2>Correct the reporter</h2><div><button class="lvb" id="reporterHint" aria-expanded="false">Hint</button> <button class="lvb" id="reporterNew">New picture</button></div></div><p class="muted small">The reporter is wrong. Write a negative sentence about the report, then a positive sentence about the picture.</p><div class="reporter-hint" id="reporterHintText" hidden>${row.subject} isn’t + verb-ing. ${row.subject} is + verb-ing. You can also use “is not”.</div><article class="reporter-card"><div class="reporter-picture"><img src="${row.src}" alt="${row.subject} is ${row.key}." draggable="false"></div><div class="reporter-quote"><span>The reporter says:</span><p>${row.subject} is ${row.wrong}.</p></div></article><label class="reporter-label" for="reporterAnswer">Correct the report</label><textarea id="reporterAnswer" rows="2" spellcheck="false" placeholder="${row.subject} isn’t … ${row.subject} is …"></textarea><button class="lvb" id="reporterCheck">Check</button><p id="reporterFeedback" role="status" aria-live="polite"></p></section>`);
-  const page=$('#view .reporter-page');page.dataset.action=row.key;page.dataset.subject=row.subject;page.dataset.wrong=row.wrong;
-  $('#reporterBack').onclick=spSetup;$('#reporterNew').onclick=reporter;
-  $('#reporterHint').onclick=()=>{const box=$('#reporterHintText');box.hidden=!box.hidden;$('#reporterHint').setAttribute('aria-expanded',String(!box.hidden))};
-  $('#reporterCheck').onclick=()=>{
-   const answer=reporterNorm($('#reporterAnswer').value),negative=subject+' is not '+row.wrong;
-   if(row.answers.some(action=>answer===negative+' '+subject+' is '+action)){$('#reporterFeedback').textContent='Correct! '+row.subject+' isn’t '+row.wrong+'. '+row.subject+' is '+row.answers[0]+'.';return}
-   $('#reporterFeedback').textContent=!answer.startsWith(negative)?'First, say that the reporter’s action isn’t happening.':answer===negative?'Now add a positive sentence about the picture.':'Check the main action in the picture and use is + verb-ing.';
-  };
-  $('#reporterAnswer').oninput=()=>{$('#reporterFeedback').textContent=''};
- }
+ function reporter(){return CardStacks.reporter(reporterRows,reporterNorm)}
  DMT.pcr=1;DMTF.pcr=reporter;SPSHORT.pcr='Correct the reporter';SPT.push({id:'pcr',n:'Present Continuous: Correct the reporter',d:'Correct a false report with a negative and a positive sentence.'});
  for(const level of ['kids','a1','a2']){
   const group=SPGRP[level].find(g=>/^\d+ · Present Continuous$/.test(g[0]));if(group&&!group[1].includes('pcr'))group[1].push('pcr');

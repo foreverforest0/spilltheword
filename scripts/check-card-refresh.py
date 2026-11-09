@@ -49,25 +49,30 @@ with sync_playwright() as pw:
   p.locator('.scene-coin').click();p.wait_for_selector('.scene-photo')
   assert p.locator('.scene-photo').count()==1
   assert p.locator('.scene-question-copy').count()==0
-  src=p.locator('.scene-photo-toggle>img').get_attribute('src')
-  p.locator('.scene-photo-toggle').click()
-  assert p.locator('.scene-question-copy').count()==1
-  assert p.locator('[data-scene-question]').count()==5
+  def active():return p.locator('.scene-photo-toggle:not([hidden])')
+  def ready():p.wait_for_function("!document.querySelector('.cs-deck')._cardDeck.busy")
+  src=active().locator('.cs-front img').get_attribute('src')
+  active().click(position={'x':14,'y':18});ready()
+  assert active().locator('.scene-question-copy').count()==1
+  assert p.locator('.scene-photo-toggle').count()==5
   questions=[]
   for i in range(5):
-   p.locator(f'[data-scene-question="{i}"]').click()
-   questions.append(p.locator('.scene-question').inner_text())
-   assert p.locator('.scene-photo .mgbase').get_attribute('src')==src
+   questions.append(active().locator('.scene-question').inner_text())
+   assert active().locator('.mgbase').get_attribute('src')==src
+   if i<4:p.locator('.cs-next').click();ready()
   assert len(set(questions))==5
   p.locator('#sceneHint').click();assert p.locator('#sceneHintText').is_visible()
-  r=p.locator('.scene-photo-toggle').bounding_box();p.mouse.move(r['x']+r['width']/2,r['y']+r['height']/2);p.wait_for_timeout(80)
-  assert p.locator('.mglens').evaluate("e=>+getComputedStyle(e).opacity")>0
+  active().locator('.mgpic').scroll_into_view_if_needed()
+  r=active().locator('.mgpic').bounding_box();p.mouse.move(0,0);p.mouse.move(r['x']+r['width']/2,r['y']+r['height']/2,steps=5);p.wait_for_timeout(180)
+  assert active().locator('.mglens').evaluate("e=>+getComputedStyle(e).opacity")>0
+  assert active().locator('.mgpic').evaluate('e=>e.scrollWidth<=e.clientWidth+1')
+  assert active().locator('.mglens').evaluate("e=>getComputedStyle(e).position==='absolute'")
   p.screenshot(path=f'/tmp/card-refresh-scenes-{width}.png',full_page=True)
   assert p.evaluate('document.documentElement.scrollWidth<=innerWidth')
-  p.locator('.scene-photo-toggle').click();assert p.locator('.scene-question-copy').count()==0
+  active().click(position={'x':14,'y':18});ready();assert active().get_attribute('aria-pressed')=='false'
   p.locator('#sceneNew').click();assert p.locator('.scene-photo').count()==0
   p.locator('.scene-coin').click();p.wait_for_selector('.scene-photo')
-  assert p.locator('.scene-photo-toggle>img').get_attribute('src')!=src
+  assert active().locator('.cs-front img').get_attribute('src')!=src
  assert not errors,errors
  print('Passed: section waves, straight labels, shared hints, interview answers, enlarged fridge picture, coin print, one scene/five questions, magnifier and mobile.')
  b.close()

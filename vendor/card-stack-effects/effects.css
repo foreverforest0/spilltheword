@@ -1,0 +1,107 @@
+/* Selected, scoped animations adapted from Codrops CardStackEffects.
+ * Copyright 2015 Codrops. MIT; see LICENSE and README.md. */
+@keyframes yudaAccept {
+	to {
+		opacity: 0;
+		-webkit-transform: rotate3d(0,0,1,20deg);
+		transform: rotate3d(0,0,1,20deg);
+	}
+}
+.cs-deck[data-effect="yuda"] .cs-card.cs-going-next{animation: yudaAccept 0.5s forwards;transform-origin: 50% 300%;}
+@keyframes yudaReject {
+	to {
+		opacity: 0;
+		-webkit-transform: translate3d(0,200px,0);
+		transform: translate3d(0,200px,0);
+	}
+}
+.cs-deck[data-effect="yuda"] .cs-card.cs-going-back{animation: yudaReject 0.5s forwards;}
+@keyframes krisnaAccept {
+	to {
+		-webkit-transform: translate3d(25vw,0,0) translate3d(60%,0,0) rotate3d(0,0,1,5deg);
+		transform: translate3d(25vw,0,0) translate3d(60%,0,0) rotate3d(0,0,1,5deg);
+	}
+}
+.cs-deck[data-effect="krisna"] .cs-card.cs-going-next{animation: krisnaAccept 0.5s forwards;}
+@keyframes krisnaReject {
+	to {
+		-webkit-transform: translate3d(-25vw,0,0) translate3d(-60%,0,0) rotate3d(0,0,1,-5deg);
+		transform: translate3d(-25vw,0,0) translate3d(-60%,0,0) rotate3d(0,0,1,-5deg);
+	}
+}
+.cs-deck[data-effect="krisna"] .cs-card.cs-going-back{animation: krisnaReject 0.5s forwards;}
+@keyframes wangiAccept {
+	to {
+		opacity: 0;
+		-webkit-transform: translate3d(0, 400px,0) rotate3d(0,0,1,-40deg);
+		transform: translate3d(0, 400px,0) rotate3d(0,0,1,-40deg);
+	}
+}
+.cs-deck[data-effect="wangi"] .cs-card.cs-going-next{animation: wangiAccept 0.5s forwards;transform-origin: 100% 0%;}
+@keyframes wangiReject {
+	to {
+		opacity: 0;
+		-webkit-transform: translate3d(0, 400px,0) rotate3d(0,0,1,40deg);
+		transform: translate3d(0, 400px,0) rotate3d(0,0,1,40deg);
+	}
+}
+.cs-deck[data-effect="wangi"] .cs-card.cs-going-back{animation: wangiReject 0.5s forwards;transform-origin: 0% 0%;}
+@keyframes wiraAccept {
+	to {
+		opacity: 0;
+		-webkit-transform: rotate3d(0,0,1,60deg);
+		transform: rotate3d(0,0,1,60deg);
+	}
+}
+.cs-deck[data-effect="wira"] .cs-card.cs-going-next{animation: wiraAccept 0.5s forwards;animation-timing-function: cubic-bezier(0.3,1,0.3,1);transform-origin: 250% 50%;}
+@keyframes wiraReject {
+	to {
+		opacity: 0;
+		-webkit-transform: rotate3d(0,0,1,-60deg);
+		transform: rotate3d(0,0,1,-60deg);
+	}
+}
+.cs-deck[data-effect="wira"] .cs-card.cs-going-back{animation: wiraReject 0.5s forwards;animation-timing-function: cubic-bezier(0.4,1,0.3,1);transform-origin: -150% 50%;}
+@keyframes slametAccept {
+	40% {
+		-webkit-animation-timing-function: cubic-bezier(0.4,1,0.3,1);
+		animation-timing-function: cubic-bezier(0.4,1,0.3,1);
+		-webkit-transform: translate3d(0,20%,0) scale3d(1.1,1.1,1);
+		transform: translate3d(0,20%,0) scale3d(1.1,1.1,1);
+	}
+	80% {
+		opacity: 1;
+		-webkit-transform: translate3d(0,-280px,0) scale3d(0.1,0.1,1);
+		transform: translate3d(0,-280px,0) scale3d(0.1,0.1,1);
+	}
+	100% {
+		opacity: 0;
+		-webkit-transform: translate3d(0,-250px,0) scale3d(0.05,0.05,1);
+		transform: translate3d(0,-250px,0) scale3d(0.05,0.05,1);
+	}
+}
+.cs-deck[data-effect="slamet"] .cs-card.cs-going-next{animation: slametAccept 0.6s forwards;animation-timing-function: ease-in;}
+@keyframes slametReject {
+	to {
+		opacity: 0;
+		-webkit-transform: rotate3d(1,0,0,-90deg);
+		transform: rotate3d(1,0,0,-90deg);
+	}
+}
+.cs-deck[data-effect="slamet"] .cs-card.cs-going-back{animation: slametReject 0.5s forwards;transform-origin: 50% 100%;}
+@keyframes ekaAccept {
+	to {
+		opacity: 0;
+		-webkit-transform: translate3d(150%,-150%,0) rotate3d(0,0,1,20deg);
+		transform: translate3d(150%,-150%,0) rotate3d(0,0,1,20deg);
+	}
+}
+.cs-deck[data-effect="eka"] .cs-card.cs-going-next{animation: ekaAccept 0.5s forwards;transform-origin: -100% 50%;}
+@keyframes ekaReject {
+	to {
+		opacity: 0;
+		-webkit-transform: translate3d(-150%,150%,0) rotate3d(0,0,1,-20deg);
+		transform: translate3d(-150%,150%,0) rotate3d(0,0,1,-20deg);
+	}
+}
+.cs-deck[data-effect="eka"] .cs-card.cs-going-back{animation: ekaReject 0.5s forwards;transform-origin: 100% 50%;}

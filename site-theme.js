@@ -1,3 +1,4 @@
+try{if(window.parent!==window)window.parent.SharedGame?.attachFrame(window)}catch{}
 /* Shared visual language for the main app and embedded games. */
 (()=>{
  const wave=[0,-.55,-1,-.72,-.12,.6,1,.72,.15,-.5];

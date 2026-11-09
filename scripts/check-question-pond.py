@@ -96,7 +96,7 @@ with sync_playwright() as pw:
  r=f.bounding_box();start_y=r['y'];p.mouse.click(r['x']+r['width']/2,r['y']+r['height']/2);p.wait_for_timeout(180)
  assert p.locator('#pondRig').is_visible();first_path=p.locator('#pondLine').get_attribute('d');p.wait_for_timeout(460)
  assert p.locator('#pondLine').get_attribute('d')!=first_path and f.bounding_box()['y']<start_y
- p.wait_for_selector('#pondAnswer');assert p.locator('.pond-fish.caught').count()==1 and p.locator('#pondRig').is_visible()
+ p.wait_for_selector('#pondAnswer');assert p.locator('.pond-fish.caught.in-card').count()==1 and p.locator('.pond-caught-preview').is_visible() and p.locator('#pondRig').is_hidden()
  p.locator('#pondAnswer').fill('Incorrect.');p.locator('#pondStartDrawing').click();draw();p.locator('#pondRelease').click();assert p.locator('.pond-own-fish.jumped').count()==1
  assert p.locator('.pond-own-fish.jumped .pond-fish-art').evaluate("e=>getComputedStyle(e).animationName")=='pond-jump'
  p.locator('#pondReturn').click();assert p.locator('.pond-page').get_attribute('data-phase')=='releasing'

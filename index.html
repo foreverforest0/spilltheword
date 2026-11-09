@@ -3086,8 +3086,8 @@ const GAMES={
   fmt:'Format: word | emoji (the emoji is optional; without it the card shows only the word).',ph:'dragon | 🐉\nsuitcase | 🧳\nearly bird | 🐦⏰',ex:'dragon | 🐉\nsuitcase | 🧳\nearly bird | 🐦⏰'},
  gif:{title:'Describe the GIF',icon:'🎞️',desc:'A random GIF appears with words and/or a grammar topic from your lessons. Describe what is happening using them. Click the picture (or press Space) for the next one.',
   fmt:'Format: one word or phrase per line. Start a line with > to add your own grammar topic (for example > Present Perfect).',ph:'stubborn\nbreak the ice\n> Present Perfect',ex:'stubborn\nbreak the ice\n> Present Perfect'},
- gram:{title:'Grammar Games',icon:'🎲',desc:'Oral grammar drills for all levels. Tense Switch: change the sentence as the card says. Grammar Dice: roll a topic, a type of sentence and a word from your course. Sentence Expander: a word appears, say a sentence and keep adding details.'},
- expand:{title:'Sentence Expander',icon:'🧩',desc:'Pick your course and level. A word from your lessons appears: say a short sentence with it, then keep adding details (when? where? why?…) and repeat the whole, longer sentence out loud each time.'},
+ gram:{title:'Grammar Games',icon:'🎲',desc:'Oral grammar drills for all levels. Tense Switch: change the sentence as the card says. Grammar Dice: roll a topic, a type of sentence and a word from your course. Sentence Expander: change a sentence step by step and dive deeper into its grammar.'},
+ expand:{title:'Sentence Expander',icon:'🧩',desc:'Choose a grammar topic. Change a sentence one step at a time, from extra details to new forms, and dive deeper with every change.'},
  shop:{title:'Shop',icon:'🛒',desc:'A supermarket: walk through the departments, drag products around, click to zoom in and read the name, put them in the basket.'},
  write:{title:'Creative Writing',icon:'⌨️',desc:'A vintage typewriter: type a story line by line. What you type stays for the next person.'},
  speak:{title:'Grammar Speaking',icon:'🗣️',desc:'Speaking practice by grammar topic. A picture and a question appear with the time markers; the student answers out loud. Click the picture (or press Space) for the next one.'},
@@ -3462,7 +3462,7 @@ const HSG={
  appearance:{n:'Appearance',d:'Build a person from a description, make your own character or play Guess who with ten faces.',tab:'speak',task:'app'},
  dice:{n:'Grammar Dice',d:'Roll the dice and make a sentence with the grammar and the word.',tab:'gram',mode:'dice'},
  clock:{n:'Tense Switch',d:'Change the sentence into another tense.',tab:'gram',mode:'ts'},
- ruler:{n:'Sentence Expander',d:'Make the sentence longer, one piece at a time.',tab:'gram',mode:'exp'},
+ ruler:{n:'Sentence Expander',d:'Change a sentence step by step and dive deeper into its grammar.',tab:'gram',mode:'exp'},
  flask:{n:'Word Craft',d:'Mix two words and make a new word or phrase.',tab:'gram',mode:'craft'},
  scales:{n:'Absurd Choices',d:'Two crazy choices. Pick one and say why with the second conditional.',tab:'gram',mode:'absurd'},
  pumpkin:{n:'The pumpkin',d:'Carve a face and light it up.',special:'pump'},
@@ -3813,7 +3813,7 @@ function _renderRound(){
     return `<div class="rcw">${esc(d.w||'')}</div>${sec}`};
    const bd=$('#rboard');
    mountBoard(bd,R.deck.map((d,i)=>({html:face(d),seed:i*5+R.gen[i]*7+1,col:i*3+R.gen[i]*5,cls:R.used&&R.used[i]?'used':''})),(i)=>{if(!canPick)return;if(ROOM.role==='guest')roomSend({t:'act',a:'pick',d:{i}});else doAct('pick',{i})});
-   if(R.pk>=0){const d=bd.children[R.pk],c=R.deck[R.pk],tw=trOf(c);let body='',hl=[];
+   if(R.pk>=0){const d=bd._stack?bd._stack.cards[R.pk]:bd.children[R.pk],c=R.deck[R.pk],tw=trOf(c);let body='',hl=[];
     if(gsT)body='<div class="rcw big">?</div>';
     else if(R.g==='taboo')body=`<div class="rcw big">${hw(c.w,tw)}</div><div class="tbl">Do not say</div><div class="tb">${(c.t||[]).length?c.t.map(x=>`<span class="kchip bad">${hw(x)}</span>`).join(''):'<em class="muted">no taboo words, but you still can’t say the word itself</em>'}</div>`;
     else if(R.g==='emoji'){body=`<div class="emo">${ez(c.e)}</div>`;hl=[c.hm||mask(c.w),c.w]}
@@ -3821,7 +3821,7 @@ function _renderRound(){
     const desc=R.g==='alias'||R.g==='taboo';if(desc)hl=DESCR;
     const inner=`<div class="cbbig inl rcb">${R.g!=='emoji'?'<button class="rcx" data-a="done" aria-label="Turn the card back">✕</button>':''}${body}<div class="cbh" hidden></div><div class="cbbtn">${hl.length&&!gsT?`<button class="lvb" id="rhint">${desc?'💡 How to describe':'Hints'}</button>`:''}${R.g==='emoji'?'<button class="lvb on" data-a="next">Next →</button>':''}</div></div>`;
     cardFlip(bd,d,inner,R.g==='taboo'?480:440,R.g==='taboo'?(c.t&&c.t.length>4?400:340):(R.g==='emoji'?330:260));const desc2=R.g==='alias'||R.g==='taboo';
-    setTimeout(()=>{const hb=document.getElementById('rhint');if(!hb)return;let hn=0;hb.onclick=()=>{if(hn>=hl.length)return;hn=desc2?hl.length:hn+1;if(desc2){const card=d;card.style.height='auto';card.style.minHeight=(card.offsetHeight)+'px';const bd2=card.parentNode;if(bd2&&card.offsetTop+card.offsetHeight+10>bd2.clientHeight)bd2.style.height=(card.offsetTop+card.offsetHeight+200)+'px'}const h=d.querySelector('.cbh');h.hidden=false;h.innerHTML=hl.slice(0,hn).map(x=>'<div class="hintw">'+esc(x)+'</div>').join('');if(hn>=hl.length)hb.disabled=true}},260)}
+    setTimeout(()=>{const hb=d.querySelector('#rhint');if(!hb)return;let hn=0;hb.onclick=()=>{if(hn>=hl.length)return;hn=desc2?hl.length:hn+1;if(desc2){const card=d;card.style.height='auto';card.style.minHeight=(card.offsetHeight)+'px';const bd2=card.parentNode;if(bd2&&card.offsetTop+card.offsetHeight+10>bd2.clientHeight)bd2.style.height=(card.offsetTop+card.offsetHeight+200)+'px'}const h=d.querySelector('.cbh');h.hidden=false;h.innerHTML=hl.slice(0,hn).map(x=>'<div class="hintw">'+esc(x)+'</div>').join('');if(hn>=hl.length)hb.disabled=true}},260)}
    return}
   const c=cur();let inner='',btns='';const tw=trOf(c);
     if(R.g==='alias'){inner=gs?`<div class="cat">${esc(c.cat||'')}</div><div class="word">🤔</div><p class="muted">Guess the word!</p>`:`<div class="cat">${esc(c.cat||'')}</div>${c.e&&c.e[0]==='@'?`<div class="emo">${ez(c.e)}</div>`:''}<div class="word">${hw(c.w,tw)}</div>`;
@@ -4429,50 +4429,11 @@ sbj:[['I should go home now.','→ It’s time','It’s time I went home.'],['I 
 ptc:[['While I was walking home, I met Tom.','→ participle clause','Walking home, I met Tom.'],['Because she felt tired, she went to bed.','→ participle clause','Feeling tired, she went to bed.'],['After he had finished work, he went out.','→ participle clause (Having…)','Having finished work, he went out.'],['The man who is standing there is my boss.','→ reduced relative clause','The man standing there is my boss.'],['The letter that was written by Anna arrived.','→ reduced relative clause','The letter written by Anna arrived.'],['As he didn’t know the way, he asked for help.','→ participle clause (Not…)','Not knowing the way, he asked for help.']]
 };
 
-/* ===== Sentence Expander ===== */
+/* ===== Sentence Expander: ocean curriculum in sentence-expander.js ===== */
 let EX=null;
-const EXLV={easy:{n:'Easy',d:'3 details',st:[['When?','yesterday, last week, every morning…'],['Where?','at school, in the park, at home…'],['Who with?','with my friend, with my sister…']]},
- med:{n:'Medium',d:'5 details',st:[['When?','yesterday, last summer, at 7 o’clock…'],['Where?','in a café, on the bus, at the airport…'],['Who with?','with my brother, with my classmates…'],['Why?','because…, so that…'],['How?','quickly, happily, without a map…']]},
- hard:{n:'Hard',d:'7 details',st:[['When?','while…, after…, by the time…'],['Where?','in the middle of…, next to…'],['Who with?','together with…, along with…'],['Why?','because…, since…, in order to…'],['How?','in a very… way, as if…'],['Contrast','but…, although…, even though…'],['Extra info','who… / which… / that…']]}};
-function exCourse(){const c=COURSES.find(x=>x.id===S.excourse)||COURSES[0];S.excourse=c.id;return c}
-function exWords(){const c=exCourse(),us=(S.exun||[]).filter(i=>c.units[i]);const use=us.length?us:c.units.map((_,i)=>i);const seen=new Set(),a=[];
- use.forEach(ui=>c.units[ui].ls.forEach((l,lj)=>{if(us.length===1&&S.exls>=0&&lj!==S.exls)return;(l.v||[]).forEach(w=>{const k=String(w).toLowerCase();if(!seen.has(k)){seen.add(k);a.push(w)}})}));return a}
-function exPickHTML(){const c=exCourse(),ui=(S.exun&&S.exun.length)?S.exun[0]:-1,u=ui>=0?c.units[ui]:null;if(!(S.exls>=0)||!u||S.exls>=u.ls.length)S.exls=-1;
- return `<div class="lph" id="expk"><select id="expc">${COURSES.map(x=>`<option value="${x.id}"${x.id===c.id?' selected':''}>${esc(x.name)}</option>`).join('')}</select><select id="expu"><option value="-1">Whole course</option>${c.units.map((x,i)=>`<option value="${i}"${i===ui?' selected':''}>${esc(x.n)}</option>`).join('')}</select><select id="expl"${u?'':' disabled'}><option value="-1">All lessons of the unit</option>${u?u.ls.map((x,i)=>`<option value="${i}"${i===S.exls?' selected':''}>${esc(x.n)}. ${esc(x.t)}</option>`).join(''):''}</select></div>`}
-function exPickBind(again,upd){$('#expc').onchange=e=>{S.excourse=e.target.value;S.exun=[];S.exls=-1;save();again()};
- $('#expu').onchange=e=>{const v=+e.target.value;S.exun=v>=0?[v]:[];S.exls=-1;save();again()};
- $('#expl').onchange=e=>{S.exls=+e.target.value;save();upd()}}
-function exSetup(){
- const c=exCourse();if(!EXLV[S.exlevel])S.exlevel='easy';S.exun=(S.exun||[]).filter(i=>c.units[i]);
- S.gmode='exp';
- setView(`<section class="panel k-card"><h2>${GAMES.gram.icon} ${GAMES.gram.title}</h2><p class="muted small" style="margin:14px 0 6px">Exercise</p><div class="lpc" id="glm">${GLMODES.map(m=>`<button class="lpb${S.gmode===m[0]?' on':''}" data-m="${m[0]}">${m[1]}</button>`).join('')}</div><p class="muted" style="margin-top:10px">${esc(GAMES.expand.desc)}</p>
- <p class="muted small" style="margin:14px 0 6px">Words from your course</p>${exPickHTML()}
- <p class="muted small" style="margin:14px 0 6px">Level</p><div class="lpc" id="exlv">${Object.keys(EXLV).map(k=>`<button class="lpb${S.exlevel===k?' on':''}" data-l="${k}">${EXLV[k].n} · ${EXLV[k].d}</button>`).join('')}</div>
- <p class="muted" id="exn" style="margin-top:14px"></p>
- <div class="row cc"><button data-btn="solid" id="exgo">Start</button></div></section>`);
- const upd=()=>{const n=exWords().length;$('#exn').textContent=n+' words from your lessons will be used.';$('#exgo').disabled=!n};
- $('#glm').onclick=e=>{const b=e.target.closest('[data-m]');if(!b)return;S.gmode=b.dataset.m;save();glSetup()};
- exPickBind(exSetup,upd);
- $('#exlv').onclick=e=>{const b=e.target.closest('[data-l]');if(!b)return;S.exlevel=b.dataset.l;save();document.querySelectorAll('#exlv .lpb').forEach(x=>x.classList.toggle('on',x===b))};
- $('#exgo').onclick=()=>{EX={order:shuffle(exWords()),i:0,s:0,done:0,lv:S.exlevel,txt:''};exRender()};
- upd()}
-function exRender(){
- const L=EXLV[EX.lv],st=L.st,w=EX.order[EX.i%EX.order.length],all=EX.s>=st.length;
- const chips=st.slice(0,all?EX.s:Math.max(0,EX.s-1)).map((x,k)=>`<span class="exc" style="background:${CBCOL[(k*3+EX.i)%13]};transform:rotate(${(k%2?1:-1)*(1+k%3)}deg)">${esc(x[0])}</span>`).join('');
- const cur=all?`<div class="exnow">🎉 Now say the <b>whole</b> long sentence!</div>`:EX.s===0?`<div class="exnow">Say a short sentence with this word.</div>`
-  :`<div class="exnow">Add: <span class="exc big" style="background:${CBCOL[((EX.s-1)*3+EX.i)%13]}">${esc(st[EX.s-1][0])}</span><div class="muted small">${esc(st[EX.s-1][1])}</div><div>…and say the whole sentence again.</div></div>`;
- setView(`<section class="panel k-card center"><p class="muted small">Word ${EX.i+1} of ${EX.order.length} · step ${Math.min(EX.s,st.length)} / ${st.length} · finished: ${EX.done}</p>
- <div class="exw" style="background:${CBCOL[(EX.i*5)%13]}">${hw(w)}</div>
- <div class="exchips">${chips}</div>${cur}
- <textarea id="extxt" class="exta" rows="2" placeholder="Type your sentence here (optional)…">${esc(EX.txt)}</textarea><div class="muted small" id="exwc"></div>
- <div class="row cc">${EX.s>0?'<button data-btn="n" id="exback">← Back</button>':''}${all?'<button data-btn="ok" id="exdone">✓ Done · next word</button>':'<button data-btn="solid" id="exadd">Add a detail →</button>'}<button data-btn="n" id="exquit">← To settings</button></div></section>`);
- const ta=$('#extxt'),wc=()=>{const n=ta.value.trim().split(/\s+/).filter(Boolean).length;$('#exwc').textContent=n?n+' words':''};
- ta.oninput=()=>{EX.txt=ta.value;wc()};wc();
- const nxt=()=>{EX.i++;EX.s=0;EX.txt='';exRender()};
- const a=$('#exadd');if(a)a.onclick=()=>{EX.s++;exRender()};
- const d=$('#exdone');if(d)d.onclick=()=>{EX.done++;nxt()};
- const b=$('#exback');if(b)b.onclick=()=>{EX.s--;exRender()};
- $('#exquit').onclick=()=>{EX=null;exSetup()}}
+function exSetup(){window.SentenceExpander.setup()}
+function exCourse(){return COURSES.find(c=>c.id===S.excourse)||COURSES[0]}
+function exWords(){const c=exCourse(),units=(S.exun||[]).filter(i=>c.units[i]);const use=units.length?units:c.units.map((_,i)=>i),seen=new Set(),words=[];use.forEach(i=>c.units[i].ls.forEach((l,j)=>{if(units.length===1&&S.exls>=0&&j!==S.exls)return;(l.v||[]).forEach(w=>{const key=String(w).toLowerCase();if(!seen.has(key)){seen.add(key);words.push(w)}})}));return words}
 
 /* ===== Wheels and boards: engine ===== */
 let GLT=null;
@@ -12809,8 +12770,15 @@ homeBind=function(){
  const baseCatalogView=setView;
  setView=function(html){baseCatalogView(html);if(tab!=='gram'||!grammarActivity||!grammarCurrent)return;
   const bar=document.createElement('div');bar.className='grammar-exercise-back';
-  const back=document.createElement('button');back.type='button';back.className='grammar-back';back.textContent='← '+grammarCurrent.name;
+  const native=[...$('#view').querySelectorAll('button')].find(b=>/^←\s*(?:Topics|Exercises|Kids topics)\b/i.test(b.textContent.trim()));
+  if(native){native.textContent='← Topics';return}
+  const back=document.createElement('button');back.type='button';back.className='grammar-back';back.textContent='← Topics';
   back.onclick=()=>{deskOff();grammarCatalog(grammarCurrent)};bar.appendChild(back);$('#view').prepend(bar);
+ };
+ window.openSharedGrammar=function(id,lv){
+  tab='gram';S.glevel=lv;S.splevel=lv;S.sptask=id;
+  grammarCurrent=grammarGroups().find(g=>g.ids.includes(id))||null;grammarActivity=!!grammarCurrent;
+  document.body.classList.remove('home');document.body.classList.add('grammar-style-active');spOpen(id);
  };
  glSetup=function(){
   grammarActivity=false;grammarCurrent=null;
@@ -12823,6 +12791,7 @@ homeBind=function(){
 
 })();
 async function boot(){
+ const shared=location.hash.match(/^#play=([A-Za-z0-9_-]+)$/);if(shared){await SharedGame.restore(shared[1]);return}
  if(/[#&]embed\b/.test(location.hash))document.body.classList.add('embed');
  {const wm=location.hash.match(/^#watch(?:=(\w+))?/);if(wm){wvTeacher(wm[1]);return}}
  if(!S.wcode&&!hq('w')&&!hq('tp')&&!/^#[cr]=/.test(location.hash)){S.wcode=rnd(8);save()}
@@ -12867,6 +12836,18 @@ async function boot(){
 <script src="question-pond.js"></script>
 <script src="unbox/tasks.js"></script>
 <script src="unbox/app.js"></script>
+<link rel="stylesheet" href="sentence-expander.css">
+<script src="vendor/block-revealers/anime.min.js"></script>
+<script src="vendor/block-revealers/block-revealer.js"></script>
+<script src="sentence-expander-data.js"></script>
+<script src="sentence-expander.js"></script>
+<link rel="stylesheet" href="vendor/card-stack-effects/effects.css">
+<link rel="stylesheet" href="card-stacks.css">
+<script src="card-stacks.js"></script>
+<script src="card-stack-adapters.js"></script>
+<script src="card-stack-fix.js"></script>
+<script src="live-answers.js"></script>
+<script src="shared-game.js"></script>
 <script>
 window.addEventListener('hashchange',()=>location.reload());
 boot();

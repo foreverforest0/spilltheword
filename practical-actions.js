@@ -75,6 +75,7 @@
    const open=card.getAttribute('aria-pressed')!=='true';card.setAttribute('aria-pressed',String(open));card.querySelector('.process-front').hidden=open;card.querySelector('.process-back').hidden=!open;
    if(!matchMedia('(prefers-reduced-motion: reduce)').matches)card.animate([{transform:'perspective(800px) rotateY(-75deg)'},{transform:'perspective(800px) rotateY(0)'}],{duration:280,easing:'ease-out'});
   });
+  window.CardStacks?.process($('#view .process-grid'));
  }
  DMT.how=1;DMTF.how=processCards;
  const previousCards=renderCards;
