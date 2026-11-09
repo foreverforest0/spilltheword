@@ -234,6 +234,8 @@ B1MAGSTYLE.textContent=`
 .b1-magnet-layout{display:grid;grid-template-columns:var(--fridge-width,280px) minmax(0,1fr);gap:24px;align-items:start;max-width:1000px;margin:auto;height:var(--fridge-height,648px)}
 .b1-fridge{position:relative;width:100%;height:var(--fridge-height,648px);background:transparent;border:0;padding:0;box-shadow:none}
 .magnet-fridge-art{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.b1-fridge.blue{overflow:hidden;border-radius:22px 22px 10px 10px}.b1-fridge.blue .magnet-fridge-art{object-fit:cover;object-position:center top}
+.b1-fridge.blue .b1-strip{top:calc(42% * var(--fridge-art-scale,1));bottom:4%}.b1-fridge.blue .b1-prefix{top:calc(12% * var(--fridge-art-scale,1))}
 
 .b1-strip{position:absolute;inset:42% 6% 11%;display:flex;gap:5px;flex-wrap:wrap;align-content:flex-start;align-items:flex-start;padding:4px;background:transparent!important;border:0!important;box-shadow:none!important;overflow:auto}
 .b1-bank-side{display:flex;flex-direction:column;gap:12px;height:100%;min-height:0;min-width:0}
@@ -281,11 +283,13 @@ function b1MagnetRound(st,mb,id,cfg,round){
  const fit=()=>{
   if(!st.isConnected)return;
   const layout=st.querySelector('.b1-magnet-layout'),w=layout.clientWidth,gap=w<620?10:24;
-  const side=w<620?Math.min(150,w*.41):Math.min(400,w*.45);
+  const side=w<620?Math.min(blue?140:150,w*(blue ? .38 : .41)):Math.min(400,w*.45);
   const available=Math.max(240,window.innerHeight-st.getBoundingClientRect().top-56);
-  const width=Math.min(available*aspect,w-side-gap,370);
+  const width=Math.min(available*aspect*(blue?1.25:1),w-side-gap,blue?400:370);
+  const height=blue?Math.min(available,width/aspect):width/aspect;
   layout.style.setProperty('--fridge-width',width+'px');
-  layout.style.setProperty('--fridge-height',width/aspect+'px');
+  layout.style.setProperty('--fridge-height',height+'px');
+  layout.style.setProperty('--fridge-art-scale',String(width/aspect/height));
   if(round.pic){
    const box=st.querySelector('.b1-magnet-picture');
    const largeKidsPicture=id==='mgc'&&S.splevel==='kids';

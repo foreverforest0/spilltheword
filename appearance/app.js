@@ -4,6 +4,7 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 const pick=(a,r=Math.random)=>a[Math.floor(r()*a.length)];
 const NAMES=['Alex','Sam','Charlie','Robin','Jamie','Taylor','Riley','Casey','Morgan','Jess'];
 const C=AppearanceParts.catalog;
+window.SharedLiveAssetMap=new Map(Object.values(C).flat().filter(x=>x.src&&x.file).map(x=>[x.src,new URL(x.file,location.href).href]));
 const DEFAULT={face:'0',hair:'0',eyes:'18',brows:'2',nose:'0',mouth:'1',cheeks:'none',facial:'none',glasses:'none',hat:'none',headband:'none',decoration:'none',earrings:'none',necklace:'none',scarf:'none',headphones:'none'};
 const PARTS=['hair','eyes','glasses','hat','cheeks','facial'];
 const LABELS={hair:'hair',eyes:'eye colour',glasses:'glasses',hat:'headwear',cheeks:'freckles',facial:'beard or moustache'};

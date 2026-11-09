@@ -33,12 +33,12 @@
  const priorView=setView;
  setView=function(html){if(activeDispose){activeDispose();activeDispose=null}return priorView(html)};
  function open(topic){
-  const questions=PondQuestions.bankFor(topic.level,topic.number);let mode='catch',current=null,queue=[],phase='idle',fish=[],selected=null,rigMotion=null,timers=new Set(),frame=0,previousTime=0,alive=true,strokes=[],pen=null,color=palette[0],width=.018,eraser=false,drawnFish=null,storageNotice='';
+  const questions=PondQuestions.bankFor(topic.level,topic.number);let mode='catch',current=null,queue=[],phase='idle',fish=[],selected=null,rigMotion=null,timers=new Set(),frame=0,previousTime=0,alive=true,strokes=[],pen=null,color=palette[0],width=.018,eraser=false,drawnFish=null,storageNotice='',flight=null,returnToIdle=false;
   const later=(fn,ms)=>{const id=setTimeout(()=>{timers.delete(id);if(alive)fn()},reduce()?Math.min(ms,35):ms);timers.add(id);return id};
   const pageId=topic.level+':'+topic.number;
   setView(`<section class="pond-page" data-pond-topic="${esc(pageId)}"><div class="pond-header"><button class="pond-back" id="pondBack">← Exercises</button><h1>Question pond</h1><span class="pond-topic-label">${esc(topic.name)} · ${topic.level==='kids'?'Kids':topic.level.toUpperCase()}</span></div><div class="pond-toolbar"><nav aria-label="Pond mode"><button class="pond-button active" id="pondCatchMode" aria-pressed="true">Catch a question</button><button class="pond-button" id="pondDrawMode" aria-pressed="false">Draw & release</button></nav><button class="pond-button" id="pondHow" aria-expanded="false" aria-controls="pondHelp">How to?</button></div><p id="pondHelp" class="pond-help" hidden>Click any fish, or tap the water, to catch a question. Write your answer; Hint gives you a sentence prompt. In Draw & release, draw a fish and release it: a correct answer lets it swim; an incorrect answer makes it jump out. You can correct the same answer and try again.</p><div class="pond-layout"><div class="pond-water-column"><div class="pond-water" id="pondWater" aria-label="Illustrated pond"><div class="pond-school" id="pondSchool"></div><div class="pond-ripple" id="pondRipple" aria-hidden="true"></div><div class="pond-spray" id="pondSpray" aria-hidden="true"><i></i><i></i><i></i><i></i></div><svg class="pond-rig" id="pondRig" viewBox="0 0 1000 667" preserveAspectRatio="none" aria-hidden="true"><path class="pond-rod" d="M980 140 Q974 54 920 45"/><path class="pond-rope" id="pondLine" d="M920 45 L920 45"/><circle class="pond-bobber" id="pondBobber" r="4" cx="920" cy="45"/><path class="pond-hook" id="pondHook" d="M-3 0v7q5 7 9 0"/></svg></div><p class="pond-status" id="pondStatus" role="status" aria-live="polite">Click a fish to catch a question.</p></div><aside class="pond-question" id="pondQuestion" aria-label="Caught question"><div class="pond-empty"><span class="pond-idle-fish" aria-hidden="true"></span><p>A question is swimming by.</p></div></aside></div></section>`);
   const root=$('#view .pond-page'),water=$('#pondWater'),school=$('#pondSchool'),card=$('#pondQuestion'),status=$('#pondStatus'),ripple=$('#pondRipple'),spray=$('#pondSpray'),rig=$('#pondRig'),line=$('#pondLine'),bobber=$('#pondBobber'),hook=$('#pondHook');
-  function dispose(){alive=false;rigMotion=null;cancelAnimationFrame(frame);timers.forEach(clearTimeout);timers.clear();document.removeEventListener('visibilitychange',visibility);resize.disconnect();fish.forEach(f=>f.el.remove());fish=[];pen=null;root.dataset.disposed='true'}
+  function dispose(){flight?.remove();alive=false;rigMotion=null;cancelAnimationFrame(frame);timers.forEach(clearTimeout);timers.clear();document.removeEventListener('visibilitychange',visibility);resize.disconnect();fish.forEach(f=>f.el.remove());fish=[];pen=null;root.dataset.disposed='true'}
   activeDispose=dispose;
   $('#pondBack').onclick=spSetup;if($('#view .grammar-exercise-back'))$('#pondBack').hidden=true;
   $('#pondHow').onclick=()=>{const help=$('#pondHelp');help.hidden=!help.hidden;$('#pondHow').setAttribute('aria-expanded',String(!help.hidden))};
@@ -64,7 +64,7 @@
    if(!document.hidden&&rigMotion){
     const step=rigMotion,t=clamp((now-step.start)/step.duration,0,1);step.update(t,now);
     if(t===1&&rigMotion===step){rigMotion=null;step.finish()}
-   }else if(!document.hidden&&selected?.pose){
+   }else if(!document.hidden&&selected?.pose&&!selected.inCard){
     const f=selected;f.pose.x=f.hang.x+(reduce()?0:Math.sin(now*.002)*.004);f.pose.y=f.hang.y+(reduce()?0:Math.sin(now*.003)*.003);f.pose.angle=f.hang.angle+(reduce()?0:Math.sin(now*.004)*.05);motion(f,now);ropeTo(f,0);
    }
    if(!document.hidden)for(const f of fish){if(f.busy||f===selected||f.hovered||f.focused||reduce())continue;
@@ -97,11 +97,24 @@
   }
   function enableFishing(enabled){for(const f of fish)f.el.disabled=!enabled;water.dataset.canCatch=String(enabled)}
   function finishIdle(){current=null;selected=null;phase='idle';strokes=[];pen=null;drawnFish=null;rig.classList.remove('show');root.dataset.phase=phase;card.innerHTML='<div class="pond-empty"><span class="pond-idle-fish" aria-hidden="true"></span><p>A question is swimming by.</p></div>';status.textContent='Click a fish to catch a question.';enableFishing(true)}
-  function idle(){
-   if(!selected?.pose){finishIdle();return}
+  function idle(){returnToIdle=true;returnFish()}
+  function returnFish(keepQuestion=false){
    if(phase==='returning')return;
-   phase='returning';root.dataset.phase=phase;status.textContent='Back into the water…';const f=selected,start={...f.pose},end=f.catchOrigin;
-   animateRig(520,(t,now)=>{const e=smooth(t);f.pose={x:mix(start.x,end.x,e),y:mix(start.y,end.y,e)-Math.sin(Math.PI*t)*.045,angle:mix(start.angle,end.angle,e),flip:end.flip};motion(f,now);ropeTo(f,t*.3)},()=>{f.pose=null;f.busy=false;f.el.classList.remove('caught');motion(f,performance.now());splash(f.x,f.y);finishIdle()});
+   returnToIdle=!keepQuestion;
+   if(!selected?.pose){if(returnToIdle)finishIdle();return}
+   phase='returning';root.dataset.phase=phase;status.textContent='Back into the water…';
+   const f=selected,end=f.catchOrigin,preview=card.querySelector('.pond-caught-preview');
+   const a=(preview||f.el).getBoundingClientRect(),r=water.getBoundingClientRect(),size=f.el.offsetWidth;
+   const start={x:(a.x+a.width/2-r.x)/r.width,y:(a.y+a.height/2-r.y)/r.height};
+   flight=document.createElement('div');flight.className='pond-return-flight';flight.setAttribute('aria-hidden','true');
+   const art=f.art.cloneNode(true);art.style.transform='none';flight.appendChild(art);document.body.appendChild(flight);
+   if(preview)preview.hidden=true;rig.classList.remove('show');
+   animateRig(700,(t)=>{const e=smooth(t),live=water.getBoundingClientRect();
+    const x=mix(start.x,end.x,e)*live.width+live.x,y=(mix(start.y,end.y,e)-Math.sin(Math.PI*t)*.16)*live.height+live.y;
+    flight.style.cssText=`left:${x}px;top:${y}px;width:${size}px;height:${size}px;transform:translate(-50%,-50%) rotate(${Math.sin(Math.PI*t)*-.35}rad)`;
+   },()=>{flight.remove();flight=null;f.inCard=false;f.pose=null;f.busy=false;f.el.classList.remove('caught','in-card');motion(f,performance.now());splash(f.x,f.y);selected=null;
+    if(returnToIdle)finishIdle();else{phase='answered';root.dataset.phase=phase;enableFishing(true);status.textContent='Choose another fish when you’re ready.'}
+   });
   }
   function changeMode(next){
    if(mode===next||phase==='catching'||phase==='releasing'||phase==='returning')return;
@@ -113,7 +126,7 @@
   $('#pondCatchMode').onclick=()=>changeMode('catch');$('#pondDrawMode').onclick=()=>changeMode('draw');root.dataset.mode=mode;root.dataset.phase=phase;enableFishing(true);
   function nextQuestion(){if(!queue.length)queue=shuffle(questions.map((_,i)=>i));const index=queue.pop();current={...questions[index],index};root.dataset.questionIndex=index}
   function catchFish(f){
-   if(phase!=='idle'||f.busy)return;phase='catching';root.dataset.phase=phase;selected=f;f.busy=true;enableFishing(false);status.textContent='Reeling in your question…';
+   if(!['idle','answered'].includes(phase)||selected||f.busy)return;phase='catching';root.dataset.phase=phase;selected=f;f.busy=true;enableFishing(false);status.textContent='Reeling in your question…';
    const start={x:f.x,y:f.y,angle:f.renderAngle||0,flip:f.vx<0?-1:1},end={x:.88,y:Math.max(.15,(f.el.offsetWidth*.6+10)/water.clientHeight),angle:(f.vx<0?1:-1)*1.30};
    f.catchOrigin=start;f.hang=end;f.pose={...start};rig.classList.add('show');f.el.classList.add('caught');splash(f.x,f.y);
    animateRig(1350,(t,now)=>{
@@ -122,10 +135,11 @@
     motion(f,now);ropeTo(f,(1-e)*.45);rig.style.opacity=String(clamp(t/.12,0,1));
    },()=>{nextQuestion();phase='question';questionCard();status.textContent='Write your answer. Hint can help.';$('#pondAnswer').focus({preventScroll:true});if(innerWidth<760)card.scrollIntoView({behavior:reduce()?'instant':'smooth',block:'nearest'})});
   }
-  water.onclick=e=>{if(phase!=='idle')return;const r=water.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;const nearest=fish.filter(f=>!f.busy).sort((a,b)=>Math.hypot(a.x-x,a.y-y)-Math.hypot(b.x-x,b.y-y))[0];if(nearest)catchFish(nearest)};
+  water.onclick=e=>{if(!['idle','answered'].includes(phase)||selected)return;const r=water.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;const nearest=fish.filter(f=>!f.busy).sort((a,b)=>Math.hypot(a.x-x,a.y-y)-Math.hypot(b.x-x,b.y-y))[0];if(nearest)catchFish(nearest)};
   function questionCard(){
    root.dataset.phase=phase;root.dataset.outcome='';
-   card.innerHTML=`<div class="pond-card-copy"><div class="pond-card-heading"><p class="pond-question-text">${esc(current.question)}</p><button type="button" class="pond-button pond-hint-button" id="pondHint" aria-expanded="false" aria-controls="pondHintText">Hint</button></div>${current.cue?`<p class="pond-cue">${esc(current.cue)}</p>`:''}<p class="pond-hint" id="pondHintText" hidden>${esc(current.hint).replace(/\n/g,'<br>')}</p><label for="pondAnswer">Your answer</label><textarea id="pondAnswer" rows="2" spellcheck="false" autocomplete="off"></textarea><div class="pond-answer-actions">${mode==='catch'?'<button class="pond-button primary" id="pondCheck">Check</button><button class="pond-text-button" id="pondShowAnswer">Show answer</button>':'<button class="pond-button primary" id="pondStartDrawing">Draw your fish</button>'}<button class="pond-text-button" id="pondReturn">Back to pond</button></div><p class="pond-feedback" id="pondFeedback" role="status" aria-live="polite"></p><div id="pondStudio" hidden></div></div>`;
+   card.innerHTML=`<div class="pond-caught-preview" aria-label="Your caught fish"></div><div class="pond-card-copy"><div class="pond-card-heading"><p class="pond-question-text">${esc(current.question)}</p><button type="button" class="pond-button pond-hint-button" id="pondHint" aria-expanded="false" aria-controls="pondHintText">Hint</button></div>${current.cue?`<p class="pond-cue">${esc(current.cue)}</p>`:''}<p class="pond-hint" id="pondHintText" hidden>${esc(current.hint).replace(/\n/g,'<br>')}</p><label for="pondAnswer">Your answer</label><textarea id="pondAnswer" rows="2" spellcheck="false" autocomplete="off"></textarea><div class="pond-answer-actions">${mode==='catch'?'<button class="pond-button primary" id="pondCheck">Check</button><button class="pond-text-button" id="pondShowAnswer">Show answer</button>':'<button class="pond-button primary" id="pondStartDrawing">Draw your fish</button>'}<button class="pond-text-button" id="pondReturn">Back to pond</button></div><p class="pond-feedback" id="pondFeedback" role="status" aria-live="polite"></p><div id="pondStudio" hidden></div></div>`;
+   if(selected){const art=selected.art.cloneNode(true);art.style.transform='none';card.querySelector('.pond-caught-preview').appendChild(art);selected.inCard=true;selected.el.classList.add('in-card');rig.classList.remove('show')}
    $('#pondHint').onclick=()=>{const hint=$('#pondHintText');hint.hidden=!hint.hidden;$('#pondHint').setAttribute('aria-expanded',String(!hint.hidden))};
    const input=$('#pondAnswer');if(current.draft)input.value=current.draft;
    input.oninput=()=>{current.draft=input.value;$('#pondFeedback').textContent='';root.dataset.outcome=''};
@@ -133,7 +147,7 @@
    if(mode==='catch'){
     $('#pondCheck').onclick=()=>{if(!input.value.trim()){input.focus();$('#pondFeedback').textContent='Write your answer first.';return}
      const ok=matches(input.value,current.answers);root.dataset.outcome=ok?'correct':'incorrect';$('#pondFeedback').textContent=ok?'Yes! Catch another fish when you’re ready.':'Not quite. Check the words and the verb form, then try again.';
-     if(ok){phase='answered';root.dataset.phase=phase;$('#pondCheck').disabled=true;input.readOnly=true;$('#pondReturn').textContent='Catch another fish'}
+     if(ok){phase='answered';root.dataset.phase=phase;$('#pondCheck').disabled=true;input.readOnly=true;$('#pondReturn').textContent='Catch another fish';later(()=>{if(phase==='answered'&&selected)returnFish(true)},900)}
     };
     $('#pondShowAnswer').onclick=()=>{$('#pondFeedback').textContent=current.answers[0];root.dataset.outcome='example'};
    }else $('#pondStartDrawing').onclick=()=>{if(!input.value.trim()){input.focus();$('#pondFeedback').textContent='Write your answer first.';return}studio()};
@@ -170,7 +184,7 @@
    $('#pondFeedback').textContent=ok?'Correct — your fish can stay in the pond!':'Not quite — your fish jumped out. Check your answer and release it again.';
    if(ok){const saved=saveFish(pageId,strokes);storageNotice=saved?'':' Your browser could not save it for next time.';$('#pondFeedback').textContent+=storageNotice;}
    later(()=>{
-    if(ok){drawnFish.busy=false;drawnFish.el.classList.remove('released');drawnFish=null;phase='answered';input.readOnly=true;$('#pondReturn').textContent='Catch another fish';$('#pondRelease').textContent='Swimming in the pond';$('#pondStudio').hidden=true;
+    if(ok){drawnFish.busy=false;drawnFish.el.classList.remove('released');drawnFish=null;phase='answered';input.readOnly=true;$('#pondReturn').textContent='Catch another fish';$('#pondRelease').textContent='Swimming in the pond';$('#pondStudio').hidden=true;later(()=>{if(phase==='answered'&&selected)returnFish(true)},900);
      // Keep the local school bounded even after a long lesson.
      const owned=fish.filter(f=>f.owned);if(owned.length>8){const old=owned[0];old.el.remove();fish=fish.filter(f=>f!==old)}
     }else{drawnFish.el.remove();fish=fish.filter(f=>f!==drawnFish);drawnFish=null;phase='question';input.readOnly=false;releaseButton.disabled=false;input.focus({preventScroll:true})}

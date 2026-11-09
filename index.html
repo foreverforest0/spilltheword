@@ -12809,8 +12809,15 @@ homeBind=function(){
  const baseCatalogView=setView;
  setView=function(html){baseCatalogView(html);if(tab!=='gram'||!grammarActivity||!grammarCurrent)return;
   const bar=document.createElement('div');bar.className='grammar-exercise-back';
-  const back=document.createElement('button');back.type='button';back.className='grammar-back';back.textContent='← '+grammarCurrent.name;
+  const native=[...$('#view').querySelectorAll('button')].find(b=>/^←\s*(?:Topics|Exercises|Kids topics)\b/i.test(b.textContent.trim()));
+  if(native){native.textContent='← Topics';return}
+  const back=document.createElement('button');back.type='button';back.className='grammar-back';back.textContent='← Topics';
   back.onclick=()=>{deskOff();grammarCatalog(grammarCurrent)};bar.appendChild(back);$('#view').prepend(bar);
+ };
+ window.openSharedGrammar=function(id,lv){
+  tab='gram';S.glevel=lv;S.splevel=lv;S.sptask=id;
+  grammarCurrent=grammarGroups().find(g=>g.ids.includes(id))||null;grammarActivity=!!grammarCurrent;
+  document.body.classList.remove('home');document.body.classList.add('grammar-style-active');spOpen(id);
  };
  glSetup=function(){
   grammarActivity=false;grammarCurrent=null;
@@ -12823,6 +12830,7 @@ homeBind=function(){
 
 })();
 async function boot(){
+ const shared=location.hash.match(/^#play=([A-Za-z0-9_-]+)$/);if(shared){await SharedGame.restore(shared[1]);return}
  if(/[#&]embed\b/.test(location.hash))document.body.classList.add('embed');
  {const wm=location.hash.match(/^#watch(?:=(\w+))?/);if(wm){wvTeacher(wm[1]);return}}
  if(!S.wcode&&!hq('w')&&!hq('tp')&&!/^#[cr]=/.test(location.hash)){S.wcode=rnd(8);save()}
@@ -12867,6 +12875,8 @@ async function boot(){
 <script src="question-pond.js"></script>
 <script src="unbox/tasks.js"></script>
 <script src="unbox/app.js"></script>
+<script src="live-answers.js"></script>
+<script src="shared-game.js"></script>
 <script>
 window.addEventListener('hashchange',()=>location.reload());
 boot();
