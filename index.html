@@ -1468,11 +1468,12 @@ body.home #view{max-width:none!important;margin:0!important;padding:0!important}
 .stw-home .book-body{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(82deg);transition:transform .82s cubic-bezier(.18,.68,.2,1)}.stw-home .book:hover .book-body,.stw-home .book:focus-visible .book-body{transform:rotateY(0)}
 .stw-home .spine{position:absolute;left:0;top:0;bottom:0;width:22px;z-index:2;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;background:var(--spine);color:var(--stw-cream);clip-path:polygon(3% 0,100% 1%,96% 14%,100% 31%,96% 49%,100% 68%,96% 99%,0 100%,3% 81%,0 64%,3% 46%,0 29%);transform:rotateY(-90deg);transform-origin:left center;font:400 9px/1 Georgia,'Times New Roman',serif!important;text-shadow:0 1px #0002;white-space:nowrap}.stw-home .book:nth-child(4) .spine{color:var(--stw-wine)}
 .stw-home .page-edge{position:absolute;right:0;top:0;bottom:0;width:22px;background:var(--cover-color);transform:rotateY(90deg);transform-origin:right center}
-.stw-home .cover{position:absolute;inset:0 0 0 9px;transform:translateZ(7px);backface-visibility:hidden;display:grid;place-items:center;border:1.5px solid var(--stw-wine);clip-path:polygon(1% 0,100% 1%,99% 99%,0 100%,1% 72%,0 48%,1% 22%)}.stw-home .book:nth-child(1) .cover{background:var(--stw-blue)}.stw-home .book:nth-child(2) .cover{background:var(--stw-orange)}.stw-home .book:nth-child(3) .cover{background:var(--stw-cream)}.stw-home .book:nth-child(4) .cover{background:var(--stw-green)}.stw-home .book:nth-child(5) .cover{background:var(--stw-wine)}.stw-home .book:nth-child(6) .cover{background:var(--stw-blue)}.stw-home .book:nth-child(7) .cover{background:var(--stw-orange)}
+.stw-home .cover{position:absolute;inset:0 0 0 9px;transform:translateZ(7px);backface-visibility:hidden;display:grid;place-items:center;border:1.5px solid var(--stw-wine);clip-path:polygon(1% 0,100% 1%,99% 99%,0 100%,1% 72%,0 48%,1% 22%)}.stw-home .book:nth-child(1) .cover{background:var(--stw-blue)}.stw-home .book:nth-child(2) .cover{background:var(--stw-orange)}.stw-home .book:nth-child(3) .cover{background:var(--stw-cream)}.stw-home .book:nth-child(4) .cover{background:var(--stw-green)}.stw-home .book:nth-child(5) .cover{background:var(--stw-wine)}.stw-home .book:nth-child(6) .cover{background:var(--stw-blue)}.stw-home .book:nth-child(7) .cover{background:var(--stw-cream)}
 .stw-home .book-title{width:90%;padding:3px 2px;color:var(--stw-wine);font:400 clamp(10px,.92vw,13px)/1.08 Georgia,'Times New Roman',serif!important;text-align:center;overflow-wrap:anywhere}.stw-home .book:nth-child(2) .book-title,.stw-home .book:nth-child(4) .book-title,.stw-home .book:nth-child(5) .book-title{color:var(--stw-cream)}
 /* Closed book volume: every face meets at the same 22px depth. */
 .stw-home .book{--cover-color:var(--stw-blue)}
-.stw-home .book:nth-child(2),.stw-home .book:nth-child(7){--cover-color:var(--stw-orange)}
+.stw-home .book:nth-child(2){--cover-color:var(--stw-orange)}
+.stw-home .book:nth-child(7){--cover-color:var(--stw-cream)}
 .stw-home .book:nth-child(3){--cover-color:var(--stw-cream)}
 .stw-home .book:nth-child(4){--cover-color:var(--stw-green)}
 .stw-home .book:nth-child(5){--cover-color:var(--stw-wine)}
@@ -3090,6 +3091,7 @@ const GAMES={
  expand:{title:'Sentence Expander',icon:'🧩',desc:'Choose a grammar topic. Change a sentence one step at a time, from extra details to new forms, and dive deeper with every change.'},
  shop:{title:'Shop',icon:'🛒',desc:'A supermarket: walk through the departments, drag products around, click to zoom in and read the name, put them in the basket.'},
  write:{title:'Creative Writing',icon:'⌨️',desc:'A vintage typewriter: type a story line by line. What you type stays for the next person.'},
+ bard:{title:'The Writing Room',icon:'✒️',desc:'Rewrite a sentence with richer vocabulary in Shakespeare’s study. B1, B2 and C1.'},
  speak:{title:'Grammar Speaking',icon:'🗣️',desc:'Speaking practice by grammar topic. A picture and a question appear with the time markers; the student answers out loud. Click the picture (or press Space) for the next one.'},
  gwho:{title:'Guess Who',icon:'🕵️',desc:'Each player has a secret character. Ask each other yes/no questions out loud and flip down the cards. The first to guess the other player’s character wins.'},
  jeo:{title:'Jeopardy',icon:'🏆',desc:'A board of categories. Tiles reveal words and tasks (or your own questions). Up to 6 columns, 5 rows.',
@@ -3370,7 +3372,7 @@ window.addEventListener('resize',()=>{if(tab==='shop'&&$('#shsh'))shShelves()});
 /* ===== Navigation ===== */
 const REMOVED_GAMES=new Set(['scramble','emoji','bingo','ttt','story','gwho']);
 for(const key of REMOVED_GAMES)delete GAMES[key];
-const NAV=['alias','taboo','jeo','gif','speak','shop','gram','write','house','words'];
+const NAV=['alias','taboo','jeo','gif','speak','shop','gram','write','house','words','bard'];
 let tab='alias',R=null,J=null,tmr=null;
 let NL=null,NR=null;
 const navTabs={setActive(i){
@@ -3618,6 +3620,7 @@ document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest
 function go(t){if(REMOVED_GAMES.has(t))t='home';BLOBID=null;seaOff();clearInterval(HOMET);stopTimer();clearInterval(GLT);EX=null;GL=null;R=null;J=null;B=null;T=null;ST=null;GS=null;GF=null;tab=t;roomPush();try{shopVis(t==='shop')}catch(e){}try{$('#embpan').hidden=true;embUpdate()}catch(e){}
  document.body.classList.toggle('home',t==='home');
  if(t==='home'){NL&&NL.destroy();NR&&NR.destroy();NL=NR=null;setView(homeHTML());homeBind();window.scrollTo(0,0);return}
+ if(t==='bard'){setView('<section class="writing-room-host"><iframe id="writing-room-frame" src="writing-room/index.html" title="The Writing Room: Shakespeare vocabulary practice" style="display:block;width:100%;height:1040px;border:0;background:#F9F5E6" loading="eager"></iframe></section>');window.scrollTo(0,0);return}
  navTabs.setActive(NAV.indexOf(t));
  if(t==='words'){setView(wordsView());bindWords()}else renderSetup(t);
  window.scrollTo(0,0)}
@@ -12622,7 +12625,7 @@ homeHTML=function(){
  const title=(word,start)=>`<span class="title-word">${[...word].map((c,i)=>`<span class="title-letter" style="--i:${start+i};--dy:${[-6,-3,2,5,2][(start+i)%5]}px">${c}</span>`).join('')}</span>`;
  const star=`<svg class="doodle d-star" viewBox="0 0 48 48" aria-hidden="true"><path d="M23 2 Q26 2 27 18 Q39 8 42 12 Q44 15 30 24 Q45 27 44 31 Q43 35 28 30 Q34 43 30 45 Q26 47 23 32 Q14 44 11 41 Q8 38 18 27 Q3 29 2 25 Q1 21 18 21 Q9 9 13 7 Q17 5 23 19 Z"/><path class="doodle-mark" d="M22 8 Q24 15 23 19 M7 24 Q14 22 18 23"/></svg>`;
  const flower=`<svg class="doodle d-flower" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3 Q29 3 28 17 Q39 8 42 13 Q45 17 31 23 Q45 26 42 31 Q40 36 29 29 Q33 43 27 44 Q22 46 22 31 Q12 41 9 36 Q6 32 18 25 Q3 25 4 20 Q5 15 19 20 Q11 8 16 5 Q20 2 23 17 Z"/><path class="doodle-mark" d="M23 8 Q24 14 23 18 M8 21 Q13 20 18 22"/></svg>`;
- const games=[['house','The Midnight House','house'],['write','Creative Writing','write'],['shop','Shop','shop'],['flask','Word Craft','gram','craft'],['scales','Absurd Choices','gram','absurd'],['ruler','Sentence Expander','gram','exp']];
+ const games=[['house','The Midnight House','house'],['write','Creative Writing','write'],['shop','Shop','shop'],['flask','Word Craft','gram','craft'],['scales','Absurd Choices','gram','absurd'],['ruler','Sentence Expander','gram','exp'],['bard','The Writing Room','bard']];
  const books=games.map(([key,name,tabName,mode],i)=>`<button class="book" data-book-game="${key}" data-tab="${tabName}"${mode?` data-mode="${mode}"`:''} aria-label="Open ${esc(name)}"><span class="book-body"><span class="spine">${esc(name)}</span><span class="page-edge"></span><span class="book-bottom"></span><span class="cover"><span class="book-title">${esc(name)}</span></span></span></button>`).join('');
  return `<section class="stw-home"><h1 aria-label="spill the word">${title('spill',0)}${star}${title('the',5)}${title('word',8)}${flower}</h1><div class="layout"><a class="category" href="#grammar" data-category="grammar">Grammar</a><div class="books">${books}</div><a class="category" href="#vocab" data-category="vocab">Vocabulary</a></div></section>`;
 };
@@ -12846,6 +12849,7 @@ async function boot(){
 <script src="card-stacks.js"></script>
 <script src="card-stack-adapters.js"></script>
 <script src="card-stack-fix.js"></script>
+<script src="writing-room/bridge.js"></script>
 <script src="live-answers.js"></script>
 <script src="shared-game.js"></script>
 <script>

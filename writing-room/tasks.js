@@ -1,0 +1,18 @@
+/* Modern vocabulary in a Shakespeare writing-room setting. Hints are not answer keys. */
+window.BardTasks={
+ b1:[
+  {source:'He was scared, but he opened the door.',detail:'Before opening the door, he takes a deep breath.',words:[['nervous','Worried or a little frightened.'],['take a deep breath','Breathe in slowly and deeply.'],['finally','After a wait or a difficulty.']]},
+  {source:'She was happy because her friend came.',detail:'She did not expect to see her friend.',words:[['delighted','Very pleased.'],['unexpected','Something you did not think would happen.'],['arrive','Reach a place.']]},
+  {source:'He wanted to help, but he was tired.',detail:'He decides to stay until the work is finished.',words:[['exhausted','Very tired.'],['decide','Choose what to do.'],['until','Up to the time when something happens.']]}
+ ],
+ b2:[
+  {source:'He was scared, but he opened the door.',detail:'He hears a strange noise inside the room.',words:[['hesitate','Pause because you are unsure.'],['anxious','Worried about what may happen.'],['gather the courage','Become brave enough to do something.']]},
+  {source:'She did not agree with his plan, but she helped him.',detail:'She wants to protect their friendship.',words:[['reluctant','Not willing or eager to do something.'],['support','Help someone or show that you are on their side.'],['despite','Used to introduce something that does not prevent an action.']]},
+  {source:'He wanted to be king, so he lied to his friend.',detail:'He feels guilty immediately afterwards.',words:[['ambition','A strong wish to achieve something.'],['betray','Break someone’s trust.'],['regret','Feel sorry about something you did.']]}
+ ],
+ c1:[
+  {source:'He was scared, but he opened the door.',detail:'His friend is watching. He wants to hide his fear.',words:[['conceal','Keep something hidden.'],['apprehension','Anxiety about something that may happen.'],['maintain his composure','Remain outwardly calm and in control.']]},
+  {source:'She was angry, but she spoke politely.',detail:'She does not want the other guests to notice.',words:[['resentment','Bitterness about something you consider unfair.'],['restrain','Keep a feeling or action under control.'],['outwardly','In the way someone appears to other people.']]},
+  {source:'He said he would help, but he wanted something in return.',detail:'His generous offer makes her suspicious.',words:[['ulterior motive','A hidden reason for doing something.'],['seemingly','Appearing to be true, although it may not be.'],['arouse suspicion','Make someone think that something may be wrong.']]}
+ ]
+};
