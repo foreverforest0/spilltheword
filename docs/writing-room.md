@@ -1,6 +1,6 @@
 # The Writing Room
 
-The new home-shelf book opens `go('bard')`, an embedded Shakespeare vocabulary activity in `writing-room/`. The general room view stays visible beside the illustrated desk. The room animation is muted, loops, has a pause control and respects reduced-motion preferences.
+The new home-shelf book opens `go('bard')`, an embedded Shakespeare vocabulary activity in `writing-room/`. The writing view contains a single large illustrated desk, paper and writing objects. Portraits and the arched window from the original room decorate the wall behind it; the side-by-side room scene and its video control are removed from the writing view.
 
 The source sentence, extra context and instructions live inside the closed **how to?** disclosure. It expands in normal flow above the scene. Three curated prompts per level are included for B1, B2 and C1. The word parchment offers short definitions and highlights words when used; it does not grade vocabulary or semantic accuracy.
 
@@ -20,6 +20,6 @@ Copy link records the iframe's normal inputs and navigation. The bridge addition
 
 ## Assets and validation
 
-The user-approved generated assets are packaged losslessly as WebP; the original source files remain in `/workspace/generated_images`. Basket layers retain the same full canvas and align exactly. The original animated room MP4 is reused. Font attribution and license are in `writing-room/fonts/OFL.txt`.
+The user-approved generated assets are packaged losslessly as WebP; the original source files remain in `/workspace/generated_images`. Basket layers retain the same full canvas and align exactly. The original room image supplies the decorative wall crops; its animation asset is retained for future use outside the writing view. Font attribution and license are in `writing-room/fonts/OFL.txt`.
 
 `python scripts/check-writing-room.py` covers the real home-book entry, all three levels, hidden instructions, transparent handwriting editor, quill movement, draft retention, grammar-only decisions, failed/incomplete service responses, real paper animations, signed-page reading, matching shared-link replay without repeated API calls and mobile layout. API responses are mocked for this test. The managed environment denied access to `api.languagetool.org` (HTTP CONNECT 403); production LanguageTool connectivity and coverage remain unverified.

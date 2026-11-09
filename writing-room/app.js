@@ -1,7 +1,7 @@
-/* The room stays visible; prompts are in How to, writing happens on the parchment. */
+/* A single writing desk; prompts stay in How to, writing happens on the parchment. */
 (()=>{
 'use strict';
-const $=s=>document.querySelector(s),root=$('#writing-room'),scene=$('.wr-scene'),paper=$('#wr-manuscript'),input=$('#wr-answer'),feedback=$('#wr-feedback'),check=$('#wr-check'),video=$('.wr-room-art');
+const $=s=>document.querySelector(s),root=$('#writing-room'),scene=$('.wr-scene'),paper=$('#wr-manuscript'),input=$('#wr-answer'),feedback=$('#wr-feedback'),check=$('#wr-check');
 const reduce=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
 let level='b1',index=0,busy=false,alive=true,penTimer=0,request=null,replayQueue=[];const cursors={b1:0,b2:0,c1:0},drafts=new Map(),signed=[],checks=new Map(),history=[];
 const key=()=>level+':'+index,task=()=>BardTasks[level][index],wait=ms=>new Promise(r=>setTimeout(r,reduce()?0:ms));
@@ -16,7 +16,7 @@ function render(){
 }
 function keep(){drafts.set(key(),input.value)}
 function placePen(){
- const quill=$('#wr-quill');if(document.activeElement!==input||!paper.classList.contains('wr-writing')){quill.style.left='89%';quill.style.top='25%';quill.style.transform='';return}
+ const quill=$('#wr-quill');if(document.activeElement!==input||!paper.classList.contains('wr-writing')){quill.style.left='86%';quill.style.top='25%';quill.style.transform='';return}
  const style=getComputedStyle(input),mirror=document.createElement('div');mirror.style.cssText='position:fixed;left:-10000px;top:0;visibility:hidden;white-space:pre-wrap;overflow-wrap:break-word;box-sizing:border-box;';
  for(const property of ['font','lineHeight','letterSpacing','padding','border','wordSpacing','textIndent'])mirror.style[property]=style[property];mirror.style.width=input.clientWidth+'px';mirror.textContent=input.value.slice(0,input.selectionStart);
  const caret=document.createElement('span');caret.textContent='\u200b';mirror.append(caret);document.body.append(mirror);
@@ -27,8 +27,6 @@ input.addEventListener('input',()=>{keep();feedback.textContent='';updateWords()
 for(const type of ['click','keyup','focus','blur','scroll','select'])input.addEventListener(type,placePen);document.fonts.ready.then(placePen);window.addEventListener('resize',placePen);
 $('#wr-new').onclick=()=>{keep();index=(index+1)%BardTasks[level].length;cursors[level]=index;render()};
 for(const b of document.querySelectorAll('[data-level]'))b.onclick=()=>{keep();level=b.dataset.level;index=cursors[level];render()};
-function motionState(){const paused=video.paused;$('#wr-motion').textContent=paused?'Play scene':'Pause scene';$('#wr-motion').setAttribute('aria-pressed',String(paused))}
-$('#wr-motion').onclick=()=>{if(video.paused)video.play().catch(()=>{});else video.pause();setTimeout(motionState,0)};video.addEventListener('pause',motionState);video.addEventListener('play',motionState);if(reduce()){video.removeAttribute('autoplay');video.pause()}motionState();
 async function grammar(text){
  if(checks.has(text))return checks.get(text);
  request=new AbortController();const timeout=setTimeout(()=>request?.abort(),12000);
@@ -78,7 +76,7 @@ $('#wr-stack').onclick=()=>{
  archive.hidden=!archive.hidden;if(!archive.hidden)archive.scrollIntoView({behavior:reduce()?'instant':'smooth',block:'nearest'});
 };$('#wr-close-pages').onclick=()=>{$('#wr-signed-pages').hidden=true;$('#wr-stack').focus()};
 window.WritingRoom={get busy(){return busy},exportChecks:()=>history.slice(),get state(){return {level,index,draft:input.value,signed:signed.slice()}}};
-window.addEventListener('pagehide',()=>{alive=false;request?.abort();clearTimeout(penTimer);video.pause();resize.disconnect()},{once:true});
+window.addEventListener('pagehide',()=>{alive=false;request?.abort();clearTimeout(penTimer);resize.disconnect()},{once:true});
 const resize=new ResizeObserver(()=>{try{if(parent!==window)parent.postMessage({type:'writing-room-height',height:Math.ceil(root.getBoundingClientRect().height)},location.origin)}catch{}});resize.observe(root);
 render();try{parent.SharedGame?.attachFrame(window)}catch{}
 })();
