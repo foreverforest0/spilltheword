@@ -2,11 +2,11 @@
 
 The home-shelf book opens `go('bard')`. The entrance shows the full room and an **Open the letter** button. Its original head-scratching video is supplemented by local SVG motion: the globe map rotates within its stationary frame, both portraits and Shakespeare blink, and three fingertips tap with staggered timing. Pause controls both the video and SVG timeline; the scene pauses while writing and starts paused with reduced motion.
 
-The writing view contains the desk, two portraits and a complete window to the right. The source sentence remains visible on the parchment. How to is an explicit button that expands instructions in normal flow. The iframe bridge brings the source into view after entry/restoration and verifies message origin and source.
+The writing view contains the desk and one oval portrait of Shakespeare. The window and the two earlier portraits are removed only from this close view. The inkwell, signed-page stack and basket sit higher. The source sentence remains visible on the parchment. How to is an explicit button that expands instructions in normal flow. The iframe bridge brings the source into view after entry/restoration and verifies message origin and source.
 
 B1, B2 and C1 each have three prompts. Every prompt now has three short detail choices: an action, emotion, reason or related context. **Another detail** changes the blue note without clearing the draft or source. Choices persist across level and room navigation within a session. Hint definitions and usage highlights do not grade vocabulary or meaning.
 
-The answer is a real labelled textarea, transparently overlaid on the illustrated parchment, using the locally hosted OFL-licensed La Belle Aurore font. The quill follows its measured caret. Drafts are retained per level and prompt.
+The answer is a real labelled textarea, transparently overlaid on the illustrated parchment, using the locally hosted OFL-licensed La Belle Aurore font. The quill starts in the clickable inkwell. Writing and checking remain locked until the learner takes it with mouse or keyboard; pickup is recorded in shared sessions. The quill then follows its measured caret. It stays available across tasks and room navigation. Drafts are retained per level and prompt.
 
 ## Grammar and corrections
 
@@ -26,7 +26,7 @@ Generated artwork is packaged losslessly as WebP; originals remain in `/workspac
 
 ## Verification
 
-- `python scripts/check-writing-room.py`: real book/room entry, visible source, mouse/keyboard How to, B1/B2/C1 drafts, handwriting, correction-first behaviour, failed/incomplete service responses, signed-page animation, shared verdict replay and mobile layout.
+- `python scripts/check-writing-room.py`: real book/room entry, visible source, mouse/keyboard How to, B1/B2/C1 drafts, quill pickup and shared readiness, single portrait, handwriting, correction-first behaviour, failed/incomplete service responses, signed-page animation, shared verdict replay and mobile layout.
 - `python scripts/check-writing-corrections.py`: local form guards and valid subjunctives; spelling/typographical/uncategorized service matches; all three annotation types; replacement offsets; manual correction; mandatory recheck; shared correction actions; detail choices; actual globe/blink/finger timelines; mobile popup containment.
 
 Browser tests mock remote grammar responses. The managed environment denied `api.languagetool.org` with HTTP CONNECT 403 in this session; live production service availability and coverage remain unverified. Local form guards and the correction interface are tested independently of that access.
