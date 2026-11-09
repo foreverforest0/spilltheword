@@ -46,3 +46,10 @@
 @media(max-width:900px){.sx-catalog .sx-topic-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.sx-trail{margin:0 24px}.sx-status{margin-inline:24px}.sx-header{padding-inline:90px}.sx-fish{opacity:.35}.sx-help{margin-inline:24px}}
 @media(max-width:600px){#view .sx-catalog{padding:14px 10px 35px}.sx-topic-grid{gap:10px}#view .sx-topic{min-height:145px;font-size:18px;padding:14px}.sx-mini-fish{width:52px;height:52px}.sx-header{padding:18px 22px 4px}#view .sx-header h1{font-size:39px;margin:16px 0 18px}.sx-topic-name{font-size:17px}.sx-status{margin:0 12px 20px;padding:8px;gap:7px;top:4px}#view .sx-status button{font-size:14px;padding:9px}.sx-depth-label{font-size:15px}.sx-depth-label>span{margin-left:5px;font-size:13px}.sx-trail{margin:0 12px}.sx-start,.sx-step-paper{padding:20px}.sx-start{margin-bottom:32px}.sx-stage{min-height:70vh;margin-bottom:45px}.sx-previous{font-size:20px;padding:13px}.sx-instruction{font-size:23px}#view .sx-answer{font-size:22px!important;min-height:120px}.sx-step-top{margin-bottom:14px}.sx-help{margin-inline:12px;font-size:16px}.sx-finish{padding:25px 18px}.sx-finish>p{font-size:23px}.sx-seaweed{opacity:.3}body:has(.sx-dive) #homeBtn{position:absolute}}
 @media(prefers-reduced-motion:reduce){.sx-dive *,.sx-catalog *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* A one-word foothold, rather than a completed target phrase. */
+.sx-starter{display:flex;align-items:center;gap:10px;margin:-8px 0 22px;color:#26422B;font:15px/1.4 Georgia,serif}
+.sx-starter strong{font:22px/1.2 Georgia,serif;color:#70271F;background:#CCE5FF;padding:5px 11px;border-radius:2px}
+.sx-hint>p{margin:0}
+.sx-step-paper>.sx-example-toggle{margin-top:18px}
+.sx-step-paper>.sx-example{background:#F9F5E6;padding:15px 18px;margin:12px 0 0;color:#26422B;font:22px/1.45 Georgia,serif}
