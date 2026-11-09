@@ -3813,7 +3813,7 @@ function _renderRound(){
     return `<div class="rcw">${esc(d.w||'')}</div>${sec}`};
    const bd=$('#rboard');
    mountBoard(bd,R.deck.map((d,i)=>({html:face(d),seed:i*5+R.gen[i]*7+1,col:i*3+R.gen[i]*5,cls:R.used&&R.used[i]?'used':''})),(i)=>{if(!canPick)return;if(ROOM.role==='guest')roomSend({t:'act',a:'pick',d:{i}});else doAct('pick',{i})});
-   if(R.pk>=0){const d=bd.children[R.pk],c=R.deck[R.pk],tw=trOf(c);let body='',hl=[];
+   if(R.pk>=0){const d=bd._stack?bd._stack.cards[R.pk]:bd.children[R.pk],c=R.deck[R.pk],tw=trOf(c);let body='',hl=[];
     if(gsT)body='<div class="rcw big">?</div>';
     else if(R.g==='taboo')body=`<div class="rcw big">${hw(c.w,tw)}</div><div class="tbl">Do not say</div><div class="tb">${(c.t||[]).length?c.t.map(x=>`<span class="kchip bad">${hw(x)}</span>`).join(''):'<em class="muted">no taboo words, but you still can’t say the word itself</em>'}</div>`;
     else if(R.g==='emoji'){body=`<div class="emo">${ez(c.e)}</div>`;hl=[c.hm||mask(c.w),c.w]}
@@ -3821,7 +3821,7 @@ function _renderRound(){
     const desc=R.g==='alias'||R.g==='taboo';if(desc)hl=DESCR;
     const inner=`<div class="cbbig inl rcb">${R.g!=='emoji'?'<button class="rcx" data-a="done" aria-label="Turn the card back">✕</button>':''}${body}<div class="cbh" hidden></div><div class="cbbtn">${hl.length&&!gsT?`<button class="lvb" id="rhint">${desc?'💡 How to describe':'Hints'}</button>`:''}${R.g==='emoji'?'<button class="lvb on" data-a="next">Next →</button>':''}</div></div>`;
     cardFlip(bd,d,inner,R.g==='taboo'?480:440,R.g==='taboo'?(c.t&&c.t.length>4?400:340):(R.g==='emoji'?330:260));const desc2=R.g==='alias'||R.g==='taboo';
-    setTimeout(()=>{const hb=document.getElementById('rhint');if(!hb)return;let hn=0;hb.onclick=()=>{if(hn>=hl.length)return;hn=desc2?hl.length:hn+1;if(desc2){const card=d;card.style.height='auto';card.style.minHeight=(card.offsetHeight)+'px';const bd2=card.parentNode;if(bd2&&card.offsetTop+card.offsetHeight+10>bd2.clientHeight)bd2.style.height=(card.offsetTop+card.offsetHeight+200)+'px'}const h=d.querySelector('.cbh');h.hidden=false;h.innerHTML=hl.slice(0,hn).map(x=>'<div class="hintw">'+esc(x)+'</div>').join('');if(hn>=hl.length)hb.disabled=true}},260)}
+    setTimeout(()=>{const hb=d.querySelector('#rhint');if(!hb)return;let hn=0;hb.onclick=()=>{if(hn>=hl.length)return;hn=desc2?hl.length:hn+1;if(desc2){const card=d;card.style.height='auto';card.style.minHeight=(card.offsetHeight)+'px';const bd2=card.parentNode;if(bd2&&card.offsetTop+card.offsetHeight+10>bd2.clientHeight)bd2.style.height=(card.offsetTop+card.offsetHeight+200)+'px'}const h=d.querySelector('.cbh');h.hidden=false;h.innerHTML=hl.slice(0,hn).map(x=>'<div class="hintw">'+esc(x)+'</div>').join('');if(hn>=hl.length)hb.disabled=true}},260)}
    return}
   const c=cur();let inner='',btns='';const tw=trOf(c);
     if(R.g==='alias'){inner=gs?`<div class="cat">${esc(c.cat||'')}</div><div class="word">🤔</div><p class="muted">Guess the word!</p>`:`<div class="cat">${esc(c.cat||'')}</div>${c.e&&c.e[0]==='@'?`<div class="emo">${ez(c.e)}</div>`:''}<div class="word">${hw(c.w,tw)}</div>`;
@@ -4432,6 +4432,8 @@ ptc:[['While I was walking home, I met Tom.','→ participle clause','Walking ho
 /* ===== Sentence Expander: ocean curriculum in sentence-expander.js ===== */
 let EX=null;
 function exSetup(){window.SentenceExpander.setup()}
+function exCourse(){return COURSES.find(c=>c.id===S.excourse)||COURSES[0]}
+function exWords(){const c=exCourse(),units=(S.exun||[]).filter(i=>c.units[i]);const use=units.length?units:c.units.map((_,i)=>i),seen=new Set(),words=[];use.forEach(i=>c.units[i].ls.forEach((l,j)=>{if(units.length===1&&S.exls>=0&&j!==S.exls)return;(l.v||[]).forEach(w=>{const key=String(w).toLowerCase();if(!seen.has(key)){seen.add(key);words.push(w)}})}));return words}
 
 /* ===== Wheels and boards: engine ===== */
 let GLT=null;
@@ -12839,6 +12841,11 @@ async function boot(){
 <script src="vendor/block-revealers/block-revealer.js"></script>
 <script src="sentence-expander-data.js"></script>
 <script src="sentence-expander.js"></script>
+<link rel="stylesheet" href="vendor/card-stack-effects/effects.css">
+<link rel="stylesheet" href="card-stacks.css">
+<script src="card-stacks.js"></script>
+<script src="card-stack-adapters.js"></script>
+<script src="card-stack-fix.js"></script>
 <script src="live-answers.js"></script>
 <script src="shared-game.js"></script>
 <script>

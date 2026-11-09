@@ -92,20 +92,23 @@ with sync_playwright() as pw:
 
     for mode in ["compare", "find", "memory"]:
         activity("there" + mode)
-        question = page.locator("#thereQuestion").inner_text()
+        question = page.locator(".cs-card:not([hidden]) .cs-front .thereQuestion").inner_text()
         page.locator("#thereExample").click()
-        assert len(page.locator("#thereAnswer").inner_text()) > 5
+        page.wait_for_function("!document.querySelector('.cs-deck')._cardDeck.busy")
+        assert len(page.locator(".cs-card:not([hidden]) .cs-reverse .there-example").inner_text()) > 5
         if mode == "memory":
             page.locator("#thereHide").click()
-            page.wait_for_function("getComputedStyle(document.querySelector('.there-photo')).filter.includes('brightness(0.07)')")
-            assert page.locator(".there-photo").is_visible()
+            page.wait_for_function("getComputedStyle(document.querySelector('.cs-card:not([hidden]) .cs-front .there-photo')).filter.includes('brightness(0.07)')")
+            assert page.locator(".cs-card:not([hidden]) .cs-reverse .there-photo").is_visible()
             page.locator("#thereHide").click()
             assert page.locator("#thereHide").get_attribute("aria-pressed") == "false"
         page.locator("#thereNew").click()
+        page.wait_for_function("!document.querySelector('.cs-deck')._cardDeck.busy")
         if mode != "compare":
-            assert question != page.locator("#thereQuestion").inner_text()
+            assert question != page.locator(".cs-card:not([hidden]) .cs-front .thereQuestion").inner_text()
         page.locator("#thereExample").click()
-        assert page.locator("#thereAnswer").is_visible()
+        page.wait_for_function("!document.querySelector('.cs-deck')._cardDeck.busy")
+        assert page.locator(".cs-card:not([hidden]) .cs-reverse .there-example").is_visible()
 
     for level in ["kids", "a1", "a2", "b1", "b2", "c1"]:
         activity("mkb" if level == "kids" else "mgb", level)

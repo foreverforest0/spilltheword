@@ -60,18 +60,19 @@ with sync_playwright() as pw:
  open_task('how');titles=set()
  for batch in range(2):
   assert p.locator('.process-card').count()==6
-  assert p.locator('.process-front img').count()==6
-  assert p.locator('.process-verbs:visible,#processHintText:visible').count()==0
+  assert p.locator('.process-card:not([hidden]) .process-front img').count()==1
+  assert p.locator('#processHintText:visible').count()==0
   assert p.locator('.process-question .stw-wave-letter').count()==0
-  for card in p.locator('.process-card').all():
-   title=card.get_attribute('data-process');assert title not in titles; titles.add(title)
+  for i in range(6):
+   card=p.locator('.process-card:not([hidden])');title=card.get_attribute('data-process');assert title not in titles;titles.add(title)
    assert card.locator('.process-front').inner_text()=='How to '+title+'?'
-   card.click();assert card.locator('.process-front').is_hidden() and card.locator('.process-back').is_visible()
+   card.click();p.wait_for_function("!document.querySelector('.cs-deck')._cardDeck.busy");assert card.get_attribute('aria-pressed')=='true'
    assert card.locator('.process-verbs [role="listitem"]').count()>=5
    assert not re.search(r'firstly|first,|next|finally|after that',card.locator('.process-back').inner_text(),re.I)
-   card.click();assert card.locator('.process-front').is_visible() and card.locator('.process-back').is_hidden()
+   card.click();p.wait_for_function("!document.querySelector('.cs-deck')._cardDeck.busy");assert card.get_attribute('aria-pressed')=='false'
+   if i<5:p.locator('.cs-next').click();p.wait_for_function("!document.querySelector('.cs-deck')._cardDeck.busy")
   if batch==0:
-   p.locator('.process-card').first.click();p.screenshot(path='/tmp/how-to-desktop.png',full_page=True)
+   p.screenshot(path='/tmp/how-to-desktop.png',full_page=True)
    p.locator('#processHints').click();assert p.locator('#processHintText').is_visible() and 'Firstly' in p.locator('#processHintText').inner_text()
    p.locator('#processHints').click();assert p.locator('#processHintText').is_hidden()
    p.locator('#processNew').click()

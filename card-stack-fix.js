@@ -1,0 +1,23 @@
+/* A proofreading deck keeps word marking separate from clicking the card to flip. */
+(()=>{
+ function fixTime(rows,styles){
+  const items=shuffle(rows.slice()),notes=items.map(()=>({value:'',selected:-1,complete:false,feedback:'',mark:''}));let selected=-1,active=0,annotation=null,timer=null,deck,marks=[];
+  setView(`<section class="panel k-card cbpanel fix-time-page"><div class="cbbar"><button class="lvb" id="fixTopics">← Topics</button><h2>Fix the time</h2></div><p class="fix-direction">Click the wrong word, then type its correction. Click the card background to turn it over.</p><div id="fixDeck"></div><div class="fix-editor" hidden><label for="fixReplacement"></label><input id="fixReplacement" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="fixFeedback" placeholder="Correction"></div><div class="fix-actions"><button class="lvb" id="fixCancel">Cancel</button></div><p id="fixFeedback" role="status" aria-live="polite"></p></section>`);
+  const page=$('#view .fix-time-page'),editor=page.querySelector('.fix-editor'),input=$('#fixReplacement'),feedback=$('#fixFeedback');$('#fixTopics').onclick=spSetup;
+  const remove=()=>{clearTimeout(timer);annotation?.remove();annotation=null};
+  function select(i,restoring=false){
+   const note=notes[active],row=items[active];if(note.complete)return;remove();selected=i;note.selected=i;editor.hidden=false;input.readOnly=false;editor.querySelector('label').textContent='Replace “'+row.words[i]+'” with';
+   if(!restoring){input.value='';feedback.textContent='';if(!marks.length)marks=shuffle(styles.slice());note.mark=marks.pop();input.focus()}
+   const word=deck.current.querySelector(`[data-fix-word="${i}"]`);annotation=RoughNotation.annotate(word,{type:note.mark||styles[0],color:'#70271F',strokeWidth:2.4,iterations:2,padding:note.mark==='circle'?7:3,animate:!matchMedia('(prefers-reduced-motion: reduce)').matches,animationDuration:420,multiline:true});annotation.show();word.setAttribute('aria-pressed','true');page.dataset.annotation=note.mark;
+  }
+  deck=CardStacks.create($('#fixDeck'),items.map(row=>({className:'fix-sentence-card',front:()=>`<div class="cs-text-front"><p class="fix-sentence">${row.words.map((w,i)=>`<span class="fix-word" role="button" tabindex="0" data-fix-word="${i}" aria-pressed="false">${esc(w)}</span>`).join(' ')}</p></div>`,back:()=>`<div class="cs-text-front">${esc(row.right)}</div><div class="cs-text-copy">${esc(row.wrong)}</div>`})),{label:'Fix the time',beforeChange:(_,old)=>{notes[old].value=input.value;notes[old].feedback=feedback.textContent;remove()},onChange:i=>{active=i;selected=notes[i].selected;const note=notes[i];input.value=note.value;input.readOnly=note.complete;editor.hidden=selected<0;feedback.textContent=note.feedback;page.dataset.sentence=items[i].wrong;page.classList.toggle('answered',note.complete);if(selected>=0)editor.querySelector('label').textContent='Replace “'+items[i].words[selected]+'” with'},onBuild:(card,i,side)=>{if(side!=='front')return;card.querySelectorAll('[data-fix-word]').forEach(word=>{word.onclick=e=>{e.stopPropagation();select(+word.dataset.fixWord)};word.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();select(+word.dataset.fixWord)}}})},onDispose:remove});
+  function check(explicit){
+   const row=items[active],note=notes[active];if(selected<0||note.complete)return;const answer=input.value.toLowerCase().trim().replace(/[.!?]$/,'');note.value=input.value;
+   if(selected===row.index&&row.alternatives.includes(answer)){note.complete=true;input.readOnly=true;page.classList.add('answered');feedback.textContent='Correct! '+row.words.map((w,i)=>i===selected?answer:w).join(' ');note.feedback=feedback.textContent;deck.current.querySelectorAll('.fix-word').forEach(el=>el.setAttribute('aria-disabled','true'));timer=setTimeout(()=>{if(page.isConnected)deck.go(1)},2000)}
+   else if(explicit||['at','on','in'].includes(answer))feedback.textContent='Try another word or correction.';
+  }
+  input.oninput=()=>{if(notes[active].complete)return;clearTimeout(timer);feedback.textContent='';timer=setTimeout(()=>check(false),450)};input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();clearTimeout(timer);check(true)}else if(e.key==='Escape')$('#fixCancel').click()};
+  $('#fixCancel').onclick=()=>{remove();notes[active]={value:'',selected:-1,complete:false,feedback:'',mark:''};selected=-1;input.value='';input.readOnly=false;editor.hidden=true;feedback.textContent='';page.classList.remove('answered');page.dataset.annotation='';deck.current.querySelectorAll('.fix-word').forEach(w=>{w.setAttribute('aria-pressed','false');w.removeAttribute('aria-disabled')})};
+ }
+ CardStacks.fixTime=fixTime;
+})();

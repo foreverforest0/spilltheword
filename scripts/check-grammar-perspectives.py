@@ -28,7 +28,7 @@ with sync_playwright() as pw:
  seen=set()
  for i in range(16):
   page=p.locator('.reporter-page');key=page.get_attribute('data-action');subject=page.get_attribute('data-subject');wrong=page.get_attribute('data-wrong');assert key not in seen;seen.add(key)
-  assert p.locator('.reporter-card img').count()==1
+  assert p.locator('.cs-card:not([hidden]) .cs-front img').count()==1
   p.locator('#reporterAnswer').fill(f'{subject} is {key}.');p.locator('#reporterCheck').click();assert not p.locator('#reporterFeedback').inner_text().startswith('Correct!')
   p.locator('#reporterAnswer').fill(f'{subject} is not {wrong}.');p.locator('#reporterCheck').click();assert p.locator('#reporterFeedback').inner_text().startswith('Now add')
   negative=f'{subject} isn’t {wrong}.' if i%2 else f'{subject} is not {wrong}.'
@@ -36,7 +36,8 @@ with sync_playwright() as pw:
   p.locator('#reporterAnswer').fill(negative+' '+positive);p.locator('#reporterCheck').click();assert p.locator('#reporterFeedback').inner_text().startswith('Correct!'),(key,p.locator('#reporterFeedback').inner_text())
   if i==0:
    p.locator('#reporterHint').click();assert p.locator('#reporterHintText').is_visible();p.screenshot(path='/tmp/reporter-desktop.png',full_page=True)
-  if i<15:p.locator('#reporterNew').click()
+  if i<15:
+   p.locator('#reporterNew').click();p.wait_for_function("!document.querySelector('.cs-deck')._cardDeck.busy")
  task('nof');stage=p.locator('.perspective-stage');assert p.locator('.perspective-object').count()==8
  def object_rects():return p.locator('.perspective-object').evaluate_all('els=>{const board=document.querySelector(".perspective-board").getBoundingClientRect();return els.map(el=>{const r=el.getBoundingClientRect();return [r.x-board.x,r.y-board.y,r.width,r.height]})}')
  positions=object_rects();targets=set();numbers=set()

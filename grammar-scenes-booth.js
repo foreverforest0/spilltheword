@@ -11,24 +11,8 @@
   $('#sceneBack').onclick=spSetup;
   $('#sceneNew').onclick=start;
   $('#sceneHint').onclick=()=>{const box=$('#sceneHintText');box.hidden=!box.hidden;box.textContent='Use am / is / are + verb-ing. '+(current&&opened?current.questions[question][2]:'She is reading. They are playing.')};
-  const updateQuestion=()=>{
-   page.querySelector('.scene-question').textContent=current.questions[question][1];
-   page.querySelectorAll('[data-scene-question]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.sceneQuestion===question)));
-   $('#sceneHintText').hidden=true;
-  };
   const draw=()=>{
-   output.innerHTML=`<article class="scene-photo${opened?' opened':''}"><button class="scene-photo-toggle" aria-label="${opened?'Close question and magnifier':'Open picture and questions'}" aria-expanded="${opened}"></button>${opened?'<div class="scene-question-copy"><p class="scene-question"></p><div class="scene-question-tabs" aria-label="Five questions">'+current.questions.map((_,i)=>`<button class="lvb" data-scene-question="${i}" aria-pressed="${i===question}">${i+1}</button>`).join('')+'</div></div>':''}</article>`;
-   const toggle=output.querySelector('.scene-photo-toggle');
-   if(opened){
-    const w=Math.round(Math.min(620,Math.max(250,output.clientWidth)));
-    const lens=magPic(current.src,w,'',Math.round(w*.7));lens.querySelector('.mglight').remove();lens.classList.add('lit');toggle.append(lens);
-    // Keep the picture lit while the magnifier reveals a larger detail under the cursor.
-    const move=lens.onpointermove,down=lens.onpointerdown;
-    lens.onpointermove=e=>{lens.classList.remove('lit');move(e);lens.classList.add('lit')};
-    lens.onpointerdown=e=>{lens.classList.remove('lit');down(e);lens.classList.add('lit')};
-   }else{const img=document.createElement('img');img.src=current.src;img.alt='Illustrated Present Continuous scene';toggle.append(img)}
-   toggle.onclick=()=>{opened=!opened;$('#sceneHintText').hidden=true;draw()};
-   if(opened){updateQuestion();output.querySelectorAll('[data-scene-question]').forEach(b=>b.onclick=()=>{question=+b.dataset.sceneQuestion;updateQuestion()})}
+   CardStacks.scene(output,current,page,i=>{question=i;$('#sceneHintText').hidden=true},value=>{opened=value;$('#sceneHintText').hidden=true});
   };
   coin.onclick=async()=>{
    if(busy)return;busy=true;coin.disabled=true;machine.dataset.phase='printing';

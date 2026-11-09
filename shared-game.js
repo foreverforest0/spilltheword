@@ -63,6 +63,7 @@
    if(type==='pointermove'&&!state.pointer)return;
    if(type==='keydown'&&(['Tab','Shift','Control','Alt','Meta','Escape'].includes(e.key)||e.ctrlKey||e.metaKey))return;
    if(type==='click'&&target.closest('input,textarea,select'))return;
+   if(target.closest('[aria-busy=true]'))return;
    const path=selector(target,root);if(!path)return;
    const now=performance.now(),event={type,path,frame:framePath,seed:seed(),wait:Math.min(2500,Math.max(0,Math.round(now-lastEvent)))};
    if(type==='input'||type==='change'){event.value=target.value;event.checked=!!target.checked}
@@ -130,6 +131,7 @@
     await delay(e.wait);
     const win=await waitFor(()=>e.frame==='main'?window:[...document.querySelectorAll('#view iframe')].map(f=>f.contentWindow).find(w=>{try{return w.location.pathname===e.frame&&w.document.readyState==='complete'}catch{return false}}));
     const root=rootFor(win),el=await waitFor(()=>root?.querySelector(e.path));
+    if(['click','keydown','input','change'].includes(e.type))await waitFor(()=>!el.closest('[aria-busy=true]'));
     if(e.type==='click')await waitFor(()=>!el.closest('button')?.disabled);
     if(el.closest('[data-no-share-replay],input[type=file],input[type=password],a[href],.rmwrap,#wvpanel,#download,[download]'))throw Error('Unsupported game action.');
     if(win===window)rng=random(e.seed);else{attachFrame(win);contexts.get(win).rng=random(e.seed)}

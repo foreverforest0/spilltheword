@@ -1,51 +1,11 @@
 /* One-sentence proofreading with Rough Notation, plus an orderly daily planner. */
 (()=>{
- let dispose=null;
- const previousView=setView;
- setView=function(html){if(dispose){dispose();dispose=null}return previousView(html)};
- const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
  const markStyles=['circle','strike-through','crossed-off'];
- let sentenceQueue=[],markQueue=[];
  const sentenceRows=FXT.map(([wrong,right])=>{
   const words=wrong.split(' '),correct=right.split(' '),index=words.findIndex((w,i)=>w!==correct[i]);
   return {wrong,right,words,index,answer:correct[index],alternatives:wrong.includes('the weekend')?['at','on']:[correct[index]]};
  });
- function fixTime(){
-  let annotation=null,timer=null,row=null,selected=-1,finished=false;
-  setView(`<section class="panel k-card cbpanel fix-time-page"><div class="cbbar"><a href="#" class="grammar-back" id="fixTopics">← Topics</a><h2>Fix the time</h2></div><p class="fix-direction">Click the wrong word, then type its correction.</p><article class="fix-sentence-card"><p class="fix-sentence" aria-label="Sentence to correct"></p><div class="fix-editor" hidden><label for="fixReplacement"></label><input id="fixReplacement" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="fixFeedback" placeholder="Correction"></div></article><div class="fix-actions"><button class="lvb" id="fixCancel">Cancel</button></div><p id="fixFeedback" role="status" aria-live="polite"></p></section>`);
-  const page=$('#view .fix-time-page');page.querySelector('.blobw')?.remove();
-  const sentence=page.querySelector('.fix-sentence'),editor=page.querySelector('.fix-editor'),input=$('#fixReplacement'),feedback=$('#fixFeedback');
-  dispose=()=>{clearTimeout(timer);annotation?.remove()};
-  $('#fixTopics').onclick=e=>{e.preventDefault();spSetup()};
-  const cancel=()=>{clearTimeout(timer);annotation?.remove();annotation=null;selected=-1;finished=false;editor.hidden=true;input.value='';input.readOnly=false;feedback.textContent='';page.dataset.annotation='';sentence.querySelectorAll('[data-fix-word]').forEach(el=>{el.setAttribute('aria-pressed','false');el.removeAttribute('aria-disabled')});page.classList.remove('answered')};
-  const select=i=>{
-   if(finished)return;cancel();selected=i;
-   const word=sentence.querySelector(`[data-fix-word="${i}"]`);
-   if(!markQueue.length)markQueue=shuffle(markStyles.slice());const type=markQueue.pop();
-   editor.hidden=false;editor.querySelector('label').textContent='Replace “'+row.words[i]+'” with';input.focus();
-   annotation=RoughNotation.annotate(word,{type,color:'#70271F',strokeWidth:2.4,iterations:2,padding:type==='circle'?7:3,animate:!reduced(),animationDuration:420,multiline:true});
-   annotation.show();word.setAttribute('aria-pressed','true');page.dataset.annotation=type;
-  };
-  const next=()=>{
-   if(!page.isConnected)return;cancel();if(!sentenceQueue.length)sentenceQueue=shuffle(sentenceRows.slice());row=sentenceQueue.pop();
-   page.dataset.sentence=row.wrong;
-   sentence.innerHTML=row.words.map((w,i)=>`<span class="fix-word" role="button" tabindex="0" data-fix-word="${i}" aria-pressed="false">${esc(w)}</span>`).join(' ');
-   sentence.querySelectorAll('[data-fix-word]').forEach(word=>{word.onclick=()=>select(+word.dataset.fixWord);word.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select(+word.dataset.fixWord)}}});
-  };
-  const check=explicit=>{
-   if(!page.isConnected||selected<0||finished)return;
-   const answer=input.value.toLowerCase().trim().replace(/[.!?]$/,'');
-   if(selected===row.index&&row.alternatives.includes(answer)){
-    finished=true;input.readOnly=true;page.classList.add('answered');feedback.textContent='Correct! '+row.words.map((w,i)=>i===selected?answer:w).join(' ');
-    sentence.querySelectorAll('[data-fix-word]').forEach(el=>el.setAttribute('aria-disabled','true'));
-    timer=setTimeout(next,2000);
-   }else if(explicit||['at','on','in'].includes(answer))feedback.textContent='Try another word or correction.';
-  };
-  input.oninput=()=>{if(finished)return;clearTimeout(timer);feedback.textContent='';timer=setTimeout(()=>check(false),450)};
-  input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();clearTimeout(timer);check(true)}else if(e.key==='Escape')cancel()};
-  $('#fixCancel').onclick=()=>{const word=selected;cancel();sentence.querySelector(`[data-fix-word="${Math.max(0,word)}"]`)?.focus()};
-  next();
- }
+ function fixTime(){return CardStacks.fixTime(sentenceRows,markStyles)}
  DMT.fxt=1;DMTF.fxt=fixTime;SPSHORT.fxt='Fix the time';
  const description=SPT.find(t=>t.id==='fxt');if(description)description.d='Find the wrong word, mark it and type the correct preposition.';
  // Legacy Grammar Lab links lead to the same single-card activity.

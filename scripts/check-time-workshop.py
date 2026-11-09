@@ -14,12 +14,12 @@ with sync_playwright() as pw:
  p.on('response',lambda r:missing.append(r.url) if r.status==404 else None)
  p.goto(f'http://127.0.0.1:{server.server_port}/');p.wait_for_timeout(100)
  p.evaluate("go('gram');S.splevel='a1';spOpen('fxt')");page=p.locator('.fix-time-page')
- assert page.locator('button').all_text_contents()==['Cancel']
- assert page.locator('.fix-sentence-card').count()==1
+ assert page.locator('#fixCancel').count()==1 and page.locator('.cs-controls button').all_text_contents()==['Back','Next']
+ assert page.locator('.fix-sentence-card:visible').count()==1
  assert p.evaluate("typeof RoughNotation.annotate==='function'")
  sentence=page.get_attribute('data-sentence');marks=set()
  for _ in range(3):
-  p.locator('[data-fix-word="0"]').click();marks.add(page.get_attribute('data-annotation'))
+  p.locator('.cs-card:not([hidden]) [data-fix-word="0"]').click();marks.add(page.get_attribute('data-annotation'))
   assert page.locator('svg.rough-annotation path').count()>0
   assert p.evaluate("""()=>{const word=document.querySelector('.fix-word[aria-pressed=true]').getBoundingClientRect(),svg=document.querySelector('svg.rough-annotation'),origin=svg.getBoundingClientRect(),bounds=svg.getBBox();return Math.abs(word.x+word.width/2-origin.x-bounds.x-bounds.width/2)<15&&Math.abs(word.y+word.height/2-origin.y-bounds.y-bounds.height/2)<15}"""),'Annotation must cover the selected word'
   p.locator('#fixReplacement').fill('at');p.locator('#fixReplacement').press('Enter')
@@ -31,22 +31,24 @@ with sync_playwright() as pw:
  for i in range(12):
   current=page.get_attribute('data-sentence');assert current not in seen;seen.add(current)
   row=p.evaluate("s=>{const pair=FXT.find(r=>r[0]===s),a=pair[0].split(' '),b=pair[1].split(' ');return {index:a.findIndex((w,i)=>w!==b[i]),answer:b[a.findIndex((w,i)=>w!==b[i])]}}",current)
-  p.locator(f'[data-fix-word="{row["index"]}"]').focus();p.keyboard.press('Enter')
+  p.locator(f'.cs-card:not([hidden]) [data-fix-word="{row["index"]}"]').focus();p.keyboard.press('Enter')
   if i==0:
    p.screenshot(path='/tmp/fix-time-selected.png',full_page=True)
    # Cancel after a correct answer cancels the scheduled advance, preserving this sentence.
    p.locator('#fixReplacement').fill(row['answer']);p.wait_for_timeout(550);assert p.locator('#fixFeedback').inner_text().startswith('Correct!')
    p.locator('#fixCancel').click();p.wait_for_timeout(2100);assert page.get_attribute('data-sentence')==current
-   p.locator(f'[data-fix-word="{row["index"]}"]').click()
+   p.locator(f'.cs-card:not([hidden]) [data-fix-word="{row["index"]}"]').click()
   p.locator('#fixReplacement').fill(row['answer']);p.wait_for_timeout(550)
   assert p.locator('#fixFeedback').inner_text().startswith('Correct!')
-  p.wait_for_timeout(2100)
-  assert page.get_attribute('data-sentence')!=current
+  if i<11:
+   p.wait_for_function("s=>document.querySelector('.fix-time-page').dataset.sentence!==s",arg=current)
+  else:
+   assert p.locator('.cs-next').is_disabled()
  # The old Grammar Lab entry must also open the same mechanic.
  p.evaluate("GL={g:WG.find(g=>g.id==='ftt')};glGameRender()")
- assert p.locator('.fix-time-page').count()==1 and p.locator('.fix-time-page button').all_text_contents()==['Cancel']
+ assert p.locator('.fix-time-page').count()==1 and p.locator('#fixCancel').count()==1 and p.locator('.cs-controls button').all_text_contents()==['Back','Next']
  # Leaving with a selected word must remove its annotation and delayed checks.
- p.locator('[data-fix-word="0"]').click();p.locator('#fixReplacement').fill('at')
+ p.locator('.cs-card:not([hidden]) [data-fix-word="0"]').click();p.locator('#fixReplacement').fill('at')
  p.evaluate("go('gram');S.splevel='a1';spOpen('bmd')");p.wait_for_timeout(100)
  assert p.locator('.rough-annotation').count()==0
  assert p.locator('.day-bank .day-activity').count()==14
@@ -95,13 +97,13 @@ with sync_playwright() as pw:
    p.evaluate("id=>{go('gram');S.splevel='a1';spOpen(id)}",task);p.wait_for_timeout(120)
    assert p.evaluate('document.documentElement.scrollWidth<=innerWidth'),(task,width)
    if task=='fxt':
-    p.locator('[data-fix-word="0"]').click();p.set_viewport_size({'width':width,'height':850});p.wait_for_timeout(60)
+    p.locator('.cs-card:not([hidden]) [data-fix-word="0"]').click();p.set_viewport_size({'width':width,'height':850});p.wait_for_timeout(60)
     assert p.locator('svg.rough-annotation path').count()>0
    else:place('aclock','morning');place('bed','evening');p.locator('#dayTell').click()
    if width==390:p.screenshot(path=f'/tmp/time-workshop-mobile-{task}.png',full_page=True)
  # Verify that real motion draws the stroke rather than just displaying a static mark.
  p.emulate_media(reduced_motion='no-preference');p.evaluate("go('gram');S.splevel='a1';spOpen('fxt')")
- p.locator('[data-fix-word="0"]').click()
+ p.locator('.cs-card:not([hidden]) [data-fix-word="0"]').click()
  assert p.locator('svg.rough-annotation path').first.evaluate("e=>e.style.animation.includes('rough-notation-dash')")
  p.wait_for_timeout(700)
  assert p.locator('svg.rough-annotation path').first.evaluate("e=>parseFloat(getComputedStyle(e).strokeDashoffset)")==0
