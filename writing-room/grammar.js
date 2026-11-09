@@ -1,7 +1,7 @@
 /* Error detection and strict service-response handling. Never grade a sentence by style alone. */
 (()=>{
  'use strict';
- const version=2;
+ const version=3;
  function dedupe(issues){const seen=new Map();for(const issue of issues){const key=issue.offset+':'+issue.length;if(seen.has(key)){const row=seen.get(key);row.replacements=[...new Set([...(row.replacements||[]),...(issue.replacements||[])])].slice(0,5)}else seen.set(key,{...issue})}return [...seen.values()].sort((a,b)=>a.offset-b.offset||b.length-a.length)}
  function localIssues(text){
   const issues=[];
@@ -29,6 +29,27 @@
    // Preserve grammatical mandative subjunctives, including “I insist he go”.
    if(/\b(insist|recommend|suggest|demand|require|essential|vital|important|necessary)\b[^.!?]*$/i.test(before))continue;
    add(match.index+match[0].lastIndexOf(match[2]),match[2],verbs[match[2].toLowerCase()],'Check the verb form with he / she / it. Choose the tense that keeps your meaning.');
+  }
+  // Coordinated actions share the past-tense subject, even without repeating “he”.
+  // Anchor on an explicit finite clause; exclude infinitives, modals and new subjects.
+  const past={open:'opened',close:'closed',take:'took',go:'went',come:'came',feel:'felt',look:'looked',walk:'walked',run:'ran',turn:'turned',say:'said',tell:'told',ask:'asked',answer:'answered',help:'helped',stay:'stayed',leave:'left',enter:'entered',arrive:'arrived',start:'started',stop:'stopped',try:'tried',decide:'decided',want:'wanted',need:'needed',work:'worked',play:'played',smile:'smiled',laugh:'laughed',cry:'cried',speak:'spoke',write:'wrote',see:'saw',hear:'heard',find:'found',give:'gave',make:'made',do:'did',buy:'bought',bring:'brought',sit:'sat',stand:'stood',sleep:'slept',eat:'ate',drink:'drank',watch:'watched',wait:'waited',knock:'knocked',reach:'reached',grab:'grabbed',pick:'picked',hold:'held',put:'put',keep:'kept',hide:'hid',conceal:'concealed',gather:'gathered',maintain:'maintained',support:'supported',agree:'agreed',offer:'offered',expect:'expected',protect:'protected',betray:'betrayed',regret:'regretted',hesitate:'hesitated',realise:'realised',realize:'realized'};
+  const bases=Object.keys(past).join('|'),adverbs='finally|then|also|slowly|quickly|carefully|quietly|suddenly|eventually|immediately|reluctantly|bravely|nervously|calmly';
+  const joined=new RegExp('\\b(?:and|but|then)\\s+(?:(?:'+adverbs+')\\s+){0,4}('+bases+')\\b','gi');
+  const heads=new RegExp('\\b(?:I|you|he|she|it|we|they)\\s+(?:(?:'+adverbs+')\\s+){0,3}(' + [...new Set(Object.values(past).filter(v=>!['did','put'].includes(v)))].join('|')+'|was|were)\\b','gi');
+  for(const match of text.matchAll(joined)){
+   const before=text.slice(0,match.index).split(/[.!?;\n]/).pop();
+   const anchors=[...before.matchAll(heads)];if(!anchors.length)continue;
+   const anchor=anchors[anchors.length-1],tail=before.slice(anchor.index+anchor[0].length);
+   if(/\b(?:I|you|he|she|it|we|they|can|could|may|might|must|shall|should|will|would|did|does|don't|doesn't|didn't|now|nowadays)\b|["“”]/i.test(tail))continue;
+   if(/\bto\s+(?!(?:the|a|an|his|her|our|their|my|your|this|that)\b)[a-z]+\b/i.test(tail))continue;
+   const word=match[1],base=word.toLowerCase(),after=text.slice(match.index+match[0].length);
+   // “open to ideas” and “close to home” can be adjectives, not finite actions.
+   if(['open','close'].includes(base)&&(/^\s+(?:to|about|with)\b/i.test(after)||/^\s*[,.;!?]?\s*$/.test(after)))continue;
+   // Preserve noun/adjective coordinations: “needed help and support”, “open doors and open windows”.
+   if(['open','close','support','regret','work','help','play','watch','look','walk','run','sleep','drink','answer','offer','need','want'].includes(base)&&!new RegExp('\\b(?:'+adverbs+')\\b','i').test(match[0])&&!/^\s+(?:the|a|an|this|that|these|those|my|your|his|her|its|our|their|it|them|me|him|us|something|anything|nothing)\b/i.test(after))continue;
+   if(past[base]===base)continue;
+   const replacement=word[0]===word[0].toUpperCase()?past[base][0].toUpperCase()+past[base].slice(1):past[base];
+   add(match.index+match[0].lastIndexOf(word),word,[replacement],'These actions describe the same past event. Use “'+replacement+'” to keep the coordinated verb in the past.');
   }
   return dedupe(issues);
  }

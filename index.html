@@ -3620,7 +3620,7 @@ document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest
 function go(t){if(REMOVED_GAMES.has(t))t='home';BLOBID=null;seaOff();clearInterval(HOMET);stopTimer();clearInterval(GLT);EX=null;GL=null;R=null;J=null;B=null;T=null;ST=null;GS=null;GF=null;tab=t;roomPush();try{shopVis(t==='shop')}catch(e){}try{$('#embpan').hidden=true;embUpdate()}catch(e){}
  document.body.classList.toggle('home',t==='home');
  if(t==='home'){NL&&NL.destroy();NR&&NR.destroy();NL=NR=null;setView(homeHTML());homeBind();window.scrollTo(0,0);return}
- if(t==='bard'){setView('<section class="writing-room-host"><iframe id="writing-room-frame" src="writing-room/index.html?v=wr-20261109-5" title="The Writing Room: Shakespeare vocabulary practice" style="display:block;width:100%;height:1040px;border:0;background:#F9F5E6" loading="eager"></iframe></section>');window.scrollTo(0,0);return}
+ if(t==='bard'){setView('<section class="writing-room-host"><iframe id="writing-room-frame" src="writing-room/index.html?v=wr-20261109-6" title="The Writing Room: Shakespeare vocabulary practice" style="display:block;width:100%;height:1040px;border:0;background:#F9F5E6" loading="eager"></iframe></section>');window.scrollTo(0,0);return}
  navTabs.setActive(NAV.indexOf(t));
  if(t==='words'){setView(wordsView());bindWords()}else renderSetup(t);
  window.scrollTo(0,0)}
@@ -12849,7 +12849,7 @@ async function boot(){
 <script src="card-stacks.js"></script>
 <script src="card-stack-adapters.js"></script>
 <script src="card-stack-fix.js"></script>
-<script src="writing-room/bridge.js?v=wr-20261109-5"></script>
+<script src="writing-room/bridge.js?v=wr-20261109-6"></script>
 <script src="live-answers.js"></script>
 <script src="shared-game.js"></script>
 <script>
