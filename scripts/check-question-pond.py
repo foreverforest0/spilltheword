@@ -26,7 +26,7 @@ with sync_playwright() as pw:
    const group=SPGRP[t.level].find(g=>g[0].startsWith(t.number+' ·'));
    if(!group[1].includes(t.id)||!DMTF[t.id]||!SPSHORT[t.id])fail('Missing route '+t.id);
    const bank=QuestionPond.bankFor(t.level,t.number);if(bank.length<4)fail('Small bank '+t.id);
-   for(const row of bank){rows++;if(!row.hint||/start(?: with|:)/i.test(row.cue)||/start(?: with|:)/i.test(row.hint))fail('Visible sentence starter');if(!row.question||(!row.cue&&!row.hint)||!row.answers.length)fail('Empty question '+t.id);if(row.answers.some(a=>a.includes('(that)')||a.includes(' / ')))fail('Unexpanded example alternatives');
+   for(const row of bank){rows++;if(!row.hint||/start(?: with|:)/i.test(row.cue)||/start(?: with|:)/i.test(row.hint))fail('Visible sentence starter');if(!row.question||(!row.cue&&!row.hint)||!row.answers.length)fail('Empty question '+t.id);if(row.answers.some(a=>typeof a!=='string'||!a.trim()||a.includes('(that)')||a.includes(' / ')))fail('Unexpanded example alternatives');
     for(const answer of row.answers){if(!QuestionPond.matches(answer,row.answers))fail('Canonical answer rejected');if(!QuestionPond.matches(answer.toUpperCase().replace(/[.,?!]/g,''),row.answers))fail('Punctuation matching');}
     if(QuestionPond.matches('banana banana banana',row.answers))fail('False positive');
    }
@@ -63,15 +63,17 @@ with sync_playwright() as pw:
  for _ in range(6):
   catch();assert p.locator('#pondHintText').is_hidden();p.locator('#pondHint').click();assert p.locator('#pondHintText').is_visible();p.locator('#pondHint').click();assert p.locator('#pondHintText').is_hidden();idx=p.locator('.pond-page').get_attribute('data-question-index');assert idx not in seen;seen.add(idx)
   p.locator('#pondAnswer').fill('He banana.');p.locator('#pondCheck').click();assert p.locator('.pond-page').get_attribute('data-outcome')=='incorrect'
-  p.locator('#pondShowAnswer').click();assert p.locator('#pondFeedback').inner_text()==answer()
+  assert p.locator('#pondModelAnswer').is_hidden();feedback=p.locator('#pondFeedback').inner_text();p.locator('#pondShowAnswer').click();assert p.locator('.pond-model-text').inner_text()==answer();assert p.locator('#pondShowAnswer').get_attribute('aria-expanded')=='true';assert p.locator('#pondFeedback').inner_text()==feedback;assert p.locator('#pondAnswer').input_value()=='He banana.';assert p.locator('.pond-page').get_attribute('data-outcome')=='incorrect';p.locator('#pondShowAnswer').press('Enter');assert p.locator('#pondModelAnswer').is_hidden();assert p.locator('#pondShowAnswer').get_attribute('aria-expanded')=='false'
   p.locator('#pondAnswer').fill(answer());p.locator('#pondCheck').click();assert p.locator('.pond-page').get_attribute('data-phase')=='answered'
   p.locator('#pondReturn').click();p.wait_for_function("document.querySelector('.pond-page').dataset.phase==='idle'");assert p.locator('.pond-fish:disabled').count()==0
+ # A revealed model and learner draft replay through Copy link without checking the answer.
+ route('b1',4);catch();p.locator('#pondAnswer').fill('My unfinished answer.');p.locator('#pondShowAnswer').click();model=answer();url=p.evaluate('SharedGame.getLink()');c=browser.new_context(viewport={'width':1440,'height':1000},reduced_motion='reduce');q=c.new_page();q.on('pageerror',lambda e:errors.append(str(e)));q.goto(url);q.wait_for_function('window.SharedGame&&!SharedGame.replaying');assert q.locator('.shared-game-loading').count()==0;assert q.locator('#pondModelAnswer').is_visible();assert q.locator('.pond-model-text').inner_text()==model;assert q.locator('#pondAnswer').input_value()=='My unfinished answer.';assert q.locator('.pond-page').get_attribute('data-phase')=='question';q.locator('#pondShowAnswer').click();assert q.locator('#pondModelAnswer').is_hidden();c.close();route()
  # Keyboard access; focus pauses fish in addition to pointer hover.
  p.locator('.pond-fish').nth(1).focus();p.keyboard.press('Enter');p.wait_for_selector('#pondAnswer');p.locator('#pondReturn').click();p.wait_for_function("document.querySelector('.pond-page').dataset.phase==='idle'")
  p.locator('#pondDrawMode').click();catch();p.locator('#pondStartDrawing').click();assert p.locator('#pondStudio').is_hidden()
- p.locator('#pondAnswer').fill('Not an answer.');p.locator('#pondStartDrawing').click();assert p.locator('#pondCanvas').is_visible()
+ p.locator('#pondAnswer').fill('Not an answer.');assert p.locator('#pondModelAnswer').is_hidden();p.locator('#pondShowAnswer').click();assert p.locator('.pond-model-text').inner_text()==answer();p.locator('#pondShowAnswer').press('Space');assert p.locator('#pondModelAnswer').is_hidden();p.locator('#pondStartDrawing').click();assert p.locator('#pondCanvas').is_visible()
  p.locator('#pondRelease').click();assert 'Draw a little fish' in p.locator('#pondFeedback').inner_text()
- draw();p.locator('#pondRelease').click();p.wait_for_function("document.querySelector('.pond-page').dataset.phase==='question'")
+ draw();drawing=p.locator('#pondCanvas').evaluate('e=>e.toDataURL()');p.locator('#pondShowAnswer').click();assert p.locator('#pondModelAnswer').is_visible();assert p.locator('#pondCanvas').evaluate('e=>e.toDataURL()')==drawing;assert p.locator('#pondAnswer').input_value()=='Not an answer.';p.locator('#pondShowAnswer').click();p.locator('#pondRelease').click();p.wait_for_function("document.querySelector('.pond-page').dataset.phase==='question'")
  assert p.locator('.pond-own-fish').count()==0 and p.locator('#pondCanvas').is_visible()
  assert p.evaluate("JSON.parse(localStorage.getItem('stw-question-pond-v1')||'[]').length") == 0
  p.locator('#pondAnswer').fill(answer());p.locator('#pondRelease').click();p.wait_for_function("document.querySelector('.pond-page').dataset.phase==='answered'")
@@ -85,7 +87,7 @@ with sync_playwright() as pw:
  topics=p.evaluate('QuestionPond.topics')
  for t in topics:
   p.evaluate('id=>spOpen(id)',t['id']);assert p.locator('.pond-page').get_attribute('data-pond-topic')==f"{t['level']}:{t['number']}"
-  catch();assert p.locator('.pond-question-text').inner_text()
+  catch();assert p.locator('.pond-question-text').inner_text();assert p.locator('#pondModelAnswer').is_hidden();p.locator('#pondShowAnswer').click();assert p.locator('.pond-model-text').inner_text()==answer();assert p.locator('.pond-page').get_attribute('data-phase')=='question';p.locator('#pondDrawMode').click();assert p.locator('#pondModelAnswer').is_hidden();p.locator('#pondShowAnswer').click();assert p.locator('.pond-model-text').inner_text()==answer();assert p.locator('#pondStudio').is_hidden()
  # Exit while the catch timer is in flight: detached views must never be updated.
  route();r=p.locator('.pond-fish').first.bounding_box();p.mouse.click(r['x']+r['width']/2,r['y']+r['height']/2);p.evaluate("go('home')");p.wait_for_timeout(90);assert p.locator('.pond-page').count()==0
  # Actual motion, a mouse hover pause, release and jump keyframes.
@@ -110,7 +112,7 @@ with sync_playwright() as pw:
   p.set_viewport_size({'width':w,'height':844});route('b1',1);catch();assert p.evaluate('document.documentElement.scrollWidth<=innerWidth')
   a=p.locator('#pondWater').bounding_box();c=p.locator('#pondQuestion').bounding_box()
   assert a['x']+a['width']<=c['x'] or a['y']+a['height']<=c['y']
-  p.locator('#pondDrawMode').click();p.locator('#pondAnswer').fill(answer());p.locator('#pondStartDrawing').click();draw();assert p.evaluate('document.documentElement.scrollWidth<=innerWidth')
+  p.locator('#pondDrawMode').click();p.locator('#pondAnswer').fill(answer());p.locator('#pondStartDrawing').click();draw();p.locator('#pondShowAnswer').click();assert p.locator('#pondModelAnswer').is_visible();assert p.evaluate('document.documentElement.scrollWidth<=innerWidth')
   if w==390:
    assert p.locator('#homeBtn').evaluate("e=>getComputedStyle(e).position")=="absolute"
    p.screenshot(path='/tmp/question-pond-mobile.png',full_page=True)
@@ -122,6 +124,6 @@ with sync_playwright() as pw:
  saved_page=p;p=other;p.locator('#pondDrawMode').click();catch();p.locator('#pondAnswer').fill(answer());p.locator('#pondStartDrawing').click();draw();p.locator('#pondRelease').click();p.wait_for_function("document.querySelector('.pond-page').dataset.phase==='answered'");assert 'could not save' in p.locator('#pondFeedback').inner_text();p=saved_page
  assert not errors,errors
  assert not missing,missing
- print('PASS',json.dumps(report),'— catalog, real mouse/keyboard, six unique rounds, wrong/correct answers, empty drawing, retry without redraw, leap/swim animations, hover pause, local persistence, all 66 routes, cleanup, storage failures and responsive layouts.')
+ print('PASS',json.dumps(report),'— Show answer for all 66 topics in both modes, hidden/reset panels, keyboard toggles, preserved draft/drawing/feedback, shared reveal replay, catalog, real mouse/keyboard, six unique rounds, wrong/correct answers, empty drawing, retry without redraw, leap/swim animations, hover pause, local persistence, all 66 routes, cleanup, storage failures and responsive layouts.')
  browser.close()
 server.shutdown()

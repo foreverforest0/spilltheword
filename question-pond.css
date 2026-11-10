@@ -80,3 +80,8 @@
 #view .pond-fish.in-card{visibility:hidden;pointer-events:none}
 .pond-return-flight{position:fixed;z-index:500;pointer-events:none;will-change:top,left;filter:drop-shadow(0 8px 4px #26422b18)}
 .pond-return-flight .pond-fish-art{transform-origin:center}
+
+/* A separate model panel is available in both fishing modes. */
+.pond-model-answer{margin:16px 0 0;padding:14px 16px;background:#F9F5E6;border-left:3px solid #26422B;border-radius:2px;color:#26422B;overflow-wrap:anywhere}
+.pond-model-answer>span{display:block;font:13px/1.4 Georgia,serif;margin-bottom:7px}
+#view .pond-model-text{font:21px/1.45 Georgia,serif;margin:0;white-space:pre-wrap}

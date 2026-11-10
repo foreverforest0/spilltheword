@@ -14,7 +14,7 @@ with sync_playwright() as pw:
  b=pw.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']);ctx=b.new_context(viewport={'width':1440,'height':1000},reduced_motion='reduce');p=ctx.new_page();errors=[];missing=[]
  p.on('pageerror',lambda e:errors.append(str(e)));p.on('response',lambda r:missing.append(r.url) if r.status>=400 and r.url.startswith(base) else None);p.goto(base);p.wait_for_function('window.SentenceExpander')
  topics=p.evaluate('SentenceExpander.topics');assert len(topics)==66
- report=p.evaluate('''()=>{
+ report=p.evaluate(r'''()=>{
   const fail=m=>{throw Error(m)};let count=0;
   for(const t of SentenceExpander.topics){
    const group=SPGRP[t.level].find(g=>g[0].startsWith(t.number+' ·'));
@@ -23,6 +23,12 @@ with sync_playwright() as pw:
     const c=ExpanderCurriculum.variant(t.level,t.number,v);let previous=c.start;
     if(c.steps.length<5)fail('Incomplete sequence');
     for(const s of c.steps){count++;if(!s.instruction||!s.hint||!s.answers.length)fail('Empty step');
+     if(s.instruction.split(/\s+/).length>18)fail('Long prompt '+t.id);
+     if(s.starter&&!/^[A-Za-z]+$/.test(s.starter))fail('Starter must be one word '+t.id);
+     if(s.starter&&s.answers.some(a=>a.match(/^[A-Za-z]+/)?.[0]!==s.starter))fail('Starter mismatch '+t.id);
+     const words=x=>x.toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+     if(s.answers.some(a=>[s.instruction,s.hint].some(prompt=>words(prompt).includes(words(a)))))fail('Model answer leaked into cue '+t.id);
+     if(/\+|→/.test(s.hint))fail('Ready-made structure in hint '+t.id);
      if(s.answers.some(a=>/undefined|TODO|no name|…/.test(a)))fail('Placeholder');
      if(QuestionPond.matches(previous,s.answers))fail('An unchanged sentence passed '+t.id);
      for(const a of s.answers)if(!QuestionPond.matches(a.toUpperCase(),s.answers))fail('Answer normalization');
@@ -50,18 +56,20 @@ with sync_playwright() as pw:
  open_topic(next(t for t in topics if t['level']=='b1' and t['number']==2))
  assert p.locator('.sx-header h1').is_visible();assert p.locator('.sx-header .stw-wave-letter').count()>10;assert p.locator('.sx-hint').is_hidden();assert p.locator('.grammar-exercise-back').count()==0
  s,field,button=check_step(0);original=field.input_value();button.click();assert p.evaluate('EX.index')==0;assert 'Change the sentence' in s.locator('.sx-feedback').inner_text()
- s.locator('.sx-hint-toggle').click();assert s.locator('.sx-hint').is_visible();s.locator('.sx-example-toggle').click();assert s.locator('.sx-example').is_visible()
+ s.locator('.sx-hint-toggle').click();assert s.locator('.sx-hint').is_visible();assert s.locator('.sx-example-toggle').count()==0;assert s.locator('.sx-example').count()==0
  field.fill('She has been study English.');button.click();assert p.evaluate('EX.index')==0
  p.screenshot(path=str(OUT/'first-step.png'),full_page=True)
+ # Only a successful own answer unlocks comparison; a wrong answer never does.
+ assert s.locator('.sx-example-toggle').count()==0;field.fill(p.evaluate('EX.chain.steps[0].answers[0]'));button.click();p.wait_for_function("EX.index===1&&document.querySelector('.sx-dive').dataset.phase==='question'");assert s.locator('.sx-example').is_hidden();s.locator('.sx-example-toggle').click();assert s.locator('.sx-example').is_visible();assert s.locator('.sx-example-toggle').get_attribute('aria-expanded')=='true';s.locator('.sx-example-toggle').click();assert s.locator('.sx-example').is_hidden()
  # All actual catalog topics can be completed using real editable fields and checks.
  for t in topics:
   open_topic(t);previous=p.evaluate('EX.chain.start')
   for i in range(5):
-   stage,field,button=check_step(i);assert field.input_value()==previous
+   stage,field,button=check_step(i);assert field.input_value()==previous;assert stage.locator('.sx-example').count()==0;assert stage.locator('.sx-example-toggle').count()==0;starter=p.evaluate('i=>EX.chain.steps[i].starter',i);assert stage.locator('.sx-starter strong').count()==bool(starter)
    answer=p.evaluate('i=>EX.chain.steps[i].answers[0]',i);field.fill(answer);button.click();previous=answer
    if i<4:p.wait_for_function(f"EX.index==={i+1}&&document.querySelector('.sx-dive').dataset.phase==='question'")
    else:p.wait_for_selector('.sx-finish')
-   assert field.get_attribute('readonly') is not None;assert p.locator('.sx-stage[data-complete=true]').count()==i+1
+   assert stage.locator('.sx-example-toggle').count()==1;assert stage.locator('.sx-example').is_hidden();assert field.get_attribute('readonly') is not None;assert p.locator('.sx-stage[data-complete=true]').count()==i+1
   assert p.locator('#sx-depth').inner_text()=='3000';assert p.locator('.sx-stage').count()==5
   before=p.locator('.sx-dive').get_attribute('data-variant');p.locator('#sx-again').click();p.wait_for_function("document.querySelector('.sx-dive').dataset.phase==='question'");assert before!=p.locator('.sx-dive').get_attribute('data-variant');assert p.locator('.sx-stage').count()==1
  # True animation uses the upstream reveal engine; previous versions remain above.
@@ -71,9 +79,9 @@ with sync_playwright() as pw:
  assert p.locator('.sx-stage[data-complete=true] .sx-answer').input_value()==answer
  p.screenshot(path=str(OUT/'ocean-descent.png'),full_page=True)
  # A copied in-progress dive resumes even with a different motion preference.
- stage=p.locator('.sx-stage[data-step="1"]');stage.locator('.sx-answer').fill('My unfinished sentence.');stage.locator('.sx-hint-toggle').click();url=p.evaluate('SharedGame.getLink()')
+ p.locator('#sx-example-0').click();assert p.locator('#sx-example-copy-0').is_visible();stage=p.locator('.sx-stage[data-step="1"]');stage.locator('.sx-answer').fill('My unfinished sentence.');stage.locator('.sx-hint-toggle').click();url=p.evaluate('SharedGame.getLink()')
  c=b.new_context(viewport={'width':1440,'height':1000},reduced_motion='reduce');q=c.new_page();q.on('pageerror',lambda e:errors.append(str(e)));q.goto(url);q.wait_for_function('window.SharedGame&&!SharedGame.replaying');assert q.locator('.shared-game-loading').count()==0
- assert q.evaluate('EX.index')==1;assert q.locator('.sx-stage[data-step="1"] .sx-answer').input_value()=='My unfinished sentence.';assert q.locator('.sx-stage[data-step="1"] .sx-hint').is_visible();c.close()
+ assert q.locator('#sx-example-copy-0').is_visible();assert q.locator('.sx-stage[data-step="1"] .sx-example').count()==0;assert q.evaluate('EX.index')==1;assert q.locator('.sx-stage[data-step="1"] .sx-answer').input_value()=='My unfinished sentence.';assert q.locator('.sx-stage[data-step="1"] .sx-hint').is_visible();c.close()
  # Reverse motion preferences: fast teacher edits must wait for the pupil's reveal.
  p.emulate_media(reduced_motion='reduce');open_topic(next(t for t in topics if t['level']=='b2' and t['number']==7))
  for i in range(4):
@@ -82,6 +90,8 @@ with sync_playwright() as pw:
  c=b.new_context(viewport={'width':390,'height':900},reduced_motion='no-preference');q=c.new_page();q.on('pageerror',lambda e:errors.append(str(e)));q.goto(url);q.wait_for_function('window.SharedGame&&!SharedGame.replaying');assert q.locator('.shared-game-loading').count()==0;assert q.evaluate('EX.index')==4
  assert q.locator('#sx-answer-4').input_value()=='A draft on the final step.';q.wait_for_timeout(800);assert q.evaluate('scrollY')>1000
  q.locator('#sx-answer-4').fill(q.evaluate('EX.chain.steps[4].answers[0]'));q.locator('#sx-check-4').click();q.wait_for_selector('.sx-finish');c.close()
+ # C1 provides a one-word foothold, never the completed cleft opening.
+ open_topic(next(t for t in topics if t['level']=='c1' and t['number']==2));assert p.locator('.sx-starter strong').inner_text()=='It';assert p.locator('.sx-instruction').inner_text()=='Focus on the sender.';p.locator('.sx-hint-toggle').click();assert 'It was' not in p.locator('.sx-hint').inner_text();p.screenshot(path=str(OUT/'short-cue-c1.png'),full_page=True)
  # Phone / tablet layouts, keyboard, readable fields and functioning back navigation.
  p.emulate_media(reduced_motion='reduce')
  for width in [768,390]:
@@ -98,13 +108,14 @@ with sync_playwright() as pw:
  # Exit while a reveal is running; no delayed task may reappear on Home.
  p.emulate_media(reduced_motion='no-preference');p.locator('[data-sx-topic="exp_kids_2"]').click();p.evaluate("go('home')");p.wait_for_timeout(1200);assert p.locator('.sx-dive').count()==0;assert 'sentence-dive' not in p.locator('body').get_attribute('class')
  assert not errors,errors;assert not missing,missing
- print('PASS',json.dumps(report),'— 66 complete dives, unchanged/wrong edits, hint/example, real block reveal, descent, sharing, oral mode, navigation, cleanup and mobile.')
+ print('PASS',json.dumps(report),'— 66 complete dives, short prompts, single-word starters, no answer leaks, comparison only after success, unchanged/wrong edits, hint/example, real block reveal, descent, sharing, oral mode, navigation, cleanup and mobile.')
  # Export the actual reviewed curriculum, not a separate proposal.
  curriculum=p.evaluate('SentenceExpander.topics.map(t=>({...t,...ExpanderCurriculum.variant(t.level,t.number)}))')
- lines=['# Sentence Expander — последовательности по всем темам','', 'В каждой цепочке пять изменений. Примеры ниже — проверяемые модели; в игре принимаются сокращения и указанные британские/американские варианты.','']
+ lines=['# Sentence Expander — последовательности по всем темам','', 'В каждой цепочке пять коротких промптов. Стартовая подсказка, если есть, — одно слово. Hint объясняет принцип без готовой конструкции. Модели ниже предназначены для сверки: в игре они открываются только после правильного собственного ответа (или устного ответа в Speak). Принимаются сокращения и указанные британские/американские варианты.','']
  for t in curriculum:
   lines+=['## '+t['level'].upper()+' · '+t['name'],'','Начало: **'+t['start']+'**','']
-  for i,step in enumerate(t['steps'],1):lines += [str(i)+'. '+step['instruction'],'   - '+step['answers'][0]]
+  for i,step in enumerate(t['steps'],1):
+   lines += [str(i)+'. '+step['instruction']]+(['   - Начать со слова: **'+step['starter']+'**'] if step['starter'] else [])+['   - Hint: '+step['hint'],'   - Модель после ответа: '+step['answers'][0]]
   lines+=['']
  (ROOT/'docs/sentence-expander-curriculum.md').write_text('\n'.join(lines));(OUT/'curriculum.md').write_text('\n'.join(lines))
  b.close()
