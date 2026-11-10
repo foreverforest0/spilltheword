@@ -10,7 +10,7 @@ try{if(window.parent!==window)window.parent.SharedGame?.attachFrame(window)}catc
  const gameNames=new Set(['Word Craft','Absurd Choices','Scrambl','Sentence Expander','Shop','Creative Writing','Grammar Dice','Gachapon']);
  function decorate(title){
   if(title.tagName==='H3'&&!gameNames.has(title.textContent.replace(/\s+/g,' ').trim()))return;
-  if(title.closest('.grammar-topic,.stw-board-card,.stw-prompt-card'))return;
+  if(title.closest('.grammar-topic,.stw-board-card,.stw-prompt-card,[data-stw-plain]'))return;
   if((title.closest('.stw-home')&&!title.matches('.category'))||title.querySelector('button,input,select,a,[id]'))return;
   const copy=title.cloneNode(true);copy.querySelectorAll('br').forEach(br=>br.replaceWith(' '));const text=copy.textContent.replace(/\s+/g,' ').trim();if(!text||(title.dataset.stwHeadingText===text&&title.querySelector('.stw-wave-word')))return;
   title.dataset.stwHeadingText=text;title.classList.add('stw-wavy-title');title.setAttribute('aria-label',text);
