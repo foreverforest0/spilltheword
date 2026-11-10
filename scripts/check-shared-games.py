@@ -37,7 +37,7 @@ with sync_playwright() as pw:
  # Every catalog game can be validated, including DMT entries without SPT rows.
  assert p.evaluate("Object.values(SPGRP).flatMap(gs=>gs.flatMap(g=>g[1])).every(id=>typeof id==='string')")
  # Standalone home games and grammar modes all expose a usable direct link.
- for setup,needle in [("go('house')",'iframe'),("go('shop')",'#view'),("go('write')",'.tyst'),("go('gram');S.gmode='absurd';gmNew()",'#view'),("go('gram');S.gmode='craft';gmNew()",'#wcf')]:
+ for setup,needle in [("go('house')",'iframe'),("go('shop')",'#view'),("go('write')",'.tyst'),("go('gram');S.gmode='absurd';gmNew()",'#view'),("go('gram');S.gmode='craft';gmNew()",'#mine')]:
   p.evaluate(setup);p.wait_for_selector(needle);
   if setup=="go('write')":
    p.locator('#tyta').focus();p.keyboard.type('Hello student');
