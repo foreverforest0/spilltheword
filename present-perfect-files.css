@@ -46,7 +46,7 @@ body.grammar-style-active #view .cf-page,body.grammar-style-active #view .cf-pag
 .cf-dossier-tab{top:-26px;min-width:45%;color:var(--cf-cover-ink);font-size:12px;z-index:-1}
 .cf-collage{position:absolute;inset:0;overflow:hidden;border-radius:0 8px 5px 5px}
 .cf-page .cf-piece{position:absolute;background:none;border:0;border-radius:0;padding:0;transform:rotate(var(--cf-rotate));filter:drop-shadow(1px 3px 3px #2f231820);transition:transform .18s,filter .18s;touch-action:manipulation}
-.cf-piece:hover,.cf-piece:focus-visible{z-index:12;transform:rotate(0deg) translateY(-5px);filter:drop-shadow(1px 6px 6px #2f231833)}
+.cf-piece:hover,.cf-piece:focus-visible{transform:rotate(0deg) translateY(-5px);filter:drop-shadow(1px 6px 6px #2f231833)}
 .cf-piece-0{left:1%;top:5%;width:67%;--cf-rotate:-9deg;z-index:1}
 .cf-piece-1{right:2%;top:5%;width:24%;--cf-rotate:6deg;z-index:2}
 .cf-piece-2{left:3%;top:25%;width:61%;--cf-rotate:4deg;z-index:3}
@@ -91,3 +91,29 @@ body.grammar-style-active #view .cf-page,body.grammar-style-active #view .cf-pag
 @media(max-width:880px){body.grammar-style-active main:has(.cf-page){padding-inline:22px}.cf-workspace{grid-template-columns:minmax(0,1fr);gap:32px;max-width:660px;margin-inline:auto}.cf-writing-paper{min-height:700px}.cf-page #cf-draft{min-height:540px}.cf-header>.cf-kicker{font-size:10px}.cf-open-title{align-items:start}.cf-open-title>span{display:none}.cf-folder-shelf{gap:20px}.cf-cover-title{font-size:20px}.cf-cover-edition{font-size:8px}.cf-cover-status{font-size:8px}.cf-photo-caption{font-size:17px}.cf-folder-shelf .cf-photo-caption{font-size:11px}}
 @media(max-width:560px){body.grammar-style-active main:has(.cf-page){padding-inline:15px}.cf-header{gap:6px;padding-bottom:12px}.cf-header>.cf-kicker{font-size:8px}.cf-page .cf-text-button{font-size:12px}.cf-title{padding-top:32px}.cf-title h1{font-size:46px}.cf-folder-shelf{grid-template-columns:1fr;gap:35px;max-width:350px;margin:auto;padding-top:18px}.cf-cover-title{font-size:30px}.cf-cover-edition,.cf-cover-status{font-size:10px}.cf-folder-shelf .cf-photo-caption{font-size:15px}.cf-file-top{gap:8px;flex-wrap:wrap}.cf-file-top>.cf-kicker{font-size:9px}.cf-open-title{margin:14px 0 25px}.cf-open-title h1{font-size:29px;max-width:300px}.cf-workspace{gap:27px}.cf-dossier-tab{font-size:10px;top:-24px;padding:8px 16px}.cf-memory-folder{aspect-ratio:.8}.cf-piece-2{top:26%}.cf-piece-3{top:48%}.cf-piece-5{top:67%}.cf-piece-6{top:29%}.cf-piece-7{top:60%}.cf-photo-caption{font-size:12px}.cf-folder-pocket{font-size:8px}.cf-index{gap:6px}.cf-page .cf-index button{width:31px;height:31px}.cf-browse-note{font-size:10px}.cf-inspector{padding:11px 15px}.cf-inspect-top .cf-kicker{font-size:9px}.cf-page .cf-enlarged{padding:13px 0}.cf-enlarged .cf-photo-caption{font-size:18px}.cf-hint-line{min-height:39px}.cf-writing-paper{padding:24px 21px 18px;min-height:650px}.cf-writing-heading{margin-bottom:23px}.cf-writing-heading .cf-kicker{font-size:9px}.cf-writing-paper label{font-size:29px}.cf-page #cf-draft{min-height:500px;font-size:18px}.cf-help{padding:17px;font-size:13px}}
 @media(prefers-reduced-motion:reduce){.cf-page *{animation:none!important;transition:none!important}}
+/* All physical pieces can leave the folder and move across the writing workspace. */
+.cf-workspace{position:relative;isolation:isolate}
+.cf-memory-folder{isolation:auto}
+.cf-collage{overflow:visible}
+.cf-page .cf-piece{touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;transition:filter .18s;transform:rotate(var(--cf-rotate))}
+.cf-piece:hover,.cf-piece:focus-visible{transform:rotate(var(--cf-rotate))}
+.cf-page .cf-piece.cf-dragging{cursor:grabbing;filter:drop-shadow(3px 10px 7px #2f231838)}
+.cf-piece-5{right:18%;top:64%;width:40%}
+.cf-piece-8{left:68%;top:60%;width:27%;--cf-rotate:8deg;z-index:13}
+.cf-piece-9{left:79%;top:79%;width:16%;--cf-rotate:-8deg;z-index:14}
+.cf-piece-10{left:6%;top:87%;width:26%;--cf-rotate:6deg;z-index:15}
+.cf-inspector{z-index:200001}
+.cf-handwritten-note{position:relative;display:block;width:100%}
+.cf-note-text{position:absolute;left:10%;right:9%;top:29%;bottom:8%;--cf-font:CaseHand;font-size:clamp(13px,1.65vw,24px);line-height:1.25;color:#26422b;text-align:left;display:flex;align-items:center;justify-content:center;transform:rotate(-2deg);padding:3%}
+.cf-enlarged .cf-handwritten-note{width:80%;max-width:440px}
+.cf-enlarged .cf-handwritten-note .cf-scanned-paper{width:100%;height:auto;max-width:100%}
+.cf-enlarged .cf-note-text{font-size:clamp(25px,3vw,37px)}
+.cf-enlarged-object .cf-scanned-paper{max-width:75%;max-height:85%;width:auto;height:auto}
+.cf-arrange-controls{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:10px;position:relative;z-index:1}
+.cf-arrange-controls .cf-browse-note{margin:0!important;text-align:left;font-size:10px}
+.cf-page #cf-reset-layout{font-size:10px;white-space:nowrap;padding:5px 0;border-bottom:1px solid #70271f40}
+.cf-index{flex-wrap:wrap;position:relative;z-index:1}
+@media(max-width:880px){.cf-note-text{font-size:23px}.cf-enlarged .cf-note-text{font-size:32px}}
+@media(max-width:560px){.cf-note-text{font-size:13px}.cf-enlarged .cf-note-text{font-size:23px}.cf-piece-5{top:65%;width:40%}.cf-enlarged-object .cf-scanned-paper{max-width:90%}.cf-arrange-controls .cf-browse-note{font-size:9px}}
+/* Navigation and reset stay reachable even when a loose object is placed over them. */
+.cf-index,.cf-arrange-controls{z-index:200002}
