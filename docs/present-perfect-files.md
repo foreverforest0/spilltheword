@@ -1,40 +1,42 @@
 # Present Perfect — Story files
 
-Entry: Grammar → B1 → Present Perfect → **Story files** (`ppfiles`). This is a new free storytelling activity alongside the existing drills; it is not a replacement for the entire Present Perfect curriculum.
+Entry: Grammar → B1 → Present Perfect → **Story files** (`ppfiles`). Free storytelling with keepsakes, alongside the existing Present Perfect drills.
 
-Three original everyday-life vignettes, each with seven short evidence documents:
+Three original stories, each with eight objects:
 
-1. **The roll nobody collected** — a second-hand camera in Porto, an undeveloped wedding roll, a lab envelope and the search for its owners.
-2. **A night under a dinosaur** — an adult museum sleepover, torchlight activities, café receipt and a friendship that continues afterwards.
-3. **The voice on the old tape** — a volunteer repair café in Bristol, a broken drive belt, a forgotten family recording and its new digital life.
+1. **The roll nobody collected** — Porto: rail, museum and concert tickets, a market camera receipt, a developing receipt, a blank memo, a camera photograph and an old wedding photograph.
+2. **A night under a dinosaur** — London: transport, museum sleepover and concert tickets, café and museum shop receipts, a blank memo, a museum photograph and a breakfast photograph.
+3. **The voice on the old tape** — Bristol: rail, sound museum and concert tickets, repair café and record shop receipts, a blank memo, a repair photograph and a family photograph.
 
-These are plausible authored stories, not verified biographical/news accounts. Receipts, tickets, messages and photographs are recreated educational props. This is stated inside How to. No real institution's logo, payment QR code or booking link is used.
+These are authored, plausible stories. All tickets, receipts and photographs are recreated educational keepsakes, not real transactions or verified biographical accounts. How to states this. Native ticket/receipt print gives dates, admissions, purchases and prices; no institution logos or real payment codes are used.
 
-## Interaction
+## Visual layout
 
-- The archive has three burgundy paper folders with tabs, spines and clipped photographs, following the user's editorial stationery references.
-- Open one folder to see evidence on the left and a lined writing sheet on the right. On phones, the writing sheet follows the evidence.
-- Browse documents with Back / Next, their seven index buttons, or left/right arrows while focus is in the evidence area. Clicking a document reveals/hides one useful word/marker on a small blue note. Some notes offer a second short alternative. This is not a model sentence.
-- Evidence includes a train/admission ticket, a receipt, two photographic documents and short notes/messages. Dates, sums, schedules and current outcomes give facts to connect rather than a ready-made story.
-- How to explains first-person retelling and use of Present Perfect for experience/current outcomes alongside Past Simple for dated events. Each file has a fixed **AS OF** date; Today and duration clues refer to this date, not the browser clock.
-- There is **no answer checker**, score, automatic correction, required wording or model narrative. Browser spellchecking is disabled on the writing sheet. Learners may speak instead of writing.
-- Drafts, the last document and individual word disclosures persist independently for each file in `S.ppStoryFiles`, using the site's existing save function. Closing a file returns to the archive and focuses its cover; opening another file preserves both drafts. Storage failures do not prevent the in-memory draft from working.
-- Copy link uses the existing deterministic recipe and native click/input/keydown replay. The copied game restores the selected folder/document, disclosed word and text, then remains editable. See answers captures the writing sheet and styles through the existing live snapshot system. No transport/backend changes.
+The archive displays three stuffed paper folders, with physical objects peeking out. Opening one reveals an eight-object collage in the left folder and a **separate, large writing sheet to its right**, outside the folder. Tan, pale blue and burgundy folders follow the user's scrapbook reference and site palette. On tablets and phones the writing sheet follows the folder.
 
-## Files and visual assets
+Documents contain only their original printed details, including dates and prices. No explanatory worksheet copy or grammar instructions are overlaid. Small memo sheets are blank. Each photograph has a single short handwritten caption. Story context and instructions are in How to.
 
-- `present-perfect-files-data.js`: three stories and their 21 documents, dates and lexical cues.
-- `present-perfect-files.js`: archive, evidence browsing, cue disclosure and independent drafts.
-- `present-perfect-files.css`: folder construction, paper stack, receipts, tickets, lined paper, responsive layout and reduced motion.
-- `assets/case-files/photographs.png`: one newly generated six-frame analog-style photographic asset. Frontend background positioning selects each frame without modifying the image. It is illustrative material, not documentary proof of an actual person/event.
-- `assets/case-files/paper-grain.svg`: small locally generated procedural paper grain.
-- `ch/fonts/special-elite.woff2`: existing local typewriter font, reused for evidence metadata. Bold sans-serif headings reproduce the references' editorial hierarchy; the writing sheet uses the site's readable serif.
-- `site-theme.js`: `data-stw-plain` opt-out keeps these editorial headings straight without changing the normal wavy headings elsewhere.
+## Interaction and storage
 
-All scene content stays in the main document, with no iframe, external runtime request or new dependency. Card transitions are short CSS motions. Controls and hint disclosures work without motion or animation callbacks. Focusing the document and browsing by keyboard preserves focus after the card is replaced.
+- Click an exposed object or its numbered index to pick it up. It enlarges within the left folder; the writing sheet stays available. Previous / Next and left/right arrows browse the objects. The × button or Escape puts the item back. A picked-up object can be clicked for a word cue; a separate hint button provides the same action. The hint appears outside the artifact.
+- Native buttons support keyboard focus. The underlying collage becomes inert while an object is picked up; putting it back restores focus to that object. The writing area remains interactive at all times.
+- Eight scraps suggest a narrative; they do not prescribe one. How to provides a brief premise and encourages inventing missing connections. Past Simple describes dated events, Present Perfect describes experiences and present results up to the file’s fixed AS OF date.
+- No answer checker, score, model story or browser spellchecking. The writer has generous lined space, a word count and a 7,000-character limit.
+- Independent drafts, selected index, inspection state and word disclosures persist in `S.ppStoryFiles`. Existing story IDs and draft values are preserved. Closing/reopening, switching files and reloading retain separate drafts through the site's save function. The interface does not promise successful disk persistence when browser storage is unavailable.
+- The existing Copy link replay restores the folder, inspected object, hint and draft. The existing live snapshot captures SVG images and the current text. No shared-game or backend changes.
+
+## Assets
+
+- `assets/case-files/{porto,london,bristol}-papers.png`: three generated RGBA sheets, each with six scanned-style physical objects. Originals remain in the workspace generation directory. SVG viewports select each object directly from the unchanged source PNG; no resampling, re-generation or image edits are used for cropping.
+- `assets/case-files/photographs.png`: existing six-frame analog-style photographic sheet, reused without changes. CSS selects each photo.
+- `assets/case-files/paper-grain.svg`: existing local paper texture.
+- `ch/fonts/special-elite.woff2`: typewriter metadata.
+- `writing-room/fonts/LaBelleAurore.ttf`: handwritten photo captions and word cues.
+
+All runtime assets are local. No iframe, external image request, additional library or dependency. `data-stw-plain` preserves straight editorial headings; all layout changes are scoped to this activity. Short CSS picking-up and hover motions respect reduced-motion preferences.
 
 ## Verification
 
-`python scripts/check-present-perfect-files.py` (Python Playwright and Chromium) verifies real catalog navigation, all 21 documents and their hints, independent drafts across switching/closing/reload, absence of a checker, keyboard controls, shared links in a clean browser context, live snapshot content/styles, 1440/768/390px layouts, actual motion and return to Topics.
+`python scripts/check-present-perfect-files.py` uses Python Playwright and Chromium to verify the real B1 catalog, all 24 physical objects and their cues, plain artifact rendering, a writing field outside the folder and to its right on desktop, independent drafts across switching/reopening/reload, keyboard controls, a replay link in a clean context, the read-only live snapshot and SVG resources, 1440/768/390px layouts, reduced motion and return to Topics.
 
-The live transport is reused; this test verifies snapshot contents, not external Firestore availability.
+The live transport is reused; checks do not establish external Firestore availability.
