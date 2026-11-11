@@ -1,97 +1,92 @@
-/* Browse evidence, reveal a small lexical cue, and write freely. No answer grader. */
+/* Physical keepsakes on the left, an independent writing sheet on the right. */
 (() => {
   'use strict';
   const stories = window.PresentPerfectFileStories;
   let state = null;
-  const photo = (n, cls = '', alt = '') => `<span class="cf-photo ${cls}" role="img" aria-label="${esc(alt)}" style="--cf-photo-x:${(n % 3) * 50}%;--cf-photo-y:${n < 3 ? 0 : 100}%"></span>`;
-  function stored() {
-    if (!S.ppStoryFiles || typeof S.ppStoryFiles !== 'object' || Array.isArray(S.ppStoryFiles)) S.ppStoryFiles = {};
-    return S.ppStoryFiles;
-  }
+  const photo = (n, alt = '') => `<span class="cf-photo" role="img" aria-label="${esc(alt)}" style="--cf-photo-x:${(n % 3) * 50}%;--cf-photo-y:${n < 3 ? 0 : 100}%"></span>`;
   function fileState(story) {
-    const files = stored();
-    if (!files[story.id] || typeof files[story.id] !== 'object') files[story.id] = {};
-    const saved = files[story.id];
+    if (!S.ppStoryFiles || typeof S.ppStoryFiles !== 'object' || Array.isArray(S.ppStoryFiles)) S.ppStoryFiles = {};
+    if (!S.ppStoryFiles[story.id] || typeof S.ppStoryFiles[story.id] !== 'object') S.ppStoryFiles[story.id] = {};
+    const saved = S.ppStoryFiles[story.id];
     saved.draft = typeof saved.draft === 'string' ? saved.draft.slice(0, 7000) : '';
     saved.index = Number.isInteger(saved.index) ? Math.min(story.details.length - 1, Math.max(0, saved.index)) : 0;
     if (!Array.isArray(saved.words)) saved.words = [];
+    saved.inspect = saved.inspect === true;
     return saved;
   }
-  const header = (inside = false) => `<header class="cf-header"><button type="button" id="cf-topics" class="cf-text-button">← Topics</button><span class="cf-kicker">PRESENT PERFECT / B1</span><button type="button" id="cf-how" class="cf-text-button" aria-expanded="false" aria-controls="cf-help">How to?</button></header><div class="cf-help" id="cf-help" hidden><p>${inside ? 'Tell this story as if it happened to you.' : 'Open a file and tell the story as if it happened to you.'} Browse the seven pieces of evidence. Connect the details in your own words, aloud or on the writing sheet. You can choose your own order.</p><p>Click a document to reveal a useful word. Dates describe finished events; the notes marked Today show what has changed up to the date of this file. Present Perfect and Past Simple can work together. There is no automatic checking or model story.</p><p class="cf-small-print">Original everyday-life stories. Tickets, receipts, messages and photographs are recreated for this activity.</p></div>`;
+  const header = story => `<div class="cf-header"><button type="button" id="cf-topics" class="cf-text-button">← Topics</button><span class="cf-kicker">PRESENT PERFECT / B1</span><button type="button" id="cf-how" class="cf-text-button" aria-expanded="false" aria-controls="cf-help">How to?</button></div><div class="cf-help" id="cf-help" hidden><p>Open a file. Browse eight keepsakes and tell the story as if it happened to you. Click any item to look closer; use the arrows to move between items. A small word hint is available below each one.</p>${story ? `<p>${esc(story.premise)}</p>` : ''}<p>Use Past Simple for dated events and Present Perfect for experiences and what has changed up to the file’s AS OF date. Make your own connections. Write on the sheet, or tell the story aloud. There is no automatic checking or model story.</p><p class="cf-small-print">The photographs, tickets and receipts are recreated keepsakes for these original stories.</p></div>`;
   function bindHeader() {
     document.getElementById('cf-topics').onclick = spSetup;
     document.getElementById('cf-how').onclick = () => {
-      const box = document.getElementById('cf-help');
-      box.hidden = !box.hidden;
+      const box = document.getElementById('cf-help'); box.hidden = !box.hidden;
       document.getElementById('cf-how').setAttribute('aria-expanded', String(!box.hidden));
     };
   }
+  function artwork(d) {
+    if (d.kind === 'photo') return `<span class="cf-polaroid">${photo(d.photo,d.alt)}<span class="cf-photo-caption">${esc(d.caption)}</span></span>`;
+    return `<svg class="cf-scanned-paper" viewBox="${d.crop.join(' ')}" role="img" aria-label="${esc(d.transcript || d.label)}" focusable="false"><image href="assets/case-files/${d.sheet}-papers.png" width="1536" height="1024"/></svg>`;
+  }
   function setup() {
     seaOff(); state = null; S.splevel = 'b1';
-    setView(`<section class="cf-page cf-archive" data-stw-plain>${header()}<div class="cf-title"><span class="cf-kicker">THREE FILES / TWENTY-ONE LITTLE DETAILS</span><h1>Unfiled stories<span class="cf-title-dot">.</span></h1><p>A ticket. A photograph. Something that happened next.</p></div><div class="cf-folder-shelf">${stories.map(story => {
-      const saved = fileState(story);
-      return `<button type="button" class="cf-folder" id="cf-open-${story.id}" data-cf-file="${story.id}" aria-label="Open file ${story.number}: ${esc(story.title)}"><span class="cf-folder-tab">FILE ${story.number} / B1</span><span class="cf-folder-spine" aria-hidden="true">EXPERIENCE / DETAILS / NOW</span><span class="cf-folder-cover"><span class="cf-cover-edition">PERSONAL ARCHIVE<br>CASE ${story.number} — ${story.shortDate}</span><span class="cf-cover-title">${story.cover.map(s => `<span>${esc(s)}</span>`).join('')}</span><span class="cf-cover-photo">${photo(story.photo, '', story.teaser)}<span class="cf-photo-caption">${esc(story.place)}</span><i class="cf-paperclip" aria-hidden="true"></i></span><span class="cf-cover-ledger"><span>LOCATION <b>${esc(story.place)}</b></span><span>CONTENTS <b>7 pieces of evidence</b></span><span>STATUS <b>${saved.draft.trim() ? 'Your draft inside' : 'Ready to open'}</b></span></span></span></button>`;
-    }).join('')}</div><p class="cf-archive-foot">OPEN A FILE. FIND THE STORY BETWEEN THE SCRAPS.</p></section>`);
+    setView(`<section class="cf-page cf-archive" data-stw-plain>${header()}<div class="cf-title"><span class="cf-kicker">LIFE IN FOLDERS / PERSONAL ARCHIVE</span><h1>Unfiled stories.</h1><p>Little things. Whole stories.</p></div><div class="cf-folder-shelf">${stories.map(story => {
+      const saved=fileState(story);
+      return `<button type="button" class="cf-folder cf-color-${story.color}" id="cf-open-${story.id}" data-cf-file="${story.id}" aria-label="Open file ${story.number}: ${esc(story.title)}"><span class="cf-preview-back"><span class="cf-preview-ticket">${artwork(story.details[0])}</span><span class="cf-preview-receipt">${artwork(story.details[1])}</span><span class="cf-preview-photo">${artwork(story.details[6])}</span></span><span class="cf-folder-cover"><span class="cf-cover-edition">FILE ${story.number} / ${esc(story.place)}</span><span class="cf-cover-title">${esc(story.title)}</span><span class="cf-cover-status">${saved.draft.trim() ? 'Your draft inside' : '8 keepsakes inside'} <span aria-hidden="true">↗</span></span></span></button>`;
+    }).join('')}</div><p class="cf-archive-foot">OPEN A FOLDER. FOLLOW THE LITTLE THINGS.</p></section>`);
     bindHeader();
     for (const button of document.querySelectorAll('[data-cf-file]')) button.onclick = () => open(button.dataset.cfFile);
   }
-  function documentCopy(detail) {
-    let copy = '';
-    if (detail.photo !== undefined) copy += photo(detail.photo, 'cf-evidence-photo', detail.alt);
-    copy += `<span class="cf-document-copy" id="cf-document-copy"><span class="cf-doc-date">${esc(detail.date)}</span>${detail.eyebrow ? `<span class="cf-doc-eyebrow">${esc(detail.eyebrow)}</span>` : ''}<strong class="cf-doc-heading">${esc(detail.heading)}</strong>`;
-    if (detail.code) copy += `<span class="cf-doc-code">${esc(detail.code)}</span>`;
-    if (detail.rows) copy += `<span class="cf-doc-rows">${detail.rows.map(([label, value]) => `<span><span>${esc(label)}</span><b>${esc(value)}</b></span>`).join('')}</span>`;
-    if (detail.notes) copy += `<span class="cf-doc-notes">${detail.notes.map(n => `<span>${esc(n)}</span>`).join('')}</span>`;
-    if (detail.message) copy += `<span class="cf-message-sender">${esc(detail.sender)}</span><span class="cf-message">${esc(detail.message)}</span>`;
-    if (detail.foot) copy += `<span class="cf-doc-foot">${esc(detail.foot)}</span>`;
-    if (detail.kind === 'ticket' || detail.kind === 'receipt') copy += '<span class="cf-barcode" aria-hidden="true"></span>';
-    return copy + '</span>';
-  }
   function open(id) {
     const story = stories.find(s => s.id === id); if (!story) return;
-    const saved = fileState(story); state = {story, saved};
-    S.splevel = 'b1';
-    setView(`<section class="cf-page cf-open-file" data-stw-plain data-file="${story.id}">${header(true)}<div class="cf-file-top"><button type="button" class="cf-close-file" id="cf-close">Close file ↗</button><span class="cf-kicker">PERSONAL ARCHIVE / FILE ${story.number}</span><span class="cf-file-date">AS OF ${story.shortDate}</span></div><div class="cf-open-title"><h1>${esc(story.title)}</h1><span>${esc(story.place)} / 7 pieces of evidence</span></div><div class="cf-dossier"><span class="cf-dossier-tab">FILE ${story.number}</span><section class="cf-evidence-side" aria-label="Evidence"><div class="cf-evidence-meta"><span>THE EVIDENCE</span><span id="cf-position" aria-live="polite"></span></div><div class="cf-paper-stack" id="cf-paper-stack"></div><div class="cf-card-controls"><button type="button" id="cf-prev" aria-label="Previous piece of evidence">← Back</button><span id="cf-card-label"></span><button type="button" id="cf-next" aria-label="Next piece of evidence">Next →</button></div><div class="cf-index" role="group" aria-label="Choose a piece of evidence">${story.details.map((d, i) => `<button type="button" id="cf-detail-${i}" data-cf-index="${i}" aria-pressed="false"><span>${String(i + 1).padStart(2, '0')}</span>${esc(d.label)}</button>`).join('')}</div></section><section class="cf-writing-side" aria-label="Your story"><div class="cf-writing-paper"><i class="cf-binder" aria-hidden="true"></i><div class="cf-writing-heading"><span class="cf-kicker">FIELD NOTES / YOUR VERSION</span><span class="cf-writing-date">${esc(story.date)}</span></div><label for="cf-draft">The story, in your words.</label><p class="cf-writing-prompt">${esc(story.note)}</p><textarea id="cf-draft" rows="15" maxlength="7000" spellcheck="false" autocomplete="off" placeholder="Start wherever the story begins for you…">${esc(saved.draft)}</textarea><div class="cf-writing-footer"><span id="cf-draft-status" role="status">${saved.draft.trim() ? 'Your draft is here.' : 'Room for your own version.'}</span><span>PERSONAL ARCHIVE / ROUGH DRAFT</span></div></div><span class="cf-envelope-edge" aria-hidden="true"></span></section></div></section>`);
+    const saved=fileState(story); state={story,saved}; S.splevel='b1';
+    setView(`<section class="cf-page cf-open-file" data-stw-plain data-file="${story.id}">${header(story)}<div class="cf-file-top"><button type="button" class="cf-text-button" id="cf-close">← Close file</button><span class="cf-kicker">FILE ${story.number} / ${esc(story.place)}</span><span class="cf-kicker">AS OF ${story.shortDate}</span></div><div class="cf-open-title"><h1>${esc(story.title)}</h1><span>8 keepsakes / your version</span></div><div class="cf-workspace"><section class="cf-evidence-side" aria-label="Keepsakes"><div class="cf-memory-folder cf-color-${story.color}"><span class="cf-dossier-tab">${esc(story.place.split(',')[0].toUpperCase())} / ${story.number}</span><div class="cf-collage" id="cf-collage">${story.details.map((d,i) => `<button type="button" class="cf-piece cf-piece-${i} cf-piece-${d.kind}" id="cf-piece-${i}" data-cf-piece="${i}" aria-label="Look closer: ${esc(d.label)}" aria-controls="cf-inspector" aria-expanded="false">${artwork(d)}</button>`).join('')}</div><span class="cf-folder-pocket" aria-hidden="true"><span>PERSONAL ARCHIVE / ${story.shortDate}</span></span><div class="cf-inspector" id="cf-inspector" aria-label="A closer look" hidden></div></div><div class="cf-index" role="group" aria-label="Look closer at a keepsake">${story.details.map((d,i) => `<button type="button" id="cf-detail-${i}" data-cf-index="${i}" aria-label="${i+1}. ${esc(d.label)}" aria-pressed="false">${String(i+1).padStart(2,'0')}</button>`).join('')}</div><p class="cf-browse-note">Pick something up. Look a little closer.</p></section><section class="cf-writing-side" aria-label="Your story"><div class="cf-writing-paper"><div class="cf-writing-heading"><span class="cf-kicker">YOUR VERSION / ROUGH DRAFT</span><span class="cf-kicker">${story.shortDate}</span></div><label for="cf-draft">Your story.</label><textarea id="cf-draft" rows="18" maxlength="7000" spellcheck="false" autocomplete="off" placeholder="It started with…">${esc(saved.draft)}</textarea><div class="cf-writing-footer"><span id="cf-draft-status" role="status">${saved.draft.trim() ? 'Your draft is here.' : 'Room for your own version.'}</span><span id="cf-word-count">${wordCount(saved.draft)}</span></div></div></section></div></section>`);
     bindHeader();
-    document.getElementById('cf-close').onclick = () => { setup(); document.getElementById('cf-open-' + id)?.focus({preventScroll:true}); };
-    document.getElementById('cf-prev').onclick = () => select(saved.index - 1, -1);
-    document.getElementById('cf-next').onclick = () => select(saved.index + 1, 1);
-    for (const b of document.querySelectorAll('[data-cf-index]')) b.onclick = () => select(+b.dataset.cfIndex, +b.dataset.cfIndex < saved.index ? -1 : 1);
-    const input = document.getElementById('cf-draft');
-    input.oninput = () => { saved.draft = input.value.slice(0, 7000); save(); document.getElementById('cf-draft-status').textContent = 'Your draft is here.'; };
-    document.querySelector('.cf-evidence-side').onkeydown = e => {
-      if (e.ctrlKey || e.altKey || e.metaKey || e.target.closest('textarea,input,select')) return;
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); select(saved.index + (e.key === 'ArrowLeft' ? -1 : 1), e.key === 'ArrowLeft' ? -1 : 1); }
+    document.getElementById('cf-close').onclick=()=>{setup();document.getElementById('cf-open-'+id)?.focus({preventScroll:true});};
+    document.querySelectorAll('[data-cf-piece], [data-cf-index]').forEach(b=>b.onclick=()=>select(+(b.dataset.cfPiece ?? b.dataset.cfIndex)));
+    document.getElementById('cf-draft').oninput=e=>{
+      saved.draft=e.target.value.slice(0,7000);save();
+      document.getElementById('cf-draft-status').textContent='Your draft is here.';
+      document.getElementById('cf-word-count').textContent=wordCount(saved.draft);
     };
-    renderEvidence(0);
-  }
-  function select(index, direction) {
-    if (!state || index < 0 || index >= state.story.details.length || index === state.saved.index) return;
-    state.saved.index = index; save(); renderEvidence(direction);
-  }
-  function renderEvidence(direction) {
-    const {story, saved} = state, detail = story.details[saved.index], revealed = saved.words.includes(detail.id);
-    document.getElementById('cf-position').textContent = `${String(saved.index + 1).padStart(2, '0')} / ${String(story.details.length).padStart(2, '0')}`;
-    document.getElementById('cf-card-label').textContent = detail.label;
-    document.getElementById('cf-prev').disabled = saved.index === 0;
-    document.getElementById('cf-next').disabled = saved.index === story.details.length - 1;
-    const pile = document.getElementById('cf-paper-stack'), documentFocused = document.activeElement?.id === 'cf-document';
-    pile.style.setProperty('--cf-from', direction < 0 ? '-16px' : '16px');
-    pile.innerHTML = `<span class="cf-under-sheet cf-under-one" aria-hidden="true"></span><span class="cf-under-sheet cf-under-two" aria-hidden="true"></span><button type="button" id="cf-document" class="cf-document cf-document-${detail.kind}${direction ? ' cf-shuffled' : ''}" aria-expanded="${revealed}" aria-controls="cf-word" aria-describedby="cf-document-copy" aria-label="${esc(detail.label)}. Click to ${revealed ? 'hide' : 'reveal'} a useful word.">${documentCopy(detail)}<span class="cf-document-click">${revealed ? 'HIDE THE WORD ↗' : 'CLICK FOR A WORD ↗'}</span></button><div class="cf-word" id="cf-word" role="note" aria-live="polite" ${revealed ? '' : 'hidden'}><span>A WORD TO TRY</span><strong>${esc(detail.word)}</strong>${detail.extraWord ? `<small>or ${esc(detail.extraWord)}</small>` : ''}</div>`;
-    for (const b of document.querySelectorAll('[data-cf-index]')) b.setAttribute('aria-pressed', String(+b.dataset.cfIndex === saved.index));
-    document.getElementById('cf-document').onclick = () => {
-      const word = document.getElementById('cf-word'), button = document.getElementById('cf-document');
-      word.hidden = !word.hidden;
-      button.setAttribute('aria-expanded', String(!word.hidden));
-      button.setAttribute('aria-label', detail.label + '. Click to ' + (word.hidden ? 'reveal' : 'hide') + ' a useful word.');
-      button.querySelector('.cf-document-click').textContent = word.hidden ? 'CLICK FOR A WORD ↗' : 'HIDE THE WORD ↗';
-      saved.words = word.hidden ? saved.words.filter(w => w !== detail.id) : [...new Set([...saved.words, detail.id])]; save();
+    document.querySelector('.cf-evidence-side').onkeydown=e=>{
+      if(e.ctrlKey||e.altKey||e.metaKey)return;
+      if(e.key==='Escape'&&saved.inspect){e.preventDefault();closeInspector();}
+      if((e.key==='ArrowLeft'||e.key==='ArrowRight')&&saved.inspect){e.preventDefault();select(saved.index+(e.key==='ArrowLeft'?-1:1),true);}
     };
-    if (documentFocused) document.getElementById('cf-document').focus({preventScroll:true});
+    renderInspector();
   }
-  const group = SPGRP.b1.find(g => /^1\s*·/.test(g[0]));
-  if (group && !group[1].includes('ppfiles')) group[1].splice(1, 0, 'ppfiles');
-  SPSHORT.ppfiles = 'Story files'; DMT.ppfiles = 1; DMTF.ppfiles = setup;
-  SPT.push({id:'ppfiles',n:'Present Perfect: Story files',d:'Browse seven pieces of evidence and tell your own story. Click a document for a useful word.'});
-  window.PresentPerfectFiles = {stories, setup, open, get state() { return state; }};
+  function wordCount(s){const n=s.trim()?s.trim().split(/\s+/).length:0;return `${n} ${n===1?'word':'words'}`;}
+  function select(index, focus=true){
+    if(!state||index<0||index>=state.story.details.length)return;
+    state.saved.index=index;state.saved.inspect=true;save();renderInspector();
+    if(focus)document.getElementById('cf-document').focus({preventScroll:true});
+  }
+  function closeInspector(){
+    state.saved.inspect=false;save();renderInspector();
+    document.getElementById('cf-piece-'+state.saved.index).focus({preventScroll:true});
+  }
+  function renderInspector(){
+    const {story,saved}=state, panel=document.getElementById('cf-inspector'), d=story.details[saved.index];
+    panel.hidden=!saved.inspect;
+    document.querySelectorAll('[data-cf-index]').forEach(b=>b.setAttribute('aria-pressed',String(saved.inspect&&+b.dataset.cfIndex===saved.index)));
+    document.querySelectorAll('[data-cf-piece]').forEach(b=>{b.setAttribute('aria-expanded',String(saved.inspect&&+b.dataset.cfPiece===saved.index));b.tabIndex=saved.inspect?-1:0;});
+    document.getElementById('cf-collage').inert=saved.inspect;
+    if(!saved.inspect){panel.innerHTML='';return;}
+    const revealed=saved.words.includes(d.id);
+    panel.innerHTML=`<div class="cf-inspect-top"><span class="cf-kicker">${String(saved.index+1).padStart(2,'0')} / 08 — ${esc(d.label)}</span><button type="button" id="cf-put-back" aria-label="Put keepsake back">×</button></div><button type="button" id="cf-document" class="cf-enlarged cf-enlarged-${d.kind}" aria-label="${esc(d.label)}. Reveal or hide a word hint." aria-expanded="${revealed}" aria-controls="cf-word">${artwork(d)}</button><div class="cf-hint-line"><button type="button" id="cf-hint" aria-expanded="${revealed}" aria-controls="cf-word">${revealed?'Hide word':'A word to try ↗'}</button><span id="cf-word" class="cf-word" role="note" aria-live="polite" ${revealed?'':'hidden'}><strong>${esc(d.word)}</strong></span></div><div class="cf-card-controls"><button type="button" id="cf-prev" ${saved.index===0?'disabled':''} aria-label="Previous keepsake">← Previous</button><button type="button" id="cf-next" ${saved.index===story.details.length-1?'disabled':''} aria-label="Next keepsake">Next →</button></div>`;
+    document.getElementById('cf-put-back').onclick=closeInspector;
+    document.getElementById('cf-prev').onclick=()=>select(saved.index-1,true);
+    document.getElementById('cf-next').onclick=()=>select(saved.index+1,true);
+    const toggle=()=>{
+      const word=document.getElementById('cf-word');word.hidden=!word.hidden;
+      ['cf-hint','cf-document'].forEach(id=>document.getElementById(id).setAttribute('aria-expanded',String(!word.hidden)));
+      document.getElementById('cf-hint').textContent=word.hidden?'A word to try ↗':'Hide word';
+      saved.words=word.hidden?saved.words.filter(w=>w!==d.id):[...new Set([...saved.words,d.id])];save();
+    };
+    document.getElementById('cf-document').onclick=toggle;document.getElementById('cf-hint').onclick=toggle;
+  }
+  const group=SPGRP.b1.find(g=>/^1\s*·/.test(g[0]));
+  if(group&&!group[1].includes('ppfiles'))group[1].splice(1,0,'ppfiles');
+  SPSHORT.ppfiles='Story files';DMT.ppfiles=1;DMTF.ppfiles=setup;
+  SPT.push({id:'ppfiles',n:'Present Perfect: Story files',d:'A folder of photographs, tickets and receipts. Find the story; write your version.'});
+  window.PresentPerfectFiles={stories,setup,open,get state(){return state;}};
 })();

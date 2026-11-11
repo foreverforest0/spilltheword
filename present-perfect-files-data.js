@@ -1,54 +1,47 @@
-/* Original everyday-life vignettes. Tickets/messages are recreated learning props. */
+/* Recreated keepsakes, not real bookings or transactions. Source pixels stay intact. */
 (() => {
-  'use strict';
+  const paper = (id, kind, label, sheet, crop, word, transcript) => ({id, kind, label, sheet, crop, word, transcript});
+  const photo = (id, label, frame, caption, word, alt) => ({id, kind:'photo', label, photo:frame, caption, word, alt});
+  const pack = (name, rects) => (id, kind, label, n, word, transcript = '') => paper(id,kind,label,name,rects[n],word,transcript);
+  const porto = pack('porto', [[20,150,560,270],[620,25,300,485],[950,145,585,285],[15,635,555,300],[615,525,305,490],[1020,525,465,460]]);
+  const london = pack('london', [[10,120,505,345],[620,10,290,495],[1015,135,515,315],[5,635,505,315],[620,520,290,500],[1040,540,460,440]]);
+  const bristol = pack('bristol', [[20,125,505,315],[610,5,305,500],[1000,120,530,325],[10,630,525,320],[605,520,325,500],[1045,550,450,455]]);
   window.PresentPerfectFileStories = [
-    {
-      id: 'unclaimed-roll', number: '01', title: 'The roll nobody collected',
-      cover: ['the roll', 'nobody', 'collected.'], place: 'Porto, Portugal',
-      date: '12 October 2026', shortDate: '12 OCT 2026', photo: 0,
-      teaser: 'One second-hand camera. Twenty-two photographs. Someone else’s wedding.',
-      note: 'Your weekend purchase has turned into a search for two strangers. Tell the story from the train journey to the news in this file.',
-      details: [
-        {id:'train',kind:'ticket',label:'Train ticket',heading:'Lisboa → Porto',date:'08 OCT 2026',eyebrow:'RAIL / SINGLE JOURNEY',code:'CP · 0810 · 07:15',rows:[['Departure','Lisboa · 07:15'],['Arrival','Porto · 10:05'],['Seat','Coach 3 / 24A'],['Fare','€19.50']],foot:'A long weekend. One small backpack.',word:'last Thursday'},
-        {id:'market',kind:'receipt',label:'Market receipt',heading:'Friday finds',date:'09 OCT 2026',eyebrow:'FLEA MARKET / CASH SALE',code:'SALE 0048',rows:[['Used film camera','€18.00'],['Leather strap','included'],['Film inside','owner unknown'],['Total paid','€18.00']],foot:'The seller: “No idea what’s on that roll.”',word:'ever'},
-        {id:'walk',kind:'photo',label:'Market photograph',heading:'Not another souvenir',date:'09 OCT 2026',photo:0,alt:'A second-hand film camera at a Porto flea market',notes:['Flea market, near the river','A camera instead of the usual postcard','No other film cameras in your collection'],word:'first'},
-        {id:'lab',kind:'slip',label:'Lab envelope',heading:'Something survived',date:'10 OCT 2026',eyebrow:'FILM LAB / COLLECTION SLIP',code:'ROLL 22 / READY',rows:[['Frames recovered','22 of 24'],['Prints','ready for collection'],['Scan link','sent to your phone'],['Lab bill','€12.00']],foot:'Two empty frames. Twenty-two small pieces of somebody’s life.',word:'already'},
-        {id:'wedding',kind:'photo',label:'Old photograph',heading:'The people in the pictures',date:'DATE ON FILM: 2001',photo:3,alt:'An old film photograph of a couple on a windy seaside promenade',notes:['A wedding by the sea','The same two people in sixteen photographs','No names on the envelope'],word:'never'},
-        {id:'reply',kind:'message',label:'New message',heading:'A reply, at last',date:'TODAY · 12 OCT',eyebrow:'COMMUNITY GROUP / 09:42',sender:'Rita',message:'That’s my aunt and uncle! Their wedding, 2001. They thought the camera was gone forever. Can I put you in touch?',foot:'Your post: yesterday evening. This reply: a few minutes ago.',word:'just'},
-        {id:'now',kind:'note',label:'Today’s note',heading:'Where things stand',date:'12 OCT 2026',eyebrow:'ON YOUR DESK / NOW',notes:['Camera on your shelf: from 9 October to today','Owner: found','Prints: still in your bag; not posted','The couple’s address: waiting for it'],word:'yet',extraWord:'since'}
-      ]
-    },
-    {
-      id:'dinosaur-night',number:'02',title:'A night under a dinosaur',
-      cover:['a night', 'under a', 'dinosaur.'],place:'London, UK',
-      date:'19 October 2026',shortDate:'19 OCT 2026',photo:1,
-      teaser:'A sleeping bag, a museum after dark, and breakfast with people you met at midnight.',
-      note:'You booked a museum sleepover instead of a hotel. Rebuild that night, then say what has stayed with you since.',
+    {id:'unclaimed-roll', number:'01', title:'The roll nobody collected', place:'Porto, Portugal', shortDate:'12 OCT 2026', photo:0, color:'sand',
+      premise:'A second-hand camera still held a roll of someone else’s wedding photographs. Tell the story of finding it and what has happened since. You can invent the missing connections.',
       details:[
-        {id:'admission',kind:'ticket',label:'Admission ticket',heading:'After the doors close',date:'16 OCT 2026',eyebrow:'MUSEUM / ADULT SLEEPOVER',code:'ADMIT ONE · NIGHT 16/10',rows:[['Check-in','19:30'],['Bring','sleeping bag + toothbrush'],['Sleeping place','Dinosaur hall / D12'],['Checkout','17 October / 09:00']],foot:'Your first museum sleepover. Definitely not a normal hotel.',word:'ever'},
-        {id:'packing',kind:'note',label:'Packing note',heading:'One slightly odd overnight bag',date:'16 OCT / 17:10',eyebrow:'PACKED / LEFT AT HOME',notes:['Sleeping bag, earplugs, warm socks: packed','Pillow: still on your sofa','Hotel reservation: none','Still on your wish list: a lighthouse sleepover'],word:'never'},
-        {id:'hall',kind:'photo',label:'Midnight photograph',heading:'Your room for the night',date:'17 OCT / 00:18',photo:1,alt:'Sleeping bags beneath a dinosaur skeleton in a museum at night',notes:['Lights low; twenty sleeping bags','One enormous dinosaur overhead','Nobody getting much sleep'],word:'that night'},
-        {id:'programme',kind:'slip',label:'Night programme',heading:'While the city sleeps',date:'16–17 OCT 2026',eyebrow:'FOLDED PROGRAMME / YOUR MARKS',code:'EVENING NOTES',rows:[['21:00','Torchlight tour — joined'],['23:15','Life drawing — tried'],['00:30','Ghost stories — missed'],['07:00','Breakfast — first in line']],foot:'One very bad dinosaur sketch, kept as a souvenir.',word:'already'},
-        {id:'breakfast',kind:'photo',label:'Breakfast photograph',heading:'Coffee with the night shift',date:'17 OCT / 07:12',photo:4,alt:'Mugs and a croissant at a museum café after an overnight stay',notes:['Breakfast with two people from the next sleeping bags','Cold coffee, warm croissants','Contact names saved: Jo + Alex'],word:'met'},
-        {id:'receipt',kind:'receipt',label:'Café receipt',heading:'The souvenir nobody planned',date:'17 OCT 2026',eyebrow:'MUSEUM CAFÉ / 08:03',code:'TABLE 04 · RECEIPT 117',rows:[['Coffee × 2','£6.40'],['Dinosaur postcard','£1.50'],['Extra croissant','£2.80'],['Total','£10.70']],foot:'Postcard to Mum: written. Stamp: bought. Postcard: still in your bag.',word:'yet'},
-        {id:'group',kind:'message',label:'Group chat',heading:'Not just one night',date:'TODAY · 19 OCT',eyebrow:'“THE D12 CLUB” / 3 MEMBERS',sender:'Jo',message:'Two days since our museum breakfast! Photos from Alex: in the chat. Another strange overnight trip next month?',foot:'Group chat active from 17 October. Two voice notes each day. Next trip: not booked.',word:'since',extraWord:'for'}
-      ]
-    },
-    {
-      id:'cassette',number:'03',title:'The voice on the old tape',
-      cover:['the voice', 'on the', 'old tape.'],place:'Bristol, UK',
-      date:'26 October 2026',shortDate:'26 OCT 2026',photo:2,
-      teaser:'One broken cassette player. A repair café. A voice your family thought was lost.',
-      note:'You took an old cassette player to a volunteer repair café. Tell the story of the visit and what you and your family have done with the recording.',
+        porto('train','ticket','Train ticket',0,'last Thursday','Lisboa to Porto, 8 October 2026, 07:15, seat 24A, €19.50.'),
+        porto('market','receipt','Market receipt',1,'ever','Mercado do Sol, Porto. Film camera, 9 October 2026. Total €18.00.'),
+        porto('museum','ticket','Museum ticket',2,'been','Photo Museum, Porto, 10 October 2026. One admission, €8.00.'),
+        porto('concert','ticket','Concert ticket',3,'that evening','Ribeira Sessions, live music, 9 October 2026, 20:30, €12.00.'),
+        porto('lab','receipt','Film lab receipt',4,'already','Film Lab, 10 October 2026. Develop and scan, €12.00.'),
+        porto('now','note','Small blank note',5,'yet'),
+        photo('walk','Market photograph',0,'A lucky find by the river','first','A second-hand camera held at a Porto flea market.'),
+        photo('wedding','Old wedding photograph',3,'A wedding, summer 2001','never','A couple on a windy seaside promenade in an old film photograph.')
+      ]},
+    {id:'dinosaur-night', number:'02', title:'A night under a dinosaur', place:'London, UK', shortDate:'19 OCT 2026', photo:1, color:'blue',
+      premise:'A museum sleepover instead of a hotel. Tell the story of that weekend and what has stayed with you since. The keepsakes leave room for your own version.',
       details:[
-        {id:'travel',kind:'ticket',label:'Train ticket',heading:'Bath → Bristol',date:'24 OCT 2026',eyebrow:'RAIL / DAY RETURN',code:'24/10 · RETURN BEFORE MIDNIGHT',rows:[['Outward','09:12'],['In your bag','Grandma’s cassette player'],['Reason for trip','Repair café / 10:00'],['Return fare','£9.40']],foot:'A trip to fix a machine, not to buy a new one.',word:'on Saturday'},
-        {id:'repair',kind:'slip',label:'Repair tag',heading:'A tiny belt. A big difference.',date:'24 OCT / 11:20',eyebrow:'VOLUNTEER REPAIR CAFÉ',code:'JOB 073 / WORKING AGAIN',rows:[['Problem','Motor turns; tape does not'],['Replaced','One rubber drive belt'],['Parts','£3.00'],['Volunteer time','Free / 45 minutes']],foot:'First repair-café visit. The volunteer refused a tip; you bought the tea.',word:'first'},
-        {id:'bench',kind:'photo',label:'Workbench photograph',heading:'The patient on the table',date:'24 OCT / 10:47',photo:2,alt:'A cassette player being repaired on a volunteer workbench',notes:['Screws in a teacup','Old cassette already inside the player','Handwritten label: “Sunday / 1998”'],word:'already'},
-        {id:'tape',kind:'note',label:'Listening notes',heading:'Not a blank tape',date:'24 OCT / 11:28',eyebrow:'FIRST LISTEN / SCRAP OF PAPER',notes:['00:04 — Grandma laughing','01:12 — her recipe for apple cake','04:30 — your dad, aged seven, asking for another slice','Recording forgotten in a drawer: twenty-eight years'],word:'never'},
-        {id:'transfer',kind:'receipt',label:'Transfer receipt',heading:'From a tape to your phone',date:'24 OCT 2026',eyebrow:'AUDIO TRANSFER / DIGITAL COPY',code:'ORDER 052 / COLLECTED',rows:[['Cassette transferred','1'],['Audio recovered','18 minutes'],['Phone copies','You + Dad + Grandma'],['Total','£9.00']],foot:'Original tape in a paper envelope. Copies already in the family chat.',word:'just'},
-        {id:'family',kind:'photo',label:'Kitchen photograph',heading:'A second listen',date:'25 OCT 2026',photo:5,alt:'An older woman holding a cassette with a younger relative beside her',notes:['Sunday, at Grandma’s kitchen table','Grandma listening twice; Dad once','The apple cake: baked together for the first time'],word:'twice'},
-        {id:'today',kind:'message',label:'Message from Dad',heading:'The next little project',date:'TODAY · 26 OCT',eyebrow:'FAMILY CHAT / 08:16',sender:'Dad',message:'Third listen this morning! A whole box of tapes in the loft. Another listening session next weekend?',foot:'Player working from Saturday to today. More tapes: not checked. Original tape: not returned to the drawer.',word:'yet',extraWord:'since'}
-      ]
-    }
+        london('travel','ticket','Day travel ticket',0,'on Friday','London day travel, 16 October 2026. £9.10.'),
+        london('receipt','receipt','Café receipt',1,'yet','Museum Café, 17 October 2026. Two coffees £6.40, postcard £1.50, croissant £2.80. Total £10.70.'),
+        london('admission','ticket','Museum sleepover ticket',2,'ever','After Hours museum sleepover. 16 October 2026, 19:30, hall D12. One admission.'),
+        london('concert','ticket','Concert ticket',3,'also','Late Night Quartet, London, 17 October 2026, 18:30. Row B, seat 12.'),
+        london('shop','receipt','Museum shop receipt',4,'just','Museum shop, 17 October 2026. Postcard £1.50, stamp £1.10. Total £2.60.'),
+        london('packing','note','Small blank note',5,'since'),
+        photo('hall','Midnight photograph',1,'After the doors closed','never','Sleeping bags beneath a dinosaur skeleton in a museum at night.'),
+        photo('breakfast','Breakfast photograph',4,'Saturday, 7:12 a.m.','met','Two mugs and a croissant at a museum café after an overnight stay.')
+      ]},
+    {id:'cassette', number:'03', title:'The voice on the old tape', place:'Bristol, UK', shortDate:'26 OCT 2026', photo:2, color:'wine',
+      premise:'An old cassette player, a volunteer repair café and a family voice thought lost. Reconstruct the weekend and what you have done with the recording since. Invent the connections that the papers cannot show.',
+      details:[
+        bristol('travel','ticket','Train ticket',0,'on Saturday','Bath to Bristol, 24 October 2026, 09:12. Day return £9.40.'),
+        bristol('repair','receipt','Repair café receipt',1,'first','Repair Café, Bristol, 24 October 2026. Drive belt £3.00, labour free. Total £3.00.'),
+        bristol('museum','ticket','Sound museum ticket',2,'been','Sound Museum, Bristol, 24 October 2026, 14:00. One admission, £8.00.'),
+        bristol('concert','ticket','Live session ticket',3,'that evening','Sunday Tapes, Bristol, 25 October 2026, 19:00. £18.00.'),
+        bristol('shop','receipt','Record shop receipt',4,'already','The Record Room, 24 October 2026. Used cassette £4.00, blank tape £2.50. Total £6.50.'),
+        bristol('tape','note','Small blank note',5,'just'),
+        photo('bench','Workbench photograph',2,'Saturday, at the repair café','never','A cassette player being repaired, with screws and tools on a workbench.'),
+        photo('family','Kitchen photograph',5,'A second listen at Grandma’s','twice','An older woman holding a cassette beside a younger relative.')
+      ]}
   ];
 })();
