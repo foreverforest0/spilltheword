@@ -72,3 +72,5 @@ body.grammar-style-active main:has(.ww-page){max-width:1500px}
 .ww-tools #ww-hint{font-size:12px;padding:6px 10px;margin-bottom:6px}
 .ww-tools .ww-part{font-size:14px;padding:6px 8px}
 .ww-tools .ww-part-group{margin:10px 0 13px}
+.ww-page .ww-context-now{display:block;width:100%;margin:0 0 12px;background:#26422b;color:#f9f5e6;font-size:14px;padding:10px}
+body.embed #view .ww-header{display:flex!important}

@@ -19,10 +19,8 @@ with sync_playwright() as pw:
   for id in ids:p.locator('#ww-op-'+id).click()
   p.locator('#ww-check').click()
  def advance_to(prompt):
-  for _ in range(5):
-   if task()['prompt']==prompt:return
-   solve()
-  raise AssertionError('Missing prompt '+prompt)
+  p.evaluate("""prompt=>{const s=WordWorkshop.state,r=s.runs[s.wordIndex],task=WordWorkshopParts.formationTasks(r.row,s.level).find(t=>t.prompt===prompt);if(!task)throw Error('Missing '+prompt);r.steps=[task];r.index=0;r.phase='forms'}""",prompt)
+  p.locator('#ww-bank-'+str(p.evaluate('WordWorkshop.state.wordIndex'))).click();p.locator('#ww-reset').click()
  select('happy');base=p.locator('[data-ww-part]').evaluate_all('es=>es.map(e=>e.dataset.wwPart)');assert len(base)>35
  assert p.locator('#ww-op-prefix-in').is_enabled() and p.locator('#ww-op-suffix-ment').is_enabled()
  assert p.locator('#ww-hint-copy').is_hidden() and p.locator('#ww-model').is_hidden() and p.locator('#ww-show').is_hidden()

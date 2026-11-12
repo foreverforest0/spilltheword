@@ -2,6 +2,7 @@
    Replay contains only game input events, never executable code or DOM HTML. */
 (()=>{
  'use strict';
+ const embedded=new URLSearchParams(location.search).has('embed');if(embedded)document.body.classList.add('embed');
  let publisherCode=null,lastSharedWatch=null;try{lastSharedWatch=sessionStorage.getItem('stw-last-shared-watch')}catch{}
  const nativeRandom=Math.random,storageKeys=['stw-question-pond-v1','stw-watercolor-appearance-v1','midnight-kitchen-progress-v1','engGames.typewriter'];
  let recipe=null,replaying=false,depth=0,rng=nativeRandom,lastEvent=0,student=false;
@@ -25,7 +26,7 @@
  function wrap(fn,route){return function(...args){begin(route,args);depth++;try{return fn.apply(this,args)}finally{depth--;toolbar()}}}
  go=wrap(go,'go');spOpen=wrap(spOpen,'spOpen');gmNew=wrap(gmNew,'gmNew');exSetup=wrap(exSetup,'exSetup');startGame=wrap(startGame,'startGame');
  const baseView=setView;setView=function(html){const result=baseView(html);toolbar();return result};
- const style=document.createElement('style');style.textContent=`.game-share-toolbar{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;align-items:center;max-width:1440px;margin:0 auto 8px;padding:6px 0;min-height:38px}.game-share-toolbar button{background:#CCE5FF!important;color:#70271F!important;border:0!important;border-radius:3px;font:16px/1.2 Georgia,serif!important;padding:10px 15px;cursor:pointer;box-shadow:none!important}.game-share-toolbar output{font:15px Georgia,serif;color:#26422B}.game-share-toolbar input{width:min(500px,60vw);font:14px Georgia,serif}.shared-game-loading{position:fixed;inset:0;z-index:9999;background:#F9F5E6ed;display:grid;place-content:center;color:#70271F;font:24px Georgia,serif;padding:30px;text-align:center}.shared-game-loading button{margin-top:20px;padding:12px;background:#CCE5FF;border:0;color:#70271F;font:18px Georgia,serif}`;document.head.appendChild(style);
+ const style=document.createElement('style');style.textContent=`.game-share-toolbar{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;align-items:center;max-width:1440px;margin:0 auto 8px;padding:6px 60px 6px 0;box-sizing:border-box;min-height:38px}.game-share-toolbar button{background:#CCE5FF!important;color:#70271F!important;border:0!important;border-radius:3px;font:16px/1.2 Georgia,serif!important;padding:10px 15px;cursor:pointer;box-shadow:none!important}.game-share-toolbar output{font:15px Georgia,serif;color:#26422B}.game-share-toolbar input{width:min(500px,60vw);font:14px Georgia,serif}.shared-game-loading{position:fixed;inset:0;z-index:9999;background:#F9F5E6ed;display:grid;place-content:center;color:#70271F;font:24px Georgia,serif;padding:30px;text-align:center}.shared-game-loading button{margin-top:20px;padding:12px;background:#CCE5FF;border:0;color:#70271F;font:18px Georgia,serif}`;document.head.appendChild(style);
  function toolbar(){
   const view=document.getElementById('view');if(!view||tab==='home'||!recipe||ROOM.role==='guest')return;
   if(view.querySelector(':scope>.game-share-toolbar'))return;
@@ -40,7 +41,7 @@
     row.querySelector('input')?.remove();
     if(copied)result.textContent='Copied ✓';else{const field=document.createElement('input');field.readOnly=true;field.value=url;field.setAttribute('aria-label','Game link');row.appendChild(field);field.select();result.textContent='Copy this link';}
    }catch(e){result.textContent=e.message||'Could not create link.'}finally{b.disabled=false}
-  };row.append(result,b);if(student){const state=document.createElement('span');state.dataset.liveStatus='';state.textContent='Live answers';row.prepend(state)}else{const watch=document.createElement('button');watch.type='button';watch.textContent='See answers';watch.onclick=()=>SharedLive.monitor(lastSharedWatch||recipe.watch);row.appendChild(watch)}view.prepend(row);
+  };row.append(result,b);if(student){const state=document.createElement('span');state.dataset.liveStatus='';state.textContent='Live answers';row.prepend(state)}else{const watch=document.createElement('button');watch.type='button';watch.textContent='See answers';watch.onclick=()=>SharedLive.monitor(lastSharedWatch||recipe.watch);row.appendChild(watch)}if(!embedded)row.append(SpillEmbed.controls(getEmbedCode));view.prepend(row);
  }
  function selector(el,root){
   if(!(el instanceof el.ownerDocument.defaultView.Element))return null;
@@ -94,6 +95,7 @@
   if(!student){lastSharedWatch=data.watch;try{sessionStorage.setItem('stw-last-shared-watch',data.watch)}catch{}}
   return location.href.split('#')[0]+'#play='+token;
  }
+ async function getEmbedCode(){const url=new URL(await getLink());url.searchParams.set('embed','1');return SpillEmbed.frame(url.href,'Spill the Word · prepared game',1000);}
  const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
  async function waitFor(fn,ms=15000){const start=performance.now();while(performance.now()-start<ms){const value=fn();if(value)return value;await delay(40)}throw Error('This game has changed. Ask for a new link.');}
  async function decodeShared(token){
@@ -151,5 +153,5 @@
    cover.remove();replaying=false;lastEvent=performance.now();toolbar();window.scrollTo(0,0);document.dispatchEvent(new Event('stw:shared-restored'));if(data.watch)SharedLive.publish(data.watch);
   }catch(e){replaying=false;cover.textContent=e.message||'Could not open this game link.';const back=document.createElement('button');back.textContent='Back to games';back.onclick=()=>{cover.remove();history.replaceState(null,'',location.pathname);go('home')};cover.appendChild(back);console.warn('Shared game:',e)}
  }
- window.SharedGame={getLink,restore,attachFrame,get replaying(){return replaying},get isStudent(){return student},get eventCount(){return recipe?.events.length||0}};
+ window.SharedGame={getLink,getEmbedCode,restore,attachFrame,get replaying(){return replaying},get isStudent(){return student},get eventCount(){return recipe?.events.length||0}};
 })();

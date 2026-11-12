@@ -10205,7 +10205,7 @@ function wizardHouseSetup(){
  setView(`<section class="panel k-card" style="padding:0;overflow:hidden"><iframe title="The Midnight House · Kitchen" src="wizard-house/index.html" style="display:block;width:100%;border:0;height:1450px;border-radius:12px" onload="const f=this,d=f.contentDocument;d.body.style.minHeight='0';const r=()=>f.style.height=(d.body.scrollHeight+24)+'px';r();new f.contentWindow.ResizeObserver(r).observe(d.body)"></iframe></section>`);
 }
 function appearanceSetup(){
- setView(`<section class="panel k-card"><div class="row"><button class="lvb" id="apptopics">← Kids topics</button></div><iframe title="Kids Appearance · Portrait Studio" src="appearance/index.html" style="display:block;width:100%;border:0;height:1250px;border-radius:16px;margin-top:15px" onload="const f=this,d=f.contentDocument;d.body.style.minHeight='0';const r=()=>f.style.height=(d.body.scrollHeight+24)+'px';r();new f.contentWindow.ResizeObserver(r).observe(d.body)"></iframe></section>`);
+ setView(`<section class="panel k-card"><div class="row"><button class="lvb" id="apptopics">← Kids topics</button></div><iframe title="Kids Appearance · Portrait Studio" src="appearance/index.html?v=share-20261112-1" style="display:block;width:100%;border:0;height:1250px;border-radius:16px;margin-top:15px" onload="const f=this,d=f.contentDocument;d.body.style.minHeight='0';const r=()=>f.style.height=(d.body.scrollHeight+24)+'px';r();new f.contentWindow.ResizeObserver(r).observe(d.body)"></iframe></section>`);
  $('#apptopics').onclick=()=>{S.splevel='kids';save();spSetup()};
 }
 function spSetup(){
@@ -12849,13 +12849,14 @@ async function boot(){
 <script src="card-stacks.js"></script>
 <script src="card-stack-adapters.js"></script>
 <script src="card-stack-fix.js"></script>
-<link rel="stylesheet" href="word-workshop.css?v=ww-20261112-2">
+<link rel="stylesheet" href="word-workshop.css?v=ww-20261112-3">
 <script src="vendor/compromise/compromise.js"></script>
-<script src="word-workshop-forms.js?v=ww-20261112-2"></script>
-<script src="word-workshop-families.js?v=ww-20261112-2"></script>
-<script src="word-workshop-parts.js?v=ww-20261112-2"></script>
-<script src="word-workshop-contexts.js?v=ww-20261112-2"></script>
-<script src="word-workshop.js?v=ww-20261112-2"></script>
+<script src="word-workshop-forms.js?v=ww-20261112-3"></script>
+<script src="word-workshop-families.js?v=ww-20261112-3"></script>
+<script src="word-workshop-dictionary.js?v=ww-20261112-3"></script>
+<script src="word-workshop-parts.js?v=ww-20261112-3"></script>
+<script src="word-workshop-contexts.js?v=ww-20261112-3"></script>
+<script src="word-workshop.js?v=ww-20261112-3"></script>
 <link rel="stylesheet" href="present-perfect-files.css?v=files-20261111-3">
 <script src="present-perfect-files-data.js?v=files-20261111-3"></script>
 <script src="present-perfect-files.js?v=files-20261111-3"></script>
@@ -12864,7 +12865,8 @@ async function boot(){
 <script src="present-perfect-video.js?v=ppv-20261111-1"></script>
 <script src="writing-room/bridge.js?v=wr-20261109-6"></script>
 <script src="live-answers.js"></script>
-<script src="shared-game.js"></script>
+<script src="embed-ui.js?v=embed-20261112-1"></script>
+<script src="shared-game.js?v=embed-20261112-1"></script>
 <script>
 window.addEventListener('hashchange',()=>location.reload());
 boot();
