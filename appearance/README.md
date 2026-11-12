@@ -21,3 +21,6 @@ The ponytail and plaits were recut from the original hairstyle sheet to restore 
 Page and activity titles retain their full wave. Subtitles and mode-card names use a shallow, slower wave; the card call-to-action styling no longer changes the weight of individual title letters.
 
 Run `python scripts/check-portrait-studio.py` for browser checks, exports and responsive previews.
+
+
+**Embed:** the site's toolbar shows Embed next to Copy link. It produces a prepared, independently editable iframe using the shared-game replay. Direct `appearance/index.html` has its own Embed control: it snapshots the current portrait/name, Read & build brief, or Guess who sheet and eliminations into a validated `#studio=` payload. `?embed=1` hides the extra standalone sharing toolbar. No secret person or remote storage is introduced. Run `python scripts/check-prepared-embeds.py` for fresh-browser iframe restoration checks.

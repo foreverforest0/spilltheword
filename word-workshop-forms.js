@@ -130,7 +130,7 @@ outrun|outran|outrun
 rerun|reran|rerun`.split('\n')){const [base,past,part]=line.split('|');irregular[base]={past:past.split('/'),part:part.split('/')}}
  const norm=s=>String(s).toLowerCase().normalize('NFKC').replace(/[’‘]/g,"'").replace(/[.!?,;:]+$/g,'').replace(/\s+/g,' ').trim();
  const alternatives=s=>[...new Set(String(s||'').split(/\s*\/\s*/).map(norm).filter(Boolean))];
- function parseWords(raw){const seen=new Set(),out=[];for(const line of String(raw).split(/[\n;]/)){const [left,...rest]=line.split(/\||\t|\s[—–]\s/);for(let word of left.split(',')){word=word.replace(/^\s*(?:[-*•]|\d+[.)])\s*/,'').trim();const key=norm(word);if(!key||seen.has(key))continue;seen.add(key);out.push({word:key,meaning:rest.join(' | ').trim()})}}return out.slice(0,150)}
+ function parseWords(raw){const seen=new Set(),out=[];for(const line of String(raw).split(/[\n;]/)){const [left,...rest]=line.split(/\||\t|\s[—–]\s/);for(let word of left.split(',')){word=word.replace(/^\s*(?:[-*•]|\d+[.)])\s*/,'').trim();const key=norm(word);if(!key||seen.has(key))continue;seen.add(key);out.push({word:key,meaning:rest.join(' | ').trim()})}}return out}
  function isAdverb(word){
   word=norm(word);if(word==='initially')return true;
   if(['early','fast','hard','late','well','straight','right','daily','weekly','monthly','yearly','likely'].includes(word))return false;
@@ -147,14 +147,14 @@ rerun|reran|rerun`.split('\n')){const [base,past,part]=line.split('|');irregular
   if(/Infinitive|Verb|PastTense|Gerund|Participle/.test(tag))return 'verb';
   if(/Adjective|Comparative|Superlative/.test(tag)&&!word.includes(' '))return 'adjective';
   if(/Noun|Singular|Plural|Actor/.test(tag))return 'noun';
-  return '';
+  return window.WordWorkshopDictionary?.typeOf(word)||'';
  }
  function verbForms(word){
-  let [head,...tail]=word.replace(/^to /,'').split(' ');const lemma=nlp(head).verbs().toInfinitive().text();if(lemma&&!lemma.includes(' '))head=norm(lemma);
-  const base=[head,...tail].join(' '),conj=nlp(head).verbs().conjugate()[0]||{},append=xs=>xs.map(w=>[w,...tail].join(' '));
-  let past=irregular[head]?.past||[conj.PastTense||(/e$/.test(head)?head+'d':/[^aeiou]y$/.test(head)?head.slice(0,-1)+'ied':head+'ed')],part=irregular[head]?.part||[conj.Participle||past[0]];
-  let ing=conj.Gerund||(/ie$/.test(head)?head.slice(0,-2)+'ying':/e$/.test(head)&&!/(ee|ye|oe)$/.test(head)?head.slice(0,-1)+'ing':head+'ing');
-  const third=head==='be'?'is':head==='have'?'has':conj.PresentTense||(/[^aeiou]y$/.test(head)?head.slice(0,-1)+'ies':/(s|x|z|ch|sh|o)$/.test(head)?head+'es':head+'s');
+  let [head,...tail]=word.replace(/^to /,'').split(' ');const lemma=nlp(head).verbs().toInfinitive().text();if(lemma&&!lemma.includes(' ')&&!window.WordWorkshopDictionary?.isLemma(head,'verb'))head=norm(lemma);
+  const attested=window.WordWorkshopDictionary?.inflections(head)||{},base=[head,...tail].join(' '),conj=nlp(head).verbs().conjugate()[0]||{},append=xs=>xs.map(w=>[w,...tail].join(' '));
+  let past=irregular[head]?.past||attested.past||[conj.PastTense||(/e$/.test(head)?head+'d':/[^aeiou]y$/.test(head)?head.slice(0,-1)+'ied':head+'ed')],part=irregular[head]?.part||attested.past||[conj.Participle||past[0]];
+  let ing=attested.ing?.[0]||conj.Gerund||(/ie$/.test(head)?head.slice(0,-2)+'ying':/e$/.test(head)&&!/(ee|ye|oe)$/.test(head)?head.slice(0,-1)+'ing':head+'ing');
+  const third=head==='be'?'is':head==='have'?'has':attested.third?.[0]||conj.PresentTense||(/[^aeiou]y$/.test(head)?head.slice(0,-1)+'ies':/(s|x|z|ch|sh|o)$/.test(head)?head+'es':head+'s');
   if(head==='lie'){past=tail[0]==='down'?['lay']:['lied'];part=tail[0]==='down'?['lain']:['lied'];ing='lying'}
   if(['travel','cancel','label','model'].includes(head)){past=[head+'led',head+'ed'];part=past;return {base:[base],past:append(past),part:append(part),ing:append([head+'ling',head+'ing']),third:append([third])}}
   return {base:[base],past:append(past),part:append(part),ing:append([ing]),third:append([third])};
@@ -181,7 +181,7 @@ rerun|reran|rerun`.split('\n')){const [base,past,part]=line.split('|');irregular
   word=norm(word);type=isAdverb(word)?'adverb':type||detect(word);let forms={base:[word]};
   if(type==='verb')forms=verbForms(word);
   else if(type==='noun'){
-   const singular=norm(nlp(word).nouns().toSingular().text()||word),plural=norm(nlp(singular).nouns().toPlural().text()||singular+'s');forms={base:[singular],plural:[plural],possessive:[singular+"'s"]};
+   const singular=window.WordWorkshopDictionary?.isLemma(word,'noun')?word:norm(nlp(word).nouns().toSingular().text()||word),plural=norm(nlp(singular).nouns().toPlural().text()||singular+'s');forms={base:[singular],plural:[plural],possessive:[singular+"'s"]};
   }else if(type==='adjective')forms=adjectiveForms(word);
   for(const [key,value]of Object.entries(custom))if(Object.hasOwn(forms,key)&&alternatives(value).length)forms[key]=alternatives(value);
   return {word,type,forms};

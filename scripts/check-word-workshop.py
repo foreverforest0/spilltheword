@@ -12,7 +12,7 @@ with sync_playwright() as pw:
  b=pw.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']);ctx=b.new_context(viewport={'width':1440,'height':1250},reduced_motion='reduce');p=ctx.new_page();errors=[];missing=[];p.on('pageerror',lambda e:errors.append(str(e)));p.on('response',lambda r:missing.append(r.url) if r.url.startswith(base) and r.status>=400 else None)
  p.goto(base);p.locator('[data-book-game=flask]').click();p.locator('#mine').wait_for();assert p.locator('#ww-start').is_disabled()
  course=p.locator('#lpbody [data-w]').first;course.check();assert p.locator('.ww-review-row').count()==1;course.uncheck()
- p.locator('#mine').fill('xyzzy');assert p.locator('#ww-start').is_disabled();p.locator('[data-ww-type]').select_option('verb');assert p.locator('#ww-start').is_enabled()
+ p.locator('#mine').fill('xyzzy');p.wait_for_function("WordWorkshopDictionary.status==='ready'");assert p.locator('#ww-start').is_enabled();p.locator('[data-ww-type]').select_option('verb');assert p.locator('#ww-start').is_enabled()
  # Actual recipes for every level and every authored family path, not implementation-mirroring snapshots.
  p.evaluate(r'''()=>{window.recipeFor=(row,level,target)=>{
   const F=WordWorkshopForms,P=WordWorkshopParts,fresh=()=>P.create(row),ops=P.parts(fresh(),level,'grammar'),valid=ids=>{const x=fresh();return ids.every(id=>P.apply(x,id,level,'grammar'))&&F.matches(P.result(x),[target])};
@@ -32,7 +32,7 @@ with sync_playwright() as pw:
    if(P.auxByLevel[lo].some(w=>!P.auxByLevel[hi].includes(w)))throw Error('Missing lower-level helper');
   }
   for(const level of P.levels)for(const root of new Set(WordWorkshopFamilies.edges.map(e=>e.from))){
-   const row=F.analyse(root,F.detect(root)||'noun');for(const task of P.formationTasks(row,level))for(const path of task.paths){const build=P.create(row);if(!path.recipe.every(id=>P.apply(build,id,level,'formation'))||!F.matches(P.result(build),task.answers))throw Error('Unbuildable family: '+root+' → '+path.word);families++;}
+   const row=F.analyse(root,F.detect(root)||'noun');for(const task of P.formationTasks(row,level))for(const path of task.paths){const build=P.create(row);if(!path.recipe.every(id=>P.apply(build,id,level,'formation'))||!F.matches(P.result(build),task.answers))throw Error('Unbuildable family: '+root+' ('+row.type+') → '+path.word+' / '+JSON.stringify(path.recipe)+' / got '+P.result(build));families++;}
   }
   const row=F.analyse('be packed with','verb'),negative=F.steps(row,'b1').find(s=>s.id==='negative');for(const w of ["wasn't packed with","weren't packed with",'was not packed with','were not packed with'])if(!F.matches(w,negative.answers))throw Error('Be negative rejected');if(F.matches('did not be packed with',negative.answers))throw Error('Did not be accepted');
   if(WordWorkshopContexts.length<20||new Set(WordWorkshopContexts.map(c=>c.id)).size!==WordWorkshopContexts.length)throw Error('Context bank');
@@ -57,7 +57,7 @@ with sync_playwright() as pw:
   assert p.locator('#ww-result').inner_text() in data['task']['answers']
   p.locator('#ww-check').click()
  # Bank-to-board dragging and a full, uncropped, wide board with small windows.
- configure('look for\ntake off\nbe packed with');assert p.locator('#ww-tiles button').count()==0
+ configure('look for\ntake off\nbe packed with');assert p.locator('#ww-tiles button').count()==1
  i=word_index('look for');drag(p.locator('#ww-bank-'+str(i)),p.locator('#wcf'));assert p.locator('#ww-tile-'+str(i)).is_visible()
  assert p.locator('#wcf').bounding_box()['width']>800 and p.locator('#ww-tile-'+str(i)).bounding_box()['width']<220
  assert len(p.evaluate('WordWorkshop.state.runs[WordWorkshop.state.wordIndex].steps'))==5

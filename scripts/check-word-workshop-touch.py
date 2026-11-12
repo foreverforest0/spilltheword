@@ -16,7 +16,7 @@ with sync_playwright() as pw:
   for i in range(1,9):cdp.send('Input.dispatchTouchEvent',{'type':'touchMove','touchPoints':[{'x':x+(tx-x)*i/8,'y':y+(ty-y)*i/8}]})
   cdp.send('Input.dispatchTouchEvent',{'type':'touchCancel' if cancel else 'touchEnd','touchPoints':[]})
  bank=p.locator('#ww-bank-0').bounding_box();board=p.locator('#wcf').bounding_box()
- finger(bank['x']+bank['width']/2,bank['y']+bank['height']/2,board['x']+board['width']*.5,board['y']+board['height']*.7)
+ finger(bank['x']+bank['width']/2,bank['y']+bank['height']/2,board['x']+board['width']*.5,board['y']+board['height']*.9)
  p.locator('#ww-tile-0').wait_for();assert p.locator('#ww-result').inner_text()=='care'
  # Positioning the window in the lower half lets the finger reach the parts tray too.
  p.locator('#ww-op-suffix-less').scroll_into_view_if_needed();source=p.locator('#ww-op-suffix-less').bounding_box();target=p.locator('#ww-tile-0').bounding_box()
