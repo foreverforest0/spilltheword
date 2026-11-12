@@ -131,9 +131,15 @@ rerun|reran|rerun`.split('\n')){const [base,past,part]=line.split('|');irregular
  const norm=s=>String(s).toLowerCase().normalize('NFKC').replace(/[’‘]/g,"'").replace(/[.!?,;:]+$/g,'').replace(/\s+/g,' ').trim();
  const alternatives=s=>[...new Set(String(s||'').split(/\s*\/\s*/).map(norm).filter(Boolean))];
  function parseWords(raw){const seen=new Set(),out=[];for(const line of String(raw).split(/[\n;]/)){const [left,...rest]=line.split(/\||\t|\s[—–]\s/);for(let word of left.split(',')){word=word.replace(/^\s*(?:[-*•]|\d+[.)])\s*/,'').trim();const key=norm(word);if(!key||seen.has(key))continue;seen.add(key);out.push({word:key,meaning:rest.join(' | ').trim()})}}return out.slice(0,150)}
+ function isAdverb(word){
+  word=norm(word);if(word==='initially')return true;
+  if(['early','fast','hard','late','well','straight','right','daily','weekly','monthly','yearly','likely'].includes(word))return false;
+  if(window.WordWorkshopFamilies?.edges.some(e=>e.word===word&&e.type==='fixed'&&e.label==='-ly'))return true;
+  const tag=String(nlp.world().model.one.lexicon[word]||'');return /Adverb/.test(tag)&&!/Adjective/.test(tag);
+ }
  function detect(word){
   const head=word.split(' ')[0],lex=nlp.world().model.one.lexicon,tag=String(lex[head]||'');
-  if(!tag&&nlp(word).has('#Adverb'))return 'fixed';
+  if(isAdverb(word)||!tag&&nlp(word).has('#Adverb'))return 'adverb';
   if(/^(?:used to|have got|had better)\b/.test(word))return 'fixed';
   if(irregular[head]||(/^to /.test(word))||((typeof WCPOS!=='undefined'&&WCPOS[head]==='v')&&word!=='work experience'))return 'verb';
   if(/Uncountable|Adverb|Modal/.test(tag)||/^(?:used to|have got|had better)\b/.test(word))return 'fixed';
@@ -153,20 +159,26 @@ rerun|reran|rerun`.split('\n')){const [base,past,part]=line.split('|');irregular
   if(['travel','cancel','label','model'].includes(head)){past=[head+'led',head+'ed'];part=past;return {base:[base],past:append(past),part:append(part),ing:append([head+'ling',head+'ing']),third:append([third])}}
   return {base:[base],past:append(past),part:append(part),ing:append([ing]),third:append([third])};
  }
+ function canCompare(word){return !isAdverb(word)&&!['initial','final','main','only','wooden','dead'].includes(norm(word));}
  function adjectiveForms(word){
+  const root=word.startsWith('un')?word.slice(2):'';
+  if(root&&window.WordWorkshopFamilies?.edges.some(e=>e.from===root&&e.word===word&&e.kind==='prefix'&&e.type==='adjective')){
+   const f=adjectiveForms(root),c=f.comparative.filter(w=>!w.startsWith('more ')).map(w=>'un'+w),s=f.superlative.filter(w=>!w.startsWith('most ')).map(w=>'un'+w);
+   return {base:[word],comparative:[...new Set([...c,'more '+word])],superlative:[...new Set([...s,'most '+word])]};
+  }
   const special={shy:['shyer/shier','shyest/shiest'],dry:['drier/dryer','driest/dryest'],sly:['slyer/slier','slyest/sliest'],red:['redder','reddest'],fun:['more fun','most fun'],good:['better','best'],bad:['worse','worst'],far:['farther/further','farthest/furthest'],little:['less','least'],many:['more','most'],much:['more','most']};
   const syllables=(word.replace(/e$/,'').match(/[aeiouy]+/g)||[]).length;let comparative,superlative;
   if(special[word])[comparative,superlative]=special[word];
-  else if(/[^aeiou]y$/.test(word)){comparative=word.slice(0,-1)+'ier';superlative=word.slice(0,-1)+'iest'}
+  else if(/[^aeiou]y$/.test(word)&&syllables<=2){comparative=word.slice(0,-1)+'ier';superlative=word.slice(0,-1)+'iest'}
   else if(syllables===1&&!/(ed|ing|ful|less)$/.test(word)||/^(?:clever|narrow|shallow|simple|gentle|quiet|polite)$/.test(word)){
-   const stem=/[aeiou][^aeiouwxy]$/.test(word)&&!/[aeiou]{2}[^aeiouwxy]$/.test(word)?word+word.at(-1):word;
+   const stem=syllables===1&&/[aeiou][^aeiouwxy]$/.test(word)&&!/[aeiou]{2}[^aeiouwxy]$/.test(word)?word+word.at(-1):word;
    comparative=word.endsWith('e')?word+'r':stem+'er';superlative=word.endsWith('e')?word+'st':stem+'est';
   }else{comparative='more '+word;superlative='most '+word}
   if(/^(?:clever|quiet|polite|friendly|simple|narrow|shallow)$/.test(word)){comparative+='/more '+word;superlative+='/most '+word}
   return {base:[word],comparative:alternatives(comparative),superlative:alternatives(superlative)};
  }
  function analyse(word,type,custom={}){
-  word=norm(word);type=type||detect(word);let forms={base:[word]};
+  word=norm(word);type=isAdverb(word)?'adverb':type||detect(word);let forms={base:[word]};
   if(type==='verb')forms=verbForms(word);
   else if(type==='noun'){
    const singular=norm(nlp(word).nouns().toSingular().text()||word),plural=norm(nlp(singular).nouns().toPlural().text()||singular+'s');forms={base:[singular],plural:[plural],possessive:[singular+"'s"]};
@@ -197,7 +209,7 @@ rerun|reran|rerun`.split('\n')){const [base,past,part]=line.split('|');irregular
    result=levelTasks[level].map(id=>tasks.find(t=>t.id===id)).filter(t=>!stative||!['presentContinuous','pastContinuous','perfectContinuous'].includes(t.id));
   }
   if(row.type==='noun')result=[make('plural','Make it plural.',f.plural),...(level==='kids'?[]:[make('possessive','Make the singular possessive.',f.possessive),make('pluralPossessive','Make the plural possessive.',f.plural.map(w=>w.endsWith('s')?w+"'":w+"'s"))]),make('singular','Make it singular.',f.base)];
-  if(row.type==='adjective')result=levels.indexOf(level)<2?[make('positive','Use the original adjective.',f.base)]:[make('positive','Use the original adjective.',f.base),make('comparative','Make the comparative.',f.comparative),make('superlative','Make the superlative.',f.superlative),...(levels.indexOf(level)>=2?[make('equal','Make an equal comparison: as … as.',f.base.map(w=>'as '+w+' as')),make('less','Make a comparison with less.',f.base.map(w=>'less '+w))]:[])];
+
   return result;
  }
  function plan(row,level='b1',limit=5){
@@ -218,5 +230,5 @@ rerun|reran|rerun`.split('\n')){const [base,past,part]=line.split('|');irregular
   const prefix=wanted.slice(0,-1);
   return tokens.some((_,i)=>prefix.every((w,j)=>tokens[i+j]===w)&&[1,2,3,4].some(gap=>{const object=tokens.slice(i+prefix.length,i+prefix.length+gap);return tokens[i+prefix.length+gap]===particle&&object.length===gap&&object.every(w=>!/[.!?;\n]/.test(w)&&!['have','has','had','will','would','is','are','was','were','not','and','but'].includes(w))}));
  }
- window.WordWorkshopForms={parseWords,detect,analyse,steps,matches,sentenceUses,norm,levelTasks,plan};
+ window.WordWorkshopForms={parseWords,detect,analyse,steps,matches,sentenceUses,norm,levelTasks,plan,isAdverb,canCompare};
 })();

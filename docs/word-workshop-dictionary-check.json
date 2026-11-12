@@ -3,7 +3,7 @@
   "dictionary_sha256": "829a043cf078d1e80e886289a13823454977f442a239a859d2133ea61944aa60",
   "source": "https://github.com/wooorm/dictionaries/tree/main/dictionaries/en",
   "checked_on": "2026-11-12",
-  "edges": 207,
+  "edges": 284,
   "words": [
     {
       "word": "achieve",
@@ -146,6 +146,14 @@
       "accepted": true
     },
     {
+      "word": "clearer",
+      "accepted": true
+    },
+    {
+      "word": "clearest",
+      "accepted": true
+    },
+    {
       "word": "clearly",
       "accepted": true
     },
@@ -187,6 +195,30 @@
     },
     {
       "word": "concealment",
+      "accepted": true
+    },
+    {
+      "word": "conduct",
+      "accepted": true
+    },
+    {
+      "word": "conduction",
+      "accepted": true
+    },
+    {
+      "word": "conductive",
+      "accepted": true
+    },
+    {
+      "word": "conductivity",
+      "accepted": true
+    },
+    {
+      "word": "conductor",
+      "accepted": true
+    },
+    {
+      "word": "conductors",
       "accepted": true
     },
     {
@@ -410,11 +442,35 @@
       "accepted": true
     },
     {
+      "word": "expand",
+      "accepted": true
+    },
+    {
+      "word": "expandable",
+      "accepted": true
+    },
+    {
+      "word": "expansion",
+      "accepted": true
+    },
+    {
+      "word": "expansions",
+      "accepted": true
+    },
+    {
       "word": "expected",
       "accepted": true
     },
     {
       "word": "fair",
+      "accepted": true
+    },
+    {
+      "word": "fairer",
+      "accepted": true
+    },
+    {
+      "word": "fairest",
       "accepted": true
     },
     {
@@ -438,6 +494,14 @@
       "accepted": true
     },
     {
+      "word": "friendlier",
+      "accepted": true
+    },
+    {
+      "word": "friendliest",
+      "accepted": true
+    },
+    {
       "word": "friendliness",
       "accepted": true
     },
@@ -451,6 +515,14 @@
     },
     {
       "word": "friendships",
+      "accepted": true
+    },
+    {
+      "word": "happier",
+      "accepted": true
+    },
+    {
+      "word": "happiest",
       "accepted": true
     },
     {
@@ -662,6 +734,26 @@
       "accepted": true
     },
     {
+      "word": "initial",
+      "accepted": true
+    },
+    {
+      "word": "initialization",
+      "accepted": true
+    },
+    {
+      "word": "initializations",
+      "accepted": true
+    },
+    {
+      "word": "initialize",
+      "accepted": true
+    },
+    {
+      "word": "initially",
+      "accepted": true
+    },
+    {
       "word": "irregular",
       "accepted": true
     },
@@ -679,6 +771,14 @@
     },
     {
       "word": "kind",
+      "accepted": true
+    },
+    {
+      "word": "kinder",
+      "accepted": true
+    },
+    {
+      "word": "kindest",
       "accepted": true
     },
     {
@@ -706,6 +806,14 @@
       "accepted": true
     },
     {
+      "word": "luckier",
+      "accepted": true
+    },
+    {
+      "word": "luckiest",
+      "accepted": true
+    },
+    {
       "word": "luckily",
       "accepted": true
     },
@@ -714,11 +822,23 @@
       "accepted": true
     },
     {
+      "word": "misconduct",
+      "accepted": true
+    },
+    {
       "word": "mislead",
       "accepted": true
     },
     {
       "word": "misunderstand",
+      "accepted": true
+    },
+    {
+      "word": "more",
+      "accepted": true
+    },
+    {
+      "word": "most",
       "accepted": true
     },
     {
@@ -822,6 +942,14 @@
       "accepted": true
     },
     {
+      "word": "politer",
+      "accepted": true
+    },
+    {
+      "word": "politest",
+      "accepted": true
+    },
+    {
       "word": "possibility",
       "accepted": true
     },
@@ -831,6 +959,14 @@
     },
     {
       "word": "possibly",
+      "accepted": true
+    },
+    {
+      "word": "predator",
+      "accepted": true
+    },
+    {
+      "word": "predatory",
       "accepted": true
     },
     {
@@ -846,6 +982,14 @@
       "accepted": true
     },
     {
+      "word": "quicker",
+      "accepted": true
+    },
+    {
+      "word": "quickest",
+      "accepted": true
+    },
+    {
       "word": "quickly",
       "accepted": true
     },
@@ -855,6 +999,14 @@
     },
     {
       "word": "quiet",
+      "accepted": true
+    },
+    {
+      "word": "quieter",
+      "accepted": true
+    },
+    {
+      "word": "quietest",
       "accepted": true
     },
     {
@@ -982,6 +1134,14 @@
       "accepted": true
     },
     {
+      "word": "slower",
+      "accepted": true
+    },
+    {
+      "word": "slowest",
+      "accepted": true
+    },
+    {
       "word": "slowly",
       "accepted": true
     },
@@ -1070,6 +1230,14 @@
       "accepted": true
     },
     {
+      "word": "unclearer",
+      "accepted": true
+    },
+    {
+      "word": "unclearest",
+      "accepted": true
+    },
+    {
       "word": "uncomfortable",
       "accepted": true
     },
@@ -1106,6 +1274,14 @@
       "accepted": true
     },
     {
+      "word": "unfairer",
+      "accepted": true
+    },
+    {
+      "word": "unfairest",
+      "accepted": true
+    },
+    {
       "word": "unfairly",
       "accepted": true
     },
@@ -1114,11 +1290,27 @@
       "accepted": true
     },
     {
+      "word": "unfriendlier",
+      "accepted": true
+    },
+    {
+      "word": "unfriendliest",
+      "accepted": true
+    },
+    {
       "word": "unfriendliness",
       "accepted": true
     },
     {
       "word": "unfriendly",
+      "accepted": true
+    },
+    {
+      "word": "unhappier",
+      "accepted": true
+    },
+    {
+      "word": "unhappiest",
       "accepted": true
     },
     {
@@ -1146,11 +1338,27 @@
       "accepted": true
     },
     {
+      "word": "unkinder",
+      "accepted": true
+    },
+    {
+      "word": "unkindest",
+      "accepted": true
+    },
+    {
       "word": "unkindly",
       "accepted": true
     },
     {
       "word": "unkindness",
+      "accepted": true
+    },
+    {
+      "word": "unluckier",
+      "accepted": true
+    },
+    {
+      "word": "unluckiest",
       "accepted": true
     },
     {
@@ -1258,5 +1466,5 @@
       "accepted": true
     }
   ],
-  "notes": "Spelling attestation includes authored endpoints and permitted count-noun plurals. POS, semantic directions and affix segmentation are curated. Unlisted custom words are not claimed to be dictionary checked."
+  "notes": "Spelling attestation includes authored endpoints and permitted count-noun plurals. Comparison spellings are checked too. POS, semantic directions and affix segmentation are curated. Unlisted custom words are not claimed to be dictionary checked."
 }

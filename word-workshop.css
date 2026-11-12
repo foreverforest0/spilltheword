@@ -62,3 +62,13 @@ body.grammar-style-active main:has(.ww-page){max-width:1500px}
 @media(max-width:1000px){.ww-construction{grid-template-columns:minmax(0,1fr) 255px;gap:12px}.ww-word-board{min-height:590px}.ww-tools{padding:16px 13px}.ww-page .ww-word-tile{width:145px}.ww-word-tile :is(strong,output){font-size:16px!important}}
 @media(max-width:740px){.ww-construction{grid-template-columns:minmax(0,1fr)}.ww-word-board{min-height:520px;aspect-ratio:1.15}.ww-tools{position:static}.ww-page .ww-word-tile{width:clamp(125px,26%,175px);min-height:80px}.ww-word-tile :is(strong,output){font-size:16px!important}.ww-page{padding-inline:5px}.ww-board-caption{font-size:10px}.ww-play-meta{font-size:11px}.ww-word-bank{padding:10px;gap:7px}.ww-page .ww-bank-word{font-size:14px}.ww-page .ww-part{padding:10px 13px;min-height:37px}.ww-bank-label{width:100%;font-size:10px}}
 .ww-word-board{width:100%;box-sizing:border-box}
+.ww-start-note{font-size:15px;line-height:1.5;color:#26422b;margin:12px 0}
+.ww-start-note:empty{display:none}
+.ww-start-actions{display:flex;flex-wrap:wrap;gap:10px}
+.ww-family-status{grid-column:1/-1;font-size:13px;color:#26422b;margin:0}
+.ww-hint-copy{font-size:13px;line-height:1.5;background:#cce5ff66;padding:12px;margin:8px 0 16px}
+.ww-hint-copy p{margin:0 0 9px}
+.ww-hint-copy button{font-size:12px;padding:6px 9px}
+.ww-tools #ww-hint{font-size:12px;padding:6px 10px;margin-bottom:6px}
+.ww-tools .ww-part{font-size:14px;padding:6px 8px}
+.ww-tools .ww-part-group{margin:10px 0 13px}

@@ -52,7 +52,8 @@ with sync_playwright() as pw:
   data=p.evaluate("()=>{const s=WordWorkshop.state,r=s.runs[s.wordIndex],t=r.steps[r.index];return {mode:s.mode,row:r.row,level:s.level,task:t}}")
   p.locator('#ww-reset').click()
   ids=data['task']['paths'][0]['recipe'] if data['mode']=='formation' else p.evaluate('d=>recipeFor(d.row,d.level,d.task.answers[0])',data)
-  for id in ids:p.locator('#ww-op-'+id).click()
+  for id in ids:
+   visible=p.evaluate('v=>WordWorkshopParts.partId(v.id,v.mode)',{'id':id,'mode':data['mode']});p.locator('#ww-op-'+visible).click()
   assert p.locator('#ww-result').inner_text() in data['task']['answers']
   p.locator('#ww-check').click()
  # Bank-to-board dragging and a full, uncropped, wide board with small windows.
@@ -85,15 +86,15 @@ with sync_playwright() as pw:
  assert p.locator('.ww-play').get_attribute('data-phase')=='done'
  # Several suffixes, a prefix plus two suffixes, and an ending attached to a derived noun.
  configure('care\nhelp\ncomfort\ncreate\nact','formation','b2');select('care')
- for id in ['suffix-less-careless','suffix-ness-carelessness']:p.locator('#ww-op-'+id).click()
+ for id in ['suffix-less','suffix-ness']:p.locator('#ww-op-'+id).click()
  assert p.locator('#ww-result').inner_text()=='carelessness';p.locator('#ww-undo').click();assert p.locator('#ww-result').inner_text()=='careless'
  select('comfort')
- for id in ['suffix-able-comfortable','prefix-un-uncomfortable','suffix-ly-uncomfortably']:p.locator('#ww-op-'+id).click()
+ for id in ['suffix-able','prefix-un','suffix-ly']:p.locator('#ww-op-'+id).click()
  assert p.locator('#ww-result').inner_text()=='uncomfortably'
- select('help');p.locator('#ww-op-suffix-er-helper').click();drag(p.locator('#ww-op-form-plural'),p.locator('#ww-tile-'+str(word_index('help'))));assert p.locator('#ww-result').inner_text()=='helpers'
+ select('help');p.locator('#ww-op-suffix-er').click();drag(p.locator('#ww-op-ending-s'),p.locator('#ww-tile-'+str(word_index('help'))));assert p.locator('#ww-result').inner_text()=='helpers'
  p.evaluate('window.scrollTo(0,0)');p.screenshot(path=str(OUT/'word-formation-board.png'),full_page=True)
  select('act')
- for id in ['suffix-ive-active','suffix-ity-activity','form-plural']:p.locator('#ww-op-'+id).click()
+ for id in ['suffix-ive','suffix-ity','ending-s']:p.locator('#ww-op-'+id).click()
  assert p.locator('#ww-result').inner_text()=='activities'
  select('create')
  while p.evaluate('WordWorkshop.state.runs[WordWorkshop.state.wordIndex].phase')=='forms':solve()
