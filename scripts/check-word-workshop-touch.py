@@ -19,10 +19,10 @@ with sync_playwright() as pw:
  finger(bank['x']+bank['width']/2,bank['y']+bank['height']/2,board['x']+board['width']*.5,board['y']+board['height']*.7)
  p.locator('#ww-tile-0').wait_for();assert p.locator('#ww-result').inner_text()=='care'
  # Positioning the window in the lower half lets the finger reach the parts tray too.
- p.locator('#ww-op-suffix-less-careless').scroll_into_view_if_needed();source=p.locator('#ww-op-suffix-less-careless').bounding_box();target=p.locator('#ww-tile-0').bounding_box()
+ p.locator('#ww-op-suffix-less').scroll_into_view_if_needed();source=p.locator('#ww-op-suffix-less').bounding_box();target=p.locator('#ww-tile-0').bounding_box()
  finger(source['x']+source['width']/2,source['y']+source['height']/2,target['x']+target['width']/2,target['y']+target['height']/2)
  p.wait_for_function("document.getElementById('ww-result')?.textContent==='careless'")
- p.locator('#ww-op-suffix-ness-carelessness').tap();p.wait_for_function("document.getElementById('ww-result')?.textContent==='carelessness'",timeout=3000)
+ p.locator('#ww-op-suffix-ness').tap();p.wait_for_function("document.getElementById('ww-result')?.textContent==='carelessness'",timeout=3000)
  # Cancellation leaves both morphology and word location unchanged, with no ghost.
  before=p.evaluate('JSON.stringify(WordWorkshop.state.runs[0].pos)');target=p.locator('#ww-tile-0').bounding_box()
  finger(target['x']+target['width']/2,target['y']+target['height']/2,target['x']+70,target['y']-40,True)
