@@ -1,45 +1,51 @@
-# Word Craft — word-form construction workshop
+# Word Craft
 
-The existing Word Craft book and `gmode=craft` entry open the workshop. Course vocabulary reuses the site's original lesson picker and word exclusions, under independent `S.les.craft` / `S.lx.craft` keys. Teachers can combine course words with a pasted list, deselect individual entries, choose lexical types and review/edit accepted forms. Sources, chosen level and overrides persist in `engGames.v1`. Translations after `|` are optional; up to 150 unique entries are used.
+Entry: the existing Word Craft book (`flask`) or Grammar → Word Craft (`gmode=craft`). The teacher selects **Grammar** or **Word formation**, a level, and course vocabulary and/or a pasted list. Existing lesson selections, exclusions, translations and teacher-edited morphology remain supported under `S.les.craft`, `S.lx.craft`, `S.mine.craft` and `S.wordWorkshop`.
 
-## Board and parts drawer
+## Large board, small windows
 
-Selected vocabulary appears as square tiles on the existing corkboard. Clicking a word opens a right-hand drawer with its current task and compatible construction pieces:
+The original corkboard artwork is shown in full on a larger board, with a narrow tools drawer beside it. The word bank contains compact windows instead of large sticky notes. Drag a word onto the board or click to place it. A placed window can be moved around the board; Shift + arrow keys also move it. Resizing clamps windows within the board.
 
-- Endings: inflectional changes such as `-ing`, `-ed`, `-s / -es`, possessive, comparative and superlative forms.
-- Prefixes and derivational suffixes: reviewed lexical relationships, such as `happy → unhappy → unhappiness`, `care → careful / careless` and `conceal → concealment`. Unsupported joins are not invented.
-- Auxiliaries: words such as `have`, `had`, `was`, `were`, `been`, `not`, limited by the selected level. Their chosen order is preserved, so a wrong construction cannot pass merely because a helper was selected.
-- Stem changes: base, irregular past and past participle forms. These use reviewed morphology rather than appending an ending to an irregular verb.
+Click an ending, stem change, auxiliary or affix, or drag the piece onto the word. The actual window on the board changes immediately. Word-to-piece dragging is also supported. Selecting another window retains each word’s construction, task and writing. Undo reverses one operation; Reset restores that word’s starting form. Each new task starts from the original word. The drawer shows only relevant parts for the selected mode and level, a short direction, Undo / Reset / Check, and a collapsed manual-answer/model-answer section. A model answer never completes a task.
 
-Click a piece, drag it onto a word, or drag the word onto a piece. The form on the tile and in the drawer updates immediately; `look for + -ed → looked for`, followed by `have → have looked for`. Inflection uses the whole word/phrase and handles spelling changes, so `stop + -ing → stopping` and `take off → taken off`. Undo and Reset word affect the current construction, not completed work. Each word retains its own task, construction and progress when another tile is selected. Keyboard arrows select board tiles; all pieces are real buttons. On narrow screens the drawer sits below the board.
+Pointer events support both mouse and native touch. A seven-pixel threshold separates a click from a drag. Moving gestures capture on the stable workspace, keeping coordinates suitable for the existing shared-link replay. Touch actions activate on pointer release; their compatibility mouse click is suppressed before the shared event recorder, preventing both duplicate joins and accidental clicks into a newly rendered screen. Focused input is blurred on touch-down so its change event is recorded before any screen replacement. Pointer cancellation removes the ghost and leaves the construction and window location unchanged. Drag listeners are aborted after completion or cancellation.
 
-A task passes only if the constructed form matches its authored alternatives. Show answer is optional and does not complete it. A collapsed Type a form instead field supports manual answers and spelling variants. Fixed expressions receive a sentence task instead of invented inflections.
+## Grammar mode
 
-## Levels and be phrases
+Grammar uses inflections, auxiliaries, gerunds and infinitives; derivational affixes are absent. A round samples up to **five distinct surface forms per word**, without replacement. Regular past and participle forms with identical spellings are not offered twice in one sample.
 
-The teacher chooses Kids, A1, A2, B1, B2 or C1 before starting. The task planner and piece inventory use the same level:
+Level pools accumulate rather than replace previous forms. B1 includes all A2 tasks, B2 includes B1 and earlier tasks, and C1 includes B2 and earlier tasks. Helpers accumulate on the same principle. The pool includes third person, gerund, past, participle, bare/to-infinitive, positive and negative simple/perfect constructions, eligible continuous forms, and higher-level perfect participles/infinitives. Stative verbs do not receive continuous-tense tasks. Be-phrase negatives accept was/were and contractions and reject `did not be …`. Particles remain attached; the teacher can review ambiguous lexical types and spelling variants before starting.
 
-- Kids: basic third-person, -ing and past forms.
-- A1: these basic forms plus negative past; no perfect auxiliaries.
-- A2: Present Perfect, eligible Past Continuous, simple forms and basic word families/comparisons.
-- B1: Present Perfect Continuous where appropriate, Past Perfect, simpler forms and intermediate word families.
-- B2: participles, perfect constructions, future completion, past modal deduction and negative Past Perfect.
-- C1: perfect participle/gerund, negative perfect participle, perfect infinitive and negative perfect infinitive.
+A noun has fewer genuine inflections than a verb: for example, `child`, `children`, `child’s`, `children’s`. Such words receive their actual available forms rather than an invented fifth form. Small word families can likewise have fewer than five distinct directions. How to explains this and the task counter displays the actual total.
 
-Noun and adjective tasks respect their applicable forms and the available word-family level. Stative verb heads do not receive continuous-tense tasks. Core morphology remains available as needed to build compound forms. Prefix/suffix vocabulary is a reviewed local set, not an unrestricted word-creation dictionary.
+## Word formation mode and dictionary checks
 
-`be` is recognised at the start of phrases as well as on its own. Past negatives for `be packed with`, `be interested in`, `be afraid of`, etc. accept both was/were and contractions: `was not packed with`, `were not packed with`, `wasn't packed with`, `weren't packed with`. `did not be packed with` is rejected. Applying a finite be helper replaces the initial `be`, preserving the rest of the phrase.
+This mode uses a curated graph, not arbitrary concatenation. Instructions state a direction, such as “Make an adverb”, “Make a negative noun”, or “Make a plural noun”; they do not print the required affix. Multiple valid words with the requested direction are accepted. A sampled direction can require several steps:
 
-## Final writing and sharing
+- `care → careless → carelessness`: two suffixes, with the resulting spelling stored explicitly.
+- `comfort → comfortable → uncomfortable → uncomfortably`: two suffixes and a prefix.
+- `help → helper → helpers`: derivation followed by an inflection.
+- `act → active → activity → activities`: two suffixes followed by a plural ending.
 
-After all selected words, one practised form is picked randomly for an original sentence. The sentence check confirms whole-word target use and added context, with contractions, changed possessives and common separable phrasal verbs. It does not grade complete sentence grammar, meaning or naturalness; the saved sentence remains available for teacher review through the existing live-answer screen.
+Compatible affixes are recalculated after every join. Spelling changes such as `happy → happiness` and `activity → activities` are handled by reviewed transitions and morphology. An ending does not create invented further suffix joins. Derived plural nouns are limited to a reviewed countable-noun list. Unsupported words and phrases remain in the teacher’s vocabulary but are counted as available for Grammar rather than silently given invented word families.
 
-Copy link records normal selections, clicks, drags and writing. Replay must reproduce the level, board selection, pieces, completed forms, random final target and draft. Native HTML drag events use the site's existing DataTransfer replay. The transport is unchanged. Earlier links to superseded Word Craft layouts may require a fresh link.
+`word-workshop-families.js` contains **207 curated joins**. `scripts/check-word-workshop-dictionary.py` checks every endpoint and each permitted count-noun plural against the environment’s Hunspell en_US / SCOWL dictionary using libhunspell. The committed report, `docs/word-workshop-dictionary-check.json`, records 313 accepted spellings, the dictionary hash and source. Two earlier candidates not confirmed by that dictionary were removed. This is spelling attestation; POS, word-family relations, segmentation and teaching directions are curated. It is not a claim that the dictionary assigns CEFR levels, nor that arbitrary teacher-supplied words are dictionary verified. There is no dictionary network request at runtime.
 
-## Files and checks
+## Random situation and free writing
 
-- `word-workshop-forms.js`: source parsing, lexical types, reviewed inflection, level-specific tasks and constrained answer/target matching.
-- `word-workshop-parts.js`: reviewed word families, level-scoped pieces and assembly.
-- `word-workshop.js` / `word-workshop.css`: source setup, tile board, parts drawer, per-word progress and final writing.
-- `vendor/compromise/`: locally served MIT-licensed compromise 14.20.0, original licence and provenance. No runtime dictionary or grammar API is used.
-- `scripts/check-word-workshop.py`: buildability of targets across all levels, real two-way drag, click/keyboard interaction, prefixes/suffixes, spelling/irregulars, undo/reset, level gating, be-phrase negatives, shared replay, final writing and mobile layout.
+After each word’s form tasks, the drawer shows one of **32 authored situations** and one random form actually practised for that word. Examples include film, trends, work chat, describing a person, neighbours, travel, a gift, a museum, gaming and a lost object. A short phrase or a sentence is welcome. There is **no checker, target-use gate, spelling correction, grammar grade or model sentence** in this phase; even an unfinished draft can be saved and continued. Browser spellchecking is disabled.
+
+Each word retains its own topic and draft while another window is selected. Saved writing is stored by mode and original word in `S.wordWorkshop.writing` for teacher review, using the site’s existing storage. Preferences and course/custom selections persist. Current construction and board arrangement remain within the active session; shared replay restores them through pointer/click/input events. The existing live snapshot captures the board and textarea contents. No backend changes.
+
+## Files and verification
+
+- `word-workshop-forms.js`: parsing, lexical types, inflections, cumulative grammar pools and unique random samples.
+- `word-workshop-families.js`: authored dictionary-attested graph and countable derived nouns.
+- `word-workshop-parts.js`: mode-specific pieces, assembly and multi-step formation directions.
+- `word-workshop-contexts.js`: 32 situation prompts, with no answer sentences.
+- `word-workshop.js` / `.css`: setup, compact bank/windows, full board, pointer/touch interaction and unchecked context writing.
+- Existing locally served MIT-licensed `vendor/compromise/` supplies morphology; its licence and provenance are unchanged.
+
+Run `python scripts/check-word-workshop-dictionary.py`, `python scripts/check-word-workshop.py` and `python scripts/check-word-workshop-touch.py`.
+
+Browser checks verify all authored grammar targets and reachable family paths, cumulative pools/helpers, distinct random forms, real mouse dragging in both directions, moving/keyboard windows, two suffixes plus an ending, undo/reset, per-word context drafts without checking, clean-context shared links, vocabulary persistence and desktop/mobile bounds. Native touch checks verify bank-to-board and affix-to-word dragging, tapping the next suffix, cancellation, ghost cleanup returning to setup without a duplicate click opening another game, and restoring a touch-built word in a clean browser context. Live transport itself is unchanged; tests do not establish external Firestore availability.

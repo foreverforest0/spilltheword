@@ -1,0 +1,1262 @@
+{
+  "dictionary": "Hunspell en_US / SCOWL",
+  "dictionary_sha256": "829a043cf078d1e80e886289a13823454977f442a239a859d2133ea61944aa60",
+  "source": "https://github.com/wooorm/dictionaries/tree/main/dictionaries/en",
+  "checked_on": "2026-11-12",
+  "edges": 207,
+  "words": [
+    {
+      "word": "achieve",
+      "accepted": true
+    },
+    {
+      "word": "achievement",
+      "accepted": true
+    },
+    {
+      "word": "act",
+      "accepted": true
+    },
+    {
+      "word": "acting",
+      "accepted": true
+    },
+    {
+      "word": "action",
+      "accepted": true
+    },
+    {
+      "word": "active",
+      "accepted": true
+    },
+    {
+      "word": "actively",
+      "accepted": true
+    },
+    {
+      "word": "activities",
+      "accepted": true
+    },
+    {
+      "word": "activity",
+      "accepted": true
+    },
+    {
+      "word": "actor",
+      "accepted": true
+    },
+    {
+      "word": "actors",
+      "accepted": true
+    },
+    {
+      "word": "agree",
+      "accepted": true
+    },
+    {
+      "word": "agreement",
+      "accepted": true
+    },
+    {
+      "word": "agreements",
+      "accepted": true
+    },
+    {
+      "word": "appear",
+      "accepted": true
+    },
+    {
+      "word": "attract",
+      "accepted": true
+    },
+    {
+      "word": "attractive",
+      "accepted": true
+    },
+    {
+      "word": "attractively",
+      "accepted": true
+    },
+    {
+      "word": "beautiful",
+      "accepted": true
+    },
+    {
+      "word": "beautifully",
+      "accepted": true
+    },
+    {
+      "word": "build",
+      "accepted": true
+    },
+    {
+      "word": "care",
+      "accepted": true
+    },
+    {
+      "word": "careful",
+      "accepted": true
+    },
+    {
+      "word": "carefully",
+      "accepted": true
+    },
+    {
+      "word": "carefulness",
+      "accepted": true
+    },
+    {
+      "word": "careless",
+      "accepted": true
+    },
+    {
+      "word": "carelessly",
+      "accepted": true
+    },
+    {
+      "word": "carelessness",
+      "accepted": true
+    },
+    {
+      "word": "child",
+      "accepted": true
+    },
+    {
+      "word": "childhood",
+      "accepted": true
+    },
+    {
+      "word": "childish",
+      "accepted": true
+    },
+    {
+      "word": "childishly",
+      "accepted": true
+    },
+    {
+      "word": "childishness",
+      "accepted": true
+    },
+    {
+      "word": "childless",
+      "accepted": true
+    },
+    {
+      "word": "clear",
+      "accepted": true
+    },
+    {
+      "word": "clearly",
+      "accepted": true
+    },
+    {
+      "word": "collect",
+      "accepted": true
+    },
+    {
+      "word": "collection",
+      "accepted": true
+    },
+    {
+      "word": "collections",
+      "accepted": true
+    },
+    {
+      "word": "comfort",
+      "accepted": true
+    },
+    {
+      "word": "comfortable",
+      "accepted": true
+    },
+    {
+      "word": "comfortably",
+      "accepted": true
+    },
+    {
+      "word": "complete",
+      "accepted": true
+    },
+    {
+      "word": "completely",
+      "accepted": true
+    },
+    {
+      "word": "conceal",
+      "accepted": true
+    },
+    {
+      "word": "concealment",
+      "accepted": true
+    },
+    {
+      "word": "connect",
+      "accepted": true
+    },
+    {
+      "word": "cook",
+      "accepted": true
+    },
+    {
+      "word": "correct",
+      "accepted": true
+    },
+    {
+      "word": "correctly",
+      "accepted": true
+    },
+    {
+      "word": "create",
+      "accepted": true
+    },
+    {
+      "word": "creation",
+      "accepted": true
+    },
+    {
+      "word": "creations",
+      "accepted": true
+    },
+    {
+      "word": "creative",
+      "accepted": true
+    },
+    {
+      "word": "creatively",
+      "accepted": true
+    },
+    {
+      "word": "creativity",
+      "accepted": true
+    },
+    {
+      "word": "creator",
+      "accepted": true
+    },
+    {
+      "word": "creators",
+      "accepted": true
+    },
+    {
+      "word": "curiosity",
+      "accepted": true
+    },
+    {
+      "word": "curious",
+      "accepted": true
+    },
+    {
+      "word": "curiously",
+      "accepted": true
+    },
+    {
+      "word": "danger",
+      "accepted": true
+    },
+    {
+      "word": "dangerous",
+      "accepted": true
+    },
+    {
+      "word": "dangerously",
+      "accepted": true
+    },
+    {
+      "word": "dark",
+      "accepted": true
+    },
+    {
+      "word": "darkness",
+      "accepted": true
+    },
+    {
+      "word": "decide",
+      "accepted": true
+    },
+    {
+      "word": "decision",
+      "accepted": true
+    },
+    {
+      "word": "decisions",
+      "accepted": true
+    },
+    {
+      "word": "develop",
+      "accepted": true
+    },
+    {
+      "word": "development",
+      "accepted": true
+    },
+    {
+      "word": "disagree",
+      "accepted": true
+    },
+    {
+      "word": "disagreement",
+      "accepted": true
+    },
+    {
+      "word": "disagreements",
+      "accepted": true
+    },
+    {
+      "word": "disappear",
+      "accepted": true
+    },
+    {
+      "word": "disconnect",
+      "accepted": true
+    },
+    {
+      "word": "discuss",
+      "accepted": true
+    },
+    {
+      "word": "discussion",
+      "accepted": true
+    },
+    {
+      "word": "dishonest",
+      "accepted": true
+    },
+    {
+      "word": "dishonestly",
+      "accepted": true
+    },
+    {
+      "word": "dishonesty",
+      "accepted": true
+    },
+    {
+      "word": "dislike",
+      "accepted": true
+    },
+    {
+      "word": "do",
+      "accepted": true
+    },
+    {
+      "word": "educate",
+      "accepted": true
+    },
+    {
+      "word": "education",
+      "accepted": true
+    },
+    {
+      "word": "effect",
+      "accepted": true
+    },
+    {
+      "word": "effective",
+      "accepted": true
+    },
+    {
+      "word": "effectively",
+      "accepted": true
+    },
+    {
+      "word": "employ",
+      "accepted": true
+    },
+    {
+      "word": "employable",
+      "accepted": true
+    },
+    {
+      "word": "employee",
+      "accepted": true
+    },
+    {
+      "word": "employees",
+      "accepted": true
+    },
+    {
+      "word": "employer",
+      "accepted": true
+    },
+    {
+      "word": "employers",
+      "accepted": true
+    },
+    {
+      "word": "employment",
+      "accepted": true
+    },
+    {
+      "word": "enjoy",
+      "accepted": true
+    },
+    {
+      "word": "enjoyable",
+      "accepted": true
+    },
+    {
+      "word": "enjoyment",
+      "accepted": true
+    },
+    {
+      "word": "estimate",
+      "accepted": true
+    },
+    {
+      "word": "excite",
+      "accepted": true
+    },
+    {
+      "word": "excitement",
+      "accepted": true
+    },
+    {
+      "word": "expected",
+      "accepted": true
+    },
+    {
+      "word": "fair",
+      "accepted": true
+    },
+    {
+      "word": "fairly",
+      "accepted": true
+    },
+    {
+      "word": "fame",
+      "accepted": true
+    },
+    {
+      "word": "famous",
+      "accepted": true
+    },
+    {
+      "word": "friend",
+      "accepted": true
+    },
+    {
+      "word": "friendless",
+      "accepted": true
+    },
+    {
+      "word": "friendliness",
+      "accepted": true
+    },
+    {
+      "word": "friendly",
+      "accepted": true
+    },
+    {
+      "word": "friendship",
+      "accepted": true
+    },
+    {
+      "word": "friendships",
+      "accepted": true
+    },
+    {
+      "word": "happily",
+      "accepted": true
+    },
+    {
+      "word": "happiness",
+      "accepted": true
+    },
+    {
+      "word": "happy",
+      "accepted": true
+    },
+    {
+      "word": "harm",
+      "accepted": true
+    },
+    {
+      "word": "harmful",
+      "accepted": true
+    },
+    {
+      "word": "harmfully",
+      "accepted": true
+    },
+    {
+      "word": "harmless",
+      "accepted": true
+    },
+    {
+      "word": "harmlessly",
+      "accepted": true
+    },
+    {
+      "word": "harmlessness",
+      "accepted": true
+    },
+    {
+      "word": "help",
+      "accepted": true
+    },
+    {
+      "word": "helper",
+      "accepted": true
+    },
+    {
+      "word": "helpers",
+      "accepted": true
+    },
+    {
+      "word": "helpful",
+      "accepted": true
+    },
+    {
+      "word": "helpfully",
+      "accepted": true
+    },
+    {
+      "word": "helpfulness",
+      "accepted": true
+    },
+    {
+      "word": "helpless",
+      "accepted": true
+    },
+    {
+      "word": "helplessly",
+      "accepted": true
+    },
+    {
+      "word": "helplessness",
+      "accepted": true
+    },
+    {
+      "word": "honest",
+      "accepted": true
+    },
+    {
+      "word": "honestly",
+      "accepted": true
+    },
+    {
+      "word": "honesty",
+      "accepted": true
+    },
+    {
+      "word": "hope",
+      "accepted": true
+    },
+    {
+      "word": "hopeful",
+      "accepted": true
+    },
+    {
+      "word": "hopefully",
+      "accepted": true
+    },
+    {
+      "word": "hopefulness",
+      "accepted": true
+    },
+    {
+      "word": "hopeless",
+      "accepted": true
+    },
+    {
+      "word": "hopelessly",
+      "accepted": true
+    },
+    {
+      "word": "hopelessness",
+      "accepted": true
+    },
+    {
+      "word": "ill",
+      "accepted": true
+    },
+    {
+      "word": "illegal",
+      "accepted": true
+    },
+    {
+      "word": "illegally",
+      "accepted": true
+    },
+    {
+      "word": "illness",
+      "accepted": true
+    },
+    {
+      "word": "impatient",
+      "accepted": true
+    },
+    {
+      "word": "impatiently",
+      "accepted": true
+    },
+    {
+      "word": "impersonal",
+      "accepted": true
+    },
+    {
+      "word": "impersonally",
+      "accepted": true
+    },
+    {
+      "word": "impolite",
+      "accepted": true
+    },
+    {
+      "word": "impolitely",
+      "accepted": true
+    },
+    {
+      "word": "impossible",
+      "accepted": true
+    },
+    {
+      "word": "impossibly",
+      "accepted": true
+    },
+    {
+      "word": "improve",
+      "accepted": true
+    },
+    {
+      "word": "improvement",
+      "accepted": true
+    },
+    {
+      "word": "inactive",
+      "accepted": true
+    },
+    {
+      "word": "inactivity",
+      "accepted": true
+    },
+    {
+      "word": "incomplete",
+      "accepted": true
+    },
+    {
+      "word": "incompletely",
+      "accepted": true
+    },
+    {
+      "word": "incorrect",
+      "accepted": true
+    },
+    {
+      "word": "incorrectly",
+      "accepted": true
+    },
+    {
+      "word": "ineffective",
+      "accepted": true
+    },
+    {
+      "word": "ineffectively",
+      "accepted": true
+    },
+    {
+      "word": "inform",
+      "accepted": true
+    },
+    {
+      "word": "information",
+      "accepted": true
+    },
+    {
+      "word": "irregular",
+      "accepted": true
+    },
+    {
+      "word": "irregularly",
+      "accepted": true
+    },
+    {
+      "word": "irresponsible",
+      "accepted": true
+    },
+    {
+      "word": "irresponsibly",
+      "accepted": true
+    },
+    {
+      "word": "kind",
+      "accepted": true
+    },
+    {
+      "word": "kindly",
+      "accepted": true
+    },
+    {
+      "word": "kindness",
+      "accepted": true
+    },
+    {
+      "word": "lead",
+      "accepted": true
+    },
+    {
+      "word": "legal",
+      "accepted": true
+    },
+    {
+      "word": "legally",
+      "accepted": true
+    },
+    {
+      "word": "like",
+      "accepted": true
+    },
+    {
+      "word": "luckily",
+      "accepted": true
+    },
+    {
+      "word": "lucky",
+      "accepted": true
+    },
+    {
+      "word": "mislead",
+      "accepted": true
+    },
+    {
+      "word": "misunderstand",
+      "accepted": true
+    },
+    {
+      "word": "move",
+      "accepted": true
+    },
+    {
+      "word": "movement",
+      "accepted": true
+    },
+    {
+      "word": "movements",
+      "accepted": true
+    },
+    {
+      "word": "nation",
+      "accepted": true
+    },
+    {
+      "word": "national",
+      "accepted": true
+    },
+    {
+      "word": "nationalities",
+      "accepted": true
+    },
+    {
+      "word": "nationality",
+      "accepted": true
+    },
+    {
+      "word": "nationally",
+      "accepted": true
+    },
+    {
+      "word": "open",
+      "accepted": true
+    },
+    {
+      "word": "overcook",
+      "accepted": true
+    },
+    {
+      "word": "paint",
+      "accepted": true
+    },
+    {
+      "word": "painter",
+      "accepted": true
+    },
+    {
+      "word": "painters",
+      "accepted": true
+    },
+    {
+      "word": "patient",
+      "accepted": true
+    },
+    {
+      "word": "patiently",
+      "accepted": true
+    },
+    {
+      "word": "person",
+      "accepted": true
+    },
+    {
+      "word": "personal",
+      "accepted": true
+    },
+    {
+      "word": "personalities",
+      "accepted": true
+    },
+    {
+      "word": "personality",
+      "accepted": true
+    },
+    {
+      "word": "personally",
+      "accepted": true
+    },
+    {
+      "word": "play",
+      "accepted": true
+    },
+    {
+      "word": "player",
+      "accepted": true
+    },
+    {
+      "word": "players",
+      "accepted": true
+    },
+    {
+      "word": "polite",
+      "accepted": true
+    },
+    {
+      "word": "politely",
+      "accepted": true
+    },
+    {
+      "word": "possibility",
+      "accepted": true
+    },
+    {
+      "word": "possible",
+      "accepted": true
+    },
+    {
+      "word": "possibly",
+      "accepted": true
+    },
+    {
+      "word": "protect",
+      "accepted": true
+    },
+    {
+      "word": "protection",
+      "accepted": true
+    },
+    {
+      "word": "quick",
+      "accepted": true
+    },
+    {
+      "word": "quickly",
+      "accepted": true
+    },
+    {
+      "word": "quickness",
+      "accepted": true
+    },
+    {
+      "word": "quiet",
+      "accepted": true
+    },
+    {
+      "word": "quietly",
+      "accepted": true
+    },
+    {
+      "word": "quietness",
+      "accepted": true
+    },
+    {
+      "word": "read",
+      "accepted": true
+    },
+    {
+      "word": "readable",
+      "accepted": true
+    },
+    {
+      "word": "reader",
+      "accepted": true
+    },
+    {
+      "word": "readers",
+      "accepted": true
+    },
+    {
+      "word": "rebuild",
+      "accepted": true
+    },
+    {
+      "word": "redo",
+      "accepted": true
+    },
+    {
+      "word": "regular",
+      "accepted": true
+    },
+    {
+      "word": "regularly",
+      "accepted": true
+    },
+    {
+      "word": "reliable",
+      "accepted": true
+    },
+    {
+      "word": "reliably",
+      "accepted": true
+    },
+    {
+      "word": "reluctant",
+      "accepted": true
+    },
+    {
+      "word": "reluctantly",
+      "accepted": true
+    },
+    {
+      "word": "rely",
+      "accepted": true
+    },
+    {
+      "word": "reopen",
+      "accepted": true
+    },
+    {
+      "word": "reread",
+      "accepted": true
+    },
+    {
+      "word": "responsible",
+      "accepted": true
+    },
+    {
+      "word": "responsibly",
+      "accepted": true
+    },
+    {
+      "word": "restart",
+      "accepted": true
+    },
+    {
+      "word": "reuse",
+      "accepted": true
+    },
+    {
+      "word": "rewrite",
+      "accepted": true
+    },
+    {
+      "word": "run",
+      "accepted": true
+    },
+    {
+      "word": "runner",
+      "accepted": true
+    },
+    {
+      "word": "runners",
+      "accepted": true
+    },
+    {
+      "word": "sad",
+      "accepted": true
+    },
+    {
+      "word": "sadness",
+      "accepted": true
+    },
+    {
+      "word": "sing",
+      "accepted": true
+    },
+    {
+      "word": "singer",
+      "accepted": true
+    },
+    {
+      "word": "singers",
+      "accepted": true
+    },
+    {
+      "word": "slow",
+      "accepted": true
+    },
+    {
+      "word": "slowly",
+      "accepted": true
+    },
+    {
+      "word": "slowness",
+      "accepted": true
+    },
+    {
+      "word": "speak",
+      "accepted": true
+    },
+    {
+      "word": "speaker",
+      "accepted": true
+    },
+    {
+      "word": "speakers",
+      "accepted": true
+    },
+    {
+      "word": "start",
+      "accepted": true
+    },
+    {
+      "word": "success",
+      "accepted": true
+    },
+    {
+      "word": "successful",
+      "accepted": true
+    },
+    {
+      "word": "successfully",
+      "accepted": true
+    },
+    {
+      "word": "suit",
+      "accepted": true
+    },
+    {
+      "word": "suitable",
+      "accepted": true
+    },
+    {
+      "word": "suspicious",
+      "accepted": true
+    },
+    {
+      "word": "suspiciously",
+      "accepted": true
+    },
+    {
+      "word": "swim",
+      "accepted": true
+    },
+    {
+      "word": "swimmer",
+      "accepted": true
+    },
+    {
+      "word": "swimmers",
+      "accepted": true
+    },
+    {
+      "word": "teach",
+      "accepted": true
+    },
+    {
+      "word": "teacher",
+      "accepted": true
+    },
+    {
+      "word": "teachers",
+      "accepted": true
+    },
+    {
+      "word": "unattractive",
+      "accepted": true
+    },
+    {
+      "word": "unattractively",
+      "accepted": true
+    },
+    {
+      "word": "unclear",
+      "accepted": true
+    },
+    {
+      "word": "uncomfortable",
+      "accepted": true
+    },
+    {
+      "word": "uncomfortably",
+      "accepted": true
+    },
+    {
+      "word": "underestimate",
+      "accepted": true
+    },
+    {
+      "word": "understand",
+      "accepted": true
+    },
+    {
+      "word": "unemployable",
+      "accepted": true
+    },
+    {
+      "word": "unemployment",
+      "accepted": true
+    },
+    {
+      "word": "unexpected",
+      "accepted": true
+    },
+    {
+      "word": "unexpectedly",
+      "accepted": true
+    },
+    {
+      "word": "unfair",
+      "accepted": true
+    },
+    {
+      "word": "unfairly",
+      "accepted": true
+    },
+    {
+      "word": "unfairness",
+      "accepted": true
+    },
+    {
+      "word": "unfriendliness",
+      "accepted": true
+    },
+    {
+      "word": "unfriendly",
+      "accepted": true
+    },
+    {
+      "word": "unhappily",
+      "accepted": true
+    },
+    {
+      "word": "unhappiness",
+      "accepted": true
+    },
+    {
+      "word": "unhappy",
+      "accepted": true
+    },
+    {
+      "word": "unhelpful",
+      "accepted": true
+    },
+    {
+      "word": "unhelpfully",
+      "accepted": true
+    },
+    {
+      "word": "unkind",
+      "accepted": true
+    },
+    {
+      "word": "unkindly",
+      "accepted": true
+    },
+    {
+      "word": "unkindness",
+      "accepted": true
+    },
+    {
+      "word": "unluckily",
+      "accepted": true
+    },
+    {
+      "word": "unlucky",
+      "accepted": true
+    },
+    {
+      "word": "unreadable",
+      "accepted": true
+    },
+    {
+      "word": "unreliable",
+      "accepted": true
+    },
+    {
+      "word": "unreliably",
+      "accepted": true
+    },
+    {
+      "word": "unsuccessful",
+      "accepted": true
+    },
+    {
+      "word": "unsuccessfully",
+      "accepted": true
+    },
+    {
+      "word": "unusual",
+      "accepted": true
+    },
+    {
+      "word": "unusually",
+      "accepted": true
+    },
+    {
+      "word": "use",
+      "accepted": true
+    },
+    {
+      "word": "useful",
+      "accepted": true
+    },
+    {
+      "word": "usefully",
+      "accepted": true
+    },
+    {
+      "word": "usefulness",
+      "accepted": true
+    },
+    {
+      "word": "useless",
+      "accepted": true
+    },
+    {
+      "word": "uselessly",
+      "accepted": true
+    },
+    {
+      "word": "uselessness",
+      "accepted": true
+    },
+    {
+      "word": "usual",
+      "accepted": true
+    },
+    {
+      "word": "usually",
+      "accepted": true
+    },
+    {
+      "word": "wash",
+      "accepted": true
+    },
+    {
+      "word": "washable",
+      "accepted": true
+    },
+    {
+      "word": "work",
+      "accepted": true
+    },
+    {
+      "word": "worker",
+      "accepted": true
+    },
+    {
+      "word": "workers",
+      "accepted": true
+    },
+    {
+      "word": "write",
+      "accepted": true
+    },
+    {
+      "word": "writer",
+      "accepted": true
+    },
+    {
+      "word": "writers",
+      "accepted": true
+    }
+  ],
+  "notes": "Spelling attestation includes authored endpoints and permitted count-noun plurals. POS, semantic directions and affix segmentation are curated. Unlisted custom words are not claimed to be dictionary checked."
+}

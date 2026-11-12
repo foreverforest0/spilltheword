@@ -174,19 +174,38 @@ rerun|reran|rerun`.split('\n')){const [base,past,part]=line.split('|');irregular
   for(const [key,value]of Object.entries(custom))if(Object.hasOwn(forms,key)&&alternatives(value).length)forms[key]=alternatives(value);
   return {word,type,forms};
  }
- const levelTasks={kids:['third','ing','past'],a1:['third','ing','past','negative'],a2:['ing','past','perfect','pastContinuous','negative'],b1:['ing','past','perfect','perfectContinuous','pastPerfect','negative'],b2:['part','perfect','pastPerfect','futurePerfect','modalPerfect','negativePerfect'],c1:['part','perfectParticiple','negativeParticiple','perfectInfinitive','negativeInfinitive']};
- function steps(row,level='b1'){const f=row.forms,make=(id,prompt,hint,answers)=>({id,prompt,hint,answers});let result=[];if(!Object.hasOwn(levelTasks,level))level='b1';
+ const levels=['kids','a1','a2','b1','b2','c1'];
+ const additions={kids:['third','ing','past'],a1:['negative','presentNegative','presentContinuous','base'],a2:['part','infinitive','perfect','perfectNegative','perfectThird','pastContinuous','future','futureNegative'],b1:['perfectContinuous','pastPerfect','conditional'],b2:['futurePerfect','modalPerfect','negativePerfect'],c1:['perfectParticiple','negativeParticiple','perfectInfinitive','negativeInfinitive']};
+ const levelTasks=Object.fromEntries(levels.map((level,i)=>[level,[...new Set(levels.slice(0,i+1).flatMap(l=>additions[l]))]]));
+ function steps(row,level='b1') {
+  const f=row.forms,make=(id,prompt,answers)=>({id,prompt,answers});let result=[];
+  if(!Object.hasOwn(levelTasks,level))level='b1';
   if(row.type==='verb'){
-   const be=/^be(?: |$)/.test(f.base[0]),stative=/^(?:be|have|know|believe|understand|want|need|like|love|hate|prefer|own|seem|mean|belong|cost|contain|consist)(?: |$)/.test(f.base[0]);
-   const tasks=[make('ing','Make the -ing form.','Change the verb; keep every particle.',f.ing),make('past','Past Simple · positive.','Keep all the words after the main verb.',f.past),make('third','Present Simple · he / she / it.','Use the ending or stem change.',f.third),make('part','Make the past participle.','Choose V3, not the Past Simple form.',f.part),make('perfect','Present Perfect · I / you / we / they.','Combine an auxiliary with the past participle.',f.part.map(w=>'have '+w)),make('negative','Past Simple · negative.',be?'Negate the form of be; do not use did.':'The helper carries the past tense.',be?f.past.map(w=>w.replace(/^(was|were)\b/,'$1 not')):f.base.map(w=>'did not '+w)),make('pastContinuous','Past Continuous · I / he / she / it.','Combine the past of be with the -ing form.',f.ing.map(w=>'was '+w)),make('perfectContinuous','Present Perfect Continuous · I / you / we / they.','Show an ongoing action up to now.',f.ing.map(w=>'have been '+w)),make('pastPerfect','Past Perfect · positive.','Show an action before another past event.',f.part.map(w=>'had '+w)),make('futurePerfect','Future Perfect · positive.','Show completion before a future deadline.',f.part.map(w=>'will have '+w)),make('modalPerfect','Possible past event · use might.','Refer to a possibility in the past.',f.part.map(w=>'might have '+w)),make('negativePerfect','Past Perfect · negative.','Negate the earlier completed action.',f.part.map(w=>'had not '+w)),make('perfectParticiple','Perfect participle or gerund.','Express an earlier completed action.',f.part.map(w=>'having '+w)),make('negativeParticiple','Negative perfect participle.','Negate the earlier action.',f.part.map(w=>'not having '+w)),make('perfectInfinitive','Perfect infinitive.','Use an infinitive for an earlier action.',f.part.map(w=>'to have '+w)),make('negativeInfinitive','Negative perfect infinitive.','Place the negative before the infinitive.',f.part.map(w=>'not to have '+w))];
-   result=levelTasks[level].map(id=>tasks.find(t=>t.id===id)).filter(t=>!stative||!['pastContinuous','perfectContinuous'].includes(t.id));
+   const be=/^be(?: |$)/.test(f.base[0]),stative=/^(?:be|know|believe|understand|want|need|like|love|hate|prefer|own|seem|mean|belong|cost|contain|consist)(?: |$)/.test(f.base[0]);
+   const tasks=[
+    make('base','Make the bare infinitive.',f.base),make('infinitive','Make the to-infinitive.',f.base.map(w=>'to '+w)),
+    make('ing','Make the gerund (-ing form).',f.ing),make('past','Past Simple · positive.',f.past),make('third','Present Simple · he / she / it.',f.third),make('part','Make the past participle.',f.part),
+    make('presentNegative',be?'Present Simple · you / we / they · negative.':'Present Simple · I / you / we / they · negative.',be?f.base.map(w=>w.replace(/^be/,'are not')):f.base.map(w=>'do not '+w)),
+    make('negative','Past Simple · negative.',be?f.past.map(w=>w.replace(/^(was|were)\b/,'$1 not')):f.base.map(w=>'did not '+w)),
+    make('presentContinuous','Present Continuous · I.',f.ing.map(w=>'am '+w)),
+    make('perfect','Present Perfect · I / you / we / they.',f.part.map(w=>'have '+w)),make('perfectThird','Present Perfect · he / she / it.',f.part.map(w=>'has '+w)),make('perfectNegative','Present Perfect · negative.',f.part.map(w=>'have not '+w)),
+    make('pastContinuous','Past Continuous · I / he / she / it.',f.ing.map(w=>'was '+w)),make('perfectContinuous','Present Perfect Continuous · I / you / we / they.',f.ing.map(w=>'have been '+w)),
+    make('pastPerfect','Past Perfect · positive.',f.part.map(w=>'had '+w)),make('future','Future Simple · positive.',f.base.map(w=>'will '+w)),make('futureNegative','Future Simple · negative.',f.base.map(w=>'will not '+w)),make('conditional','Use would.',f.base.map(w=>'would '+w)),
+    make('futurePerfect','Future Perfect · positive.',f.part.map(w=>'will have '+w)),make('modalPerfect','Possible past event · use might.',f.part.map(w=>'might have '+w)),make('negativePerfect','Past Perfect · negative.',f.part.map(w=>'had not '+w)),
+    make('perfectParticiple','Perfect participle or gerund.',f.part.map(w=>'having '+w)),make('negativeParticiple','Negative perfect participle.',f.part.map(w=>'not having '+w)),make('perfectInfinitive','Perfect infinitive.',f.part.map(w=>'to have '+w)),make('negativeInfinitive','Negative perfect infinitive.',f.part.map(w=>'not to have '+w))
+   ];
+   result=levelTasks[level].map(id=>tasks.find(t=>t.id===id)).filter(t=>!stative||!['presentContinuous','pastContinuous','perfectContinuous'].includes(t.id));
   }
-  if(row.type==='noun')result=[make('plural','Make it plural.','Keep the whole noun phrase.',f.plural),...(level==='kids'?[]:[make('possessive','Make the singular possessive.','Show that something belongs to one.',f.possessive)]),make('singular','Back to one · singular.','Remove the plural or possession.',f.base)];
-  if(row.type==='adjective'&&!['kids','a1'].includes(level))result=[make('comparative','Make the comparative.','Give the adjective form, without than.',f.comparative),make('superlative','Make the superlative.','Give the adjective form, without the.',f.superlative),make('positive','Back to the original degree.','Remove the comparison.',f.base)];
-  for(const d of (window.WordWorkshopParts?.derivations(row,level)||[]).slice(0,2))result.push(make('derive-'+d.id,d.prompt,'Join the affix to the word. Spelling may change.',[d.word]));
+  if(row.type==='noun')result=[make('plural','Make it plural.',f.plural),...(level==='kids'?[]:[make('possessive','Make the singular possessive.',f.possessive),make('pluralPossessive','Make the plural possessive.',f.plural.map(w=>w.endsWith('s')?w+"'":w+"'s"))]),make('singular','Make it singular.',f.base)];
+  if(row.type==='adjective')result=levels.indexOf(level)<2?[make('positive','Use the original adjective.',f.base)]:[make('positive','Use the original adjective.',f.base),make('comparative','Make the comparative.',f.comparative),make('superlative','Make the superlative.',f.superlative),...(levels.indexOf(level)>=2?[make('equal','Make an equal comparison: as … as.',f.base.map(w=>'as '+w+' as')),make('less','Make a comparison with less.',f.base.map(w=>'less '+w))]:[])];
   return result;
  }
- function expand(s){return norm(s).replace(/\b(i|you|we|they)'ve\b/g,'$1 have').replace(/\b(he|she|it)'s\b/g,'$1 has').replace(/\bhaven't\b/g,'have not').replace(/\bhasn't\b/g,'has not').replace(/\b(i|you|he|she|it|we|they)'d\b/g,'$1 had').replace(/\b(i|you|he|she|it|we|they)'ll\b/g,'$1 will').replace(/\bhadn't\b/g,'had not').replace(/\bdidn't\b/g,'did not').replace(/\bwasn't\b/g,'was not').replace(/\bweren't\b/g,'were not')}
+ function plan(row,level='b1',limit=5){
+  const seen=new Set(),pool=steps(row,level).filter(t=>{const values=t.answers.map(norm);if(values.some(w=>seen.has(w)))return false;values.forEach(w=>seen.add(w));return true});
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
+  return pool.slice(0,limit);
+ }
+ function expand(s){return norm(s).replace(/\b(i|you|we|they)'ve\b/g,'$1 have').replace(/\b(he|she|it)'s\b/g,'$1 has').replace(/\bhaven't\b/g,'have not').replace(/\bhasn't\b/g,'has not').replace(/\b(i|you|he|she|it|we|they)'d\b/g,'$1 had').replace(/\b(i|you|he|she|it|we|they)'ll\b/g,'$1 will').replace(/\bhadn't\b/g,'had not').replace(/\bdidn't\b/g,'did not').replace(/\bdon't\b/g,'do not').replace(/\bdoesn't\b/g,'does not').replace(/\bwon't\b/g,'will not').replace(/\bwouldn't\b/g,'would not').replace(/\bwasn't\b/g,'was not').replace(/\bweren't\b/g,'were not')}
  const matches=(value,answers)=>answers.some(a=>expand(value)===expand(a));
  function sentenceUses(value,target){
   const tokens=expand(value).match(/[a-z]+(?:'[a-z]+)?|[.!?;\n]/g)||[],wanted=expand(target).match(/[a-z]+(?:'[a-z]+)?/g)||[];
@@ -199,5 +218,5 @@ rerun|reran|rerun`.split('\n')){const [base,past,part]=line.split('|');irregular
   const prefix=wanted.slice(0,-1);
   return tokens.some((_,i)=>prefix.every((w,j)=>tokens[i+j]===w)&&[1,2,3,4].some(gap=>{const object=tokens.slice(i+prefix.length,i+prefix.length+gap);return tokens[i+prefix.length+gap]===particle&&object.length===gap&&object.every(w=>!/[.!?;\n]/.test(w)&&!['have','has','had','will','would','is','are','was','were','not','and','but'].includes(w))}));
  }
- window.WordWorkshopForms={parseWords,detect,analyse,steps,matches,sentenceUses,norm,levelTasks};
+ window.WordWorkshopForms={parseWords,detect,analyse,steps,matches,sentenceUses,norm,levelTasks,plan};
 })();
