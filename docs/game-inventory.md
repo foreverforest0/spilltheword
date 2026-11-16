@@ -4,7 +4,6 @@
 
 ## Основные игры и разделы
 
-- The Midnight House
 - Alias
 - Taboo
 - Describe the GIF

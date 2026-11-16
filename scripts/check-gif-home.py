@@ -25,7 +25,7 @@ with sync_playwright() as pw:
     errors = []
     page.on('pageerror', lambda e: errors.append(str(e)))
     page.goto(base)
-    assert page.locator('.book').count() == 8
+    assert page.locator('.book').count() == 7
     page.locator('[data-book-game="gif"]').click()
     assert page.locator('.gif-setup').is_visible()
     page.locator('#lpT').click()
@@ -108,4 +108,4 @@ with sync_playwright() as pw:
     assert not errors, errors
     browser.close()
 server.shutdown()
-print(f'PASS: 8 books, {len(courses)} courses, lesson/word selection, saved settings, 3 game modes, GIF loading and 5 viewports.')
+print(f'PASS: 7 books, {len(courses)} courses, lesson/word selection, saved settings, 3 game modes, GIF loading and 5 viewports.')

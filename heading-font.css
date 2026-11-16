@@ -1,0 +1,4 @@
+/* User-supplied Kindaten heading face, shared with standalone game frames. */
+@font-face{font-family:'Kindaten';src:url('assets/fonts/kindaten.woff') format('woff');font-style:normal;font-weight:400;font-display:swap}
+:root{--stw-title-font:'Kindaten',sans-serif}
+body :is(h1,h2,h3),body :is(h1,h2,h3) :is(span,b,em,strong){font-family:var(--stw-title-font)!important;font-weight:400!important}

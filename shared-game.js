@@ -4,7 +4,7 @@
  'use strict';
  const embedded=new URLSearchParams(location.search).has('embed');if(embedded)document.body.classList.add('embed');
  let publisherCode=null,lastSharedWatch=null;try{lastSharedWatch=sessionStorage.getItem('stw-last-shared-watch')}catch{}
- const nativeRandom=Math.random,storageKeys=['stw-question-pond-v1','stw-watercolor-appearance-v1','midnight-kitchen-progress-v1','engGames.typewriter'];
+ const nativeRandom=Math.random,storageKeys=['stw-question-pond-v1','stw-watercolor-appearance-v1','engGames.typewriter'];
  let recipe=null,replaying=false,depth=0,rng=nativeRandom,lastEvent=0,student=false;
  const contexts=new WeakMap();
  const copy=o=>JSON.parse(JSON.stringify(o,(k,v)=>['__proto__','constructor','prototype'].includes(k)?undefined:v));
@@ -19,7 +19,6 @@
   if(pond){try{stores['stw-question-pond-v1']=JSON.stringify(JSON.parse(stores['stw-question-pond-v1']||'[]').filter(f=>f.topic===pond[1]+':'+pond[2]).slice(-8))}catch{stores['stw-question-pond-v1']=null}}
   else delete stores['stw-question-pond-v1'];
   if(!(route==='spOpen'&&args[0]==='app'))delete stores['stw-watercolor-appearance-v1'];
-  if(!((route==='go'&&args[0]==='house')||(route==='spOpen'&&args[0]==='wzh')))delete stores['midnight-kitchen-progress-v1'];
   if(route==='go'&&args[0]==='write'){if(TY)stores['engGames.typewriter']=JSON.stringify(TY)}else delete stores['engGames.typewriter'];
   recipe={watch:publisherCode||[...crypto.getRandomValues(new Uint32Array(4))].map(n=>String(n).padStart(10,'0')).join(''),v:1,route,args:copy(args),tab,settings:settings(),stores,seed:seed(),events:[]};rng=random(recipe.seed);lastEvent=performance.now();
  }

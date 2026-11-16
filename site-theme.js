@@ -2,11 +2,7 @@ try{if(window.parent!==window)window.parent.SharedGame?.attachFrame(window)}catc
 /* Shared visual language for the main app and embedded games. */
 (()=>{
  const wave=[0,-.55,-1,-.72,-.12,.6,1,.72,.15,-.5];
- const doodles=[
-  '<path d="M21 3 25 14 36 8 30 20 43 24 29 28 34 41 22 32 13 43 15 29 2 25 15 19 9 8 20 14Z" fill="#CCE5FF"/><path d="m17 20 8 6m-5-13 2 8" fill="none"/>',
-  '<path d="M23 16C11-2 0 13 15 23-3 29 9 43 22 29c-1 22 19 14 10-1 20 7 22-13 3-11 11-17-8-23-12-1Z" fill="#F24E07"/><circle cx="25" cy="24" r="3" fill="#F9F5E6"/>',
-  '<path d="M8 39Q8 10 39 6q-1 31-31 33Z" fill="#26422B"/><path d="M10 37 33 13m-15 14 1-9m5 4 8 1" stroke="#F9F5E6" fill="none"/>'
- ];
+ const doodles=Array.from({length:8},(_,i)=>`<image href="${new URL(`assets/pencils/pencil-${i+1}.svg`,document.currentScript?.src||document.baseURI)}" x="15" width="18" height="48"/>`);
  const gameNames=new Set(['Word Craft','Absurd Choices','Scrambl','Sentence Expander','Shop','Creative Writing','Grammar Dice','Gachapon']);
  function decorate(title){
   if(title.tagName==='H3'&&!gameNames.has(title.textContent.replace(/\s+/g,' ').trim()))return;
@@ -21,7 +17,14 @@ try{if(window.parent!==window)window.parent.SharedGame?.attachFrame(window)}catc
    if(wi<words.length-1){f.appendChild(document.createTextNode(' '));if(wi===0||(wi>2&&wi%3===0)){const icon=document.createElementNS('http://www.w3.org/2000/svg','svg');icon.classList.add('stw-title-doodle');icon.setAttribute('viewBox','0 0 48 48');icon.setAttribute('aria-hidden','true');icon.innerHTML=doodles[wi%doodles.length];f.appendChild(icon)}}
   });title.replaceChildren(f);
  }
- function enhanceTitles(root=document){if(root.matches?.('h1,h2,h3,.brand,.game-nav>span,.stw-home .category'))decorate(root);root.querySelectorAll?.('h1,h2,h3,.brand,.game-nav>span,.stw-home .category').forEach(decorate)}
+ function enhanceTitles(root=document){schedulePencils();if(root.matches?.('h1,h2,h3,.brand,.game-nav>span,.stw-home .category'))decorate(root);root.querySelectorAll?.('h1,h2,h3,.brand,.game-nav>span,.stw-home .category').forEach(decorate)}
+ function keepPencilsClear(){
+  const pencils=[...document.querySelectorAll('.home-pencil-row img')];if(!pencils.length)return;
+  const obstacles=[...document.querySelectorAll('body button,body a,body input')].filter(el=>!el.closest('.stw-home')&&getComputedStyle(el).position==='fixed').map(el=>el.getBoundingClientRect());
+  for(const pencil of pencils){const r=pencil.getBoundingClientRect();pencil.style.visibility=obstacles.some(b=>r.left<b.right+8&&r.right>b.left-8&&r.top<b.bottom+8&&r.bottom>b.top-8)?'hidden':''}
+ }
+ let pencilFrame=0;function schedulePencils(){cancelAnimationFrame(pencilFrame);pencilFrame=requestAnimationFrame(keepPencilsClear)}
+ window.addEventListener('resize',schedulePencils);window.addEventListener('scroll',schedulePencils,{passive:true});
  function init(){document.body.classList.add('stw-site-theme');enhanceTitles();let pending=false;
   const observer=new MutationObserver(records=>{if(!records.some(r=>(r.target.nodeType===1?r.target:r.target.parentElement)?.closest('h1,h2,h3,.brand,.game-nav>span,.stw-home .category')||[...r.addedNodes].some(n=>n.nodeType===1&&!n.matches?.('.stw-wave-word,.stw-wave-letter,.stw-title-doodle'))))return;if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;enhanceTitles()})});observer.observe(document.body,{childList:true,characterData:true,subtree:true});
  }

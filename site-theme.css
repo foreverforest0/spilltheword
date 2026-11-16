@@ -1,3 +1,4 @@
+@import url("heading-font.css?v=pencils-20261116-1");
 /* Cream paper, serif type, hand-drawn marks: shared across all game screens. */
 html:has(body.stw-site-theme){background:#F9F5E6;color-scheme:light}
 body.stw-site-theme{min-height:100vh;color-scheme:light;--paper:#F9F5E6;--drawably-paper:#F9F5E6;--pen:#70271F;--ink:#70271F;--ink-2:#26422B;--pen-font:Georgia,'Times New Roman',serif;--paper-bg:#F9F5E6;background:#F9F5E6!important;color:#70271F;font-family:Georgia,'Times New Roman',serif!important;letter-spacing:normal}
@@ -99,7 +100,6 @@ body.stw-site-theme #view #cbsharedh{margin:10px 0 16px;padding:12px 16px}
 body.stw-site-theme #view .scene-question-tabs .lvb[aria-pressed=true]{background:#70271F!important;color:#F9F5E6!important}
 body.stw-site-theme #view .cbbar>div:last-child{margin-left:auto;display:flex;justify-content:flex-end;gap:6px}
 .b1-magnet-picture .mgpic{border:0;border-radius:0;box-shadow:none;background:#CCE5FF}
-body.stw-site-theme #view .grammar-topic .topic-emotion{position:absolute;top:14px;right:14px;left:auto;bottom:auto;width:48px!important;height:48px;margin:0!important;background-image:url('assets/emotion-shapes.png');background-size:800% 400%;background-position:var(--shape-x) var(--shape-y);background-repeat:no-repeat}
 .ownership-context{font-size:17px;color:#26422B;margin:0 0 14px}.ownership-prompt{font:25px/1.35 Georgia,serif;color:#70271F;margin:10px 0}
 .spatial-stage{height:auto!important;min-height:540px;overflow:visible!important}.spatial-status{min-height:35px;font:21px/1.35 Georgia,serif;color:#26422B;margin:0 0 12px}
 .spatial-tray{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;background:#fff;padding:16px;margin-top:16px;min-height:140px;align-items:center}
@@ -183,3 +183,27 @@ body.stw-site-theme #view .gif-setup .lph{display:flex;flex-wrap:wrap;gap:8px}bo
 
 body.stw-site-theme #view .gif-setup .pp{opacity:1;background:#fff!important;color:#70271F!important;font-size:17px!important;padding:10px 12px!important;box-shadow:inset 0 0 0 1px #70271F33!important}.gif-setup .pcs{display:none}body.stw-site-theme #view .gif-setup .pp.on{background:#70271F!important;color:#fff!important}.gif-setup #gcats .lpb{opacity:1}.gif-setup #gcats .lpb.on .muted{color:inherit}
 body:has(.gif-setup) #homeBtn{display:none!important}
+
+/* Pencil accents and alternating Atlantic Depths / Aspen Snow volumes. */
+body.stw-site-theme #view :is(h1,h2,h3,.stw-wavy-title,.stw-wavy-title *,.grammar-topic,.grammar-topic>span,.stitle,.game-page-title,.game-nav>span),
+body.stw-site-theme :is(.brand,.brand *),
+body.home #view :is(h1,h1 *,.category,.category *,.spine,.book-title){font-family:var(--stw-title-font)!important;font-weight:400!important}
+body.stw-site-theme #view .blobb{width:100px;min-height:58px;height:auto;gap:8px}
+body.stw-site-theme #view .blobb img{width:20px;height:56px;object-fit:contain;transform:rotate(-12deg)}
+body.stw-site-theme .stw-title-doodle{width:.36em;height:1em;stroke:none;margin:0 .12em}
+body.stw-site-theme #view .grammar-topic>.topic-pencil{display:block;flex:none;align-self:flex-end;width:25px;height:76px;object-fit:contain;transform:rotate(-9deg);margin:0 6px 6px}
+body.home #view .stw-home{padding-top:12px;padding-bottom:12px}
+body.home #view .title-pencil{display:inline-block;width:clamp(16px,2.5vw,30px);height:clamp(42px,7vw,84px);object-fit:contain;vertical-align:middle;transform:rotate(17deg);margin:0 .15em}
+body.home #view .home-pencil-row{display:flex;flex:none;justify-content:space-around;align-items:center;gap:30px;width:100%;max-width:1100px;min-height:110px;margin:12px auto;padding:16px 30px;box-sizing:border-box;pointer-events:none}
+body.home #view .home-pencil-row img{width:24px;height:74px;object-fit:contain;transform:translateY(var(--pencil-offset)) rotate(var(--pencil-turn))}
+body.home #view .stw-home h1{white-space:normal;line-height:1.2;margin-bottom:44px}
+body.home #view .book{--cover:#001166;--type:#f0f0e7}
+body.home #view .book:nth-child(even){--cover:#f0f0e7;--type:#001166}
+body.home #view .book :is(.spine,.cover){border-color:#001166;color:var(--type);background:var(--cover);overflow:hidden}
+body.home #view .book .spine{font-size:25px!important}
+body.home #view .book .book-title{font-size:21px!important;overflow-wrap:anywhere;line-height:1.2}
+body.home #view .book:focus-visible{outline-color:#001166}
+body.home #view .book-body::before,body.home #view :is(.page-edge,.book-bottom),body.home #view .book-body::after{border-color:#001166}
+@media(max-width:850px){body.home #view .book .spine{font-size:21px!important}body.home #view .home-pencil-row{min-height:90px;margin:12px auto;padding:12px 24px}body.home #view .home-pencil-row img{height:62px;width:20px}body.home #view .stw-home h1{font-size:clamp(30px,8vw,72px)!important}}
+body.home #view .home-pencil-row:last-child{margin-bottom:65px}
+body.stw-site-theme :is(h1,h2,h3,.stw-wavy-title,.brand),body.stw-site-theme :is(h1,h2,h3,.stw-wavy-title,.brand) *{font-family:var(--stw-title-font)!important;font-weight:400!important}
