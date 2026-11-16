@@ -276,16 +276,17 @@ function b1MagnetRound(st,mb,id,cfg,round){
  st.querySelector('.b1-settings').append(mb);if(cfg.b1)st.querySelector('.b1-settings').append(level);
  st.querySelector('.b1-bank-side').insertBefore(prompt,st.querySelector('.b1-magnet-picture'));
  st.querySelector('.b1-new-row').appendChild($('#dmnew'));
- const hintButton=$('#dmhint');if(hintButton&&!hintButton.hidden)st.querySelector('.b1-settings').append(hintButton);
- const hint=$('#dmh');if(hint)st.querySelector('.b1-settings').append(hint);
+ const noHints=['mkb','mgb'].includes(id);
+ const hintButton=$('#dmhint');if(noHints)hintButton?.remove();else if(hintButton&&!hintButton.hidden)st.querySelector('.b1-settings').append(hintButton);
+ const hint=$('#dmh');if(noHints)hint?.remove();else if(hint)st.querySelector('.b1-settings').append(hint);
  fridgeResizeCleanup();
  const aspect=blue?754/2086:560/1294;
  const fit=()=>{
   if(!st.isConnected)return;
   const layout=st.querySelector('.b1-magnet-layout'),w=layout.clientWidth,gap=w<620?10:24;
   const side=w<620?Math.min(blue?140:150,w*(blue ? .38 : .41)):Math.min(400,w*.45);
-  const available=Math.max(240,window.innerHeight-st.getBoundingClientRect().top-56);
-  const width=Math.min(available*aspect*(blue?1.25:1),w-side-gap,blue?400:370);
+  const available=Math.max(blue?240:540,window.innerHeight-st.getBoundingClientRect().top-56);
+  const width=Math.min(available*aspect*(blue?1.25:1.28),w-side-gap,blue?400:440);
   const height=blue?Math.min(available,width/aspect):width/aspect;
   layout.style.setProperty('--fridge-width',width+'px');
   layout.style.setProperty('--fridge-height',height+'px');

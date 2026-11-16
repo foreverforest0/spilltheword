@@ -31,9 +31,9 @@
   ['watering the plants','She','cooking',['watering the plants','watering plants','watering a plant']],
   ['cooking soup','She','drinking',['cooking','cooking soup','making soup','cooking dinner','cooking lunch','cooking food']],
   ['painting a wall','She','reading',['painting','painting a wall','painting the wall']],
-  ['dancing','He','swimming',['dancing']],
+  ['dancing','She','swimming',['dancing']],
   ['singing','She','sleeping',['singing','singing a song']],
-  ['riding a bike','He','walking',['riding a bike','riding his bike','riding a bicycle','cycling']],
+  ['riding a bike','She','walking',['riding a bike','riding his bike','riding a bicycle','cycling']],
   ['running','She','sleeping',['running','jogging']]
  ].map(([key,subject,wrong,answers])=>({key,subject,wrong,answers,src:ACTIONS.find(a=>a[0]===key)[1]}));
  const reporterNorm=s=>String(s).toLowerCase().trim().replace(/[’‘]/g,"'").replace(/\b(she|he)'s\b/g,'$1 is').replace(/\bisn't\b/g,'is not').replace(/\b(?:but|and)\b/g,' ').replace(/[^a-z\s]/g,' ').replace(/\s+/g,' ').trim();

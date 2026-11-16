@@ -469,6 +469,21 @@ Next message · will / not / wait / any longer. Join with and; repeat she. | Mia
 Name the listener · Ben. Switch to tell. | Mia told Ben that she had been waiting for two hours and she would not wait any longer. | The reporting verb needs an object.
 New question · why / you / not call / me? Use ask. | Mia asked Ben why he had not called her. | Drop the earlier statements; report the question with shifted perspective.
 `);
+
+ // Kids read one concrete change at a time; checked answers remain unchanged.
+ const kidsInstructions={
+  1:["Add one more fact: her bag is blue. Join the two facts with and.","Change happy to sad. Keep the words about the bag.","Mia is not sad. Add not after is in the first part. Keep the bag part.","Make a question about Mia's mood. Use sad and her name. Do not ask about the bag.","Answer the question with No. Use she and is not."],
+  2:["What do I play? Add football after play.","When do I play? Add every day at the end.","Change I to Tom. Remember: Tom plays. Keep football and every day.","Tom does not play football. Add does not and change plays to play. Keep every day.","Ask a question about Tom. Start with Does and keep football and every day."],
+  3:["What is she reading? Add a book after reading.","Where is she reading? Add at home at the end.","Add now at the end. Keep a book and at home.","Say that she is not reading. Add not after is. Keep all the other words.","Make a question. Start with Is she. Remove not and keep the book, place and time."],
+  4:["Where is the cat? Add on the bed at the end.","Change one cat to two cats. Use There are two cats and keep on the bed.","Now there are no cats. Use There are not any cats and keep on the bed.","Ask about the cats. Start with Are there any cats. Keep on the bed.","Answer with No. Use there are not. Do not repeat cats or bed."],
+  5:["Make it yesterday: change plays to played and add yesterday at the end.","What did Tom play? Add football after played. Keep yesterday.","Where did Tom play? Add in the park before yesterday.","Say that Tom did not play. Change played to did not play. Keep the sport, place and time.","Ask about Tom. Start with Did Tom play and keep football, in the park and yesterday."],
+  6:["Change one box to two boxes. Start with There are.","What colour are the boxes? Add red before boxes.","Where are the boxes? Add on the table at the end.","Replace two red boxes with three blue toys. Keep on the table.","Make a question. Put Are before there. Keep three blue toys and on the table."],
+  7:["What time do I get up? Add at seven at the end.","Make the time longer: change seven to seven o'clock.","Change I to Ben and get to gets. Keep the time.","Ben does not get up then. Change gets to does not get. Keep the time.","Ask for the time. Start with What time does Ben and use get up. Leave out the time."],
+  8:["What colour is the bag? Add red before bag.","How big is the bag? Add small before red.","Mia does not have the bag. Add not after has. Keep small red bag.","Ask about the bag. Start with Has Mia got. Remove not and keep small red bag.","Answer with Yes. Use she and has. Do not repeat the bag."],
+  9:["The bag belongs to Mia. Change a bag to her bag.","Say it with one word: change her bag to hers.","The bag is far away now. Change This to That. Keep is hers.","Now there are two bags far away. Change That is to Those are. Keep hers.","Ask a question about the bags. Put Are before those and keep hers."]
+ };
+ for(const [number,instructions]of Object.entries(kidsInstructions))bank['kids:'+number].steps.forEach((step,i)=>step.instruction=instructions[i]);
+
  const substitutions=[
   [],
   [['Mia','Zoe'],['Ben','Leo'],['Tom','Max'],['Rome','Paris'],['London','Oxford'],['the report','the article'],['football','basketball']],

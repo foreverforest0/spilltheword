@@ -1,0 +1,43 @@
+/* Keep the illustrations intact; colour paper, labels and controls by level. */
+body[data-study-level] #view{color:var(--lesson-ink)}
+body[data-study-level] #view :is(.grammar-title,.grammar-topic-heading,.stw-wavy-title,.stw-wavy-title *,.cbbar h2,.sx-topic-name,.bv-page h1,.bv-prompt,.pond-header h1,.pond-topic-label){color:var(--lesson-ink)!important}
+body[data-study-level] #view :is(.grammar-topic,.sx-topic){background:var(--lesson-card)!important;color:var(--lesson-card-ink)!important}
+body[data-study-level] #view :is(.grammar-topic>span,.sx-topic>span){color:inherit!important}
+body[data-study-level] #view :is(.lvb,.lpb,.grammar-level,.pond-button,.sx-actions button,.sx-status button,.sx-levels button,.sx-practice-mode button,.b1-controls button,.blobb,.scene-coin span){background:var(--lesson-card-2)!important;color:var(--lesson-ink)!important;border-color:var(--lesson-ink)!important}
+body[data-study-level] #view :is(.lvb.on,.lpb.on,.grammar-level.active,.pond-button.active,.pond-button.primary,.cs-next,.sx-check,.sx-levels [aria-selected=true],.sx-practice-mode [aria-pressed=true]){background:var(--lesson-strong)!important;color:var(--lesson-on-strong)!important}
+body[data-study-level] #view :is(.stw-prompt-copy,.cs-text-copy,.cs-model,.cbh,.blobt,.sx-step-paper,.pond-card-copy,.b1-context,.b1-answer,.b1-settings,.b1-settings summary,.b1-prefix,.there-example,.cs-task-hint,.reporter-label,.reporter-hint){color:var(--lesson-ink)!important}
+body[data-study-level] #view :is(.stw-prompt-copy,.cs-text-copy,.cs-model,.cbh,.sx-step-paper,.pond-card-copy){background:var(--lesson-paper)!important}
+body[data-study-level] #view :is(.stw-prompt-copy *,.cs-text-copy *,.cs-model *,.cs-deck .cbt,.cs-deck .cbt2,.cs-deck .cbq,.cs-deck .cbq2,.cs-deck .interview-answers,.cs-deck .ownership-prompt){color:var(--lesson-ink)!important}
+body[data-study-level] #view :is(.blobhow,.blobt b,.b1-context,.b1-magnet,.b1-prefix,.sx-instruction,.sx-previous,.sx-previous span,.sx-starter,.sx-input-label,.sx-step-label,.pond-question-text,.pond-status,.cs-count){color:var(--lesson-ink)!important}
+body[data-study-level] #view :is(.sx-starter strong,.gtl button,.tpill){background:var(--lesson-card-2)!important;color:var(--lesson-ink)!important;border-radius:3px}
+body[data-study-level] #view :is(.cs-deck,.stw-prompt-card){--cs-ink:var(--lesson-ink)}
+body[data-study-level] #view .cs-controls{background:var(--lesson-paper)}
+body[data-study-level] #view :is(.cs-controls button,.sx-hint-toggle){background:var(--lesson-card-2);color:var(--lesson-ink)}
+body[data-study-level] #view .blobb{background:transparent!important}
+body[data-study-level] #view .cs-deck .stw-prompt-media{padding:18px!important}
+body[data-study-level] #view .cs-deck .stw-prompt-media>img{object-fit:contain!important;max-width:100%!important;max-height:100%!important;clip-path:none!important;mask:none!important;filter:none!important}
+.pond-surface{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;mix-blend-mode:screen}
+.pond-water::after{content:'';position:absolute;inset:15% 8%;pointer-events:none;border-radius:50%;background:radial-gradient(ellipse at 30% 20%,#ffffff0a,transparent 55%);animation:pond-light-drift 13s ease-in-out infinite alternate;z-index:0}
+@keyframes pond-light-drift{to{transform:translate(3%,2%) scale(1.04)}}
+@media(prefers-reduced-motion:reduce){.pond-water::after{animation:none}}
+@media(max-width:620px){.b1-magnet-layout:has(.b1-fridge:not(.blue)){height:auto!important;min-height:540px}.b1-fridge:not(.blue){min-height:540px}}
+/* New art stays whole on its original white paper, without artificial cutouts. */
+body[data-study-level] #view .stw-prompt-media:has(img[src*="learning-art/"]){background:#fff!important}
+body[data-study-level] #view .blobw .blobb{background:transparent!important}
+body[data-study-level]{--pen:var(--lesson-ink);--ink:var(--lesson-ink);--ink-2:var(--lesson-ink)}
+body.grammar-style-active[data-study-level]{--gc-wine:var(--lesson-ink);--gc-green:var(--lesson-ink);--gc-blue:var(--lesson-card-1);--gc-lilac:var(--lesson-card-2);--gc-pink:var(--lesson-card-2);--gc-butter:var(--lesson-card-1);--gc-sage:var(--lesson-card-1);--gc-peach:var(--lesson-card-2);--gc-orange:var(--lesson-strong)}
+body[data-study-level] #view :is(.gcs,.gcrule,.tytask,.tbc,.gcr .rmctl,.spatial-zone,.day-activity,.frtap,.shbud,.shdep){background:var(--lesson-card-2)!important;color:var(--lesson-ink)!important}
+body[data-study-level] #view :is(.gcs .gv,.gcs small,.tytask *,.spatial-zone strong){color:var(--lesson-ink)!important}
+body[data-study-level] #view .gv[aria-label]{font-size:48px!important;line-height:1.1}
+/* Override legacy per-game button rules, which are more specific than .lvb. */
+body.stw-site-theme[data-study-level] #view :is(button.lvb,button.lpb,button.pond-button,button.sx-hint-toggle,.cs-controls button,.tybar button){background:var(--lesson-card-2)!important;color:var(--lesson-ink)!important;border-color:var(--lesson-ink)!important}
+body.stw-site-theme[data-study-level] #view :is(button.lvb.on,button.lpb.on,button.pond-button.active,button.pond-button.primary,.cs-controls button.cs-next){background:var(--lesson-strong)!important;color:var(--lesson-on-strong)!important}
+body.stw-site-theme[data-study-level] #view :is(input[type=text],textarea,select){background:var(--lesson-paper)!important;color:var(--lesson-ink)!important;border-color:var(--lesson-ink)!important}
+body.stw-site-theme[data-study-level] #view :is(.sx-start,.sx-help,.sx-finish){background:var(--lesson-card-2)!important;color:var(--lesson-ink)!important}
+body.stw-site-theme[data-study-level] #view :is(.sx-start p,.sx-finish p){color:var(--lesson-ink)!important}
+body[data-study-level] .game-share-toolbar button{background:var(--lesson-card-2)!important;color:var(--lesson-ink)!important}
+body.stw-site-theme[data-study-level] #view .b1-fridge.blue .b1-magnet{color:var(--lesson-on-strong)!important}
+body[data-study-level] .b1-drag-ghost{color:var(--lesson-ink)!important}
+body.stw-site-theme[data-study-level] #homeBtn{background:var(--lesson-strong)!important;color:var(--lesson-on-strong)!important}
+body[data-study-level] #view .cs-stack::before{background:var(--lesson-card-2)!important}
+body[data-study-level] #view .cs-stack::after{background:var(--lesson-card-1)!important}

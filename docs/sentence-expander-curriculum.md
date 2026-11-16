@@ -6,20 +6,20 @@
 
 Начало: **Mia is happy.**
 
-1. Bag · blue. Join with and.
+1. Add one more fact: her bag is blue. Join the two facts with and.
    - Hint: Add a second fact about Mia's bag.
    - Модель после ответа: Mia is happy and her bag is blue.
-2. Mood swap · sad. Keep the bag.
+2. Change happy to sad. Keep the words about the bag.
    - Hint: Change only the feeling.
    - Модель после ответа: Mia is sad and her bag is blue.
-3. Reverse the mood statement.
+3. Mia is not sad. Add not after is in the first part. Keep the bag part.
    - Hint: Make only the first fact negative.
    - Модель после ответа: Mia is not sad and her bag is blue.
-4. Ask about Mia's mood only. Use her name; ask positively.
+4. Make a question about Mia's mood. Use sad and her name. Do not ask about the bag.
    - Начать со слова: **Is**
    - Hint: The question needs a different word order.
    - Модель после ответа: Is Mia sad?
-5. Reply no · use she.
+5. Answer the question with No. Use she and is not.
    - Начать со слова: **No**
    - Hint: Keep the reply short.
    - Модель после ответа: No, she is not.
@@ -28,19 +28,19 @@
 
 Начало: **I play.**
 
-1. Add a sport · football.
+1. What do I play? Add football after play.
    - Hint: The sport is the object.
    - Модель после ответа: I play football.
-2. Add a daily habit · every day.
+2. When do I play? Add every day at the end.
    - Hint: Put the time after the activity.
    - Модель после ответа: I play football every day.
-3. New player · Tom.
+3. Change I to Tom. Remember: Tom plays. Keep football and every day.
    - Hint: Check the verb when the person changes.
    - Модель после ответа: Tom plays football every day.
-4. Tom does not do this.
+4. Tom does not play football. Add does not and change plays to play. Keep every day.
    - Hint: The main verb loses its extra ending.
    - Модель после ответа: Tom does not play football every day.
-5. Ask about Tom's habit.
+5. Ask a question about Tom. Start with Does and keep football and every day.
    - Начать со слова: **Does**
    - Hint: Keep all the activity details.
    - Модель после ответа: Does Tom play football every day?
@@ -49,19 +49,19 @@
 
 Начало: **She is reading.**
 
-1. Add an object · book.
+1. What is she reading? Add a book after reading.
    - Hint: A singular object needs an article.
    - Модель после ответа: She is reading a book.
-2. Place · home.
+2. Where is she reading? Add at home at the end.
    - Hint: Add the right place word yourself.
    - Модель после ответа: She is reading a book at home.
-3. Time · now.
+3. Add now at the end. Keep a book and at home.
    - Hint: Keep the place and object.
    - Модель после ответа: She is reading a book at home now.
-4. Reverse the statement.
+4. Say that she is not reading. Add not after is. Keep all the other words.
    - Hint: The negative belongs beside the helping verb.
    - Модель после ответа: She is not reading a book at home now.
-5. Ask if it is happening.
+5. Make a question. Start with Is she. Remove not and keep the book, place and time.
    - Начать со слова: **Is**
    - Hint: Remove the negative and change word order.
    - Модель после ответа: Is she reading a book at home now?
@@ -70,20 +70,20 @@
 
 Начало: **There is a cat.**
 
-1. Place · bed, on top.
+1. Where is the cat? Add on the bed at the end.
    - Hint: Choose the place phrase yourself.
    - Модель после ответа: There is a cat on the bed.
-2. One cat becomes two.
+2. Change one cat to two cats. Use There are two cats and keep on the bed.
    - Hint: More than one changes the noun and verb.
    - Модель после ответа: There are two cats on the bed.
-3. No cats remain · use any.
+3. Now there are no cats. Use There are not any cats and keep on the bed.
    - Hint: Keep the bed in the sentence.
    - Модель после ответа: There are not any cats on the bed.
-4. Ask whether any cats are there.
+4. Ask about the cats. Start with Are there any cats. Keep on the bed.
    - Начать со слова: **Are**
    - Hint: Remove the negative.
    - Модель после ответа: Are there any cats on the bed?
-5. Reply no.
+5. Answer with No. Use there are not. Do not repeat cats or bed.
    - Начать со слова: **No**
    - Hint: Keep the same helping verb.
    - Модель после ответа: No, there are not.
@@ -92,19 +92,19 @@
 
 Начало: **Tom plays.**
 
-1. Time travel · yesterday.
+1. Make it yesterday: change plays to played and add yesterday at the end.
    - Hint: Change the action to the past.
    - Модель после ответа: Tom played yesterday.
-2. Add a sport · football.
+2. What did Tom play? Add football after played. Keep yesterday.
    - Hint: Keep the past time.
    - Модель после ответа: Tom played football yesterday.
-3. Place · park.
+3. Where did Tom play? Add in the park before yesterday.
    - Hint: Put the place before the time.
    - Модель после ответа: Tom played football in the park yesterday.
-4. It did not happen.
+4. Say that Tom did not play. Change played to did not play. Keep the sport, place and time.
    - Hint: The negative helper carries the past.
    - Модель после ответа: Tom did not play football in the park yesterday.
-5. Ask about that day.
+5. Ask about Tom. Start with Did Tom play and keep football, in the park and yesterday.
    - Начать со слова: **Did**
    - Hint: Ask a positive yes/no question.
    - Модель после ответа: Did Tom play football in the park yesterday?
@@ -113,19 +113,19 @@
 
 Начало: **There is a box.**
 
-1. One box becomes two.
+1. Change one box to two boxes. Start with There are.
    - Hint: Both the noun and verb need attention.
    - Модель после ответа: There are two boxes.
-2. Describe the boxes · red.
+2. What colour are the boxes? Add red before boxes.
    - Hint: The colour belongs before the thing.
    - Модель после ответа: There are two red boxes.
-3. Place · table, on top.
+3. Where are the boxes? Add on the table at the end.
    - Hint: Build the place phrase yourself.
    - Модель после ответа: There are two red boxes on the table.
-4. Object swap · three blue toys.
+4. Replace two red boxes with three blue toys. Keep on the table.
    - Hint: Keep the same place.
    - Модель после ответа: There are three blue toys on the table.
-5. Check the toys' location with a question.
+5. Make a question. Put Are before there. Keep three blue toys and on the table.
    - Начать со слова: **Are**
    - Hint: Keep the number and colour.
    - Модель после ответа: Are there three blue toys on the table?
@@ -134,19 +134,19 @@
 
 Начало: **I get up.**
 
-1. Clock clue · seven.
+1. What time do I get up? Add at seven at the end.
    - Hint: Clock times need a preposition.
    - Модель после ответа: I get up at seven.
-2. Spell out the clock expression · o'clock.
+2. Make the time longer: change seven to seven o'clock.
    - Hint: Put it beside the number.
    - Модель после ответа: I get up at seven o'clock.
-3. New person · Ben.
+3. Change I to Ben and get to gets. Keep the time.
    - Hint: Keep the routine; check agreement.
    - Модель после ответа: Ben gets up at seven o'clock.
-4. Reverse Ben's routine.
+4. Ben does not get up then. Change gets to does not get. Keep the time.
    - Hint: Use the base verb after the negative helper.
    - Модель после ответа: Ben does not get up at seven o'clock.
-5. Ask for the clock time. Drop seven.
+5. Ask for the time. Start with What time does Ben and use get up. Leave out the time.
    - Начать со слова: **What**
    - Hint: A time question has its own opening.
    - Модель после ответа: What time does Ben get up?
@@ -155,20 +155,20 @@
 
 Начало: **Mia has got a bag.**
 
-1. Bag colour · red.
+1. What colour is the bag? Add red before bag.
    - Hint: Put the adjective before the noun.
    - Модель после ответа: Mia has got a red bag.
-2. Bag size · small.
+2. How big is the bag? Add small before red.
    - Hint: Think about adjective order.
    - Модель после ответа: Mia has got a small red bag.
-3. Mia does not have this bag.
+3. Mia does not have the bag. Add not after has. Keep small red bag.
    - Hint: Make the possession negative.
    - Модель после ответа: Mia has not got a small red bag.
-4. Ask about the bag.
+4. Ask about the bag. Start with Has Mia got. Remove not and keep small red bag.
    - Начать со слова: **Has**
    - Hint: Keep the size and colour.
    - Модель после ответа: Has Mia got a small red bag?
-5. Reply yes · use she.
+5. Answer with Yes. Use she and has. Do not repeat the bag.
    - Начать со слова: **Yes**
    - Hint: A short reply does not repeat the bag.
    - Модель после ответа: Yes, she has.
@@ -177,19 +177,19 @@
 
 Начало: **This is a bag.**
 
-1. Owner clue · Mia. Use a possessive determiner.
+1. The bag belongs to Mia. Change a bag to her bag.
    - Hint: The bag still needs a word before it.
    - Модель после ответа: This is her bag.
-2. Replace the owner-and-bag phrase with one pronoun.
+2. Say it with one word: change her bag to hers.
    - Hint: The possession word must stand alone.
    - Модель после ответа: This is hers.
-3. Move the bag far away.
+3. The bag is far away now. Change This to That. Keep is hers.
    - Hint: Change the pointing word.
    - Модель после ответа: That is hers.
-4. Now two bags, still far away.
+4. Now there are two bags far away. Change That is to Those are. Keep hers.
    - Hint: Change the pointing word and the verb.
    - Модель после ответа: Those are hers.
-5. Check possession · positive yes/no question. Keep the possessive pronoun.
+5. Ask a question about the bags. Put Are before those and keep hers.
    - Начать со слова: **Are**
    - Hint: Use a positive question.
    - Модель после ответа: Are those hers?

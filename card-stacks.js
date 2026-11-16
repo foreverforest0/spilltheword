@@ -3,11 +3,12 @@
 (()=>{
  'use strict';
  const effects=['yuda','krisna','wangi','wira','slamet','eka'];
- const palette=['#CCE5FF','#BEC3EC','#F4DDF4','#F5E99A','#B2BC70','#FF9275','#70271F','#26422B','#F24E07','#F9F5E6'];
+ const legacyPalette=['#CCE5FF','#BEC3EC','#F4DDF4','#F5E99A','#B2BC70','#FF9275','#70271F','#26422B','#F24E07','#F9F5E6'];
  const instances=new Set(),reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
  const clean=s=>String(s||'').replace(/^[^A-Za-z0-9“"‘']+/,'');
- function ink(hex){const rgb=hex.slice(1).match(/../g).map(x=>parseInt(x,16)/255).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4);return .2126*rgb[0]+.7152*rgb[1]+.0722*rgb[2]<.18?'#F9F5E6':'#70271F'}
+ function ink(hex){const rgb=hex.slice(1).match(/../g).map(x=>parseInt(x,16)/255).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4);return .2126*rgb[0]+.7152*rgb[1]+.0722*rgb[2]<.18?(window.LevelDesign?.current().onStrong||'#F9F5E6'):(window.LevelDesign?.current().ink||'#70271F')}
  function create(host,items,options={}){
+  const palette=window.LevelDesign?.current().cards||legacyPalette;
   if(!host||!items.length)return null;host._cardDeck?.dispose();
   let index=Math.max(0,Math.min(options.initial||0,items.length-1)),alive=true,busy=false,timer=null,queue=[],lastEffect='';const flips=items.map((_,i)=>!!options.initialFlips?.[i]),cards=[];
   host.classList.add('cs-deck');host.dataset.cardStack='true';host.setAttribute('aria-label',options.label||'Practice cards');
@@ -102,5 +103,5 @@
  cardFlip=function(bd,node,inner,w,h,quick){if(!bd._stack)return legacyFlip(bd,node,inner,w,h,quick);node._o={};const i=+node.dataset.stackCard;if(bd.id==='rboard'&&R)R.csBacks[i]=inner;bd._stack.setBack(i,inner,true)};
  cardClose=function(bd,node){if(!bd._stack)return legacyClose(bd,node);bd._stack.flip(false)};
  renderCards=cardsPage;
- window.CardStacks={create,paper,process,palette,effects,instances};
+ window.CardStacks={create,paper,process,get palette(){return window.LevelDesign?.current().cards||legacyPalette},effects,instances};
 })();

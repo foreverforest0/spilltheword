@@ -124,7 +124,7 @@ with sync_playwright() as pw:
         assert page.locator(".b1-drag-ghost").count() == 1
         page.mouse.up()
         assert page.locator(".b1-strip .b1-magnet").count() == 1
-        expected_ink = "rgb(249, 245, 230)" if level in ["b1", "b2", "c1"] else "rgb(112, 39, 31)"
+        expected_ink = "rgb(240, 240, 231)" if level == "b1" else "rgb(200, 210, 166)" if level in ["b2", "c1"] else "rgb(47, 55, 31)"
         assert page.locator(".b1-strip .b1-magnet").evaluate("e=>getComputedStyle(e).color") == expected_ink
         page.locator(".b1-strip .b1-magnet").click()
         assert page.locator(".b1-strip .b1-magnet").count() == 0
@@ -134,8 +134,9 @@ with sync_playwright() as pw:
         page.set_viewport_size(viewport)
         activity("mgb")
         assert page.locator(".b1-fridge").bounding_box()["y"] > 0
-        assert page.evaluate("document.querySelector('.b1-fridge').getBoundingClientRect().bottom <= innerHeight")
-        assert page.evaluate("document.documentElement.scrollHeight <= innerHeight + 1")
+        assert page.locator(".b1-fridge").bounding_box()["height"] >= 540
+        assert page.locator(".magnet-fridge-art").evaluate("e=>getComputedStyle(e).objectFit") == "contain"
+        assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
         for selector in ["#dmnew", "#mgchk", "#mgans"]:
             assert page.locator(selector).bounding_box()["x"] > page.locator(".b1-fridge").bounding_box()["x"]
         page.locator(".blobb").click()

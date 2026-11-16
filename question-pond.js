@@ -36,19 +36,30 @@
   const questions=PondQuestions.bankFor(topic.level,topic.number);let mode='catch',current=null,queue=[],phase='idle',fish=[],selected=null,rigMotion=null,timers=new Set(),frame=0,previousTime=0,alive=true,strokes=[],pen=null,color=palette[0],width=.018,eraser=false,drawnFish=null,storageNotice='',flight=null,returnToIdle=false;
   const later=(fn,ms)=>{const id=setTimeout(()=>{timers.delete(id);if(alive)fn()},reduce()?Math.min(ms,35):ms);timers.add(id);return id};
   const pageId=topic.level+':'+topic.number;
-  setView(`<section class="pond-page" data-pond-topic="${esc(pageId)}"><div class="pond-header"><button class="pond-back" id="pondBack">← Exercises</button><h1>Question pond</h1><span class="pond-topic-label">${esc(topic.name)} · ${topic.level==='kids'?'Kids':topic.level.toUpperCase()}</span></div><div class="pond-toolbar"><nav aria-label="Pond mode"><button class="pond-button active" id="pondCatchMode" aria-pressed="true">Catch a question</button><button class="pond-button" id="pondDrawMode" aria-pressed="false">Draw & release</button></nav><button class="pond-button" id="pondHow" aria-expanded="false" aria-controls="pondHelp">How to?</button></div><p id="pondHelp" class="pond-help" hidden>Click any fish, or tap the water, to catch a question. Write your answer; Hint gives you a sentence prompt. Show answer reveals a model in either mode without checking or changing your draft. In Draw & release, draw a fish and release it: a correct answer lets it swim; an incorrect answer makes it jump out. You can correct the same answer and try again.</p><div class="pond-layout"><div class="pond-water-column"><div class="pond-water" id="pondWater" aria-label="Illustrated pond"><div class="pond-school" id="pondSchool"></div><div class="pond-ripple" id="pondRipple" aria-hidden="true"></div><div class="pond-spray" id="pondSpray" aria-hidden="true"><i></i><i></i><i></i><i></i></div><svg class="pond-rig" id="pondRig" viewBox="0 0 1000 667" preserveAspectRatio="none" aria-hidden="true"><path class="pond-rod" d="M980 140 Q974 54 920 45"/><path class="pond-rope" id="pondLine" d="M920 45 L920 45"/><circle class="pond-bobber" id="pondBobber" r="4" cx="920" cy="45"/><path class="pond-hook" id="pondHook" d="M-3 0v7q5 7 9 0"/></svg></div><p class="pond-status" id="pondStatus" role="status" aria-live="polite">Click a fish to catch a question.</p></div><aside class="pond-question" id="pondQuestion" aria-label="Caught question"><div class="pond-empty"><span class="pond-idle-fish" aria-hidden="true"></span><p>A question is swimming by.</p></div></aside></div></section>`);
+  setView(`<section class="pond-page" data-pond-topic="${esc(pageId)}"><div class="pond-header"><button class="pond-back" id="pondBack">← Exercises</button><h1>Question pond</h1><span class="pond-topic-label">${esc(topic.name)} · ${topic.level==='kids'?'Kids':topic.level.toUpperCase()}</span></div><div class="pond-toolbar"><nav aria-label="Pond mode"><button class="pond-button active" id="pondCatchMode" aria-pressed="true">Catch a question</button><button class="pond-button" id="pondDrawMode" aria-pressed="false">Draw & release</button></nav><button class="pond-button" id="pondHow" aria-expanded="false" aria-controls="pondHelp">How to?</button></div><p id="pondHelp" class="pond-help" hidden>Click any fish, or tap the water, to catch a question. Write your answer; Hint gives you a sentence prompt. Show answer reveals a model in either mode without checking or changing your draft. In Draw & release, draw a fish and release it: a correct answer lets it swim; an incorrect answer makes it jump out. You can correct the same answer and try again.</p><div class="pond-layout"><div class="pond-water-column"><div class="pond-water" id="pondWater" aria-label="Illustrated pond"><canvas class="pond-surface" id="pondSurface" aria-hidden="true"></canvas><div class="pond-school" id="pondSchool"></div><div class="pond-ripple" id="pondRipple" aria-hidden="true"></div><div class="pond-spray" id="pondSpray" aria-hidden="true"><i></i><i></i><i></i><i></i></div><svg class="pond-rig" id="pondRig" viewBox="0 0 1000 667" preserveAspectRatio="none" aria-hidden="true"><path class="pond-rod" d="M980 140 Q974 54 920 45"/><path class="pond-rope" id="pondLine" d="M920 45 L920 45"/><circle class="pond-bobber" id="pondBobber" r="4" cx="920" cy="45"/><path class="pond-hook" id="pondHook" d="M-3 0v7q5 7 9 0"/></svg></div><p class="pond-status" id="pondStatus" role="status" aria-live="polite">Click a fish to catch a question.</p></div><aside class="pond-question" id="pondQuestion" aria-label="Caught question"><div class="pond-empty"><span class="pond-idle-fish" aria-hidden="true"></span><p>A question is swimming by.</p></div></aside></div></section>`);
   const root=$('#view .pond-page'),water=$('#pondWater'),school=$('#pondSchool'),card=$('#pondQuestion'),status=$('#pondStatus'),ripple=$('#pondRipple'),spray=$('#pondSpray'),rig=$('#pondRig'),line=$('#pondLine'),bobber=$('#pondBobber'),hook=$('#pondHook');
   function dispose(){flight?.remove();alive=false;rigMotion=null;cancelAnimationFrame(frame);timers.forEach(clearTimeout);timers.clear();document.removeEventListener('visibilitychange',visibility);resize.disconnect();fish.forEach(f=>f.el.remove());fish=[];pen=null;root.dataset.disposed='true'}
   activeDispose=dispose;
   $('#pondBack').onclick=spSetup;if($('#view .grammar-exercise-back'))$('#pondBack').hidden=true;
   $('#pondHow').onclick=()=>{const help=$('#pondHelp');help.hidden=!help.hidden;$('#pondHow').setAttribute('aria-expanded',String(!help.hidden))};
+  const surface=$('#pondSurface'),waterCtx=surface.getContext('2d'),ripples=[];
+  let pointer=null,lastWake=0;
+  function addWake(x,y,strength=1){if(reduce())return;ripples.push({x,y,born:performance.now(),strength});if(ripples.length>28)ripples.shift()}
+  water.addEventListener('pointermove',e=>{const r=water.getBoundingClientRect();pointer={x:(e.clientX-r.left)/r.width,y:(e.clientY-r.top)/r.height,at:performance.now()};if(pointer.at-lastWake>95){addWake(pointer.x,pointer.y,.55);lastWake=pointer.at}});
+  water.addEventListener('pointerleave',()=>pointer=null);
+  function waterMotion(now){
+   const w=surface.width,h=surface.height;waterCtx.clearRect(0,0,w,h);if(reduce())return;
+   for(let i=ripples.length-1;i>=0;i--){const wake=ripples[i],age=(now-wake.born)/1500;if(age>1){ripples.splice(i,1);continue}waterCtx.strokeStyle=`rgba(255,255,255,${(1-age)*.65*wake.strength})`;waterCtx.lineWidth=1.5;waterCtx.beginPath();waterCtx.ellipse(wake.x*w,wake.y*h,8+age*85,4+age*42,0,0,Math.PI*2);waterCtx.stroke()}
+   waterCtx.strokeStyle='rgba(255,255,255,.16)';waterCtx.lineWidth=1;
+   for(let i=0;i<4;i++){waterCtx.beginPath();for(let x=0;x<=w;x+=12){const y=h*(.25+i*.16)+Math.sin(x*.015+now*.0005+i)*5;x?waterCtx.lineTo(x,y):waterCtx.moveTo(x,y)}waterCtx.stroke()}
+  }
   function motion(f,now){
    const r=water.getBoundingClientRect(),size=clamp(r.width*.16,78,142),angle=Math.atan2(f.vy*r.height,f.vx*r.width),flip=f.vx<0?-1:1,tilt=flip<0?angle-Math.PI:angle;
    f.renderAngle=(f.renderAngle??tilt*.45)+(tilt*.45-(f.renderAngle??tilt*.45))*.12;
    const pose=f.pose||{x:f.x,y:f.y,angle:f.renderAngle,flip:f.visualFlip??flip};
    f.el.style.width=size+'px';f.el.style.height=size+'px';
    f.el.style.left=(pose.x*100)+'%';f.el.style.top=(pose.y*100)+'%';f.el.style.transform=`translate(-50%,-50%) rotate(${pose.angle}rad)`;
-   f.art.style.transform=`scaleX(${pose.flip}) rotate(${reduce()?0:Math.sin(now*(f.pose ? .012 : .004)+f.seed)*(f.pose?5:2)}deg)`;
+   f.art.style.transform=`scaleX(${pose.flip}) rotate(${reduce()?0:Math.sin(now*(f.pose ? .012 : .008)+f.seed)*(f.pose?5:5.5)}deg)`;
   }
   function addFish(src,index,owned=false){
    const el=document.createElement('button');el.type='button';el.className='pond-fish'+(owned?' pond-own-fish':'');el.setAttribute('aria-label',owned?'Catch your fish for another question':'Catch fish '+(index+1));
@@ -67,26 +78,33 @@
    }else if(!document.hidden&&selected?.pose&&!selected.inCard){
     const f=selected;f.pose.x=f.hang.x+(reduce()?0:Math.sin(now*.002)*.004);f.pose.y=f.hang.y+(reduce()?0:Math.sin(now*.003)*.003);f.pose.angle=f.hang.angle+(reduce()?0:Math.sin(now*.004)*.05);motion(f,now);ropeTo(f,0);
    }
+   if(!document.hidden)waterMotion(now);
    if(!document.hidden)for(const f of fish){if(f.busy||f===selected||f.hovered||f.focused||reduce())continue;
-    // Steer before reaching a bank, rather than snapping into a mirrored sprite.
-    const turn=dt*.05;
-    if(f.x<.21)f.vx+=turn;if(f.x>.79)f.vx-=turn;
-    if(f.y<.28)f.vy+=turn*.7;if(f.y>.70)f.vy-=turn*.7;
-    for(const other of fish){
-     if(other===f||other.busy)continue;const dx=f.x-other.x,dy=f.y-other.y,d=Math.hypot(dx,dy);
-     if(d>.001&&d<.16){const push=(1-d/.16)*dt*.06;f.vx+=dx/d*push;f.vy+=dy/d*push}
+    // A gentle current, flocking and cursor interest steer velocity continuously.
+    let ax=Math.cos(now*.00038+f.seed)*.012,ay=Math.sin(now*.00047+f.seed)*.009;
+    const turn=.22;
+    if(f.x<.22)ax+=turn*(.22-f.x)/.08;if(f.x>.78)ax-=turn*(f.x-.78)/.08;
+    if(f.y<.28)ay+=turn*(.28-f.y)/.08;if(f.y>.70)ay-=turn*(f.y-.70)/.08;
+    let neighbours=0,cx=0,cy=0,vx=0,vy=0;
+    for(const other of fish){if(other===f||other.busy)continue;const dx=f.x-other.x,dy=f.y-other.y,d=Math.hypot(dx,dy);
+     if(d>.001&&d<.15){const push=(1-d/.15)*.14;ax+=dx/d*push;ay+=dy/d*push}
+     if(d<.38){neighbours++;cx+=other.x;cy+=other.y;vx+=other.vx;vy+=other.vy}
     }
-    f.x+=f.vx*dt;f.y+=f.vy*dt;
-    f.x=clamp(f.x,.14,.86);f.y=clamp(f.y,.22,.77);f.vx=clamp(f.vx,-.031,.031);
-    f.vy+=Math.sin(now*.0006+f.seed)*dt*.002;f.vy=clamp(f.vy,-.018,.018);f.visualFlip+=(Math.sign(f.vx||1)-f.visualFlip)*Math.min(1,dt*5);motion(f,now);
+    if(neighbours){ax+=(cx/neighbours-f.x)*.018+(vx/neighbours-f.vx)*.12;ay+=(cy/neighbours-f.y)*.018+(vy/neighbours-f.vy)*.12}
+    if(pointer&&now-pointer.at<2200){const dx=pointer.x-f.x,dy=pointer.y-f.y,d=Math.hypot(dx,dy);if(d>.001&&d<.42){const interest=d<.085?-.065:.038;ax+=dx/d*interest;ay+=dy/d*interest}}
+    f.vx+=ax*dt;f.vy+=ay*dt;
+    const speed=Math.hypot(f.vx,f.vy),max=f.hovered?.032:.065;if(speed>max){f.vx*=max/speed;f.vy*=max/speed}
+    if(speed<.018){f.vx+=Math.cos(f.seed)*dt*.012;f.vy+=Math.sin(f.seed)*dt*.008}
+    f.x=clamp(f.x+f.vx*dt,.14,.86);f.y=clamp(f.y+f.vy*dt,.22,.77);
+    f.visualFlip+=(Math.sign(f.vx||1)-f.visualFlip)*Math.min(1,dt*4);motion(f,now);
    }
    if(!document.hidden)frame=requestAnimationFrame(tick);
   }
   let hiddenSince=0;
   function visibility(){cancelAnimationFrame(frame);previousTime=0;if(document.hidden)hiddenSince=performance.now();else{if(rigMotion&&hiddenSince)rigMotion.start+=performance.now()-hiddenSince;hiddenSince=0;frame=requestAnimationFrame(tick)}}
   document.addEventListener('visibilitychange',visibility);frame=requestAnimationFrame(tick);
-  const resize=new ResizeObserver(()=>{for(const f of fish)if(!f.busy)motion(f,performance.now())});resize.observe(water);
-  function splash(x,y){for(const el of [ripple,spray]){el.style.left=x*100+'%';el.style.top=y*100+'%';el.classList.remove('show');void el.offsetWidth;el.classList.add('show')}}
+  const resize=new ResizeObserver(()=>{surface.width=Math.round(water.clientWidth);surface.height=Math.round(water.clientHeight);for(const f of fish)if(!f.busy)motion(f,performance.now())});resize.observe(water);
+  function splash(x,y){addWake(x,y,1.5);for(const el of [ripple,spray]){el.style.left=x*100+'%';el.style.top=y*100+'%';el.classList.remove('show');void el.offsetWidth;el.classList.add('show')}}
   const mix=(a,b,t)=>a+(b-a)*t,smooth=t=>t*t*(3-2*t);
   function animateRig(duration,update,finish){rigMotion={start:performance.now(),duration:reduce()?35:duration,update,finish};update(0,performance.now())}
   function ropeTo(f,slack){
@@ -142,7 +160,7 @@
     const lift=clamp((t-.14)/.86,0,1),e=smooth(lift);
     f.pose={x:mix(start.x,end.x,e),y:mix(start.y,end.y,e)-Math.sin(Math.PI*lift)*.13,angle:mix(start.angle,end.angle,e)+Math.sin(lift*Math.PI*5)*(1-e)*.10,flip:start.flip};
     motion(f,now);ropeTo(f,(1-e)*.45);rig.style.opacity=String(clamp(t/.12,0,1));
-   },()=>{nextQuestion();phase='question';questionCard();status.textContent='Write your answer. Hint can help.';$('#pondAnswer').focus({preventScroll:true});if(innerWidth<760)card.scrollIntoView({behavior:reduce()?'instant':'smooth',block:'nearest'})});
+   },()=>{nextQuestion();phase='question';questionCard();status.textContent='';$('#pondAnswer').focus({preventScroll:true});if(innerWidth<760)card.scrollIntoView({behavior:reduce()?'instant':'smooth',block:'nearest'})});
   }
   water.onclick=e=>{if(!['idle','answered'].includes(phase)||selected)return;const r=water.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;const nearest=fish.filter(f=>!f.busy).sort((a,b)=>Math.hypot(a.x-x,a.y-y)-Math.hypot(b.x-x,b.y-y))[0];if(nearest)catchFish(nearest)};
   function questionCard(){
