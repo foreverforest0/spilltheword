@@ -22,3 +22,12 @@
 .ub-paper:disabled{opacity:1!important;cursor:default}
 
 .ub-task[data-topic]:before{content:attr(data-topic);text-transform:uppercase}
+
+.ub-label{position:relative;margin:22px auto 16px;padding:20px 22px;background:#e9d5af;border:1px solid #ac8d5a70;box-shadow:1px 3px 4px #3a2a1914;transform:rotate(-1deg);color:#4a3d2c}
+.ub-label:before{content:'';position:absolute;top:8px;left:10px;width:6px;height:6px;border-radius:50%;background:#baa37c;box-shadow:inset 0 1px 2px #493a2450}
+.ub-label-name{margin:0 0 14px;text-align:center;font:italic 19px Georgia,serif;text-transform:capitalize}
+.ub-label-facts{display:flex;gap:8px 12px;flex-wrap:wrap;justify-content:center;font:18px/1.5 Georgia,serif}
+.ub-label-facts span+span:before{content:'·';display:inline-block;margin-right:12px;color:#9a7c50}
+.ub-inner-card .ub-tag-copy{font:10px/1.4 Georgia,serif;letter-spacing:0;text-transform:none}
+.ub-task .fzhint{line-height:1.8;text-align:center}
+@media(max-width:600px){.ub-label{padding:18px 14px}.ub-label-facts{font-size:16px}.ub-inner-card .ub-tag-copy{font-size:7px}}
