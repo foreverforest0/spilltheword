@@ -20,6 +20,7 @@
  const oldGif=_renderGif;
  _renderGif=function(){
   if(!GF?.cards?.length)return oldGif();const owner=GF,host=shell('Describe the GIF','<button class="lvb" id="cs-gif-new">New cards</button>');
+  $('#cs-topics').textContent='← Settings';$('#cs-topics').onclick=()=>go('gif');
   create(host,owner.cards.map(c=>({front:()=>gifPaper(c),back:()=>gifPaper(c,true)})),{initial:owner.csIndex||0,onChange:i=>{owner.csIndex=i;owner.open=-1}});
   $('#cs-gif-new').onclick=()=>{owner.cards=owner.cards.map(()=>gifDeal(false));owner.csIndex=0;renderGif()};
  };

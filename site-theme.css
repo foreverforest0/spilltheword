@@ -167,3 +167,19 @@ body.stw-site-theme main:has(h1) :is(h2,h3).stw-wavy-title:not([data-wave="full"
 body.stw-site-theme main:has(h1) :is(h2,h3).stw-wavy-title:not([data-wave="full"]) .stw-wave-letter,body.stw-site-theme :is(.intro,.mode) .stw-wavy-title .stw-wave-letter{transform:translateY(calc(var(--stw-y)*var(--stw-wave-amplitude))) rotate(calc(var(--stw-y)*var(--stw-wave-rotation)));translate:none;animation:stw-subtitle-float var(--stw-wave-cycle) ease-in-out infinite!important;animation-delay:var(--stw-delay)!important}
 @keyframes stw-subtitle-float{0%,100%{transform:translateY(calc(var(--stw-y)*var(--stw-wave-amplitude))) rotate(calc(var(--stw-y)*var(--stw-wave-rotation)))}50%{transform:translateY(calc(var(--stw-y)*var(--stw-wave-amplitude) + var(--stw-wave-drift))) rotate(calc(var(--stw-y)*var(--stw-wave-rotation)))}}
 @media(prefers-reduced-motion:reduce){body.stw-site-theme main:has(h1) :is(h2,h3).stw-wavy-title:not([data-wave="full"]) .stw-wave-letter,body.stw-site-theme :is(.intro,.mode) .stw-wavy-title .stw-wave-letter{animation:none!important}}
+
+/* Course-based GIF practice, using the current paper and serif design. */
+body.stw-site-theme #view .gif-setup{max-width:1180px;margin:0 auto;padding:18px 8px 48px;color:#70271F}
+.gif-setup-header{position:relative;text-align:center;padding:12px 0 32px}.gif-setup-header>.lvb{display:block;margin:0 0 20px}.gif-eyebrow{font-size:12px;letter-spacing:.12em!important;color:#26422B}.gif-setup-header h1{font:clamp(52px,8vw,84px)/1.1 Georgia,serif!important;margin:8px 0 12px}.gif-setup-header>p:last-child{font-size:20px;margin:0}
+.gif-setup-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:start}
+body.stw-site-theme #view .gif-setup .panel{min-width:0;margin:0;padding:26px;border:0!important;border-radius:3px!important;box-shadow:none!important;background:#fff!important}
+body.stw-site-theme #view .gif-setup .panel:last-child{background:#CCE5FF!important}
+body.stw-site-theme #view .gif-setup h2{font-size:32px;margin:0 0 12px}body.stw-site-theme #view .gif-setup h3{font-size:24px;margin:24px 0 12px}.gif-setup .muted{font-size:16px;line-height:1.5}
+body.stw-site-theme #view .gif-setup .fld{border:1px solid #70271F55!important;border-radius:3px!important;box-shadow:none!important;background:#fff}
+body.stw-site-theme #view .gif-setup .lph{display:flex;flex-wrap:wrap;gap:8px}body.stw-site-theme #view .gif-setup .lph select{max-width:100%;min-width:0;padding:10px!important;background:#F9F5E6!important;color:#70271F!important;font:17px Georgia,serif!important}
+.gif-setup .lpg{max-width:100%;overflow-wrap:anywhere}.gif-setup .lpws{gap:8px}.gif-setup .lpw{font-size:16px}.gif-setup .lpchips{flex-wrap:wrap}.gif-setup .lpchip{max-width:100%;white-space:normal}
+.gif-setup #gcats{gap:7px}.gif-setup #gcats .lpb{font-size:17px!important;padding:9px 12px!important}.gif-setup #start{width:100%;margin-top:20px;font-size:22px!important}.gif-setup hr.k-hr{border-top:1px solid #70271F30!important;margin:24px 0!important}.gif-setup .grid2{grid-template-columns:1fr;gap:16px}
+@media(max-width:760px){.gif-setup-grid{grid-template-columns:1fr}.gif-setup-header{padding-bottom:24px}body.stw-site-theme #view .gif-setup .panel{padding:20px}.gif-setup .lph select{width:100%}}
+
+body.stw-site-theme #view .gif-setup .pp{opacity:1;background:#fff!important;color:#70271F!important;font-size:17px!important;padding:10px 12px!important;box-shadow:inset 0 0 0 1px #70271F33!important}.gif-setup .pcs{display:none}body.stw-site-theme #view .gif-setup .pp.on{background:#70271F!important;color:#fff!important}.gif-setup #gcats .lpb{opacity:1}.gif-setup #gcats .lpb.on .muted{color:inherit}
+body:has(.gif-setup) #homeBtn{display:none!important}
