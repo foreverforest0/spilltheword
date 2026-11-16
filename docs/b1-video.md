@@ -1,16 +1,11 @@
-# Five-stage B1 film practice
+# B1 films: one prompt per viewing
 
-Each of the 11 B1 grammar topics has one `film_b1_N` activity with five stages. The previous `ppvideo` route opens the new Present Perfect training; saved `S.ppVideo` data from the older animation exercise is left intact.
+Each B1 topic has one `film_b1_N` activity with five videos. Each video contains a short sequence of separate prompts, covering one question or one/two sentences per viewing. There are 181 prompts across the 55 clips. Present Perfect's second video has exactly three prompts: already statement, not-yet statement, and a yet question with a short answer.
 
-The television is a scalable line drawing based on the supplied reference. The local video plays in its screen; tasks sit on the right and stack below it on phones. Navigation is Back / Next / Finish, with Show answer on every exercise stage. There is no answer matcher, score, required text or automatic pass/fail. All 189 authored models are shown as examples; other correct wording is possible. Extra story cards are explicitly distinguished from film facts and original dialogue.
+Only the current prompt, optional necessary context, answer box, Show answer and navigation are displayed. The stage/focus caption, notes label, generic viewing instructions and example disclaimer are removed. Every prompt has its own examples and no automatic grading. Next/Back resets and replays the video, including when moving between prompts for the same clip, while preserving mute/volume settings.
 
-`S.b1Cinema[topicNumber]` keeps the step, individual drafts, answer reveals and completion state. Switching steps or leaving the activity pauses and unloads the old player. Completion uses the user's original 15-frame `the-end.gif`, extracted unchanged from their ZIP, inside the same television. Review stage 5 returns to the saved notes and allows Back navigation.
+`S.b1Cinema[topicNumber]` stores the video (`step`), question (`task`), individual drafts, answer reveals and completion. `sequenceVersion: 2` starts the revised sequence at the beginning. Previous combined notes remain in the saved data and appear on the first question for their video; they do not spill into later questions. New drafts/reveals are keyed by stable question IDs. Back crosses video boundaries to the previous video's final question; completion happens only after the final question of video five.
 
-55 local, 35-second H.264 clips and JPEG posters live in `assets/b1-video/`. The archive identifiers, source-file names and time ranges are documented in `assets/b1-video/sources.json`; every stage links to the original Archive item. Four sources are silent films with audio omitted; the His Girl Friday excerpts retain their film audio. No runtime request to archive.org is required for playback.
+The television and local media are retained. The original user-supplied 15-frame `the-end.gif` appears at completion. 55 local 35-second H.264 clips and posters are in `assets/b1-video/`, with source copies and time ranges recorded in `sources.json`. Four silent-film soundtracks are omitted; His Girl Friday retains its film audio. Archive metadata labels are recorded without extending claims to all editions or soundtracks.
 
-The metadata's public-domain labels, where provided, are recorded as source metadata, not a claim that all editions or soundtracks have identical rights. Modern soundtrack tracks on silent films are not included.
-
-Checks:
-
-- `python3 scripts/check-b1-video.py`: inspect all 55 H.264 media files, play every clip, visit every stage, reveal every model, keep drafts across navigation and reload, check all 11 original-GIF endings, compatibility route, unload old media, and responsive layouts.
-- `python3 scripts/check-present-perfect-b1.py`: preserve the existing Present Perfect typewriter, fridge and pond update.
+Validation: `python3 scripts/check-b1-video.py` visits all 181 prompts, plays all 55 clips, checks same-clip automatic replay, prompt-specific examples and notes, navigation/reload/migration, all 11 GIF endings, removal of unwanted copy, player cleanup and mobile layouts.
