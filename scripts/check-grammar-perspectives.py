@@ -26,7 +26,7 @@ with sync_playwright() as pw:
  p.evaluate("go('gram')");p.locator('[data-catalog-level="kids"]').click();p.locator('[data-grammar-topic="kids:3"]').click();p.locator('[data-grammar-exercise="pcr"]').click()
  def task(id):p.evaluate("id=>{go('gram');S.splevel='a1';spOpen(id)}",id);p.wait_for_timeout(80)
  seen=set()
- for i in range(16):
+ for i in range(13):
   page=p.locator('.reporter-page');key=page.get_attribute('data-action');subject=page.get_attribute('data-subject');wrong=page.get_attribute('data-wrong');assert key not in seen;seen.add(key)
   assert p.locator('.cs-card:not([hidden]) .cs-front img').count()==1
   p.locator('#reporterAnswer').fill(f'{subject} is {key}.');p.locator('#reporterCheck').click();assert not p.locator('#reporterFeedback').inner_text().startswith('Correct!')
@@ -36,7 +36,7 @@ with sync_playwright() as pw:
   p.locator('#reporterAnswer').fill(negative+' '+positive);p.locator('#reporterCheck').click();assert p.locator('#reporterFeedback').inner_text().startswith('Correct!'),(key,p.locator('#reporterFeedback').inner_text())
   if i==0:
    p.locator('#reporterHint').click();assert p.locator('#reporterHintText').is_visible();p.screenshot(path='/tmp/reporter-desktop.png',full_page=True)
-  if i<15:
+  if i<12:
    p.locator('#reporterNew').click();p.wait_for_function("!document.querySelector('.cs-deck')._cardDeck.busy")
  task('nof');stage=p.locator('.perspective-stage');assert p.locator('.perspective-object').count()==8
  def object_rects():return p.locator('.perspective-object').evaluate_all('els=>{const board=document.querySelector(".perspective-board").getBoundingClientRect();return els.map(el=>{const r=el.getBoundingClientRect();return [r.x-board.x,r.y-board.y,r.width,r.height]})}')
@@ -112,6 +112,6 @@ with sync_playwright() as pw:
  fallback.close()
  assert not missing,missing
  assert not errors,errors
- print('Passed: 16 reporter images and two-clause corrections; all 8 stationary objects and four demonstratives; 16 MP3 clips, real browser playback, balanced listening sorting, voice fallback, legacy modes, animation and two responsive widths.')
+ print('Passed: 13 original-style reporter images and two-clause corrections; all 8 stationary objects and four demonstratives; 16 MP3 clips, real browser playback, balanced listening sorting, voice fallback, legacy modes, animation and two responsive widths.')
  b.close()
 server.shutdown()

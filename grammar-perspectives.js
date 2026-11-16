@@ -21,7 +21,7 @@
  const reporterRows=[
   ['reading a book','She','sleeping',['reading','reading a book']],
   ['brushing her hair','She','washing her hands',['brushing her hair']],
-  ['brushing her teeth','She','eating pizza',['brushing her teeth']],
+  ['brushing his teeth','He','eating pizza',['brushing his teeth']],
   ['drawing a picture','She','writing a letter',['drawing','drawing a picture','painting','painting a picture']],
   ['drinking coffee','She','running',['drinking','drinking coffee','drinking tea','drinking a cup of coffee','drinking a cup of tea']],
   ['knitting','She','sleeping',['knitting','knitting a scarf']],
@@ -35,7 +35,7 @@
   ['singing','She','sleeping',['singing','singing a song']],
   ['riding a bike','She','walking',['riding a bike','riding his bike','riding a bicycle','cycling']],
   ['running','She','sleeping',['running','jogging']]
- ].map(([key,subject,wrong,answers])=>({key,subject,wrong,answers,src:ACTIONS.find(a=>a[0]===key)[1]}));
+ ].filter(([key])=>ACTIONS.some(a=>a[0]===key)).map(([key,subject,wrong,answers])=>{const art=ACTIONS.find(a=>a[0]===key);return {key,subject:art[2]||subject,wrong,answers,src:art[1]}});
  const reporterNorm=s=>String(s).toLowerCase().trim().replace(/[’‘]/g,"'").replace(/\b(she|he)'s\b/g,'$1 is').replace(/\bisn't\b/g,'is not').replace(/\b(?:but|and)\b/g,' ').replace(/[^a-z\s]/g,' ').replace(/\s+/g,' ').trim();
  function reporter(){return CardStacks.reporter(reporterRows,reporterNorm)}
  DMT.pcr=1;DMTF.pcr=reporter;SPSHORT.pcr='Correct the reporter';SPT.push({id:'pcr',n:'Present Continuous: Correct the reporter',d:'Correct a false report with a negative and a positive sentence.'});

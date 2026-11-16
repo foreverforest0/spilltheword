@@ -1,4 +1,4 @@
-"""New art, level palettes, Kids instructions, usable fridge and live pond."""
+"""Original wobbly art, level palettes, Kids instructions, usable fridge and live pond."""
 from functools import partial
 from http.server import SimpleHTTPRequestHandler,ThreadingHTTPServer
 from threading import Thread
@@ -9,14 +9,19 @@ ROOT=Path(__file__).resolve().parents[1]
 class Quiet(SimpleHTTPRequestHandler):
  def log_message(self,*a):pass
 server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(ROOT)));Thread(target=server.serve_forever,daemon=True).start();base=f'http://127.0.0.1:{server.server_port}/'
-manifest=json.loads((ROOT/'assets/learning-art/manifest.json').read_text())
+manifest=json.loads((ROOT/'assets/wobbly/manifest.json').read_text())
 with sync_playwright() as pw:
  b=pw.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']);p=b.new_page(viewport={'width':1440,'height':1000},reduced_motion='reduce');errors=[];missing=[]
  p.on('pageerror',lambda e:errors.append(str(e)));p.on('response',lambda r:missing.append(r.url) if r.status>=400 and r.url.startswith(base) and 'favicon' not in r.url else None);p.goto(base)
- # Render every atlas fragment: a complete, nonempty icon, with clear outer margins.
- sources=list(manifest['actions'].values())+list(manifest['people'].values())+list(manifest['extras'].values())
- p.evaluate('''async sources=>{for(const src of sources){const im=new Image();im.src=src;await im.decode();const c=document.createElement('canvas');c.width=c.height=300;const ctx=c.getContext('2d');ctx.fillStyle='white';ctx.fillRect(0,0,300,300);ctx.drawImage(im,0,0,300,300);const d=ctx.getImageData(0,0,300,300).data;let ink=0,edge=0;for(let y=0;y<300;y++)for(let x=0;x<300;x++){const i=(y*300+x)*4;if(d[i]<200||d[i+1]<200||d[i+2]<200){ink++;if(x<8||x>291||y<8||y>291)edge++}}if(ink<100||edge)throw Error('Blank or clipped illustration '+src)}}''',sources)
- assert p.evaluate("BES.every(person=>PICS[person.k].startsWith('assets/learning-art/'))")
+ # Every original PNG has transparent safety margins and a nonempty silhouette.
+ from PIL import Image
+ sources=list(manifest['pictures'].values())+[v['src'] for v in manifest['actions'].values()]
+ for source in sources:
+  im=Image.open(ROOT/source);assert im.format=='PNG' and im.mode=='RGBA';box=im.getchannel('A').getbbox();assert box and box[0]>=16 and box[1]>=16 and box[2]<=im.width-16 and box[3]<=im.height-16,source
+ p.evaluate("async sources=>{for(const src of sources){const im=new Image();im.src=src;await im.decode();if(im.naturalWidth<25)throw Error(src)}}",sources)
+ assert p.evaluate("BES.every(person=>PICS[person.k].startsWith('assets/wobbly/'))")
+ assert p.evaluate("ACTIONS.length===29&&ACTIONS.every(a=>a[1].endsWith('.png')&&['He','She'].includes(a[2]))")
+ assert p.evaluate("MGXC.mgc.items().every(r=>/^(He|She|Is he|Is she)/.test(r[1][0]))")
  for lv in ['kids','a1','a2','b1','b2','c1']:
   p.evaluate("lv=>{go('gram');S.glevel=lv;glSetup()}",lv);p.wait_for_timeout(60)
   assert p.locator('body').get_attribute('data-study-level')==lv
@@ -43,6 +48,6 @@ with sync_playwright() as pw:
  assert p.locator('#pondSurface').evaluate('(c)=>c.getContext("2d").getImageData(0,0,c.width,c.height).data.some((v,i)=>i%4===3&&v>0)')
  p.emulate_media(reduced_motion='reduce');p.locator('.pond-fish').first.click();p.wait_for_selector('#pondAnswer');assert 'Write your answer. Hint can help.' not in p.locator('body').inner_text()
  assert not errors,errors;assert not missing,missing
- print('PASS: 74 whole illustration fragments; six level palettes; Kids fridge without hints, child instructions and mobile layouts; capsule signs; swimming fish and pointer water response; no missing assets or JS errors')
+ print('PASS: 107 original PNGs with transparent margins; six level palettes; Kids fridge without hints, child instructions and mobile layouts; capsule signs; swimming fish and pointer water response; no missing assets or JS errors')
  b.close()
 server.shutdown()

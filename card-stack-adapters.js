@@ -33,8 +33,9 @@
    const step=owner.task==='cmp'?2:1;
    for(let n=0;n<owner.order.length-(step===2?1:0);n+=step){const a=ACTIONS[owner.order[n]],b=ACTIONS[owner.order[n+1]],past=owner.t||'yesterday',compare=owner.task==='cmp',isPast=owner.task==='pas';
     const media=compare?`<div class="two"><img src="${a[1]}" alt=""><span>→</span><img src="${b[1]}" alt=""></div>`:`<img src="${a[1]}" alt="" draggable="false">`;
-    const question=compare?'What was she doing '+past+'? What is she doing now?':isPast?'What was she doing '+past+'?':SPPRES[owner.q]||'What is she doing?';
-    const answer=compare?'She was '+a[0]+', but now she is '+b[0]+'.':isPast?'She was '+a[0]+'.':'She is '+a[0]+'.';models.push({front:()=>paper(media,esc(question)),back:()=>paper(media,`<p>${esc(question)}</p><p class="cs-model">${esc(answer)}</p>`)})
+    const sub=a[2]||'She',low=sub.toLowerCase(),other=b?.[2]||sub;
+    const question=compare?'What was '+low+' doing '+past+'? What is '+other.toLowerCase()+' doing now?':isPast?'What was '+low+' doing '+past+'?':(SPPRES[owner.q]||'What is she doing?').replace(/\bshe\b/g,low);
+    const answer=compare?sub+' was '+a[0]+', but now '+other.toLowerCase()+' is '+b[0]+'.':isPast?sub+' was '+a[0]+'.':sub+' is '+a[0]+'.';models.push({front:()=>paper(media,esc(question)),back:()=>paper(media,`<p>${esc(question)}</p><p class="cs-model">${esc(answer)}</p>`)})
    }
   }
   const host=shell(SPSHORT[owner.task]||'Describe the picture','<button class="lvb" id="cs-speaking-hint">Hint</button>');

@@ -8,10 +8,12 @@
 - The external reference playwithvivian.com could not be loaded by the managed
   network. Movement, smooth turns and water response follow the user's explicit
   clarification; this is an original implementation, not a verified replica.
-- All 36 action illustrations and 74 picture entries from the old character/
-  object series have replacements. Pictures are framed whole on white paper,
-  with a margin so silhouettes are not cut by the card edges. Detailed room
-  panoramas remain intact because their questions refer to specific objects.
+- Original wobbly pencil pictures are preserved as 78 padded PNGs. The action
+  bank uses 29 original pencil illustrations; five smooth action pictures use
+  existing matching pencil artwork, while seven unmatched smooth illustrations
+  are omitted. The rejected generated atlases have been removed. Main colours,
+  strokes and pencil texture are preserved; only background alpha and transparent
+  safety margins change. Detailed room panoramas remain intact.
 - The beige fridge is larger; the To be fridge has no Hint control or hint text.
 - Present Continuous gachapon shows + / − / ? while retaining correct models.
 - All 45 Kids Sentence Expander steps now describe a concrete edit. A visible

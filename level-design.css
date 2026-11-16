@@ -21,8 +21,6 @@ body[data-study-level] #view .cs-deck .stw-prompt-media>img{object-fit:contain!i
 @keyframes pond-light-drift{to{transform:translate(3%,2%) scale(1.04)}}
 @media(prefers-reduced-motion:reduce){.pond-water::after{animation:none}}
 @media(max-width:620px){.b1-magnet-layout:has(.b1-fridge:not(.blue)){height:auto!important;min-height:540px}.b1-fridge:not(.blue){min-height:540px}}
-/* New art stays whole on its original white paper, without artificial cutouts. */
-body[data-study-level] #view .stw-prompt-media:has(img[src*="learning-art/"]){background:#fff!important}
 body[data-study-level] #view .blobw .blobb{background:transparent!important}
 body[data-study-level]{--pen:var(--lesson-ink);--ink:var(--lesson-ink);--ink-2:var(--lesson-ink)}
 body.grammar-style-active[data-study-level]{--gc-wine:var(--lesson-ink);--gc-green:var(--lesson-ink);--gc-blue:var(--lesson-card-1);--gc-lilac:var(--lesson-card-2);--gc-pink:var(--lesson-card-2);--gc-butter:var(--lesson-card-1);--gc-sage:var(--lesson-card-1);--gc-peach:var(--lesson-card-2);--gc-orange:var(--lesson-strong)}
