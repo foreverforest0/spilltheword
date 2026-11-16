@@ -8,7 +8,7 @@
 - The external reference playwithvivian.com could not be loaded by the managed
   network. Movement, smooth turns and water response follow the user's explicit
   clarification; this is an original implementation, not a verified replica.
-- All 36 action illustrations and 73 picture entries from the old character/
+- All 36 action illustrations and 74 picture entries from the old character/
   object series have replacements. Pictures are framed whole on white paper,
   with a margin so silhouettes are not cut by the card edges. Detailed room
   panoramas remain intact because their questions refer to specific objects.

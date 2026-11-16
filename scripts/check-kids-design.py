@@ -16,6 +16,7 @@ with sync_playwright() as pw:
  # Render every atlas fragment: a complete, nonempty icon, with clear outer margins.
  sources=list(manifest['actions'].values())+list(manifest['people'].values())+list(manifest['extras'].values())
  p.evaluate('''async sources=>{for(const src of sources){const im=new Image();im.src=src;await im.decode();const c=document.createElement('canvas');c.width=c.height=300;const ctx=c.getContext('2d');ctx.fillStyle='white';ctx.fillRect(0,0,300,300);ctx.drawImage(im,0,0,300,300);const d=ctx.getImageData(0,0,300,300).data;let ink=0,edge=0;for(let y=0;y<300;y++)for(let x=0;x<300;x++){const i=(y*300+x)*4;if(d[i]<200||d[i+1]<200||d[i+2]<200){ink++;if(x<8||x>291||y<8||y>291)edge++}}if(ink<100||edge)throw Error('Blank or clipped illustration '+src)}}''',sources)
+ assert p.evaluate("BES.every(person=>PICS[person.k].startsWith('assets/learning-art/'))")
  for lv in ['kids','a1','a2','b1','b2','c1']:
   p.evaluate("lv=>{go('gram');S.glevel=lv;glSetup()}",lv);p.wait_for_timeout(60)
   assert p.locator('body').get_attribute('data-study-level')==lv
