@@ -207,3 +207,13 @@ body.home #view .book-body::before,body.home #view :is(.page-edge,.book-bottom),
 @media(max-width:850px){body.home #view .book .spine{font-size:21px!important}body.home #view .home-pencil-row{min-height:90px;margin:12px auto;padding:12px 24px}body.home #view .home-pencil-row img{height:62px;width:20px}body.home #view .stw-home h1{font-size:clamp(30px,8vw,72px)!important}}
 body.home #view .home-pencil-row:last-child{margin-bottom:65px}
 body.stw-site-theme :is(h1,h2,h3,.stw-wavy-title,.brand),body.stw-site-theme :is(h1,h2,h3,.stw-wavy-title,.brand) *{font-family:var(--stw-title-font)!important;font-weight:400!important}
+
+/* Catalog titles lead; each pencil has its own clear lower-right corner. */
+body.stw-site-theme.grammar-style-active #view .grammar-topic{justify-content:flex-start;min-height:160px;padding:14px 14px 76px}
+body.stw-site-theme.grammar-style-active #view .grammar-topic>span{display:block;order:-1;width:100%;margin:0!important;font-weight:600!important;font-synthesis:weight;line-height:1.25}
+body.stw-site-theme.grammar-style-active #view .grammar-topic>.topic-pencil{position:absolute;right:14px;bottom:12px;top:auto;left:auto;width:20px;height:56px;margin:0;align-self:auto;transform:rotate(-9deg);pointer-events:none}
+/* One gentle motion for every exercise title, including embedded game headings. */
+body.stw-site-theme .stw-wavy-title .stw-wave-word .stw-wave-letter{translate:none;transform:translateY(calc(var(--stw-y)*.025em)) rotate(calc(var(--stw-y)*.15deg));animation:stw-soft-wave 6s ease-in-out infinite!important;animation-delay:var(--stw-delay)!important}
+@keyframes stw-soft-wave{0%,100%{transform:translateY(calc(var(--stw-y)*.025em)) rotate(calc(var(--stw-y)*.15deg))}50%{transform:translateY(calc(var(--stw-y)*.025em + .008em)) rotate(calc(var(--stw-y)*.15deg))}}
+@media(prefers-reduced-motion:reduce){body.stw-site-theme .stw-wavy-title .stw-wave-word .stw-wave-letter{animation:none!important}}
+@media print{body.stw-site-theme .stw-wavy-title .stw-wave-word .stw-wave-letter{animation:none!important;transform:none!important}}

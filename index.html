@@ -1491,7 +1491,7 @@ body.home #view{max-width:none!important;margin:0!important;padding:0!important}
 @media(max-width:380px){.stw-home .books{column-gap:4px}.stw-home .book:nth-child(n){flex-basis:var(--depth)}.stw-home .category{font-size:26px}}
 @media(prefers-reduced-motion:reduce){.stw-home .book-body{transition:none}}
 </style>
-<link rel="stylesheet" href="site-theme.css?v=pencils-20261116-1">
+<link rel="stylesheet" href="site-theme.css?v=soft-wave-20261116-1">
 <script src="site-theme.js?v=pencils-20261116-1"></script>
 </head>
 <body>
@@ -12616,7 +12616,7 @@ function wvTile(s){
  t.seen=s.ts;t.el.classList.toggle('off',Date.now()-s.ts>45000);
  t.el.querySelector('b').textContent=s.name;t.el.querySelector('span').textContent=(s.lv?s.lv.toUpperCase()+' · ':'')+(s.task||s.tab);
  if(s.h!==t.last||s.cls!==t.lcls){t.last=s.h;t.lcls=s.cls;const css=[...document.querySelectorAll('style')].map(x=>x.textContent).join('\n');
-  t.fr.srcdoc='<!doctype html><html><head><base href="'+location.href.split('#')[0]+'"><link rel="stylesheet" href="site-theme.css?v=pencils-20261116-1"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Special+Elite&display=swap"><style>'+css+'</style></head><body class="'+s.cls.replace(/"/g,'')+'"><main id="view">'+s.h+'</main></body></html>'}}
+  t.fr.srcdoc='<!doctype html><html><head><base href="'+location.href.split('#')[0]+'"><link rel="stylesheet" href="site-theme.css?v=soft-wave-20261116-1"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Special+Elite&display=swap"><style>'+css+'</style></head><body class="'+s.cls.replace(/"/g,'')+'"><main id="view">'+s.h+'</main></body></html>'}}
 (function(){const st=document.createElement('style');st.textContent='.wvb{position:fixed;left:14px;bottom:14px;z-index:30;background:var(--paper);border:1.5px solid var(--pen);border-radius:4px;padding:5px 12px;font-size:13px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.12)}.wvp{position:fixed;inset:0;z-index:60;background:var(--paper);overflow:auto;padding:16px}.wvp[hidden]{display:none}.wvh{display:flex;gap:14px;align-items:center;justify-content:space-between}.wvg{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px}.wvt{align-self:flex-start;border:1.5px solid var(--pen);border-radius:4px;cursor:pointer;background:#fff;overflow:hidden}.wvt.off{opacity:.45}.wvc{display:flex;justify-content:space-between;padding:4px 8px;border-bottom:1px solid var(--pen)}.wvf{width:460px;overflow:hidden;position:relative}.wvf iframe{border:0;pointer-events:none}.wvt.big{width:min(1000px,96vw)}.embed .wvb{display:none}';document.head.appendChild(st);
  const b=document.createElement('button');b.className='wvb';b.textContent='👁 Watch students';b.hidden=true;b.id='wvbtn';b.onclick=()=>window.open(location.href.split('#')[0]+'#watch','_blank');document.body.appendChild(b);WV.btn=b})();
 
