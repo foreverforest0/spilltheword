@@ -124,7 +124,16 @@
    if(current&&phase!=='answered'){strokes=[];drawnFish=null;phase='question';questionCard()}else idle();
   }
   $('#pondCatchMode').onclick=()=>changeMode('catch');$('#pondDrawMode').onclick=()=>changeMode('draw');root.dataset.mode=mode;root.dataset.phase=phase;enableFishing(true);
-  function nextQuestion(){if(!queue.length)queue=shuffle(questions.map((_,i)=>i));const index=queue.pop();current={...questions[index],index};root.dataset.questionIndex=index}
+  const kinds=[...new Set(questions.map(q=>q.kind).filter(Boolean))],kindQueues={};let kindIndex=0;
+  function nextQuestion(){
+   let index;
+   if(kinds.length>1&&questions.every(q=>q.kind)){
+    const kind=kinds[kindIndex++%kinds.length];
+    if(!kindQueues[kind]?.length)kindQueues[kind]=shuffle(questions.map((q,i)=>q.kind===kind?i:-1).filter(i=>i>=0));
+    index=kindQueues[kind].pop();
+   }else{if(!queue.length)queue=shuffle(questions.map((_,i)=>i));index=queue.pop()}
+   current={...questions[index],index};root.dataset.questionIndex=index;root.dataset.taskKind=current.kind||'answer';
+  }
   function catchFish(f){
    if(!['idle','answered'].includes(phase)||selected||f.busy)return;phase='catching';root.dataset.phase=phase;selected=f;f.busy=true;enableFishing(false);status.textContent='Reeling in your question…';
    const start={x:f.x,y:f.y,angle:f.renderAngle||0,flip:f.vx<0?-1:1},end={x:.88,y:Math.max(.15,(f.el.offsetWidth*.6+10)/water.clientHeight),angle:(f.vx<0?1:-1)*1.30};

@@ -264,7 +264,7 @@ function b1MagnetRound(st,mb,id,cfg,round){
  st.classList.add('b1-stage');
  const level=document.createElement('div');level.className='b1-controls';
  S.b1challenge=S.b1challenge||{};
- level.innerHTML=['guided','challenge'].map(m=>`<button class="lvb${(S.b1challenge[id]||'guided')===m?' on':''}" data-level="${m}">${m==='guided'?'Only needed magnets':'Challenge: extra forms'}</button>`).join('');
+ level.innerHTML=['guided','challenge'].map(m=>`<button class="lvb${(S.b1challenge[id]||'guided')===m?' on':''}" data-level="${m}">${m==='guided'?(cfg.guidedLabel||'Only needed magnets'):'Challenge: extra forms'}</button>`).join('');
 
  level.onclick=e=>{const b=e.target.closest('[data-level]');if(!b)return;S.b1challenge[id]=b.dataset.level;save();dmMagnets(id,cfg)};
  const prompt=document.createElement('div');prompt.className='b1-context';

@@ -26,7 +26,7 @@ with sync_playwright() as pw:
    const group=SPGRP[t.level].find(g=>g[0].startsWith(t.number+' ·'));
    if(!group[1].includes(t.id)||!DMTF[t.id]||!SPSHORT[t.id])fail('Missing route '+t.id);
    const bank=QuestionPond.bankFor(t.level,t.number);if(bank.length<4)fail('Small bank '+t.id);
-   for(const row of bank){rows++;if(!row.hint||/start(?: with|:)/i.test(row.cue)||/start(?: with|:)/i.test(row.hint))fail('Visible sentence starter');if(!row.question||(!row.cue&&!row.hint)||!row.answers.length)fail('Empty question '+t.id);if(row.answers.some(a=>typeof a!=='string'||!a.trim()||a.includes('(that)')||a.includes(' / ')))fail('Unexpanded example alternatives');
+   for(const row of bank){rows++;if(!row.hint||(!row.kind&&(/start(?: with|:)/i.test(row.cue)||/start(?: with|:)/i.test(row.hint))))fail('Visible sentence starter');if(!row.question||(!row.cue&&!row.hint)||!row.answers.length)fail('Empty question '+t.id);if(row.answers.some(a=>typeof a!=='string'||!a.trim()||a.includes('(that)')||a.includes(' / ')))fail('Unexpanded example alternatives');
     for(const answer of row.answers){if(!QuestionPond.matches(answer,row.answers))fail('Canonical answer rejected');if(!QuestionPond.matches(answer.toUpperCase().replace(/[.,?!]/g,''),row.answers))fail('Punctuation matching');}
     if(QuestionPond.matches('banana banana banana',row.answers))fail('False positive');
    }

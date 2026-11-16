@@ -10586,7 +10586,7 @@ function tySetup(guest,drill){
  $('#tyshot').onclick=()=>{tySnap(true);tySnapsModal(true)};
  $('#tynew').onclick=()=>{if(TYAUTO)return;if(!confirm('Start a new sheet? Everything on this sheet will be deleted (snapshots stay).'))return;tyNew(true)};
  }
- if(drill){ta.onkeydown=drill.key;ta.oninput=()=>{const v=ta.value;ta.value='';if(drill.busy)return;for(const ch of v){if(ch==='\n')drill.check();else if(TY.col<TYC-1)tyType(ch,true)}}}
+ if(drill){ta.onkeydown=drill.key;ta.oninput=()=>{const v=ta.value;ta.value='';if(drill.busy)return;for(const ch of v){if(ch==='\n')drill.check();else if(drill.C.multilineAnswers||TY.col<TYC-1)tyType(ch,true)}}}
  if(!TYKEY){TYKEY=true;document.addEventListener('keydown',e=>{const t=$('#tyta');if(!t||$('.tymod'))return;const a=document.activeElement;if(a===t||/INPUT|TEXTAREA|SELECT/.test(a&&a.tagName))return;if(e.ctrlKey||e.metaKey||e.altKey)return;if(e.key.length===1||e.key==='Enter'||e.key==='Backspace'){t.focus({preventScroll:true});if(e.key==='Enter'||e.key==='Backspace'){e.preventDefault();if(TYAUTO)return;TYDR?TYDR.keyc(e.key):(e.key==='Enter'?tyRet(true):tyBack(true))}}},true)}
  setTimeout(()=>ta.focus({preventScroll:true}),60);
 
@@ -11288,17 +11288,17 @@ function tyDrillStart(id){
   q=q.concat(tyWords(f.t,0));if(f.nl)q.push('\n',' ',' ',' ','>',' ');else q.push(' ');
   D.tries=0;D.sc();D.say('Type your answer on the typewriter and press <b>Enter</b>.');
   D.type(q,()=>{D.ansL=TY.L;D.ansC=TY.col;const t=$('#tyta');if(t)t.focus({preventScroll:true})})};
- D.answer=()=>tyLineStr(TY.lines[TY.L]).slice(D.ansC).trim();
+ D.answer=()=>C.multilineAnswers?[tyLineStr(TY.lines[D.ansL]).slice(D.ansC),...TY.lines.slice(D.ansL+1,TY.L+1).map(tyLineStr)].join(' ').trim():tyLineStr(TY.lines[TY.L]).slice(D.ansC).trim();
  D.norm=s=>s.toLowerCase().replace(/[’‘]/g,"'").replace(/[.,!?]/g,'').replace(/\s+/g,' ').trim();
  D.check=()=>{if(D.busy||!live())return;const a=D.norm(D.answer());if(!a){D.say('Type your answer first, then press <b>Enter</b>.');return}
   const it=D.q[D.i];
   if(it.a.some(x=>b1AnswerMatch(a,x))){tySnd('bell');if(!D.tries)D.score++;D.say('✓ <b>Correct!</b> '+esc(it.a[0]),'good');D.i++;D.sc();D.busy=true;setTimeout(()=>{if(live())D.next()},1000)}
   else{D.tries++;sfx('pop');D.say(D.tries>1?'Not yet. 💡 '+esc(it.h)+' Use Backspace and try again.':'Not quite. Use Backspace and try again.','bad')}};
- D.show=()=>{if(D.busy||!live()||D.i>=D.q.length)return;const it=D.q[D.i];while(TY.L===D.ansL&&TY.col>D.ansC)tyBack(false);
+ D.show=()=>{if(D.busy||!live()||D.i>=D.q.length)return;const it=D.q[D.i];while((C.multilineAnswers&&TY.L>D.ansL)||(TY.L===D.ansL&&TY.col>D.ansC))tyBack(false);
   D.type(it.a[0].split(''),()=>{D.say('The answer: <b>'+esc(it.a.join(' / '))+'</b>');D.i++;D.sc();D.busy=true;setTimeout(()=>{if(live())D.next()},1500)})};
  D.end=()=>{D.busy=true;tySnd('bell');D.sc();D.say(`Round finished: <b>${D.score} / ${D.q.length}</b>. ${D.score>=D.q.length*.8?'Great job!':'Good practice! Try another round.'}`,'good')};
  D.restart=()=>{D.q=shuffle(C.pool(D.mode).slice()).slice(0,10);D.i=0;D.score=0;D.busy=true;tyNew(false);D.next()};
- D.keyc=k=>{if(D.busy)return;if(k==='Enter')D.check();else if(k==='Backspace'){if(TY.L===D.ansL&&TY.col>D.ansC)tyBack(true)}};
+ D.keyc=k=>{if(D.busy)return;if(k==='Enter')D.check();else if(k==='Backspace'){if((C.multilineAnswers&&TY.L>D.ansL)||(TY.L===D.ansL&&TY.col>D.ansC))tyBack(true)}};
  D.key=e=>{if(e.key==='Enter'||e.key==='Backspace'||e.key==='Tab'){e.preventDefault();D.keyc(e.key)}};
  D.init=()=>{$('#drback').onclick=()=>{D.busy=true;TYDR=null;spSetup()};
   document.querySelector('.tybar').onclick=e=>{const b=e.target.closest('[data-m]');if(!b)return;S.tdm[id]=b.dataset.m;save();D.mode=b.dataset.m;document.querySelectorAll('.tybar [data-m]').forEach(x=>x.classList.toggle('on',x===b));D.restart()};
@@ -11575,7 +11575,7 @@ function dmMagnets(id,lv){
  $('#dmnew').textContent=free?'↻ New words':'↻ New sentence';
  const mb=document.createElement('div');mb.className='rmctl mgmodes';st.before(mb);
  let round;
- if(X){S.mgxt=S.mgxt||{};const cur=X.types.some(t=>t[0]===S.mgxt[id])?S.mgxt[id]:'all';S.mgxt[id]=cur;
+ if(X){S.mgxt=S.mgxt||{};const cur=X.types.some(t=>t[0]===S.mgxt[id])?S.mgxt[id]:X.types[0][0];S.mgxt[id]=cur;
   mb.innerHTML=X.types.map(x=>`<button class="lvb${cur===x[0]?' on':''}" data-t="${x[0]}">${esc(x[1])}</button>`).join('');
   mb.onclick=e=>{const b=e.target.closest('[data-t]');if(!b)return;S.mgxt[id]=b.dataset.t;save();delete MGXQ[id+b.dataset.t];dmMagnets(id,lv)};
   round=mgxPick(id,X);
@@ -12830,7 +12830,7 @@ async function boot(){
  if(!STUDENT&&!document.body.classList.contains('embed')){const b=document.getElementById('wvbtn');if(b)b.hidden=false}
  go('home')}
 </script>
-<script src="b1-magnets.js"></script>
+<script src="b1-magnets.js?v=pp-b1-20261116-1"></script>
 <script src="grammar-practice-refresh.js"></script>
 <script src="kids-present-simple.js"></script>
 <script src="grammar-scenes-booth.js"></script>
@@ -12844,7 +12844,8 @@ async function boot(){
 <script src="b1-content.js"></script>
 <link rel="stylesheet" href="question-pond.css?v=pond-20261109-2">
 <script src="pond-questions.js"></script>
-<script src="question-pond.js?v=pond-20261109-2"></script>
+<script src="present-perfect-b1.js?v=pp-b1-20261116-1"></script>
+<script src="question-pond.js?v=pond-20261116-1"></script>
 <script src="unbox/tasks.js"></script>
 <script src="unbox/app.js"></script>
 <link rel="stylesheet" href="sentence-expander.css?v=sx-20261109-2">
