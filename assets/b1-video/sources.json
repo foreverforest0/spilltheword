@@ -1,0 +1,444 @@
+{
+  "notes": "Original silent-film audio is omitted. HF retains its film audio. Time ranges are seconds in the specified copies.",
+  "sources": [
+    {
+      "code": "OW",
+      "title": "One Week (1920)",
+      "identifier": "OneWeek",
+      "source_file": "One_Week.ogv",
+      "archive": "https://archive.org/details/OneWeek",
+      "archive_license_field": "http://creativecommons.org/licenses/publicdomain/",
+      "audio_in_excerpt": false
+    },
+    {
+      "code": "SC",
+      "title": "The Scarecrow (1920)",
+      "identifier": "TheScarecrow1920",
+      "source_file": "The-Scarecrow-v2.mp4",
+      "archive": "https://archive.org/details/TheScarecrow1920",
+      "archive_license_field": null,
+      "audio_in_excerpt": false
+    },
+    {
+      "code": "CO",
+      "title": "Cops (1922)",
+      "identifier": "Cops1922",
+      "source_file": "Cops-v2.mp4",
+      "archive": "https://archive.org/details/Cops1922",
+      "archive_license_field": null,
+      "audio_in_excerpt": false
+    },
+    {
+      "code": "IM",
+      "title": "The Immigrant (1917)",
+      "identifier": "CC_1917_06_17_TheImmigrant",
+      "source_file": "CC_1917_06_17_TheImmigrant.ogv",
+      "archive": "https://archive.org/details/CC_1917_06_17_TheImmigrant",
+      "archive_license_field": "http://creativecommons.org/licenses/publicdomain/",
+      "audio_in_excerpt": false
+    },
+    {
+      "code": "HF",
+      "title": "His Girl Friday (1940)",
+      "identifier": "his_girl_friday",
+      "source_file": "his_girl_friday.mp4",
+      "archive": "https://archive.org/details/his_girl_friday",
+      "archive_license_field": "http://creativecommons.org/licenses/publicdomain/",
+      "audio_in_excerpt": true
+    }
+  ],
+  "clips": [
+    {
+      "id": "b1_1_1",
+      "source": "OW",
+      "start": 180,
+      "end": 215,
+      "file": "b1_1_1.mp4"
+    },
+    {
+      "id": "b1_1_2",
+      "source": "SC",
+      "start": 120,
+      "end": 155,
+      "file": "b1_1_2.mp4"
+    },
+    {
+      "id": "b1_1_3",
+      "source": "CO",
+      "start": 165,
+      "end": 200,
+      "file": "b1_1_3.mp4"
+    },
+    {
+      "id": "b1_1_4",
+      "source": "IM",
+      "start": 60,
+      "end": 95,
+      "file": "b1_1_4.mp4"
+    },
+    {
+      "id": "b1_1_5",
+      "source": "HF",
+      "start": 245,
+      "end": 280,
+      "file": "b1_1_5.mp4"
+    },
+    {
+      "id": "b1_2_1",
+      "source": "OW",
+      "start": 240,
+      "end": 275,
+      "file": "b1_2_1.mp4"
+    },
+    {
+      "id": "b1_2_2",
+      "source": "SC",
+      "start": 225,
+      "end": 260,
+      "file": "b1_2_2.mp4"
+    },
+    {
+      "id": "b1_2_3",
+      "source": "CO",
+      "start": 300,
+      "end": 335,
+      "file": "b1_2_3.mp4"
+    },
+    {
+      "id": "b1_2_4",
+      "source": "IM",
+      "start": 165,
+      "end": 200,
+      "file": "b1_2_4.mp4"
+    },
+    {
+      "id": "b1_2_5",
+      "source": "HF",
+      "start": 600,
+      "end": 635,
+      "file": "b1_2_5.mp4"
+    },
+    {
+      "id": "b1_3_1",
+      "source": "OW",
+      "start": 300,
+      "end": 335,
+      "file": "b1_3_1.mp4"
+    },
+    {
+      "id": "b1_3_2",
+      "source": "SC",
+      "start": 340,
+      "end": 375,
+      "file": "b1_3_2.mp4"
+    },
+    {
+      "id": "b1_3_3",
+      "source": "CO",
+      "start": 225,
+      "end": 260,
+      "file": "b1_3_3.mp4"
+    },
+    {
+      "id": "b1_3_4",
+      "source": "IM",
+      "start": 300,
+      "end": 335,
+      "file": "b1_3_4.mp4"
+    },
+    {
+      "id": "b1_3_5",
+      "source": "HF",
+      "start": 300,
+      "end": 335,
+      "file": "b1_3_5.mp4"
+    },
+    {
+      "id": "b1_4_1",
+      "source": "OW",
+      "start": 375,
+      "end": 410,
+      "file": "b1_4_1.mp4"
+    },
+    {
+      "id": "b1_4_2",
+      "source": "SC",
+      "start": 525,
+      "end": 560,
+      "file": "b1_4_2.mp4"
+    },
+    {
+      "id": "b1_4_3",
+      "source": "CO",
+      "start": 645,
+      "end": 680,
+      "file": "b1_4_3.mp4"
+    },
+    {
+      "id": "b1_4_4",
+      "source": "IM",
+      "start": 585,
+      "end": 620,
+      "file": "b1_4_4.mp4"
+    },
+    {
+      "id": "b1_4_5",
+      "source": "HF",
+      "start": 685,
+      "end": 720,
+      "file": "b1_4_5.mp4"
+    },
+    {
+      "id": "b1_5_1",
+      "source": "OW",
+      "start": 555,
+      "end": 590,
+      "file": "b1_5_1.mp4"
+    },
+    {
+      "id": "b1_5_2",
+      "source": "SC",
+      "start": 375,
+      "end": 410,
+      "file": "b1_5_2.mp4"
+    },
+    {
+      "id": "b1_5_3",
+      "source": "CO",
+      "start": 360,
+      "end": 395,
+      "file": "b1_5_3.mp4"
+    },
+    {
+      "id": "b1_5_4",
+      "source": "IM",
+      "start": 660,
+      "end": 695,
+      "file": "b1_5_4.mp4"
+    },
+    {
+      "id": "b1_5_5",
+      "source": "HF",
+      "start": 120,
+      "end": 155,
+      "file": "b1_5_5.mp4"
+    },
+    {
+      "id": "b1_6_1",
+      "source": "OW",
+      "start": 60,
+      "end": 95,
+      "file": "b1_6_1.mp4"
+    },
+    {
+      "id": "b1_6_2",
+      "source": "SC",
+      "start": 55,
+      "end": 90,
+      "file": "b1_6_2.mp4"
+    },
+    {
+      "id": "b1_6_3",
+      "source": "CO",
+      "start": 20,
+      "end": 55,
+      "file": "b1_6_3.mp4"
+    },
+    {
+      "id": "b1_6_4",
+      "source": "IM",
+      "start": 1080,
+      "end": 1115,
+      "file": "b1_6_4.mp4"
+    },
+    {
+      "id": "b1_6_5",
+      "source": "HF",
+      "start": 780,
+      "end": 815,
+      "file": "b1_6_5.mp4"
+    },
+    {
+      "id": "b1_7_1",
+      "source": "OW",
+      "start": 660,
+      "end": 695,
+      "file": "b1_7_1.mp4"
+    },
+    {
+      "id": "b1_7_2",
+      "source": "SC",
+      "start": 180,
+      "end": 215,
+      "file": "b1_7_2.mp4"
+    },
+    {
+      "id": "b1_7_3",
+      "source": "CO",
+      "start": 255,
+      "end": 290,
+      "file": "b1_7_3.mp4"
+    },
+    {
+      "id": "b1_7_4",
+      "source": "IM",
+      "start": 780,
+      "end": 815,
+      "file": "b1_7_4.mp4"
+    },
+    {
+      "id": "b1_7_5",
+      "source": "HF",
+      "start": 820,
+      "end": 855,
+      "file": "b1_7_5.mp4"
+    },
+    {
+      "id": "b1_8_1",
+      "source": "OW",
+      "start": 795,
+      "end": 830,
+      "file": "b1_8_1.mp4"
+    },
+    {
+      "id": "b1_8_2",
+      "source": "SC",
+      "start": 570,
+      "end": 605,
+      "file": "b1_8_2.mp4"
+    },
+    {
+      "id": "b1_8_3",
+      "source": "CO",
+      "start": 480,
+      "end": 515,
+      "file": "b1_8_3.mp4"
+    },
+    {
+      "id": "b1_8_4",
+      "source": "IM",
+      "start": 840,
+      "end": 875,
+      "file": "b1_8_4.mp4"
+    },
+    {
+      "id": "b1_8_5",
+      "source": "HF",
+      "start": 855,
+      "end": 890,
+      "file": "b1_8_5.mp4"
+    },
+    {
+      "id": "b1_9_1",
+      "source": "OW",
+      "start": 840,
+      "end": 875,
+      "file": "b1_9_1.mp4"
+    },
+    {
+      "id": "b1_9_2",
+      "source": "SC",
+      "start": 720,
+      "end": 755,
+      "file": "b1_9_2.mp4"
+    },
+    {
+      "id": "b1_9_3",
+      "source": "CO",
+      "start": 705,
+      "end": 740,
+      "file": "b1_9_3.mp4"
+    },
+    {
+      "id": "b1_9_4",
+      "source": "IM",
+      "start": 960,
+      "end": 995,
+      "file": "b1_9_4.mp4"
+    },
+    {
+      "id": "b1_9_5",
+      "source": "HF",
+      "start": 1065,
+      "end": 1100,
+      "file": "b1_9_5.mp4"
+    },
+    {
+      "id": "b1_10_1",
+      "source": "OW",
+      "start": 1140,
+      "end": 1175,
+      "file": "b1_10_1.mp4"
+    },
+    {
+      "id": "b1_10_2",
+      "source": "SC",
+      "start": 780,
+      "end": 815,
+      "file": "b1_10_2.mp4"
+    },
+    {
+      "id": "b1_10_3",
+      "source": "CO",
+      "start": 840,
+      "end": 875,
+      "file": "b1_10_3.mp4"
+    },
+    {
+      "id": "b1_10_4",
+      "source": "IM",
+      "start": 1020,
+      "end": 1055,
+      "file": "b1_10_4.mp4"
+    },
+    {
+      "id": "b1_10_5",
+      "source": "HF",
+      "start": 925,
+      "end": 960,
+      "file": "b1_10_5.mp4"
+    },
+    {
+      "id": "b1_11_1",
+      "source": "OW",
+      "start": 1215,
+      "end": 1250,
+      "file": "b1_11_1.mp4"
+    },
+    {
+      "id": "b1_11_2",
+      "source": "SC",
+      "start": 1005,
+      "end": 1040,
+      "file": "b1_11_2.mp4"
+    },
+    {
+      "id": "b1_11_3",
+      "source": "CO",
+      "start": 960,
+      "end": 995,
+      "file": "b1_11_3.mp4"
+    },
+    {
+      "id": "b1_11_4",
+      "source": "IM",
+      "start": 1140,
+      "end": 1175,
+      "file": "b1_11_4.mp4"
+    },
+    {
+      "id": "b1_11_5",
+      "source": "HF",
+      "start": 1000,
+      "end": 1035,
+      "file": "b1_11_5.mp4"
+    }
+  ],
+  "end_card": {
+    "supplied_by": "user",
+    "original_filename": "551469b208b4e3f2c6fdee330e6c71fe.gif",
+    "file": "the-end.gif",
+    "frames": 15,
+    "sha256": "532dcdf3b590e0a06933991087cf0aed8c4d5a5941c0683ac27ca3e93b818e6c"
+  }
+}
