@@ -3443,7 +3443,7 @@ function sndInit(){
  const b=document.createElement('button');b.id='sndbtn';b.type='button';b.setAttribute('aria-label','Sound on or off');
  const f=()=>{b.textContent=S.snd===false?'🔇':'🔊';b.title=S.snd===false?'Sound is off':'Sound is on'};f();
  b.onclick=()=>{S.snd=S.snd===false;save();f();if(S.snd!==false)sfx('pop')};document.body.appendChild(b);
- document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('button[data-btn],.lpb,.lvb')&&!e.target.closest('#ttPrint'))sfx('click')},true)}
+ document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('button[data-btn],.lpb,.lvb')&&!e.target.closest('#ttPrint,#ftPrint'))sfx('click')},true)}
 (document.body?sndInit():document.addEventListener('DOMContentLoaded',sndInit));
 
 /* ===== Home: the blue shelf ===== */
@@ -12817,7 +12817,7 @@ async function boot(){
  if(!STUDENT&&!document.body.classList.contains('embed')){const b=document.getElementById('wvbtn');if(b)b.hidden=false}
  go('home')}
 </script>
-<script src="level-design.js?v=future-20261116-1"></script>
+<script src="level-design.js?v=time-lift-20261117-1"></script>
 <script src="b1-magnets.js?v=kids-20261116-2"></script>
 <script src="grammar-practice-refresh.js?v=wobbly-20261116-1"></script>
 <script src="kids-present-simple.js"></script>
@@ -12868,12 +12868,15 @@ async function boot(){
 <script src="b1-video.js?v=b1-film-20261116-2"></script>
 <link rel="stylesheet" href="future-practice.css?v=future-hints-20261117-1">
 <script src="future-practice-data.js?v=future-hints-20261117-1"></script>
-<script src="future-practice.js?v=future-hints-20261117-1"></script>
+<script src="future-practice.js?v=time-lift-20261117-1"></script>
+<link rel="stylesheet" href="future-time.css?v=time-lift-20261117-1">
+<script src="future-time-data.js?v=time-lift-20261117-1"></script>
+<script src="future-time.js?v=time-lift-20261117-1"></script>
 <script src="shared-game.js?v=embed-20261112-1"></script>
 <script>
 window.addEventListener('hashchange',()=>location.reload());
 boot();
 </script>
-<link rel="stylesheet" href="level-design.css?v=wobbly-20261116-1">
+<link rel="stylesheet" href="level-design.css?v=time-lift-20261117-1">
 </body>
 </html>

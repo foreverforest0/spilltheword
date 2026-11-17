@@ -45,7 +45,7 @@ with sync_playwright() as pw:
    assert p.locator('[data-future-answer]').count()==1
   else:
    p.locator('[data-future-mode="speak"]').click();assert p.locator('[data-future-answer]').count()==0;p.locator('#futureShow').click()
-  p.locator('#futureBack').click();assert p.locator('[data-future-task]').count()==3
+  p.locator('#futureBack').click();assert p.locator('[data-future-task]').count()==(3 if key in ['will','going'] else 8)
  # All ticket designs fit the printer, including long real titles and mobile.
  for width in [1440,768,390,320]:
   p.set_viewport_size({'width':width,'height':1050});p.evaluate("spOpen('future_timetable')");p.locator('#ttPrint').click();p.wait_for_function("document.querySelector('.timetable-page').dataset.phase==='ready'")

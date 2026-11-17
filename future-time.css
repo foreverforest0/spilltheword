@@ -1,0 +1,44 @@
+@font-face{font-family:'TySpecialElite';src:url('ch/fonts/special-elite.woff2') format('woff2');font-display:swap}
+/* Minimal document tasks and the existing elevator silhouette with time stops. */
+.ft-instructions{font:18px/1.5 Georgia,serif;max-width:850px;margin:0 0 28px}
+.ft-prompt{font:400 27px/1.35 var(--stw-title-font)!important;margin:12px 0 20px;overflow-wrap:anywhere}
+.ft-answer-controls{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.ft-hint{font:17px/1.5 Georgia,serif;background:var(--lesson-card-2);padding:12px 14px;margin:10px 0}
+.ft-hint[hidden],#ftAnswers[hidden]{display:none!important}
+.ft-art{display:block;overflow:hidden;max-width:100%;pointer-events:none}
+.ft-printer-page .tt-ticket--document{min-height:410px;--ticket-paper:#f0f0e7;--ticket-ink:#001166}
+body.stw-site-theme #view .ft-printer-page .tt-ticket--document,body.stw-site-theme #view .ft-printer-page .tt-ticket--document *{font-family:'TySpecialElite',monospace!important}
+.ft-printer-page .tt-ticket-name{font-size:clamp(22px,2.5vw,31px);line-height:1.3;letter-spacing:.02em!important}
+.ft-document-facts{font-size:17px;line-height:1.55;margin-bottom:25px;overflow-wrap:anywhere}.ft-document-facts p{margin:12px 0}.ft-printer-page #ftPrint{margin-top:22px}
+.ft-lift-layout{display:grid;grid-template-columns:145px minmax(260px,340px) minmax(0,1fr);gap:22px;align-items:start}
+.ft-stops{display:flex;flex-direction:column;gap:10px;padding-top:35px}
+.ft-stop{border:1px solid var(--lesson-ink);border-radius:3px;background:var(--lesson-card-2);color:var(--lesson-ink);font:18px/1.25 'TySpecialElite',monospace;text-align:left;padding:12px 10px;cursor:pointer;min-height:46px}
+.ft-stop.on{background:var(--lesson-strong);color:var(--lesson-on-strong)}.ft-stop:disabled{cursor:wait;opacity:.6}
+.ft-shaft{padding:20px 8px 0;overflow:hidden;position:relative;background:repeating-linear-gradient(0deg,transparent 0 100px,#1d2e1b12 100px 102px)}
+#view .ft-cab{background:#9bb7d9;border:2px solid #1c345b;border-radius:9px 7px 4px 8px;box-shadow:none;aspect-ratio:3/4;overflow:hidden}
+#view .ft-cab .elfr{background:#f5eee0;border-color:#1c345b;left:8%;width:84%;top:18%;height:78%}
+#view .ft-cab .eldr{background:#769bc5;box-shadow:inset 0 0 0 1px #1c345b;transition:transform .65s ease}
+#view .ft-cab.open .eldr.l{transform:translateX(-100%)}#view .ft-cab.open .eldr.r{transform:translateX(100%)}
+#view .ft-indicator{top:3%;left:8%;width:84%;height:11%;transform:none;gap:8px;background:#1c345b;border:0;color:#fff9ec;font:18px/1.15 'TySpecialElite',monospace;text-align:center;padding:5px 7px;box-sizing:border-box}
+#view .ft-indicator b{color:inherit;font:inherit}.ft-indicator span{font-size:14px;flex:none}
+.ft-inside{position:absolute;inset:0}.ft-inside>.ft-art--person{position:absolute;right:6%;bottom:2%;height:74%;width:54%}
+#ftProp>.ft-art{position:absolute;left:3%;top:3%;width:58%;height:30%}
+#ftProp>.ft-art--board{width:65%;height:26%}
+#ftProp>.ft-extra-art{left:auto;right:2%;width:24%;height:21%;top:2%}
+.ft-door-button{display:block;width:100%;border:1px solid #1c345b;border-radius:3px;background:#f5eee0;color:#1c345b;font:18px/1.25 'TySpecialElite',monospace;padding:13px 7px;margin-top:14px;cursor:pointer;min-height:48px}
+.ft-door-button:disabled{opacity:.55;cursor:wait}
+.ft-lift-status{font:14px/1.4 Georgia,serif;text-align:center;margin:10px 0}
+.ft-task{min-height:410px;background:var(--lesson-paper);padding:24px;box-sizing:border-box;min-width:0;border-radius:3px}
+.ft-plan{border-bottom:1px dashed currentColor;padding-bottom:14px;margin-bottom:20px;font:17px/1.5 'TySpecialElite',monospace}.ft-plan p{margin:8px 0}.ft-plan-heading{font-size:13px;letter-spacing:.04em}
+.ft-closed-note{font:23px/1.5 var(--stw-title-font);margin:28px 0}
+.ft-lift-navigation{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:22px;font:16px Georgia,serif}
+.ft-stop:focus-visible,.ft-door-button:focus-visible{outline:3px solid #e7a323;outline-offset:3px}
+.ft-lift-page[data-phase=moving] .ft-cab{animation:ft-cab-travel 1.2s ease-in-out both}
+.ft-lift-page[data-phase=moving] .ft-shaft{animation:ft-shaft-travel 1.2s linear both}
+@keyframes ft-cab-travel{0%,100%{transform:translateY(0)}25%{transform:translateY(12px)}70%{transform:translateY(-16px)}}
+@keyframes ft-shaft-travel{to{background-position:0 210px}}
+@media(max-width:1000px) and (min-width:761px){.ft-lift-layout{grid-template-columns:115px minmax(230px,290px) minmax(0,1fr);gap:12px}.ft-task{padding:16px}.ft-prompt{font-size:23px!important}.ft-stop{font-size:16px}}
+@media(max-width:760px){.ft-lift-layout{grid-template-columns:105px minmax(0,1fr);gap:12px}.ft-task{grid-column:1/-1;min-height:180px;padding:20px}.ft-stops{padding-top:20px;gap:7px}.ft-stop{font-size:15px;padding:10px 7px}.ft-shaft{max-width:340px;width:100%;box-sizing:border-box;justify-self:center;padding-inline:4px}#view .ft-indicator{font-size:15px}.ft-door-button{font-size:16px}.ft-prompt{font-size:24px!important}.ft-instructions{font-size:17px}.ft-document-facts{font-size:16px}}
+@media(max-width:380px){.ft-lift-layout{grid-template-columns:90px minmax(0,1fr);gap:8px}.ft-stop{font-size:13px}.ft-door-button{font-size:14px}#view .ft-indicator{font-size:12px}.ft-task{padding:16px}}
+@media(prefers-reduced-motion:reduce){.ft-lift-page *{animation:none!important;transition:none!important}}
+body.stw-site-theme #view :is(.ft-plan,.ft-plan p,.ft-stop,.ft-door-button,.ft-indicator,.ft-indicator b){font-family:'TySpecialElite',monospace!important}

@@ -39,3 +39,12 @@ body[data-study-level] .b1-drag-ghost{color:var(--lesson-ink)!important}
 body.stw-site-theme[data-study-level] #homeBtn{background:var(--lesson-strong)!important;color:var(--lesson-on-strong)!important}
 body[data-study-level] #view .cs-stack::before{background:var(--lesson-card-2)!important}
 body[data-study-level] #view .cs-stack::after{background:var(--lesson-card-1)!important}
+
+/* New Kids / A1 / A2 papers; artwork itself keeps its original colours. */
+body:is([data-study-level=kids],[data-study-level=a1],[data-study-level=a2]){--lesson-accent:#F04423;--lesson-cream:#FCF6EA}
+body:is([data-study-level=kids],[data-study-level=a1],[data-study-level=a2]) #view :is(.cs-face,.cs-content,.process-front,.process-back,.process-question,.scene-question-copy,.cs-task-hint,.cs-question-page #cbsharedh){background:var(--lesson-paper)!important;color:var(--lesson-ink)!important}
+body:is([data-study-level=kids],[data-study-level=a1],[data-study-level=a2]) #view :is(.cs-deck .stw-prompt-media,.cs-deck .process-picture,.cs-text-front){background:var(--lesson-card-2)!important;color:var(--lesson-ink)!important;--cs-colour:var(--lesson-card-2);--cs-ink:var(--lesson-ink)}
+body:is([data-study-level=kids],[data-study-level=a1],[data-study-level=a2]) #view :is(.process-question,.process-verbs,.cs-task-hint,.scene-question-copy,.there-example,.reporter-label,.reporter-hint,.cs-deck .ownership-context){color:var(--lesson-ink)!important}
+body:is([data-study-level=kids],[data-study-level=a1],[data-study-level=a2]) #view :is(.cs-model,.cs-deck .cbh,.sx-starter){background:var(--lesson-card-2)!important;color:var(--lesson-ink)!important}
+body:is([data-study-level=kids],[data-study-level=a1],[data-study-level=a2]) #view .grammar-topic{border-bottom:4px solid var(--lesson-accent)!important}
+body:is([data-study-level=kids],[data-study-level=a1],[data-study-level=a2]) #view :is(.process-verbs span,.there-noun){background:var(--lesson-card-2)!important;color:var(--lesson-ink)!important}

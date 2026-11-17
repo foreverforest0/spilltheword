@@ -44,3 +44,39 @@ leaving stops and resets it. Reduced motion preserves the full audio without
 animating the paper. Shared-game replay is silent. The generic synthesized
 button click is suppressed for the printer control so the supplied recording
 is heard without an extra effect.
+
+
+## Printed future documents and Time lift
+
+`future-time-data.js` adds 30 authored documents (10 per advanced future form).
+`future_print_continuous`, `future_print_perfect` and
+`future_print_perfectcontinuous` select seven unique documents. `future_print_mix`
+selects three continuous, two perfect and two perfect-continuous documents and
+shuffles them. These are practice plans, not live schedules. Small task fields,
+separate hidden Hint and Show answers, drafts, reveals and printed history are
+saved per run. There is no automatic grading of open answers or Speak toggle.
+The supplied receipt-printer MP3 and existing printer housing are reused.
+
+`future_lift` reuses the existing elevator silhouette and door mechanics with
+seven time labels instead of floors. A single planned day distinguishes an
+activity at a moment, a completed result by a deadline and duration up to a
+future checkpoint. Doors close before travel; the user opens them after arrival.
+A traveller and relevant travel objects are displayed inside. All facts stay
+accessible in the task panel. The illustrated clock is only shown at ten, its
+actual face time. The London–Paris exercise explicitly uses one time zone for
+all its times. SVG clip regions isolate individual transparent illustrations
+from `assets/time-lift/travel-sheet.png`; illustrations were generated from the
+approved style previews. Visible task wording does not provide the target
+auxiliary structure. Hints explain the meaning; answers provide examples.
+
+Door, motor, floor and arrival effects use the site's sound preference. Travel
+timers are cancelled on navigation; reduced motion and shared replay are
+immediate (and replay is silent). Answers and stop selection survive reload.
+
+Kids / A1 / A2 now use yellow-green, pink, blue, orange and cream. Small text on
+orange uses a darker navy for contrast. Image regions, task papers, reverse
+cards and controls inherit the new palette without altering original PNG art.
+
+Validation: `python scripts/check-future-time.py` checks all four printer runs,
+a balanced mixed set, drafts/reveals/history/reload, lift door and travel states,
+timer cancellation, 320/390/768/1440 layouts and catalog text contrast.
