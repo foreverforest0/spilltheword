@@ -11,7 +11,7 @@ server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(ROOT)));T
 with sync_playwright() as pw:
  b=pw.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']);p=b.new_page(viewport={'width':1440,'height':1050},reduced_motion='reduce');errors=[];missing=[]
  p.on('pageerror',lambda e:errors.append(str(e)));p.on('response',lambda r:missing.append(r.url) if r.url.startswith(f'http://127.0.0.1:{server.server_port}/') and r.status>=400 and 'favicon' not in r.url else None)
- p.goto(f'http://127.0.0.1:{server.server_port}/');assert p.evaluate('Object.keys(TopicBall.topics).length')==72
+ p.goto(f'http://127.0.0.1:{server.server_port}/');assert p.evaluate('Object.keys(TopicBall.topics).length')==73
  assert p.evaluate("Object.values(TopicBall.topics).every(t=>TopicBall.check(t.id,t.profile.example).ok)")
  assert p.evaluate("Object.entries(SPGRP).every(([lv,gs])=>gs.filter(g=>/^\\d+/.test(g[0])).every(g=>g[1].filter(id=>id.startsWith('topic_ball_')).length===1))")
  assert p.evaluate("Object.values(SPGRP).every(gs=>gs.every(g=>!g[1].includes('m8')))")
@@ -82,6 +82,6 @@ with sync_playwright() as pw:
  # Leave during normal animation: stale callbacks must not replace the new page.
  p.emulate_media(reduced_motion='no-preference');p.locator('#tbQuestion').fill('Does my friend like pizza?');p.locator('#tbAsk').click();assert p.locator('#tbBall').is_disabled();p.evaluate("go('home')");p.wait_for_timeout(1500);assert p.locator('.stw-home').is_visible()
  assert not errors,errors;assert not missing,missing
- print('PASS: supplied soft click/mute, four existing vocabulary games, 72 topic balls with valid examples, Kids oral mode, tense restrictions, saved drafts, topic Back, wider books and six viewport widths; no JS errors or missing assets')
+ print('PASS: supplied soft click/mute, four existing vocabulary games, 73 topic balls with valid examples, Kids oral mode, tense restrictions, saved drafts, topic Back, wider books and six viewport widths; no JS errors or missing assets')
  b.close()
 server.shutdown()

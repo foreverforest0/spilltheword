@@ -101,5 +101,5 @@
  }
  for(const [key,p]of Object.entries(futureProfiles)){const id='topic_ball_future_'+key;register(id,key==='will'||key==='going'?'a2':'b2',p.focus,p,'future_'+(key==='mix'?'advanced':key));if(key!=='mix')specialLinks['future_'+key]=id;if(['continuous','perfect','perfectcontinuous','mix'].includes(key))specialLinks['future_print_'+key]=id;}
  specialLinks.future_lift='topic_ball_future_mix';
- window.TopicBall={open,topics,check:(id,q)=>check(topics[id],q)};
+ window.TopicBall={open,topics,register,check:(id,q)=>check(topics[id],q)};
 })();
