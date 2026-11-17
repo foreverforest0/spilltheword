@@ -97,5 +97,5 @@ Will they have been travelling for a month by June? No. | Give a short negative 
 This sentence contains one error: By noon, I will have been wait for two hours. | Write the corrected sentence. | By noon, I will have been waiting for two hours.
 Next month, Anna completes her tenth year of running this café. | Describe the duration of this activity by next month. Use run. | By next month, Anna will have been running this café for ten years.
 `);
- window.FuturePracticeData={tickets,banks,printerSound:null,printerDurationMS:1600};
+ window.FuturePracticeData={tickets,banks,printerSound:'assets/timetable/printer.mp3',printerDurationMS:1593};
 })();

@@ -44,13 +44,13 @@
  function timetable(){
   seaOff();document.body.classList.add('grammar-style-active');const s=ticketState();save();
   setView(`<section class="future-page timetable-page" data-future-section="basic">${header('Timetable: Present Simple','Future tasks')}<div class="future-toolbar">${modeButtons(s.mode)}<button class="future-how" id="ttHow" aria-expanded="false" aria-controls="ttHelp">How to?</button></div><p class="future-help" id="ttHelp" hidden>Read the date and time on each ticket. Say or write one full sentence in the Present Simple about the future timetable. Real places, carriers and film titles are used; dates and times are created for practice. Seven tickets are selected without repeats.</p><div class="tt-layout"><div class="tt-printer" aria-label="Ticket printer"><div class="tt-housing" aria-hidden="true"><img src="assets/timetable/printer-reference.jpg" alt="" draggable="false"></div><div class="tt-paper-window" id="ttPaper"></div><div class="tt-printer-idle" id="ttIdle">TICKET PRINTER</div></div><section class="tt-task" aria-label="Ticket task"><p class="tt-progress" id="ttProgress" role="status"></p><div id="ttQuestion"></div><button class="lvb tt-print" id="ttPrint">Print ticket</button><nav class="tt-history" id="ttHistory" aria-label="Printed tickets"></nav></section></div></section>`);
-  const root=$('.timetable-page'),paper=$('#ttPaper'),task=$('#ttQuestion'),button=$('#ttPrint');let busy=false,timer=0;
+  const root=$('.timetable-page'),paper=$('#ttPaper'),task=$('#ttQuestion'),button=$('#ttPrint');let busy=false,timer=0,alive=true;
   const sound=typeof FuturePracticeData.printerSound==='string'&&FuturePracticeData.printerSound?new Audio(FuturePracticeData.printerSound):null;
   if(sound)sound.preload='auto';
   function stopSound(){if(!sound)return;sound.pause();try{sound.currentTime=0}catch{}}
   const syncSound=e=>{if(sound&&e.target.closest?.('#sndbtn'))sound.muted=S.snd===false};
   document.addEventListener('click',syncSound);
-  dispose=()=>{clearTimeout(timer);stopSound();document.removeEventListener('click',syncSound)};
+  dispose=()=>{alive=false;clearTimeout(timer);stopSound();document.removeEventListener('click',syncSound)};
   $('#futureBack').onclick=()=>open('basic');wireModes(root,s,timetable);
   $('#ttHow').onclick=()=>{const h=$('#ttHelp');h.hidden=!h.hidden;$('#ttHow').setAttribute('aria-expanded',String(!h.hidden))};
   function draw(){
@@ -70,10 +70,15 @@
    if(s.complete){S.futureTickets=initialTicketState();save();timetable();return}
    if(s.printed===7){s.complete=true;save();draw();return}
    busy=true;s.active=s.printed++;s.complete=false;save();draw();button.disabled=true;if(innerWidth<760)root.querySelector('.tt-printer').scrollIntoView({block:'start',behavior:reduced()?'instant':'smooth'});root.dataset.phase='printing';
-   const ticket=paper.querySelector('.tt-ticket'),duration=Math.max(300,Math.min(15000,Number(FuturePracticeData.printerDurationMS)||1600));
-   ticket.style.animationDuration=duration+'ms';ticket.classList.add('tt-feeding');
-   if(sound&&S.snd!==false&&!window.SharedGame?.replaying){stopSound();sound.muted=false;sound.play().catch(()=>{})}
-   timer=setTimeout(()=>{busy=false;root.dataset.phase='ready';ticket.classList.remove('tt-feeding');button.disabled=false;if(!reduced())stopSound()},reduced()?0:duration+50);
+   const ticket=paper.querySelector('.tt-ticket');ticket.style.visibility='hidden';
+   const startFeed=()=>{
+    if(!alive)return;
+    const measured=sound&&Number.isFinite(sound.duration)?Math.round(sound.duration*1000):0;
+    const duration=Math.max(300,Math.min(15000,measured||Number(FuturePracticeData.printerDurationMS)||1600));
+    ticket.style.animationDuration=duration+'ms';ticket.style.visibility='';ticket.classList.add('tt-feeding');
+    timer=setTimeout(()=>{if(!alive)return;busy=false;root.dataset.phase='ready';ticket.classList.remove('tt-feeding');button.disabled=false;if(!reduced())stopSound()},reduced()?0:duration+50);
+   };
+   if(sound&&S.snd!==false&&!window.SharedGame?.replaying){stopSound();sound.muted=false;sound.play().then(startFeed).catch(startFeed)}else startFeed();
   };
   draw();root.dataset.phase='ready';
  }

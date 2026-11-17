@@ -36,9 +36,11 @@ Validation: `python scripts/check-future-practice.py` checks entry navigation,
 all banks, seven different tickets, times/questions/models, modes, persistence,
 review, a new round, mobile widths and the real print-animation lifecycle.
 
-Printer sound wiring respects the site's sound toggle, starts only after a print
-click, stops/reset on completion or leaving the activity, and is suppressed during
-shared replay. `printerSound` is intentionally null until the original video file
-is supplied: the attached HTML/MHTML includes still images and inaccessible media
-links, not the audio bytes. No substitute sound has been added. Set the local
-extracted-audio path and matching `printerDurationMS` after receiving the video.
+Printer audio is the user-supplied thermal-receipt print-and-cut MP3, copied
+byte for byte to `assets/timetable/printer.mp3` (1.593 s container duration).
+Playback begins only on a print click; the animation begins once playback starts
+and uses the decoded clip duration. The site's sound toggle mutes playback;
+leaving stops and resets it. Reduced motion preserves the full audio without
+animating the paper. Shared-game replay is silent. The generic synthesized
+button click is suppressed for the printer control so the supplied recording
+is heard without an extra effect.
