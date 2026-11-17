@@ -12751,8 +12751,10 @@ homeBind=function(){
   setView(`<section class="grammar-page"><h1 class="grammar-title">Grammar</h1>
    <div class="grammar-levels" role="tablist" aria-label="Choose grammar level">${GLV.map(l=>`<button type="button" role="tab" aria-selected="${S.glevel===l[0]}" class="grammar-level${S.glevel===l[0]?' active':''}" data-catalog-level="${l[0]}">${l[1]}</button>`).join('')}</div>
    ${topic?`<button type="button" class="grammar-back" id="grammarTopicsBack">← All topics</button><h2 class="grammar-topic-heading">${esc(topic.name)}</h2>`:''}
+   ${!topic?`<div class="future-windows" id="futureWindows" aria-label="Future tense practice"><button type="button" class="grammar-topic" data-future-window="basic">${topicDoodle(1)}<span>Future Simple / will / going to</span></button><button type="button" class="grammar-topic" data-future-window="advanced">${topicDoodle(3)}<span>Future Continuous / Perfect / Perfect Continuous</span></button></div>`:''}
    <div class="grammar-topics" aria-label="${topic?'Choose an exercise':'Grammar topics'}">${entries.map((g,i)=>`<button type="button" class="grammar-topic" ${topic?'data-grammar-exercise':'data-grammar-topic'}="${esc(g.key)}">${topicDoodle(i)}<span>${esc(g.name)}${!topic&&S.glevel==='all'?` · ${g.lv.toUpperCase()}`:''}</span></button>`).join('')}</div>
   </section>`);
+  $('#futureWindows')?.addEventListener('click',e=>{const b=e.target.closest('[data-future-window]');if(b)spOpen('future_'+b.dataset.futureWindow)});
   $('#view .grammar-levels').onclick=e=>{const b=e.target.closest('[data-catalog-level]');if(!b)return;S.glevel=b.dataset.catalogLevel;save();grammarCatalog()};
   const back=$('#grammarTopicsBack');if(back)back.onclick=()=>grammarCatalog();
   $('#view .grammar-topics').onclick=e=>{
@@ -12815,7 +12817,7 @@ async function boot(){
  if(!STUDENT&&!document.body.classList.contains('embed')){const b=document.getElementById('wvbtn');if(b)b.hidden=false}
  go('home')}
 </script>
-<script src="level-design.js?v=kids-20261116-2"></script>
+<script src="level-design.js?v=future-20261116-1"></script>
 <script src="b1-magnets.js?v=kids-20261116-2"></script>
 <script src="grammar-practice-refresh.js?v=wobbly-20261116-1"></script>
 <script src="kids-present-simple.js"></script>
@@ -12864,6 +12866,9 @@ async function boot(){
 <link rel="stylesheet" href="b1-video.css?v=b1-film-20261116-2">
 <script src="b1-video-data.js?v=b1-film-20261116-2"></script>
 <script src="b1-video.js?v=b1-film-20261116-2"></script>
+<link rel="stylesheet" href="future-practice.css?v=future-20261116-1">
+<script src="future-practice-data.js?v=future-20261116-1"></script>
+<script src="future-practice.js?v=future-20261116-1"></script>
 <script src="shared-game.js?v=embed-20261112-1"></script>
 <script>
 window.addEventListener('hashchange',()=>location.reload());

@@ -12,7 +12,7 @@
  const current=()=>palettes[level()]||palettes.b1;
  function sync(){
   const root=document.querySelector('#view');if(!root)return;
-  const active=tab==='gram'||!!root.querySelector('.cbpanel,.sx-dive,.sx-catalog,.pond-page,.b1-stage,.bv-page');
+  const active=tab==='gram'||!!root.querySelector('.cbpanel,.sx-dive,.sx-catalog,.pond-page,.b1-stage,.bv-page,.future-page');
   if(!active){delete document.body.dataset.studyLevel;return}
   document.body.dataset.studyLevel=level();const p=current(),style=document.body.style;
   for(const [key,value]of Object.entries({ink:p.ink,paper:p.paper,strong:p.strong,'on-strong':p.onStrong,'card-1':p.cards[0],'card-2':p.cards[1]}))style.setProperty('--lesson-'+key,value);
