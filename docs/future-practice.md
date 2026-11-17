@@ -29,7 +29,8 @@ tickets without losing notes or revealed answers. Oral mode requires no
 microphone. Printing is locked while an animation runs, respects reduced motion
 and is disposed safely when leaving. Shared-game replay uses immediate printing.
 
-Timetable also appears under Present Simple in Kids, A1 and A2. Existing topic
+Future entry cards are hidden in Kids. A1 and A2 show only will / going to;
+the timetable and advanced future room are available at higher levels. Existing topic
 numbers and the 66 registered pond/expander topics are unchanged.
 
 Validation: `python scripts/check-future-practice.py` checks entry navigation,
@@ -80,3 +81,9 @@ cards and controls inherit the new palette without altering original PNG art.
 Validation: `python scripts/check-future-time.py` checks all four printer runs,
 a balanced mixed set, drafts/reveals/history/reload, lift door and travel states,
 timer cancellation, 320/390/768/1440 layouts and catalog text contrast.
+
+
+Kids does not show any future entry cards. A1 and A2 show the basic entry only,
+with exactly will and going to inside it. Timetable is no longer appended to
+Present Simple in these three levels. Advanced printers and the lift remain in
+the higher-level room. This visibility follows the selected catalog level.

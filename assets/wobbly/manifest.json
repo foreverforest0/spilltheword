@@ -1,200 +1,202 @@
 {
-  "sourceCommit": "bcdf2f0",
+  "sourceCommit": "b5eea8f",
+  "actionSourceCommit": "8dd6c2c",
+  "maskVersion": "whole-silhouettes-v2",
   "pictures": {
-    "avocado": "assets/wobbly/pictures/avocado.png",
-    "backpack": "assets/wobbly/pictures/backpack.png",
-    "balloon": "assets/wobbly/pictures/balloon.png",
-    "banana": "assets/wobbly/pictures/banana.png",
-    "be couple scarves": "assets/wobbly/pictures/be-couple-scarves.png",
-    "be mother baby": "assets/wobbly/pictures/be-mother-baby.png",
-    "be old man cup": "assets/wobbly/pictures/be-old-man-cup.png",
-    "be sad man": "assets/wobbly/pictures/be-sad-man.png",
-    "be woman glasses": "assets/wobbly/pictures/be-woman-glasses.png",
-    "be woman headband": "assets/wobbly/pictures/be-woman-headband.png",
-    "bicycle": "assets/wobbly/pictures/bicycle.png",
-    "book": "assets/wobbly/pictures/book.png",
-    "burger": "assets/wobbly/pictures/burger.png",
-    "carrot": "assets/wobbly/pictures/carrot.png",
-    "cat": "assets/wobbly/pictures/cat.png",
-    "cheese": "assets/wobbly/pictures/cheese.png",
-    "chocolate": "assets/wobbly/pictures/chocolate.png",
-    "climb a tree": "assets/wobbly/pictures/climb-a-tree.png",
-    "coffee": "assets/wobbly/pictures/coffee.png",
-    "cook": "assets/wobbly/pictures/cook.png",
-    "cookie": "assets/wobbly/pictures/cookie.png",
-    "croissant": "assets/wobbly/pictures/croissant.png",
-    "cucumber": "assets/wobbly/pictures/cucumber.png",
-    "cupcake": "assets/wobbly/pictures/cupcake.png",
-    "dance": "assets/wobbly/pictures/dance.png",
-    "dog": "assets/wobbly/pictures/dog.png",
-    "draw": "assets/wobbly/pictures/draw.png",
-    "flowers": "assets/wobbly/pictures/flowers.png",
-    "fly": "assets/wobbly/pictures/fly.png",
-    "french fries": "assets/wobbly/pictures/french-fries.png",
-    "guitar": "assets/wobbly/pictures/guitar.png",
-    "hab cook": "assets/wobbly/pictures/hab-cook.png",
-    "hab guitar": "assets/wobbly/pictures/hab-guitar.png",
-    "hab late": "assets/wobbly/pictures/hab-late.png",
-    "hab sad": "assets/wobbly/pictures/hab-sad.png",
-    "hab sleep lamp": "assets/wobbly/pictures/hab-sleep-lamp.png",
-    "hab thumbs up": "assets/wobbly/pictures/hab-thumbs-up.png",
-    "hab wake up": "assets/wobbly/pictures/hab-wake-up.png",
-    "hab yoga": "assets/wobbly/pictures/hab-yoga.png",
-    "hot dog": "assets/wobbly/pictures/hot-dog.png",
-    "ice cream": "assets/wobbly/pictures/ice-cream.png",
-    "ice cream cone": "assets/wobbly/pictures/ice-cream-cone.png",
-    "juggle": "assets/wobbly/pictures/juggle.png",
-    "juice": "assets/wobbly/pictures/juice.png",
-    "jump": "assets/wobbly/pictures/jump.png",
-    "kite": "assets/wobbly/pictures/kite.png",
-    "milk": "assets/wobbly/pictures/milk.png",
-    "pancakes": "assets/wobbly/pictures/pancakes.png",
-    "pizza": "assets/wobbly/pictures/pizza.png",
-    "popcorn": "assets/wobbly/pictures/popcorn.png",
-    "rice": "assets/wobbly/pictures/rice.png",
-    "ride a bike": "assets/wobbly/pictures/ride-a-bike.png",
-    "rtn breakfast": "assets/wobbly/pictures/rtn-breakfast.png",
-    "rtn cook": "assets/wobbly/pictures/rtn-cook.png",
-    "rtn home door": "assets/wobbly/pictures/rtn-home-door.png",
-    "rtn laptop": "assets/wobbly/pictures/rtn-laptop.png",
-    "rtn lunch": "assets/wobbly/pictures/rtn-lunch.png",
-    "rtn read": "assets/wobbly/pictures/rtn-read.png",
-    "rtn shopping": "assets/wobbly/pictures/rtn-shopping.png",
-    "rtn sleep": "assets/wobbly/pictures/rtn-sleep.png",
-    "rtn teeth": "assets/wobbly/pictures/rtn-teeth.png",
-    "rtn tv": "assets/wobbly/pictures/rtn-tv.png",
-    "rtn wake up": "assets/wobbly/pictures/rtn-wake-up.png",
-    "rtn walk to work": "assets/wobbly/pictures/rtn-walk-to-work.png",
-    "run": "assets/wobbly/pictures/run.png",
-    "salad": "assets/wobbly/pictures/salad.png",
-    "sandwich": "assets/wobbly/pictures/sandwich.png",
-    "sing": "assets/wobbly/pictures/sing.png",
-    "spaghetti": "assets/wobbly/pictures/spaghetti.png",
-    "stand on one leg": "assets/wobbly/pictures/stand-on-one-leg.png",
-    "swim": "assets/wobbly/pictures/swim.png",
-    "teddy bear": "assets/wobbly/pictures/teddy-bear.png",
-    "tomato": "assets/wobbly/pictures/tomato.png",
-    "umbrella": "assets/wobbly/pictures/umbrella.png",
-    "scene bedroom": "assets/wobbly/pictures/scene-bedroom.png",
-    "scene kitchen": "assets/wobbly/pictures/scene-kitchen.png",
-    "scene living room": "assets/wobbly/pictures/scene-living-room.png",
-    "scene street": "assets/wobbly/pictures/scene-street.png"
+    "avocado": "assets/wobbly/pictures/avocado-whole.png",
+    "backpack": "assets/wobbly/pictures/backpack-whole.png",
+    "balloon": "assets/wobbly/pictures/balloon-whole.png",
+    "banana": "assets/wobbly/pictures/banana-whole.png",
+    "be couple scarves": "assets/wobbly/pictures/be-couple-scarves-whole.png",
+    "be mother baby": "assets/wobbly/pictures/be-mother-baby-whole.png",
+    "be old man cup": "assets/wobbly/pictures/be-old-man-cup-whole.png",
+    "be sad man": "assets/wobbly/pictures/be-sad-man-whole.png",
+    "be woman glasses": "assets/wobbly/pictures/be-woman-glasses-whole.png",
+    "be woman headband": "assets/wobbly/pictures/be-woman-headband-whole.png",
+    "bicycle": "assets/wobbly/pictures/bicycle-whole.png",
+    "book": "assets/wobbly/pictures/book-whole.png",
+    "burger": "assets/wobbly/pictures/burger-whole.png",
+    "carrot": "assets/wobbly/pictures/carrot-whole.png",
+    "cat": "assets/wobbly/pictures/cat-whole.png",
+    "cheese": "assets/wobbly/pictures/cheese-whole.png",
+    "chocolate": "assets/wobbly/pictures/chocolate-whole.png",
+    "climb a tree": "assets/wobbly/pictures/climb-a-tree-whole.png",
+    "coffee": "assets/wobbly/pictures/coffee-whole.png",
+    "cook": "assets/wobbly/pictures/cook-whole.png",
+    "cookie": "assets/wobbly/pictures/cookie-whole.png",
+    "croissant": "assets/wobbly/pictures/croissant-whole.png",
+    "cucumber": "assets/wobbly/pictures/cucumber-whole.png",
+    "cupcake": "assets/wobbly/pictures/cupcake-whole.png",
+    "dance": "assets/wobbly/pictures/dance-whole.png",
+    "dog": "assets/wobbly/pictures/dog-whole.png",
+    "draw": "assets/wobbly/pictures/draw-whole.png",
+    "flowers": "assets/wobbly/pictures/flowers-whole.png",
+    "fly": "assets/wobbly/pictures/fly-whole.png",
+    "french fries": "assets/wobbly/pictures/french-fries-whole.png",
+    "guitar": "assets/wobbly/pictures/guitar-whole.png",
+    "hab cook": "assets/wobbly/pictures/hab-cook-whole.png",
+    "hab guitar": "assets/wobbly/pictures/hab-guitar-whole.png",
+    "hab late": "assets/wobbly/pictures/hab-late-whole.png",
+    "hab sad": "assets/wobbly/pictures/hab-sad-whole.png",
+    "hab sleep lamp": "assets/wobbly/pictures/hab-sleep-lamp-whole.png",
+    "hab thumbs up": "assets/wobbly/pictures/hab-thumbs-up-whole.png",
+    "hab wake up": "assets/wobbly/pictures/hab-wake-up-whole.png",
+    "hab yoga": "assets/wobbly/pictures/hab-yoga-whole.png",
+    "hot dog": "assets/wobbly/pictures/hot-dog-whole.png",
+    "ice cream": "assets/wobbly/pictures/ice-cream-whole.png",
+    "ice cream cone": "assets/wobbly/pictures/ice-cream-cone-whole.png",
+    "juggle": "assets/wobbly/pictures/juggle-whole.png",
+    "juice": "assets/wobbly/pictures/juice-whole.png",
+    "jump": "assets/wobbly/pictures/jump-whole.png",
+    "kite": "assets/wobbly/pictures/kite-whole.png",
+    "milk": "assets/wobbly/pictures/milk-whole.png",
+    "pancakes": "assets/wobbly/pictures/pancakes-whole.png",
+    "pizza": "assets/wobbly/pictures/pizza-whole.png",
+    "popcorn": "assets/wobbly/pictures/popcorn-whole.png",
+    "rice": "assets/wobbly/pictures/rice-whole.png",
+    "ride a bike": "assets/wobbly/pictures/ride-a-bike-whole.png",
+    "rtn breakfast": "assets/wobbly/pictures/rtn-breakfast-whole.png",
+    "rtn cook": "assets/wobbly/pictures/rtn-cook-whole.png",
+    "rtn home door": "assets/wobbly/pictures/rtn-home-door-whole.png",
+    "rtn laptop": "assets/wobbly/pictures/rtn-laptop-whole.png",
+    "rtn lunch": "assets/wobbly/pictures/rtn-lunch-whole.png",
+    "rtn read": "assets/wobbly/pictures/rtn-read-whole.png",
+    "rtn shopping": "assets/wobbly/pictures/rtn-shopping-whole.png",
+    "rtn sleep": "assets/wobbly/pictures/rtn-sleep-whole.png",
+    "rtn teeth": "assets/wobbly/pictures/rtn-teeth-whole.png",
+    "rtn tv": "assets/wobbly/pictures/rtn-tv-whole.png",
+    "rtn wake up": "assets/wobbly/pictures/rtn-wake-up-whole.png",
+    "rtn walk to work": "assets/wobbly/pictures/rtn-walk-to-work-whole.png",
+    "run": "assets/wobbly/pictures/run-whole.png",
+    "salad": "assets/wobbly/pictures/salad-whole.png",
+    "sandwich": "assets/wobbly/pictures/sandwich-whole.png",
+    "sing": "assets/wobbly/pictures/sing-whole.png",
+    "spaghetti": "assets/wobbly/pictures/spaghetti-whole.png",
+    "stand on one leg": "assets/wobbly/pictures/stand-on-one-leg-whole.png",
+    "swim": "assets/wobbly/pictures/swim-whole.png",
+    "teddy bear": "assets/wobbly/pictures/teddy-bear-whole.png",
+    "tomato": "assets/wobbly/pictures/tomato-whole.png",
+    "umbrella": "assets/wobbly/pictures/umbrella-whole.png",
+    "scene bedroom": "assets/wobbly/pictures/scene-bedroom-whole.png",
+    "scene kitchen": "assets/wobbly/pictures/scene-kitchen-whole.png",
+    "scene living room": "assets/wobbly/pictures/scene-living-room-whole.png",
+    "scene street": "assets/wobbly/pictures/scene-street-whole.png"
   },
   "actions": {
     "brushing his teeth": {
-      "src": "assets/wobbly/actions/brushing-his-teeth.png",
+      "src": "assets/wobbly/actions/brushing-his-teeth-whole.png",
       "subject": "He"
     },
     "carrying a box": {
-      "src": "assets/wobbly/actions/carrying-a-box.png",
+      "src": "assets/wobbly/actions/carrying-a-box-whole.png",
       "subject": "He"
     },
     "cooking soup": {
-      "src": "assets/wobbly/actions/cooking-soup.png",
+      "src": "assets/wobbly/actions/cooking-soup-whole.png",
       "subject": "She"
     },
     "crying": {
-      "src": "assets/wobbly/actions/crying.png",
+      "src": "assets/wobbly/actions/crying-whole.png",
       "subject": "She"
     },
     "dancing": {
-      "src": "assets/wobbly/actions/dancing.png",
+      "src": "assets/wobbly/actions/dancing-whole.png",
       "subject": "He"
     },
     "doing yoga": {
-      "src": "assets/wobbly/actions/doing-yoga.png",
+      "src": "assets/wobbly/actions/doing-yoga-whole.png",
       "subject": "She"
     },
     "drawing a picture": {
-      "src": "assets/wobbly/actions/drawing-a-picture.png",
+      "src": "assets/wobbly/actions/drawing-a-picture-whole.png",
       "subject": "She"
     },
     "knitting": {
-      "src": "assets/wobbly/actions/knitting.png",
+      "src": "assets/wobbly/actions/knitting-whole.png",
       "subject": "She"
     },
     "laughing": {
-      "src": "assets/wobbly/actions/laughing.png",
+      "src": "assets/wobbly/actions/laughing-whole.png",
       "subject": "He"
     },
     "listening to music": {
-      "src": "assets/wobbly/actions/listening-to-music.png",
+      "src": "assets/wobbly/actions/listening-to-music-whole.png",
       "subject": "He"
     },
     "mopping the floor": {
-      "src": "assets/wobbly/actions/mopping-the-floor.png",
+      "src": "assets/wobbly/actions/mopping-the-floor-whole.png",
       "subject": "She"
     },
     "packing a suitcase": {
-      "src": "assets/wobbly/actions/packing-a-suitcase.png",
+      "src": "assets/wobbly/actions/packing-a-suitcase-whole.png",
       "subject": "He"
     },
     "petting a dog": {
-      "src": "assets/wobbly/actions/petting-a-dog.png",
+      "src": "assets/wobbly/actions/petting-a-dog-whole.png",
       "subject": "She"
     },
     "playing the guitar": {
-      "src": "assets/wobbly/actions/playing-the-guitar.png",
+      "src": "assets/wobbly/actions/playing-the-guitar-whole.png",
       "subject": "She"
     },
     "reading a book": {
-      "src": "assets/wobbly/actions/reading-a-book.png",
+      "src": "assets/wobbly/actions/reading-a-book-whole.png",
       "subject": "She"
     },
     "riding a bike": {
-      "src": "assets/wobbly/actions/riding-a-bike.png",
+      "src": "assets/wobbly/actions/riding-a-bike-whole.png",
       "subject": "He"
     },
     "running": {
-      "src": "assets/wobbly/actions/running.png",
+      "src": "assets/wobbly/actions/running-whole.png",
       "subject": "She"
     },
     "shopping": {
-      "src": "assets/wobbly/actions/shopping.png",
+      "src": "assets/wobbly/actions/shopping-whole.png",
       "subject": "She"
     },
     "singing": {
-      "src": "assets/wobbly/actions/singing.png",
+      "src": "assets/wobbly/actions/singing-whole.png",
       "subject": "She"
     },
     "sleeping in an armchair": {
-      "src": "assets/wobbly/actions/sleeping-in-an-armchair.png",
+      "src": "assets/wobbly/actions/sleeping-in-an-armchair-whole.png",
       "subject": "He"
     },
     "swimming": {
-      "src": "assets/wobbly/actions/swimming.png",
+      "src": "assets/wobbly/actions/swimming-whole.png",
       "subject": "He"
     },
     "talking on the phone": {
-      "src": "assets/wobbly/actions/talking-on-the-phone.png",
+      "src": "assets/wobbly/actions/talking-on-the-phone-whole.png",
       "subject": "She"
     },
     "typing on a laptop": {
-      "src": "assets/wobbly/actions/typing-on-a-laptop.png",
+      "src": "assets/wobbly/actions/typing-on-a-laptop-whole.png",
       "subject": "She"
     },
     "waiting for a bus": {
-      "src": "assets/wobbly/actions/waiting-for-a-bus.png",
+      "src": "assets/wobbly/actions/waiting-for-a-bus-whole.png",
       "subject": "He"
     },
     "washing the dishes": {
-      "src": "assets/wobbly/actions/washing-the-dishes.png",
+      "src": "assets/wobbly/actions/washing-the-dishes-whole.png",
       "subject": "He"
     },
     "watching TV": {
-      "src": "assets/wobbly/actions/watching-tv.png",
+      "src": "assets/wobbly/actions/watching-tv-whole.png",
       "subject": "He"
     },
     "watering the plants": {
-      "src": "assets/wobbly/actions/watering-the-plants.png",
+      "src": "assets/wobbly/actions/watering-the-plants-whole.png",
       "subject": "She"
     },
     "waving": {
-      "src": "assets/wobbly/actions/waving.png",
+      "src": "assets/wobbly/actions/waving-whole.png",
       "subject": "She"
     },
     "writing in a notebook": {
-      "src": "assets/wobbly/actions/writing-in-a-notebook.png",
+      "src": "assets/wobbly/actions/writing-in-a-notebook-whole.png",
       "subject": "She"
     }
   },
