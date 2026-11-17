@@ -32,34 +32,34 @@
  ticket('tour-wembley','tour','Wembley Stadium tour','Wembley Stadium','London','starts','11:30','Guided stadium tour','https://www.wembleystadium.com/');
  ticket('tour-globe','tour','Shakespeare’s Globe tour','Shakespeare’s Globe','London','starts','13:45','Guided theatre tour · Bankside','https://www.shakespearesglobe.com/');
  const banks={};
- function bank(key,title,lines){banks[key]={title,items:lines.trim().split('\n').map((line,i)=>{const [context,prompt,answers]=line.split(' | ');if(!context||!prompt||!answers)throw Error('Incomplete future task '+key+i);return {id:key+'_'+i,context,prompt,answers:answers.split(' ~ ')}})}}
+ function bank(key,title,lines){banks[key]={title,items:lines.trim().split('\n').map((line,i)=>{const [context,prompt,answers,hint='']=line.split(' | ');if(!context||!prompt||!answers)throw Error('Incomplete future task '+key+i);return {id:key+'_'+i,context,prompt,hint,answers:answers.split(' ~ ')}})}}
  bank('will','Future Simple / will',`
-Your friend is carrying a heavy box. You decide to help now. | Offer to carry the box. Use will. | I will carry the box for you. ~ I’ll carry the box for you.
-You have just chosen soup from the menu. | Tell the waiter your choice. Use will and have. | I will have the soup. ~ I’ll have the soup.
-Anna asks you not to tell anyone her secret. | Promise to keep it. Start with I will not. | I will not tell anyone your secret.
-Your friend asks for your notes. You agree. | Promise to send them tonight. Use will. | I will send you my notes tonight. ~ I’ll send you my notes tonight.
-You think Mia’s new café has a bright future. | Predict success. Use I think and will. | I think Mia’s new café will be successful.
-You believe it probably will not rain tomorrow. | Make a prediction with probably and will not. | It will probably not rain tomorrow.
-Ben is free tomorrow. You want his help. | Ask him to help you tomorrow. Start with Will you. | Will you help me tomorrow?
-The answer is: Yes, I will call you tonight. | Ask about calling you tonight. Start with Will you. | Will you call me tonight?
-Your friend asks: Will Mia join us? You know she will. | Give a short positive answer. | Yes, she will.
-Your friend asks: Will they be late? You know they will not. | Give a short negative answer. | No, they will not. ~ No, they won’t.
-The phone rings. You decide to answer it. | Say what you will do. Use answer. | I will answer the phone. ~ I’ll answer the phone.
-Ben refuses to lend you his bike. | Report his refusal. Use Ben and will not. | Ben will not lend me his bike. ~ Ben won’t lend me his bike.
+Your friend is carrying a heavy box. You decide to help now. | Offer to carry the box. | I will carry the box for you. ~ I’ll carry the box for you. | Use will.
+You have just chosen soup from the menu. | Tell the waiter your choice. | I will have the soup. ~ I’ll have the soup. | Use will and have.
+Anna asks you not to tell anyone her secret. | Promise to keep it. | I will not tell anyone your secret. | Start with I will not.
+Your friend asks for your notes. You agree. | Promise to send them tonight. | I will send you my notes tonight. ~ I’ll send you my notes tonight. | Use will.
+You think Mia’s new café has a bright future. | Predict success. | I think Mia’s new café will be successful. | Use I think and will.
+You believe it probably will not rain tomorrow. | Make a prediction. | It will probably not rain tomorrow. | Use probably and will not.
+Ben is free tomorrow. You want his help. | Ask him to help you tomorrow. | Will you help me tomorrow? | Start with Will you.
+The answer is: Yes, I will call you tonight. | Ask about calling you tonight. | Will you call me tonight? | Start with Will you.
+Your friend asks: Will Mia join us? You know she will. | Give a short positive answer. | Yes, she will. | Use Yes / No + the subject + will / won’t.
+Your friend asks: Will they be late? You know they will not. | Give a short negative answer. | No, they will not. ~ No, they won’t. | Use Yes / No + the subject + will / won’t.
+The phone rings. You decide to answer it. | Say what you will do. | I will answer the phone. ~ I’ll answer the phone. | Use answer.
+Ben refuses to lend you his bike. | Report his refusal. | Ben will not lend me his bike. ~ Ben won’t lend me his bike. | Use Ben and will not.
 `);
  bank('going','Be going to',`
-Mia decided last week to learn Spanish. | State her intention. Use going to and learn Spanish. | Mia is going to learn Spanish.
-You have planned to visit Rome next month. | Describe your plan. Use going to. | I am going to visit Rome next month. ~ I’m going to visit Rome next month.
-The cup is right on the edge and is tipping over. | Predict what is about to happen. Use the cup, going to and fall. | The cup is going to fall.
-Look at the dark rain clouds above us. | Make a prediction. Use going to and rain. | It is going to rain. ~ It’s going to rain.
-Ben has decided not to buy a new phone. | State his decision. Use going to. | Ben is not going to buy a new phone. ~ Ben isn’t going to buy a new phone.
-We have decided to stay at home tonight. | Say that we have no plan to go out tonight. Use going to. | We are not going to go out tonight. ~ We aren’t going to go out tonight.
-The answer is: Anna is going to study in Berlin. | Ask about the city. Start with Where is Anna. | Where is Anna going to study?
-The answer is: I am going to leave on Friday. | Ask about the day. Start with When are you. | When are you going to leave?
-Ben is going to cook dinner tonight. | Make a yes/no question about Ben’s plan. | Is Ben going to cook dinner tonight?
-Your friend asks: Are they going to move? Their plan is confirmed. | Give a short positive answer. | Yes, they are.
-Your friend asks: Is she going to drive? She has no plan to drive. | Give a short negative answer. | No, she is not. ~ No, she isn’t.
-These words contain one error: She going to pack her bag. | Write the corrected sentence. | She is going to pack her bag.
+Mia decided last week to learn Spanish. | State her intention. | Mia is going to learn Spanish. | Use going to and learn Spanish.
+You have planned to visit Rome next month. | Describe your plan. | I am going to visit Rome next month. ~ I’m going to visit Rome next month. | Use going to.
+The cup is right on the edge and is tipping over. | Predict what is about to happen. | The cup is going to fall. | Use the cup, going to and fall.
+Look at the dark rain clouds above us. | Make a prediction. | It is going to rain. ~ It’s going to rain. | Use going to and rain.
+Ben has decided not to buy a new phone. | State his decision. | Ben is not going to buy a new phone. ~ Ben isn’t going to buy a new phone. | Use going to.
+We have decided to stay at home tonight. | Say that we have no plan to go out tonight. | We are not going to go out tonight. ~ We aren’t going to go out tonight. | Use going to.
+The answer is: Anna is going to study in Berlin. | Ask about the city. | Where is Anna going to study? | Start with Where is Anna.
+The answer is: I am going to leave on Friday. | Ask about the day. | When are you going to leave? | Start with When are you.
+Ben is going to cook dinner tonight. | Make a yes/no question about Ben’s plan. | Is Ben going to cook dinner tonight? | Start with Is Ben + going to + the base verb.
+Your friend asks: Are they going to move? Their plan is confirmed. | Give a short positive answer. | Yes, they are. | Use Yes / No + the subject + am / is / are (not).
+Your friend asks: Is she going to drive? She has no plan to drive. | Give a short negative answer. | No, she is not. ~ No, she isn’t. | Use Yes / No + the subject + am / is / are (not).
+These words contain one error: She going to pack her bag. | Write the corrected sentence. | She is going to pack her bag. | Use am / is / are + going to + the base verb.
 `);
  bank('continuous','Future Continuous',`
 Tomorrow, Mia’s flight lasts from 9 am to noon. | Say what she will be doing at ten. Use fly. | Mia will be flying at ten tomorrow. ~ She will be flying at ten tomorrow.

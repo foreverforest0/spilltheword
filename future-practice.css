@@ -39,3 +39,4 @@ body.stw-site-theme #view .future-answer{display:block;resize:vertical;width:100
 .tt-housing>img{position:absolute;width:122.6667%;max-width:none!important;height:auto;left:-11.3333%;top:-70.3846%;pointer-events:none}
 .tt-printer:has(.tt-printer-idle:not([hidden])){min-height:320px}
 .tt-paper-window:empty{padding-bottom:0}
+.future-hint-area{margin:0 0 18px}.future-hint{font:17px/1.5 Georgia,serif;padding:12px 14px;background:var(--lesson-card-2);color:var(--lesson-ink);margin:10px 0 0}.future-hint[hidden]{display:none!important}

@@ -34,7 +34,17 @@ with sync_playwright() as pw:
   p.evaluate("key=>spOpen('future_'+key)",key);assert p.locator('.future-context').inner_text();assert p.locator('.future-prompt').inner_text()
   p.locator('[data-future-answer]').fill('My unfinished answer.');p.locator('#futureShow').click();assert p.locator('#futureModels').is_visible()
   p.locator('#futureNext').click();p.locator('#futurePrevious').click();assert p.locator('[data-future-answer]').input_value()=='My unfinished answer.'
-  p.locator('[data-future-mode="speak"]').click();assert p.locator('[data-future-answer]').count()==0;p.locator('#futureShow').click()
+  if key in ['will','going']:
+   assert p.locator('[data-future-mode]').count()==0
+   assert p.locator('#futureHintText').is_hidden()
+   p.locator('#futureHint').click();assert p.locator('#futureHintText').is_visible()
+   assert p.locator('#futureHint').get_attribute('aria-expanded')=='true'
+   assert p.locator('[data-future-answer]').input_value()=='My unfinished answer.'
+   p.locator('#futureNext').click();assert p.locator('#futureHintText').is_hidden()
+   p.evaluate("key=>{S.futureExercises[key].mode='speak';spOpen('future_'+key)}",key)
+   assert p.locator('[data-future-answer]').count()==1
+  else:
+   p.locator('[data-future-mode="speak"]').click();assert p.locator('[data-future-answer]').count()==0;p.locator('#futureShow').click()
   p.locator('#futureBack').click();assert p.locator('[data-future-task]').count()==3
  # All ticket designs fit the printer, including long real titles and mobile.
  for width in [1440,768,390,320]:
