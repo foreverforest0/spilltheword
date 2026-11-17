@@ -1,0 +1,23 @@
+/* The familiar eight-ball, now attached to one grammar topic. */
+.topic-ball-page{max-width:1040px;margin:auto;padding:24px 18px 50px;color:var(--lesson-ink,#001166)}
+#view .tb-header{display:flex!important;align-items:flex-start;gap:22px;margin-bottom:18px}.tb-header>button{flex:none}.tb-header h1{flex:1;text-align:center;font-size:clamp(38px,5.5vw,70px);margin:0!important}
+.tb-topic{text-align:center;font:600 26px/1.35 var(--stw-title-font);margin:20px 0 34px}
+.tb-layout{display:grid;grid-template-columns:minmax(230px,350px) minmax(0,1fr);gap:clamp(24px,5vw,60px);align-items:center}
+#view .tb-ball{position:relative;display:block;padding:0;width:100%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 34% 28%,#686871 0,#26262e 22%,#0b0b10 55%,#000 78%);box-shadow:0 12px 22px #0003,inset -14px -18px 40px #0008;border:3px solid #232323;cursor:pointer;user-select:none;overflow:hidden;color:#111}
+.tb-ball::after{content:'';position:absolute;left:18%;top:10%;width:30%;height:16%;border-radius:50%;background:radial-gradient(ellipse,#ffffff70,transparent 70%);transform:rotate(-25deg);pointer-events:none}
+.tb-window{position:absolute;left:21%;top:21%;width:58%;height:58%;box-sizing:border-box;border-radius:50%;background:#fbfaf6;border:4px solid #111;box-shadow:inset 0 4px 10px #0005;display:grid;place-items:center;overflow:hidden;transition:background .3s}
+body.stw-site-theme #view .tb-eight{font:900 clamp(65px,10vw,110px)/1 Georgia,serif!important;color:#111}
+.tb-triangle{position:absolute;left:8%;top:12%;width:84%;height:80%;opacity:0;transform:scale(.6) rotate(-20deg);transition:opacity .5s,transform .65s cubic-bezier(.3,1.4,.5,1)}
+.tb-triangle svg{position:absolute;inset:0;width:100%;height:100%}
+body.stw-site-theme #view #tbAnswer{position:absolute;left:21%;right:21%;top:13%;height:47%;display:flex;align-items:center;justify-content:center;text-align:center;color:#f0f0e7!important;font:600 clamp(13px,1.5vw,19px)/1.15 Georgia,serif!important;overflow-wrap:normal}
+.tb-answered .tb-window,.tb-shaking .tb-window{background:radial-gradient(circle at 50% 45%,#1e3a9a,#030a26)}
+.tb-answered .tb-eight,.tb-shaking .tb-eight{opacity:0}.tb-answered .tb-triangle{opacity:1;transform:none}
+.tb-shaking{animation:tb-shake .36s ease-in-out infinite}
+@keyframes tb-shake{0%,100%{transform:rotate(0) translate(0,0)}25%{transform:rotate(-5deg) translate(-5px,2px)}75%{transform:rotate(5deg) translate(5px,-2px)}}
+.tb-task{background:var(--lesson-paper,#f0f0e7);border-radius:3px;padding:24px;font:19px/1.5 Georgia,serif;min-width:0}.tb-instruction{margin:0 0 15px}.tb-task>.lvb{margin:8px 8px 4px 0}.tb-review{font-size:15px;line-height:1.45;margin:10px 0}
+.tb-status{font-size:17px;min-height:26px;margin:16px 0 0}.tb-last-question{font-size:17px;overflow-wrap:anywhere;margin:12px 0 0}.tb-last-question:empty{display:none}
+.tb-hint{background:var(--lesson-card-2);padding:12px 15px;font:17px/1.5 Georgia,serif;margin-top:16px}.tb-hint p{margin:7px 0}.tb-hint[hidden]{display:none!important}
+.tb-ball:focus-visible{outline:4px solid var(--lesson-strong);outline-offset:7px}.tb-ball:disabled{cursor:wait}
+.future-header .tb-open{max-width:150px}
+@media(max-width:760px){#view .tb-header{display:block!important}.tb-header>button{margin-bottom:18px}.tb-header h1{font-size:42px}.tb-topic{font-size:24px;margin-bottom:24px}.tb-layout{grid-template-columns:1fr;gap:26px}#view .tb-ball{width:min(300px,80vw);margin:auto}.tb-task{padding:20px}.future-header .tb-open{margin-bottom:12px}body.stw-site-theme #view #tbAnswer{font-size:17px!important}}
+@media(prefers-reduced-motion:reduce){.topic-ball-page *{animation:none!important;transition:none!important}}

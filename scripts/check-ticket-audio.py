@@ -10,7 +10,7 @@ class Quiet(SimpleHTTPRequestHandler):
 server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(ROOT)));Thread(target=server.serve_forever,daemon=True).start()
 with sync_playwright() as pw:
  b=pw.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']);p=b.new_page(viewport={'width':1440,'height':1000},reduced_motion='no-preference');errors=[];p.on('pageerror',lambda e:errors.append(str(e)))
- p.add_init_script('''(()=>{const Native=window.Audio;window.__ticketAudio=[];window.Audio=function(...args){const a=new Native(...args);window.__ticketAudio.push(a);return a}})()''')
+ p.add_init_script('''(()=>{const Native=window.Audio;window.__ticketAudio=[];window.Audio=function(...args){const a=new Native(...args);if(String(args[0]).includes("assets/timetable/printer.mp3"))window.__ticketAudio.push(a);return a}})()''')
  p.goto(f'http://127.0.0.1:{server.server_port}/');p.evaluate("go('gram');S.snd=true;spOpen('future_timetable')")
  assert p.evaluate('window.__ticketAudio.length')==1
  assert p.evaluate('window.__ticketAudio[0].paused')

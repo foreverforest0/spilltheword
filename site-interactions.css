@@ -1,0 +1,24 @@
+/* Larger category links and a game directory instead of the vocabulary word bank. */
+body.home #view .stw-home .layout{grid-template-columns:220px minmax(0,650px) 290px;gap:24px;justify-content:center}
+body.home #view .stw-home .category{font-size:64px!important;line-height:1.15}
+body.stw-site-theme #view :is(.grammar-title,.vocabulary-title){font-size:clamp(56px,7.4vw,100px)!important;line-height:1.18}
+.vocabulary-page{max-width:1050px;margin:auto;padding:28px 18px 60px;color:#001166}
+.vocabulary-title{width:100%;text-align:center;margin:20px auto 44px!important}
+.vocabulary-games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.vocabulary-game{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:20px;min-height:210px;padding:22px 22px 65px;background:#f0f0e7;color:#001166;border:1px solid #001166;border-radius:3px;cursor:pointer;text-align:left}
+.vocabulary-game:nth-child(even){background:#001166;color:#f0f0e7}
+body.stw-site-theme #view .vocabulary-game>span{font:600 34px/1.2 var(--stw-title-font)!important;color:inherit!important}
+.vocabulary-game small{font:18px/1.45 Georgia,serif;color:inherit}
+.vocabulary-game .topic-pencil{position:absolute;right:18px;bottom:12px;width:20px;height:44px;object-fit:contain;transform:rotate(20deg)}
+.vocabulary-game:focus-visible{outline:3px solid #F04423;outline-offset:4px}
+@media(max-width:1280px){body.home #view .stw-home .layout{grid-template-columns:1fr 1fr;gap:24px}body.home #view .stw-home .books{grid-column:1/-1;grid-row:2}body.home #view .stw-home .category{font-size:52px!important}}
+@media(max-width:650px){.vocabulary-games{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.vocabulary-game{min-height:200px;padding:16px 14px 60px}body.stw-site-theme #view .vocabulary-game>span{font-size:27px!important}.vocabulary-game small{font-size:16px}body.home #view .stw-home .layout{column-gap:10px}body.home #view .stw-home .category{font-size:clamp(30px,9vw,40px)!important;padding-inline:0}body.stw-site-theme #view :is(.grammar-title,.vocabulary-title){font-size:52px!important}}
+
+/* Slightly broader spines and covers; the same depth drives every 3D face. */
+body.home #view .book:nth-child(1){--depth:44px;--width:122px}
+body.home #view .book:nth-child(2){--depth:54px;--width:134px}
+body.home #view .book:nth-child(3){--depth:32px;--width:96px}
+body.home #view .book:nth-child(4){--depth:36px;--width:112px}
+body.home #view .book:nth-child(5){--depth:50px;--width:126px}
+body.home #view .book:nth-child(6){--depth:46px;--width:138px}
+body.home #view .book:nth-child(7){--depth:42px;--width:124px}
