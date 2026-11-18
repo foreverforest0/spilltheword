@@ -1,0 +1,855 @@
+{
+  "id": "b2alh",
+  "name": "B2 ALH",
+  "units": [
+    {
+      "n": "Unit 1 Connections",
+      "ls": [
+        {
+          "n": "1.1",
+          "t": "Personality",
+          "g": "Question forms (intonation in yes/no and wh- questions)",
+          "v": [
+            "happy",
+            "nervous",
+            "worried",
+            "embarrassed",
+            "shocked",
+            "excited",
+            "admiration",
+            "annoyed",
+            "impatient",
+            "arrogant",
+            "open-minded",
+            "self-centered",
+            "stubborn",
+            "witty",
+            "loyal",
+            "easy-going",
+            "down-to-earth",
+            "ambitious",
+            "confident"
+          ]
+        },
+        {
+          "n": "1.2",
+          "t": "Who We Are",
+          "g": "Tense review (simple past, past perfect, simple present, present progressive, present perfect), Connected speech (final consonant + initial vowel)",
+          "v": [
+            "-tion (ambition)",
+            "-ity (flexibility)",
+            "-ness (stubbornness)",
+            "-ism (patriotism)",
+            "-ence (difference)",
+            "achievement",
+            "determination",
+            "creativity",
+            "generosity",
+            "intelligence",
+            "biography",
+            "accomplished",
+            "influential",
+            "inspire",
+            "overcome",
+            "succeed",
+            "dedicate",
+            "pursue",
+            "aspire",
+            "admire",
+            "role model",
+            "impact"
+          ]
+        },
+        {
+          "n": "1.3",
+          "t": "Keeping It In The Family",
+          "g": "Family idioms, Developing and introducing new topics in conversation",
+          "v": [
+            "blood is thicker than water",
+            "the spitting image of",
+            "run in the family",
+            "be in the blood",
+            "sibling",
+            "ancestor",
+            "heritage",
+            "inherit"
+          ]
+        }
+      ]
+    },
+    {
+      "n": "Unit 2 Lifestyles",
+      "ls": [
+        {
+          "n": "2.1",
+          "t": "A Full Life",
+          "g": "Present perfect, Present perfect progressive, Connected speech (present perfect progressive)",
+          "v": [
+            "obesity",
+            "anxiety",
+            "negativity",
+            "depression",
+            "cholesterol",
+            "diabetes",
+            "stress",
+            "hypertension",
+            "insomnia",
+            "fatigue",
+            "nutrition",
+            "exercise",
+            "wellness",
+            "disease",
+            "symptoms",
+            "diagnosis",
+            "treatment",
+            "recovery",
+            "healthy",
+            "unhealthy",
+            "diet",
+            "lifestyle",
+            "calorie",
+            "fitness"
+          ]
+        },
+        {
+          "n": "2.2",
+          "t": "Change",
+          "g": "used to, would, get used to, be used to, Catenation (pronunciation), Adverbs of stance + adjective collocations",
+          "v": [
+            "absolutely",
+            "bitterly",
+            "deeply",
+            "highly",
+            "ridiculously",
+            "firmly",
+            "genuinely",
+            "certainly",
+            "obviously",
+            "clearly",
+            "used to",
+            "habit",
+            "routine",
+            "addiction",
+            "hooked",
+            "dependent",
+            "smartphone",
+            "technology",
+            "screen time",
+            "digital detox",
+            "focus",
+            "distraction",
+            "mindfulness",
+            "meditation",
+            "conscious",
+            "aware",
+            "challenge",
+            "overcome"
+          ]
+        },
+        {
+          "n": "2.3",
+          "t": "Clean Eating",
+          "g": "Adding emphasis (adverbs + adjective), Backchaneling, Lexical repetition",
+          "v": [
+            "absolutely",
+            "deeply",
+            "highly",
+            "ridiculously",
+            "incredibly",
+            "extremely",
+            "truly",
+            "really",
+            "very",
+            "remarkably",
+            "organic",
+            "natural",
+            "processed",
+            "wholesome",
+            "nutritious",
+            "balanced",
+            "ingredients",
+            "portion",
+            "meal",
+            "snack",
+            "beverage",
+            "sugar",
+            "salt",
+            "fat",
+            "protein",
+            "carbohydrate"
+          ]
+        }
+      ]
+    },
+    {
+      "n": "Unit 3 Survival",
+      "ls": [
+        {
+          "n": "3.1",
+          "t": "Staying Alive",
+          "g": "Narrative tenses (simple past, past perfect, past progressive), Following narrative sequence, Identifying tense usage",
+          "v": [
+            "crunch",
+            "hike",
+            "trickling",
+            "break",
+            "collapse",
+            "struggle",
+            "gasp",
+            "crawl",
+            "climax",
+            "tension",
+            "suspense",
+            "dramatic",
+            "vivid",
+            "intense",
+            "thrilling",
+            "terrifying",
+            "adrenaline"
+          ]
+        },
+        {
+          "n": "3.2",
+          "t": "Fear And Danger",
+          "g": "Alternatives to if (unless, provided, in case, as long as, as soon as), Intonation in conditional sentences",
+          "v": [
+            "go through",
+            "sort out",
+            "put up with",
+            "talk over",
+            "deal with",
+            "work out",
+            "weigh out",
+            "come across",
+            "run into",
+            "face up to",
+            "come to terms with",
+            "figure out",
+            "frightened",
+            "terrified",
+            "petrified",
+            "anxious",
+            "panic",
+            "fear",
+            "dread",
+            "horror",
+            "courage",
+            "brave",
+            "nervous",
+            "shelter",
+            "water",
+            "fire",
+            "food",
+            "safety",
+            "rescue",
+            "signal",
+            "survive",
+            "danger"
+          ]
+        },
+        {
+          "n": "3.3",
+          "t": "Don’t Look Down",
+          "g": "Shortened idioms, Backtracking in conversation, Dramatic storytelling techniques",
+          "v": [
+            "fingers crossed",
+            "keep your chin up",
+            "do what it takes",
+            "accept the challenge",
+            "experience adventure",
+            "hold your nerve",
+            "voyage",
+            "expedition",
+            "adventure",
+            "journey",
+            "route",
+            "destination",
+            "landmark",
+            "scenery",
+            "landscape",
+            "summit",
+            "cliff",
+            "obstacle",
+            "hurdle",
+            "breathtaking",
+            "exhilarating",
+            "unforgettable"
+          ]
+        }
+      ]
+    },
+    {
+      "n": "Unit 4 The Future",
+      "ls": [
+        {
+          "n": "4.1",
+          "t": "My Future",
+          "g": "Future forms (will, going to, simple present/progressive for arrangements), Noun + preposition collocations, Nouns and verbs with same spelling",
+          "v": [
+            "career",
+            "profession",
+            "job",
+            "occupation",
+            "ambition",
+            "goal",
+            "aspiration",
+            "achievement",
+            "promotion",
+            "salary",
+            "wage",
+            "employment",
+            "entrepreneur",
+            "innovation",
+            "success",
+            "plan",
+            "arrange",
+            "schedule",
+            "predict",
+            "forecast",
+            "possibility",
+            "opportunity",
+            "prospect",
+            "outcome",
+            "result",
+            "development",
+            "progress",
+            "advancement",
+            "growth",
+            "potential"
+          ]
+        },
+        {
+          "n": "4.2",
+          "t": "What Will Life Be Like?",
+          "g": "Future perfect, future progressive, future perfect progressive, Identifying agreement/disagreement, Intonation with intensifiers",
+          "v": [
+            "entirely",
+            "greatly",
+            "undoubtedly",
+            "especially",
+            "widely",
+            "firmly",
+            "incredibly",
+            "significantly",
+            "dramatically",
+            "driverless cars",
+            "hyperloop trains",
+            "flying bikes",
+            "city train",
+            "eco bus",
+            "trolley system",
+            "commute",
+            "vehicle",
+            "transport",
+            "infrastructure",
+            "technology",
+            "innovation",
+            "advancement",
+            "renewable energy",
+            "sustainable",
+            "environment",
+            "pollution",
+            "emission",
+            "prediction",
+            "forecast",
+            "estimate",
+            "calculate",
+            "evaluate",
+            "assess",
+            "scenario"
+          ]
+        },
+        {
+          "n": "4.3",
+          "t": "The Robot Revolution",
+          "g": "“Right” as question tag and clarification device, Asking for clarification in conversation",
+          "v": [
+            "robot",
+            "automation",
+            "artificial intelligence (AI)",
+            "machine learning",
+            "algorithm",
+            "automate",
+            "mechanize",
+            "computerize",
+            "technology",
+            "innovation",
+            "efficiency",
+            "productivity",
+            "job",
+            "employment",
+            "displacement",
+            "unemployment",
+            "workforce",
+            "labor",
+            "worker",
+            "employee",
+            "skill",
+            "training",
+            "adapt",
+            "benefit",
+            "advantage",
+            "disadvantage",
+            "concern",
+            "risk",
+            "opportunity",
+            "challenge"
+          ]
+        }
+      ]
+    },
+    {
+      "n": "Unit 5 Modern Life",
+      "ls": [
+        {
+          "n": "1",
+          "t": "Passive voice",
+          "g": "",
+          "v": [
+            "elk",
+            "crucial",
+            "maintain",
+            "rapidly",
+            "expand",
+            "initially",
+            "predator",
+            "conduct"
+          ]
+        },
+        {
+          "n": "2",
+          "t": "Smart home",
+          "g": "",
+          "v": [
+            "underfloor heating",
+            "wind turbine",
+            "smart meter",
+            "energy-efficient lightbulb",
+            "thermostat",
+            "double-glazing",
+            "solar panel",
+            "compost heap",
+            "rain barrel",
+            "insulation",
+            "voice assistant",
+            "smart thermostat",
+            "security camera",
+            "home automation",
+            "smart speaker",
+            "doorbell camera",
+            "to turn on/off",
+            "to adjust temperature",
+            "light fixture",
+            "to monitor energy usage",
+            "wireless network",
+            "smart appliance",
+            "motion sensor",
+            "fully automated",
+            "plug-and-play",
+            "cutting-edge technology"
+          ]
+        },
+        {
+          "n": "3",
+          "t": "Passive voice (movies)",
+          "g": "",
+          "v": [
+            "buzziest",
+            "ideologically muddled",
+            "offbeat film director",
+            "backlash",
+            "chew on well after credits roll",
+            "cis man",
+            "fruitful"
+          ]
+        },
+        {
+          "n": "6",
+          "t": "Reading about cities",
+          "g": "",
+          "v": [
+            "swell",
+            "urban",
+            "commercial",
+            "suburbs",
+            "industrial",
+            "housing",
+            "residential",
+            "slums",
+            "rural"
+          ]
+        },
+        {
+          "n": "9",
+          "t": "Friends (gerund/infinitive)",
+          "g": "",
+          "v": [
+            "turns out",
+            "keep fixating on",
+            "gravy boat",
+            "it hit me",
+            "drifted apart",
+            "looked familiar",
+            "leave",
+            "say",
+            "out loud",
+            "alone",
+            "all of a sudden",
+            "got really freaked out"
+          ]
+        },
+        {
+          "n": "11",
+          "t": "Spooky stories (phrasal verbs)",
+          "g": "",
+          "v": [
+            "be aware of",
+            "peek around",
+            "shrug off",
+            "light up",
+            "chalk it up to",
+            "freak out",
+            "set up"
+          ]
+        },
+        {
+          "n": "14",
+          "t": "Popcorn brain",
+          "g": "",
+          "v": [
+            "scattered thoughts",
+            "to tidy (up)",
+            "to get distracted",
+            "out of pocket",
+            "scrolling online",
+            "to get sidetracked"
+          ]
+        }
+      ]
+    },
+    {
+      "n": "Unit 6 Rules & Society",
+      "ls": [
+        {
+          "n": "1",
+          "t": "Modals of prohibition, permission, obligation",
+          "g": "",
+          "v": [
+            "have to",
+            "must",
+            "be obliged to",
+            "to be required to",
+            "to be supposed to",
+            "to be allowed to",
+            "let"
+          ]
+        },
+        {
+          "n": "2",
+          "t": "Modals + school rules",
+          "g": "",
+          "v": [
+            "floored",
+            "dumbstruck",
+            "chuffed",
+            "petrified",
+            "down in the dumps",
+            "on pins and needles"
+          ]
+        },
+        {
+          "n": "3",
+          "t": "Perfect modals",
+          "g": "",
+          "v": [
+            "worth",
+            "sabotage",
+            "operate",
+            "talk nonsense",
+            "aware",
+            "desperately",
+            "frank",
+            "to be aware"
+          ]
+        },
+        {
+          "n": "4",
+          "t": "Revision of modals",
+          "g": "",
+          "v": [
+            "floored",
+            "dumbstruck",
+            "chuffed",
+            "petrified",
+            "down in the dumps",
+            "on pins and needles"
+          ]
+        },
+        {
+          "n": "6",
+          "t": "Analog year",
+          "g": "",
+          "v": [
+            "analog",
+            "head toward",
+            "cut back on",
+            "profit from",
+            "consumption",
+            "be present",
+            "scroll-free"
+          ]
+        },
+        {
+          "n": "9",
+          "t": "Gen talk",
+          "g": "",
+          "v": [
+            "have something to do with",
+            "be shaped by",
+            "the cards we're dealt",
+            "apprehensive",
+            "due to",
+            "for whatever reason"
+          ]
+        },
+        {
+          "n": "10",
+          "t": "Compound adjectives",
+          "g": "",
+          "v": [
+            "easy-going",
+            "bad-tempered",
+            "self-centred",
+            "open-minded",
+            "absent-minded",
+            "laid-back",
+            "tight-fisted",
+            "two-faced",
+            "narrow-minded",
+            "strong-willed",
+            "good-tempered",
+            "well-known",
+            "old-fashioned",
+            "last-minute",
+            "seven-bedroom",
+            "up-to-date",
+            "coming-of-age"
+          ]
+        },
+        {
+          "n": "11",
+          "t": "Listening + make/do",
+          "g": "",
+          "v": [
+            "make the best of",
+            "do without",
+            "do a favor",
+            "do away with",
+            "do any harm",
+            "make allowances",
+            "make a good impression"
+          ]
+        },
+        {
+          "n": "13",
+          "t": "Cleft sentences",
+          "g": "",
+          "v": [
+            "a constant stream of",
+            "on paper",
+            "low-key hangout",
+            "hustle culture",
+            "canceling the subscriptions",
+            "clocked it",
+            "collective overwhelm",
+            "endless micro-obligations",
+            "tethered to",
+            "subscription creep"
+          ]
+        }
+      ]
+    },
+    {
+      "n": "Unit 7 Life Choices & Decisions",
+      "ls": [
+        {
+          "n": "1",
+          "t": "1st conditional, life-changing decisions",
+          "g": "",
+          "v": [
+            "take risks",
+            "regret",
+            "life-changing"
+          ]
+        },
+        {
+          "n": "2",
+          "t": "Community vocab, open spaces",
+          "g": "",
+          "v": [
+            "transform",
+            "relocate",
+            "convert",
+            "restore",
+            "demolish",
+            "construct",
+            "extend"
+          ]
+        },
+        {
+          "n": "3",
+          "t": "2nd conditional, friends",
+          "g": "",
+          "v": [
+            "shift",
+            "wage",
+            "salary",
+            "quit",
+            "apply for a job",
+            "handle",
+            "duties & responsibilities",
+            "paycheck",
+            "qualification",
+            "part-time job"
+          ]
+        },
+        {
+          "n": "4",
+          "t": "3rd conditional, living without regrets",
+          "g": "",
+          "v": [
+            "gnaw",
+            "reconcile",
+            "burden",
+            "have a rift with",
+            "obese",
+            "estrangement",
+            "globetrotting"
+          ]
+        },
+        {
+          "n": "5",
+          "t": "Mixed conditionals, odd brand names",
+          "g": "",
+          "v": [
+            "improbable",
+            "heaping spoonful",
+            "boorish",
+            "lubricate",
+            "inject",
+            "trustees",
+            "misleading",
+            "surreal",
+            "turnoff",
+            "flounder",
+            "brand promise",
+            "candor",
+            "motto"
+          ]
+        },
+        {
+          "n": "8",
+          "t": "YOLO, cleft sentences",
+          "g": "",
+          "v": [
+            "flying by",
+            "sleep-deprived",
+            "stuck in a rut",
+            "from scratch",
+            "follow in the footsteps",
+            "give it a shot",
+            "desk-dwelling computer nerd"
+          ]
+        },
+        {
+          "n": "9",
+          "t": "Conspiracy theories",
+          "g": "",
+          "v": [
+            "footage",
+            "fabricated",
+            "adamant",
+            "classified",
+            "cover-ups",
+            "sham",
+            "speculate",
+            "gruesome",
+            "brutality",
+            "elapsed",
+            "evidence",
+            "terrorized"
+          ]
+        },
+        {
+          "n": "10",
+          "t": "Conspiracy theories, strong adjectives",
+          "g": "",
+          "v": [
+            "gruesome",
+            "beloved",
+            "legendary",
+            "infamous",
+            "striking",
+            "hilarious",
+            "sinister",
+            "tragic",
+            "powerful"
+          ]
+        },
+        {
+          "n": "12",
+          "t": "Accommodation & neighborhood, I wish",
+          "g": "",
+          "v": [
+            "bizarre",
+            "natch",
+            "mesmerising",
+            "dwelling",
+            "enchantment",
+            "solitude",
+            "swamp",
+            "oddball"
+          ]
+        },
+        {
+          "n": "13",
+          "t": "Accommodation & neighborhood, I wish",
+          "g": "",
+          "v": [
+            "subtle",
+            "foreclosed",
+            "pep talk",
+            "heirloom",
+            "speedo",
+            "needless to say",
+            "peek",
+            "shack"
+          ]
+        },
+        {
+          "n": "14",
+          "t": "Culture shock, indefinite pronouns",
+          "g": "",
+          "v": [
+            "handkerchief"
+          ]
+        },
+        {
+          "n": "16",
+          "t": "Haunted hotels",
+          "g": "",
+          "v": [
+            "toss and turn",
+            "laugh smth off",
+            "register (keep smth on the mind)",
+            "levitate",
+            "comforting",
+            "threatening",
+            "swear",
+            "ghostly presence"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1494,16 +1494,16 @@ window.FutureLevelData={
           "kind": "will",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "Your colleague asks for the retraining details. You agree to send them."
+            "Your colleague asks for the training details. You agree to send them."
           ],
           "prompt": "Promise to send them tonight.",
           "hint": "A decision now, promise, offer or belief.",
           "answers": [
-            "I will send you the retraining details tonight."
+            "I will send you the training details tonight."
           ],
           "vocab": {
             "course": "b2alh",
-            "word": "retraining",
+            "word": "training",
             "lesson": [
               "Unit 4 The Future",
               "4.3",
@@ -1606,16 +1606,16 @@ window.FutureLevelData={
           "kind": "going",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "Ben has decided to start retraining in September."
+            "Ben has decided to start training in September."
           ],
           "prompt": "Describe his intention.",
           "hint": "An earlier intention or visible evidence.",
           "answers": [
-            "Ben is going to start retraining in September."
+            "Ben is going to start training in September."
           ],
           "vocab": {
             "course": "b2alh",
-            "word": "retraining",
+            "word": "training",
             "lesson": [
               "Unit 4 The Future",
               "4.3",
@@ -1740,16 +1740,16 @@ window.FutureLevelData={
           "kind": "arrangement",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "Mia’s retraining starts on Monday. Her place is confirmed."
+            "Mia’s training starts on Monday. Her place is confirmed."
           ],
           "prompt": "Describe her arrangement.",
           "hint": "A confirmed arrangement.",
           "answers": [
-            "Mia is starting her retraining on Monday."
+            "Mia is starting her training on Monday."
           ],
           "vocab": {
             "course": "b2alh",
-            "word": "retraining",
+            "word": "training",
             "lesson": [
               "Unit 4 The Future",
               "4.3",
@@ -2099,17 +2099,17 @@ window.FutureLevelData={
           "title": "CAREER PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: do her retraining",
+            "Mia: do her training",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Describe Mia’s activity at 10 am.",
           "hint": "Activity in progress.",
           "answers": [
-            "Mia will be doing her retraining at ten tomorrow."
+            "Mia will be doing her training at ten tomorrow."
           ],
           "vocab": {
             "course": "b2alh",
-            "word": "retraining",
+            "word": "training",
             "lesson": [
               "Unit 4 The Future",
               "4.3",
@@ -2277,17 +2277,17 @@ window.FutureLevelData={
           "title": "CAREER PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: do her retraining",
+            "Mia: do her training",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Say what Mia will finish by noon.",
           "hint": "Completed by this point.",
           "answers": [
-            "Mia will have finished her retraining by noon tomorrow."
+            "Mia will have finished her training by noon tomorrow."
           ],
           "vocab": {
             "course": "b2alh",
-            "word": "retraining",
+            "word": "training",
             "lesson": [
               "Unit 4 The Future",
               "4.3",
@@ -2455,17 +2455,17 @@ window.FutureLevelData={
           "title": "CAREER PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: do her retraining",
+            "Mia: do her training",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Give the duration by 11 am.",
           "hint": "Duration up to this point.",
           "answers": [
-            "By eleven tomorrow, Mia will have been doing her retraining for two hours."
+            "By eleven tomorrow, Mia will have been doing her training for two hours."
           ],
           "vocab": {
             "course": "b2alh",
-            "word": "retraining",
+            "word": "training",
             "lesson": [
               "Unit 4 The Future",
               "4.3",
@@ -2686,17 +2686,17 @@ window.FutureLevelData={
         "title": "CAREER PLAN",
         "facts": [
           "TOMORROW",
-          "Sam: do his retraining",
+          "Sam: do his training",
           "Start: 09:00 · Finish: 12:00"
         ],
         "prompt": "Describe the activity at this time.",
         "hint": "Activity in progress.",
         "answers": [
-          "Sam will be doing his retraining at ten tomorrow."
+          "Sam will be doing his training at ten tomorrow."
         ],
         "vocab": {
           "course": "b2alh",
-          "word": "retraining",
+          "word": "training",
           "lesson": [
             "Unit 4 The Future",
             "4.3",
@@ -2712,17 +2712,17 @@ window.FutureLevelData={
         "title": "CAREER PLAN",
         "facts": [
           "TOMORROW",
-          "Sam: do his retraining",
+          "Sam: do his training",
           "Start: 09:00 · Finish: 12:00"
         ],
         "prompt": "Say what will be complete by this time.",
         "hint": "Completed by this point.",
         "answers": [
-          "Sam will have finished his retraining by noon tomorrow."
+          "Sam will have finished his training by noon tomorrow."
         ],
         "vocab": {
           "course": "b2alh",
-          "word": "retraining",
+          "word": "training",
           "lesson": [
             "Unit 4 The Future",
             "4.3",
@@ -2738,17 +2738,17 @@ window.FutureLevelData={
         "title": "CAREER PLAN",
         "facts": [
           "TOMORROW",
-          "Sam: do his retraining",
+          "Sam: do his training",
           "Start: 09:00 · Finish: 12:00"
         ],
         "prompt": "Give the duration up to this time.",
         "hint": "Duration up to this point.",
         "answers": [
-          "By eleven tomorrow, Sam will have been doing his retraining for two hours."
+          "By eleven tomorrow, Sam will have been doing his training for two hours."
         ],
         "vocab": {
           "course": "b2alh",
-          "word": "retraining",
+          "word": "training",
           "lesson": [
             "Unit 4 The Future",
             "4.3",
