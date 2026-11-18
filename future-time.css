@@ -42,3 +42,11 @@ body.stw-site-theme #view .ft-printer-page .tt-ticket--document,body.stw-site-th
 @media(max-width:380px){.ft-lift-layout{grid-template-columns:90px minmax(0,1fr);gap:8px}.ft-stop{font-size:13px}.ft-door-button{font-size:14px}#view .ft-indicator{font-size:12px}.ft-task{padding:16px}}
 @media(prefers-reduced-motion:reduce){.ft-lift-page *{animation:none!important;transition:none!important}}
 body.stw-site-theme #view :is(.ft-plan,.ft-plan p,.ft-stop,.ft-door-button,.ft-indicator,.ft-indicator b){font-family:'TySpecialElite',monospace!important}
+
+/* One printer, a level-specific bank and one time display on the lift. */
+.ft-mode-label{display:inline-block;margin:0 12px 20px 0;font-size:19px}
+.ft-mode-select{max-width:100%;padding:12px;border:1px solid currentColor;background:var(--lesson-card-2);color:var(--lesson-ink);font:18px var(--stw-title-font);margin-bottom:20px}
+.ft-lift-layout{grid-template-columns:minmax(260px,340px) minmax(0,1fr)}
+@media(max-width:1000px) and (min-width:761px){.ft-lift-layout{grid-template-columns:minmax(230px,290px) minmax(0,1fr)}}
+@media(max-width:760px){.ft-lift-layout{grid-template-columns:minmax(0,1fr)}.ft-task{grid-column:auto}.ft-shaft{padding-top:12px}.ft-mode-select{font-size:16px}}
+.ft-printer-page .tt-ticket--document{--ticket-paper:var(--lesson-paper);--ticket-ink:var(--lesson-ink)}

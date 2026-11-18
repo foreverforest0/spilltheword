@@ -12751,7 +12751,7 @@ homeBind=function(){
   setView(`<section class="grammar-page"><h1 class="grammar-title">Grammar</h1>
    <div class="grammar-levels" role="tablist" aria-label="Choose grammar level">${GLV.map(l=>`<button type="button" role="tab" aria-selected="${S.glevel===l[0]}" class="grammar-level${S.glevel===l[0]?' active':''}" data-catalog-level="${l[0]}">${l[1]}</button>`).join('')}</div>
    ${topic?`<button type="button" class="grammar-back" id="grammarTopicsBack">← All topics</button><h2 class="grammar-topic-heading">${esc(topic.name)}</h2>`:''}
-   ${!topic&&S.glevel!=='kids'?`<div class="future-windows" id="futureWindows" aria-label="Future tense practice"><button type="button" class="grammar-topic" data-future-window="basic">${topicDoodle(1)}<span>Future Simple / will / going to</span></button>${!['a1','a2'].includes(S.glevel)?`<button type="button" class="grammar-topic" data-future-window="advanced">${topicDoodle(3)}<span>Future Continuous / Perfect / Perfect Continuous</span></button>`:''}</div>`:''}
+   ${!topic&&S.glevel!=='kids'?`<div class="future-windows" id="futureWindows" aria-label="Future tense practice"><button type="button" class="grammar-topic" data-future-window="basic">${topicDoodle(1)}<span>${['b1','b2'].includes(S.glevel)?'Future practice':'Future Simple / will / going to'}</span></button>${!['a1','a2','b1','b2'].includes(S.glevel)?`<button type="button" class="grammar-topic" data-future-window="advanced">${topicDoodle(3)}<span>Future Continuous / Perfect / Perfect Continuous</span></button>`:''}</div>`:''}
    <div class="grammar-topics" aria-label="${topic?'Choose an exercise':'Grammar topics'}">${entries.map((g,i)=>`<button type="button" class="grammar-topic" ${topic?'data-grammar-exercise':'data-grammar-topic'}="${esc(g.key)}">${topicDoodle(i)}<span>${esc(g.name)}${!topic&&S.glevel==='all'?` · ${g.lv.toUpperCase()}`:''}</span></button>`).join('')}</div>
   </section>`);
   $('#futureWindows')?.addEventListener('click',e=>{const b=e.target.closest('[data-future-window]');if(b)spOpen('future_'+b.dataset.futureWindow)});
@@ -12868,10 +12868,11 @@ async function boot(){
 <script src="b1-video.js?v=b1-film-20261116-2"></script>
 <link rel="stylesheet" href="future-practice.css?v=future-hints-20261117-1">
 <script src="future-practice-data.js?v=future-hints-20261117-1"></script>
-<script src="future-practice.js?v=levels-art-20261117-1"></script>
-<link rel="stylesheet" href="future-time.css?v=time-lift-20261117-1">
+<script src="future-practice.js?v=future-course-20261118-1"></script>
+<link rel="stylesheet" href="future-time.css?v=future-course-20261118-1">
 <script src="future-time-data.js?v=time-lift-20261117-1"></script>
-<script src="future-time.js?v=levels-art-20261117-1"></script>
+<script src="future-level-data.js?v=future-course-20261118-1"></script>
+<script src="future-time.js?v=future-course-20261118-1"></script>
 <link rel="stylesheet" href="site-interactions.css?v=topic-balls-20261117-1">
 <script src="site-interactions.js?v=topic-balls-20261117-1"></script>
 <link rel="stylesheet" href="topic-ball.css?v=topic-balls-20261117-1">

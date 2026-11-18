@@ -11,7 +11,7 @@ server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(ROOT)));T
 with sync_playwright() as pw:
  b=pw.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']);p=b.new_page(viewport={'width':1440,'height':1050},reduced_motion='reduce');errors=[];missing=[]
  p.on('pageerror',lambda e:errors.append(str(e)));p.on('response',lambda r:missing.append(r.url) if r.status>=400 and r.url.startswith(base) and 'favicon' not in r.url else None);p.goto(base)
- p.evaluate("go('gram')");assert p.locator('[data-future-window]').count()==2
+ p.evaluate("S.glevel='c1';go('gram')");assert p.locator('[data-future-window]').count()==2
  p.locator('[data-future-window="basic"]').click();assert p.locator('[data-future-task]').count()==3
  p.locator('[data-future-task="timetable"]').click();assert p.locator('.timetable-page').is_visible();assert p.locator('.tt-ticket').count()==0
  p.locator('#ttHow').click();assert 'dates and times are created for practice' in p.locator('#ttHelp').inner_text()
