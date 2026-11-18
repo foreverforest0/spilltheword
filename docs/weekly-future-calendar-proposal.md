@@ -39,13 +39,18 @@ selection. Relevant time is visible in the question, not an extra sidebar.
 future form and a reference time, then says/writes one sentence. Hint gives a semantic
 reminder; Show answers lists multiple valid perspectives. No automatic grading.
 
-Cancellation: a single Cancel event action strikes through the selected event with
-Rough Notation. The label changes to Cancelled. Same appointment stays visible.
-For Questions, negative task replaces the current task and previous revealed model
-is hidden. For No questions, learner explains the changed plan. Restore reverses it.
-In Future Perfect cancellation, use "will not have done ... by ..." only if the revised
-facts establish non-completion by the reference point. Cancellation alone does not
-prove that an action cannot happen later; avoid logically forced wrong models.
+Strikethrough: label the button «Зачеркнуть». Draw a pencil strike through the selected
+event, retaining its time and text. No Cancelled state or Cancel event label.
+Repeat click removes the mark. It can support a negative sentence but is not a separate
+cancellation workflow. No automatic answer checking.
+
+Free practice: no automatic event selection or annotation. Learner clicks any event;
+only then do Rough Notation and the answer pane activate. Clicking a different event
+moves the selection. Questions mode can select the next event automatically.
+
+Prototype (review artifact, outside the published site):
+/workspace/shared/downloads/calendar-concepts/weekly-calendar-concepts.html
+Two looks: time-grid week (event height reflects duration) and paper day boxes.
 
 Always show Hint and Show answers; preserve notes separately by mode, tense and event.
 Don't show the selected tense in the Mix task. A same event may support multiple forms;
