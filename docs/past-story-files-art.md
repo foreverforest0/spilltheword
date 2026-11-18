@@ -8,10 +8,14 @@ Each file has eight readable evidence cards. Reveal counts: 4,4,6,6,8,8,8.
 The final two clues establish earlier events for Past Perfect, followed by a whole-story
 prompt. Responses and reveals save separately for B1 and B2. No automatic grading.
 
-Final artwork is pending. The draft uses factual document cards, not substitute images.
-Use one visual style throughout. All text and dates are rendered separately as HTML.
+All 15 approved blue-pencil illustrations are now connected to their evidence cards.
+The user supplied the original sheet in a ZIP on 18 November 2026. Its bytes are kept
+unchanged in assets/past-story-files; SVG viewports display each illustration.
+The manifest records bounds and the original SHA-256. No alpha removal or redraw.
+Folder previews use non-revealing objects. Story illustrations only appear when the
+associated evidence is unlocked. Text and dates remain accessible HTML.
 
-## 15 illustrations shared by both levels
+## 15 illustrations shared by both levels (approved source)
 Dog: (1) Max peeking from Mia's large work bag; (2) interview scene, Mia and Leo at
 one table while Max eats a sandwich underneath; (3) open empty lunch box.
 Farewell: (4) farewell cake with a blank icing area for HTML text; (5) Ben entering

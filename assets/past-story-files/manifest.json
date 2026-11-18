@@ -1,0 +1,170 @@
+{
+  "source": "approved-blue-pencil-sheet.png",
+  "size": [
+    972,
+    1619
+  ],
+  "illustrations": {
+    "dog": [
+      [
+        6,
+        [
+          0,
+          0,
+          275,
+          375
+        ],
+        "Max peeking from Mia’s bag"
+      ],
+      [
+        4,
+        [
+          275,
+          0,
+          390,
+          375
+        ],
+        "Mia interviewing Leo while Max eats under the table"
+      ],
+      [
+        2,
+        [
+          668,
+          0,
+          304,
+          375
+        ],
+        "An empty lunch box and wrapper"
+      ]
+    ],
+    "farewell": [
+      [
+        0,
+        [
+          0,
+          390,
+          247,
+          315
+        ],
+        "A cake for the surprise party"
+      ],
+      [
+        2,
+        [
+          248,
+          390,
+          363,
+          315
+        ],
+        "Ben and his manager arrive at the surprise party"
+      ],
+      [
+        7,
+        [
+          611,
+          390,
+          361,
+          315
+        ],
+        "Ben cuts the cake with his colleagues"
+      ]
+    ],
+    "proposal": [
+      [
+        1,
+        [
+          0,
+          720,
+          245,
+          300
+        ],
+        "A dessert with a ring"
+      ],
+      [
+        4,
+        [
+          245,
+          708,
+          366,
+          312
+        ],
+        "Mia reacts while Ben reads the menu"
+      ],
+      [
+        3,
+        [
+          614,
+          710,
+          358,
+          310
+        ],
+        "A guest at the next table waves at the waiter"
+      ]
+    ],
+    "gift": [
+      [
+        1,
+        [
+          0,
+          1025,
+          253,
+          297
+        ],
+        "A teapot in a reused gift box"
+      ],
+      [
+        4,
+        [
+          255,
+          1025,
+          345,
+          297
+        ],
+        "Mia wraps the box while Ben writes a card"
+      ],
+      [
+        7,
+        [
+          601,
+          1025,
+          371,
+          297
+        ],
+        "The family drinks tea from the teapot"
+      ]
+    ],
+    "santa": [
+      [
+        1,
+        [
+          0,
+          1324,
+          242,
+          295
+        ],
+        "A plain mug with gift wrapping"
+      ],
+      [
+        4,
+        [
+          243,
+          1324,
+          370,
+          295
+        ],
+        "Mia puts a gift on Ben’s desk"
+      ],
+      [
+        7,
+        [
+          614,
+          1324,
+          358,
+          295
+        ],
+        "Ben and the manager look at the mug as Mia explains"
+      ]
+    ]
+  },
+  "sha256": "2e26fcb45e9bb28fc0640e86b0e8b85346a3f8619e60d0e11f99584da895f270"
+}
