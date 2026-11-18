@@ -75,12 +75,12 @@ window.FutureLevelData={
           "kind": "will",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "You think Mia’s salary will be higher next year."
+            "You think Florence’s salary will be higher next year."
           ],
           "prompt": "Make a prediction.",
           "hint": "A decision now, promise, offer or belief.",
           "answers": [
-            "Mia will earn a higher salary next year."
+            "Florence will earn a higher salary next year."
           ],
           "vocab": {
             "course": "b1",
@@ -141,7 +141,7 @@ window.FutureLevelData={
           "kind": "will",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "Mia asks: Will you work a shift tomorrow? You are not working."
+            "Arthur asks: Will you work a shift tomorrow? You are not working."
           ],
           "prompt": "Give a short negative answer.",
           "hint": "A decision now, promise, offer or belief.",
@@ -165,12 +165,12 @@ window.FutureLevelData={
           "kind": "going",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "Mia decided yesterday to apply for a job."
+            "Oliver decided yesterday to apply for a job."
           ],
           "prompt": "Describe her plan.",
           "hint": "An earlier intention or visible evidence.",
           "answers": [
-            "Mia is going to apply for a job."
+            "Oliver is going to apply for a job."
           ],
           "vocab": {
             "course": "b1",
@@ -209,12 +209,12 @@ window.FutureLevelData={
           "kind": "going",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "Mia still has ten tasks. The deadline is in five minutes."
+            "Harry still has ten tasks. The deadline is in five minutes."
           ],
           "prompt": "Predict the result. Use miss.",
           "hint": "An earlier intention or visible evidence.",
           "answers": [
-            "Mia is going to miss the deadline."
+            "Harry is going to miss the deadline."
           ],
           "vocab": {
             "course": "b1",
@@ -275,12 +275,12 @@ window.FutureLevelData={
           "kind": "going",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "Mia has decided to write a script this summer."
+            "Charlotte has decided to write a script this summer."
           ],
           "prompt": "Ask about her plan.",
           "hint": "An earlier intention or visible evidence.",
           "answers": [
-            "Is Mia going to write a script this summer?"
+            "Is Charlotte going to write a script this summer?"
           ],
           "vocab": {
             "course": "b1",
@@ -321,12 +321,12 @@ window.FutureLevelData={
           "kind": "arrangement",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "Mia and her manager agreed to meet tomorrow. The meeting is booked."
+            "Oliver and her manager agreed to meet tomorrow. The meeting is booked."
           ],
           "prompt": "Describe the arrangement.",
           "hint": "A confirmed arrangement.",
           "answers": [
-            "Mia is meeting her manager tomorrow."
+            "Oliver is meeting her manager tomorrow."
           ],
           "vocab": {
             "course": "b1",
@@ -365,12 +365,12 @@ window.FutureLevelData={
           "kind": "arrangement",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "Mia’s next shift is confirmed: Saturday."
+            "Harry’s next shift is confirmed: Saturday."
           ],
           "prompt": "Describe the arrangement. Use work.",
           "hint": "A confirmed arrangement.",
           "answers": [
-            "Mia is working a shift on Saturday."
+            "Harry is working a shift on Saturday."
           ],
           "vocab": {
             "course": "b1",
@@ -431,12 +431,12 @@ window.FutureLevelData={
           "kind": "arrangement",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "Mia and the director confirmed a meeting for Thursday."
+            "Charlotte and the director confirmed a meeting for Thursday."
           ],
-          "prompt": "Ask about Mia’s arrangement on Thursday.",
+          "prompt": "Ask about Charlotte’s arrangement on Thursday.",
           "hint": "A confirmed arrangement.",
           "answers": [
-            "Is Mia meeting the director on Thursday?"
+            "Is Charlotte meeting the director on Thursday?"
           ],
           "vocab": {
             "course": "b1",
@@ -554,8 +554,7 @@ window.FutureLevelData={
           "facts": [
             "The British Museum",
             "TOMORROW",
-            "Opens: 09:00",
-            "Mia’s shift starts after this event."
+            "Opens: 09:00"
           ],
           "prompt": "Say when it opens.",
           "hint": "An official timetable.",
@@ -579,8 +578,7 @@ window.FutureLevelData={
           "facts": [
             "London Zoo",
             "TOMORROW",
-            "Closes: 18:00",
-            "Mia’s shift starts after this event."
+            "Closes: 18:00"
           ],
           "prompt": "Say when it closes.",
           "hint": "An official timetable.",
@@ -604,8 +602,7 @@ window.FutureLevelData={
           "facts": [
             "Eurostar: London → Paris",
             "TOMORROW",
-            "Leaves: 09:31",
-            "Mia’s shift starts after this event."
+            "Leaves: 09:31"
           ],
           "prompt": "Say when it leaves.",
           "hint": "An official timetable.",
@@ -629,8 +626,7 @@ window.FutureLevelData={
           "facts": [
             "Hamilton · Victoria Palace Theatre",
             "TOMORROW",
-            "Starts: 19:30",
-            "Mia’s shift starts after this event."
+            "Starts: 19:30"
           ],
           "prompt": "Say when it starts.",
           "hint": "An official timetable.",
@@ -655,13 +651,13 @@ window.FutureLevelData={
           "title": "WORK SHIFT",
           "facts": [
             "TOMORROW",
-            "Mia: work a shift",
+            "Oliver: work a shift",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Describe Mia’s activity at 10 am.",
+          "prompt": "Describe Oliver’s activity at 10 am.",
           "hint": "Activity in progress.",
           "answers": [
-            "Mia will be working a shift at ten tomorrow."
+            "Oliver will be working a shift at ten tomorrow."
           ],
           "vocab": {
             "course": "b1",
@@ -680,13 +676,13 @@ window.FutureLevelData={
           "title": "FILM PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: watch a documentary",
+            "Amelia: watch a documentary",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Describe Mia’s activity at 10 am.",
+          "prompt": "Describe Amelia’s activity at 10 am.",
           "hint": "Activity in progress.",
           "answers": [
-            "Mia will be watching a documentary at ten tomorrow."
+            "Amelia will be watching a documentary at ten tomorrow."
           ],
           "vocab": {
             "course": "b1",
@@ -705,13 +701,13 @@ window.FutureLevelData={
           "title": "WORK PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: do the task",
+            "Harry: do the task",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Ask about Mia’s activity at 10 am.",
+          "prompt": "Ask about Harry’s activity at 10 am.",
           "hint": "Activity in progress.",
           "answers": [
-            "What will Mia be doing at ten tomorrow?"
+            "What will Harry be doing at ten tomorrow?"
           ],
           "vocab": {
             "course": "b1",
@@ -730,14 +726,14 @@ window.FutureLevelData={
           "title": "FILM SCRIPT",
           "facts": [
             "TOMORROW",
-            "Mia: read the script",
+            "Florence: read the script",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Say Mia is not resting at 10 am.",
+          "prompt": "Say Florence is not resting at 10 am.",
           "hint": "Activity in progress.",
           "answers": [
-            "Mia will not be resting at ten tomorrow.",
-            "Mia won’t be resting at ten tomorrow."
+            "Florence will not be resting at ten tomorrow.",
+            "Florence won’t be resting at ten tomorrow."
           ],
           "vocab": {
             "course": "b1",
@@ -756,13 +752,13 @@ window.FutureLevelData={
           "title": "JOB PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: apply for a job",
+            "George: apply for a job",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Describe Mia’s activity at 10 am.",
+          "prompt": "Describe George’s activity at 10 am.",
           "hint": "Activity in progress.",
           "answers": [
-            "Mia will be applying for a job at ten tomorrow."
+            "George will be applying for a job at ten tomorrow."
           ],
           "vocab": {
             "course": "b1",
@@ -781,13 +777,13 @@ window.FutureLevelData={
           "title": "FRIENDSHIP PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: write to her friends to stay in touch with them",
+            "Charlotte: write to her friends to stay in touch with them",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Describe Mia’s activity at 10 am.",
+          "prompt": "Describe Charlotte’s activity at 10 am.",
           "hint": "Activity in progress.",
           "answers": [
-            "Mia will be writing to her friends at ten tomorrow."
+            "Charlotte will be writing to her friends at ten tomorrow."
           ],
           "vocab": {
             "course": "b1",
@@ -806,13 +802,13 @@ window.FutureLevelData={
           "title": "BILLS",
           "facts": [
             "TOMORROW",
-            "Mia: check the bills",
+            "Arthur: check the bills",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Describe Mia’s activity at 10 am.",
+          "prompt": "Describe Arthur’s activity at 10 am.",
           "hint": "Activity in progress.",
           "answers": [
-            "Mia will be checking the bills at ten tomorrow."
+            "Arthur will be checking the bills at ten tomorrow."
           ],
           "vocab": {
             "course": "b1",
@@ -833,13 +829,13 @@ window.FutureLevelData={
           "title": "WORK SHIFT",
           "facts": [
             "TOMORROW",
-            "Mia: work a shift",
+            "Oliver: work a shift",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Say what Mia will finish by noon.",
+          "prompt": "Say what Oliver will finish by noon.",
           "hint": "Completed by this point.",
           "answers": [
-            "Mia will have worked a shift by noon tomorrow."
+            "Oliver will have worked a shift by noon tomorrow."
           ],
           "vocab": {
             "course": "b1",
@@ -858,13 +854,13 @@ window.FutureLevelData={
           "title": "FILM PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: watch a documentary",
+            "Amelia: watch a documentary",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Say what Mia will finish by noon.",
+          "prompt": "Say what Amelia will finish by noon.",
           "hint": "Completed by this point.",
           "answers": [
-            "Mia will have watched a documentary by noon tomorrow."
+            "Amelia will have watched a documentary by noon tomorrow."
           ],
           "vocab": {
             "course": "b1",
@@ -883,13 +879,13 @@ window.FutureLevelData={
           "title": "WORK PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: do the task",
+            "Harry: do the task",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Ask if Mia will finish by noon.",
+          "prompt": "Ask if Harry will finish by noon.",
           "hint": "Completed by this point.",
           "answers": [
-            "Will Mia have done the task by noon tomorrow?"
+            "Will Harry have done the task by noon tomorrow?"
           ],
           "vocab": {
             "course": "b1",
@@ -908,14 +904,14 @@ window.FutureLevelData={
           "title": "FILM SCRIPT",
           "facts": [
             "TOMORROW",
-            "Mia: read the script",
+            "Florence: read the script",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Say the activity will not be finished by 10 am.",
           "hint": "Completed by this point.",
           "answers": [
-            "Mia will not have read the script by ten tomorrow.",
-            "Mia won’t have read the script by ten tomorrow."
+            "Florence will not have read the script by ten tomorrow.",
+            "Florence won’t have read the script by ten tomorrow."
           ],
           "vocab": {
             "course": "b1",
@@ -934,13 +930,13 @@ window.FutureLevelData={
           "title": "JOB PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: apply for a job",
+            "George: apply for a job",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Say what Mia will finish by noon.",
+          "prompt": "Say what George will finish by noon.",
           "hint": "Completed by this point.",
           "answers": [
-            "Mia will have applied for a job by noon tomorrow."
+            "George will have applied for a job by noon tomorrow."
           ],
           "vocab": {
             "course": "b1",
@@ -959,13 +955,13 @@ window.FutureLevelData={
           "title": "FRIENDSHIP PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: write to her friends to stay in touch with them",
+            "Charlotte: write to her friends to stay in touch with them",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Say what Mia will finish by noon.",
+          "prompt": "Say what Charlotte will finish by noon.",
           "hint": "Completed by this point.",
           "answers": [
-            "Mia will have written to her friends by noon tomorrow."
+            "Charlotte will have written to her friends by noon tomorrow."
           ],
           "vocab": {
             "course": "b1",
@@ -984,13 +980,13 @@ window.FutureLevelData={
           "title": "BILLS",
           "facts": [
             "TOMORROW",
-            "Mia: check the bills",
+            "Arthur: check the bills",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Say what Mia will finish by noon.",
+          "prompt": "Say what Arthur will finish by noon.",
           "hint": "Completed by this point.",
           "answers": [
-            "Mia will have checked the bills by noon tomorrow."
+            "Arthur will have checked the bills by noon tomorrow."
           ],
           "vocab": {
             "course": "b1",
@@ -1011,13 +1007,13 @@ window.FutureLevelData={
           "title": "WORK SHIFT",
           "facts": [
             "TOMORROW",
-            "Mia: work a shift",
+            "Oliver: work a shift",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Give the duration by 11 am.",
           "hint": "Duration up to this point.",
           "answers": [
-            "By eleven tomorrow, Mia will have been working a shift for two hours."
+            "By eleven tomorrow, Oliver will have been working a shift for two hours."
           ],
           "vocab": {
             "course": "b1",
@@ -1036,13 +1032,13 @@ window.FutureLevelData={
           "title": "FILM PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: watch a documentary",
+            "Amelia: watch a documentary",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Give the duration by 11 am.",
           "hint": "Duration up to this point.",
           "answers": [
-            "By eleven tomorrow, Mia will have been watching a documentary for two hours."
+            "By eleven tomorrow, Amelia will have been watching a documentary for two hours."
           ],
           "vocab": {
             "course": "b1",
@@ -1061,13 +1057,13 @@ window.FutureLevelData={
           "title": "WORK PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: do the task",
+            "Harry: do the task",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Ask about the duration by 11 am.",
           "hint": "Duration up to this point.",
           "answers": [
-            "How long will Mia have been doing the task by eleven tomorrow?"
+            "How long will Harry have been doing the task by eleven tomorrow?"
           ],
           "vocab": {
             "course": "b1",
@@ -1086,13 +1082,13 @@ window.FutureLevelData={
           "title": "FILM SCRIPT",
           "facts": [
             "TOMORROW",
-            "Mia: read the script",
+            "Florence: read the script",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Give the duration by 11 am.",
           "hint": "Duration up to this point.",
           "answers": [
-            "By eleven tomorrow, Mia will have been reading the script for two hours."
+            "By eleven tomorrow, Florence will have been reading the script for two hours."
           ],
           "vocab": {
             "course": "b1",
@@ -1111,13 +1107,13 @@ window.FutureLevelData={
           "title": "JOB PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: apply for a job",
+            "George: apply for a job",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Give the duration by 11 am.",
           "hint": "Duration up to this point.",
           "answers": [
-            "By eleven tomorrow, Mia will have been applying for a job for two hours."
+            "By eleven tomorrow, George will have been applying for a job for two hours."
           ],
           "vocab": {
             "course": "b1",
@@ -1136,13 +1132,13 @@ window.FutureLevelData={
           "title": "FRIENDSHIP PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: write to her friends to stay in touch with them",
+            "Charlotte: write to her friends to stay in touch with them",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Give the duration by 11 am.",
           "hint": "Duration up to this point.",
           "answers": [
-            "By eleven tomorrow, Mia will have been writing to her friends for two hours."
+            "By eleven tomorrow, Charlotte will have been writing to her friends for two hours."
           ],
           "vocab": {
             "course": "b1",
@@ -1161,13 +1157,13 @@ window.FutureLevelData={
           "title": "BILLS",
           "facts": [
             "TOMORROW",
-            "Mia: check the bills",
+            "Arthur: check the bills",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Give the duration by 11 am.",
           "hint": "Duration up to this point.",
           "answers": [
-            "By eleven tomorrow, Mia will have been checking the bills for two hours."
+            "By eleven tomorrow, Arthur will have been checking the bills for two hours."
           ],
           "vocab": {
             "course": "b1",
@@ -1189,13 +1185,13 @@ window.FutureLevelData={
         "title": "WORK SHIFT",
         "facts": [
           "TOMORROW",
-          "Sam: work a shift",
+          "Oliver: works a shift",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Describe the activity at this time.",
+        "prompt": "What is Oliver doing at 10 am tomorrow? Describe the future activity.",
         "hint": "Activity in progress.",
         "answers": [
-          "Sam will be working a shift at ten tomorrow."
+          "Oliver will be working a shift at ten tomorrow."
         ],
         "vocab": {
           "course": "b1",
@@ -1207,7 +1203,9 @@ window.FutureLevelData={
           ]
         },
         "label": "At 10 am",
-        "art": "clock"
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-sad-man-whole.png",
+        "objectImage": "assets/wobbly/pictures/rtn-laptop-whole.png"
       },
       {
         "id": "b1-perfect-0-lift",
@@ -1215,13 +1213,13 @@ window.FutureLevelData={
         "title": "WORK SHIFT",
         "facts": [
           "TOMORROW",
-          "Sam: work a shift",
+          "Oliver: works a shift",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Say what will be complete by this time.",
+        "prompt": "Say what Oliver will have completed by noon tomorrow.",
         "hint": "Completed by this point.",
         "answers": [
-          "Sam will have worked a shift by noon tomorrow."
+          "Oliver will have worked a shift by noon tomorrow."
         ],
         "vocab": {
           "course": "b1",
@@ -1233,7 +1231,9 @@ window.FutureLevelData={
           ]
         },
         "label": "By noon",
-        "art": null
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-sad-man-whole.png",
+        "objectImage": "assets/wobbly/pictures/rtn-laptop-whole.png"
       },
       {
         "id": "b1-perfectcontinuous-0-lift",
@@ -1241,13 +1241,13 @@ window.FutureLevelData={
         "title": "WORK SHIFT",
         "facts": [
           "TOMORROW",
-          "Sam: work a shift",
+          "Oliver: works a shift",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Give the duration up to this time.",
+        "prompt": "Say how long Oliver will have been doing this by 11 am tomorrow.",
         "hint": "Duration up to this point.",
         "answers": [
-          "By eleven tomorrow, Sam will have been working a shift for two hours."
+          "By eleven tomorrow, Oliver will have been working a shift for two hours."
         ],
         "vocab": {
           "course": "b1",
@@ -1259,7 +1259,9 @@ window.FutureLevelData={
           ]
         },
         "label": "By 11 am",
-        "art": null
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-sad-man-whole.png",
+        "objectImage": "assets/wobbly/pictures/rtn-laptop-whole.png"
       },
       {
         "id": "b1-continuous-1-lift",
@@ -1267,13 +1269,13 @@ window.FutureLevelData={
         "title": "FILM PLAN",
         "facts": [
           "TOMORROW",
-          "Sam: watch a documentary",
+          "Amelia: watches a documentary",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Describe the activity at this time.",
+        "prompt": "What is Amelia doing at 10 am tomorrow? Describe the future activity.",
         "hint": "Activity in progress.",
         "answers": [
-          "Sam will be watching a documentary at ten tomorrow."
+          "Amelia will be watching a documentary at ten tomorrow."
         ],
         "vocab": {
           "course": "b1",
@@ -1285,7 +1287,9 @@ window.FutureLevelData={
           ]
         },
         "label": "At 10 am",
-        "art": "clock"
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-woman-headband-whole.png",
+        "objectImage": "assets/wobbly/pictures/popcorn-whole.png"
       },
       {
         "id": "b1-perfect-1-lift",
@@ -1293,13 +1297,13 @@ window.FutureLevelData={
         "title": "FILM PLAN",
         "facts": [
           "TOMORROW",
-          "Sam: watch a documentary",
+          "Amelia: watches a documentary",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Say what will be complete by this time.",
+        "prompt": "Say what Amelia will have completed by noon tomorrow.",
         "hint": "Completed by this point.",
         "answers": [
-          "Sam will have watched a documentary by noon tomorrow."
+          "Amelia will have watched a documentary by noon tomorrow."
         ],
         "vocab": {
           "course": "b1",
@@ -1311,7 +1315,9 @@ window.FutureLevelData={
           ]
         },
         "label": "By noon",
-        "art": null
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-woman-headband-whole.png",
+        "objectImage": "assets/wobbly/pictures/popcorn-whole.png"
       },
       {
         "id": "b1-perfectcontinuous-1-lift",
@@ -1319,13 +1325,13 @@ window.FutureLevelData={
         "title": "FILM PLAN",
         "facts": [
           "TOMORROW",
-          "Sam: watch a documentary",
+          "Amelia: watches a documentary",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Give the duration up to this time.",
+        "prompt": "Say how long Amelia will have been doing this by 11 am tomorrow.",
         "hint": "Duration up to this point.",
         "answers": [
-          "By eleven tomorrow, Sam will have been watching a documentary for two hours."
+          "By eleven tomorrow, Amelia will have been watching a documentary for two hours."
         ],
         "vocab": {
           "course": "b1",
@@ -1337,7 +1343,9 @@ window.FutureLevelData={
           ]
         },
         "label": "By 11 am",
-        "art": null
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-woman-headband-whole.png",
+        "objectImage": "assets/wobbly/pictures/popcorn-whole.png"
       },
       {
         "id": "b1-continuous-2-lift",
@@ -1345,13 +1353,13 @@ window.FutureLevelData={
         "title": "WORK PLAN",
         "facts": [
           "TOMORROW",
-          "Sam: do the task",
+          "Harry: does the task",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Ask about Sam’s activity at this time.",
+        "prompt": "Ask about Harry’s activity at 10 am tomorrow.",
         "hint": "Activity in progress.",
         "answers": [
-          "What will Sam be doing at ten tomorrow?"
+          "What will Harry be doing at ten tomorrow?"
         ],
         "vocab": {
           "course": "b1",
@@ -1363,7 +1371,9 @@ window.FutureLevelData={
           ]
         },
         "label": "At 10 am",
-        "art": "clock"
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-old-man-cup-whole.png",
+        "objectImage": "assets/wobbly/pictures/book-whole.png"
       },
       {
         "id": "b1-perfect-2-lift",
@@ -1371,13 +1381,13 @@ window.FutureLevelData={
         "title": "WORK PLAN",
         "facts": [
           "TOMORROW",
-          "Sam: do the task",
+          "Harry: does the task",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Ask if Sam will finish by this time.",
+        "prompt": "Ask whether Harry will finish the task by noon tomorrow.",
         "hint": "Completed by this point.",
         "answers": [
-          "Will Sam have done the task by noon tomorrow?"
+          "Will Harry have done the task by noon tomorrow?"
         ],
         "vocab": {
           "course": "b1",
@@ -1389,7 +1399,9 @@ window.FutureLevelData={
           ]
         },
         "label": "By noon",
-        "art": null
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-old-man-cup-whole.png",
+        "objectImage": "assets/wobbly/pictures/book-whole.png"
       },
       {
         "id": "b1-perfectcontinuous-2-lift",
@@ -1397,13 +1409,13 @@ window.FutureLevelData={
         "title": "WORK PLAN",
         "facts": [
           "TOMORROW",
-          "Sam: do the task",
+          "Harry: does the task",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Ask about the duration up to this time.",
+        "prompt": "Ask about the activity’s duration by 11 am tomorrow.",
         "hint": "Duration up to this point.",
         "answers": [
-          "How long will Sam have been doing the task by eleven tomorrow?"
+          "How long will Harry have been doing the task by eleven tomorrow?"
         ],
         "vocab": {
           "course": "b1",
@@ -1415,7 +1427,9 @@ window.FutureLevelData={
           ]
         },
         "label": "By 11 am",
-        "art": null
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-old-man-cup-whole.png",
+        "objectImage": "assets/wobbly/pictures/book-whole.png"
       }
     ]
   },
@@ -1584,12 +1598,12 @@ window.FutureLevelData={
           "kind": "going",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "Mia has decided to spend next weekend without her phone."
+            "Oliver has decided to spend next weekend without her phone."
           ],
           "prompt": "Describe her intention. Use digital detox.",
           "hint": "An earlier intention or visible evidence.",
           "answers": [
-            "Mia is going to do a digital detox next weekend."
+            "Oliver is going to do a digital detox next weekend."
           ],
           "vocab": {
             "course": "b2alh",
@@ -1672,12 +1686,12 @@ window.FutureLevelData={
           "kind": "going",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "Mia has decided not to change her career this year."
+            "George has decided not to change her career this year."
           ],
           "prompt": "Describe her decision.",
           "hint": "An earlier intention or visible evidence.",
           "answers": [
-            "Mia is not going to change her career this year."
+            "George is not going to change her career this year."
           ],
           "vocab": {
             "course": "b2alh",
@@ -1740,12 +1754,12 @@ window.FutureLevelData={
           "kind": "arrangement",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "Mia’s training starts on Monday. Her place is confirmed."
+            "Oliver’s training starts on Monday. Her place is confirmed."
           ],
           "prompt": "Describe her arrangement.",
           "hint": "A confirmed arrangement.",
           "answers": [
-            "Mia is starting her training on Monday."
+            "Oliver is starting her training on Monday."
           ],
           "vocab": {
             "course": "b2alh",
@@ -1806,12 +1820,12 @@ window.FutureLevelData={
           "kind": "arrangement",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "You agreed to help Mia set up the exhibition at nine tomorrow."
+            "You agreed to help Florence set up the exhibition at nine tomorrow."
           ],
           "prompt": "Describe the arrangement.",
           "hint": "A confirmed arrangement.",
           "answers": [
-            "I am helping Mia set up the exhibition at nine tomorrow."
+            "I am helping Florence set up the exhibition at nine tomorrow."
           ],
           "vocab": {
             "course": "b2alh",
@@ -1828,12 +1842,12 @@ window.FutureLevelData={
           "kind": "arrangement",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "Mia’s interview with a renewable energy researcher is confirmed for Friday."
+            "George’s interview with a renewable energy researcher is confirmed for Friday."
           ],
           "prompt": "Describe the arrangement.",
           "hint": "A confirmed arrangement.",
           "answers": [
-            "Mia is interviewing a renewable energy researcher on Friday."
+            "George is interviewing a renewable energy researcher on Friday."
           ],
           "vocab": {
             "course": "b2alh",
@@ -1872,12 +1886,12 @@ window.FutureLevelData={
           "kind": "arrangement",
           "title": "PLANS & DECISIONS",
           "facts": [
-            "Mia has booked a taxi for tomorrow’s commute. Her bike stays at home."
+            "Arthur has booked a taxi for tomorrow’s commute. Her bike stays at home."
           ],
           "prompt": "Say she is not cycling to work tomorrow.",
           "hint": "A confirmed arrangement.",
           "answers": [
-            "Mia is not cycling to work tomorrow."
+            "Arthur is not cycling to work tomorrow."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2074,13 +2088,13 @@ window.FutureLevelData={
           "title": "PHONE-FREE WALK",
           "facts": [
             "TOMORROW",
-            "Mia: take a phone-free walk as part of her digital detox",
+            "Oliver: take a phone-free walk as part of his digital detox",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Describe Mia’s activity at 10 am.",
+          "prompt": "Describe Oliver’s activity at 10 am.",
           "hint": "Activity in progress.",
           "answers": [
-            "Mia will be taking a phone-free walk at ten tomorrow."
+            "Oliver will be taking a phone-free walk at ten tomorrow."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2099,13 +2113,13 @@ window.FutureLevelData={
           "title": "CAREER PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: do her training",
+            "Amelia: do her training",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Describe Mia’s activity at 10 am.",
+          "prompt": "Describe Amelia’s activity at 10 am.",
           "hint": "Activity in progress.",
           "answers": [
-            "Mia will be doing her training at ten tomorrow."
+            "Amelia will be doing her training at ten tomorrow."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2124,13 +2138,13 @@ window.FutureLevelData={
           "title": "RESEARCH PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: write a report on renewable energy",
+            "Harry: write a report on renewable energy",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Ask about Mia’s activity at 10 am.",
+          "prompt": "Ask about Harry’s activity at 10 am.",
           "hint": "Activity in progress.",
           "answers": [
-            "What will Mia be doing at ten tomorrow?"
+            "What will Harry be doing at ten tomorrow?"
           ],
           "vocab": {
             "course": "b2alh",
@@ -2149,14 +2163,14 @@ window.FutureLevelData={
           "title": "TRAVEL PLAN",
           "facts": [
             "TOMORROW",
-            "Mia’s commute: travel to work",
+            "Florence’s commute: travel to work",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Say Mia is not resting at 10 am.",
+          "prompt": "Say Florence is not resting at 10 am.",
           "hint": "Activity in progress.",
           "answers": [
-            "Mia will not be resting at ten tomorrow.",
-            "Mia won’t be resting at ten tomorrow."
+            "Florence will not be resting at ten tomorrow.",
+            "Florence won’t be resting at ten tomorrow."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2175,13 +2189,13 @@ window.FutureLevelData={
           "title": "EXHIBITION PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: set up the exhibition",
+            "George: set up the exhibition",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Describe Mia’s activity at 10 am.",
+          "prompt": "Describe George’s activity at 10 am.",
           "hint": "Activity in progress.",
           "answers": [
-            "Mia will be setting up the exhibition at ten tomorrow."
+            "George will be setting up the exhibition at ten tomorrow."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2200,13 +2214,13 @@ window.FutureLevelData={
           "title": "CAREER PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: work on her career plan",
+            "Charlotte: work on her career plan",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Describe Mia’s activity at 10 am.",
+          "prompt": "Describe Charlotte’s activity at 10 am.",
           "hint": "Activity in progress.",
           "answers": [
-            "Mia will be working on her career plan at ten tomorrow."
+            "Charlotte will be working on her career plan at ten tomorrow."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2225,13 +2239,13 @@ window.FutureLevelData={
           "title": "SPENDING PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: check her spending to cut back on subscriptions",
+            "Arthur: check his spending to cut back on subscriptions",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Describe Mia’s activity at 10 am.",
+          "prompt": "Describe Arthur’s activity at 10 am.",
           "hint": "Activity in progress.",
           "answers": [
-            "Mia will be checking her spending at ten tomorrow."
+            "Arthur will be checking his spending at ten tomorrow."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2252,13 +2266,13 @@ window.FutureLevelData={
           "title": "PHONE-FREE WALK",
           "facts": [
             "TOMORROW",
-            "Mia: take a phone-free walk as part of her digital detox",
+            "Oliver: take a phone-free walk as part of his digital detox",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Say what Mia will finish by noon.",
+          "prompt": "Say what Oliver will finish by noon.",
           "hint": "Completed by this point.",
           "answers": [
-            "Mia will have taken a phone-free walk by noon tomorrow."
+            "Oliver will have taken a phone-free walk by noon tomorrow."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2277,13 +2291,13 @@ window.FutureLevelData={
           "title": "CAREER PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: do her training",
+            "Amelia: do her training",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Say what Mia will finish by noon.",
+          "prompt": "Say what Amelia will finish by noon.",
           "hint": "Completed by this point.",
           "answers": [
-            "Mia will have finished her training by noon tomorrow."
+            "Amelia will have finished her training by noon tomorrow."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2302,13 +2316,13 @@ window.FutureLevelData={
           "title": "RESEARCH PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: write a report on renewable energy",
+            "Harry: write a report on renewable energy",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Ask if Mia will finish by noon.",
+          "prompt": "Ask if Harry will finish by noon.",
           "hint": "Completed by this point.",
           "answers": [
-            "Will Mia have written a report on renewable energy by noon tomorrow?"
+            "Will Harry have written a report on renewable energy by noon tomorrow?"
           ],
           "vocab": {
             "course": "b2alh",
@@ -2327,14 +2341,14 @@ window.FutureLevelData={
           "title": "TRAVEL PLAN",
           "facts": [
             "TOMORROW",
-            "Mia’s commute: travel to work",
+            "Florence’s commute: travel to work",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Say the activity will not be finished by 10 am.",
           "hint": "Completed by this point.",
           "answers": [
-            "Mia will not have arrived at work by ten tomorrow.",
-            "Mia won’t have arrived at work by ten tomorrow."
+            "Florence will not have arrived at work by ten tomorrow.",
+            "Florence won’t have arrived at work by ten tomorrow."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2353,13 +2367,13 @@ window.FutureLevelData={
           "title": "EXHIBITION PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: set up the exhibition",
+            "George: set up the exhibition",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Say what Mia will finish by noon.",
+          "prompt": "Say what George will finish by noon.",
           "hint": "Completed by this point.",
           "answers": [
-            "Mia will have set up the exhibition by noon tomorrow."
+            "George will have set up the exhibition by noon tomorrow."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2378,13 +2392,13 @@ window.FutureLevelData={
           "title": "CAREER PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: work on her career plan",
+            "Charlotte: work on her career plan",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Say what Mia will finish by noon.",
+          "prompt": "Say what Charlotte will finish by noon.",
           "hint": "Completed by this point.",
           "answers": [
-            "Mia will have finished her career plan by noon tomorrow."
+            "Charlotte will have finished her career plan by noon tomorrow."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2403,13 +2417,13 @@ window.FutureLevelData={
           "title": "SPENDING PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: check her spending to cut back on subscriptions",
+            "Arthur: check his spending to cut back on subscriptions",
             "Start: 09:00 · Finish: 12:00"
           ],
-          "prompt": "Say what Mia will finish by noon.",
+          "prompt": "Say what Arthur will finish by noon.",
           "hint": "Completed by this point.",
           "answers": [
-            "Mia will have checked her spending by noon tomorrow."
+            "Arthur will have checked his spending by noon tomorrow."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2430,13 +2444,13 @@ window.FutureLevelData={
           "title": "PHONE-FREE WALK",
           "facts": [
             "TOMORROW",
-            "Mia: take a phone-free walk as part of her digital detox",
+            "Oliver: take a phone-free walk as part of his digital detox",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Give the duration by 11 am.",
           "hint": "Duration up to this point.",
           "answers": [
-            "By eleven tomorrow, Mia will have been taking a phone-free walk for two hours."
+            "By eleven tomorrow, Oliver will have been taking a phone-free walk for two hours."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2455,13 +2469,13 @@ window.FutureLevelData={
           "title": "CAREER PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: do her training",
+            "Amelia: do her training",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Give the duration by 11 am.",
           "hint": "Duration up to this point.",
           "answers": [
-            "By eleven tomorrow, Mia will have been doing her training for two hours."
+            "By eleven tomorrow, Amelia will have been doing her training for two hours."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2480,13 +2494,13 @@ window.FutureLevelData={
           "title": "RESEARCH PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: write a report on renewable energy",
+            "Harry: write a report on renewable energy",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Ask about the duration by 11 am.",
           "hint": "Duration up to this point.",
           "answers": [
-            "How long will Mia have been writing a report on renewable energy by eleven tomorrow?"
+            "How long will Harry have been writing a report on renewable energy by eleven tomorrow?"
           ],
           "vocab": {
             "course": "b2alh",
@@ -2505,13 +2519,13 @@ window.FutureLevelData={
           "title": "TRAVEL PLAN",
           "facts": [
             "TOMORROW",
-            "Mia’s commute: travel to work",
+            "Florence’s commute: travel to work",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Give the duration by 11 am.",
           "hint": "Duration up to this point.",
           "answers": [
-            "By eleven tomorrow, Mia will have been travelling to work for two hours."
+            "By eleven tomorrow, Florence will have been travelling to work for two hours."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2530,13 +2544,13 @@ window.FutureLevelData={
           "title": "EXHIBITION PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: set up the exhibition",
+            "George: set up the exhibition",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Give the duration by 11 am.",
           "hint": "Duration up to this point.",
           "answers": [
-            "By eleven tomorrow, Mia will have been setting up the exhibition for two hours."
+            "By eleven tomorrow, George will have been setting up the exhibition for two hours."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2555,13 +2569,13 @@ window.FutureLevelData={
           "title": "CAREER PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: work on her career plan",
+            "Charlotte: work on her career plan",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Give the duration by 11 am.",
           "hint": "Duration up to this point.",
           "answers": [
-            "By eleven tomorrow, Mia will have been working on her career plan for two hours."
+            "By eleven tomorrow, Charlotte will have been working on her career plan for two hours."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2580,13 +2594,13 @@ window.FutureLevelData={
           "title": "SPENDING PLAN",
           "facts": [
             "TOMORROW",
-            "Mia: check her spending to cut back on subscriptions",
+            "Arthur: check his spending to cut back on subscriptions",
             "Start: 09:00 · Finish: 12:00"
           ],
           "prompt": "Give the duration by 11 am.",
           "hint": "Duration up to this point.",
           "answers": [
-            "By eleven tomorrow, Mia will have been checking her spending for two hours."
+            "By eleven tomorrow, Arthur will have been checking his spending for two hours."
           ],
           "vocab": {
             "course": "b2alh",
@@ -2608,13 +2622,13 @@ window.FutureLevelData={
         "title": "PHONE-FREE WALK",
         "facts": [
           "TOMORROW",
-          "Sam: take a phone-free walk as part of his digital detox",
+          "Oliver: takes a phone-free walk as part of his digital detox",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Describe the activity at this time.",
+        "prompt": "What is Oliver doing at 10 am tomorrow? Describe the future activity.",
         "hint": "Activity in progress.",
         "answers": [
-          "Sam will be taking a phone-free walk at ten tomorrow."
+          "Oliver will be taking a phone-free walk at ten tomorrow."
         ],
         "vocab": {
           "course": "b2alh",
@@ -2626,7 +2640,9 @@ window.FutureLevelData={
           ]
         },
         "label": "At 10 am",
-        "art": "clock"
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-sad-man-whole.png",
+        "objectImage": "assets/wobbly/pictures/backpack-whole.png"
       },
       {
         "id": "b2-perfect-0-lift",
@@ -2634,13 +2650,13 @@ window.FutureLevelData={
         "title": "PHONE-FREE WALK",
         "facts": [
           "TOMORROW",
-          "Sam: take a phone-free walk as part of his digital detox",
+          "Oliver: takes a phone-free walk as part of his digital detox",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Say what will be complete by this time.",
+        "prompt": "Say what Oliver will have completed by noon tomorrow.",
         "hint": "Completed by this point.",
         "answers": [
-          "Sam will have taken a phone-free walk by noon tomorrow."
+          "Oliver will have taken a phone-free walk by noon tomorrow."
         ],
         "vocab": {
           "course": "b2alh",
@@ -2652,7 +2668,9 @@ window.FutureLevelData={
           ]
         },
         "label": "By noon",
-        "art": null
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-sad-man-whole.png",
+        "objectImage": "assets/wobbly/pictures/backpack-whole.png"
       },
       {
         "id": "b2-perfectcontinuous-0-lift",
@@ -2660,13 +2678,13 @@ window.FutureLevelData={
         "title": "PHONE-FREE WALK",
         "facts": [
           "TOMORROW",
-          "Sam: take a phone-free walk as part of his digital detox",
+          "Oliver: takes a phone-free walk as part of his digital detox",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Give the duration up to this time.",
+        "prompt": "Say how long Oliver will have been doing this by 11 am tomorrow.",
         "hint": "Duration up to this point.",
         "answers": [
-          "By eleven tomorrow, Sam will have been taking a phone-free walk for two hours."
+          "By eleven tomorrow, Oliver will have been taking a phone-free walk for two hours."
         ],
         "vocab": {
           "course": "b2alh",
@@ -2678,7 +2696,9 @@ window.FutureLevelData={
           ]
         },
         "label": "By 11 am",
-        "art": null
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-sad-man-whole.png",
+        "objectImage": "assets/wobbly/pictures/backpack-whole.png"
       },
       {
         "id": "b2-continuous-1-lift",
@@ -2686,13 +2706,13 @@ window.FutureLevelData={
         "title": "CAREER PLAN",
         "facts": [
           "TOMORROW",
-          "Sam: do his training",
+          "Amelia: does her training",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Describe the activity at this time.",
+        "prompt": "What is Amelia doing at 10 am tomorrow? Describe the future activity.",
         "hint": "Activity in progress.",
         "answers": [
-          "Sam will be doing his training at ten tomorrow."
+          "Amelia will be doing her training at ten tomorrow."
         ],
         "vocab": {
           "course": "b2alh",
@@ -2704,7 +2724,9 @@ window.FutureLevelData={
           ]
         },
         "label": "At 10 am",
-        "art": "clock"
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-woman-headband-whole.png",
+        "objectImage": "assets/wobbly/pictures/book-whole.png"
       },
       {
         "id": "b2-perfect-1-lift",
@@ -2712,13 +2734,13 @@ window.FutureLevelData={
         "title": "CAREER PLAN",
         "facts": [
           "TOMORROW",
-          "Sam: do his training",
+          "Amelia: does her training",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Say what will be complete by this time.",
+        "prompt": "Say what Amelia will have completed by noon tomorrow.",
         "hint": "Completed by this point.",
         "answers": [
-          "Sam will have finished his training by noon tomorrow."
+          "Amelia will have finished her training by noon tomorrow."
         ],
         "vocab": {
           "course": "b2alh",
@@ -2730,7 +2752,9 @@ window.FutureLevelData={
           ]
         },
         "label": "By noon",
-        "art": null
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-woman-headband-whole.png",
+        "objectImage": "assets/wobbly/pictures/book-whole.png"
       },
       {
         "id": "b2-perfectcontinuous-1-lift",
@@ -2738,13 +2762,13 @@ window.FutureLevelData={
         "title": "CAREER PLAN",
         "facts": [
           "TOMORROW",
-          "Sam: do his training",
+          "Amelia: does her training",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Give the duration up to this time.",
+        "prompt": "Say how long Amelia will have been doing this by 11 am tomorrow.",
         "hint": "Duration up to this point.",
         "answers": [
-          "By eleven tomorrow, Sam will have been doing his training for two hours."
+          "By eleven tomorrow, Amelia will have been doing her training for two hours."
         ],
         "vocab": {
           "course": "b2alh",
@@ -2756,7 +2780,9 @@ window.FutureLevelData={
           ]
         },
         "label": "By 11 am",
-        "art": null
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-woman-headband-whole.png",
+        "objectImage": "assets/wobbly/pictures/book-whole.png"
       },
       {
         "id": "b2-continuous-2-lift",
@@ -2764,13 +2790,13 @@ window.FutureLevelData={
         "title": "RESEARCH PLAN",
         "facts": [
           "TOMORROW",
-          "Sam: write a report on renewable energy",
+          "Harry: writes a report on renewable energy",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Ask about Sam’s activity at this time.",
+        "prompt": "Ask about Harry’s activity at 10 am tomorrow.",
         "hint": "Activity in progress.",
         "answers": [
-          "What will Sam be doing at ten tomorrow?"
+          "What will Harry be doing at ten tomorrow?"
         ],
         "vocab": {
           "course": "b2alh",
@@ -2782,7 +2808,9 @@ window.FutureLevelData={
           ]
         },
         "label": "At 10 am",
-        "art": "clock"
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-old-man-cup-whole.png",
+        "objectImage": "assets/wobbly/pictures/rtn-laptop-whole.png"
       },
       {
         "id": "b2-perfect-2-lift",
@@ -2790,13 +2818,13 @@ window.FutureLevelData={
         "title": "RESEARCH PLAN",
         "facts": [
           "TOMORROW",
-          "Sam: write a report on renewable energy",
+          "Harry: writes a report on renewable energy",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Ask if Sam will finish by this time.",
+        "prompt": "Ask whether Harry will finish the task by noon tomorrow.",
         "hint": "Completed by this point.",
         "answers": [
-          "Will Sam have written a report on renewable energy by noon tomorrow?"
+          "Will Harry have written a report on renewable energy by noon tomorrow?"
         ],
         "vocab": {
           "course": "b2alh",
@@ -2808,7 +2836,9 @@ window.FutureLevelData={
           ]
         },
         "label": "By noon",
-        "art": null
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-old-man-cup-whole.png",
+        "objectImage": "assets/wobbly/pictures/rtn-laptop-whole.png"
       },
       {
         "id": "b2-perfectcontinuous-2-lift",
@@ -2816,13 +2846,13 @@ window.FutureLevelData={
         "title": "RESEARCH PLAN",
         "facts": [
           "TOMORROW",
-          "Sam: write a report on renewable energy",
+          "Harry: writes a report on renewable energy",
           "Start: 09:00 · Finish: 12:00"
         ],
-        "prompt": "Ask about the duration up to this time.",
+        "prompt": "Ask about the activity’s duration by 11 am tomorrow.",
         "hint": "Duration up to this point.",
         "answers": [
-          "How long will Sam have been writing a report on renewable energy by eleven tomorrow?"
+          "How long will Harry have been writing a report on renewable energy by eleven tomorrow?"
         ],
         "vocab": {
           "course": "b2alh",
@@ -2834,7 +2864,9 @@ window.FutureLevelData={
           ]
         },
         "label": "By 11 am",
-        "art": null
+        "art": null,
+        "personImage": "assets/wobbly/pictures/be-old-man-cup-whole.png",
+        "objectImage": "assets/wobbly/pictures/rtn-laptop-whole.png"
       }
     ]
   }

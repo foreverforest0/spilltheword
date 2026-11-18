@@ -1,7 +1,7 @@
 /* Seven-document future practice and the time lift; no grading of free wording. */
 (()=>{
  'use strict';
- let {documents,lift}=FutureTimeData;const version=2;
+ let {documents,lift}=FutureTimeData;const version=3;
  let all=Object.values(documents).flat();const find=id=>all.find(x=>x.id===id);
  const level=()=>['b1','b2'].includes(S.glevel)?S.glevel:'b2';
  function useCourse(){const data=FutureLevelData[level()];documents=data.documents;lift=data.lift;all=Object.values(documents).flat();return data}
@@ -51,7 +51,7 @@
  }
  function timeLift(){
   prepare();S.futureLiftRuns=S.futureLiftRuns||{};let s=S.futureLiftRuns[level()];if(!s||s.version!==version||!Number.isInteger(s.active)||s.active<0||s.active>=lift.length)s=S.futureLiftRuns[level()]={version,active:0,opened:false,answers:{},shown:{}};s.answers=s.answers||{};s.shown=s.shown||{};s.opened=false;save();
-  setView(`<section class="future-page ft-lift-page">${heading('Time lift')}<p class="ft-instructions">Open the doors. Read the plan and answer for the time on the lift.</p><div class="ft-lift-layout"><div class="ft-shaft"><div class="elv ft-cab" id="ftCab"><div class="elind ft-indicator"><span id="ftArrow" aria-hidden="true">●</span><b id="ftTime"></b></div><div class="elfr"><div class="ft-inside">${art('person')}<div id="ftProp"></div></div><div class="eldr l"></div><div class="eldr r"></div></div></div><button class="ft-door-button" id="ftDoor" aria-controls="ftTask" aria-expanded="false">Open doors</button><p class="ft-lift-status" id="ftStatus" role="status"></p></div><section class="ft-task" id="ftTask" aria-label="Time lift task"></section></div><div class="ft-lift-navigation"><span id="ftRideProgress"></span><button class="lvb" id="ftNext">Next time →</button></div></section>`);
+  setView(`<section class="future-page ft-lift-page">${heading('Time lift')}<p class="ft-instructions">Open the doors. Read the plan and answer for the time on the lift.</p><div class="ft-lift-layout"><div class="ft-shaft"><div class="elv ft-cab" id="ftCab"><div class="elind ft-indicator"><span id="ftArrow" aria-hidden="true">●</span><b id="ftTime"></b></div><div class="elfr"><div class="ft-inside"><img id="ftPerson" class="ft-person-image" alt=""><div id="ftProp"></div></div><div class="eldr l"></div><div class="eldr r"></div></div></div><button class="ft-door-button" id="ftDoor" aria-controls="ftTask" aria-expanded="false">Open doors</button><p class="ft-lift-status" id="ftStatus" role="status"></p></div><section class="ft-task" id="ftTask" aria-label="Time lift task"></section></div><div class="ft-lift-navigation"><span id="ftRideProgress"></span><button class="lvb" id="ftNext">Next time →</button></div></section>`);
   const root=$('.ft-lift-page'),cab=$('#ftCab'),door=$('#ftDoor');let busy=false,alive=true;const timers=new Set();
   function later(fn,delay){const id=setTimeout(()=>{timers.delete(id);if(alive)fn()},quick()?0:delay);timers.add(id)}
   const audio=new Audio('assets/sounds/time-lift.mp3');audio.preload='auto';audio.volume=.55;
@@ -67,7 +67,7 @@
   }
   function draw(){
    const row=lift[s.active];cab.classList.toggle('open',!!s.opened);door.setAttribute('aria-expanded',String(!!s.opened));door.textContent=s.opened?'Close doors':'Open doors';
-   $('#ftTime').textContent=row.label;$('#ftProp').innerHTML=(row.art?art(row.art):'')+(row.extraArt?art(row.extraArt,'ft-extra-art'):'');
+   $('#ftTime').textContent=row.label;$('#ftPerson').src=row.personImage;$('#ftPerson').alt=row.facts[1].split(':')[0];$('#ftProp').innerHTML=row.objectImage?`<img class="ft-object-image" src="${row.objectImage}" alt="${esc(row.title.toLowerCase())} object">`:(row.art?art(row.art):'')+(row.extraArt?art(row.extraArt,'ft-extra-art'):'');
    $('#ftRideProgress').textContent=`${s.active+1} / ${lift.length}`;$('#ftNext').textContent=s.active===lift.length-1?'Start again ↺':'Next time →';$('#ftStatus').textContent='At your stop';
    task();
   }

@@ -50,3 +50,4 @@ body.stw-site-theme #view :is(.ft-plan,.ft-plan p,.ft-stop,.ft-door-button,.ft-i
 @media(max-width:1000px) and (min-width:761px){.ft-lift-layout{grid-template-columns:minmax(230px,290px) minmax(0,1fr)}}
 @media(max-width:760px){.ft-lift-layout{grid-template-columns:minmax(0,1fr)}.ft-task{grid-column:auto}.ft-shaft{padding-top:12px}.ft-mode-select{font-size:16px}}
 .ft-printer-page .tt-ticket--document{--ticket-paper:var(--lesson-paper);--ticket-ink:var(--lesson-ink)}
+.ft-person-image{position:absolute;right:6%;bottom:4%;width:68%;height:65%;object-fit:contain;object-position:center bottom}.ft-object-image{position:absolute;left:3%;top:3%;width:45%;height:27%;object-fit:contain}
