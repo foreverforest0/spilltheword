@@ -26,11 +26,11 @@ with sync_playwright() as pw:
   p.locator(f'[data-catalog-level="{level}"]').click()
   assert p.locator('[data-future-window]').count()==1
   p.locator('[data-future-window]').click()
-  assert p.locator('[data-future-task]').count()==2
+  assert p.locator('[data-future-task]').count()==3
   assert p.evaluate('S.splevel')==level
   p.locator('[data-future-task="printer"]').click()
-  assert p.locator('#ftMode option').count()==8
-  for mode in ['will','going','arrangement','timetable','continuous','perfect','perfectcontinuous','mix']:
+  assert p.locator('#ftMode option').count()==3
+  for mode in ['will','timetable','mix']:
    p.locator('#ftMode').select_option(mode)
    for i in range(7):
     p.locator('#ftPrint').click();p.wait_for_function("document.querySelector('.ft-printer-page').dataset.phase==='ready'")
@@ -39,8 +39,8 @@ with sync_playwright() as pw:
     p.locator('#ftAnswer').fill(f'{level} {mode} {i}')
     p.locator('#ftHint').click();assert p.locator('#ftHintText').is_visible()
     p.locator('#ftShow').click();assert p.locator('#ftAnswers').is_visible()
-   assert p.evaluate('''([l,m])=>{const deck=S.futureDocumentRuns[l+':'+m].deck;return new Set(deck).size===7&&deck.every(id=>id.startsWith(l+'-'))}''',[level,mode])
-   if mode=='mix':assert p.evaluate("l=>new Set(S.futureDocumentRuns[l+':mix'].deck.map(id=>Object.values(FutureLevelData[l].documents).flat().find(r=>r.id===id).kind)).size===7",level)
+   assert p.evaluate('''([l,m])=>{const deck=S.futurePrinterRuns[l+':'+m].deck;return new Set(deck).size===7&&deck.every(id=>id.startsWith(l+'-'))}''',[level,mode])
+   if mode=='mix':assert p.evaluate("l=>new Set(S.futurePrinterRuns[l+':mix'].deck.map(id=>Object.values(FutureLevelData[l].documents).flat().find(r=>r.id===id).kind)).size===2",level)
    p.locator('[data-document-index="0"]').click();assert p.locator('#ftAnswer').input_value()==f'{level} {mode} 0'
   p.reload();p.evaluate("l=>{S.glevel=l;spOpen('future_printer')}",level)
   assert p.locator('#ftAnswer').input_value()==f'{level} mix 0'
@@ -78,4 +78,4 @@ with sync_playwright() as pw:
  p.screenshot(path='/tmp/future-printer-mobile.png',full_page=True)
  assert not errors,errors
  b.close()
-print('PASS: 112 printed tasks; all seven modes + mix; separate course/progress; manual doors; uploaded audio; mobile layout.')
+print('PASS: 42 printed tasks; will, timetable and mix; separate course/progress; manual doors; uploaded audio; mobile layout.')

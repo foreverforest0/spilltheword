@@ -1,3 +1,11 @@
+# Current layout
+
+See [future-calendar.md](future-calendar.md) for the current implementation. Printer
+now contains only will, Present Simple timetables and their Mix. The other five forms
+are practised in the weekly calendar. Time lift remains separate.
+
+## Earlier implementation notes
+
 # Future practice: B1 and B2
 
 B1 and B2 now show one Future practice entry, containing Future printer and Time lift.

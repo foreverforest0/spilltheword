@@ -3161,7 +3161,7 @@ function skin(){
 }
 
 function pillify(root){
- const skip=new Set(['sptask','lpu','shcur','spscene']);
+ const skip=new Set(['sptask','lpu','shcur','spscene','ftMode','fwcFocus','fwcMode']);
  root.querySelectorAll('select').forEach(sel=>{
   if(skip.has(sel.id)||sel.closest('.lph')||sel.options.length>7||sel.options.length<2)return;
   const fld=sel.closest('.fld'),g=document.createElement('div');g.className='pgrp';
@@ -12875,7 +12875,10 @@ async function boot(){
 <link rel="stylesheet" href="future-time.css?v=20261118-4">
 <script src="future-time-data.js?v=time-lift-20261117-1"></script>
 <script src="future-level-data.js?v=20261118-4"></script>
-<script src="future-time.js?v=20261118-4"></script>
+<script src="future-time.js?v=20261118-5"></script>
+<link rel="stylesheet" href="future-calendar.css?v=20261118-1">
+<script src="future-calendar-data.js?v=20261118-1"></script>
+<script src="future-calendar.js?v=20261118-1"></script>
 <link rel="stylesheet" href="site-interactions.css?v=topic-balls-20261117-1">
 <script src="site-interactions.js?v=topic-balls-20261117-1"></script>
 <link rel="stylesheet" href="topic-ball.css?v=topic-balls-20261117-1">
