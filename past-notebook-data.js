@@ -1,0 +1,428 @@
+/* Fictional keepsakes; realistic generated photos, readable document text. */
+window.PastNotebookData=[
+  {
+    "id": "dog",
+    "title": "The unexpected candidate",
+    "description": "A strange noise interrupts an interview. A lunch box, a work bag and a message explain what happened.",
+    "pieces": [
+      {
+        "id": "photo-0",
+        "kind": "photo",
+        "label": "Max in a work bag",
+        "photo": 0,
+        "text": ""
+      },
+      {
+        "id": "photo-1",
+        "kind": "photo",
+        "label": "The interview",
+        "photo": 1,
+        "text": ""
+      },
+      {
+        "id": "object",
+        "kind": "object",
+        "label": "The empty lunch box",
+        "prop": 1,
+        "text": "Ben’s lunch box · found under the interview table, empty."
+      },
+      {
+        "id": "paper-0",
+        "kind": "ticket",
+        "label": "Interview schedule",
+        "text": "INTERVIEW\nLeo Morgan · Room B\n10:00 · Amelia Clark",
+        "b2Text": "INTERVIEW\nLeo Morgan · Room B\n10:00 · Amelia Clark"
+      },
+      {
+        "id": "paper-1",
+        "kind": "note",
+        "label": "Morning message",
+        "text": "08:30 · Amelia → Ben\nThe dog sitter cancelled. I brought Max in my bag. Please keep it secret!",
+        "b2Text": "08:30 · Amelia → Ben\nThe dog sitter cancelled. I brought Max in my bag. Please keep it secret!\nPlease make allowances for Max. I want to make a good impression today."
+      },
+      {
+        "id": "paper-2",
+        "kind": "receipt",
+        "label": "Lunch receipt",
+        "text": "OFFICE DELI\n09:30 · Ben\nChicken sandwich £4.50\nPAID",
+        "b2Text": "OFFICE DELI\n09:30 · Ben\nChicken sandwich £4.50\nPAID"
+      },
+      {
+        "id": "paper-3",
+        "kind": "memo",
+        "label": "Manager’s note",
+        "text": "10:07\nPlease book another interview for Leo at 10:30. Max must wait outside with Ben.\n— The manager",
+        "b2Text": "10:07\nPlease book another interview for Leo at 10:30. Max must wait outside with Ben.\n— The manager"
+      },
+      {
+        "id": "voice",
+        "kind": "audio",
+        "label": "A voice message from Amelia",
+        "text": "",
+        "speaker": "Amelia",
+        "audio": null,
+        "transcript": "Hi Leo, it’s Amelia. I’m really sorry about this morning. Our dog sitter had cancelled, so I brought Max to work. Was he already under the table when you came in? I thought he was still in my bag."
+      }
+    ],
+    "words": {
+      "b1": [
+        "manager",
+        "embarrassed",
+        "worried",
+        "all of a sudden"
+      ],
+      "b2": [
+        "employee",
+        "make allowances",
+        "make a good impression",
+        "embarrassed"
+      ]
+    },
+    "voice": {
+      "file": "dog.mp3",
+      "speaker": "Amelia",
+      "direction": "Young adult British woman; apologetic, slightly embarrassed; conversational, not theatrical.",
+      "script": "Hi Leo, it’s Amelia. I’m really sorry about this morning. Our dog sitter had cancelled, so I brought Max to work. Was he already under the table when you came in? I thought he was still in my bag."
+    }
+  },
+  {
+    "id": "farewell",
+    "title": "We will miss you… apparently",
+    "description": "Ben walks into his own farewell party, but he has no plans to leave his job. His notebook keeps the messages behind the surprise.",
+    "pieces": [
+      {
+        "id": "photo-0",
+        "kind": "photo",
+        "label": "An unexpected welcome",
+        "photo": 2,
+        "text": ""
+      },
+      {
+        "id": "photo-1",
+        "kind": "photo",
+        "label": "Sharing the cake",
+        "photo": 3,
+        "text": ""
+      },
+      {
+        "id": "object",
+        "kind": "object",
+        "label": "The farewell cake",
+        "prop": 2,
+        "text": "Cake icing: “WE WILL MISS YOU”."
+      },
+      {
+        "id": "paper-0",
+        "kind": "message",
+        "label": "Cropped message",
+        "text": "Thursday · 18:07\nBen: I’m leaving…\n[the rest of the message is missing]",
+        "b2Text": "Thursday · 18:07\nBen: I’m leaving…\n[the rest of the message is missing]"
+      },
+      {
+        "id": "paper-1",
+        "kind": "receipt",
+        "label": "Cake order",
+        "text": "THE CAKE SHOP\nFarewell cake · £28.00\nIcing: WE WILL MISS YOU\nFriday collection: 15:30\nOrdered by Amelia",
+        "b2Text": "THE CAKE SHOP\nFarewell cake · £28.00\nIcing: WE WILL MISS YOU\nFriday collection: 15:30\nOrdered by Amelia"
+      },
+      {
+        "id": "paper-2",
+        "kind": "message",
+        "label": "Full message",
+        "text": "Thursday · 18:07\nBen: I’m leaving this group chat. Too many messages! I’m not leaving my job.",
+        "b2Text": "Thursday · 18:07\nBen: I’m leaving this group chat. Too many messages! I’m not leaving my job.\nThe constant stream of messages is too much. I need a break from this collective overwhelm."
+      },
+      {
+        "id": "paper-3",
+        "kind": "memo",
+        "label": "Team chat",
+        "text": "Thursday · Team chat\nAmelia: Look at Ben’s message. Shall we get him a cake?\nCharlotte: I’ll collect it. Let’s keep it a surprise.",
+        "b2Text": "Thursday · Team chat\nAmelia: Look at Ben’s message. Shall we get him a cake?\nCharlotte: I’ll collect it. Let’s keep it a surprise."
+      },
+      {
+        "id": "voice",
+        "kind": "audio",
+        "label": "A voice message from Ben",
+        "text": "",
+        "speaker": "Ben",
+        "audio": null,
+        "transcript": "Hi Charlotte. Can you explain the cake? I hadn’t told anyone I was leaving my job, because I wasn’t! I’d only said I was leaving the group chat. What did everyone think while I was standing there with the manager?"
+      }
+    ],
+    "words": {
+      "b1": [
+        "quit",
+        "manager",
+        "confused",
+        "embarrassed"
+      ],
+      "b2": [
+        "a constant stream of",
+        "collective overwhelm",
+        "employee",
+        "on paper"
+      ]
+    },
+    "voice": {
+      "file": "farewell.mp3",
+      "speaker": "Ben",
+      "direction": "British man in his early thirties; puzzled, amused, slightly awkward.",
+      "script": "Hi Charlotte. Can you explain the cake? I hadn’t told anyone I was leaving my job, because I wasn’t! I’d only said I was leaving the group chat. What did everyone think while I was standing there with the manager?"
+    }
+  },
+  {
+    "id": "proposal",
+    "title": "The ring at table twelve",
+    "description": "A normal dinner in Paris turns into an unexpected proposal. Two table numbers and a waiter’s apology tell a different story.",
+    "pieces": [
+      {
+        "id": "photo-0",
+        "kind": "photo",
+        "label": "Dessert with a surprise",
+        "photo": 4,
+        "text": ""
+      },
+      {
+        "id": "photo-1",
+        "kind": "photo",
+        "label": "A very confusing dinner",
+        "photo": 5,
+        "text": ""
+      },
+      {
+        "id": "object",
+        "kind": "object",
+        "label": "The ring box",
+        "prop": 3,
+        "text": "A ring left beside the dessert at table 12."
+      },
+      {
+        "id": "paper-0",
+        "kind": "ticket",
+        "label": "Dinner booking",
+        "text": "CAFÉ LUMIÈRE · PARIS\nTable 12 · 20:00\nAmelia and Ben\nTwo guests",
+        "b2Text": "CAFÉ LUMIÈRE · PARIS\nTable 12 · 20:00\nAmelia and Ben\nTwo guests"
+      },
+      {
+        "id": "paper-1",
+        "kind": "receipt",
+        "label": "Kitchen slip",
+        "text": "KITCHEN ORDER · 20:20\nTable 21\nChocolate cake + ring box\nWaiter’s copy: TABLE 12",
+        "b2Text": "KITCHEN ORDER · 20:20\nTable 21\nChocolate cake + ring box\nWaiter’s copy: TABLE 12"
+      },
+      {
+        "id": "paper-2",
+        "kind": "message",
+        "label": "Ben’s message",
+        "text": "20:35 · Ben → Harry\nI didn’t order a ring. I’d only booked a normal dinner. Why is she saying yes?",
+        "b2Text": "20:35 · Ben → Harry\nI didn’t order a ring. I’d only booked a normal dinner. Why is she saying yes?\n21:00 · We finally figured out the mistake. What an unforgettable dinner!"
+      },
+      {
+        "id": "paper-3",
+        "kind": "memo",
+        "label": "Waiter’s note",
+        "text": "CAFÉ LUMIÈRE · 20:40\nTable 12\nComplimentary dessert €0.00\nOur apologies for the mix-up.",
+        "b2Text": "CAFÉ LUMIÈRE · 20:40\nTable 12\nComplimentary dessert €0.00\nOur apologies for the mix-up."
+      },
+      {
+        "id": "voice",
+        "kind": "audio",
+        "label": "A voice message from The waiter",
+        "text": "",
+        "speaker": "The waiter",
+        "audio": null,
+        "transcript": "I’m very sorry about the dessert. The kitchen had written table twenty-one, but I read it as twelve. Your friend was looking at the menu when I put the plate down. Did you actually say yes before I came back?"
+      }
+    ],
+    "words": {
+      "b1": [
+        "confused",
+        "shocked",
+        "embarrassed",
+        "romantic comedy"
+      ],
+      "b2": [
+        "embarrassed",
+        "figure out",
+        "unforgettable",
+        "hilarious"
+      ]
+    },
+    "voice": {
+      "file": "proposal.mp3",
+      "speaker": "The waiter",
+      "direction": "Adult male waiter; natural British English, apologetic and embarrassed. No exaggerated accent.",
+      "script": "I’m very sorry about the dessert. The kitchen had written table twenty-one, but I read it as twelve. Your friend was looking at the menu when I put the plate down. Did you actually say yes before I came back?"
+    }
+  },
+  {
+    "id": "gift",
+    "title": "The gift that came back",
+    "description": "A Christmas teapot looks familiar to more than one relative. Old cards and a reused box reveal its journey through the family.",
+    "pieces": [
+      {
+        "id": "photo-0",
+        "kind": "photo",
+        "label": "Wrapping Christmas gifts",
+        "photo": 6,
+        "text": ""
+      },
+      {
+        "id": "photo-1",
+        "kind": "photo",
+        "label": "Tea with the family",
+        "photo": 7,
+        "text": ""
+      },
+      {
+        "id": "object",
+        "kind": "object",
+        "label": "The old teapot",
+        "prop": 4,
+        "text": "The teapot is still in its old cardboard box."
+      },
+      {
+        "id": "paper-0",
+        "kind": "tag",
+        "label": "Christmas tag",
+        "text": "25 December · This year\nTo Aunt Rose\nLove, Amelia",
+        "b2Text": "25 December · This year\nTo Aunt Rose\nLove, Amelia"
+      },
+      {
+        "id": "paper-1",
+        "kind": "card",
+        "label": "Old card",
+        "text": "25 December · Last year\nTo Amelia\nWith love, Aunt Rose",
+        "b2Text": "25 December · Last year\nTo Amelia\nWith love, Aunt Rose"
+      },
+      {
+        "id": "paper-2",
+        "kind": "note",
+        "label": "Amelia’s diary",
+        "text": "Last Christmas\nRose gave me a box. I put it in the cupboard without opening it. I wonder what’s inside.",
+        "b2Text": "Last Christmas\nRose’s gift went into the cupboard unopened.\nThis Christmas\nI wrapped the same old-fashioned box without checking. How absent-minded!"
+      },
+      {
+        "id": "paper-3",
+        "kind": "card",
+        "label": "Earlier card",
+        "text": "25 December · Two years ago\nTo Rose\nHappy Christmas!\nLove, Leo",
+        "b2Text": "25 December · Two years ago\nTo Rose\nHappy Christmas!\nLove, Leo"
+      },
+      {
+        "id": "voice",
+        "kind": "audio",
+        "label": "A voice message from Amelia",
+        "text": "",
+        "speaker": "Amelia",
+        "audio": null,
+        "transcript": "Aunt Rose, I’m so sorry about the teapot. I hadn’t opened the box before Christmas, so I didn’t recognise it. Ben was writing the cards while I was wrapping it. Had Uncle Leo really given it to you first?"
+      }
+    ],
+    "words": {
+      "b1": [
+        "embarrassed",
+        "look familiar",
+        "kind",
+        "all of a sudden"
+      ],
+      "b2": [
+        "old-fashioned",
+        "absent-minded",
+        "make the best of",
+        "hilarious"
+      ]
+    },
+    "voice": {
+      "file": "gift.mp3",
+      "speaker": "Amelia",
+      "direction": "Young adult British woman; warm, embarrassed, gently amused.",
+      "script": "Aunt Rose, I’m so sorry about the teapot. I hadn’t opened the box before Christmas, so I didn’t recognise it. Ben was writing the cards while I was wrapping it. Had Uncle Leo really given it to you first?"
+    }
+  },
+  {
+    "id": "santa",
+    "title": "Secret Santa knows too much",
+    "description": "Ben receives a mug printed with a private joke. A deleted screenshot connects the gift to an old office message.",
+    "pieces": [
+      {
+        "id": "photo-0",
+        "kind": "photo",
+        "label": "A gift on Ben’s desk",
+        "photo": 8,
+        "text": ""
+      },
+      {
+        "id": "photo-1",
+        "kind": "photo",
+        "label": "Reading the mug",
+        "photo": 9,
+        "text": ""
+      },
+      {
+        "id": "object",
+        "kind": "object",
+        "label": "The printed mug",
+        "prop": 5,
+        "text": "Mug print: “Another meeting? I quit.”"
+      },
+      {
+        "id": "paper-0",
+        "kind": "ticket",
+        "label": "Party invitation",
+        "text": "SECRET SANTA\nFriday · 16:00\nOffice meeting room\nBring one wrapped gift.",
+        "b2Text": "SECRET SANTA\nFriday · 16:00\nOffice meeting room\nBring one wrapped gift."
+      },
+      {
+        "id": "paper-1",
+        "kind": "label",
+        "label": "Mug",
+        "text": "Mug print:\n“Another meeting? I quit.”",
+        "b2Text": "Mug print:\n“Another meeting? I quit.”"
+      },
+      {
+        "id": "paper-2",
+        "kind": "receipt",
+        "label": "Design receipt",
+        "text": "PRINT & GIFT · Thursday\nCustom mug £12.00\nArt file: group-chat-screenshot.png\nOrdered by Amelia",
+        "b2Text": "PRINT & GIFT · Thursday\nCustom mug £12.00\nArt file: group-chat-screenshot.png\nOrdered by Amelia"
+      },
+      {
+        "id": "paper-3",
+        "kind": "message",
+        "label": "Old group chat",
+        "text": "Office group chat · Three weeks ago\n14:02 Ben: [screenshot: “Another meeting? I quit.”]\n14:03 Amelia: Saved!\n14:04 Ben: [message deleted]",
+        "b2Text": "Office group chat · Three weeks ago\n14:02 Ben: [screenshot: “Another meeting? I quit.”]\n14:03 Amelia: Saved!\n14:04 Ben: [message deleted]\n14:05 Amelia: That’s an out of pocket joke. I saved it!"
+      },
+      {
+        "id": "voice",
+        "kind": "audio",
+        "label": "A voice message from Amelia",
+        "text": "",
+        "speaker": "Amelia",
+        "audio": null,
+        "transcript": "Ben, are you upset about the mug? I’m sorry. You’d posted the screenshot in the group chat, so I thought the joke was public. I’d already saved it before you deleted it. Did you mean to send it to someone else?"
+      }
+    ],
+    "words": {
+      "b1": [
+        "manager",
+        "task",
+        "quit",
+        "embarrassed"
+      ],
+      "b2": [
+        "out of pocket",
+        "figure out",
+        "employee",
+        "hilarious"
+      ]
+    },
+    "voice": {
+      "file": "santa.mp3",
+      "speaker": "Amelia",
+      "direction": "Young adult British woman; concerned, sincere, a little awkward.",
+      "script": "Ben, are you upset about the mug? I’m sorry. You’d posted the screenshot in the group chat, so I thought the joke was public. I’d already saved it before you deleted it. Did you mean to send it to someone else?"
+    }
+  }
+];

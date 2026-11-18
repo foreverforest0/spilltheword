@@ -1,41 +1,54 @@
+"""Notebooks: all evidence open, no old steps/blue art, photos, writing, layout and audio."""
 from pathlib import Path
-import json,hashlib
 from functools import partial
 from http.server import SimpleHTTPRequestHandler,ThreadingHTTPServer
 from threading import Thread
+import json,hashlib
 from playwright.sync_api import sync_playwright
+ROOT=Path(__file__).resolve().parents[1]
 class Q(SimpleHTTPRequestHandler):
- def log_message(self,*args):pass
-s=ThreadingHTTPServer(('127.0.0.1',0),partial(Q,directory=str(Path(__file__).resolve().parents[1])));Thread(target=s.serve_forever,daemon=True).start()
-root=Path(__file__).resolve().parents[1]
-manifest=json.loads((root/'assets/past-story-files/manifest.json').read_text())
-assert hashlib.sha256((root/'assets/past-story-files'/manifest['source']).read_bytes()).hexdigest()==manifest['sha256']
-assert sum(len(rows) for rows in manifest['illustrations'].values())==15
+ def log_message(self,*a):pass
+srv=ThreadingHTTPServer(('127.0.0.1',0),partial(Q,directory=str(ROOT)));Thread(target=srv.serve_forever,daemon=True).start()
+manifest=json.loads((ROOT/'assets/past-notebooks/manifest.json').read_text())
+for name,expected in manifest['sources'].items():assert hashlib.sha256((ROOT/'assets/past-notebooks'/name).read_bytes()).hexdigest()==expected
+assert not (ROOT/'assets/past-story-files/approved-blue-pencil-sheet.png').exists()
 with sync_playwright() as pw:
- b=pw.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']);p=b.new_page(viewport={'width':1440,'height':1000});errors=[];p.on('pageerror',lambda e:errors.append(str(e)));p.goto(f'http://127.0.0.1:{s.server_port}/');p.wait_for_function('!!window.PastStoryFiles')
- for level in ['b1','b2']:
-  p.evaluate("l=>{go('gram');S.glevel=l;S.splevel=l;spOpen('past_story_files')}",level)
-  assert p.locator('[data-past-file]').count()==5
-  assert p.locator('.ps-folder .ps-artwork').count()==5
-  assert p.evaluate("l=>SPGRP[l].some(g=>g[1].includes('past_story_files'))",level)
-  assert p.evaluate("l=>{const c=COURSES.find(c=>c.id===(l==='b1'?'b1':'b2alh'));const w=c.units.flatMap(u=>u.ls.flatMap(l=>l.v));return PastStoryFiles.stories.every(s=>s.words[l].every(v=>w.includes(v)))}",level)
+ b=pw.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']);p=b.new_page(viewport={'width':1600,'height':1150},reduced_motion='reduce');errors=[];missing=[];p.on('pageerror',lambda e:errors.append(str(e)));p.on('response',lambda r:missing.append(r.url) if r.status>=400 and 'favicon' not in r.url else None);p.goto(f'http://127.0.0.1:{srv.server_port}/')
+ p.evaluate("S.pastStoryFiles={'b1:dog':{answers:{6:'Existing final story'}}}")
+ for lv in ['b1','b2']:
+  p.evaluate("lv=>{go('gram');S.splevel=lv;S.glevel=lv;spOpen('past_story_files')}",lv)
+  assert p.locator('[data-notebook]').count()==5
   for id in ['dog','farewell','proposal','gift','santa']:
-   p.evaluate('id=>PastStoryFiles.open(id)',id)
-   for i in range(7):
-    assert p.locator('[data-past-item]').count()==[4,4,6,6,8,8,8][i]
-    assert p.locator('[data-past-item="6"]').count()==(0 if i<4 else 1)
-    for art_item in manifest['illustrations'][id]:
-     if art_item[0]<[4,4,6,6,8,8,8][i]:
-      p.locator(f'[data-past-item="{art_item[0]}"]').click()
-      assert p.locator('.ps-document .ps-artwork').is_visible()
-    assert p.locator('#psModels').is_hidden();assert p.locator('#psHintText').is_hidden()
-    p.locator('#psAnswer').fill(f'{level} {id} {i}');p.locator('#psHint').click();p.locator('#psShow').click();assert p.locator('#psModels').is_visible()
-    if i<6:p.locator('#psNext').click()
-   p.locator('#psPrev').click();assert p.locator('#psAnswer').input_value()==f'{level} {id} 5'
-  p.set_viewport_size({'width':390,'height':844});p.wait_for_timeout(100);assert p.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
-  p.screenshot(path='/tmp/past-story-'+level+'.png',full_page=True)
-  p.set_viewport_size({'width':1440,'height':1000})
- p.reload();p.evaluate("S.splevel='b1';PastStoryFiles.open('dog')");assert p.locator('#psAnswer').input_value()=='b1 dog 5'
- assert not errors,errors
- print('PASS: five files × two levels, gradual clue reveals, all guided steps/final stories, course vocabulary, saved drafts, reveals, mobile and registrations.')
+   p.evaluate('id=>PastNotebooks.open(id)',id)
+   assert p.locator('.pn-header h1').is_visible()
+   if lv=='b1' and id=='dog':assert p.locator('#pnDraft').input_value()=='Existing final story'
+   assert p.locator('[data-notebook-piece]').count()==8
+   assert p.locator('.pn-kind-photo').count()==2 and p.locator('.pn-kind-object').count()==1
+   assert p.locator('.pn-kind-audio').count()==1
+   assert p.locator('#psNext,#psHint,#psShow,.ps-question,.ps-vocab').count()==0
+   for i in range(8):
+    piece=p.locator(f'[data-notebook-piece="{i}"]');assert piece.is_visible();piece.click();assert p.locator('#pnDetail').is_visible()
+    if i in [0,1,2]:assert p.locator('#pnDetailBody .pn-image').is_visible()
+    if i==7:assert p.locator('audio').count()==0 and p.locator('.pn-audio-pending').is_visible()
+    p.locator('#pnDetailClose').click();assert p.locator('#pnDetail').is_hidden()
+   p.locator('#pnDraft').fill(lv+' '+id+' saved story')
+  p.evaluate("PastNotebooks.open('dog')");assert p.locator('#pnDraft').input_value()==lv+' dog saved story'
+  # Keyboard rearrangement and persisted positions; inspect stays available.
+  piece=p.locator('[data-notebook-piece="3"]');piece.focus();piece.press('Shift+ArrowRight');assert p.evaluate("lv=>!!S.pastNotebooks[lv+':dog'].layout['paper-0']",lv)
+  p.screenshot(path='/tmp/story-notebook-'+lv+'-desktop.png',full_page=True)
+  p.reload();p.evaluate("lv=>{S.splevel=lv;S.glevel=lv;PastNotebooks.open('dog')}",lv);assert p.locator('#pnDraft').input_value()==lv+' dog saved story'
+  p.set_viewport_size({'width':390,'height':844});assert p.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
+  for i in range(8):assert p.locator(f'[data-notebook-piece="{i}"]').is_visible()
+  p.screenshot(path='/tmp/story-notebook-'+lv+'-mobile.png',full_page=True)
+  p.locator('[data-notebook-piece="0"]').click();p.keyboard.press('Escape');assert p.locator('#pnDetail').is_hidden()
+  p.set_viewport_size({'width':1600,'height':1150})
+ # Existing uploaded lift recording stands in for a supplied MP3 to test actual playback.
+ p.evaluate("PastNotebookData[0].pieces[7].audio='assets/sounds/time-lift.mp3';PastNotebooks.open('dog')")
+ p.locator('[data-notebook-piece="7"]').click();p.wait_for_function("document.querySelector('#pnDetailBody audio').readyState>=1")
+ assert p.locator('#pnDetailBody details').count()==1
+ p.locator('#pnDetailBody audio').evaluate('a=>a.play()');p.locator('#pnDetailClose').click();assert p.locator('#pnDetail').is_hidden()
+ # Original Present Perfect files retain their original archive and images.
+ p.evaluate("spOpen('ppfiles')");assert p.locator('.cf-folder').count()==3
+ assert not errors,errors;assert not missing,missing
+ print('PASS: five notebooks × two levels, eight visible keepsakes, realistic photo/object assets, details, notes/layout persistence, mobile, real audio wiring, no guided stages and original folders preserved.')
  b.close()
