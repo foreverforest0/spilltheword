@@ -42,10 +42,15 @@ full-resolution reference images need an accessible archive before exact cutouts
 can replace them. Folder shapes/textures are CSS, without reference watermarks.
 Paper clues are readable HTML rather than generated image text.
 
-Audio remains pending the user's recordings. All eight scripts/filenames are in
+Seven user-supplied recordings are connected on both levels, without re-encoding:
+dog.wav; farewell.mp3; proposal.mp3; gift.mp3; santa.mp3; side-b.mp3;
+take-four.mp3. Original upload names and SHA-256 hashes are recorded in
+assets/story-audio/manifest.json. Playback is user-initiated; closing a detail or
+leaving a folder pauses the recording. Transcripts are collapsed by default.
+
+The room-1301 recording is still pending, with audio:null and an explicit missing
+recording message. All eight scripts/filenames are in the downloadable
 shared/downloads/story-folder-audio/eight-voice-messages.txt (outside the repo).
-Each audio field stays null until its recording is connected. No fake playback
-button or missing-file request is shown. Existing five scripts remain unchanged.
 
 Run: python scripts/check-past-story-files.py
 The browser check covers both levels, all details, draft migration, layout/note

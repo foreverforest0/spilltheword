@@ -66,7 +66,7 @@
         "label": "A voice message from Amelia",
         "text": "",
         "speaker": "Amelia",
-        "audio": null,
+        "audio": "assets/story-audio/dog.wav",
         "transcript": "Hi Leo, it’s Amelia. I’m really sorry about this morning. Our dog sitter had cancelled, so I brought Max to work. Was he already under the table when you came in? I thought he was still in my bag."
       }
     ],
@@ -159,7 +159,7 @@
         "label": "A voice message from Ben",
         "text": "",
         "speaker": "Ben",
-        "audio": null,
+        "audio": "assets/story-audio/farewell.mp3",
         "transcript": "Hi Charlotte. Can you explain the cake? I hadn’t told anyone I was leaving my job, because I wasn’t! I’d only said I was leaving the group chat. What did everyone think while I was standing there with the manager?"
       }
     ],
@@ -245,7 +245,7 @@
         "label": "A voice message from The waiter",
         "text": "",
         "speaker": "The waiter",
-        "audio": null,
+        "audio": "assets/story-audio/proposal.mp3",
         "transcript": "I’m very sorry about the dessert. The kitchen had written table twenty-one, but I read it as twelve. Your friend was looking at the menu when I put the plate down. Did you actually say yes before I came back?"
       }
     ],
@@ -331,7 +331,7 @@
         "label": "A voice message from Amelia",
         "text": "",
         "speaker": "Amelia",
-        "audio": null,
+        "audio": "assets/story-audio/gift.mp3",
         "transcript": "Aunt Rose, I’m so sorry about the teapot. I hadn’t opened the box before Christmas, so I didn’t recognise it. Ben was writing the cards while I was wrapping it. Had Uncle Leo really given it to you first?"
       }
     ],
@@ -424,7 +424,7 @@
         "label": "A voice message from Amelia",
         "text": "",
         "speaker": "Amelia",
-        "audio": null,
+        "audio": "assets/story-audio/santa.mp3",
         "transcript": "Ben, are you upset about the mug? I’m sorry. You’d posted the screenshot in the group chat, so I thought the joke was public. I’d already saved it before you deleted it. Did you mean to send it to someone else?"
       }
     ],
@@ -523,7 +523,7 @@
         "label": "Side B · Harry’s message",
         "speaker": "Harry",
         "text": "",
-        "audio": null,
+        "audio": "assets/story-audio/side-b.mp3",
         "transcript": "Oliver, it’s Harry. I’m sorry about our argument. I’d already paid my share of the bill before you got home. The receipt is under the chocolate wrapper. I recorded this on the other side because I couldn’t find any paper. Can we talk when you get back?",
         "extraProp": 0
       }
@@ -700,7 +700,7 @@
         "label": "A voice message from Beth from the film crew",
         "speaker": "Beth from the film crew",
         "text": "",
-        "audio": null,
+        "audio": "assets/story-audio/take-four.mp3",
         "transcript": "Harry, this is Beth from the film crew. I’m sorry about the confusion. We’d booked another Harry for the scene, and the assistant thought you were him. Were you really just leaving the station when we stopped you? Thanks for staying for those extra takes. I hope your heel’s better."
       }
     ],

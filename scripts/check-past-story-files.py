@@ -1,4 +1,4 @@
-"""Notebooks: all evidence open, no old steps/blue art, photos, writing, layout and audio."""
+"""Folders: all evidence open, no old steps/blue art, photos, writing, layout and audio."""
 from pathlib import Path
 from functools import partial
 from http.server import SimpleHTTPRequestHandler,ThreadingHTTPServer
@@ -9,6 +9,10 @@ ROOT=Path(__file__).resolve().parents[1]
 class Q(SimpleHTTPRequestHandler):
  def log_message(self,*a):pass
 srv=ThreadingHTTPServer(('127.0.0.1',0),partial(Q,directory=str(ROOT)));Thread(target=srv.serve_forever,daemon=True).start()
+audio_manifest=json.loads((ROOT/'assets/story-audio/manifest.json').read_text())
+assert len(audio_manifest)==7
+for name,item in audio_manifest.items():
+ assert hashlib.sha256((ROOT/'assets/story-audio'/name).read_bytes()).hexdigest()==item['sha256']
 manifest=json.loads((ROOT/'assets/past-notebooks/manifest.json').read_text())
 for name,expected in manifest['sources'].items():assert hashlib.sha256((ROOT/'assets/past-notebooks'/name).read_bytes()).hexdigest()==expected
 assert not (ROOT/'assets/past-story-files/approved-blue-pencil-sheet.png').exists()
@@ -32,7 +36,14 @@ with sync_playwright() as pw:
    for i in range(count):
     piece=p.locator(f'[data-notebook-piece="{i}"]');assert piece.is_visible();piece.click();assert p.locator('#pnDetail').is_visible()
     if i in [0,1,2]:assert p.locator('#pnDetailBody .pn-image').is_visible()
-    if i==count-1:assert p.locator('audio').count()==0 and p.locator('.pn-audio-pending').is_visible()
+    if i==count-1:
+     supplied=p.evaluate("id=>!!PastNotebookData.find(s=>s.id===id).pieces.at(-1).audio",id)
+     if supplied:
+      p.wait_for_function("document.querySelector('#pnDetailBody audio').readyState>=1")
+      assert p.locator('#pnDetailBody details').count()==1
+      p.locator('#pnDetailBody audio').evaluate('a=>a.play()')
+      p.wait_for_function("document.querySelector('#pnDetailBody audio').currentTime>0")
+     else:assert p.locator('audio').count()==0 and p.locator('.pn-audio-pending').is_visible()
     p.locator('#pnDetailClose').click();assert p.locator('#pnDetail').is_hidden()
    p.locator('#pnDraft').fill(lv+' '+id+' saved story')
   p.evaluate("PastNotebooks.open('dog')");assert p.locator('#pnDraft').input_value()==lv+' dog saved story'

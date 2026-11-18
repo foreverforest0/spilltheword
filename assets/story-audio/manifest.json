@@ -1,0 +1,37 @@
+{
+  "dog.wav": {
+    "sourceName": "Hi Le...... bag..wav",
+    "sha256": "2b5529286b80a374497d79d3b31770839ef042203c753eb4f893dbaaf8d3fc46",
+    "story": "dog"
+  },
+  "farewell.mp3": {
+    "sourceName": "[angr......ager_.mp3",
+    "sha256": "9084612b7b0170cab00cdbbd42ef1d8662191d1bea977a8c430a7c8157862d0e",
+    "story": "farewell"
+  },
+  "proposal.mp3": {
+    "sourceName": "[sad]......back_.mp3",
+    "sha256": "f953edaebda03d675bae89af30b607120e58edb73aa3b26769f7a4bc1ec681f9",
+    "story": "proposal"
+  },
+  "gift.mp3": {
+    "sourceName": "[emph......irst_.mp3",
+    "sha256": "59b59040cace39c08a9b4e479853b5b70ff25f73bd6d04ae28ef480893e32505",
+    "story": "gift"
+  },
+  "santa.mp3": {
+    "sourceName": "[soft......else_.mp3",
+    "sha256": "c968448028bb5d27fc4635ac64584635c080db43c38e248fcbe6ae9f9cee2828",
+    "story": "santa"
+  },
+  "side-b.mp3": {
+    "sourceName": "Olive......back_.mp3",
+    "sha256": "793d5e3b3bb6fdfa3b8d1c36d94095bb51b5bff5f8a8d5997dfde40df9b1c605",
+    "story": "side-b"
+  },
+  "take-four.mp3": {
+    "sourceName": "Harry......tter..mp3",
+    "sha256": "fff1682ae29ad63ad9b93c42b005ae9a5d52eacba9385cc58eab3e3c39360845",
+    "story": "take-four"
+  }
+}
