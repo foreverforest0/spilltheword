@@ -1,7 +1,7 @@
 /* Explicit user preference: retain the site's cream paper and level-coloured Kindaten titles. */
-body:has(:is(.cf-page,.rbadge-page,.dt-page,.rl-page)){background:#F9F5E6!important}
-#view :is(#cfPage,#reportedBadges,#deductionToggle,#relativeLens)[data-practice-level]{background:#F9F5E6!important;--practice-ink:#001166}
-#view :is(#cfPage,#reportedBadges,#deductionToggle,#relativeLens):is([data-practice-level=b2],[data-practice-level=c1]){--practice-ink:#1D2E1B}
-#view :is(#cfPage,#reportedBadges,#deductionToggle,#relativeLens)[data-practice-level] :is(h1,h2){font-family:var(--stw-title-font,'Kindaten'),sans-serif!important;color:var(--practice-ink)!important;font-weight:400!important}
+body:has(:is(.cf-page,.rbadge-page,.dt-page,.rl-page,.ed-page)){background:#F9F5E6!important}
+#view :is(#cfPage,#reportedBadges,#deductionToggle,#relativeLens,#ellipsisDust)[data-practice-level]{background:#F9F5E6!important;--practice-ink:#001166}
+#view :is(#cfPage,#reportedBadges,#deductionToggle,#relativeLens,#ellipsisDust):is([data-practice-level=b2],[data-practice-level=c1]){--practice-ink:#1D2E1B}
+#view :is(#cfPage,#reportedBadges,#deductionToggle,#relativeLens,#ellipsisDust)[data-practice-level] :is(h1,h2){font-family:var(--stw-title-font,'Kindaten'),sans-serif!important;color:var(--practice-ink)!important;font-weight:400!important}
 #view #deductionToggle textarea{background:transparent!important}
 #view #deductionToggle #dtExample{background:#eee7d8}
