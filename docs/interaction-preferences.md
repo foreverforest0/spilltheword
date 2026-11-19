@@ -29,3 +29,7 @@ Every activity must remain usable orally. In reported-speech badges the front
 contains the original portrait, identity and quote only; nuances belong on the
 back at B2/C1, without invented addressee/time story prompts. Preserve the exact
 reference portraits and badge styling.
+
+Activity titles always use the site's primary heading font, Kindaten, including exercises
+whose controls and animation follow an external reference (2026-11-19). Preserve
+the chosen reference mechanics while keeping this explicit typography preference.

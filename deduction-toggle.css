@@ -1,0 +1,53 @@
+/* Track, elongated white thumb and elastic travel follow the selected Recent reference. */
+@font-face{font-family:DeductionInter;src:url('assets/revision-room/inter-latin.woff2') format('woff2');font-display:swap}
+body:has(.dt-page){background:#fff!important;color:#25272c!important}
+body:has(.dt-page) #view{max-width:none!important;width:100%!important;padding:0!important;margin:0!important}
+body:has(.dt-page) :is(.game-share-toolbar,.appearance-share-toolbar,.grammar-exercise-back,#homeBtn,#sndbtn,#embbar){display:none!important}
+#view #deductionToggle{--dt-blue:#3478f6;box-sizing:border-box;width:100%;min-height:85svh;padding:36px 48px 60px;background:white;color:#25272c;text-align:left}
+#view #deductionToggle *{box-sizing:border-box;font-family:DeductionInter,Arial,sans-serif!important;letter-spacing:normal}
+/* The user explicitly wants the site's main font on activity titles. */
+#view #deductionToggle .dt-header h1{font-family:var(--stw-title-font,'Kindaten'),sans-serif!important;font-size:30px!important;font-weight:400!important;line-height:1.3!important;color:#171d35!important;margin:0!important;text-transform:none!important}
+#view #deductionToggle .dt-header{display:flex!important;align-items:center;gap:18px;max-width:1100px;margin:0 auto}
+#view #deductionToggle button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+#view #deductionToggle .dt-header button{border:0;background:transparent;font-size:25px;color:#737882;padding:10px}
+#view #deductionToggle .dt-header>span{margin-left:auto;font-size:11px;color:#969aa1}
+#view #deductionToggle .dt-workspace{width:min(100%,560px);margin:58px auto 0}
+#view #deductionToggle .dt-control{display:flex;justify-content:center;align-items:center;gap:25px;min-height:130px;margin-bottom:36px}
+#view #deductionToggle .dt-label{font-size:11px;font-weight:600;color:#a2a7af;transition:color .35s}
+#view #deductionToggle .dt-label.is-active{color:#3478f6}
+#view #deductionToggle #dtToggle{position:relative;flex:none;width:218px;height:96px;border:0;border-radius:60px;padding:0;background:#c3cbd7;transition:background .45s;box-shadow:none;isolation:isolate}
+#view #deductionToggle #dtToggle[aria-checked=true]{background:var(--dt-blue)}
+#view #deductionToggle .dt-thumb{position:absolute;left:8px;top:8px;width:126px;height:80px;border-radius:55px;background:#fff;box-shadow:0 5px 9px #27344b20,0 0 1px #0001;transform:translateX(0);transition:transform .65s cubic-bezier(.22,1.5,.42,1),width .28s cubic-bezier(.2,.8,.2,1),left .28s}
+#view #deductionToggle #dtToggle[aria-checked=true] .dt-thumb{transform:translateX(76px)}
+#view #deductionToggle #dtToggle.dt-pressed .dt-thumb{width:144px}
+#view #deductionToggle #dtToggle[aria-checked=true].dt-pressed .dt-thumb{left:-10px}
+#view #deductionToggle #dtToggle.dt-moving:not([aria-checked=true]) .dt-thumb{animation:dt-elastic-left .72s both}
+#view #deductionToggle #dtToggle.dt-moving[aria-checked=true] .dt-thumb{animation:dt-elastic-right .72s both}
+@keyframes dt-elastic-right{0%{transform:translateX(0) scaleX(1);transform-origin:left}38%{transform:translateX(52px) scaleX(1.19)}72%{transform:translateX(82px) scaleX(.96)}100%{transform:translateX(76px) scaleX(1)}}
+@keyframes dt-elastic-left{0%{transform:translateX(76px) scaleX(1);transform-origin:right}38%{transform:translateX(24px) scaleX(1.19)}72%{transform:translateX(-6px) scaleX(.96)}100%{transform:translateX(0) scaleX(1)}}
+#view #deductionToggle #dtExercise{min-height:300px}
+#view #deductionToggle .dt-time{font-size:10px;color:#8b94a3;letter-spacing:1.6px;margin:0 0 14px}
+#view #deductionToggle .dt-evidence{font-size:21px;line-height:1.55;font-weight:400;margin:0 0 19px;text-wrap:pretty;color:#30343c}
+#view #deductionToggle .dt-prompt{font-size:13px;color:#7a8089;line-height:1.5;margin:0 0 24px}
+#view #deductionToggle textarea{display:block;width:100%;resize:vertical;min-height:84px;max-height:240px;padding:15px 0;border:0;border-bottom:1px solid #dce1e9;background:#fff;border-radius:0;outline:none;font-size:15px;line-height:1.6;color:#25272c;box-shadow:none}
+#view #deductionToggle textarea:focus{border-color:#3478f6}
+#view #deductionToggle textarea::placeholder{color:#a6aab1;font-size:13px}
+#view #deductionToggle .dt-actions{display:flex;gap:24px;margin-top:21px}
+#view #deductionToggle .dt-actions button{background:none;border:0;padding:6px 0;color:#3478f6;font-size:13px}
+#view #deductionToggle #dtFeedback{font-size:13px;line-height:1.6;color:#707782;margin:14px 0 0}
+#view #deductionToggle #dtFeedback[data-status=correct]{color:#278359}
+#view #deductionToggle #dtFeedback[data-status=retry]{color:#9a563b}
+#view #deductionToggle #dtExample{margin-top:21px;padding:16px 20px;border-left:2px solid #3478f6;background:#f5f8ff}
+#view #deductionToggle #dtExample p{margin:0 0 8px;font-size:16px;line-height:1.6}
+#view #deductionToggle #dtExample small{font-size:12px;line-height:1.6;color:#787e89;display:block}
+#view #deductionToggle .dt-nav{display:flex;align-items:center;justify-content:center;gap:26px;margin-top:35px}
+#view #deductionToggle .dt-nav button{border:0;background:none;color:#526176;font-size:23px;padding:10px}
+#view #deductionToggle .dt-nav button:disabled{color:#d3d8df;cursor:default}
+#view #deductionToggle .dt-nav output{font-size:11px;color:#969ca5}
+#view #deductionToggle button:focus-visible{outline:2px solid #3478f6;outline-offset:7px}
+#view #deductionToggle [hidden]{display:none!important}
+#view #deductionToggle .dt-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+#view #deductionToggle .dt-reveal{animation:dt-in .38s ease-out}
+@keyframes dt-in{from{opacity:.4;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){#view #deductionToggle{padding:22px 22px 45px}#view #deductionToggle .dt-header{gap:10px}#view #deductionToggle .dt-header h1{font-size:23px!important}#view #deductionToggle .dt-workspace{margin-top:28px}#view #deductionToggle .dt-control{gap:15px;margin-bottom:25px}#view #deductionToggle .dt-evidence{font-size:19px}#view #deductionToggle #dtToggle{width:196px;height:86px}#view #deductionToggle .dt-thumb{width:114px;height:70px}#view #deductionToggle #dtToggle[aria-checked=true] .dt-thumb{transform:translateX(66px)}#view #deductionToggle #dtToggle.dt-moving .dt-thumb{animation:none}#view #deductionToggle #dtToggle.dt-pressed .dt-thumb{width:130px}#view #deductionToggle #dtToggle[aria-checked=true].dt-pressed .dt-thumb{left:-8px}}
+@media(prefers-reduced-motion:reduce){#view #deductionToggle *,#view #deductionToggle *::before{animation:none!important;transition:none!important}}
