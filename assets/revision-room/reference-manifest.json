@@ -1,0 +1,350 @@
+{
+  "purpose": "Local non-published design prototype using user-requested Feather reference; artwork rights are not transferred.",
+  "assets": {
+    "logo-v3-svg.png": {
+      "url": "https://feather.computer/landing1/logo-v3-svg.png",
+      "sha256": "c29342366863fe73eccd93edd6397b134e7e7ca7cfa86d263f8ed62c559d3208"
+    },
+    "to-katherine.png": {
+      "url": "https://feather.computer/landing1/to-katherine.png",
+      "sha256": "07a1ff2303bc34de2f2949eda1467437e9c9904f720f401132cc55477d5a275e"
+    },
+    "jason-jonathan.png": {
+      "url": "https://feather.computer/landing1/jason-jonathan.png",
+      "sha256": "05c2a27b19d02777f9b1a2a777fc54ae85a22f6fca5246f2bda1200f63654820"
+    },
+    "1062-19th-st.png": {
+      "url": "https://feather.computer/landing1/1062-19th-st.png",
+      "sha256": "aab289b372ec7d57a3a449dbc341bb59b93afa10d6028519bddeb6cf71a839ab"
+    },
+    "order-366.png": {
+      "url": "https://feather.computer/landing1/order-366.png",
+      "sha256": "1585b9b28412747caad4dc8a9822350ee31166ab5f5e8990ab1ee3c65159c634"
+    },
+    "limited-time.png": {
+      "url": "https://feather.computer/landing1/limited-time.png",
+      "sha256": "9985d3f96f042649f0ee132814cd6c9326041741ba4a7f6044835d255fe18a0d"
+    },
+    "new-collection.png": {
+      "url": "https://feather.computer/landing1/new-collection.png",
+      "sha256": "00a8432564404801d9c78c84d7d1f03b9f1014144d60cec8c7bed05a74a884a6"
+    },
+    "2026-collection.png": {
+      "url": "https://feather.computer/landing1/2026-collection.png",
+      "sha256": "eadfabb9252cf27431faa869b2184805f1540b64410564eb1e41159555157959"
+    },
+    "48-hours.png": {
+      "url": "https://feather.computer/landing1/48-hours.png",
+      "sha256": "83214b022d77c5c4b0f0d2dd7c1105e3c9254d11a2ec80dff6a0822f555281c8"
+    },
+    "20-off-small.png": {
+      "url": "https://feather.computer/landing1/20-off-small.png",
+      "sha256": "f58630aacce489d50f8a910c5b31bfe631a2e46b2cdfbf979c1b066c08fdd747"
+    },
+    "envelope.svg": {
+      "url": "https://feather.computer/landing1/envelope.svg",
+      "sha256": "661e261a3c93ab5dc498941ebd4d95fd8f07c37a213f03e38aa751d5d1e9aa47"
+    },
+    "file-folder.svg": {
+      "url": "https://feather.computer/landing1/file-folder.svg",
+      "sha256": "67f161b9212dc476948bfd01feca5f5c9ad7e3b40951d4136f62cff911314311"
+    },
+    "sticky.svg": {
+      "url": "https://feather.computer/landing1/sticky.svg",
+      "sha256": "93fe4d3ab0f737ae73d5b2426a80d67b9ced6b89b9c1a2905422dfe2423ebb39"
+    },
+    "drawer-face.svg": {
+      "url": "https://feather.computer/landing1/cabinet/drawer-face.svg",
+      "sha256": "2eeb6afc692faa34a3c8a7fc046c2bc3b15ace43dd79fb40386356882c7d9873"
+    },
+    "drawer-knob.svg": {
+      "url": "https://feather.computer/landing1/cabinet/drawer-knob.svg",
+      "sha256": "de310641df33b98706fe3218be3706126580af578e91ce2c094529a22ad3939c"
+    },
+    "portrait-01.png": {
+      "url": "https://feather.computer/landing1/people/portrait-01.png",
+      "sha256": "9d262dcacceffbd583240ec2bd7db2344e3208ece3c4cb72074b7b3217faa0ec"
+    },
+    "portrait-02.png": {
+      "url": "https://feather.computer/landing1/people/portrait-02.png",
+      "sha256": "be3b28f38471fe1d40683f2a5bbd464ae6f36281d244f6d39d5acf4276c85b8d"
+    },
+    "portrait-03.png": {
+      "url": "https://feather.computer/landing1/people/portrait-03.png",
+      "sha256": "ea71672721bdf281f3e434a52c9b57a0159d881123f7831e2032734606661ce0"
+    },
+    "portrait-04.png": {
+      "url": "https://feather.computer/landing1/people/portrait-04.png",
+      "sha256": "a8b4faeac2d5cf06a631345de5aea9908ff05ab1b244815cadcffd7bb672648b"
+    },
+    "portrait-05.png": {
+      "url": "https://feather.computer/landing1/people/portrait-05.png",
+      "sha256": "596cf563ea38efba5f3dc635a9836ff15ea612b53b9ae41492984e2846ae78fa"
+    },
+    "portrait-06.png": {
+      "url": "https://feather.computer/landing1/people/portrait-06.png",
+      "sha256": "db9932b2139ee17a1f58f6370eea4b1d8d355d0b75e38a6595dd32ab7392f6f1"
+    },
+    "portrait-07.png": {
+      "url": "https://feather.computer/landing1/people/portrait-07.png",
+      "sha256": "a9eb64ca836b1faf9041dd101782c0b3b0a528d6f1ddde7357141297531baf3e"
+    },
+    "inter-latin.woff2": {
+      "url": "https://feather.computer/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+      "sha256": "c940764593d0fe5d596be327ca7558855e018039fb78509aa21921fd3644c3e4"
+    },
+    "inter-cyrillic.woff2": {
+      "url": "https://feather.computer/_next/static/media/21350d82a1f187e9-s.woff2",
+      "sha256": "aebf2ab4a4ce6810d73c1ac7be7cafb4e5ec4cee2d6db5fb3e09691747ec4bd6"
+    },
+    "order-a20.png": {
+      "url": "https://feather.computer/landing1/order-a20.png",
+      "sha256": "1347a9550ce81371f92b9cff8d53dcc6649e4001a76de3e6a480d29e767ccbe1"
+    },
+    "employment-doc.png": {
+      "url": "https://feather.computer/landing1/employment-doc.png",
+      "sha256": "5869da2346210f3fe64faa25af4ca8d54dd2c47b9c25fbbc83d6b5aac6fc8193"
+    },
+    "login-alert.png": {
+      "url": "https://feather.computer/landing1/login-alert.png",
+      "sha256": "d74b4be7ae02e2b75ae08d6869d014e1d6ea28ee4979c39f1863a4e00a0a039c"
+    },
+    "claim-offer.png": {
+      "url": "https://feather.computer/landing1/claim-offer.png",
+      "sha256": "bc352b2c2ab2f65414206d32514bf6de05ee5a1d44b32d5d46c72a6d61b5fcc6"
+    },
+    "free-delivery.png": {
+      "url": "https://feather.computer/landing1/free-delivery.png",
+      "sha256": "5aa2bf491de1f3e873793dd090b54791f1cba3c744ff444a491c2ecdb767e27c"
+    },
+    "30-off-circle.png": {
+      "url": "https://feather.computer/landing1/30-off-circle.png",
+      "sha256": "1d1abd261b17f790f77ad61736dfbee3a27be4b5e5e7bfce068b3cc760fe59dd"
+    },
+    "sfo-jfk.png": {
+      "url": "https://feather.computer/landing1/sfo-jfk.png",
+      "sha256": "c1689d88e2bb7ec4361104c4a7c1ba3d3b7a177bbf192e7a9785bd271566e837"
+    },
+    "design-engineer.png": {
+      "url": "https://feather.computer/landing1/design-engineer.png",
+      "sha256": "0c7ec8c04e7933acbb3e9c5b33e76bfe5ebd0cdfddfadbfb301f3314775e55ec"
+    },
+    "new-arrivals.png": {
+      "url": "https://feather.computer/landing1/new-arrivals.png",
+      "sha256": "ebe62413fb7cda63b261c06ea3e5bf58d34fec5dae2ad49f4fe04c28cb3bf82d"
+    },
+    "20-off-teal.png": {
+      "url": "https://feather.computer/landing1/20-off-teal.png",
+      "sha256": "522ad90d1c5ab70e996035091a2424397eda7156099f293aa2d9c15a8087f8bb"
+    },
+    "20-off-brown.png": {
+      "url": "https://feather.computer/landing1/20-off-brown.png",
+      "sha256": "b6571f2f2f1dd3648a9ca160c0401ebefb55a6378cb6d1248fffc7323afecf7d"
+    },
+    "shop-new-season.png": {
+      "url": "https://feather.computer/landing1/shop-new-season.png",
+      "sha256": "d9a003d38b4b57445f3dc02a48594a898313090962c4752f61ee83af1e9c4b90"
+    },
+    "notebook-bg.svg": {
+      "url": "https://feather.computer/landing1/notebook-bg.svg",
+      "sha256": "508bed6a8c290b990e6d75ccb772931dd3955025230efb60c93541cf681d36ae"
+    },
+    "notebook-line.svg": {
+      "url": "https://feather.computer/landing1/notebook-line.svg",
+      "sha256": "c293732eb38e8a85ac02c85b6ef9b0dbe85ac8c692d57fa748dfc57655c62b0e"
+    },
+    "f-logo.svg": {
+      "url": "https://feather.computer/landing1/f-logo.svg",
+      "sha256": "5bd79d9756de35c4de202147500dcb79d98a60d9aaf79001eecd2661a90ae9bc"
+    },
+    "dot-must-see.svg": {
+      "url": "https://feather.computer/landing1/dot-must-see.svg",
+      "sha256": "8182808699722e47e8dda11f885cc838eb6634309a464c357f72d6d326bea19c"
+    },
+    "avatar-circle.svg": {
+      "url": "https://feather.computer/landing1/avatar-circle.svg",
+      "sha256": "bfac450817fa6c9d123430e33287420e9d374677e0b2bf9681ffbfd448d21db1"
+    },
+    "card-reply.svg": {
+      "url": "https://feather.computer/landing1/card-reply.svg",
+      "sha256": "8d8cfb3a685cd1b4fe6d7d45e7e581cedcfad9064c7c7960505be92650d8e150"
+    },
+    "staple.svg": {
+      "url": "https://feather.computer/landing1/staple.svg",
+      "sha256": "c5e298101e91e60805bd0c778b9b79790e0eacf78219b84c8b1fb7ade3963f10"
+    },
+    "icon-mmh.svg": {
+      "url": "https://feather.computer/landing1/icon-mmh.svg",
+      "sha256": "b16cf4acff752f0b30517b2e9ada9b2ff4f05fb750729a6c8340eb215d6cc503"
+    },
+    "attachment-note.svg": {
+      "url": "https://feather.computer/landing1/attachment-note.svg",
+      "sha256": "d62e852dc55a6cbce27976bbf90fb54a6fbf08c054212ae9828dc02b3b2696e2"
+    },
+    "sticker-followup.svg": {
+      "url": "https://feather.computer/landing1/sticker-followup.svg",
+      "sha256": "a5467508557112a5f8896b8d399d106ad8292a2cf2d3723041be997c6bd757f1"
+    },
+    "stamp-yes.svg": {
+      "url": "https://feather.computer/landing1/stamp-yes.svg",
+      "sha256": "02a0f090496ffcd482c2b37648cbcc5dd930ebf8aa409f1049e0d0b0f40857f0"
+    },
+    "stamp-no.svg": {
+      "url": "https://feather.computer/landing1/stamp-no.svg",
+      "sha256": "2940990440549226a2493e867c643c563df92f74f0d9b84bd8d0f150ef9d56cf"
+    },
+    "stamp-maybe.svg": {
+      "url": "https://feather.computer/landing1/stamp-maybe.svg",
+      "sha256": "80d29c6475b2a0eb82f8b99cce2d58a0c26c9823655f3e008d21617dcbd0fdb8"
+    },
+    "attr-notes.svg": {
+      "url": "https://feather.computer/landing1/people/attributes/attr-notes.svg",
+      "sha256": "c4d6c2f91f8d0023851bf22fed4614935737b28f9026eb7ad7b5f94dcc508695"
+    },
+    "attr-bubbles.svg": {
+      "url": "https://feather.computer/landing1/people/attributes/attr-bubbles.svg",
+      "sha256": "bc0ac8f722df428b2639c8c16298421b6c22502444a27326d40df8b9fec496c0"
+    },
+    "attr-diploma.svg": {
+      "url": "https://feather.computer/landing1/people/attributes/attr-diploma.svg",
+      "sha256": "912caf681b4b5c70d1a528066cc0c5abcd9e9ec8280effacbb92b794e9b16057"
+    },
+    "attr-notebook.svg": {
+      "url": "https://feather.computer/landing1/people/attributes/attr-notebook.svg",
+      "sha256": "6b6076370bc4207ad6825822085ba03211af6721dc9aefa55a1050c6a206d975"
+    },
+    "attr-id-card.svg": {
+      "url": "https://feather.computer/landing1/people/attributes/attr-id-card.svg",
+      "sha256": "d225ae0726ce5aa00cc095544de17c2974982656e0dc7b68011a3b52aca8ffd0"
+    },
+    "receipt-find.svg": {
+      "url": "https://feather.computer/landing1/receipt-find.svg",
+      "sha256": "722f58287afd952b1a63253e0a85878f571fadb35c8a028e1872b388a257e35e"
+    },
+    "receipt-send-customer.svg": {
+      "url": "https://feather.computer/landing1/receipt-send-customer.svg",
+      "sha256": "34982f628c056fb0ace004aa91b371b3157f0d8a6e459c2dcb12175e003f6d7b"
+    },
+    "receipt-add-address.svg": {
+      "url": "https://feather.computer/landing1/receipt-add-address.svg",
+      "sha256": "2e0bb89af03b8da293942a1a4d853682781f1bc354836a35944d5076c042cf20"
+    },
+    "receipt-send-lawyer.svg": {
+      "url": "https://feather.computer/landing1/receipt-send-lawyer.svg",
+      "sha256": "a4556ac0ce2131f51e6795d05c7dc4dd7304e4e2bde8d0e45a65efd8e65e51bb"
+    },
+    "receipt-mark.svg": {
+      "url": "https://feather.computer/landing1/receipt-mark.svg",
+      "sha256": "75d0a2c177e0f82b4e1abc820ffaa01cb4c0f0b80f1b99b7d4a7f98d498d0f7f"
+    },
+    "birthday-pic.svg": {
+      "url": "https://feather.computer/landing1/search-cards/birthday-pic.svg",
+      "sha256": "f3e6200b44690da34f548606f5b6b81fc6eb8137290395b7dfcd96194f999ad3"
+    },
+    "news-7.svg": {
+      "url": "https://feather.computer/landing1/search-cards/news-7.svg",
+      "sha256": "ea55a081589a04055115b2ac711c265085954847337095ac50f011cc24614281"
+    },
+    "news-8.svg": {
+      "url": "https://feather.computer/landing1/search-cards/news-8.svg",
+      "sha256": "d6a5b2b6d8c7cc35e66056fc8c602f2048377112d23884e94dcf35cb977268b4"
+    },
+    "news-9.svg": {
+      "url": "https://feather.computer/landing1/search-cards/news-9.svg",
+      "sha256": "fce80e9ebe0ea195ef7766032016c3909d9feffabfba7cf79f70ba37e2557a23"
+    },
+    "coupon-5.svg": {
+      "url": "https://feather.computer/landing1/search-cards/coupon-5.svg",
+      "sha256": "af04b78fce0fd4d8cd86d98634532a79a1e742c9e198ae7ed978399f32513ada"
+    },
+    "coupon-6.svg": {
+      "url": "https://feather.computer/landing1/search-cards/coupon-6.svg",
+      "sha256": "c15046614424f6b3875cf96d6b2a908d4c253a5c5ef7df47edfb3b83938afbb9"
+    },
+    "customer-emails.svg": {
+      "url": "https://feather.computer/landing1/transforms/customer-emails.svg",
+      "sha256": "640390f14e4148e6921f75609f7617a4dec49c028ba2ebee78764878ab30cc4b"
+    },
+    "address-calendar.svg": {
+      "url": "https://feather.computer/landing1/transforms/address-calendar.svg",
+      "sha256": "24535237c855602070b56c57070c86f4dc05b7b9be0917025050533ddc208fee"
+    },
+    "incorporation-filed.svg": {
+      "url": "https://feather.computer/landing1/transforms/incorporation-filed.svg",
+      "sha256": "8fa1a635784cdacccf3f6236b6cd2103de0321c8f57e6f76bab85036e3c05bbd"
+    },
+    "read-stamp-shape.svg": {
+      "url": "https://feather.computer/landing1/transforms/read-stamp-shape.svg",
+      "sha256": "2c48445029adc029716f31cd93eb8c0d5684ab86fc5f3699a83de0b5c5e7abc1"
+    },
+    "tab-outer.svg": {
+      "url": "https://feather.computer/landing1/cabinet/tab-outer.svg",
+      "sha256": "defa9db00e93b896400c0c266da1de2fdc74cbb9260b624435b4a491d8a7f021"
+    },
+    "tab-inner.svg": {
+      "url": "https://feather.computer/landing1/cabinet/tab-inner.svg",
+      "sha256": "9d855b3453d0b8bc9509b742eabbc83dfcdbdfb1131f72b3b6082bf8f6e1ec22"
+    },
+    "M1.svg": {
+      "url": "https://feather.computer/landing1/papers/M1.svg",
+      "sha256": "b77c77ba1383b3db6d888913634cd83dca7827e7da045cf1c92da5c78280890e"
+    },
+    "P1.svg": {
+      "url": "https://feather.computer/landing1/papers/P1.svg",
+      "sha256": "7c180f9a069ef7572febe138d0bc4f6209cc7def14f81453a89662051324bb4e"
+    },
+    "B1.svg": {
+      "url": "https://feather.computer/landing1/papers/B1.svg",
+      "sha256": "c101593725b0483f30f0e18f4d87432415ca77eb4ccc7bbd73109bd79cfb426a"
+    },
+    "S1.svg": {
+      "url": "https://feather.computer/landing1/papers/S1.svg",
+      "sha256": "b5a2fdc1027d5fdd6c8aa927d713e4f36ad73d3e198aaa1da5dcf0111b29da68"
+    },
+    "SF1.svg": {
+      "url": "https://feather.computer/landing1/papers/SF1.svg",
+      "sha256": "c1ed9eeaee5c60a5e51645f5a892a0be57bc9617ae3ae2651aec581fbc94250f"
+    },
+    "NW1.svg": {
+      "url": "https://feather.computer/landing1/papers/NW1.svg",
+      "sha256": "f08a7b08f162a02e469ca2732e98515210456fe6cd8784b7b64d39a5d6586eb8"
+    },
+    "receipt-paper-0.svg": {
+      "derived_from": "receipt-find.svg",
+      "derivation": "Original reference paper outline and coloured inset; editable HTML exercise text; stretchable viewBox for expanded task.",
+      "sha256": "8657a3904861994a9ea1079d2a04a4c9152674f3beeb0faa64c0e0c4372cf64c"
+    },
+    "receipt-paper-1.svg": {
+      "derived_from": "receipt-send-customer.svg",
+      "derivation": "Original reference paper outline and coloured inset; editable HTML exercise text; stretchable viewBox for expanded task.",
+      "sha256": "4ea1eaa94fce1d6e0d962d0e8b91abdcd13214c76054a4c8219f9dd80925b131"
+    },
+    "receipt-paper-2.svg": {
+      "derived_from": "receipt-add-address.svg",
+      "derivation": "Original reference paper outline and coloured inset; editable HTML exercise text; stretchable viewBox for expanded task.",
+      "sha256": "93976ecc3bdfb599b5ae5d208614e40e37e0d5af836d905cf34db3493d87d5ad"
+    },
+    "receipt-paper-3.svg": {
+      "derived_from": "receipt-send-lawyer.svg",
+      "derivation": "Original reference paper outline and coloured inset; editable HTML exercise text; stretchable viewBox for expanded task.",
+      "sha256": "454fb721606463ee5e903647815a1b3f78fb1d219a31b8ad502b217270d7aec0"
+    },
+    "receipt-paper-4.svg": {
+      "derived_from": "receipt-mark.svg",
+      "derivation": "Original reference paper outline and coloured inset; editable HTML exercise text; stretchable viewBox for expanded task.",
+      "sha256": "445c993dcec033a086bb8d22a96e8727611ed3c740722c9b6ead9d56d7095645"
+    },
+    "gerstner-regular.otf": {
+      "url": "https://feather.computer/_next/static/media/Gerstner-ProgrammRegular.d39d6846.otf",
+      "sha256": "e7d478eb1a04cbc3d207be79576544e21269454fe09a087d6fe61ca48a2f5d7a"
+    },
+    "gerstner-medium.otf": {
+      "url": "https://feather.computer/_next/static/media/Gerstner-ProgrammMedium.cb13b62c.otf",
+      "sha256": "84b73d1b85b883924fdce1d106565e641b994ba9f7f4e2e99f20854a2aa15f05"
+    },
+    "mansalva-latin.woff2": {
+      "url": "https://feather.computer/_next/static/media/e0abe754a8d54098-s.p.woff2",
+      "sha256": "a820ef1f04311e07e966acda399e66c9d186a74c85d4cc24d0d8d342c7338765"
+    }
+  }
+}

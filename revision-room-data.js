@@ -1,0 +1,992 @@
+/* B1 student-facing tasks and reference gallery geometry. */
+window.RevisionRoomData={
+  "level": "b1",
+  "course": "b1",
+  "words": [
+    "easy-going",
+    "outgoing",
+    "straightforward",
+    "mature",
+    "stable",
+    "bossy",
+    "sympathetic",
+    "curious",
+    "resourceful",
+    "stubborn",
+    "scared",
+    "confused",
+    "exhausted",
+    "disgusted",
+    "down",
+    "worried",
+    "excited",
+    "bored",
+    "stressed",
+    "delighted",
+    "embarrassed",
+    "angry",
+    "as busy as a bee",
+    "stick-in-the-mud",
+    "good egg",
+    "Jack-of-all-trades",
+    "chatterbox",
+    "big mouth",
+    "slave driver",
+    "know-it-all",
+    "pig-headed",
+    "take after",
+    "get on well with",
+    "stay in touch with",
+    "be friendly with",
+    "look up to",
+    "quit",
+    "duties and responsibilities",
+    "salary",
+    "handle",
+    "qualification",
+    "apply for a job",
+    "shift",
+    "paycheck",
+    "part-time job",
+    "wage",
+    "feel valued",
+    "work-life balance",
+    "deadline",
+    "task",
+    "belong",
+    "overtime",
+    "manager",
+    "trust",
+    "be out of your comfort zone",
+    "a dude ranch",
+    "hitchhike",
+    "mud",
+    "wrestle",
+    "catch on",
+    "make sure",
+    "kindness",
+    "bill",
+    "income",
+    "keep fixating on",
+    "gravy boat",
+    "say out loud",
+    "drift apart",
+    "get freaked out",
+    "look familiar",
+    "it hit me",
+    "turn out",
+    "leave alone",
+    "all of a sudden",
+    "Excuse me",
+    "Is anyone sitting here?",
+    "Is this your first time here?",
+    "Do you mind if I…?",
+    "How long have you…?",
+    "Are you going to…?",
+    "Do you know if there's…?",
+    "by the way",
+    "It's a lovely morning, isn't it?",
+    "Did you hear about…?",
+    "Did you watch…?",
+    "Are you doing anything nice at the weekend?",
+    "How was your weekend?",
+    "No problem",
+    "Go ahead",
+    "Not at all",
+    "Help yourself",
+    "Be my guest",
+    "What about you?",
+    "How about you?",
+    "Nice to meet you",
+    "See you later",
+    "Nice talking to you",
+    "Have fun",
+    "I've got to go",
+    "That's my bus",
+    "So what's new?",
+    "Nothing much",
+    "I wanted to ask you",
+    "I know what you mean",
+    "Really? I didn't know that!",
+    "alarmed",
+    "amused",
+    "puzzled",
+    "thrilled",
+    "motivated",
+    "disturbed",
+    "touched",
+    "overwhelmed",
+    "challenged",
+    "irritated",
+    "depressed",
+    "amazed",
+    "surprised",
+    "terrified",
+    "shocked",
+    "comforted",
+    "disappointed",
+    "interested",
+    "frightened",
+    "to be scared of",
+    "rude",
+    "modest",
+    "kind",
+    "selfish",
+    "lonely",
+    "brave",
+    "comfort zone",
+    "embarrassing",
+    "to cringe",
+    "clumsy",
+    "awkward",
+    "accidentally",
+    "suddenly",
+    "while",
+    "fairytales",
+    "performances",
+    "TV shows",
+    "characters",
+    "plot",
+    "storyteller",
+    "hero",
+    "ending",
+    "documentary",
+    "comedy",
+    "horror film",
+    "adventure film",
+    "drama",
+    "action film",
+    "romantic comedy",
+    "mystery",
+    "biopic",
+    "animation",
+    "actor",
+    "cast",
+    "suspense",
+    "actress",
+    "special effects",
+    "sci-fi",
+    "cinematography",
+    "subtitles",
+    "script",
+    "director",
+    "flashback",
+    "A-list",
+    "recruit",
+    "backbone",
+    "star-making",
+    "a repertoire",
+    "award season",
+    "breakthrough role",
+    "high-art",
+    "mid-budget cinema",
+    "mainstream",
+    "brainrot",
+    "altered my brain chemistry",
+    "aura points",
+    "beige flag",
+    "no cap",
+    "cooked",
+    "delulu",
+    "demure",
+    "girl math"
+  ],
+  "topics": [
+    {
+      "id": "present-simple",
+      "label": "Present Simple",
+      "group": "tenses",
+      "art": "order-a20.png",
+      "seed": [
+        "Charlotte",
+        "every Monday",
+        "York"
+      ],
+      "tasks": [
+        "What tiny inconvenience ruins your mood more than it should?",
+        "Which fictional character makes terrible decisions but you still like them? Why?",
+        "What does your feed know about you that your friends don’t?",
+        "What do you usually do when you have five minutes to waste?",
+        "What makes someone a terrible flatmate?",
+        "What does your ideal working day look like?",
+        "Which everyday task takes you much longer than it should?",
+        "What do you secretly judge people for?",
+        "What does everyone seem to enjoy that you don’t understand?",
+        "How do your weekdays differ from your weekends?",
+        "Tell us two true habits and one invented habit. We’ll guess the lie.",
+        "Describe a normal morning as if it were a dramatic film scene.",
+        "What do you do when a conversation becomes awkward?",
+        "What does a perfect lazy Sunday include?",
+        "Ask three questions to find out whether we would be good flatmates."
+      ]
+    },
+    {
+      "id": "present-continuous",
+      "label": "Present Continuous",
+      "group": "tenses",
+      "art": "employment-doc.png",
+      "seed": [
+        "Charlotte",
+        "right now",
+        "at home"
+      ],
+      "tasks": [
+        "What are you watching at the moment that you wouldn’t recommend to anyone?",
+        "What trend is everyone discussing that you just don’t understand?",
+        "What are you doing differently this month?",
+        "Your life is a film. Describe the opening scene. What is everyone doing?",
+        "Imagine you join a video call by mistake. What is happening?",
+        "Describe a party where everyone is trying to hide something.",
+        "What is happening in your dream workplace right now?",
+        "You arrive at a café before it opens. What is everyone doing?",
+        "Describe a chaotic group chat as if its members were in one room.",
+        "What are people around you worrying about these days?",
+        "Imagine a reality show about your home. What is the camera recording now?",
+        "You hear strange noises outside. Describe a possible scene.",
+        "Describe yourself and your friends waiting for an important announcement.",
+        "Why can’t you answer the phone right now? Invent an unusual reason.",
+        "What is changing in the way people spend their free time?"
+      ]
+    },
+    {
+      "id": "past-simple",
+      "label": "Past Simple",
+      "group": "tenses",
+      "art": "login-alert.png",
+      "seed": [
+        "Charlotte",
+        "yesterday",
+        "York"
+      ],
+      "tasks": [
+        "What trend did you love at the time but find embarrassing now?",
+        "What small decision unexpectedly changed your whole day?",
+        "Tell us about your worst day, but invent a happy ending.",
+        "What film disappointed you most after a brilliant trailer?",
+        "Tell a true or invented story about a message sent to the wrong person.",
+        "What did you buy because of an advert, and was it worth it?",
+        "What happened on a day when you had no phone?",
+        "Tell a story that starts with finding an ordinary object.",
+        "What did you believe as a child that makes you laugh now?",
+        "Describe a time when a stranger surprised you.",
+        "What happened the last time your plans changed suddenly?",
+        "Tell a story in reverse: start with the ending, then explain the events.",
+        "Invent a very short film plot based on your last weekend.",
+        "Tell us two things that really happened yesterday and one invented event.",
+        "What did you do the last time you completely misunderstood someone?"
+      ]
+    },
+    {
+      "id": "past-continuous",
+      "label": "Past Continuous",
+      "group": "tenses",
+      "art": "claim-offer.png",
+      "seed": [
+        "Charlotte",
+        "yesterday · 10 a.m.",
+        "kitchen"
+      ],
+      "tasks": [
+        "What were you doing yesterday at 10 a.m., 1 p.m. and 6 p.m.?",
+        "Describe what everyone was doing just before a surprise was revealed.",
+        "What were you doing the last time you completely lost track of time?",
+        "Imagine a power cut. What were people doing in different rooms?",
+        "Describe the background of an embarrassing photo, real or invented.",
+        "What was happening around you while you were waiting for someone?",
+        "Start with “I opened the door and immediately regretted it.” What were people doing inside?",
+        "Imagine a silent film of your yesterday. Describe three scenes.",
+        "Describe both sides of a phone call during a busy afternoon.",
+        "What were you doing while someone else was doing all the hard work?",
+        "Invent an alibi: where were you and what were you doing at eight last night?",
+        "What was everyone doing when a meeting went wrong?",
+        "Describe a moment when you were trying to concentrate but others were making it difficult.",
+        "What was happening outside while you were trying to sleep?",
+        "Imagine you paused a film of your life yesterday. Describe the frame."
+      ]
+    },
+    {
+      "id": "present-perfect",
+      "label": "Present Perfect",
+      "group": "tenses",
+      "art": "free-delivery.png",
+      "seed": [
+        "Charlotte",
+        "this week",
+        "three times"
+      ],
+      "tasks": [
+        "What has changed in your life recently?",
+        "Have you ever pretended to understand a joke or a reference? Tell us about it.",
+        "What film have you watched just because everyone was talking about it?",
+        "What is the most ridiculous thing you have bought because of social media?",
+        "Have you ever stopped watching a series right before the ending? Why?",
+        "What have you already done today, and what haven’t you done yet?",
+        "You’re making an apology video. Explain what you’ve done.",
+        "You arrive home and something is different. What has happened?",
+        "What have you learned about yourself this year?",
+        "What have you never tried but feel you would enjoy?",
+        "What useful thing have you discovered by accident?",
+        "Give us three updates from an imaginary group chat.",
+        "Have you ever changed your opinion about a film, person or trend? Why?",
+        "What have you done recently that your younger self would find surprising?",
+        "Tell us three things you have done this week. One can be invented."
+      ]
+    },
+    {
+      "id": "present-perfect-continuous",
+      "label": "Present Perfect Continuous",
+      "group": "tenses",
+      "art": "30-off-circle.png",
+      "seed": [
+        "Charlotte",
+        "since 9 a.m.",
+        "still here"
+      ],
+      "tasks": [
+        "What have you been watching instead of doing something important?",
+        "You’ve disappeared from social media for a month. Explain what you’ve been doing.",
+        "What have you been spending too much time thinking about recently?",
+        "You look exhausted. Explain what you’ve been doing, but make it unexpected.",
+        "What have you been trying to get better at?",
+        "What have you been putting off recently?",
+        "Describe an activity you’ve been doing so much that your friends are noticing.",
+        "What have people around you been talking about this week?",
+        "Why have you been sleeping badly? Invent a funny explanation.",
+        "What have you been doing to save money or time?",
+        "Imagine your room is full of strange objects. What have you been working on?",
+        "You have been waiting for an hour. Explain the situation to a friend.",
+        "What habit have you been trying to change?",
+        "What have you been learning from films, videos or podcasts recently?",
+        "Explain why you need a break. Give a true and an invented version."
+      ]
+    },
+    {
+      "id": "past-perfect",
+      "label": "Past Perfect",
+      "group": "tenses",
+      "art": "sfo-jfk.png",
+      "seed": [
+        "Charlotte",
+        "before 6 p.m.",
+        "the station"
+      ],
+      "tasks": [
+        "What plot twist had you guessed before it was revealed?",
+        "Tell us about a time when you realised you had forgotten something.",
+        "You arrived too late. What had happened before you got there?",
+        "You opened a box and were shocked. Explain what someone had done.",
+        "Describe a misunderstanding that started because someone hadn’t checked the facts.",
+        "Tell a story about something you recognised but couldn’t immediately place.",
+        "You came home to a surprise. What had happened while you were out?",
+        "A familiar object appeared in an unexpected place. Explain its journey.",
+        "Tell us about a plan that failed because of an earlier mistake.",
+        "You discovered that a secret was no longer secret. What had happened?",
+        "Start with a problem, then explain three earlier events that caused it.",
+        "Imagine someone accused you unfairly. Explain what had really happened.",
+        "You couldn’t enter a place you knew well. What had changed?",
+        "Tell a story about two people who had met before but didn’t realise it.",
+        "You found an old message. How did it change what you thought had happened?"
+      ]
+    },
+    {
+      "id": "future-simple",
+      "label": "Will",
+      "group": "tenses",
+      "art": "design-engineer.png",
+      "seed": [
+        "Charlotte",
+        "tomorrow",
+        "a promise"
+      ],
+      "tasks": [
+        "What popular app do you think people will forget about in five years?",
+        "What do you think will become fashionable again?",
+        "You have made a mistake. What will you promise to do differently?",
+        "Your plans have just been cancelled. What will you do now?",
+        "Someone needs help at the worst possible moment. What will you offer?",
+        "Make three predictions about what our phones will do in ten years.",
+        "What everyday problem do you think technology will solve next?",
+        "Predict what will happen to a fictional character after the ending.",
+        "You suddenly have a free afternoon. Decide what you’ll do.",
+        "What do you think people will laugh at when they look back at today?",
+        "You’re making an apology video. Promise three changes.",
+        "A friend is worried about tomorrow. What will you say?",
+        "Make an optimistic and a pessimistic prediction about the same thing.",
+        "What will you probably still be doing when you are eighty?",
+        "Invent an unexpected decision after receiving surprising news."
+      ]
+    },
+    {
+      "id": "going-to",
+      "label": "Going to",
+      "group": "tenses",
+      "art": "new-arrivals.png",
+      "seed": [
+        "Charlotte",
+        "this weekend",
+        "a plan"
+      ],
+      "tasks": [
+        "What are you going to stop wasting money on?",
+        "What are you going to do differently next week?",
+        "You’ve bought three unusual things. Explain what you’re going to do with them.",
+        "What are you going to learn just because it seems fun?",
+        "You have a completely free weekend. What are your plans?",
+        "Your first plan has failed. What are you going to try next?",
+        "You’re preparing a surprise. Explain your plan without revealing everything.",
+        "What are you going to change about your online habits?",
+        "You’re starting a tiny business. What are you going to do first?",
+        "Describe something that looks about to go wrong. What is going to happen?",
+        "You’ve saved some money. What are you going to use it for?",
+        "What are you going to try even though you may be bad at it?",
+        "Invent a holiday plan that your friends would find surprising.",
+        "What are you going to do before your next birthday?",
+        "Make one sensible and one ridiculous plan for the same problem."
+      ]
+    },
+    {
+      "id": "future-continuous",
+      "label": "Future Continuous",
+      "group": "tenses",
+      "art": "20-off-teal.png",
+      "seed": [
+        "Charlotte",
+        "tomorrow · 10 a.m.",
+        "9–11 a.m."
+      ],
+      "tasks": [
+        "What will people be posting online ten years from now?",
+        "What will you be doing tomorrow at 9 a.m., 3 p.m. and 9 p.m.?",
+        "Imagine your life next year. What will you be doing on a normal Monday?",
+        "You can’t answer a call tomorrow evening. Explain what you’ll be doing.",
+        "Describe two friends in different places at the same future moment.",
+        "Imagine the opening of your own café. What will everyone be doing?",
+        "What will you be doing halfway through your next long journey?",
+        "Describe a future holiday while your friends are still at work.",
+        "Imagine a camera following you exactly five years from now. Describe the scene.",
+        "What will people around you be doing while you are relaxing this weekend?",
+        "You’re arriving at a party early. What will you probably find people doing?",
+        "Describe an ordinary evening in a future city.",
+        "Imagine your favourite character a year after the story ends. What will they be doing?",
+        "What will you be doing at midnight on your ideal holiday?",
+        "Describe a future event from three people’s points of view."
+      ]
+    },
+    {
+      "id": "future-perfect",
+      "label": "Future Perfect",
+      "group": "tenses",
+      "art": "20-off-brown.png",
+      "seed": [
+        "Charlotte",
+        "by noon tomorrow",
+        "finish: 11 a.m."
+      ],
+      "tasks": [
+        "What online habit will you have given up by this time next year?",
+        "What will you have finished by Friday evening?",
+        "Imagine a successful year. What will you have achieved by December?",
+        "What will you have learned before your next big trip?",
+        "You’re opening a small business. What will you have done by opening day?",
+        "What will you have saved enough money for by next summer?",
+        "You’re moving home. What will you have organised before moving day?",
+        "What do you hope you will have tried by the time you are eighty?",
+        "What will have changed in your town by 2040?",
+        "You’re preparing a surprise. What will you have arranged before the person arrives?",
+        "What will you have completed before your next holiday?",
+        "Make three predictions about things that will have disappeared by 2050.",
+        "Imagine finishing a difficult project. What will you have learned by the end?",
+        "What will you have done before you allow yourself a completely lazy weekend?",
+        "Give a realistic and a wildly optimistic version of your achievements by next year."
+      ]
+    },
+    {
+      "id": "past-mix",
+      "label": "Past Simple + Continuous",
+      "group": "tenses",
+      "art": "logo-v3-svg.png",
+      "seed": [
+        "Charlotte",
+        "10 a.m. · 1 p.m. · 6 p.m.",
+        "yesterday"
+      ],
+      "tasks": [
+        "What were you doing yesterday at 10 a.m., 1 p.m. and 6 p.m.? What happened between these moments?",
+        "What were you doing when you received unexpected news?",
+        "Tell a story that starts with an ordinary journey and ends with a mistake.",
+        "What happened while you were waiting for a delivery?",
+        "Describe what everyone was doing when an unexpected guest arrived.",
+        "Tell us about a small accident during a normal activity.",
+        "You missed something important. What were you doing instead?",
+        "Tell a story with three interruptions: first, then, finally.",
+        "You were preparing a surprise. What interrupted you?",
+        "Two people were doing different things. How did their stories connect?",
+        "Tell us about a moment when you completely misunderstood what was happening.",
+        "Describe a dramatic event as if you were a very calm witness.",
+        "Turn yesterday’s ordinary afternoon into a comedy scene.",
+        "Tell a story starting with a strange sound while you were trying to concentrate.",
+        "Tell a true story and add one invented event. We’ll guess which part you invented."
+      ]
+    },
+    {
+      "id": "zero",
+      "label": "Zero Conditional",
+      "group": "conditions",
+      "art": "to-katherine.png",
+      "seed": [
+        "Charlotte",
+        "every time",
+        "a message"
+      ],
+      "tasks": [
+        "What happens when you open social media “just for five minutes”?",
+        "What do you usually do if you can’t remember a word?",
+        "What happens when you don’t get enough sleep?",
+        "How do you react if someone changes your plans at the last minute?",
+        "What happens if someone borrows your things without asking?",
+        "Describe an unwritten rule of your group chat.",
+        "What happens when you leave an important task until the last minute?",
+        "What do you do if a film becomes boring halfway through?",
+        "What happens if someone spoils the ending of a story for you?",
+        "Explain a rule of a game you know, or invent a ridiculous one.",
+        "What usually happens when you try to save money?",
+        "How do you know if you need a break?",
+        "What happens when you go shopping while hungry?",
+        "Describe a situation that always produces the same reaction in your family.",
+        "Invent three rules for living with your favourite fictional character."
+      ]
+    },
+    {
+      "id": "first",
+      "label": "First Conditional",
+      "group": "conditions",
+      "art": "jason-jonathan.png",
+      "seed": [
+        "Charlotte",
+        "tomorrow",
+        "rain"
+      ],
+      "tasks": [
+        "If your favourite app disappears tomorrow, what will you miss most?",
+        "What will you do if tomorrow’s plans are cancelled?",
+        "If AI makes most films in the future, will you still want to watch them?",
+        "What will you do if you unexpectedly get a completely free day?",
+        "Build a chain of consequences: your phone breaks tomorrow. What happens next?",
+        "What will you do if someone offers you your dream job in another city?",
+        "If your next post suddenly becomes popular, what will you do?",
+        "What will happen if you ignore your to-do list this weekend?",
+        "If you receive a message meant for someone else, what will you do?",
+        "Make a promise to a friend that depends on one condition.",
+        "If your train is cancelled late at night, what will your backup plan be?",
+        "If you have to organise a party tomorrow, what will you do first?",
+        "What will you do if someone you admire replies to your message?",
+        "Give a funny warning about a possible consequence of an everyday action.",
+        "If your friend chooses a terrible film tonight, how will you react?"
+      ]
+    },
+    {
+      "id": "second",
+      "label": "Second Conditional",
+      "group": "conditions",
+      "art": "1062-19th-st.png",
+      "seed": [
+        "Charlotte",
+        "more free time",
+        "a different life"
+      ],
+      "tasks": [
+        "What would you do if you were unemployed?",
+        "If your search history became a film, what genre would it be?",
+        "If you could delete one trend from the internet, which would you choose?",
+        "If your life became a series, what would viewers complain about?",
+        "If you could make one everyday task somebody else’s responsibility forever, what would it be?",
+        "If you had to give an unprepared presentation, what could you talk about for an hour?",
+        "If you could see one statistic about your entire life, what would you want to know?",
+        "If you could introduce one ridiculous law, what would you change?",
+        "If you had to share a flat with a fictional character, who would you choose?",
+        "If you could take a year off, how would you spend it?",
+        "If you could remove one small inconvenience from daily life, what would it be?",
+        "If you had to make money from a very ordinary skill, what would you sell?",
+        "If you could watch one day of your future, which day would you choose?",
+        "If everyone could hear your thoughts for one minute, what would you do?",
+        "If you could exchange lives with someone for a week, whose life would you try?"
+      ]
+    },
+    {
+      "id": "wish",
+      "label": "I wish",
+      "group": "conditions",
+      "art": "order-366.png",
+      "seed": [
+        "you",
+        "now",
+        "one change"
+      ],
+      "tasks": [
+        "What do you wish were different about social media?",
+        "What do you wish people understood about you?",
+        "What do you wish you knew how to do?",
+        "What do you wish were different about your daily routine?",
+        "What do you wish you had more time for?",
+        "What skill do you wish you had when travelling?",
+        "What do you wish were different about your home?",
+        "What do you wish you could change about your town?",
+        "What do you wish were easier for you?",
+        "What do you wish you could borrow from a fictional character’s life?",
+        "What do you wish you were less worried about?",
+        "What do you wish you understood about a popular trend?",
+        "What do you wish you had more patience for?",
+        "What do you wish you could do without needing to practise?",
+        "Give three wishes about your life now: one sensible, one funny and one surprising."
+      ]
+    },
+    {
+      "id": "gerund",
+      "label": "Gerund",
+      "group": "forms",
+      "art": "limited-time.png",
+      "seed": [
+        "you",
+        "enjoy",
+        "weekends"
+      ],
+      "tasks": [
+        "What do you secretly enjoy doing even though others find it boring?",
+        "What do you avoid doing when you are in a bad mood?",
+        "Make a “Things I secretly enjoy” list. Defend your choices.",
+        "What activity would you never consider trying? Why?",
+        "What do you spend too much time doing?",
+        "What are you looking forward to doing?",
+        "What do you miss doing from an earlier part of your life?",
+        "What do you keep doing even though you know it wastes time?",
+        "What activity would you suggest doing with someone you’ve just met?",
+        "What do you dislike doing but feel pleased about afterwards?",
+        "What would you admit enjoying only to a close friend?",
+        "What are you interested in learning just for fun?",
+        "What have you stopped doing because it became too expensive or tiring?",
+        "What everyday activity would you recommend doing differently?",
+        "Describe a fictional character’s guilty pleasure using enjoys, avoids or keeps."
+      ]
+    },
+    {
+      "id": "infinitive",
+      "label": "Infinitive",
+      "group": "forms",
+      "art": "new-collection.png",
+      "seed": [
+        "you",
+        "decide",
+        "next month"
+      ],
+      "tasks": [
+        "What have you always wanted to try but keep finding excuses not to do?",
+        "Make a “Things I refuse to do” list. Give reasons.",
+        "What have you decided to spend less time doing?",
+        "What would you offer to do for a friend having a difficult week?",
+        "What do you hope to learn this year?",
+        "What did you once agree to do and then regret?",
+        "What are you planning to try for the first time?",
+        "What do you sometimes pretend to know or understand?",
+        "What would you promise to do differently after a small mistake?",
+        "What is too expensive for you to try just once?",
+        "What are you ready to do badly before you get good at it?",
+        "Where would you go to learn an unusual skill?",
+        "What would you refuse to give up, even to save money?",
+        "What small thing do you want to remember to do more often?",
+        "Describe an ambition you would like to achieve without becoming famous."
+      ]
+    },
+    {
+      "id": "word-formation",
+      "label": "Word formation",
+      "group": "forms",
+      "art": "2026-collection.png",
+      "seed": [
+        "you",
+        "noun ↔ adjective",
+        "a quality"
+      ],
+      "tasks": [
+        "Use an adjective and a related noun to describe a quality you value in a friend.",
+        "Use a related word form to describe how you behave when you are tired.",
+        "Use two words from the same family to explain an opinion about social media.",
+        "Change a word form and use it in the title of a film about your life.",
+        "Use a noun and a related adjective to describe a fictional character.",
+        "Use an adverb to describe an embarrassing thing you did.",
+        "Use a negative word form to describe something that annoys you.",
+        "Use two related words in a short, dramatic apology.",
+        "Describe a problem with one word form and a possible solution with another.",
+        "Use a related noun to explain something you want more of in your life.",
+        "Invent a job title, then describe the person who would be good at it.",
+        "Use a different word form in a question you genuinely want to ask someone.",
+        "Use two related words to compare your younger self with yourself now.",
+        "Use a word and a related form in a short recommendation for a film or place.",
+        "Use three words from one word family in a tiny true or invented story."
+      ]
+    },
+    {
+      "id": "passive",
+      "label": "Passive voice",
+      "group": "structures",
+      "art": "48-hours.png",
+      "seed": [
+        "the old cinema",
+        "last year",
+        "local volunteers"
+      ],
+      "tasks": [
+        "What film is praised far too much? What should be watched instead?",
+        "Sell us an ordinary object as a revolutionary invention. Explain how it is made and used.",
+        "Tell the story of a parcel from the shop to your home.",
+        "Describe what has been changed in a place you know.",
+        "Explain what happens to a lost item after someone finds it.",
+        "Describe three things that will be done before your ideal event opens.",
+        "Tell a short news story without naming the people responsible.",
+        "Describe how your favourite snack is made and sold.",
+        "Something in your home has been damaged. Explain what happened.",
+        "Tell the story of a photo that was shared with the wrong person.",
+        "Describe how a film is made, but invent one ridiculous step.",
+        "What should be banned in cinemas, cafés or group chats?",
+        "Describe the rules of an imaginary hotel using is allowed and is prohibited.",
+        "Explain how an old object was discovered and given a new use.",
+        "Describe a surprise party from the point of view of the things being prepared."
+      ]
+    },
+    {
+      "id": "reported",
+      "label": "Reported speech",
+      "group": "structures",
+      "art": "shop-new-season.png",
+      "seed": [
+        "you",
+        "a message",
+        "yesterday"
+      ],
+      "tasks": [
+        "What is the strangest thing you’ve heard an influencer say? Tell us what they said.",
+        "Invent a ridiculous piece of advice, then report it to us.",
+        "Tell us about a promise someone made that sounded impossible.",
+        "Invent a message that caused a misunderstanding. Report what the sender said.",
+        "Ask a question, then tell us what you asked.",
+        "Give us some advice, then report it as if someone else had given it.",
+        "Report three things a fictional character might say after a terrible day.",
+        "Imagine a celebrity explaining a very ordinary problem. Report their explanation.",
+        "Invent a complaint about an absurd product and report it to the seller.",
+        "Tell us what someone said that made you change your mind.",
+        "Invent a short argument, then summarise both sides.",
+        "Report what a friend said about a film without naming the film.",
+        "Invent a very unhelpful answer from customer service and report it.",
+        "Give us a piece of news, then report your own announcement.",
+        "Imagine a conversation between your past self and your present self. Report it."
+      ]
+    },
+    {
+      "id": "relative",
+      "label": "Relative clauses",
+      "group": "structures",
+      "art": "20-off-small.png",
+      "seed": [
+        "a person",
+        "you know",
+        "one detail"
+      ],
+      "tasks": [
+        "Who is a character that you would never want as a flatmate?",
+        "Describe a famous character without naming them. We have to guess.",
+        "Describe an object you own without naming it.",
+        "Describe a place where you could happily spend a whole afternoon.",
+        "Describe a person who makes an ordinary activity more enjoyable.",
+        "Describe a film that you would recommend to almost anyone.",
+        "Describe something that you often forget to take with you.",
+        "Invent an app that would solve a tiny everyday problem.",
+        "Describe a job that sounds fun but would probably annoy you.",
+        "Describe someone whose opinion you usually trust.",
+        "Tell us about a place where something unexpected happened.",
+        "Describe a type of person you find easy to talk to.",
+        "Describe a trend that you hope disappears soon.",
+        "Invent an object that everyone in your home would argue about using.",
+        "Describe three people at a party so we can identify them."
+      ]
+    },
+    {
+      "id": "question-tags",
+      "label": "Question tags",
+      "group": "structures",
+      "art": "attachment-note.svg",
+      "seed": [
+        "you",
+        "a plan",
+        "Friday"
+      ],
+      "tasks": [
+        "Make three guesses about me and check them with question tags.",
+        "Make a statement about a film we both know and ask me to agree.",
+        "Check three details of an imaginary arrangement for tomorrow.",
+        "Imagine you recognise someone but aren’t sure where you met. Check your guesses.",
+        "Check that a friend has everything they need before a trip.",
+        "Make three assumptions about a person in a portrait and ask for confirmation.",
+        "Try to get me to agree with an unpopular opinion.",
+        "Check whether a shared task has been finished.",
+        "Invent a suspicious situation and ask three questions to confirm what you think.",
+        "Check three memories of an imaginary holiday we took together.",
+        "Make a confident and an uncertain guess about the same thing.",
+        "Check the rules before joining an unusual group chat.",
+        "Imagine your friend has changed their mind. Check what they now want to do.",
+        "Make three predictions about this weekend and ask whether I agree.",
+        "Pretend we are choosing a terrible film together. Keep checking that I agree."
+      ]
+    },
+    {
+      "id": "deduction",
+      "label": "Modals of deduction",
+      "group": "structures",
+      "art": "sticker-followup.svg",
+      "seed": [
+        "a light",
+        "an empty room",
+        "now"
+      ],
+      "tasks": [
+        "Look at a portrait. Make one strong and one uncertain guess.",
+        "You find a bag with three strange objects. Who might own it?",
+        "You hear noises next door. Give three possible explanations.",
+        "You receive an unsigned present. Who could have sent it? Focus on who the sender might be now.",
+        "Someone isn’t answering their phone. Where might they be?",
+        "Describe evidence that proves a person cannot be in a particular place.",
+        "Invent a suspicious scene. Explain what might be happening.",
+        "You see a confusing post online. Give a sensible and an absurd explanation.",
+        "A friend looks unusually pleased. What might explain it?",
+        "Invent three clues that suggest someone’s profession.",
+        "Describe a room and guess what kind of person lives there.",
+        "Someone arrives carrying an unusual object. What might they be planning?",
+        "A café is unexpectedly closed. Explain what could be happening.",
+        "Watch an imaginary film scene with the sound off. Guess what is going on.",
+        "Give three explanations for the same everyday mystery, with different levels of certainty."
+      ]
+    }
+  ],
+  "people": [
+    {
+      "name": "Charlotte",
+      "art": "portrait-02.png"
+    },
+    {
+      "name": "Ben",
+      "art": "portrait-03.png"
+    },
+    {
+      "name": "Amelia",
+      "art": "portrait-04.png"
+    },
+    {
+      "name": "Harry",
+      "art": "portrait-05.png"
+    },
+    {
+      "name": "Florence",
+      "art": "portrait-06.png"
+    },
+    {
+      "name": "Arthur",
+      "art": "portrait-07.png"
+    },
+    {
+      "name": "Oliver",
+      "art": "portrait-01.png"
+    }
+  ],
+  "gallery": [
+    {
+      "paper": "receipt-paper-0.svg",
+      "color": "#FFE2E3",
+      "ink": "#943336",
+      "object": "birthday-pic.svg",
+      "drawer": "#EDB3B3",
+      "rotation": 2.9
+    },
+    {
+      "paper": "receipt-paper-1.svg",
+      "color": "#FAF1E8",
+      "ink": "#866E54",
+      "object": "customer-emails.svg",
+      "drawer": "#D3B9A8",
+      "rotation": -2.9
+    },
+    {
+      "paper": "receipt-paper-2.svg",
+      "color": "#DEF8E5",
+      "ink": "#607766",
+      "object": "address-calendar.svg",
+      "drawer": "#B7C2AC",
+      "rotation": 2.5
+    },
+    {
+      "paper": "receipt-paper-3.svg",
+      "color": "#DCFAFE",
+      "ink": "#547D83",
+      "object": "incorporation-filed.svg",
+      "drawer": "#C1E1DB",
+      "rotation": -2.4
+    },
+    {
+      "paper": "receipt-paper-4.svg",
+      "color": "#F7FDDB",
+      "ink": "#747A5B",
+      "object": null,
+      "drawer": "#C8D0CB",
+      "rotation": 0,
+      "layers": [
+        {
+          "art": "news-7.svg",
+          "x": 0,
+          "y": 12,
+          "rotation": -6
+        },
+        {
+          "art": "news-8.svg",
+          "x": 10,
+          "y": 18,
+          "rotation": 5
+        },
+        {
+          "art": "news-9.svg",
+          "x": 0,
+          "y": 20,
+          "rotation": -3
+        },
+        {
+          "art": "coupon-6.svg",
+          "x": 29,
+          "y": -10,
+          "rotation": -5
+        },
+        {
+          "art": "coupon-5.svg",
+          "x": -9,
+          "y": 80,
+          "rotation": -5
+        },
+        {
+          "art": "read-stamp-shape.svg",
+          "x": 0,
+          "y": 40,
+          "rotation": -8
+        }
+      ]
+    }
+  ],
+  "drawerPapers": [
+    "P1.svg",
+    "SF1.svg",
+    "B1.svg",
+    "M1.svg",
+    "S1.svg",
+    "NW1.svg"
+  ],
+  "drawerParts": [
+    "drawer-face.svg",
+    "drawer-knob.svg",
+    "tab-outer.svg",
+    "tab-inner.svg"
+  ]
+};
