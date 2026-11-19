@@ -36,3 +36,7 @@ Validation:
 - node scripts/check-deduction-toggle.js
 - python scripts/check-deduction-toggle.py
 - DEDUCTION_TOGGLE_ROOT=/path/to/site python scripts/check-deduction-toggle.py
+
+The later user preference keeps the cream site background and level-coloured
+Kindaten titles via reference-practice-theme.css, overriding the reference
+white surface while preserving the elastic switch.

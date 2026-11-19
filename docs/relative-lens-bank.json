@@ -1,0 +1,1620 @@
+{
+  "levels": {
+    "b1": [
+      {
+        "title": "After the screening",
+        "tasks": [
+          {
+            "facts": [
+              "I met a student.",
+              "She writes reviews of horror films."
+            ],
+            "starter": "I met a student…",
+            "answers": [
+              "I met a student who writes reviews of horror films.",
+              "I met a student that writes reviews of horror films."
+            ],
+            "kind": "subject",
+            "focus": "",
+            "id": "b1-s01-1",
+            "reason": "The relative pronoun is the subject of the clause, so it cannot be omitted.",
+            "vocab": {
+              "course": "b1",
+              "word": "horror film"
+            }
+          },
+          {
+            "facts": [
+              "We watched a documentary.",
+              "It was about life without smartphones."
+            ],
+            "starter": "We watched…",
+            "answers": [
+              "We watched a documentary which was about life without smartphones.",
+              "We watched a documentary that was about life without smartphones."
+            ],
+            "kind": "subject",
+            "focus": "",
+            "id": "b1-s01-2",
+            "reason": "The relative pronoun is the subject of the clause, so it cannot be omitted.",
+            "vocab": {
+              "course": "b1",
+              "word": "documentary"
+            }
+          },
+          {
+            "facts": [
+              "We found a café.",
+              "You can watch old comedies there."
+            ],
+            "starter": "We found…",
+            "answers": [
+              "We found a café where you can watch old comedies.",
+              "We found a café in which you can watch old comedies.",
+              "We found a café which you can watch old comedies in.",
+              "We found a café that you can watch old comedies in.",
+              "We found a café you can watch old comedies in."
+            ],
+            "kind": "place",
+            "focus": "",
+            "id": "b1-s01-3",
+            "reason": "Where refers to a place. A preposition + which can express the same relationship.",
+            "vocab": {
+              "course": "b1",
+              "word": "comedy"
+            }
+          },
+          {
+            "facts": [
+              "I sat next to a girl.",
+              "Her job is to write subtitles."
+            ],
+            "starter": "I sat next to a girl…",
+            "answers": [
+              "I sat next to a girl whose job is to write subtitles."
+            ],
+            "kind": "possessive",
+            "focus": "",
+            "id": "b1-s01-4",
+            "reason": "Whose expresses possession; it is followed by a noun, not a repeated possessive pronoun.",
+            "vocab": {
+              "course": "b1",
+              "word": "subtitles"
+            }
+          }
+        ],
+        "id": "b1-s01"
+      },
+      {
+        "title": "The group chat",
+        "tasks": [
+          {
+            "facts": [
+              "I invited a friend.",
+              "She is really outgoing."
+            ],
+            "starter": "I invited…",
+            "answers": [
+              "I invited a friend who is really outgoing.",
+              "I invited a friend that is really outgoing."
+            ],
+            "kind": "subject",
+            "focus": "",
+            "id": "b1-s02-1",
+            "reason": "The relative pronoun is the subject of the clause, so it cannot be omitted.",
+            "vocab": {
+              "course": "b1",
+              "word": "outgoing"
+            }
+          },
+          {
+            "facts": [
+              "You sent me a meme.",
+              "It really amused me."
+            ],
+            "starter": "You sent me…",
+            "answers": [
+              "You sent me a meme which really amused me.",
+              "You sent me a meme that really amused me."
+            ],
+            "kind": "subject",
+            "focus": "",
+            "id": "b1-s02-2",
+            "reason": "The relative pronoun is the subject of the clause, so it cannot be omitted.",
+            "vocab": {
+              "course": "b1",
+              "word": "amused"
+            }
+          },
+          {
+            "facts": [
+              "I found an app.",
+              "I use it to stay in touch with my cousins."
+            ],
+            "starter": "I found…",
+            "answers": [
+              "I found an app which I use to stay in touch with my cousins.",
+              "I found an app that I use to stay in touch with my cousins.",
+              "I found an app I use to stay in touch with my cousins."
+            ],
+            "kind": "object",
+            "focus": "",
+            "id": "b1-s02-3",
+            "reason": "The relative pronoun is the object, so you can use which/that or omit it.",
+            "vocab": {
+              "course": "b1",
+              "word": "stay in touch with"
+            }
+          },
+          {
+            "facts": [
+              "I remember the evening.",
+              "Our group chat disappeared that evening and everyone was confused."
+            ],
+            "starter": "I remember the evening…",
+            "answers": [
+              "I remember the evening when our group chat disappeared and everyone was confused.",
+              "I remember the evening that our group chat disappeared and everyone was confused.",
+              "I remember the evening our group chat disappeared and everyone was confused."
+            ],
+            "kind": "time",
+            "focus": "",
+            "id": "b1-s02-4",
+            "reason": "When refers to a time; in this defining clause, that or no relative word is also possible.",
+            "vocab": {
+              "course": "b1",
+              "word": "confused"
+            }
+          }
+        ],
+        "id": "b1-s02"
+      },
+      {
+        "title": "Dinner at the flat",
+        "tasks": [
+          {
+            "facts": [
+              "Our neighbour fixed the oven.",
+              "He is very resourceful."
+            ],
+            "starter": "The neighbour…",
+            "answers": [
+              "The neighbour who fixed the oven is very resourceful.",
+              "The neighbour that fixed the oven is very resourceful."
+            ],
+            "kind": "subject",
+            "focus": "",
+            "id": "b1-s03-1",
+            "reason": "The relative pronoun is the subject of the clause, so it cannot be omitted.",
+            "vocab": {
+              "course": "b1",
+              "word": "resourceful"
+            }
+          },
+          {
+            "facts": [
+              "I tried a recipe.",
+              "Its instructions left me puzzled."
+            ],
+            "starter": "I tried a recipe…",
+            "answers": [
+              "I tried a recipe whose instructions left me puzzled."
+            ],
+            "kind": "possessive",
+            "focus": "",
+            "id": "b1-s03-2",
+            "reason": "Whose expresses possession; it is followed by a noun, not a repeated possessive pronoun.",
+            "vocab": {
+              "course": "b1",
+              "word": "puzzled"
+            }
+          },
+          {
+            "facts": [
+              "I thanked a woman.",
+              "She had lent us some plates and was very kind."
+            ],
+            "starter": "I thanked…",
+            "answers": [
+              "I thanked a woman who had lent us some plates and was very kind.",
+              "I thanked a woman that had lent us some plates and was very kind."
+            ],
+            "kind": "subject",
+            "focus": "",
+            "id": "b1-s03-3",
+            "reason": "The relative pronoun is the subject of the clause, so it cannot be omitted.",
+            "vocab": {
+              "course": "b1",
+              "word": "kind"
+            }
+          },
+          {
+            "facts": [
+              "This is the kitchen.",
+              "I accidentally set off the smoke alarm here."
+            ],
+            "starter": "This is…",
+            "answers": [
+              "This is the kitchen where I accidentally set off the smoke alarm.",
+              "This is the kitchen in which I accidentally set off the smoke alarm.",
+              "This is the kitchen which I accidentally set off the smoke alarm in.",
+              "This is the kitchen that I accidentally set off the smoke alarm in.",
+              "This is the kitchen I accidentally set off the smoke alarm in."
+            ],
+            "kind": "place",
+            "focus": "",
+            "id": "b1-s03-4",
+            "reason": "Where refers to a place. A preposition + which can express the same relationship.",
+            "vocab": {
+              "course": "b1",
+              "word": "accidentally"
+            }
+          }
+        ],
+        "id": "b1-s03"
+      },
+      {
+        "title": "The weekend detour",
+        "tasks": [
+          {
+            "facts": [
+              "We met a traveller.",
+              "He was hitchhiking to Scotland."
+            ],
+            "starter": "We met…",
+            "answers": [
+              "We met a traveller who was hitchhiking to Scotland.",
+              "We met a traveller that was hitchhiking to Scotland."
+            ],
+            "kind": "subject",
+            "focus": "",
+            "id": "b1-s04-1",
+            "reason": "The relative pronoun is the subject of the clause, so it cannot be omitted.",
+            "vocab": {
+              "course": "b1",
+              "word": "hitchhike"
+            }
+          },
+          {
+            "facts": [
+              "I lost a shoe.",
+              "It was covered in mud."
+            ],
+            "starter": "I lost…",
+            "answers": [
+              "I lost a shoe which was covered in mud.",
+              "I lost a shoe that was covered in mud."
+            ],
+            "kind": "subject",
+            "focus": "",
+            "id": "b1-s04-2",
+            "reason": "The relative pronoun is the subject of the clause, so it cannot be omitted.",
+            "vocab": {
+              "course": "b1",
+              "word": "mud"
+            }
+          },
+          {
+            "facts": [
+              "We stopped at a village.",
+              "It looked familiar to me."
+            ],
+            "starter": "We stopped…",
+            "answers": [
+              "We stopped at a village which looked familiar to me.",
+              "We stopped at a village that looked familiar to me."
+            ],
+            "kind": "subject",
+            "focus": "",
+            "id": "b1-s04-3",
+            "reason": "The relative pronoun is the subject of the clause, so it cannot be omitted.",
+            "vocab": {
+              "course": "b1",
+              "word": "look familiar"
+            }
+          },
+          {
+            "facts": [
+              "I still have a photo.",
+              "You took it when we finally arrived, and I look delighted in it."
+            ],
+            "starter": "I still have the photo…",
+            "answers": [
+              "I still have the photo which you took when we finally arrived, and I look delighted in it.",
+              "I still have the photo that you took when we finally arrived, and I look delighted in it.",
+              "I still have the photo you took when we finally arrived, and I look delighted in it."
+            ],
+            "kind": "object",
+            "focus": "",
+            "id": "b1-s04-4",
+            "reason": "The relative pronoun is the object, so you can use which/that or omit it.",
+            "vocab": {
+              "course": "b1",
+              "word": "delighted"
+            }
+          }
+        ],
+        "id": "b1-s04"
+      },
+      {
+        "title": "A very competitive games night",
+        "tasks": [
+          {
+            "facts": [
+              "I avoided a player.",
+              "He was being bossy."
+            ],
+            "starter": "I avoided…",
+            "answers": [
+              "I avoided a player who was being bossy.",
+              "I avoided a player that was being bossy."
+            ],
+            "kind": "subject",
+            "focus": "",
+            "id": "b1-s05-1",
+            "reason": "The relative pronoun is the subject of the clause, so it cannot be omitted.",
+            "vocab": {
+              "course": "b1",
+              "word": "bossy"
+            }
+          },
+          {
+            "facts": [
+              "We invited a friend.",
+              "His brother is a real know-it-all."
+            ],
+            "starter": "We invited a friend…",
+            "answers": [
+              "We invited a friend whose brother is a real know-it-all."
+            ],
+            "kind": "possessive",
+            "focus": "",
+            "id": "b1-s05-2",
+            "reason": "Whose expresses possession; it is followed by a noun, not a repeated possessive pronoun.",
+            "vocab": {
+              "course": "b1",
+              "word": "know-it-all"
+            }
+          },
+          {
+            "facts": [
+              "I deleted a video.",
+              "You filmed it during an awkward moment."
+            ],
+            "starter": "I deleted…",
+            "answers": [
+              "I deleted a video which you filmed during an awkward moment.",
+              "I deleted a video that you filmed during an awkward moment.",
+              "I deleted a video you filmed during an awkward moment."
+            ],
+            "kind": "object",
+            "focus": "",
+            "id": "b1-s05-3",
+            "reason": "The relative pronoun is the object, so you can use which/that or omit it.",
+            "vocab": {
+              "course": "b1",
+              "word": "awkward"
+            }
+          },
+          {
+            "facts": [
+              "We played a game.",
+              "It amused everyone except the winner."
+            ],
+            "starter": "We played…",
+            "answers": [
+              "We played a game which amused everyone except the winner.",
+              "We played a game that amused everyone except the winner."
+            ],
+            "kind": "subject",
+            "focus": "",
+            "id": "b1-s05-4",
+            "reason": "The relative pronoun is the subject of the clause, so it cannot be omitted.",
+            "vocab": {
+              "course": "b1",
+              "word": "amused"
+            }
+          }
+        ],
+        "id": "b1-s05"
+      },
+      {
+        "title": "My first shift",
+        "tasks": [
+          {
+            "facts": [
+              "A customer helped me.",
+              "She was very sympathetic."
+            ],
+            "starter": "The customer…",
+            "answers": [
+              "The customer who helped me was very sympathetic.",
+              "The customer that helped me was very sympathetic."
+            ],
+            "kind": "subject",
+            "focus": "",
+            "id": "b1-s06-1",
+            "reason": "The relative pronoun is the subject of the clause, so it cannot be omitted.",
+            "vocab": {
+              "course": "b1",
+              "word": "sympathetic"
+            }
+          },
+          {
+            "facts": [
+              "I met a manager.",
+              "His shift starts at six."
+            ],
+            "starter": "I met a manager…",
+            "answers": [
+              "I met a manager whose shift starts at six."
+            ],
+            "kind": "possessive",
+            "focus": "",
+            "id": "b1-s06-2",
+            "reason": "Whose expresses possession; it is followed by a noun, not a repeated possessive pronoun.",
+            "vocab": {
+              "course": "b1",
+              "word": "shift"
+            }
+          },
+          {
+            "facts": [
+              "I finished a task.",
+              "My colleague had shown it to me."
+            ],
+            "starter": "I finished…",
+            "answers": [
+              "I finished a task which my colleague had shown me.",
+              "I finished a task that my colleague had shown me.",
+              "I finished a task my colleague had shown me."
+            ],
+            "kind": "object",
+            "focus": "",
+            "id": "b1-s06-3",
+            "reason": "The relative pronoun is the object, so you can use which/that or omit it.",
+            "vocab": {
+              "course": "b1",
+              "word": "task"
+            }
+          },
+          {
+            "facts": [
+              "I found the table.",
+              "A customer had left an unpaid bill there."
+            ],
+            "starter": "I found…",
+            "answers": [
+              "I found the table where a customer had left an unpaid bill.",
+              "I found the table on which a customer had left an unpaid bill.",
+              "I found the table which a customer had left an unpaid bill on.",
+              "I found the table that a customer had left an unpaid bill on.",
+              "I found the table a customer had left an unpaid bill on."
+            ],
+            "kind": "place",
+            "focus": "",
+            "id": "b1-s06-4",
+            "reason": "Where refers to a place. A preposition + which can express the same relationship.",
+            "vocab": {
+              "course": "b1",
+              "word": "bill"
+            }
+          }
+        ],
+        "id": "b1-s06"
+      }
+    ],
+    "b2": [
+      {
+        "title": "A low-key birthday",
+        "tasks": [
+          {
+            "facts": [
+              "My sister organised a low-key hangout.",
+              "She hates surprise parties."
+            ],
+            "starter": "My sister,…",
+            "answers": [
+              "My sister, who hates surprise parties, organised a low-key hangout."
+            ],
+            "kind": "non-defining",
+            "focus": "Add extra information; use commas.",
+            "id": "b2-s01-1",
+            "reason": "This adds extra information. Use commas and who/which/whose/when, not that; do not omit the relative word.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "low-key hangout",
+              "unit": 5,
+              "lesson": 8,
+              "lessonTitle": "Cleft sentences"
+            }
+          },
+          {
+            "facts": [
+              "I invited a neighbour.",
+              "Her open-minded attitude always makes conversations interesting."
+            ],
+            "starter": "I invited…",
+            "answers": [
+              "I invited a neighbour whose open-minded attitude always makes conversations interesting."
+            ],
+            "kind": "possessive",
+            "focus": "",
+            "id": "b2-s01-2",
+            "reason": "Whose expresses possession; it is followed by a noun, not a repeated possessive pronoun.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "open-minded",
+              "unit": 0,
+              "lesson": 0,
+              "lessonTitle": "Personality"
+            }
+          },
+          {
+            "facts": [
+              "Everyone loved the cake.",
+              "I had made it from scratch."
+            ],
+            "starter": "Everyone loved…",
+            "answers": [
+              "Everyone loved the cake which I had made from scratch.",
+              "Everyone loved the cake that I had made from scratch.",
+              "Everyone loved the cake I had made from scratch."
+            ],
+            "kind": "object",
+            "focus": "",
+            "id": "b2-s01-3",
+            "reason": "The relative pronoun is the object, so you can use which/that or omit it.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "from scratch",
+              "unit": 6,
+              "lesson": 5,
+              "lessonTitle": "YOLO, cleft sentences"
+            }
+          },
+          {
+            "facts": [
+              "We ended up at a café.",
+              "The atmosphere there is always laid-back."
+            ],
+            "starter": "We ended up…",
+            "answers": [
+              "We ended up at a café where the atmosphere is always laid-back.",
+              "We ended up at a café in which the atmosphere is always laid-back."
+            ],
+            "kind": "place",
+            "focus": "",
+            "id": "b2-s01-4",
+            "reason": "Where refers to a place. A preposition + which can express the same relationship.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "laid-back",
+              "unit": 5,
+              "lesson": 6,
+              "lessonTitle": "Compound adjectives"
+            }
+          }
+        ],
+        "id": "b2-s01"
+      },
+      {
+        "title": "The film everyone argued about",
+        "tasks": [
+          {
+            "facts": [
+              "Greta is an offbeat film director.",
+              "Her latest film has no dialogue."
+            ],
+            "starter": "Greta,…",
+            "answers": [
+              "Greta, whose latest film has no dialogue, is an offbeat film director."
+            ],
+            "kind": "non-defining",
+            "focus": "Add extra information; use commas.",
+            "id": "b2-s02-1",
+            "reason": "This adds extra information. Use commas and who/which/whose/when, not that; do not omit the relative word.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "offbeat film director",
+              "unit": 4,
+              "lesson": 2,
+              "lessonTitle": "Passive voice (movies)"
+            }
+          },
+          {
+            "facts": [
+              "The cinema cancelled the screening after a backlash.",
+              "This disappointed our film club."
+            ],
+            "starter": "The cinema…",
+            "answers": [
+              "The cinema cancelled the screening after a backlash, which disappointed our film club."
+            ],
+            "kind": "whole-clause",
+            "focus": "Comment on the whole situation.",
+            "id": "b2-s02-2",
+            "reason": "Which refers to the whole preceding situation. Put a comma before which.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "backlash",
+              "unit": 4,
+              "lesson": 2,
+              "lessonTitle": "Passive voice (movies)"
+            }
+          },
+          {
+            "facts": [
+              "Someone shared the footage.",
+              "We had discussed it in our group chat."
+            ],
+            "starter": "Someone shared…",
+            "answers": [
+              "Someone shared the footage which we had discussed in our group chat.",
+              "Someone shared the footage that we had discussed in our group chat.",
+              "Someone shared the footage we had discussed in our group chat."
+            ],
+            "kind": "object",
+            "focus": "",
+            "id": "b2-s02-3",
+            "reason": "The relative pronoun is the object, so you can use which/that or omit it.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "footage",
+              "unit": 6,
+              "lesson": 6,
+              "lessonTitle": "Conspiracy theories"
+            }
+          },
+          {
+            "facts": [
+              "I read twenty reviews.",
+              "Most of them were hilarious."
+            ],
+            "starter": "I read…",
+            "answers": [
+              "I read twenty reviews, most of which were hilarious."
+            ],
+            "kind": "quantifier",
+            "focus": "Use most of.",
+            "id": "b2-s02-4",
+            "reason": "Use quantity + of whom for people, or quantity + of which for things. This extra information needs a comma.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "hilarious",
+              "unit": 6,
+              "lesson": 7,
+              "lessonTitle": "Conspiracy theories, strong adjectives"
+            }
+          }
+        ],
+        "id": "b2-s02"
+      },
+      {
+        "title": "A weekend offline",
+        "tasks": [
+          {
+            "facts": [
+              "Sunday was the best day of my digital detox.",
+              "We went swimming that day."
+            ],
+            "starter": "Sunday,…",
+            "answers": [
+              "Sunday, when we went swimming, was the best day of my digital detox."
+            ],
+            "kind": "non-defining",
+            "focus": "Add extra information; use commas.",
+            "id": "b2-s03-1",
+            "reason": "This adds extra information. Use commas and who/which/whose/when, not that; do not omit the relative word.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "digital detox",
+              "unit": 1,
+              "lesson": 1,
+              "lessonTitle": "Change"
+            }
+          },
+          {
+            "facts": [
+              "I met a teenager.",
+              "His smartphone was older than mine."
+            ],
+            "starter": "I met…",
+            "answers": [
+              "I met a teenager whose smartphone was older than mine."
+            ],
+            "kind": "possessive",
+            "focus": "",
+            "id": "b2-s03-2",
+            "reason": "Whose expresses possession; it is followed by a noun, not a repeated possessive pronoun.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "smartphone",
+              "unit": 1,
+              "lesson": 1,
+              "lessonTitle": "Change"
+            }
+          },
+          {
+            "facts": [
+              "I called a friend.",
+              "I usually talk over my worries with her."
+            ],
+            "starter": "I called…",
+            "answers": [
+              "I called a friend who I usually talk over my worries with.",
+              "I called a friend whom I usually talk over my worries with.",
+              "I called a friend that I usually talk over my worries with.",
+              "I called a friend I usually talk over my worries with.",
+              "I called a friend with whom I usually talk over my worries."
+            ],
+            "kind": "object-person",
+            "focus": "",
+            "id": "b2-s03-3",
+            "reason": "An object relative can use who, whom or that, or omit the pronoun. Follow any specific style instruction here.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "talk over",
+              "unit": 2,
+              "lesson": 1,
+              "lessonTitle": "Fear And Danger"
+            }
+          },
+          {
+            "facts": [
+              "We found a garden.",
+              "Free mindfulness sessions take place there."
+            ],
+            "starter": "We found…",
+            "answers": [
+              "We found a garden where free mindfulness sessions take place.",
+              "We found a garden in which free mindfulness sessions take place."
+            ],
+            "kind": "place",
+            "focus": "",
+            "id": "b2-s03-4",
+            "reason": "Where refers to a place. A preposition + which can express the same relationship.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "mindfulness",
+              "unit": 1,
+              "lesson": 1,
+              "lessonTitle": "Change"
+            }
+          }
+        ],
+        "id": "b2-s03"
+      },
+      {
+        "title": "The flat that kept beeping",
+        "tasks": [
+          {
+            "facts": [
+              "Our smart thermostat kept turning itself up.",
+              "We had installed it the day before."
+            ],
+            "starter": "Our smart thermostat,…",
+            "answers": [
+              "Our smart thermostat, which we had installed the day before, kept turning itself up."
+            ],
+            "kind": "non-defining",
+            "focus": "Add extra information; use commas.",
+            "id": "b2-s04-1",
+            "reason": "This adds extra information. Use commas and who/which/whose/when, not that; do not omit the relative word.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "smart thermostat",
+              "unit": 4,
+              "lesson": 1,
+              "lessonTitle": "Smart home"
+            }
+          },
+          {
+            "facts": [
+              "I deleted a routine.",
+              "It made the voice assistant sing at midnight."
+            ],
+            "starter": "I deleted…",
+            "answers": [
+              "I deleted a routine which made the voice assistant sing at midnight.",
+              "I deleted a routine that made the voice assistant sing at midnight."
+            ],
+            "kind": "subject",
+            "focus": "",
+            "id": "b2-s04-2",
+            "reason": "The relative pronoun is the subject of the clause, so it cannot be omitted.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "voice assistant",
+              "unit": 4,
+              "lesson": 1,
+              "lessonTitle": "Smart home"
+            }
+          },
+          {
+            "facts": [
+              "We called an engineer.",
+              "Her company had fitted our security camera."
+            ],
+            "starter": "We called…",
+            "answers": [
+              "We called an engineer whose company had fitted our security camera."
+            ],
+            "kind": "possessive",
+            "focus": "",
+            "id": "b2-s04-3",
+            "reason": "Whose expresses possession; it is followed by a noun, not a repeated possessive pronoun.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "security camera",
+              "unit": 4,
+              "lesson": 1,
+              "lessonTitle": "Smart home"
+            }
+          },
+          {
+            "facts": [
+              "I checked the wireless network.",
+              "All our smart appliances connect to it."
+            ],
+            "starter": "I checked…",
+            "answers": [
+              "I checked the wireless network which all our smart appliances connect to.",
+              "I checked the wireless network that all our smart appliances connect to.",
+              "I checked the wireless network all our smart appliances connect to.",
+              "I checked the wireless network to which all our smart appliances connect."
+            ],
+            "kind": "object",
+            "focus": "",
+            "id": "b2-s04-4",
+            "reason": "The relative pronoun is the object, so you can use which/that or omit it.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "wireless network",
+              "unit": 4,
+              "lesson": 1,
+              "lessonTitle": "Smart home"
+            }
+          }
+        ],
+        "id": "b2-s04"
+      },
+      {
+        "title": "The hike with the wrong map",
+        "tasks": [
+          {
+            "facts": [
+              "We joined six hikers.",
+              "Two of them had reached the summit before."
+            ],
+            "starter": "We joined…",
+            "answers": [
+              "We joined six hikers, two of whom had reached the summit before."
+            ],
+            "kind": "quantifier",
+            "focus": "Use two of.",
+            "id": "b2-s05-1",
+            "reason": "Use quantity + of whom for people, or quantity + of which for things. This extra information needs a comma.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "summit",
+              "unit": 2,
+              "lesson": 2,
+              "lessonTitle": "Don’t Look Down"
+            }
+          },
+          {
+            "facts": [
+              "We followed a guide.",
+              "His route avoided the steepest path."
+            ],
+            "starter": "We followed…",
+            "answers": [
+              "We followed a guide whose route avoided the steepest path."
+            ],
+            "kind": "possessive",
+            "focus": "",
+            "id": "b2-s05-2",
+            "reason": "Whose expresses possession; it is followed by a noun, not a repeated possessive pronoun.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "route",
+              "unit": 2,
+              "lesson": 2,
+              "lessonTitle": "Don’t Look Down"
+            }
+          },
+          {
+            "facts": [
+              "I saved the photo.",
+              "You took it beside the breathtaking waterfall."
+            ],
+            "starter": "I saved…",
+            "answers": [
+              "I saved the photo which you took beside the breathtaking waterfall.",
+              "I saved the photo that you took beside the breathtaking waterfall.",
+              "I saved the photo you took beside the breathtaking waterfall."
+            ],
+            "kind": "object",
+            "focus": "",
+            "id": "b2-s05-3",
+            "reason": "The relative pronoun is the object, so you can use which/that or omit it.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "breathtaking",
+              "unit": 2,
+              "lesson": 2,
+              "lessonTitle": "Don’t Look Down"
+            }
+          },
+          {
+            "facts": [
+              "We reached a hut.",
+              "We could take shelter there."
+            ],
+            "starter": "We reached…",
+            "answers": [
+              "We reached a hut where we could take shelter.",
+              "We reached a hut in which we could take shelter.",
+              "We reached a hut which we could take shelter in.",
+              "We reached a hut that we could take shelter in.",
+              "We reached a hut we could take shelter in."
+            ],
+            "kind": "place",
+            "focus": "",
+            "id": "b2-s05-4",
+            "reason": "Where refers to a place. A preposition + which can express the same relationship.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "shelter",
+              "unit": 2,
+              "lesson": 1,
+              "lessonTitle": "Fear And Danger"
+            }
+          }
+        ],
+        "id": "b2-s05"
+      },
+      {
+        "title": "The old shop becomes a studio",
+        "tasks": [
+          {
+            "facts": [
+              "The old shop is now a dance studio.",
+              "It was converted last winter."
+            ],
+            "starter": "The old shop,…",
+            "answers": [
+              "The old shop, which was converted last winter, is now a dance studio."
+            ],
+            "kind": "non-defining",
+            "focus": "Add extra information; use commas.",
+            "id": "b2-s06-1",
+            "reason": "This adds extra information. Use commas and who/which/whose/when, not that; do not omit the relative word.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "convert",
+              "unit": 6,
+              "lesson": 1,
+              "lessonTitle": "Community vocab, open spaces"
+            }
+          },
+          {
+            "facts": [
+              "I spoke to a resident.",
+              "Her family had helped restore the shop."
+            ],
+            "starter": "I spoke…",
+            "answers": [
+              "I spoke to a resident whose family had helped restore the shop."
+            ],
+            "kind": "possessive",
+            "focus": "",
+            "id": "b2-s06-2",
+            "reason": "Whose expresses possession; it is followed by a noun, not a repeated possessive pronoun.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "restore",
+              "unit": 6,
+              "lesson": 1,
+              "lessonTitle": "Community vocab, open spaces"
+            }
+          },
+          {
+            "facts": [
+              "They created a space.",
+              "Local people can transform their ideas into projects there."
+            ],
+            "starter": "They created…",
+            "answers": [
+              "They created a space where local people can transform their ideas into projects.",
+              "They created a space in which local people can transform their ideas into projects."
+            ],
+            "kind": "place",
+            "focus": "",
+            "id": "b2-s06-3",
+            "reason": "Where refers to a place. A preposition + which can express the same relationship.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "transform",
+              "unit": 6,
+              "lesson": 1,
+              "lessonTitle": "Community vocab, open spaces"
+            }
+          },
+          {
+            "facts": [
+              "I checked three posts about the project.",
+              "None of them contained misleading information."
+            ],
+            "starter": "I checked…",
+            "answers": [
+              "I checked three posts about the project, none of which contained misleading information."
+            ],
+            "kind": "quantifier",
+            "focus": "Use none of.",
+            "id": "b2-s06-4",
+            "reason": "Use quantity + of whom for people, or quantity + of which for things. This extra information needs a comma.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "misleading",
+              "unit": 6,
+              "lesson": 4,
+              "lessonTitle": "Mixed conditionals, odd brand names"
+            }
+          }
+        ],
+        "id": "b2-s06"
+      }
+    ],
+    "c1": [
+      {
+        "title": "The viral clip",
+        "tasks": [
+          {
+            "facts": [
+              "The creator posted four clips.",
+              "None of them showed the original footage."
+            ],
+            "starter": "The creator…",
+            "answers": [
+              "The creator posted four clips, none of which showed the original footage."
+            ],
+            "kind": "quantifier",
+            "focus": "Use none of.",
+            "id": "c1-s01-1",
+            "reason": "Use quantity + of whom for people, or quantity + of which for things. This extra information needs a comma.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "footage",
+              "unit": 6,
+              "lesson": 6,
+              "lessonTitle": "Conspiracy theories"
+            }
+          },
+          {
+            "facts": [
+              "I found the account.",
+              "The fabricated story first appeared on it."
+            ],
+            "starter": "I found…",
+            "answers": [
+              "I found the account on which the fabricated story first appeared."
+            ],
+            "kind": "preposition",
+            "focus": "Put the preposition before the relative pronoun.",
+            "id": "c1-s01-2",
+            "reason": "In this formal pattern, use preposition + whom for a person or preposition + which for a thing.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "fabricated",
+              "unit": 6,
+              "lesson": 6,
+              "lessonTitle": "Conspiracy theories"
+            }
+          },
+          {
+            "facts": [
+              "The post left out the evidence.",
+              "That omission bothered me most."
+            ],
+            "starter": "What…",
+            "answers": [
+              "What bothered me most was that the post left out the evidence."
+            ],
+            "kind": "fused",
+            "focus": "Begin with What; keep both ideas.",
+            "id": "c1-s01-3",
+            "reason": "What means the thing that; it does not need a separate noun before it.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "evidence",
+              "unit": 6,
+              "lesson": 6,
+              "lessonTitle": "Conspiracy theories"
+            }
+          },
+          {
+            "facts": [
+              "The creator deleted the video after the backlash.",
+              "That did little to rebuild trust."
+            ],
+            "starter": "The creator…",
+            "answers": [
+              "The creator deleted the video after the backlash, which did little to rebuild trust."
+            ],
+            "kind": "whole-clause",
+            "focus": "Comment on the whole situation.",
+            "id": "c1-s01-4",
+            "reason": "Which refers to the whole preceding situation. Put a comma before which.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "backlash",
+              "unit": 4,
+              "lesson": 2,
+              "lessonTitle": "Passive voice (movies)"
+            }
+          }
+        ],
+        "id": "c1-s01"
+      },
+      {
+        "title": "The heirloom in the charity shop",
+        "tasks": [
+          {
+            "facts": [
+              "I met a woman.",
+              "Her grandmother had owned the heirloom."
+            ],
+            "starter": "I met…",
+            "answers": [
+              "I met a woman whose grandmother had owned the heirloom."
+            ],
+            "kind": "possessive",
+            "focus": "",
+            "id": "c1-s02-1",
+            "reason": "Whose expresses possession; it is followed by a noun, not a repeated possessive pronoun.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "heirloom",
+              "unit": 6,
+              "lesson": 9,
+              "lessonTitle": "Accommodation & neighborhood, I wish"
+            }
+          },
+          {
+            "facts": [
+              "She opened the box.",
+              "The heirloom had been kept in it."
+            ],
+            "starter": "She opened…",
+            "answers": [
+              "She opened the box in which the heirloom had been kept."
+            ],
+            "kind": "preposition",
+            "focus": "Put the preposition before the relative pronoun.",
+            "id": "c1-s02-2",
+            "reason": "In this formal pattern, use preposition + whom for a person or preposition + which for a thing.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "heirloom",
+              "unit": 6,
+              "lesson": 9,
+              "lessonTitle": "Accommodation & neighborhood, I wish"
+            }
+          },
+          {
+            "facts": [
+              "The ring is back on display.",
+              "It was restored by a local jeweller."
+            ],
+            "starter": "The ring…",
+            "answers": [
+              "The ring restored by a local jeweller is back on display."
+            ],
+            "kind": "reduced-passive",
+            "focus": "Use a reduced relative clause; omit who/which/that.",
+            "id": "c1-s02-3",
+            "reason": "A past-participle clause can replace a passive relative clause.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "restore",
+              "unit": 6,
+              "lesson": 1,
+              "lessonTitle": "Community vocab, open spaces"
+            }
+          },
+          {
+            "facts": [
+              "My grandmother taught me to repair things.",
+              "I have always admired her patience."
+            ],
+            "starter": "My grandmother,…",
+            "answers": [
+              "My grandmother, whose patience I have always admired, taught me to repair things."
+            ],
+            "kind": "non-defining",
+            "focus": "Add extra information; use commas.",
+            "id": "c1-s02-4",
+            "reason": "This adds extra information. Use commas and who/which/whose/when, not that; do not omit the relative word.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "admire",
+              "unit": 0,
+              "lesson": 1,
+              "lessonTitle": "Who We Are"
+            }
+          }
+        ],
+        "id": "c1-s02"
+      },
+      {
+        "title": "Meeting online friends in real life",
+        "tasks": [
+          {
+            "facts": [
+              "I finally met a friend.",
+              "I had invited her to a low-key hangout."
+            ],
+            "starter": "I finally met…",
+            "answers": [
+              "I finally met a friend who I had invited to a low-key hangout.",
+              "I finally met a friend whom I had invited to a low-key hangout.",
+              "I finally met a friend that I had invited to a low-key hangout.",
+              "I finally met a friend I had invited to a low-key hangout.",
+              "I finally met a friend to whom I had sent an invitation to a low-key hangout."
+            ],
+            "kind": "object-person",
+            "focus": "",
+            "id": "c1-s03-1",
+            "reason": "An object relative can use who, whom or that, or omit the pronoun. Follow any specific style instruction here.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "low-key hangout",
+              "unit": 5,
+              "lesson": 8,
+              "lessonTitle": "Cleft sentences"
+            }
+          },
+          {
+            "facts": [
+              "I introduced my two cousins.",
+              "Both of them are open-minded."
+            ],
+            "starter": "I introduced…",
+            "answers": [
+              "I introduced my two cousins, both of whom are open-minded."
+            ],
+            "kind": "quantifier",
+            "focus": "Use both of.",
+            "id": "c1-s03-2",
+            "reason": "Use quantity + of whom for people, or quantity + of which for things. This extra information needs a comma.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "open-minded",
+              "unit": 0,
+              "lesson": 0,
+              "lessonTitle": "Personality"
+            }
+          },
+          {
+            "facts": [
+              "I recognised the person.",
+              "I had talked over my decision with him."
+            ],
+            "starter": "I recognised…",
+            "answers": [
+              "I recognised the person with whom I had talked over my decision."
+            ],
+            "kind": "preposition",
+            "focus": "Put the preposition before the relative pronoun.",
+            "id": "c1-s03-3",
+            "reason": "In this formal pattern, use preposition + whom for a person or preposition + which for a thing.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "talk over",
+              "unit": 2,
+              "lesson": 1,
+              "lessonTitle": "Fear And Danger"
+            }
+          },
+          {
+            "facts": [
+              "We invited a writer.",
+              "Her witty posts had started our friendship."
+            ],
+            "starter": "We invited…",
+            "answers": [
+              "We invited a writer whose witty posts had started our friendship."
+            ],
+            "kind": "possessive",
+            "focus": "",
+            "id": "c1-s03-4",
+            "reason": "Whose expresses possession; it is followed by a noun, not a repeated possessive pronoun.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "witty",
+              "unit": 0,
+              "lesson": 0,
+              "lessonTitle": "Personality"
+            }
+          }
+        ],
+        "id": "c1-s03"
+      },
+      {
+        "title": "A scroll-free Sunday",
+        "tasks": [
+          {
+            "facts": [
+              "I enjoyed a completely scroll-free Sunday.",
+              "That surprised me."
+            ],
+            "starter": "I enjoyed…",
+            "answers": [
+              "I enjoyed a completely scroll-free Sunday, which surprised me."
+            ],
+            "kind": "whole-clause",
+            "focus": "Comment on the whole situation.",
+            "id": "c1-s04-1",
+            "reason": "Which refers to the whole preceding situation. Put a comma before which.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "scroll-free",
+              "unit": 5,
+              "lesson": 4,
+              "lessonTitle": "Analog year"
+            }
+          },
+          {
+            "facts": [
+              "People were comparing their screen time.",
+              "Those people missed the start of the film."
+            ],
+            "starter": "People…",
+            "answers": [
+              "People comparing their screen time missed the start of the film."
+            ],
+            "kind": "reduced-active",
+            "focus": "Use a reduced relative clause; omit who/which/that.",
+            "id": "c1-s04-2",
+            "reason": "An -ing clause can replace a subject relative clause describing an active action.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "screen time",
+              "unit": 1,
+              "lesson": 1,
+              "lessonTitle": "Change"
+            }
+          },
+          {
+            "facts": [
+              "I wanted to be present.",
+              "That was the reason I left my phone at home."
+            ],
+            "starter": "The reason…",
+            "answers": [
+              "The reason why I left my phone at home was that I wanted to be present.",
+              "The reason I left my phone at home was that I wanted to be present.",
+              "The reason that I left my phone at home was that I wanted to be present.",
+              "The reason for which I left my phone at home was that I wanted to be present."
+            ],
+            "kind": "reason",
+            "focus": "",
+            "id": "c1-s04-3",
+            "reason": "In this defining reason clause, why, that, for which or no relative word is possible.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "be present",
+              "unit": 5,
+              "lesson": 4,
+              "lessonTitle": "Analog year"
+            }
+          },
+          {
+            "facts": [
+              "I kept the router on.",
+              "The voice assistant would not work without it."
+            ],
+            "starter": "I kept…",
+            "answers": [
+              "I kept the router on, without which the voice assistant would not work."
+            ],
+            "kind": "preposition-non-defining",
+            "focus": "Add extra information; put without before the relative pronoun.",
+            "id": "c1-s04-4",
+            "reason": "Use a comma for extra information, and put the preposition before which.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "voice assistant",
+              "unit": 4,
+              "lesson": 1,
+              "lessonTitle": "Smart home"
+            }
+          }
+        ],
+        "id": "c1-s04"
+      },
+      {
+        "title": "An unexpectedly good film festival",
+        "tasks": [
+          {
+            "facts": [
+              "The film won the audience award.",
+              "It was made by an offbeat film director."
+            ],
+            "starter": "The film…",
+            "answers": [
+              "The film made by an offbeat film director won the audience award."
+            ],
+            "kind": "reduced-passive",
+            "focus": "Use a reduced relative clause; omit who/which/that.",
+            "id": "c1-s05-1",
+            "reason": "A past-participle clause can replace a passive relative clause.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "offbeat film director",
+              "unit": 4,
+              "lesson": 2,
+              "lessonTitle": "Passive voice (movies)"
+            }
+          },
+          {
+            "facts": [
+              "The people were waiting outside.",
+              "They had all decided to give it a shot and enter the costume contest."
+            ],
+            "starter": "The people…",
+            "answers": [
+              "The people waiting outside had all decided to give it a shot and enter the costume contest."
+            ],
+            "kind": "reduced-active",
+            "focus": "Use a reduced relative clause; omit who/which/that.",
+            "id": "c1-s05-2",
+            "reason": "An -ing clause can replace a subject relative clause describing an active action.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "give it a shot",
+              "unit": 6,
+              "lesson": 5,
+              "lessonTitle": "YOLO, cleft sentences"
+            }
+          },
+          {
+            "facts": [
+              "We interviewed ten directors.",
+              "Few of them had worked with an influential producer before."
+            ],
+            "starter": "We interviewed…",
+            "answers": [
+              "We interviewed ten directors, few of whom had worked with an influential producer before."
+            ],
+            "kind": "quantifier",
+            "focus": "Use few of.",
+            "id": "c1-s05-3",
+            "reason": "Use quantity + of whom for people, or quantity + of which for things. This extra information needs a comma.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "influential",
+              "unit": 0,
+              "lesson": 1,
+              "lessonTitle": "Who We Are"
+            }
+          },
+          {
+            "facts": [
+              "I spoke to an actor.",
+              "I had always regarded her as a role model."
+            ],
+            "starter": "I spoke…",
+            "answers": [
+              "I spoke to an actor whom I had always regarded as a role model."
+            ],
+            "kind": "object-person",
+            "focus": "Use whom in a defining relative clause.",
+            "id": "c1-s05-4",
+            "reason": "An object relative can use who, whom or that, or omit the pronoun. Follow any specific style instruction here.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "role model",
+              "unit": 0,
+              "lesson": 1,
+              "lessonTitle": "Who We Are"
+            }
+          }
+        ],
+        "id": "c1-s05"
+      },
+      {
+        "title": "The neighbourhood group chat",
+        "tasks": [
+          {
+            "facts": [
+              "We discussed a proposal.",
+              "Residents had disagreed about it because it involved demolishing the old cinema."
+            ],
+            "starter": "We discussed…",
+            "answers": [
+              "We discussed a proposal about which residents had disagreed because it involved demolishing the old cinema."
+            ],
+            "kind": "preposition",
+            "focus": "Put the preposition before the relative pronoun.",
+            "id": "c1-s06-1",
+            "reason": "In this formal pattern, use preposition + whom for a person or preposition + which for a thing.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "demolish",
+              "unit": 6,
+              "lesson": 1,
+              "lessonTitle": "Community vocab, open spaces"
+            }
+          },
+          {
+            "facts": [
+              "The council agreed to restore the cinema.",
+              "That was a relief to everyone in our group."
+            ],
+            "starter": "The council…",
+            "answers": [
+              "The council agreed to restore the cinema, which was a relief to everyone in our group."
+            ],
+            "kind": "whole-clause",
+            "focus": "Comment on the whole situation.",
+            "id": "c1-s06-2",
+            "reason": "Which refers to the whole preceding situation. Put a comma before which.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "restore",
+              "unit": 6,
+              "lesson": 1,
+              "lessonTitle": "Community vocab, open spaces"
+            }
+          },
+          {
+            "facts": [
+              "I thanked a volunteer.",
+              "Her team had converted an empty shop into a meeting space."
+            ],
+            "starter": "I thanked…",
+            "answers": [
+              "I thanked a volunteer whose team had converted an empty shop into a meeting space."
+            ],
+            "kind": "possessive",
+            "focus": "",
+            "id": "c1-s06-3",
+            "reason": "Whose expresses possession; it is followed by a noun, not a repeated possessive pronoun.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "convert",
+              "unit": 6,
+              "lesson": 1,
+              "lessonTitle": "Community vocab, open spaces"
+            }
+          },
+          {
+            "facts": [
+              "The homes overlook the new garden.",
+              "They are in the residential area beside the cinema."
+            ],
+            "starter": "The homes…",
+            "answers": [
+              "The homes in the residential area beside the cinema overlook the new garden."
+            ],
+            "kind": "reduced-preposition",
+            "focus": "Use a prepositional phrase instead of a relative clause.",
+            "id": "c1-s06-4",
+            "reason": "A prepositional phrase can replace who/which + be + prepositional phrase.",
+            "vocab": {
+              "course": "b2alh",
+              "word": "residential",
+              "unit": 4,
+              "lesson": 3,
+              "lessonTitle": "Reading about cities"
+            }
+          }
+        ],
+        "id": "c1-s06"
+      }
+    ]
+  }
+}

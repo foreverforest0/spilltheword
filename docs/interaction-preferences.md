@@ -33,3 +33,8 @@ reference portraits and badge styling.
 Activity titles always use the site's primary heading font, Kindaten, including exercises
 whose controls and animation follow an external reference (2026-11-19). Preserve
 the chosen reference mechanics while keeping this explicit typography preference.
+
+Keep the site's cream background (#F9F5E6) even for activities adapted from
+external references. All activity and situation titles use Kindaten and the
+selected level's existing accent: B1 #001166; B2/C1 #1D2E1B. This explicit user
+instruction (2026-11-19) takes priority over a reference's white background.
