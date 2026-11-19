@@ -22,8 +22,12 @@ The single short task appears only after selecting a photograph.
 Select one photo, say a conditional and click a destination folder. Drag/drop is
 also supported. The selected photo rises, scales down, moves towards the folder
 and drops into its front pocket in a 760ms animation. Filed photographs form a
-small stacked preview, fanning out on hover. Open a folder to review or refile.
-There are no automatic right/wrong verdicts for the oral answer or its filing.
+small stacked preview, fanning out on hover. Open a folder to review its photos.
+Filing is checked against the task’s conditional type on B1, B2 and C1 before any
+placement is saved. A wrong destination keeps the photo in the grid and shows one
+short semantic cue; the attempted folder briefly shakes. The correct destination
+accepts it with the existing flight animation. Spoken/written sentences remain
+teacher-checked, with no automatic text grading.
 A hidden Example offers one possible response and a concise reason. Write opens
 an optional field. No score, level assessment, hints panel or completion summary.
 Reset restores positions without deleting written answers. Next photos appears
@@ -75,13 +79,17 @@ an extra vocabulary panel. Forms may be inflected naturally.
 ## Persistence and checks
 
 `spill-conditional-folders-v1` stores separate positions, decks and writing per
-level. Native buttons, focus restoration, Escape, touch selection and reduced
+level. On opening a level, previously unchecked incorrect placements return to the
+library; correct placements and all saved writing are retained.
+Native buttons, focus restoration, Escape, touch selection and reduced
 motion are supported. Filing updates state once; double clicks cannot duplicate
 photos. Leaving during a flight cannot repaint another activity.
 
-Run `python scripts/check-conditional-folders.py`; use CONDITIONAL_FOLDERS_ROOT to
+Run `python scripts/check-conditional-folders.py` and
+`python scripts/check-conditional-folder-sorting.py`; use CONDITIONAL_FOLDERS_ROOT to
 exercise the exact production checkout. Covers provenance and coverage, all three
 catalogs, distinct photos, hidden examples, writing, real animations, drag/drop,
 folder counts/reopening, persistence, direct links, keyboard, reduced motion,
-320/390px framing and loaded assets. Existing B1 revision and Kids checks cover
+320/390px framing and loaded assets. The sorting suite tries every destination
+for every one of the 79 tasks and verifies legacy placement/draft migration. Existing B1 revision and Kids checks cover
 catalog regressions independently.
