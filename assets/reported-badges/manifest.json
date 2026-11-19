@@ -1,0 +1,62 @@
+{
+  "reference": "https://recent.design/i/8c5u6uo-team-profile-card-component",
+  "video": "https://cdn.recent.design/items/8c5u6uo/0/2858x1984.mp4",
+  "frameSeconds": 0,
+  "image": "assets/reported-badges/reference-fronts.png",
+  "sha256": "764b06384aa9da4fbf3614908030db24f779913ca12ac53a319709eecbd0bd1b",
+  "note": "Original video frame, unaltered. Portraits are displayed through SVG viewports; no redrawing, recolouring or replacement. Badge shells and controls are authored HTML/CSS.",
+  "portraits": [
+    {
+      "id": "maya",
+      "name": "Maya Bennett",
+      "pronoun": "she",
+      "bounds": [
+        315,
+        765,
+        440,
+        385
+      ],
+      "turn": -2,
+      "drop": 0
+    },
+    {
+      "id": "leo",
+      "name": "Leo Carter",
+      "pronoun": "he",
+      "bounds": [
+        898,
+        918,
+        420,
+        375
+      ],
+      "turn": 2,
+      "drop": 54
+    },
+    {
+      "id": "noah",
+      "name": "Noah Williams",
+      "pronoun": "he",
+      "bounds": [
+        1524,
+        834,
+        432,
+        380
+      ],
+      "turn": -1,
+      "drop": 24
+    },
+    {
+      "id": "amina",
+      "name": "Amina Yusuf",
+      "pronoun": "she",
+      "bounds": [
+        2112,
+        915,
+        420,
+        370
+      ],
+      "turn": 2,
+      "drop": 54
+    }
+  ]
+}

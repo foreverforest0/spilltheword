@@ -1,0 +1,1361 @@
+/* Original natural quotes. Context-dependent backshift and pronoun alternatives are intentional. */
+window.ReportedBadgeData={
+  "reference": "https://recent.design/i/8c5u6uo-team-profile-card-component",
+  "portraits": [
+    {
+      "id": "maya",
+      "name": "Maya Bennett",
+      "pronoun": "she",
+      "bounds": [
+        315,
+        765,
+        440,
+        385
+      ],
+      "turn": -2,
+      "drop": 0
+    },
+    {
+      "id": "leo",
+      "name": "Leo Carter",
+      "pronoun": "he",
+      "bounds": [
+        898,
+        918,
+        420,
+        375
+      ],
+      "turn": 2,
+      "drop": 54
+    },
+    {
+      "id": "noah",
+      "name": "Noah Williams",
+      "pronoun": "he",
+      "bounds": [
+        1524,
+        834,
+        432,
+        380
+      ],
+      "turn": -1,
+      "drop": 24
+    },
+    {
+      "id": "amina",
+      "name": "Amina Yusuf",
+      "pronoun": "she",
+      "bounds": [
+        2112,
+        915,
+        420,
+        370
+      ],
+      "turn": 2,
+      "drop": 54
+    }
+  ],
+  "levels": {
+    "b1": [
+      {
+        "id": "b1-01",
+        "speaker": 0,
+        "kind": "statement",
+        "quote": "I prefer documentaries to horror films.",
+        "bodies": [
+          "{p} preferred documentaries to horror films",
+          "{p} {p:prefer} documentaries to horror films"
+        ],
+        "focus": "",
+        "reason": "Past simple is a normal backshift; present simple can retain a current preference.",
+        "vocab": {
+          "course": "b1",
+          "word": "documentary"
+        }
+      },
+      {
+        "id": "b1-02",
+        "speaker": 1,
+        "kind": "statement",
+        "quote": "I'm watching that comedy everyone keeps quoting.",
+        "bodies": [
+          "{p} {p:pastbe} watching that comedy everyone kept quoting",
+          "{p} {p:pastbe} watching that comedy everyone keeps quoting",
+          "{p} {p:be} watching that comedy everyone keeps quoting"
+        ],
+        "focus": "",
+        "reason": "A current activity can be backshifted or retained if it is still current.",
+        "vocab": {
+          "course": "b1",
+          "word": "comedy"
+        }
+      },
+      {
+        "id": "b1-03",
+        "speaker": 2,
+        "kind": "statement",
+        "quote": "I've finally quit that online game.",
+        "bodies": [
+          "{p} had finally quit that online game",
+          "{p} {p:have} finally quit that online game"
+        ],
+        "focus": "",
+        "reason": "Present perfect normally backshifts to past perfect; it can remain if the report is still current.",
+        "vocab": {
+          "course": "b1",
+          "word": "quit"
+        }
+      },
+      {
+        "id": "b1-04",
+        "speaker": 3,
+        "kind": "statement",
+        "quote": "I felt awkward at the end of the film.",
+        "bodies": [
+          "{p} had felt awkward at the end of the film",
+          "{p} felt awkward at the end of the film"
+        ],
+        "focus": "",
+        "reason": "Past simple can become past perfect, but it often stays past simple in a clear past account.",
+        "vocab": {
+          "course": "b1",
+          "word": "awkward"
+        }
+      },
+      {
+        "id": "b1-05",
+        "speaker": 0,
+        "kind": "statement",
+        "quote": "I'll send you the script.",
+        "bodies": [
+          "{p} would send {ro} the script",
+          "{p} will send {ro} the script"
+        ],
+        "focus": "",
+        "reason": "Will can become would; it may remain if the offer still applies. You depends on the listener.",
+        "vocab": {
+          "course": "b1",
+          "word": "script"
+        }
+      },
+      {
+        "id": "b1-06",
+        "speaker": 1,
+        "kind": "statement",
+        "quote": "I can handle the special effects.",
+        "bodies": [
+          "{p} could handle the special effects",
+          "{p} can handle the special effects"
+        ],
+        "focus": "",
+        "reason": "Can normally becomes could; it can remain for a continuing ability.",
+        "vocab": {
+          "course": "b1",
+          "word": "handle"
+        }
+      },
+      {
+        "id": "b1-07",
+        "speaker": 2,
+        "kind": "statement",
+        "quote": "I was feeling exhausted after my shift.",
+        "bodies": [
+          "{p} had been feeling exhausted after {poss} shift",
+          "{p} {p:pastbe} feeling exhausted after {poss} shift"
+        ],
+        "focus": "",
+        "reason": "Past continuous can become past perfect continuous or remain in a clear past account.",
+        "vocab": {
+          "course": "b1",
+          "word": "exhausted"
+        }
+      },
+      {
+        "id": "b1-08",
+        "speaker": 3,
+        "kind": "statement",
+        "quote": "I won't post that embarrassing photo.",
+        "bodies": [
+          "{p} would not post that embarrassing photo",
+          "{p} will not post that embarrassing photo"
+        ],
+        "focus": "",
+        "reason": "Keep the negative. Would not is the normal backshift of will not.",
+        "vocab": {
+          "course": "b1",
+          "word": "embarrassing"
+        }
+      },
+      {
+        "id": "b1-09",
+        "speaker": 0,
+        "kind": "question",
+        "quote": "Do you like horror films?",
+        "bodies": [
+          "[if|whether] {r} liked horror films",
+          "[if|whether] {r} {r:like} horror films"
+        ],
+        "focus": "",
+        "reason": "Use if or whether and statement word order. Do disappears.",
+        "vocab": {
+          "course": "b1",
+          "word": "horror film"
+        }
+      },
+      {
+        "id": "b1-10",
+        "speaker": 1,
+        "kind": "question",
+        "quote": "Why are you worried about the ending?",
+        "bodies": [
+          "why {r} {r:pastbe} worried about the ending",
+          "why {r} {r:be} worried about the ending"
+        ],
+        "focus": "",
+        "reason": "A reported wh-question keeps why and uses subject before verb.",
+        "vocab": {
+          "course": "b1",
+          "word": "worried"
+        }
+      },
+      {
+        "id": "b1-11",
+        "speaker": 2,
+        "kind": "request",
+        "quote": "Please send me the documentary.",
+        "bodies": [
+          "to send {o} the documentary"
+        ],
+        "focus": "",
+        "reason": "Use asked + object + to-infinitive. Me refers to the person on the badge.",
+        "vocab": {
+          "course": "b1",
+          "word": "documentary"
+        }
+      },
+      {
+        "id": "b1-12",
+        "speaker": 3,
+        "kind": "command",
+        "quote": "Don't share my salary online.",
+        "bodies": [
+          "not to share {poss} salary online"
+        ],
+        "focus": "",
+        "reason": "Use told or asked + object + not to-infinitive.",
+        "vocab": {
+          "course": "b1",
+          "word": "salary"
+        }
+      },
+      {
+        "id": "b1-13",
+        "speaker": 0,
+        "kind": "statement",
+        "quote": "I get on well with my flatmates.",
+        "bodies": [
+          "{p} got on well with {poss} flatmates",
+          "{p} {p:get} on well with {poss} flatmates"
+        ],
+        "focus": "",
+        "reason": "Present simple can backshift; the possessive changes with the speaker.",
+        "vocab": {
+          "course": "b1",
+          "word": "get on well with"
+        }
+      },
+      {
+        "id": "b1-14",
+        "speaker": 1,
+        "kind": "statement",
+        "quote": "I'd already seen the plot twist in a meme.",
+        "bodies": [
+          "{p} had already seen the plot twist in a meme"
+        ],
+        "focus": "",
+        "reason": "The original past perfect stays past perfect.",
+        "vocab": {
+          "course": "b1",
+          "word": "plot"
+        }
+      },
+      {
+        "id": "b1-15",
+        "speaker": 2,
+        "kind": "statement",
+        "quote": "I've been working overtime all week.",
+        "bodies": [
+          "{p} had been working overtime all week",
+          "{p} {p:have} been working overtime all week"
+        ],
+        "focus": "",
+        "reason": "Present perfect continuous normally becomes past perfect continuous.",
+        "vocab": {
+          "course": "b1",
+          "word": "overtime"
+        }
+      },
+      {
+        "id": "b1-16",
+        "speaker": 3,
+        "kind": "statement",
+        "quote": "I may stop watching that TV show after this episode.",
+        "bodies": [
+          "{p} might stop watching that TV show after [that|this] episode",
+          "{p} may stop watching that TV show after [this|that] episode"
+        ],
+        "focus": "",
+        "reason": "May can become might. This/that depends on the reporting situation.",
+        "vocab": {
+          "course": "b1",
+          "word": "TV shows"
+        }
+      },
+      {
+        "id": "b1-17",
+        "speaker": 0,
+        "kind": "statement",
+        "quote": "People drift apart when they stop talking.",
+        "bodies": [
+          "people drift apart when they stop talking",
+          "people drifted apart when they stopped talking"
+        ],
+        "focus": "",
+        "reason": "A general observation can keep the present tense. A backshifted account is also possible.",
+        "vocab": {
+          "course": "b1",
+          "word": "drift apart"
+        }
+      },
+      {
+        "id": "b1-18",
+        "speaker": 1,
+        "kind": "statement",
+        "quote": "I'd love to meet the cast.",
+        "bodies": [
+          "{p} would love to meet the cast"
+        ],
+        "focus": "",
+        "reason": "Would does not backshift to had. Here I'd means I would.",
+        "vocab": {
+          "course": "b1",
+          "word": "cast"
+        }
+      },
+      {
+        "id": "b1-19",
+        "speaker": 2,
+        "kind": "question",
+        "quote": "What did you think of the special effects?",
+        "bodies": [
+          "what {r} had thought of the special effects",
+          "what {r} thought of the special effects"
+        ],
+        "focus": "",
+        "reason": "Use statement word order. Past simple may become past perfect.",
+        "vocab": {
+          "course": "b1",
+          "word": "special effects"
+        }
+      },
+      {
+        "id": "b1-20",
+        "speaker": 3,
+        "kind": "statement",
+        "quote": "You should stay in touch with your old friends.",
+        "bodies": [
+          "{r} should stay in touch with {rposs} old friends"
+        ],
+        "focus": "",
+        "reason": "Should normally stays unchanged. You and your depend on the listener.",
+        "vocab": {
+          "course": "b1",
+          "word": "stay in touch with"
+        }
+      },
+      {
+        "id": "b1-21",
+        "speaker": 0,
+        "kind": "statement",
+        "quote": "I haven't turned on the subtitles.",
+        "bodies": [
+          "{p} had not turned on the subtitles",
+          "{p} {p:have} not turned on the subtitles"
+        ],
+        "focus": "",
+        "reason": "Keep the negative; present perfect can become past perfect.",
+        "vocab": {
+          "course": "b1",
+          "word": "subtitles"
+        }
+      },
+      {
+        "id": "b1-22",
+        "speaker": 1,
+        "kind": "statement",
+        "quote": "I'll apply for a part-time job tomorrow.",
+        "bodies": [
+          "{p} would apply for a part-time job [the following day|the next day|tomorrow]",
+          "{p} will apply for a part-time job [tomorrow|the following day|the next day]"
+        ],
+        "focus": "",
+        "reason": "Tomorrow may stay or change with the reporting day. No reporting day is specified here.",
+        "vocab": {
+          "course": "b1",
+          "word": "part-time job"
+        }
+      },
+      {
+        "id": "b1-23",
+        "speaker": 2,
+        "kind": "question",
+        "quote": "Have you ever felt out of your comfort zone?",
+        "bodies": [
+          "[if|whether] {r} had ever felt out of {rposs} comfort zone",
+          "[if|whether] {r} {r:have} ever felt out of {rposs} comfort zone"
+        ],
+        "focus": "",
+        "reason": "Use if/whether and statement word order; have can become had.",
+        "vocab": {
+          "course": "b1",
+          "word": "be out of your comfort zone"
+        }
+      },
+      {
+        "id": "b1-24",
+        "speaker": 3,
+        "kind": "request",
+        "quote": "Please don't spoil the ending.",
+        "bodies": [
+          "not to spoil the ending"
+        ],
+        "focus": "",
+        "reason": "Use asked + object + not to-infinitive for a negative request.",
+        "vocab": {
+          "course": "b1",
+          "word": "ending"
+        }
+      }
+    ],
+    "b2": [
+      {
+        "id": "b2-01",
+        "speaker": 0,
+        "kind": "statement",
+        "quote": "I've been scrolling online instead of sleeping.",
+        "bodies": [
+          "{p} had been scrolling online instead of sleeping",
+          "{p} {p:have} been scrolling online instead of sleeping"
+        ],
+        "focus": "",
+        "reason": "Perfect continuous can backshift while the contrast with sleeping stays intact.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "scrolling online",
+          "unit": 4,
+          "lesson": 6,
+          "lessonTitle": "Popcorn brain"
+        }
+      },
+      {
+        "id": "b2-02",
+        "speaker": 1,
+        "kind": "statement",
+        "quote": "We'd drifted apart without noticing.",
+        "bodies": [
+          "{g} had drifted apart without noticing"
+        ],
+        "focus": "",
+        "reason": "The past perfect stays unchanged. We can become they, or remain we if the reporter belongs to the group.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "drifted apart",
+          "unit": 4,
+          "lesson": 4,
+          "lessonTitle": "Friends (gerund/infinitive)"
+        }
+      },
+      {
+        "id": "b2-03",
+        "speaker": 2,
+        "kind": "statement",
+        "quote": "My smart meter hasn't recorded any energy usage this week.",
+        "bodies": [
+          "{poss} smart meter had not recorded any energy usage [that week|this week]",
+          "{poss} smart meter has not recorded any energy usage [this week|that week]"
+        ],
+        "focus": "",
+        "reason": "Keep the negative and change my with the speaker. This/that week depends on the reporting date.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "smart meter",
+          "unit": 4,
+          "lesson": 1,
+          "lessonTitle": "Smart home"
+        }
+      },
+      {
+        "id": "b2-04",
+        "speaker": 3,
+        "kind": "statement",
+        "quote": "I'll be doing a digital detox when that series comes out.",
+        "bodies": [
+          "{p} would be doing a digital detox when that series came out",
+          "{p} would be doing a digital detox when that series comes out",
+          "{p} will be doing a digital detox when that series comes out"
+        ],
+        "focus": "",
+        "reason": "Future continuous becomes would be; a future time clause can also backshift.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "digital detox",
+          "unit": 1,
+          "lesson": 1,
+          "lessonTitle": "Change"
+        }
+      },
+      {
+        "id": "b2-05",
+        "speaker": 0,
+        "kind": "statement",
+        "quote": "I may have left my smartphone in the cinema.",
+        "bodies": [
+          "{p} might have left {poss} smartphone in the cinema",
+          "{p} may have left {poss} smartphone in the cinema"
+        ],
+        "focus": "Keep the uncertainty.",
+        "reason": "A perfect modal expresses a possible past event. Do not turn may/might into certainty.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "smartphone",
+          "unit": 1,
+          "lesson": 1,
+          "lessonTitle": "Change"
+        }
+      },
+      {
+        "id": "b2-06",
+        "speaker": 1,
+        "kind": "statement",
+        "quote": "We must sort out the bill before we leave.",
+        "bodies": [
+          "{g} had to sort out the bill before {g} left",
+          "{g} must sort out the bill before {g} leave",
+          "{g} had to sort out the bill before {g} leave"
+        ],
+        "focus": "Report an obligation.",
+        "reason": "Must can become had to for an obligation; it can remain if the obligation is still current.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "sort out",
+          "unit": 2,
+          "lesson": 1,
+          "lessonTitle": "Fear And Danger"
+        }
+      },
+      {
+        "id": "b2-07",
+        "speaker": 2,
+        "kind": "statement",
+        "quote": "I wasn't trying to sabotage the plan.",
+        "bodies": [
+          "{p} had not been trying to sabotage the plan",
+          "{p} {p:pastbe} not trying to sabotage the plan"
+        ],
+        "focus": "",
+        "reason": "Keep the negative and the continuous meaning.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "sabotage",
+          "unit": 5,
+          "lesson": 2,
+          "lessonTitle": "Perfect modals"
+        }
+      },
+      {
+        "id": "b2-08",
+        "speaker": 3,
+        "kind": "statement",
+        "quote": "I would move to the suburbs if the commute were shorter.",
+        "bodies": [
+          "{p} would move to the suburbs if the commute were shorter"
+        ],
+        "focus": "Keep the imagined present.",
+        "reason": "A second conditional usually remains unchanged in reported speech.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "commute",
+          "unit": 3,
+          "lesson": 1,
+          "lessonTitle": "What Will Life Be Like?"
+        }
+      },
+      {
+        "id": "b2-09",
+        "speaker": 0,
+        "kind": "question",
+        "quote": "Are you still hooked on that game?",
+        "bodies": [
+          "[if|whether] {r} {r:pastbe} still hooked on that game",
+          "[if|whether] {r} {r:be} still hooked on that game"
+        ],
+        "focus": "",
+        "reason": "Use if/whether followed by statement word order.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "hooked",
+          "unit": 1,
+          "lesson": 1,
+          "lessonTitle": "Change"
+        }
+      },
+      {
+        "id": "b2-10",
+        "speaker": 1,
+        "kind": "question",
+        "quote": "Why did you cancel the low-key hangout?",
+        "bodies": [
+          "why {r} had cancelled the low-key hangout",
+          "why {r} cancelled the low-key hangout"
+        ],
+        "focus": "",
+        "reason": "Remove did and use statement word order. Both past simple and past perfect can work.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "low-key hangout",
+          "unit": 5,
+          "lesson": 8,
+          "lessonTitle": "Cleft sentences"
+        }
+      },
+      {
+        "id": "b2-11",
+        "speaker": 2,
+        "kind": "request",
+        "quote": "Please don't set up another group chat.",
+        "bodies": [
+          "not to set up another group chat"
+        ],
+        "focus": "",
+        "reason": "Ask + object + not to-infinitive keeps the negative request.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "set up",
+          "unit": 4,
+          "lesson": 5,
+          "lessonTitle": "Spooky stories (phrasal verbs)"
+        }
+      },
+      {
+        "id": "b2-12",
+        "speaker": 3,
+        "kind": "suggestion",
+        "quote": "Let's cut back on screen time.",
+        "bodies": [
+          "cutting back on screen time"
+        ],
+        "focus": "Use suggest + -ing.",
+        "reason": "Suggest can take an -ing clause; it does not take object + to-infinitive in this pattern.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "cut back on",
+          "unit": 5,
+          "lesson": 4,
+          "lessonTitle": "Analog year"
+        }
+      },
+      {
+        "id": "b2-13",
+        "speaker": 0,
+        "kind": "deny",
+        "quote": "I didn't fabricate the footage.",
+        "bodies": [
+          "fabricating the footage",
+          "having fabricated the footage",
+          "[that |]{p} had fabricated the footage",
+          "[that |]{p} fabricated the footage"
+        ],
+        "focus": "Use deny.",
+        "reason": "Deny can take an -ing clause or a that-clause. The denial itself carries the negative meaning.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "fabricated",
+          "unit": 6,
+          "lesson": 6,
+          "lessonTitle": "Conspiracy theories"
+        }
+      },
+      {
+        "id": "b2-14",
+        "speaker": 1,
+        "kind": "admit",
+        "quote": "Yes, I got distracted while I was editing the video.",
+        "bodies": [
+          "getting distracted while editing the video",
+          "getting distracted while {p} {p:pastbe} editing the video",
+          "getting distracted while {p} had been editing the video",
+          "having got distracted while editing the video"
+        ],
+        "focus": "Use admit + -ing.",
+        "reason": "Admit can take an -ing clause. Having got makes the earlier timing explicit.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "to get distracted",
+          "unit": 4,
+          "lesson": 6,
+          "lessonTitle": "Popcorn brain"
+        }
+      },
+      {
+        "id": "b2-15",
+        "speaker": 2,
+        "kind": "promise",
+        "quote": "I'll send the ingredients before dinner.",
+        "bodies": [
+          "to send the ingredients before dinner",
+          "[that |]{p} would send the ingredients before dinner",
+          "[that |]{p} will send the ingredients before dinner"
+        ],
+        "focus": "Report it as a promise.",
+        "reason": "Promise can take a to-infinitive or a that-clause.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "ingredients",
+          "unit": 1,
+          "lesson": 2,
+          "lessonTitle": "Clean Eating"
+        }
+      },
+      {
+        "id": "b2-16",
+        "speaker": 3,
+        "kind": "warning",
+        "quote": "Don't share the footage; it could cause a backlash.",
+        "bodies": [
+          "not to share the footage because it could cause a backlash",
+          "not to share the footage as it could cause a backlash"
+        ],
+        "focus": "Use warn + object + not to.",
+        "reason": "Keep both the warning and its possible consequence.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "backlash",
+          "unit": 4,
+          "lesson": 2,
+          "lessonTitle": "Passive voice (movies)"
+        }
+      },
+      {
+        "id": "b2-17",
+        "speaker": 0,
+        "kind": "statement",
+        "quote": "I should have checked the sugar content.",
+        "bodies": [
+          "{p} should have checked the sugar content"
+        ],
+        "focus": "Keep the past modal.",
+        "reason": "Should have stays unchanged; it expresses criticism of a past decision.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "sugar",
+          "unit": 1,
+          "lesson": 2,
+          "lessonTitle": "Clean Eating"
+        }
+      },
+      {
+        "id": "b2-18",
+        "speaker": 1,
+        "kind": "statement",
+        "quote": "I've never been so sleep-deprived.",
+        "bodies": [
+          "{p} had never been so sleep-deprived",
+          "{p} {p:have} never been so sleep-deprived"
+        ],
+        "focus": "",
+        "reason": "Never keeps its negative meaning when the tense changes.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "sleep-deprived",
+          "unit": 6,
+          "lesson": 5,
+          "lessonTitle": "YOLO, cleft sentences"
+        }
+      },
+      {
+        "id": "b2-19",
+        "speaker": 2,
+        "kind": "question",
+        "quote": "Who sent you that misleading screenshot?",
+        "bodies": [
+          "who had sent {ro} that misleading screenshot",
+          "who sent {ro} that misleading screenshot"
+        ],
+        "focus": "Keep it as a subject question.",
+        "reason": "Who is the subject, so no do/did is needed.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "misleading",
+          "unit": 6,
+          "lesson": 4,
+          "lessonTitle": "Mixed conditionals, odd brand names"
+        }
+      },
+      {
+        "id": "b2-20",
+        "speaker": 3,
+        "kind": "statement",
+        "quote": "I can't put up with these endless micro-obligations.",
+        "bodies": [
+          "{p} could not put up with [those|these] endless micro-obligations",
+          "{p} cannot put up with [these|those] endless micro-obligations"
+        ],
+        "focus": "",
+        "reason": "Can can become could. These/those depends on the reporting perspective.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "endless micro-obligations",
+          "unit": 5,
+          "lesson": 8,
+          "lessonTitle": "Cleft sentences"
+        }
+      },
+      {
+        "id": "b2-21",
+        "speaker": 0,
+        "kind": "statement",
+        "quote": "We'd finished the meal before the robot brought the drinks.",
+        "bodies": [
+          "{g} had finished the meal before the robot brought the drinks"
+        ],
+        "focus": "",
+        "reason": "The existing past perfect already marks the earlier event.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "robot",
+          "unit": 3,
+          "lesson": 2,
+          "lessonTitle": "The Robot Revolution"
+        }
+      },
+      {
+        "id": "b2-22",
+        "speaker": 1,
+        "kind": "request",
+        "quote": "Could you turn off the voice assistant?",
+        "bodies": [
+          "to turn off the voice assistant"
+        ],
+        "focus": "Report the request.",
+        "reason": "A polite Could you request can be reported with asked + object + to-infinitive.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "voice assistant",
+          "unit": 4,
+          "lesson": 1,
+          "lessonTitle": "Smart home"
+        }
+      },
+      {
+        "id": "b2-23",
+        "speaker": 2,
+        "kind": "statement",
+        "quote": "My grandmother is a role model for me.",
+        "bodies": [
+          "{poss} grandmother was a role model for {o}",
+          "{poss} grandmother is a role model for {o}"
+        ],
+        "focus": "",
+        "reason": "A continuing relationship can retain the present tense. My/me refer to the speaker.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "role model",
+          "unit": 0,
+          "lesson": 1,
+          "lessonTitle": "Who We Are"
+        }
+      },
+      {
+        "id": "b2-24",
+        "speaker": 3,
+        "kind": "statement",
+        "quote": "I'll have given that cooking challenge a shot by the weekend.",
+        "bodies": [
+          "{p} would have given that cooking challenge a shot by the weekend",
+          "{p} will have given that cooking challenge a shot by the weekend"
+        ],
+        "focus": "",
+        "reason": "Future perfect can become would have + past participle. Will can remain if the deadline is still future.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "give it a shot",
+          "unit": 6,
+          "lesson": 5,
+          "lessonTitle": "YOLO, cleft sentences"
+        }
+      }
+    ],
+    "c1": [
+      {
+        "id": "c1-01",
+        "speaker": 0,
+        "kind": "statement",
+        "quote": "If I'd seen that footage, I wouldn't have watched the film.",
+        "bodies": [
+          "if {p} had seen that footage, {p} would not have watched the film",
+          "{p} would not have watched the film if {p} had seen that footage"
+        ],
+        "focus": "Keep the unreal past.",
+        "reason": "A third conditional retains its past perfect and would have forms.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "footage",
+          "unit": 6,
+          "lesson": 6,
+          "lessonTitle": "Conspiracy theories"
+        }
+      },
+      {
+        "id": "c1-02",
+        "speaker": 1,
+        "kind": "statement",
+        "quote": "I must have left my smartphone in my other coat.",
+        "bodies": [
+          "{p} must have left {poss} smartphone in {poss} other coat"
+        ],
+        "focus": "Keep the deduction.",
+        "reason": "Epistemic must have stays must have. Had to would turn the deduction into an obligation.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "smartphone",
+          "unit": 1,
+          "lesson": 1,
+          "lessonTitle": "Change"
+        }
+      },
+      {
+        "id": "c1-03",
+        "speaker": 2,
+        "kind": "statement",
+        "quote": "I wish I'd noticed the subscription creep sooner.",
+        "bodies": [
+          "{p} wished {p} had noticed the subscription creep sooner",
+          "{p} {p:wish} {p} had noticed the subscription creep sooner"
+        ],
+        "focus": "Keep the regret about the past.",
+        "reason": "The past perfect after wish stays unchanged; wish itself can backshift.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "subscription creep",
+          "unit": 5,
+          "lesson": 8,
+          "lessonTitle": "Cleft sentences"
+        }
+      },
+      {
+        "id": "c1-04",
+        "speaker": 3,
+        "kind": "statement",
+        "quote": "I was about to leave when the missing heirloom turned up.",
+        "bodies": [
+          "{p} {p:pastbe} about to leave when the missing heirloom turned up",
+          "{p} had been about to leave when the missing heirloom turned up"
+        ],
+        "focus": "Keep the sequence of events.",
+        "reason": "Past forms can remain in a clear account. Had been about to is also a possible backshift.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "heirloom",
+          "unit": 6,
+          "lesson": 9,
+          "lessonTitle": "Accommodation & neighborhood, I wish"
+        }
+      },
+      {
+        "id": "c1-05",
+        "speaker": 0,
+        "kind": "deny",
+        "quote": "I didn't leak the footage, and I won't take the blame.",
+        "bodies": [
+          "leaking the footage and refused to take the blame",
+          "having leaked the footage and refused to take the blame"
+        ],
+        "focus": "Use deny and refuse.",
+        "reason": "Report the denial with deny and the refusal with refuse + to-infinitive.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "footage",
+          "unit": 6,
+          "lesson": 6,
+          "lessonTitle": "Conspiracy theories"
+        }
+      },
+      {
+        "id": "c1-06",
+        "speaker": 1,
+        "kind": "apology",
+        "quote": "I'm sorry I kept scrolling online while you were talking.",
+        "bodies": [
+          "for scrolling online while {r} {r:pastbe} talking",
+          "for keeping on scrolling online while {r} {r:pastbe} talking",
+          "for having kept scrolling online while {r} {r:pastbe} talking",
+          "for having scrolled online while {r} {r:pastbe} talking"
+        ],
+        "focus": "Use apologise for.",
+        "reason": "Apologise for takes an -ing clause; you depends on the listener.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "scrolling online",
+          "unit": 4,
+          "lesson": 6,
+          "lessonTitle": "Popcorn brain"
+        }
+      },
+      {
+        "id": "c1-07",
+        "speaker": 2,
+        "kind": "statement",
+        "quote": "We should have talked it over before posting the video.",
+        "bodies": [
+          "{g} should have talked it over before posting the video"
+        ],
+        "focus": "Keep the criticism of the past decision.",
+        "reason": "Should have remains unchanged, and we depends on group membership.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "talk over",
+          "unit": 2,
+          "lesson": 1,
+          "lessonTitle": "Fear And Danger"
+        }
+      },
+      {
+        "id": "c1-08",
+        "speaker": 3,
+        "kind": "statement",
+        "quote": "I'd rather the security camera didn't record sound.",
+        "bodies": [
+          "{p} would rather the security camera did not record sound"
+        ],
+        "focus": "Keep the preference about another subject.",
+        "reason": "Would rather + subject + past form expresses this preference; would does not become had.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "security camera",
+          "unit": 4,
+          "lesson": 1,
+          "lessonTitle": "Smart home"
+        }
+      },
+      {
+        "id": "c1-09",
+        "speaker": 0,
+        "kind": "question",
+        "quote": "Do you really expect me to believe that fabricated story?",
+        "bodies": [
+          "[if|whether] {r} really expected {o} to believe that fabricated story",
+          "[if|whether] {r} really {r:expect} {o} to believe that fabricated story"
+        ],
+        "focus": "Retain the sceptical tone.",
+        "reason": "Keep really and use statement word order after if/whether.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "fabricated",
+          "unit": 6,
+          "lesson": 6,
+          "lessonTitle": "Conspiracy theories"
+        }
+      },
+      {
+        "id": "c1-10",
+        "speaker": 1,
+        "kind": "question",
+        "quote": "Did you know the footage had been edited before it went viral?",
+        "bodies": [
+          "[if|whether] {r} knew the footage had been edited before it went viral",
+          "[if|whether] {r} had known the footage had been edited before it went viral"
+        ],
+        "focus": "Keep the earlier passive event.",
+        "reason": "The nested past perfect passive stays unchanged; did disappears from the reported question.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "footage",
+          "unit": 6,
+          "lesson": 6,
+          "lessonTitle": "Conspiracy theories"
+        }
+      },
+      {
+        "id": "c1-11",
+        "speaker": 2,
+        "kind": "question",
+        "quote": "Which parts of the evidence, if any, do you actually trust?",
+        "bodies": [
+          "which parts of the evidence, if any, {r} actually trusted",
+          "which parts of the evidence, if any, {r} actually {r:trust}"
+        ],
+        "focus": "Keep if any.",
+        "reason": "The embedded question uses statement word order. If any preserves the qualification.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "evidence",
+          "unit": 6,
+          "lesson": 6,
+          "lessonTitle": "Conspiracy theories"
+        }
+      },
+      {
+        "id": "c1-12",
+        "speaker": 3,
+        "kind": "request",
+        "quote": "Please don't chalk it up to anxiety without asking me.",
+        "bodies": [
+          "not to chalk it up to anxiety without asking {o}"
+        ],
+        "focus": "Use ask + object + not to.",
+        "reason": "The request stays negative; me refers to the person on the badge.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "chalk it up to",
+          "unit": 4,
+          "lesson": 5,
+          "lessonTitle": "Spooky stories (phrasal verbs)"
+        }
+      },
+      {
+        "id": "c1-13",
+        "speaker": 0,
+        "kind": "refusal",
+        "quote": "No, I won't put up with another last-minute change.",
+        "bodies": [
+          "to put up with another last-minute change"
+        ],
+        "focus": "Use refuse + to.",
+        "reason": "Refuse carries the negative intention, so do not add not before the infinitive.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "put up with",
+          "unit": 2,
+          "lesson": 1,
+          "lessonTitle": "Fear And Danger"
+        }
+      },
+      {
+        "id": "c1-14",
+        "speaker": 1,
+        "kind": "admit",
+        "quote": "It was me who set up the anonymous account.",
+        "bodies": [
+          "setting up the anonymous account",
+          "having set up the anonymous account",
+          "[that |]{p} had set up the anonymous account",
+          "[that |]{p} set up the anonymous account"
+        ],
+        "focus": "Report it as an admission.",
+        "reason": "Admit takes an -ing clause or a that-clause; set is unchanged as a past participle.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "set up",
+          "unit": 4,
+          "lesson": 5,
+          "lessonTitle": "Spooky stories (phrasal verbs)"
+        }
+      },
+      {
+        "id": "c1-15",
+        "speaker": 2,
+        "kind": "statement",
+        "quote": "My grandmother was my role model long before she became well-known.",
+        "bodies": [
+          "{poss} grandmother had been {poss} role model long before she became well-known",
+          "{poss} grandmother was {poss} role model long before she became well-known"
+        ],
+        "focus": "Keep the order of the two past events.",
+        "reason": "Past perfect can clarify the sequence; a clear past account can also keep past simple.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "role model",
+          "unit": 0,
+          "lesson": 1,
+          "lessonTitle": "Who We Are"
+        }
+      },
+      {
+        "id": "c1-16",
+        "speaker": 3,
+        "kind": "statement",
+        "quote": "If I weren't so absent-minded, I wouldn't have missed the beginning.",
+        "bodies": [
+          "if {p} were not so absent-minded, {p} would not have missed the beginning",
+          "{p} would not have missed the beginning if {p} were not so absent-minded"
+        ],
+        "focus": "Keep the present characteristic and past result.",
+        "reason": "Do not turn this mixed conditional into a third conditional. Were is also accepted with singular subjects.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "absent-minded",
+          "unit": 5,
+          "lesson": 6,
+          "lessonTitle": "Compound adjectives"
+        }
+      },
+      {
+        "id": "c1-17",
+        "speaker": 0,
+        "kind": "suggestion",
+        "quote": "I suggest we give the idea a shot before judging it.",
+        "bodies": [
+          "[that |]{g} give the idea a shot before judging it",
+          "[that |]{g} should give the idea a shot before judging it",
+          "[that |]{g} could give the idea a shot before judging it"
+        ],
+        "focus": "Use suggest with a that-clause.",
+        "reason": "A proposal can use the base form, should or could in a that-clause. That itself can be omitted.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "give it a shot",
+          "unit": 6,
+          "lesson": 5,
+          "lessonTitle": "YOLO, cleft sentences"
+        }
+      },
+      {
+        "id": "c1-18",
+        "speaker": 1,
+        "kind": "insist",
+        "quote": "I insist on paying for the meal; you paid last time.",
+        "bodies": [
+          "on paying for the meal because {r} had paid [last time|the time before]",
+          "on paying for the meal because {r} paid [last time|the time before]",
+          "on paying for the meal as {r} had paid [last time|the time before]",
+          "[that |]{p} pay for the meal because {r} had paid [last time|the time before]",
+          "[that |]{p} should pay for the meal because {r} had paid [last time|the time before]"
+        ],
+        "focus": "Keep the insistence and the reason.",
+        "reason": "Insist on takes -ing; a mandative that-clause can also report the firm intention. Keep the reason.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "meal",
+          "unit": 1,
+          "lesson": 2,
+          "lessonTitle": "Clean Eating"
+        }
+      },
+      {
+        "id": "c1-19",
+        "speaker": 2,
+        "kind": "statement",
+        "quote": "I wish people would stop treating every low-key hangout like a networking event.",
+        "bodies": [
+          "{p} wished people would stop treating every low-key hangout like a networking event",
+          "{p} {p:wish} people would stop treating every low-key hangout like a networking event"
+        ],
+        "focus": "Keep the complaint about other people's behaviour.",
+        "reason": "Would after wish expresses a desired change in behaviour and stays unchanged.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "low-key hangout",
+          "unit": 5,
+          "lesson": 8,
+          "lessonTitle": "Cleft sentences"
+        }
+      },
+      {
+        "id": "c1-20",
+        "speaker": 3,
+        "kind": "statement",
+        "quote": "There may have been a cover-up, but I haven't seen any evidence.",
+        "bodies": [
+          "there might have been a cover-up, but {p} had not seen any evidence",
+          "there may have been a cover-up, but {p} had not seen any evidence",
+          "there may have been a cover-up, but {p} {p:have} not seen any evidence",
+          "there might have been a cover-up, but {p} {p:have} not seen any evidence"
+        ],
+        "focus": "Keep both the uncertainty and the lack of evidence.",
+        "reason": "May/might have expresses uncertainty; do not drop the negative in the second clause.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "evidence",
+          "unit": 6,
+          "lesson": 6,
+          "lessonTitle": "Conspiracy theories"
+        }
+      },
+      {
+        "id": "c1-21",
+        "speaker": 0,
+        "kind": "statement",
+        "quote": "By the time the new series dropped, I'd already cancelled my subscription.",
+        "bodies": [
+          "by the time the new series dropped, {p} had already cancelled {poss} subscription",
+          "{p} had already cancelled {poss} subscription by the time the new series dropped"
+        ],
+        "focus": "Keep the earlier past perfect.",
+        "reason": "The original past perfect already places cancellation before the release.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "canceling the subscriptions",
+          "unit": 5,
+          "lesson": 8,
+          "lessonTitle": "Cleft sentences"
+        }
+      },
+      {
+        "id": "c1-22",
+        "speaker": 1,
+        "kind": "statement",
+        "quote": "I wasn't supposed to post the photo until everyone had agreed.",
+        "bodies": [
+          "{p} {p:pastbe} not supposed to post the photo until everyone had agreed",
+          "{p} had not been supposed to post the photo until everyone had agreed"
+        ],
+        "focus": "Keep the restriction and the earlier consent.",
+        "reason": "Keep the negative obligation and the past perfect in the time clause.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "to be supposed to",
+          "unit": 5,
+          "lesson": 0,
+          "lessonTitle": "Modals of prohibition, permission, obligation"
+        }
+      },
+      {
+        "id": "c1-23",
+        "speaker": 2,
+        "kind": "question",
+        "quote": "What would you have done if the old cinema hadn't been restored?",
+        "bodies": [
+          "what {r} would have done if the old cinema had not been restored"
+        ],
+        "focus": "Keep the unreal past and the passive condition.",
+        "reason": "Reported questions use statement word order; this third conditional stays unchanged.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "restore",
+          "unit": 6,
+          "lesson": 1,
+          "lessonTitle": "Community vocab, open spaces"
+        }
+      },
+      {
+        "id": "c1-24",
+        "speaker": 3,
+        "kind": "command",
+        "quote": "Don't let hustle culture convince you that you have to be productive all the time.",
+        "bodies": [
+          "not to let hustle culture convince {ro} that {r} had to be productive all the time",
+          "not to let hustle culture convince {ro} that {r} {r:have} to be productive all the time"
+        ],
+        "focus": "Keep the negative instruction.",
+        "reason": "Use object + not to let, then a bare infinitive after let. The obligation can be retained or backshifted.",
+        "vocab": {
+          "course": "b2alh",
+          "word": "hustle culture",
+          "unit": 5,
+          "lesson": 8,
+          "lessonTitle": "Cleft sentences"
+        }
+      }
+    ]
+  }
+};
