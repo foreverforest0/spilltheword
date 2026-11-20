@@ -13,13 +13,13 @@
             "answers": [
               "The comedy was silly, but I enjoyed it."
             ],
-            "hint": "Keep both facts and make the contrast clear."
+            "hint": "Use but between the contrasting ideas. Put a comma before it when both sides are complete clauses."
           },
           "although": {
             "answers": [
               "Although the comedy was silly, I enjoyed it."
             ],
-            "hint": "Keep both facts and make the contrast clear."
+            "hint": "Use although to introduce the concession. If that clause comes first, put a comma before the main clause."
           }
         },
         "choices": [
@@ -68,7 +68,7 @@
             "answers": [
               "The plot was easy to follow, but the ending surprised me."
             ],
-            "hint": "Keep both facts and make the contrast clear."
+            "hint": "Use but between the contrasting ideas. Put a comma before it when both sides are complete clauses."
           }
         },
         "choices": [
@@ -117,7 +117,7 @@
             "answers": [
               "Mia is straightforward, but her sister is more tactful."
             ],
-            "hint": "Keep both facts and make the contrast clear."
+            "hint": "Use but between the contrasting ideas. Put a comma before it when both sides are complete clauses."
           }
         },
         "choices": [
@@ -160,13 +160,13 @@
             "answers": [
               "I went straight home because I was exhausted."
             ],
-            "hint": "Use the linker to introduce why it happened."
+            "hint": "Follow because with a subject and verb."
           },
           "as": {
             "answers": [
               "As I was exhausted, I went straight home."
             ],
-            "hint": "Use the linker to introduce why it happened."
+            "hint": "Introduce the reason with as and a complete clause."
           }
         },
         "choices": [
@@ -215,7 +215,7 @@
             "answers": [
               "We took a different route because there was mud on the path."
             ],
-            "hint": "Use the linker to introduce why it happened."
+            "hint": "Follow because with a subject and verb."
           }
         },
         "choices": [
@@ -258,13 +258,13 @@
             "answers": [
               "As I felt awkward, I left the party early."
             ],
-            "hint": "Use the linker to introduce why it happened."
+            "hint": "Introduce the reason with as and a complete clause."
           },
           "because": {
             "answers": [
               "I left the party early because I felt awkward."
             ],
-            "hint": "Use the linker to introduce why it happened."
+            "hint": "Follow because with a subject and verb."
           }
         },
         "choices": [
@@ -307,13 +307,13 @@
             "answers": [
               "The sound was too quiet, so I turned on the subtitles."
             ],
-            "hint": "Keep the cause first and introduce what followed."
+            "hint": "Put the cause first. Use so to introduce its consequence."
           },
           "that’s why": {
             "answers": [
               "The sound was too quiet. That’s why I turned on the subtitles."
             ],
-            "hint": "Keep the cause first and introduce what followed."
+            "hint": "Start the second sentence with That’s why and state the result."
           }
         },
         "choices": [
@@ -362,7 +362,7 @@
             "answers": [
               "I was worried about missing the bus, so I left early."
             ],
-            "hint": "Keep the cause first and introduce what followed."
+            "hint": "Put the cause first. Use so to introduce its consequence."
           }
         },
         "choices": [
@@ -405,13 +405,13 @@
             "answers": [
               "I recognised most of the cast. That’s why I wanted to watch the film."
             ],
-            "hint": "Keep the cause first and introduce what followed."
+            "hint": "Start the second sentence with That’s why and state the result."
           },
           "so": {
             "answers": [
               "I recognised most of the cast, so I wanted to watch the film."
             ],
-            "hint": "Keep the cause first and introduce what followed."
+            "hint": "Put the cause first. Use so to introduce its consequence."
           }
         },
         "choices": [
@@ -454,7 +454,7 @@
             "answers": [
               "I turned on the subtitles so that my grandad could follow the film."
             ],
-            "hint": "Make the intended outcome clear."
+            "hint": "Follow so that with a subject and a verb such as can or could."
           }
         },
         "choices": [
@@ -493,13 +493,13 @@
             "answers": [
               "I joined the group chat to stay in touch with my cousins."
             ],
-            "hint": "Make the intended outcome clear."
+            "hint": "Use to and the base verb to express the subject’s aim."
           },
           "in order to": {
             "answers": [
               "I joined the group chat in order to stay in touch with my cousins."
             ],
-            "hint": "Make the intended outcome clear."
+            "hint": "Use in order to and the base verb to make the purpose explicit."
           }
         },
         "choices": [
@@ -548,7 +548,7 @@
             "answers": [
               "We stayed on the wooden path so that we wouldn’t step in the mud."
             ],
-            "hint": "Make the intended outcome clear."
+            "hint": "Follow so that with a subject and a verb such as can or could."
           }
         },
         "choices": [
@@ -591,13 +591,13 @@
             "answers": [
               "I loved the special effects and the soundtrack."
             ],
-            "hint": "Add the second fact about the same topic."
+            "hint": "Use and between parallel words, phrases or clauses."
           },
           "also": {
             "answers": [
               "I loved the special effects. I also loved the soundtrack."
             ],
-            "hint": "Add the second fact about the same topic."
+            "hint": "Add the second point with also, usually before the main verb or after be."
           }
         },
         "choices": [
@@ -646,7 +646,7 @@
             "answers": [
               "The cinema is showing a horror film and a comedy."
             ],
-            "hint": "Add the second fact about the same topic."
+            "hint": "Use and between parallel words, phrases or clauses."
           }
         },
         "choices": [
@@ -689,13 +689,13 @@
             "answers": [
               "Leo is outgoing. He’s resourceful, too."
             ],
-            "hint": "Add the second fact about the same topic."
+            "hint": "Put too at the end of the added point."
           },
           "also": {
             "answers": [
               "Leo is outgoing. He’s also resourceful."
             ],
-            "hint": "Add the second fact about the same topic."
+            "hint": "Add the second point with also, usually before the main verb or after be."
           }
         },
         "choices": [
@@ -744,7 +744,7 @@
             "answers": [
               "I made some popcorn as my brother was turning on the subtitles."
             ],
-            "hint": "Keep the order or overlap of the two events."
+            "hint": "Introduce the reason with as and a complete clause."
           }
         },
         "choices": [
@@ -787,13 +787,13 @@
             "answers": [
               "After I finished my shift, I met my sister for dinner."
             ],
-            "hint": "Keep the order or overlap of the two events."
+            "hint": "Introduce the earlier event with after."
           },
           "before": {
             "answers": [
               "I finished my shift before I met my sister for dinner."
             ],
-            "hint": "Keep the order or overlap of the two events."
+            "hint": "Introduce the later event with before."
           }
         },
         "choices": [
@@ -836,7 +836,7 @@
             "answers": [
               "I was worried until my friend finally texted me back."
             ],
-            "hint": "Keep the order or overlap of the two events."
+            "hint": "Show when the first situation stopped."
           }
         },
         "choices": [
@@ -881,7 +881,7 @@
             "answers": [
               "We’ll go for a walk if the path isn’t covered in mud."
             ],
-            "hint": "Make clear what must be true and what happens if it is."
+            "hint": "Use if before the condition. Use a present form for a real future condition."
           }
         },
         "choices": [
@@ -924,13 +924,13 @@
             "answers": [
               "We can watch a comedy as long as everyone agrees."
             ],
-            "hint": "Make clear what must be true and what happens if it is."
+            "hint": "Introduce what must be true for the plan to go ahead."
           },
           "if": {
             "answers": [
               "We can watch a comedy if everyone agrees."
             ],
-            "hint": "Make clear what must be true and what happens if it is."
+            "hint": "Use if before the condition. Use a present form for a real future condition."
           }
         },
         "choices": [
@@ -973,7 +973,7 @@
             "answers": [
               "If I’m exhausted after the trip, I’ll go straight home."
             ],
-            "hint": "Make clear what must be true and what happens if it is."
+            "hint": "Use if before the condition. Use a present form for a real future condition."
           }
         },
         "choices": [
@@ -1026,7 +1026,7 @@
             "answers": [
               "Although there was a backlash over the trailer, the film was a success."
             ],
-            "hint": "Keep both facts and make the contrast clear."
+            "hint": "Use although to introduce the concession. If that clause comes first, put a comma before the main clause."
           }
         },
         "choices": [
@@ -1073,13 +1073,13 @@
             "answers": [
               "Even though I planned a scroll-free evening, I kept checking my phone."
             ],
-            "hint": "Keep both facts and make the contrast clear."
+            "hint": "Use even though before a complete clause. It makes the contrast stronger."
           },
           "although": {
             "answers": [
               "Although I planned a scroll-free evening, I kept checking my phone."
             ],
-            "hint": "Keep both facts and make the contrast clear."
+            "hint": "Use although to introduce the concession. If that clause comes first, put a comma before the main clause."
           }
         },
         "choices": [
@@ -1122,7 +1122,7 @@
             "answers": [
               "Nina is laid-back about travel plans, whereas her brother wants every detail sorted in advance."
             ],
-            "hint": "Keep both facts and make the contrast clear."
+            "hint": "Use whereas to contrast two complete clauses."
           },
           "while": {
             "answers": [
@@ -1220,13 +1220,13 @@
             "answers": [
               "Now that the council has agreed to restore the old cinema, we can start planning the screenings."
             ],
-            "hint": "Use the linker to introduce why it happened."
+            "hint": "Introduce a new situation that makes the next action possible."
           },
           "because": {
             "answers": [
               "We can start planning the screenings because the council has agreed to restore the old cinema."
             ],
-            "hint": "Use the linker to introduce why it happened."
+            "hint": "Follow because with a subject and verb."
           }
         },
         "choices": [
@@ -1269,13 +1269,13 @@
             "answers": [
               "Her review went viral because it was witty and easy to share."
             ],
-            "hint": "Use the linker to introduce why it happened."
+            "hint": "Follow because with a subject and verb."
           },
           "as": {
             "answers": [
               "Her review went viral, as it was witty and easy to share."
             ],
-            "hint": "Use the linker to introduce why it happened."
+            "hint": "Introduce the reason with as and a complete clause."
           }
         },
         "choices": [
@@ -1373,7 +1373,7 @@
             "answers": [
               "The footage was extremely blurry, so nobody could identify the person."
             ],
-            "hint": "Keep the cause first and introduce what followed."
+            "hint": "Put the cause first. Use so to introduce its consequence."
           }
         },
         "choices": [
@@ -1465,13 +1465,13 @@
             "answers": [
               "I saved the footage on two drives so as not to lose it."
             ],
-            "hint": "Make the intended outcome clear."
+            "hint": "Use so as not to and the base verb for the unwanted outcome."
           },
           "in order not to": {
             "answers": [
               "I saved the footage on two drives in order not to lose it."
             ],
-            "hint": "Make the intended outcome clear."
+            "hint": "Use in order not to and the base verb for something the subject wants to prevent."
           }
         },
         "choices": [
@@ -1514,7 +1514,7 @@
             "answers": [
               "We put our phones away so that everyone could join in the digital detox."
             ],
-            "hint": "Make the intended outcome clear."
+            "hint": "Follow so that with a subject and a verb such as can or could."
           }
         },
         "choices": [
@@ -1553,13 +1553,13 @@
             "answers": [
               "I took the heirloom to a specialist in order to find out how old it was."
             ],
-            "hint": "Make the intended outcome clear."
+            "hint": "Use in order to and the base verb to make the purpose explicit."
           },
           "to": {
             "answers": [
               "I took the heirloom to a specialist to find out how old it was."
             ],
-            "hint": "Make the intended outcome clear."
+            "hint": "Use to and the base verb to express the subject’s aim."
           }
         },
         "choices": [
@@ -1657,7 +1657,7 @@
             "answers": [
               "The interview caused a backlash and reignited an old debate."
             ],
-            "hint": "Add the second fact about the same topic."
+            "hint": "Use and between parallel words, phrases or clauses."
           }
         },
         "choices": [
@@ -1706,7 +1706,7 @@
             "answers": [
               "In addition to helping to restore the garden, the volunteers organised free film nights."
             ],
-            "hint": "Add the second fact about the same topic."
+            "hint": "Use an -ing form after in addition to when adding a second action."
           }
         },
         "choices": [
@@ -1853,7 +1853,7 @@
             "answers": [
               "After we replace the thermostat, we’ll switch the heating back on."
             ],
-            "hint": "Keep the order or overlap of the two events."
+            "hint": "Introduce the earlier event with after."
           }
         },
         "choices": [
@@ -1896,13 +1896,13 @@
             "answers": [
               "We can restore the mural provided that the owner gives us permission first."
             ],
-            "hint": "Make clear what must be true and what happens if it is."
+            "hint": "Use provided that before the condition required for the plan."
           },
           "as long as": {
             "answers": [
               "We can restore the mural as long as the owner gives us permission first."
             ],
-            "hint": "Make clear what must be true and what happens if it is."
+            "hint": "Introduce what must be true for the plan to go ahead."
           }
         },
         "choices": [
@@ -1984,13 +1984,13 @@
             "answers": [
               "I’ll lend you the heirloom only if you promise to keep it somewhere safe."
             ],
-            "hint": "Make clear what must be true and what happens if it is."
+            "hint": "Use only if before the necessary condition."
           },
           "on condition that": {
             "answers": [
               "I’ll lend you the heirloom on condition that you promise to keep it somewhere safe."
             ],
-            "hint": "Make clear what must be true and what happens if it is."
+            "hint": "Use on condition that to state the explicit terms of the agreement."
           }
         },
         "choices": [
@@ -2035,13 +2035,13 @@
             "answers": [
               "Much as I understand the appeal of hustle culture, I don’t want work to take over my life."
             ],
-            "hint": "Keep both facts and make the contrast clear."
+            "hint": "Use much as before the clause that you concede."
           },
           "although": {
             "answers": [
               "Although I understand the appeal of hustle culture, I don’t want work to take over my life."
             ],
-            "hint": "Keep both facts and make the contrast clear."
+            "hint": "Use although to introduce the concession. If that clause comes first, put a comma before the main clause."
           }
         },
         "choices": [
@@ -2084,7 +2084,7 @@
             "answers": [
               "For all the backlash over the casting, tickets sold out in minutes."
             ],
-            "hint": "Keep both facts and make the contrast clear."
+            "hint": "Use for all before a noun phrase that names the obstacle."
           },
           "despite": {
             "answers": [
@@ -2182,13 +2182,13 @@
             "answers": [
               "Seeing that nobody knew what the heirloom was worth, I offered to get it valued."
             ],
-            "hint": "Use the linker to introduce why it happened."
+            "hint": "Introduce the reason as information already available to the speakers."
           },
           "given that": {
             "answers": [
               "Given that nobody knew what the heirloom was worth, I offered to get it valued."
             ],
-            "hint": "Use the linker to introduce why it happened."
+            "hint": "Use given that before the fact that supports the decision."
           }
         },
         "choices": [
@@ -2231,13 +2231,13 @@
             "answers": [
               "The editors removed the clip on the grounds that they had evidence it had been fabricated."
             ],
-            "hint": "Use the linker to introduce why it happened."
+            "hint": "Use on the grounds that before the reason cited for a decision."
           },
           "because": {
             "answers": [
               "The editors removed the clip because they had evidence it had been fabricated."
             ],
-            "hint": "Use the linker to introduce why it happened."
+            "hint": "Follow because with a subject and verb."
           }
         },
         "choices": [
@@ -2280,13 +2280,13 @@
             "answers": [
               "Given that sharing the footage was causing her anxiety, we agreed to keep it private."
             ],
-            "hint": "Use the linker to introduce why it happened."
+            "hint": "Use given that before the fact that supports the decision."
           },
           "seeing that": {
             "answers": [
               "Seeing that sharing the footage was causing her anxiety, we agreed to keep it private."
             ],
-            "hint": "Use the linker to introduce why it happened."
+            "hint": "Introduce the reason as information already available to the speakers."
           }
         },
         "choices": [
@@ -2384,7 +2384,7 @@
             "answers": [
               "The smart thermostat had been set to cool the flat overnight, which explains why the bedroom was freezing."
             ],
-            "hint": "Keep the cause first and introduce what followed."
+            "hint": "Use which explains why to connect the result back to the earlier fact."
           }
         },
         "choices": [
@@ -2433,7 +2433,7 @@
             "answers": [
               "There was very little usable footage, so the editor had to cut the whole scene."
             ],
-            "hint": "Keep the cause first and introduce what followed."
+            "hint": "Put the cause first. Use so to introduce its consequence."
           }
         },
         "choices": [
@@ -2482,7 +2482,7 @@
             "answers": [
               "We started a neighbourhood group in order to restore the old cinema."
             ],
-            "hint": "Make the intended outcome clear."
+            "hint": "Use in order to and the base verb to make the purpose explicit."
           }
         },
         "choices": [
@@ -2570,7 +2570,7 @@
             "answers": [
               "I left my phone at home so as not to break my scroll-free streak."
             ],
-            "hint": "Make the intended outcome clear."
+            "hint": "Use so as not to and the base verb for the unwanted outcome."
           }
         },
         "choices": [
@@ -2613,7 +2613,7 @@
             "answers": [
               "The volunteers can’t afford to repaint the foyer, let alone restore the whole cinema."
             ],
-            "hint": "Add the second fact about the same topic."
+            "hint": "Put the less likely or less achievable action after let alone."
           }
         },
         "choices": [
@@ -2658,7 +2658,7 @@
             "answers": [
               "The volunteers helped restore the cinema and set up a community film club."
             ],
-            "hint": "Add the second fact about the same topic."
+            "hint": "Use and between parallel words, phrases or clauses."
           }
         },
         "choices": [
@@ -2897,13 +2897,13 @@
             "answers": [
               "I’ll share the footage on condition that everyone in it gives their permission."
             ],
-            "hint": "Make clear what must be true and what happens if it is."
+            "hint": "Use on condition that to state the explicit terms of the agreement."
           },
           "only if": {
             "answers": [
               "I’ll share the footage only if everyone in it gives their permission."
             ],
-            "hint": "Make clear what must be true and what happens if it is."
+            "hint": "Use only if before the necessary condition."
           }
         },
         "choices": [
@@ -2995,13 +2995,13 @@
             "answers": [
               "I’ll finish my digital detox even if my friends keep tagging me."
             ],
-            "hint": "Make clear what must be true and what happens if it is."
+            "hint": "Use even if before a possibility that would leave the outcome unchanged."
           },
           "whether … or not": {
             "answers": [
               "I’ll finish my digital detox whether or not my friends keep tagging me."
             ],
-            "hint": "Make clear what must be true and what happens if it is."
+            "hint": "Use whether or not to show that the outcome is the same in both cases."
           }
         },
         "choices": [
