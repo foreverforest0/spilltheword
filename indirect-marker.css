@@ -73,3 +73,7 @@ body:has(#indirectMarker) :is(.grammar-exercise-back,#homeBtn,#sndbtn) { display
 #indirectMarker details p { margin: .4rem 0 0; }
 #indirectMarker summary { cursor: pointer; }
 #indirectMarker nav { margin-top: .95rem; }
+
+body.embed #view #indirectMarker header { display: none !important; }
+body.embed #view #indirectMarker { min-height: auto; padding: clamp(.75rem, 4vw, 1.5rem); }
+body.embed #indirectMarker main { margin-top: 0; }

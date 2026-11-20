@@ -42,8 +42,13 @@
   const key = 'spill-indirect-marker-v1';
   let memory;
   try { memory = JSON.parse(localStorage.getItem(key)); } catch {}
-  const state = memory || { index: 0, oral: false, drafts: {} };
-  const save = () => { try { localStorage.setItem(key, JSON.stringify(state)); } catch {} };
+  const embedded = new URLSearchParams(location.hash.slice(1)).has('embed');
+  const blank = () => ({ index: 0, oral: false, drafts: {} });
+  const state = embedded ? blank() : memory || blank();
+  const save = () => {
+    if (embedded) return;
+    try { localStorage.setItem(key, JSON.stringify(state)); } catch {}
+  };
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c =>
     ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
   const normalize = value => value.toLowerCase().replace(/[’‘]/g, "'").replace(/[.,!?]/g, '').trim().replace(/\s+/g, ' ');
