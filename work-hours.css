@@ -1,0 +1,125 @@
+body:has(#workHours) { background: #f9f5e6 !important; }
+body:has(#workHours) #view {
+  width: 100% !important; max-width: none !important; margin: 0 !important; padding: 0 !important;
+}
+body:has(#workHours) :is(.grammar-exercise-back,#homeBtn,#sndbtn) { display: none !important; }
+#view #workHours {
+  --wh-ink: #001166;
+  --wh-paper: #f9f5e6;
+  --wh-wash: #8498e1;
+  --wh-light: #efeee6;
+  --wh-glow: #bdb2e1;
+  min-height: 100svh;
+  background: var(--wh-paper);
+  color: var(--wh-ink);
+  padding: clamp(1rem, 4vw, 3.2rem);
+  font: 1rem/1.55 Georgia, serif;
+}
+#view #workHours[data-practice-level=b2] {
+  --wh-ink: #1d2e1b; --wh-wash: #a9c632; --wh-light: #c8d2a6; --wh-glow: #ffc4c5;
+}
+#workHours, #workHours * { box-sizing: border-box; }
+#view #workHours :is(.wh-header,nav) {
+  display: flex !important; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem;
+}
+#workHours .wh-header { max-width: 68rem; margin-inline: auto; }
+#workHours .wh-header > span { background: var(--wh-ink); color: var(--wh-paper); padding: .26rem .75rem; border-radius: 999px; }
+#view #workHours :is(h1,h2) {
+  margin: 0;
+  font-family: var(--stw-title-font,Kindaten,sans-serif) !important;
+  font-weight: 400 !important;
+  color: var(--wh-ink) !important;
+  line-height: 1.1;
+}
+#view #workHours h1 { font-size: clamp(1.85rem, 5vw, 4.2rem); }
+#view #workHours h2 { font-size: clamp(1.6rem, 4vw, 2.55rem); }
+#workHours .wh-workspace { max-width: 48rem; margin: clamp(1.3rem, 4vw, 3rem) auto 0; }
+#view #workHours button {
+  color: var(--wh-ink); background: var(--wh-paper);
+  border: 1px solid var(--wh-ink); border-radius: .48rem;
+  padding: .45rem .67rem; font: inherit;
+  cursor: pointer; text-transform: none; box-shadow: none;
+}
+#view #workHours button:is([aria-pressed=true],[type=submit]) { color: var(--wh-paper); background: var(--wh-ink); }
+#view #workHours button:disabled { opacity: .48; cursor: default; }
+#view #workHours :is(button,textarea,summary):focus-visible { outline: 2px solid var(--wh-ink); outline-offset: 3px; }
+#workHours .wh-display {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(9.3rem, 26vw, 12.5rem);
+  aspect-ratio: 1;
+  margin: 0 auto .65rem;
+  isolation: isolate;
+}
+#workHours .wh-ring { position: absolute; inset: 0; }
+#workHours .wh-ring i {
+  position: absolute; left: var(--wh-x); top: var(--wh-y); translate: -50% -50%;
+  border-radius: 50%; width: .47rem; height: .47rem;
+  background: var(--wh-ink);
+  box-shadow: 0 0 .5rem .15rem var(--wh-wash);
+}
+#workHours .wh-ring .wh-uncovered {
+  background: var(--wh-glow); box-shadow: 0 0 .45rem .15rem var(--wh-glow);
+  border: 1px solid #796681;
+}
+#workHours #whAmount { display: grid; justify-items: center; text-align: center; line-height: 1.2; }
+#workHours #whAmount strong { font-size: clamp(1.5rem,4.5vw,2.5rem); }
+#workHours #whAmount small { font-size: clamp(.78rem,2vw,.95rem); }
+#workHours :is(.wh-toggle,.wh-mode) { display: flex; flex-wrap: wrap; gap: .45rem; }
+#workHours .wh-toggle { justify-content: center; }
+#workHours .wh-carousel {
+  --wh-card-width: clamp(11rem,54vw,19rem);
+  position: relative;
+  display: flex;
+  gap: .75rem;
+  padding: .9rem max(0px,calc((100% - var(--wh-card-width))/2)) 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+#workHours .wh-carousel::-webkit-scrollbar { display: none; }
+#view #workHours .wh-card {
+  scroll-snap-align: center;
+  flex: 0 0 var(--wh-card-width);
+  display: grid;
+  justify-items: start;
+  align-content: space-between;
+  text-align: left;
+  min-height: clamp(8.4rem, 25vw, 11rem);
+  padding: .85rem 1rem;
+  color: var(--wh-ink);
+  border: 1px solid #817d655b;
+  border-radius: 1.2rem;
+  background:
+    radial-gradient(ellipse at 10% 98%, var(--wh-wash), transparent 65%),
+    radial-gradient(ellipse at 100% 96%, var(--wh-glow), transparent 74%),
+    var(--wh-light);
+  opacity: .64;
+  scale: .94;
+  transition: scale .3s ease, opacity .3s ease;
+}
+#view #workHours .wh-card[aria-current=true] { opacity: 1; scale: 1; box-shadow: 0 .38rem .7rem #473d3527; }
+#workHours .wh-card strong { font: 400 clamp(1.1rem,3vw,1.65rem)/1.1 var(--stw-title-font,Kindaten,sans-serif); }
+#workHours .wh-card-value { align-self: end; font-size: clamp(1.35rem,4.5vw,2.5rem); line-height: 1; font-weight: bold; }
+#workHours .wh-card-alt { font-size: .91rem; }
+#workHours nav { border-bottom: 1px solid #a59a80; padding: 0 0 .7rem; }
+#workHours #whExercise { padding-top: 1rem; }
+#workHours .wh-facts { font-size: .94rem; font-weight: 700; margin: .38rem 0 .55rem; }
+#workHours .wh-context { font-size: clamp(1.11rem,2.5vw,1.35rem); margin: .55rem 0; }
+#workHours #whPrompt { margin: .45rem 0 .8rem; }
+#workHours #whForm { display: grid; justify-items: start; gap: .5rem; margin-top: .8rem; }
+#view #workHours textarea {
+  width: 100%; min-height: 4.4rem; resize: vertical; font: inherit;
+  color: var(--wh-ink); background: #fffaf0;
+  border: 1px solid var(--wh-ink); border-radius: .4rem; padding: .55rem;
+}
+#workHours details { border-bottom: 1px solid #a59a80; padding: .55rem 0; }
+#workHours details p { margin: .42rem 0 0; }
+#workHours summary { cursor: pointer; }
+#workHours #whFeedback:empty { margin: 0; }
+#workHours #whFeedback[data-result=correct] { font-weight: bold; }
+@media (prefers-reduced-motion: reduce) {
+  #view #workHours .wh-card { transition: none; }
+}
