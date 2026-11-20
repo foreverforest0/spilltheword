@@ -69,6 +69,10 @@
         <div class="wt-window">
           <div class="wt-tabs" role="tablist" aria-label="Type of wish">
             <span class="wt-slider" aria-hidden="true"></span>
+            <svg class="wt-rail" aria-hidden="true">
+              <path class="wt-rail-track"></path>
+              <path class="wt-rail-active"></path>
+            </svg>
             ${tabs.map(([kind, title], i) => `
               <button type="button" role="tab" id="wt-tab-${kind}" aria-controls="wtPanel" data-tab="${i}">${title}</button>
             `).join('')}
@@ -80,6 +84,31 @@
     const get = id => root.querySelector('#' + id);
     const panel = get('wtPanel');
     const buttons = [...root.querySelectorAll('[role=tab]')];
+    const rail = root.querySelector('.wt-rail');
+    const track = rail.querySelector('.wt-rail-track');
+    const active = rail.querySelector('.wt-rail-active');
+    let railStops = [];
+    function positionRail() {
+      if (railStops.length) active.style.strokeDashoffset = String(54 - railStops[state.tab]);
+    }
+    function layoutRail() {
+      if (!root.isConnected) { railObserver.disconnect(); return; }
+      const width = rail.clientWidth;
+      if (!width) return;
+      const x = width - 32;
+      const radius = 64;
+      const start = 16;
+      const line = x - radius - start;
+      const path = `M ${start} 30 H ${x - radius} A ${radius} ${radius} 0 0 1 ${x} ${30 + radius} V 362`;
+      track.setAttribute('d', path);
+      active.setAttribute('d', path);
+      const corner = line + radius * Math.PI / 2;
+      railStops = [width * .285 - start, width * .625 - start, corner + 30, corner + 150];
+      positionRail();
+    }
+    const railObserver = new ResizeObserver(layoutRail);
+    railObserver.observe(rail);
+
 
     function render(focusId) {
       const [kind] = tabs[state.tab];
@@ -88,6 +117,7 @@
       const card = cards[index];
       const draft = state.responses[card.id] ??= {};
       root.style.setProperty('--wt-active', state.tab);
+      positionRail();
       root.dataset.kind = kind;
       buttons.forEach((button, i) => {
         button.setAttribute('aria-selected', String(i === state.tab));

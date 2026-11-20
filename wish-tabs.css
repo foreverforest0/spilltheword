@@ -62,6 +62,7 @@ body:has(#wishTabs) :is(.grammar-exercise-back,#homeBtn,#sndbtn) { display: none
   grid-template-columns: repeat(4,minmax(0,1fr));
   padding: .65rem .8rem 0;
 }
+#wishTabs .wt-rail { display: none; }
 #wishTabs .wt-slider {
   position: absolute;
   z-index: -1;
@@ -155,6 +156,61 @@ body:has(#wishTabs) :is(.grammar-exercise-back,#homeBtn,#sndbtn) { display: none
 #wishTabs details p { margin: .42rem 0 0; }
 #wishTabs summary { cursor: pointer; }
 #wishTabs nav { margin-top: 1rem; }
+@media (min-width: 800px) {
+  #wishTabs .wt-window {
+    position: relative;
+    padding: 3.8rem 4rem 0 0;
+    border-radius: 1.6rem;
+    background: radial-gradient(ellipse at top right, #ebdfc9, #e5e9d2 57%, #eee8d6);
+    overflow: visible;
+  }
+  #wishTabs .wt-tabs {
+    position: absolute;
+    inset: 0;
+    display: block;
+    padding: 0;
+    pointer-events: none;
+  }
+  #wishTabs .wt-slider { display: none; }
+  #wishTabs .wt-rail {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 384px;
+    pointer-events: none;
+    overflow: visible;
+  }
+  #wishTabs .wt-rail path { fill: none; stroke-linecap: round; stroke-width: 39px; }
+  #wishTabs .wt-rail-track { stroke: #f9f5e67a; }
+  #wishTabs .wt-rail-active {
+    stroke: var(--wt-pane);
+    stroke-dasharray: 108 2000;
+    transition: stroke-dashoffset .62s cubic-bezier(.22,.8,.24,1), stroke .4s ease;
+  }
+  #view #wishTabs button[role=tab] {
+    position: absolute;
+    pointer-events: auto;
+    min-height: 2.35rem;
+    border-radius: 999px;
+  }
+  #view #wishTabs button[role=tab]:nth-of-type(-n+2) {
+    top: 30px;
+    width: 7rem;
+    transform: translate(-50%,-50%);
+  }
+  #view #wishTabs button[role=tab]:nth-of-type(1) { left: 28.5%; }
+  #view #wishTabs button[role=tab]:nth-of-type(2) { left: 62.5%; }
+  #view #wishTabs button[role=tab]:nth-of-type(n+3) {
+    right: 12px;
+    width: 40px;
+    height: 105px;
+    writing-mode: vertical-rl;
+    transform: translateY(-50%);
+  }
+  #view #wishTabs button[role=tab]:nth-of-type(3) { top: 124px; }
+  #view #wishTabs button[role=tab]:nth-of-type(4) { top: 244px; }
+  #wishTabs #wtPanel { border-radius: 0 2.25rem 0 1.6rem; }
+}
 @media (prefers-reduced-motion: reduce) {
-  #wishTabs :is(.wt-slider,#wtPanel) { transition: none; }
+  #wishTabs :is(.wt-slider,.wt-rail-active,#wtPanel) { transition: none; }
 }
