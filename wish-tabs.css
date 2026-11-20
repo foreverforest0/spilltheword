@@ -1,0 +1,160 @@
+body:has(#wishTabs) { background: #f9f5e6 !important; }
+body:has(#wishTabs) #view {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+body:has(#wishTabs) :is(.grammar-exercise-back,#homeBtn,#sndbtn) { display: none !important; }
+#view #wishTabs {
+  --wt-ink: #1d2e1b;
+  --wt-paper: #f9f5e6;
+  --wt-pane: #c8d2a6;
+  --wt-active: 0;
+  --wt-curve: .8rem;
+  min-height: 100svh;
+  color: var(--wt-ink);
+  background: var(--wt-paper);
+  padding: clamp(1rem, 4.3vw, 3.75rem);
+  font: 1rem/1.55 Georgia, serif;
+}
+#view #wishTabs[data-kind=past] { --wt-pane: #ffc4c5; }
+#view #wishTabs[data-kind=change] { --wt-pane: #c3d668; }
+#view #wishTabs[data-kind=ability] { --wt-pane: #e2e7cd; }
+#wishTabs *, #wishTabs { box-sizing: border-box; }
+#view #wishTabs .wt-header,
+#view #wishTabs .wt-title,
+#view #wishTabs nav {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: .65rem;
+  justify-content: space-between;
+  align-items: center;
+}
+#wishTabs .wt-header { max-width: 68rem; margin-inline: auto; }
+#wishTabs .wt-header > span {
+  border-radius: 999px;
+  padding: .28rem .75rem;
+  background: var(--wt-ink);
+  color: var(--wt-paper);
+}
+#view #wishTabs :is(h1,h2) {
+  margin: 0;
+  color: var(--wt-ink) !important;
+  font-family: var(--stw-title-font, Kindaten, sans-serif) !important;
+  font-weight: 400 !important;
+  line-height: 1.08;
+}
+#view #wishTabs h1 { font-size: clamp(1.9rem, 5.5vw, 4.3rem); }
+#view #wishTabs h2 { font-size: clamp(1.65rem, 5vw, 3.1rem); }
+#wishTabs .wt-window {
+  max-width: 54rem;
+  margin: clamp(1.6rem, 5vw, 4rem) auto 0;
+  border-radius: 1.35rem;
+  background: #eae5d2;
+  overflow: hidden;
+  box-shadow: 0 .55rem 1.6rem #34392314;
+}
+#wishTabs .wt-tabs {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  padding: .65rem .8rem 0;
+}
+#wishTabs .wt-slider {
+  position: absolute;
+  z-index: -1;
+  left: .8rem;
+  bottom: 0;
+  width: calc((100% - 1.6rem) / 4);
+  height: calc(100% - .65rem);
+  background: var(--wt-pane);
+  border-radius: 1.2rem 1.2rem 0 0;
+  transform: translateX(calc(100% * var(--wt-active)));
+  transition: transform .52s cubic-bezier(.23, .83, .24, 1), background-color .38s ease;
+}
+#wishTabs .wt-slider::before,
+#wishTabs .wt-slider::after {
+  content: "";
+  position: absolute;
+  width: var(--wt-curve);
+  height: var(--wt-curve);
+  bottom: 0;
+}
+#wishTabs .wt-slider::before {
+  right: 100%;
+  background: radial-gradient(circle at 0 0, transparent 70%, var(--wt-pane) 73%);
+}
+#wishTabs .wt-slider::after {
+  left: 100%;
+  background: radial-gradient(circle at 100% 0, transparent 70%, var(--wt-pane) 73%);
+}
+#view #wishTabs button {
+  padding: .48rem .8rem;
+  font: inherit;
+  border-radius: .48rem;
+  border: 1px solid var(--wt-ink);
+  background: var(--wt-paper);
+  color: var(--wt-ink);
+  text-transform: none;
+  cursor: pointer;
+  box-shadow: none;
+}
+#view #wishTabs button[role=tab] {
+  min-height: 3rem;
+  margin: 0;
+  border: 0;
+  padding-inline: .2rem;
+  background: transparent;
+  border-radius: 1.05rem 1.05rem 0 0;
+}
+#view #wishTabs button[role=tab][aria-selected=true] { font-weight: bold; }
+#view #wishTabs button[role=tab]:focus-visible { outline-offset: -4px; }
+#view #wishTabs :is(button,textarea,summary):focus-visible {
+  outline: 2px solid var(--wt-ink);
+}
+#view #wishTabs button:is([aria-pressed=true],[type=submit]) {
+  background: var(--wt-ink);
+  color: var(--wt-paper);
+}
+#view #wishTabs button:disabled { opacity: .5; cursor: default; }
+#wishTabs #wtPanel {
+  min-height: 26rem;
+  padding: clamp(1rem, 4vw, 2.8rem);
+  background: var(--wt-pane);
+  transition: background-color .38s ease;
+}
+#wishTabs output { white-space: nowrap; font-size: .94rem; }
+#wishTabs .wt-context {
+  font-size: clamp(1.22rem, 3.2vw, 1.72rem);
+  line-height: 1.38;
+  text-wrap: pretty;
+  margin: 1rem 0 .75rem;
+}
+#wishTabs #wtPrompt { margin: 0 0 .9rem; }
+#wishTabs .wt-mode { display: flex; flex-wrap: wrap; gap: .5rem; }
+#wishTabs #wtForm { display: grid; justify-items: start; gap: .5rem; margin-top: .9rem; }
+#view #wishTabs textarea {
+  width: 100%;
+  min-height: 5rem;
+  background: #fffaf0;
+  color: var(--wt-ink);
+  border: 1px solid #5f6953;
+  border-radius: .38rem;
+  padding: .65rem .75rem;
+  font: inherit;
+  resize: vertical;
+}
+#wishTabs #wtFeedback:empty { margin: 0; }
+#wishTabs #wtFeedback[data-result=correct] { font-weight: bold; }
+#wishTabs details {
+  border-bottom: 1px solid #1d2e1b55;
+  padding: .65rem 0;
+}
+#wishTabs details p { margin: .42rem 0 0; }
+#wishTabs summary { cursor: pointer; }
+#wishTabs nav { margin-top: 1rem; }
+@media (prefers-reduced-motion: reduce) {
+  #wishTabs :is(.wt-slider,#wtPanel) { transition: none; }
+}
