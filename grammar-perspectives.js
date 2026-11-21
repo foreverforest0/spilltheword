@@ -124,5 +124,4 @@
   st.querySelectorAll('[data-listening-basket]').forEach(zone=>{zone.onclick=event=>{if(selected&&!event.target.closest('.listening-object'))put(selected,zone.dataset.listeningBasket)};zone.onkeydown=event=>{if(selected&&event.target===zone&&(event.key==='Enter'||event.key===' ')){event.preventDefault();put(selected,zone.dataset.listeningBasket)}}});
   listen.onclick=speak;$('#basketText').onclick=()=>{const box=$('#basketTranscript');box.hidden=!box.hidden;$('#basketText').setAttribute('aria-expanded',String(!box.hidden))};next();
  }
- DMTF.nof=viewpoint;DMTF.fbk=listeningBaskets;
 })();
