@@ -13,3 +13,5 @@ body #view .there-page .there-images.single{grid-template-columns:1fr}
 body #view .there-page .there-scene{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;margin:0!important;max-width:none!important}
 body #view .there-page .there-photo{display:block;width:100%!important;height:auto!important;max-width:none!important;max-height:none!important;object-fit:contain}
 @media(max-width:620px){body #view .there-page .there-images{grid-template-columns:1fr}}
+body #view:has(.there-page){width:100%!important;max-width:none!important;padding-inline:0!important}
+body #view .there-page{padding-inline:clamp(10px,2vw,24px)}
