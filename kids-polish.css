@@ -4,8 +4,8 @@
 #view[data-action-level=b1]{--check-kids:#001166;--show-kids:#85426c}
 #view[data-action-level=b2]{--check-kids:#264c26;--show-kids:#8a363c}
 #view[data-action-level=c1]{--check-kids:#493468;--show-kids:#7a401f}
-body #view button[data-grammar-action=check]{background:var(--check-kids)!important;color:#fff!important;border-color:var(--check-kids)!important}
-body #view button[data-grammar-action=show]{background:var(--show-kids)!important;color:#fff!important;border-color:var(--show-kids)!important}
+body #view#view button[data-grammar-action=check]{background:var(--check-kids)!important;color:#fff!important;border-color:var(--check-kids)!important}
+body #view#view button[data-grammar-action=show]{background:var(--show-kids)!important;color:#fff!important;border-color:var(--show-kids)!important}
 body #view .pc-picture-controls .mglight{position:static!important;display:inline-block;margin:.45rem 0 0}
 body #view .there-page{width:100%;max-width:1320px;margin-inline:auto}
 body #view .there-page .there-images{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(.5rem,2vw,1.45rem);width:100%;max-width:none!important}

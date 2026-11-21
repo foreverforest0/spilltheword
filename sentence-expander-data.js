@@ -472,7 +472,7 @@ New question · why / you / not call / me? Use ask. | Mia asked Ben why he had n
 
  // Kids read one concrete change at a time; checked answers remain unchanged.
  const cues=[
-  ['+ her bag is blue','happy → sad','+ not','? Mia / sad','No …'],
+  ['+ and her bag is blue','happy → sad','+ not','? Mia / sad','No …'],
   ['+ football','+ every day','I → Tom','+ does not','? Tom'],
   ['+ a book','+ at home','+ now','+ not','? She'],
   ['+ on the bed','one → two','two → not any','? cats','No …'],
