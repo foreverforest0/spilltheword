@@ -285,8 +285,9 @@ function b1MagnetRound(st,mb,id,cfg,round){
   if(!st.isConnected)return;
   const layout=st.querySelector('.b1-magnet-layout'),w=layout.clientWidth,gap=w<620?10:24;
   const side=w<620?Math.min(blue?140:150,w*(blue ? .38 : .41)):Math.min(400,w*.45);
-  const available=Math.max(blue?240:540,window.innerHeight-st.getBoundingClientRect().top-56);
-  const width=Math.min(available*aspect*(blue?1.25:1.28),w-side-gap,blue?400:440);
+  const kids=S.splevel==='kids';
+  const available=Math.max(kids?490:blue?240:540,window.innerHeight-st.getBoundingClientRect().top-56);
+  const width=Math.min(available*aspect*(blue?1.25:1.28),w-side-gap,kids?490:blue?400:440);
   const height=blue?Math.min(available,width/aspect):width/aspect;
   layout.style.setProperty('--fridge-width',width+'px');
   layout.style.setProperty('--fridge-height',height+'px');
@@ -303,7 +304,12 @@ function b1MagnetRound(st,mb,id,cfg,round){
      const img=document.createElement('img');img.src=round.pic;img.alt=extra.pictureAlt||'';img.draggable=false;
      const caption=document.createElement('figcaption');caption.textContent=extra.pictureCaption||'';
      art.append(img);figure.append(art,caption);box.replaceChildren(figure);
-    }else box.replaceChildren(magPic(round.pic,size,''));
+    }else{
+     const picture=magPic(round.pic,size,'');
+     const light=picture.querySelector('.mglight');
+     if(light){const controls=document.createElement('div');controls.className='pc-picture-controls';controls.append(light);box.replaceChildren(picture,controls)}
+     else box.replaceChildren(picture);
+    }
    }
   }
  };

@@ -471,19 +471,35 @@ New question · why / you / not call / me? Use ask. | Mia asked Ben why he had n
 `);
 
  // Kids read one concrete change at a time; checked answers remain unchanged.
- const kidsInstructions={
-  1:["Add one more fact: her bag is blue. Join the two facts with and.","Change happy to sad. Keep the words about the bag.","Mia is not sad. Add not after is in the first part. Keep the bag part.","Make a question about Mia's mood. Use sad and her name. Do not ask about the bag.","Answer the question with No. Use she and is not."],
-  2:["What do I play? Add football after play.","When do I play? Add every day at the end.","Change I to Tom. Remember: Tom plays. Keep football and every day.","Tom does not play football. Add does not and change plays to play. Keep every day.","Ask a question about Tom. Start with Does and keep football and every day."],
-  3:["What is she reading? Add a book after reading.","Where is she reading? Add at home at the end.","Add now at the end. Keep a book and at home.","Say that she is not reading. Add not after is. Keep all the other words.","Make a question. Start with Is she. Remove not and keep the book, place and time."],
-  4:["Where is the cat? Add on the bed at the end.","Change one cat to two cats. Use There are two cats and keep on the bed.","Now there are no cats. Use There are not any cats and keep on the bed.","Ask about the cats. Start with Are there any cats. Keep on the bed.","Answer with No. Use there are not. Do not repeat cats or bed."],
-  5:["Make it yesterday: change plays to played and add yesterday at the end.","What did Tom play? Add football after played. Keep yesterday.","Where did Tom play? Add in the park before yesterday.","Say that Tom did not play. Change played to did not play. Keep the sport, place and time.","Ask about Tom. Start with Did Tom play and keep football, in the park and yesterday."],
-  6:["Change one box to two boxes. Start with There are.","What colour are the boxes? Add red before boxes.","Where are the boxes? Add on the table at the end.","Replace two red boxes with three blue toys. Keep on the table.","Make a question. Put Are before there. Keep three blue toys and on the table."],
-  7:["What time do I get up? Add at seven at the end.","Make the time longer: change seven to seven o'clock.","Change I to Ben and get to gets. Keep the time.","Ben does not get up then. Change gets to does not get. Keep the time.","Ask for the time. Start with What time does Ben and use get up. Leave out the time."],
-  8:["What colour is the bag? Add red before bag.","How big is the bag? Add small before red.","Mia does not have the bag. Add not after has. Keep small red bag.","Ask about the bag. Start with Has Mia got. Remove not and keep small red bag.","Answer with Yes. Use she and has. Do not repeat the bag."],
-  9:["The bag belongs to Mia. Change a bag to her bag.","Say it with one word: change her bag to hers.","The bag is far away now. Change This to That. Keep is hers.","Now there are two bags far away. Change That is to Those are. Keep hers.","Ask a question about the bags. Put Are before those and keep hers."]
- };
- for(const [number,instructions]of Object.entries(kidsInstructions))bank['kids:'+number].steps.forEach((step,i)=>step.instruction=instructions[i]);
-
+ const cues=[
+  ['+ her bag is blue','happy → sad','+ not','? Mia / sad','No …'],
+  ['+ football','+ every day','I → Tom','+ does not','? Tom'],
+  ['+ a book','+ at home','+ now','+ not','? She'],
+  ['+ on the bed','one → two','two → not any','? cats','No …'],
+  ['+ yesterday','+ football','+ in the park','+ did not','? Tom'],
+  ['one → two','+ red','+ on the table','two red boxes → three blue toys','? toys'],
+  ['+ at seven','+ o’clock','I → Ben','+ does not','? What time · ✕ seven'],
+  ['+ red','+ small','+ not','? Mia · ✕ not','✓ Yes'],
+  ['a bag → her bag','her bag → hers','This → That','one → two','? Those']
+ ];
+ const kidSets=[
+  [['Mia','Zoe'],['Tom','Leo'],['Ben','Sam'],['football','basketball'],['happy','hot'],['sad','cold'],['red','pink'],['seven','eight']],
+  [['Mia','Eva'],['Tom','Max'],['Ben','Dan'],['football','tennis'],['happy','tall'],['sad','short'],['red','green'],['seven','nine']],
+  [['Mia','Amy'],['Tom','Finn'],['Ben','Alex'],['football','rugby'],['happy','quiet'],['sad','loud'],['red','yellow'],['seven','six']],
+  [['Mia','Rose'],['Tom','Jay'],['Ben','Jake'],['football','hockey'],['happy','well'],['sad','ill'],['red','black'],['seven','five']],
+  [['Mia','Lily'],['Tom','Ed'],['Ben','Will'],['football','volleyball'],['happy','early'],['sad','late'],['red','white'],['seven','ten']],
+  [['Mia','Anna'],['Tom','Hugo'],['Ben','Ollie'],['football','baseball'],['happy','calm'],['sad','angry'],['red','purple'],['seven','eleven']],
+  [['Mia','Nina'],['Tom','Jack'],['Ben','Noah'],['football','cricket'],['happy','tired'],['sad','sleepy'],['red','orange'],['seven','twelve']]
+ ];
+ const moreKids=[
+  [['reading','drawing'],['a book','a cat'],['at home','at school']],
+  [['reading','painting'],['a book','a box'],['at home','outside']],
+  [['reading','writing'],['a book','a letter'],['at home','at school']],
+  [['reading','holding'],['a book','a ball'],['at home','outside']],
+  [['reading','making'],['a book','a cake'],['at home','in the kitchen']],
+  [['reading','eating'],['a book','a sandwich'],['at home','in the park']],
+  [['reading','carrying'],['a book','a bag'],['at home','at school']]
+ ];
  const substitutions=[
   [],
   [['Mia','Zoe'],['Ben','Leo'],['Tom','Max'],['Rome','Paris'],['London','Oxford'],['the report','the article'],['football','basketball']],
@@ -491,6 +507,15 @@ New question · why / you / not call / me? Use ask. | Mia asked Ben why he had n
  ];
  function variant(level,number,index=0){
   const source=bank[level+':'+number];if(!source)throw Error('Missing expander sequence '+level+':'+number);
+  if(level==='kids'){
+   const i=((index%7)+7)%7;
+   const extra=number===3?moreKids[i]:number===4?[[['cat','cat'],['bed','bed']],[['cat','dog'],['bed','rug']],[['cat','duck'],['bed','mat']],[['cat','toy'],['bed','chair']],[['cat','teddy'],['bed','sofa']],[['cat','doll'],['bed','shelf']],[['cat','ball'],['bed','floor']]][i]:number===6?[[['box','box']],[['box','dish']],[['box','bus']],[['box','brush']],[['box','glass']],[['box','watch']],[['box','fox']]][i].flatMap(([a,b])=>[[a+'es',b+'es'],[a,b]]):number===9?[[['bag','bag']],[['bag','book']],[['bag','toy']],[['bag','hat']],[['bag','key']],[['bag','cup']],[['bag','pen']]][i]:[];
+   const change=text=>[...(i===0?[]:kidSets[i]),...extra.flatMap(([a,b])=>a==='cat'?[['cats',b+'s'],[a,b]]:[[a,b]])].reduce((v,[a,b])=>v.replace(new RegExp('\\b'+a+'\\b','g'),b),text);
+   return {start:change(source.start),steps:source.steps.map((step,j)=>{
+    const answers=step.answers.map(change),words=answers[0].split(' ');
+    return {...step,instruction:change(cues[number-1][j]),answers,hint:words.slice(0,Math.min(4,words.length-1)).join(' ')+' …'};
+   })};
+  }
   const replace=text=>(substitutions[index%substitutions.length]||[]).reduce((s,[a,b])=>s.replace(new RegExp('\\b'+a+'\\b','g'),b),text);
   return {start:replace(source.start),steps:source.steps.map(s=>({instruction:replace(s.instruction),hint:replace(s.hint),starter:replace(s.starter),answers:s.answers.map(replace)}))};
  }

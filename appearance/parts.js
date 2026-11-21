@@ -34,7 +34,7 @@ const AppearanceParts=(()=>{
   const headWidth=fm?fm.w*scale:230,headHeight=fm?fm.h*scale:220;
   const face=[210-headWidth/2,370-headHeight,headWidth,headHeight];
   const hair=find('hair',p.hair),hm=metric(hair);let hairRect=null;
-  if(hair&&hm){const width=Math.min(330,hair.rect[2]),k=width/hm.w,[cx,line]=hairAnchors[+hair.id];hairRect=[210-cx*k,hairlines[+hair.id]-line*k,width,hm.h*k]}
+  if(hair&&hm){const width=Math.min(305,hair.rect[2]) * .96,k=width/hm.w,[cx,line]=hairAnchors[+hair.id];hairRect=[210-cx*k,hairlines[+hair.id] + (220-headHeight)*.55-line*k,width,hm.h*k]}
   const hat=find('accessory',p.hat),hatWidth=hat?hatWidths[hat.id]:null;
   const hatRect=hat?natural(hat,hatWidth,210,hatBrims[hat.id]-hatCenters[hat.id]*hatWidth/metric(hat).w):null;
   const glasses=find('accessory',p.glasses),glassesRect=glasses?natural(glasses,176,210,268-(176*metric(glasses).h/metric(glasses).w)*.53):null;

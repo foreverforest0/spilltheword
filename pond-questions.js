@@ -327,6 +327,23 @@ What would you have liked to do? | I / would like / meet / her. Use a perfect in
  }
  window.PondQuestions={topics,bankFor(level,number){
   const key=topics[level]?.[number-1];if(!key||!bank[key])throw Error('No pond questions for '+level+':'+number);
+  const kidMix=[
+   ['Mia is happy.','Mia is not happy.','Is Mia happy?'],
+   ['Tom plays football.','Tom does not play football.','Does Tom play football?'],
+   ['She is reading.','She is not reading.','Is she reading?'],
+   ['There is a cat.','There is not a cat.','Is there a cat?'],
+   ['Tom played yesterday.','Tom did not play yesterday.','Did Tom play yesterday?'],
+   ['There are two boxes.','There are not two boxes.','Are there two boxes?'],
+   ['I get up at seven.','I do not get up at seven.','Do I get up at seven?'],
+   ['Mia has got a bag.','Mia has not got a bag.','Has Mia got a bag?'],
+   ['This is her bag.','This is not her bag.','Is this her bag?']
+  ];
+  if(level==='kids')return kidMix[number-1].map((answer,i)=>({
+   question:['Make a sentence.','Make a negative.','Make a question.'][i],
+   cue:i===0?answer.replace(/[.?]$/,'').split(' ').join(' / '):kidMix[number-1][0],
+   answers:[answer,answer.replace('is not','isn’t').replace('are not','aren’t').replace('does not','doesn’t').replace('did not','didn’t').replace('do not','don’t').replace('has not','hasn’t')],
+   hint:answer.split(' ').slice(0,2).join(' ')+' …'
+  }));
   const own=bank[key].map(r=>({...r,answers:r.answers.slice()}));
   // Existing checked transformation sets add variety for older learners.
   if(level!=='kids'&&tsKeys[key]&&typeof TS!=='undefined'){

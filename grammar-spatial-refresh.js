@@ -40,11 +40,11 @@ function spatialTransfer(el,target){
 }
 function spatialGame(baskets=false){
  const id=baskets?'fbk':'nof',title=baskets?'Four baskets':'Near or Far';
- const st=dmShell(id,title,baskets?'Drag each picture into this, that, these or those. Look at its NEAR / FAR label and count the objects. You can also select a picture and click a basket.':'Drag a picture near you or far away. You can also select a picture and click HERE or THERE. Say the sentence when it lands.',[]);
+ const st=dmShell(id,title,baskets?'Near · Far · One · Two · Many':'Move an object. Say the sentence.',[]);
  $('#dmhint').remove();$('#dmnew').textContent='New round';$('#dmnew').onclick=()=>spatialGame(baskets);
  st.classList.add('spatial-stage');let selected=null,correct=0;
  const zone=(key,label)=>`<div class="spatial-zone ${key}" data-spatial-zone="${key}" role="button" tabindex="0" aria-label="${label}"><strong>${label}</strong><div class="spatial-zone-items"></div></div>`;
- st.innerHTML=`<svg width="0" height="0" class="spatial-filters" aria-hidden="true"><defs><filter id="spatial-clean"><feMorphology in="SourceAlpha" operator="erode" radius=".45" result="trimmed"/><feComposite in="SourceGraphic" in2="trimmed" operator="in"/></filter></defs></svg><div class="spatial-status" role="status">${baskets?'0 / 8':'Choose a picture.'}</div>${baskets?'<div class="spatial-tray"></div><div class="spatial-baskets">'+['this','that','these','those'].map(n=>zone(n,n)).join('')+'</div>':'<div class="spatial-depth">'+zone('far','THERE · that / those')+zone('near','HERE · this / these')+'</div><div class="spatial-tray"></div>'}`;
+ st.innerHTML=`<svg width="0" height="0" class="spatial-filters" aria-hidden="true"><defs><filter id="spatial-clean"><feMorphology in="SourceAlpha" operator="erode" radius=".45" result="trimmed"/><feComposite in="SourceGraphic" in2="trimmed" operator="in"/></filter></defs></svg><div class="spatial-status" role="status">${baskets?'0 / 8':'Near · Far'}</div>${baskets?'<div class="spatial-tray"></div><div class="spatial-baskets">'+['this','that','these','those'].map(n=>zone(n,n)).join('')+'</div>':'<div class="spatial-depth">'+zone('far','Far')+zone('near','Near')+'</div><div class="spatial-tray"></div>'}`;
  const status=st.querySelector('.spatial-status');
  let items;
  if(baskets){const one=shuffle(DMO.filter(o=>o[1]==='s')).slice(0,4),many=shuffle(DMO.filter(o=>o[1]==='p')).slice(0,4);items=shuffle([...one.map((o,i)=>({o,near:i%2===0})),...many.map((o,i)=>({o,near:i%2===0}))])}
@@ -52,12 +52,12 @@ function spatialGame(baskets=false){
  const put=(el,z)=>{
   if(!z||el.disabled)return;const item=items[+el.dataset.object];
   if(baskets){const expected=item.o[1]==='p'?(item.near?'these':'those'):(item.near?'this':'that');
-   if(z.dataset.spatialZone!==expected){status.textContent=(item.o[1]==='p'?'More than one':'One thing')+' · '+(item.near?'near':'far')+'. Try another basket.';el.animate?.([{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:220});return}
+   if(z.dataset.spatialZone!==expected){status.textContent=(item.near?'Near':'Far')+' · '+(item.o[1]==='s'?'One':['o08'].includes(item.o[0])?'Two':'Many');el.animate?.([{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:220});return}
    el.disabled=true;correct++;spatialTransfer(el,z.querySelector('.spatial-zone-items'));status.textContent=correct+' / 8 · '+dmSent(item.o,item.near)+(correct===8?' All sorted!':'');
   }else{spatialTransfer(el,z.querySelector('.spatial-zone-items'));el.dataset.distance=z.dataset.spatialZone;status.textContent=dmSent(item.o,z.dataset.spatialZone==='near')}
   el.classList.remove('selected');selected=null;
  };
- items.forEach((item,i)=>{const el=document.createElement('button');el.type='button';el.className='spatial-item';el.dataset.object=i;el.innerHTML=spatialObject(item.o)+(baskets?'<span class="spatial-distance">'+(item.near?'NEAR':'FAR')+'</span>':'');el.setAttribute('aria-label',item.o[2]+(baskets?' '+(item.near?'near':'far'):''));el.draggable=false;
+ items.forEach((item,i)=>{const el=document.createElement('button');el.type='button';el.className='spatial-item';el.dataset.object=i;el.innerHTML=spatialObject(item.o)+(baskets?'<span class="spatial-distance">'+(item.near?'Near':'Far')+' · '+(item.o[1]==='s'?'One':['o08'].includes(item.o[0])?'Two':'Many')+'</span>':'');el.setAttribute('aria-label',item.o[2]+(baskets?' '+(item.near?'near':'far'):''));el.draggable=false;
   spatialDrag(el,z=>put(el,z));el.onclick=()=>{if(el.consumeDrag()||el.disabled)return;st.querySelectorAll('.spatial-item').forEach(b=>b.classList.toggle('selected',b===el));selected=el;if(!baskets&&el.dataset.distance)status.textContent=dmSent(item.o,el.dataset.distance==='near')};st.querySelector('.spatial-tray').append(el);
  });
  st.querySelectorAll('[data-spatial-zone]').forEach(z=>{z.onclick=e=>{if(!e.target.closest('.spatial-item')&&selected)put(selected,z)};z.onkeydown=e=>{if((e.key==='Enter'||e.key===' ')&&e.target===z&&selected){e.preventDefault();put(selected,z)}}});
