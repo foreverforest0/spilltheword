@@ -25,6 +25,7 @@
  [19,'enough','the penguin · not old · swim alone','The penguin isn’t old enough to swim alone.']
  ];
  const habits=[
+ [24,'He likes','sleep','He likes sleeping.','He likes to sleep.'],
  [15,'The dog loves','ride in the car','The dog loves riding in the car.','The dog loves to ride in the car.'],
  [14,'The cat hates','get wet','The cat hates getting wet.','The cat hates to get wet.'],
  [43,'They prefer','sleep together','They prefer sleeping together.','They prefer to sleep together.'],
