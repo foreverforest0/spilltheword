@@ -1,0 +1,25 @@
+.b1-pattern-practice{max-width:900px;margin:auto;padding:16px;color:#001166}
+.b1-pattern-practice header{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.b1-pattern-practice h1{font-size:clamp(24px,4vw,38px)}
+.b1-pattern-stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+.b1-pattern-stage img{width:100%;max-height:450px;object-fit:contain}
+.b1-pattern-cue{font:24px/1.35 Georgia,serif}.b1-pattern-cue small{display:block;font-size:18px;margin-top:8px}
+.b1-pattern-task textarea{display:block;width:100%;box-sizing:border-box;margin-bottom:10px}
+.b1-pattern-task nav{display:flex;justify-content:space-between;margin-top:16px}
+body #view :is(.stw-b1-hint,.stw-b1-reveal,.stw-b1-help){padding:7px 13px!important;border:1px solid currentColor!important;border-radius:5px!important;font:16px/1.2 Georgia,serif!important;cursor:pointer}
+body #view :is(.stw-b1-hint,.stw-b1-help){color:#001166!important;background:#fbf8ee!important}
+body #view .stw-b1-reveal{color:#fff!important;background:#26377b!important}
+@media(max-width:620px){.b1-pattern-stage{grid-template-columns:1fr}.b1-pattern-stage img{max-height:270px}}
+#causativeScene .ce-figure{scale:1.25;margin:12px auto 6px}
+#causativeScene .ce-object{top:33%}
+#causativeScene .ce-object img{width:100%;height:clamp(55px,14vw,114px);object-fit:contain;filter:drop-shadow(2px 5px 4px #38271945)}
+#workHours .wh-display{min-height:0;height:auto;padding:10px;font:28px Georgia,serif}
+#causativeScene[data-practice-level="b1"] .ce-land{
+ --ground:#adc37d;--shadow:#7e995a;border-radius:42% 34% 33% 30% / 40% 41% 30% 36%;
+ background:radial-gradient(ellipse at 25% 18%,#e8edbe 0,transparent 52%),
+ radial-gradient(ellipse at 76% 85%,#819b61,transparent 47%),
+ repeating-linear-gradient(101deg,#fff0 0 4px,#525a1912 5px 6px),var(--ground);
+}
+#causativeScene[data-practice-level="b1"] .ce-tools{top:12%;max-width:52%}
+#causativeScene[data-practice-level="b1"] .ce-tools[data-actor="0"]{left:27%}
+#causativeScene[data-practice-level="b1"] .ce-tools[data-actor="1"]{left:73%}

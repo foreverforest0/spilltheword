@@ -15,8 +15,8 @@ window.CausativeSceneData = {
       "context": "Nina asked a photographer to take a photo of the cast after the show.",
       "prompt": "Describe what Nina arranged. Start with Yesterday, Nina … and use had or got.",
       "answers": [
-        "Yesterday, Nina had a photo of the cast taken.",
-        "Yesterday, Nina got a photo of the cast taken."
+        "Nina had a photo of the cast taken.",
+        "Nina got a photo of the cast taken."
       ],
       "hint": "Put had or got before a photo of the cast. The past participle taken comes after it.",
       "vocab": {
@@ -90,7 +90,7 @@ window.CausativeSceneData = {
       "object": "the bike",
       "scene": "garden",
       "action": "Fix the bike",
-      "context": "Noah was going to hitchhike. He’s changed his mind and booked a mechanic to fix his bike before the trip.",
+      "context": "A mechanic will fix Noah’s bike before his trip.",
       "prompt": "Say what Noah will arrange. Start with Noah will … and use have or get.",
       "answers": [
         "Noah will have his bike fixed before the trip.",
@@ -167,7 +167,7 @@ window.CausativeSceneData = {
       "object": "the shelf",
       "scene": "home",
       "action": "Paint the shelf",
-      "context": "Ivy’s easy-going cousin offered to help, but Ivy decided to paint the shelf herself.",
+      "context": "Ivy painted the shelf herself.",
       "prompt": "Say what Ivy did herself. Start with Ivy …",
       "answers": [
         "Ivy painted the shelf herself."
@@ -192,7 +192,7 @@ window.CausativeSceneData = {
       "object": "the invitations",
       "scene": "studio",
       "action": "Print the invitations",
-      "context": "Max takes the invitation files to a print shop every year. The printer finishes the job before the deadline.",
+      "context": "A print shop prints Max’s invitations before the deadline every year.",
       "prompt": "Describe Max’s routine. Start with Every year, Max … and use has or gets.",
       "answers": [
         "Every year, Max has the invitations printed before the deadline.",
@@ -244,7 +244,7 @@ window.CausativeSceneData = {
       "object": "the sleeves",
       "scene": "studio",
       "action": "Shorten the sleeves",
-      "context": "Kat’s jacket looked awkward because the sleeves were too long. A tailor shortened them for her.",
+      "context": "A tailor shortened Kat’s jacket sleeves.",
       "prompt": "Say what Kat arranged. Start with Kat … and use had or got.",
       "answers": [
         "Kat had the sleeves of her jacket shortened.",

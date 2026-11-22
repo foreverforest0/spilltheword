@@ -22,7 +22,7 @@
   }
   function check(card, answer) {
     const text = normalize(answer);
-    if (!text) return ['empty', 'Write a sentence or switch to Oral.'];
+    if (!text) return ['empty', 'Write a sentence.'];
     const models = card.answers.map(normalize);
     if (models.includes(text)) return ['correct', 'That works. Your sentence matches the roles in the scene.'];
     const [verb] = card.action.toLowerCase().split(' ');
@@ -47,22 +47,25 @@
     self: 'Help with something else',
     event: 'Experience the incident',
   };
-  const kindName = { all: 'All situations', arrange: 'Arrange a service', self: 'Do it yourself', event: 'Unwanted events' };
+  const photos=['ch/r_camera.webp','ch/r_tv.webp','ch/b_jacket.webp','assets/wobbly/pictures/bicycle.png','ch/cw_o_letter.webp','ch/cw_o_painting.webp','ch/r_shelf.webp','ch/cw_o_envelope.webp','ch/b_ticket.webp','ch/b_jacket.webp'];
 
   function open(level) {
     seaOff();
     S.splevel = level;
-    const state = saved[level] ??= { filter: 'all', index: 0, oral: false, drafts: {} };
-    let actor = null;
+    const state = saved[level] ??= { index: 0, drafts: {} };
+    state.index=Math.max(0,Math.min(levels[level].length-1,state.index||0));
+    let actor = null, revealed = false;
     let feedback = '';
     let animation;
     const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function render(focusId) {
-      const cards = levels[level].filter(card => state.filter === 'all' || card.kind === state.filter);
+      const cards = levels[level];
       const card = cards[state.index];
       const performer = card.kind === 'self' ? 0 : 1;
       const draft = state.drafts[card.id] ??= {};
+      const shown = revealed || !!draft.complete;
+      const prompt=level==='b1'&&state.index===3?'What will Noah have done before his trip?':level==='b1'&&state.index===7?'What does Max have done every year?':card.kind==='arrange'?'What did '+card.people[0]+' have or get done?':card.kind==='self'?'What did '+card.people[0]+' do?':'What happened to '+card.people[0]+'?';
       const menu = [card.action, actionMenu[card.kind]];
       const ordered = state.index % 2 ? menu : menu.slice().reverse();
       setView(`
@@ -74,18 +77,16 @@
           </header>
           <div class="ce-workspace">
             <div class="ce-meta">
-              <div class="ce-filters" role="group" aria-label="Situation type">
-                ${['all', 'arrange', 'self', ...(level === 'b1' ? [] : ['event'])].map(name => `<button type="button" id="ce-filter-${name}" data-filter="${name}" aria-pressed="${name === state.filter}">${kindName[name]}</button>`).join('')}
-              </div>
+
               <output aria-label="Situation ${state.index + 1} of ${cards.length}">${state.index + 1} / ${cards.length}</output>
             </div>
             <h2>${esc(card.title)}</h2>
             <p class="ce-context">${esc(card.context)}</p>
-            <p id="ceTask">Select the person who carries out the main action, then choose what they do.</p>
+            <p id="ceTask">${shown?'Who does the work?':'Tap the person to open the scene.'}</p>
             <div class="ce-scene" data-scene="${card.scene}" data-complete="${!!draft.complete}" aria-describedby="ceTask">
               <div class="ce-land" aria-hidden="true"><i></i><i></i><i></i></div>
-              <div class="ce-object"><i aria-hidden="true"></i><span>${esc(card.object)}</span></div>
-              ${card.people.map((name, i) => `
+              ${shown?`<div class="ce-object">${level==='b1'?'<img src="'+photos[state.index]+'" alt="">':'<i aria-hidden="true"></i>'}<span>${esc(card.object)}</span></div>`:''}
+              ${card.people.map((name, i) => i===1&&!shown?'':`
                 <div class="ce-person ce-person-${i}" data-selected="${actor === i}" data-performer="${performer === i}">
                   <button type="button" class="ce-actor" id="ce-actor-${i}" data-actor="${i}" aria-expanded="${actor === i}" aria-controls="ceTools">
                     <span class="ce-figure" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -99,20 +100,15 @@
               </div>
             </div>
             <p id="ceSceneNote" role="status">${esc(feedback)}</p>
-            <p id="cePrompt">${esc(card.prompt)}</p>
-            <div class="ce-modes" role="group" aria-label="Practice mode">
-              <button type="button" id="ceWritten" aria-pressed="${!state.oral}">Written</button>
-              <button type="button" id="ceOral" aria-pressed="${state.oral}">Oral</button>
-            </div>
-            ${state.oral ? '<p>Say your sentence aloud, then open the example to compare.</p>' : `
+            <p id="cePrompt">${esc(prompt)}</p>
+
               <form id="ceForm">
                 <textarea id="ceAnswer" aria-label="Your sentence" aria-describedby="cePrompt" rows="3" maxlength="1200">${esc(draft.text)}</textarea>
                 <button type="submit">Check</button>
               </form>
               <p id="ceFeedback" role="status" data-result="${esc(draft.result?.[0])}">${esc(draft.result?.[1])}</p>
-            `}
             <details id="ceHint" ${draft.hint ? 'open' : ''}><summary>Hint</summary><p>${esc(card.hint)}</p></details>
-            <details id="ceExample" ${draft.example ? 'open' : ''}><summary>Show example</summary><p>${esc(card.answers[0])}</p></details>
+            <details id="ceExample" ${draft.example ? 'open' : ''}><summary>Show answer</summary><p>${esc(card.answers[0])}</p></details>
             <nav aria-label="Situations">
               <button type="button" id="cePrev" ${state.index === 0 ? 'disabled' : ''}>Previous</button>
               <button type="button" id="ceNext" ${state.index === cards.length - 1 ? 'disabled' : ''}>Next</button>
@@ -123,14 +119,10 @@
       const root = document.getElementById('causativeScene');
       const get = id => root.querySelector('#' + id);
       get('ceBack').onclick = () => { S.glevel = level; go('gram'); };
-      root.querySelectorAll('[data-filter]').forEach(button => {
-        button.onclick = () => {
-          state.filter = button.dataset.filter;
-          move(0, button.id);
-        };
-      });
+
       root.querySelectorAll('button[data-actor]').forEach(button => {
         button.onclick = () => {
+          if(!shown){revealed=true;render('ce-actor-1');return}
           const next = Number(button.dataset.actor);
           actor = next === actor ? null : next;
           feedback = '';
@@ -148,7 +140,7 @@
         button.onclick = () => {
           if (actor === performer && button.dataset.does === 'true') {
             draft.complete = true;
-            feedback = card.kind === 'arrange' ? `${card.people[0]} is the organiser. The work is done by ${card.people[1]}.` :
+            feedback = card.kind === 'arrange' ? `${card.people[1][0].toUpperCase()+card.people[1].slice(1)} does the work.` :
               card.kind === 'event' ? `${card.people[0]} experiences the event without arranging it.` :
               `${card.people[0]} does the work personally.`;
             actor = null;
@@ -163,13 +155,13 @@
                 { transform: `translateX(calc(${direction} * 22px)) rotate(${performer === 0 ? 12 : -12}deg) translateY(-8px)` },
                 { transform: 'translateX(0) rotate(0deg)' },
               ], { duration: 670, easing: 'ease-in-out' });
-              scene.querySelector('.ce-object i').animate([
+              scene.querySelector('.ce-object img,.ce-object i').animate([
                 { opacity: .88, scale: 1 }, { opacity: 1, scale: 1.17 }, { opacity: .88, scale: 1 },
               ], { duration: 680, delay: 160, easing: 'ease-out' });
             }
           } else {
-            const message = actor !== performer ? 'Look at who actually carries out the action in the situation.' :
-              'You found the person. Choose the main action they carry out.';
+            const message = actor !== performer ? 'Try the other person.' :
+              'Choose their action.';
             feedback = message;
             get('ceSceneNote').textContent = message;
           }
@@ -195,10 +187,9 @@
       }
       get('ceHint').ontoggle = event => { draft.hint = event.currentTarget.open; save(); };
       get('ceExample').ontoggle = event => { draft.example = event.currentTarget.open; save(); };
-      get('ceWritten').onclick = () => { if (state.oral) { state.oral = false; render('ceWritten'); } };
-      get('ceOral').onclick = () => { if (!state.oral) { state.oral = true; render('ceOral'); } };
       function move(index, target) {
         actor = null;
+        revealed = false;
         feedback = '';
         state.index = index;
         render(target);

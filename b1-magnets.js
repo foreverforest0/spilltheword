@@ -211,9 +211,11 @@ const B1GER=[
  ['meaning','He stopped to buy a coffee.','He was driving. He stopped because he wanted a coffee.'],
  ['meaning','He stopped drinking coffee.','He used to drink coffee. Now he no longer drinks it.'],
  ['meaning','I remember locking the door.','I have a memory of turning the key in the lock.'],
- ['meaning','Remember to lock the door.','You are leaving soon. Don’t forget this task.']
+ ['meaning','Remember to lock the door.','You are leaving soon. Don’t forget this task.'],
+ ['meaning','I forgot to feed the cat.','The cat is still hungry. I missed its feeding time.'],
+ ['meaning','I’ll never forget meeting my favourite actor.','I met my favourite actor. I will always remember it.']
 ];
-b1Add('ge','Gerund & Infinitive',10,[['ing','Verb + -ing'],['to','Verb + to'],['prep','After prepositions'],['pattern','Purpose / subject / too / enough'],['both','Both forms'],['meaning','Change of meaning']],B1GER.map(([t,a,p])=>[t,t==='both'?(a==='It started raining.'?[a,'It started to rain.']:[a,'She loves dancing.']):[a],null,null,{prompt:p||'Choose the correct verb form and build the sentence.',forms:true,tokens:a.replace(/[.,?!]/g,'').match(/to (?:take|help|finish|buy|drive|rent|get|dance|lock)\b|\S+/g)}]),['enjoy / avoid / mind + -ing; decide / promise / manage + to V; preposition + -ing.','stop doing = end the activity; stop to do = pause another activity for a purpose.']);
+b1Add('ge','Gerund & Infinitive',10,[['ing','Verb + -ing'],['to','Verb + to'],['prep','After prepositions'],['both','Both forms'],['meaning','Change of meaning']],B1GER.filter(([t])=>t!=='pattern').map(([t,a,p])=>[t,t==='both'?(a==='It started raining.'?[a,'It started to rain.']:[a,'She loves dancing.']):[a],null,null,{prompt:p||'Choose the correct verb form and build the sentence.',forms:true,tokens:a.replace(/[.,?!]/g,'').match(/to (?:take|help|finish|buy|drive|rent|get|dance|lock)\b|\S+/g)}]),['enjoy / avoid / mind + -ing; decide / promise / manage + to V; preposition + -ing.','stop doing = end the activity; stop to do = pause another activity for a purpose.']);
 const B1WORDS=[
  ['prefix','It’s ___ to finish this in one minute.','im','possible','impossible'],['suffix','Please be ___ with that glass.','care','ful','careful'],
  ['suffix','He lost his phone because he was ___.','care','less','careless'],['suffix','We finally reached an ___.','agree','ment','agreement'],
@@ -228,7 +230,7 @@ const B1WORDS=[
  ['spelling','What was your final ___?','decide','ion','decision'],['spelling','He is a ___ musician.','fame','ous','famous'],
  ['spelling','The guide gave us useful ___.','inform','ation','information'],['spelling','___ is important when you ride a bike.','safe','ty','safety']
 ];
-b1Add('wf','Word Formation',11,[['prefix','Prefixes'],['suffix','Suffixes'],['spelling','Word building / spelling']],B1WORDS.map(([t,p,a,b,word])=>[t,[a+' '+b],null,null,{prompt:p,tokens:[a,b],word,follow:'Read the complete sentence aloud.'}]),['Build the word from left to right, then use it in the gap.','Some spellings change: happy + ness → happiness; decide + ion → decision; fame + ous → famous.']);
+b1Add('wf','Word Formation',11,[['prefix','Prefixes'],['suffix','Suffixes'],['spelling','Word building / spelling']],B1WORDS.map(([t,p,a,b,word])=>[t,[word],null,null,{prompt:p,cue:p+' ('+(t==='prefix'?b:a)+')',word,follow:'Read the complete sentence aloud.'}]),['Change the word in brackets so it fits the gap.','Some spellings change: happy + ness → happiness; decide + ion → decision; fame + ous → famous.']);
 const B1MAGSTYLE=document.createElement('style');
 B1MAGSTYLE.textContent=`
 .b1-magnet-layout{display:grid;grid-template-columns:var(--fridge-width,280px) minmax(0,1fr);gap:24px;align-items:start;max-width:1000px;margin:auto;height:var(--fridge-height,648px)}

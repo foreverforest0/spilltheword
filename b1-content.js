@@ -240,9 +240,9 @@ suffix | Thanks for your ___. That was really kind. | kind | ness | kindness
 suffix | This charger is ___: it doesn’t work at all. | use | less | useless
 spelling | ___, I’d saved a copy before my laptop crashed. | lucky | ly | luckily
 prefix | I think we ___ about where to meet. | dis | agree | disagree`);
- add('magnets','mb1wf',B1MAG.mb1wf.items(),words.map(([type,p,a,b,word])=>[type,[a+' '+b],null,null,{prompt:p,tokens:[a,b],word,follow:'Read the complete sentence aloud.'}]));
+ add('magnets','mb1wf',B1MAG.mb1wf.items(),words.map(([type,p,a,b,word])=>[type,[word],null,null,{prompt:p,cue:p+' ('+(type==='prefix'?b:a)+')',word,follow:'Read the complete sentence aloud.'}]));
  // Keep the existing mode identifiers so every new item appears in its filter.
- B1MAG.mb1ge.items().find(it=>it[1][0]==='Learning a language takes time.')[1].push('To learn a language takes time.');
+ B1MAG.mb1ge.items().find(it=>it[1][0]==='Learning a language takes time.')?.[1].push('To learn a language takes time.');
  B1MAG.mb1cd.hints.push('Zero: if + Present Simple, Present Simple for facts and habits.');
  const typeMap={mb1pp:{finish:'part'},mb1cd:{'0':'zero','1':'first','2':'second'},mb1pa:{full:'build',change:'transform'},mb1rp:{be:'present',v:'present',m:'future',p:'perfect'}};
  B1MAG.mb1cd.types.push(['zero','Zero Conditional']);

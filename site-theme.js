@@ -22,6 +22,14 @@ try{if(window.parent!==window)window.parent.SharedGame?.attachFrame(window)}catc
    if(!/^(?:←\s*)?(?:back to )?topics$/i.test(control.textContent.trim())||control.classList.contains('stw-back-to-topics'))return;
    control.classList.add('stw-back-to-topics');control.textContent='← Back to topics';
   });
+  if(document.body.dataset.practiceLevel==='b1'||window.LevelDesign?.current()?.id==='b1'||root.querySelector?.('[data-practice-level="b1"],.b1-pattern-practice')||(typeof S!=='undefined'&&(S.glevel==='b1'||S.splevel==='b1'))){
+   root.querySelectorAll?.('#view button,#view summary').forEach(control=>{
+    const label=control.textContent.trim();
+    if(/^(?:💡\s*)?Hint(?: \(\d+\))?$/i.test(label))control.classList.add('stw-b1-hint');
+    if(/^(?:💡\s*|👁\s*)?Show (?:the right )?answers?$|^Show example$/i.test(label))control.classList.add('stw-b1-reveal');
+    if(/^how to\?$/i.test(label))control.classList.add('stw-b1-help');
+   });
+  }
   schedulePencils();if(root.matches?.('h1,h2,h3,.brand,.game-nav>span,.stw-home .category'))decorate(root);root.querySelectorAll?.('h1,h2,h3,.brand,.game-nav>span,.stw-home .category').forEach(decorate)}
  function keepPencilsClear(){
   const pencils=[...document.querySelectorAll('.home-pencil-row img')];if(!pencils.length)return;

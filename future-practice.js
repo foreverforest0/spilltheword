@@ -84,7 +84,7 @@
   draw();root.dataset.phase='ready';
  }
  function practice(key){
-  const bank=banks[key],writtenOnly=['will','going'].includes(key);if(!bank)return;seaOff();document.body.classList.add('grammar-style-active');setLevel(sectionFor(key));
+  const bank=banks[key];if(!bank)return;seaOff();document.body.classList.add('grammar-style-active');setLevel(sectionFor(key));const writtenOnly=S.splevel==='b1'||['will','going'].includes(key);
   S.futureExercises=S.futureExercises||{};let state=S.futureExercises[key];
   if(!state||!Array.isArray(state.order)||state.order.length!==7||!state.order.every(id=>bank.items.some(x=>x.id===id)))state=S.futureExercises[key]={order:shuffle(bank.items.map(x=>x.id)).slice(0,7),active:0,mode:'write',answers:{},shown:{}};
   state.active=Math.max(0,Math.min(6,Number.isInteger(state.active)?state.active:0));state.answers=state.answers||{};state.shown=state.shown||{};state.mode=!writtenOnly&&state.mode==='speak'?'speak':'write';save();

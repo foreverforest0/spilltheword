@@ -14,7 +14,7 @@ window.WorkHoursData = {
         "The comedy tickets are too expensive to buy with two hours’ pay.",
         "The tickets are too expensive for me to buy with two hours’ pay."
       ],
-      "hint": "Use too expensive + to buy. The price is higher than what you can earn in time.",
+      "hint": "Use too expensive + to buy. The price is higher than your budget.",
       "vocab": {
         "course": "b1",
         "word": "comedy",
@@ -168,7 +168,7 @@ window.WorkHoursData = {
         "The concert ticket is so expensive that I’ll have to work an extra hour.",
         "The ticket is so expensive that I’ll need to work one more hour."
       ],
-      "hint": "Use so + adjective + that. The card shows how much longer you need to work.",
+      "hint": "Use so expensive that. Then give the result.",
       "vocab": {
         "course": "b1",
         "word": "excited",
@@ -445,3 +445,20 @@ window.WorkHoursData = {
     }
   ]
 };
+
+// Focus on the structure. The price and budget are already displayed.
+[
+ ['', 'Can you buy the tickets? Use too expensive to.', 'The comedy tickets are too expensive for me to buy.'],
+ ['', 'Can you afford the backpack? Use too expensive.', 'The backpack is too expensive for me to buy.'],
+ ['', 'Can you buy the ticket? Use cheap enough to.', 'The horror film ticket is cheap enough for me to buy.'],
+ ['', 'Can you book a ticket? Use low enough to.', 'The price is low enough for me to book a ticket.'],
+ ['', 'Can you buy the bike? Use not enough money.', 'I don’t have enough money to buy the bike.'],
+ ['', 'Can you print the script? Use enough money.', 'I have enough money to print the script.'],
+ ['You decide to split the cost.', 'Explain why. Use so … that.', 'The cast photo is so expensive that we’ve decided to split the cost.'],
+ ['You decide not to buy a ticket.', 'Explain why. Use so … that.', 'The concert ticket is so expensive that I’ve decided not to buy it.'],
+ ['Two tickets for a low price. You decide to book.', 'Explain why. Use such … that.', 'It’s such a good deal that I’ve decided to book it straight away.'],
+ ['You pick a regular screening instead.', 'Explain why. Use such … that.', 'It’s such an expensive ticket that I’ll go to a regular screening instead.']
+].forEach(([context,prompt,answer],i)=>{
+ const card=WorkHoursData.b1[i];
+ Object.assign(card,{context,prompt,answers:[answer]});
+});

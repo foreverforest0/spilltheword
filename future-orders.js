@@ -25,7 +25,7 @@
   }
   function check(card, answer) {
     const text = normalize(answer);
-    if (!text) return ['empty', 'Write a sentence or switch to Oral.'];
+    if (!text) return ['empty', 'Write a sentence.'];
     const models = card.answers.map(normalize);
     if (models.includes(text)) return ['correct', 'That works. The future form fits the situation.'];
     const commonErrors = [
@@ -105,20 +105,15 @@
       get('foOrder').innerHTML = `
         <h2>${esc(card.title)}</h2>
         <p class="fo-context">${esc(card.context)}</p>
-        <p id="foPrompt">${esc(card.prompt)}</p>
-        <div class="fo-mode" role="group" aria-label="Practice mode">
-          <button id="foWritten" type="button" aria-pressed="${!state.oral}">Written</button>
-          <button id="foOral" type="button" aria-pressed="${state.oral}">Oral</button>
-        </div>
-        ${state.oral ? '<p>Say your sentence aloud, then open the example to compare.</p>' : `
+        <p id="foPrompt">${esc(card.prompt.replace(/Write or say (?:one|a) (?:full )?sentence[.!]?/gi,'').trim() || card.prompt)}</p>
+
           <form id="foForm">
             <textarea id="foAnswer" aria-label="Your sentence" aria-describedby="foPrompt" rows="2" maxlength="1200">${esc(draft.text)}</textarea>
             <button type="submit">Check</button>
           </form>
           <p id="foFeedback" role="status" data-result="${esc(draft.result?.[0])}">${esc(draft.result?.[1])}</p>
-        `}
         <details id="foHint" ${draft.hint ? 'open' : ''}><summary>Hint</summary><p>${esc(card.hint)}</p></details>
-        <details id="foExample" ${draft.example ? 'open' : ''}><summary>Show example</summary><p>${esc(card.answers[0])}</p></details>`;
+        <details id="foExample" ${draft.example ? 'open' : ''}><summary>Show answer</summary><p>${esc(card.answers[0])}</p></details>`;
       const field = get('foAnswer');
       if (field) {
         const status = get('foFeedback');
@@ -139,8 +134,6 @@
       }
       get('foHint').ontoggle = event => { draft.hint = event.currentTarget.open; save(); };
       get('foExample').ontoggle = event => { draft.example = event.currentTarget.open; save(); };
-      get('foWritten').onclick = () => { if (state.oral) { state.oral = false; render('foWritten'); } };
-      get('foOral').onclick = () => { if (!state.oral) { state.oral = true; render('foOral'); } };
       if (focusId) get(focusId)?.focus({ preventScroll: true });
       save();
     }

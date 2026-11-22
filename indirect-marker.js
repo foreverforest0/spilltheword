@@ -9,7 +9,7 @@
     },
     {
       title: 'Choose the question', context: 'You want to know what time your friend’s shift finishes.',
-      prompt: 'Choose the question that asks for the time.',
+      prompt: 'Ask what time the shift finishes.',
       options: [
         'Do you know what time does your shift finish?',
         'Do you know if your shift finishes at six?',
@@ -20,7 +20,7 @@
     },
     {
       title: 'Build the question', context: 'You’re deciding whether to book a film. You want to know if it has subtitles.',
-      prompt: 'Tap the blocks in order to finish “Do you know …?”',
+      prompt: 'Ask if the film has subtitles.',
       blocks: ['has subtitles', 'when', 'the film', 'if'],
       order: ['if', 'the film', 'has subtitles'],
       model: 'Do you know if the film has subtitles?',
@@ -28,13 +28,13 @@
     },
     {
       title: 'Edit the question', context: 'You’re looking for the script. Maya left it somewhere yesterday.',
-      prompt: 'Start with “Do you know where”. Remove the extra word and keep the past tense.',
+      prompt: 'Tap the extra word. Then change the verb.',
       model: 'Do you know where Maya left the script?',
       hint: 'Remove did. Change leave to its past form, left.',
     },
     {
       title: 'Ask your own question', context: 'You’re at the cinema with a friend who needs subtitles.',
-      prompt: 'Before you buy tickets for the comedy, ask a member of staff politely about subtitles. Write or say the whole question.',
+      prompt: 'Ask a cinema employee politely if the comedy has subtitles.',
       model: 'Could you tell me if the comedy has subtitles?',
       hint: 'Start with a polite phrase such as Could you tell me. Use if or whether, then put the subject before the verb.',
     },
@@ -43,7 +43,7 @@
   let memory;
   try { memory = JSON.parse(localStorage.getItem(key)); } catch {}
   const embedded = new URLSearchParams(location.hash.slice(1)).has('embed');
-  const blank = () => ({ index: 0, oral: false, drafts: {} });
+  const blank = () => ({ index: 0, drafts: {} });
   const state = embedded ? blank() : memory || blank();
   const save = () => {
     if (embedded) return;
@@ -54,10 +54,13 @@
   const normalize = value => value.toLowerCase().replace(/[’‘]/g, "'").replace(/[.,!?]/g, '').trim().replace(/\s+/g, ' ');
   function checkFinal(value) {
     const answer = normalize(value);
-    if (!answer) return ['empty', 'Write your question or switch to Oral.'];
+    if (!answer) return ['empty', 'Write your question.'];
     if (/^(excuse me )?(can|could|would) you tell (me|us) (if|whether) (the|this) (comedy|film) (has|comes with) (english )?subtitles( or not)?$/.test(answer) ||
         /^(excuse me )?do you know (if|whether) (the|this) (comedy|film) has (english )?subtitles( or not)?$/.test(answer)) {
       return ['correct', 'That works. You asked politely and used statement order inside the question.'];
+    }
+    if (/^(excuse me )?(?:(?:can|could|would) you (?:tell|let) (?:me|us)(?: know)?|do you know|i(?:'d| would) like to know) (?:if|whether) (?:(?:the|this) (?:comedy|film) (?:is subtitled|has subtitles|is shown with subtitles)|(?:english )?subtitles (?:are available|will be shown) (?:for|with) (?:the|this) (?:comedy|film))$/.test(answer)) {
+      return ['correct', 'That works. You asked about subtitles and used statement order.'];
     }
     if (/\b(if|whether) does (the|this) (comedy|film) have\b/.test(answer)) {
       return ['revise', 'After if or whether, use “the comedy has”. Leave out does.'];
@@ -90,23 +93,18 @@
         `<div class="im-line">Do you know where ${draft.erased ? '' : '<button type="button" class="im-word" id="imDid" aria-label="Remove did">did</button>'}
           Maya ${draft.past ? '<mark>left</mark>' : '<button type="button" class="im-word" id="imVerb" aria-expanded="false">leave</button>'} the script?</div>
           <div id="imVerbChoices" class="im-blocks" hidden><button type="button" data-verb="leaves">leaves</button><button type="button" data-verb="left">left</button></div>`,
-        `<div class="im-blocks" role="group" aria-label="Practice mode">
-          <button type="button" id="imWritten" aria-pressed="${!state.oral}">Written</button>
-          <button type="button" id="imOral" aria-pressed="${state.oral}">Oral</button></div>
-          ${state.oral ? '<p>Say your full question aloud, then open the example to compare.</p>' :
-            `<form id="imForm"><textarea id="imAnswer" aria-label="Your question" rows="3" maxlength="600">${escape(draft.answer)}</textarea>
-            <button type="submit">Check</button></form>`}`,
+        `<form id="imForm"><textarea id="imAnswer" aria-label="Your question" rows="3" maxlength="600">${escape(draft.answer)}</textarea><button type="submit">Check</button></form>`,
       ];
       setView(`
         <section id="indirectMarker" data-practice-level="b1" data-stw-plain>
           <header><button type="button" id="imBack">Topics</button><h1>Indirect questions</h1><span>B1</span></header>
           <main>
             <div class="im-top"><h2>${task.title}</h2><output aria-label="Step ${index+1} of 5">${index+1} / 5</output></div>
-            <p>${task.context}</p><p class="im-prompt">${task.prompt}</p>
+            <p class="im-prompt">${task.prompt}</p>
             ${activities[index]}
             <p id="imFeedback" role="status">${escape(draft.feedback)}</p>
             <details id="imHint" ${draft.hint ? 'open' : ''}><summary>Hint</summary><p>${task.hint}</p></details>
-            <details id="imExample" ${draft.example ? 'open' : ''}><summary>Show example</summary><p>${task.model}</p></details>
+            <details id="imExample" ${draft.example ? 'open' : ''}><summary>Show answer</summary><p>${task.model}</p></details>
             <nav aria-label="Training steps">
               <button type="button" id="imPrev" ${index === 0 ? 'disabled' : ''}>Previous</button>
               ${index < 4 ? '<button type="button" id="imNext">Next step</button>' : '<button type="button" id="imAgain">Back to first step</button>'}
@@ -223,8 +221,6 @@
         get('imAnswer').oninput = e => { draft.answer = e.target.value; feedback(''); };
         get('imForm').onsubmit = e => { e.preventDefault(); feedback(checkFinal(draft.answer || '')[1]); };
       }
-      if (get('imOral')) get('imOral').onclick = () => { state.oral = true; draft.feedback = ''; render('imOral'); };
-      if (get('imWritten')) get('imWritten').onclick = () => { state.oral = false; render('imWritten'); };
       if (focus) get(focus)?.focus({preventScroll:true});
       save();
     }

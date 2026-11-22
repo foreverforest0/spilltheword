@@ -25,7 +25,7 @@
   }
   function check(card, response) {
     const value = normalize(response);
-    if (!value) return ['empty', 'Write a sentence or switch to Oral.'];
+    if (!value) return ['empty', 'Write a sentence.'];
     const models = card.answers.map(normalize);
     if (models.includes(value)) return ['correct', 'That works. Your sentence expresses the wish in this situation.'];
     const likelyErrors = {
@@ -131,17 +131,12 @@
         </div>
         <p class="wt-context">${escape(card.context)}</p>
         <p id="wtPrompt">${escape(card.prompt)}</p>
-        <div class="wt-mode" role="group" aria-label="Practice mode">
-          <button type="button" id="wtWritten" aria-pressed="${!state.oral}">Written</button>
-          <button type="button" id="wtOral" aria-pressed="${state.oral}">Oral</button>
-        </div>
-        ${state.oral ? '<p>Say your sentence aloud, then open the example to compare.</p>' : `
+
           <form id="wtForm">
             <textarea id="wtAnswer" aria-label="Your sentence" aria-describedby="wtPrompt" rows="3" maxlength="1200">${escape(draft.text)}</textarea>
             <button type="submit">Check</button>
           </form>
           <p id="wtFeedback" role="status" data-result="${escape(draft.result?.[0])}">${escape(draft.result?.[1])}</p>
-        `}
         <details id="wtHint" ${draft.hint ? 'open' : ''}><summary>Hint</summary><p>${escape(card.hint)}</p></details>
         <details id="wtExample" ${draft.example ? 'open' : ''}><summary>Show example</summary><p>${escape(card.answers[0])}</p></details>
         <nav aria-label="Situations">
@@ -168,8 +163,6 @@
       }
       get('wtHint').ontoggle = event => { draft.hint = event.currentTarget.open; save(); };
       get('wtExample').ontoggle = event => { draft.example = event.currentTarget.open; save(); };
-      get('wtWritten').onclick = () => { if (state.oral) { state.oral = false; render('wtWritten'); } };
-      get('wtOral').onclick = () => { if (!state.oral) { state.oral = true; render('wtOral'); } };
       get('wtPrev').onclick = () => { state.indices[kind] = index - 1; render(index === 1 ? 'wtNext' : 'wtPrev'); };
       get('wtNext').onclick = () => { state.indices[kind] = index + 1; render(index === cards.length - 2 ? 'wtPrev' : 'wtNext'); };
       if (focusId) get(focusId)?.focus({ preventScroll: true });

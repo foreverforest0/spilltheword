@@ -460,3 +460,18 @@ window.FutureOrdersData = {
     }
   ]
 };
+
+[
+ ['The dialogue is hard to follow. The subtitles are off.', 'Offer to turn the subtitles on.'],
+ ['Your friend has two heavy bags.', 'Offer to carry one.'],
+ ['Your film is sold out. The comedy has tickets.', 'Choose the comedy now.'],
+ ['Your cousin is moving abroad. You plan to call her every Sunday.', 'Tell someone about your plan.'],
+ ['You’ve decided to write a script during the holidays.', 'Tell a friend what you’re going to do.'],
+ ['Your friend is running straight towards some mud.', 'Warn your friend. What’s about to happen?'],
+ ['Your friend likes clever plots. You’ve seen the film.', 'Say what you think your friend will enjoy.'],
+ ['Cast rehearsal · theatre · 6 pm · confirmed', 'Tell someone where and when you’re meeting.'],
+ ['You and Jo agreed to swap shifts tomorrow.', 'Tell someone what you’ve arranged.'],
+ ['Horror film · 8:20 pm', 'Tell a friend when the film starts.'],
+ ['Competition deadline · Sunday · midnight', 'Tell someone when entries close.'],
+ ['Your friend loves action films. The trailer has spectacular special effects.', 'Say what you’re sure your friend will love.']
+].forEach(([context,prompt],i)=>Object.assign(FutureOrdersData.b1[i],{context,prompt}));

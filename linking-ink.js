@@ -12,15 +12,6 @@
     time: ['Time', 'Show how the timing of the two events is related.'],
     condition: ['Condition', 'Show the condition or exception, or that the outcome holds either way.'],
   };
-  const tips = {
-    contrast: 'Look for a linker that contrasts facts or introduces a concession.',
-    reason: 'Look for a linker that introduces an explanation.',
-    result: 'Look for a linker that introduces a consequence.',
-    purpose: 'Look for a linker that introduces an aim or a precaution.',
-    addition: 'Look for a linker that adds another point.',
-    time: 'Look for a linker that places the two events in time.',
-    condition: 'Look for a linker that introduces a condition or exception.',
-  };
   let saved = {};
   try { saved = JSON.parse(localStorage.getItem(key)) || {}; } catch {}
   const escape = value => String(value ?? '').replace(/[&<>"']/g, ch => ({
@@ -42,7 +33,7 @@
       const progress = state.cards[card.id] ??= { linker: '', answers: {} };
       const link = Object.hasOwn(card.links, progress.linker) ? progress.linker : '';
       const answer = progress.answers[link] ??= {};
-      const [relation, instruction] = relations[card.relation];
+      const [relation] = relations[card.relation];
       const model = card.links[link];
       const linkMessage = link ? 'That linker fits. Now join the two facts.' :
         progress.rejected ? 'That linker signals a different relationship. Try one that expresses ' + relation.toLowerCase() + '.' : '';
@@ -63,8 +54,7 @@
               </select>
               <output aria-label="Card ${state.index + 1} of ${cards.length}">${state.index + 1} / ${cards.length}</output>
             </div>
-            <h2>${relation}</h2>
-            <p>${instruction} Choose a linker, then join the facts.</p>
+            ${state.filter==='all'?'':`<h2>${relation}</h2>`}
             <div class="li-stage ${link ? 'li-mixed' : ''} ${animate ? 'li-fresh-mix' : ''}">
               <div class="li-ink" aria-hidden="true"><i></i><i></i></div>
               <div class="li-facts">${card.facts.map(fact => `<p>${escape(fact)}</p>`).join('')}</div>
@@ -74,22 +64,16 @@
             </div>
             <p id="liLinkFeedback" role="status">${escape(linkMessage)}</p>
             ${link ? `
-              <div class="li-mode" role="group" aria-label="Practice mode">
-                <button type="button" id="liWritten" aria-pressed="${!state.oral}">Written</button>
-                <button type="button" id="liOral" aria-pressed="${state.oral}">Oral</button>
-              </div>
-              ${state.oral ? `<p>Say your answer aloud using <strong>${escape(link)}</strong>. Then compare with the example.</p>` : `
+
                 <form id="liForm">
                   <label for="liAnswer">Join the facts using <strong>${escape(link)}</strong>.</label>
                   <textarea rows="3" maxlength="1200" id="liAnswer">${escape(answer.text)}</textarea>
                   <button type="submit">Check</button>
                 </form>
                 <p id="liFeedback" role="status" data-result="${escape(answer.result?.state)}">${escape(answer.result?.message)}</p>
-              `}
             ` : ''}
-            <details id="liHint" ${progress.hint ? 'open' : ''}><summary>Hint</summary><p>${escape(model?.hint || tips[card.relation])}</p></details>
             <details id="liExample" ${answer.example ? 'open' : ''}>
-              <summary>Show example</summary>
+              <summary>Show answer</summary>
               <p>${escape((model || Object.values(card.links)[0]).answers[0])}</p>
             </details>
             <nav aria-label="Practice cards">
@@ -117,11 +101,8 @@
           render(button.id, mixed && !link);
         };
       });
-      get('liHint').ontoggle = event => { progress.hint = event.currentTarget.open; save(); };
       get('liExample').ontoggle = event => { answer.example = event.currentTarget.open; save(); };
       if (link) {
-        get('liWritten').onclick = () => { if (state.oral) { state.oral = false; render('liWritten'); } };
-        get('liOral').onclick = () => { if (!state.oral) { state.oral = true; render('liOral'); } };
       }
       const input = get('liAnswer');
       if (input) {
