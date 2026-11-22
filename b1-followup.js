@@ -24,7 +24,19 @@
  [53,'too','the slipper · small · hide in','The slipper is too small to hide in.'],
  [19,'enough','the penguin · not old · swim alone','The penguin isn’t old enough to swim alone.']
  ];
+ // Keep the original subject and meaning-change decks, including their text rounds.
+ const pictureCards=[
+  [54,'gsb',['swimming'],['Start with the activity. Swim · fun','Swimming is fun.'],['How do you feel about swimming?','Swimming helps me relax.'],['What sport helps you relax?','Swimming helps me relax.']],
+  [55,'gsb',['studying'],['Start with “It’s”. Study · when you’re tired · hard','It’s hard to study when you’re tired.'],['Say how it feels to study when you’re tired.','It’s hard to study when you’re tired.'],['When is it hard for you to study?','It’s hard to study after a long day.']],
+  [56,'gsb',['cooking together'],['Start with the activity. Cook together · easier','Cooking together is easier.'],['Compare cooking together and cooking alone.','Cooking together is easier than cooking alone.'],['Which activity is easier with a friend?','Cooking with a friend is easier.']],
+  [57,'gsb',['assemble a chair'],['Start with “It takes”. Assemble a chair · 20 minutes','It takes 20 minutes to assemble a chair.'],['How much time does the job take? Use 20 minutes.','It takes 20 minutes to assemble a chair.'],['What takes you 20 minutes to do?','It takes me 20 minutes to get to school.']],
+  [61,'gdf',['forget'],['“I’ll never forget …” · be in the front row','I’ll never forget being in the front row.'],['Describe a concert memory with “I’ll never forget …”.','I’ll never forget being in the front row at that concert.'],['What experience will you never forget?','I’ll never forget going to my first concert.']]
+ ];
+ GP.push(...pictureCards);
  const habits=[
+ [58,'I prefer','read a paper book','I prefer reading a paper book.','I prefer to read a paper book.'],
+ [59,'The child adores','decorate cookies','The child adores decorating cookies.'],
+ [60,'She’s about to start','paint','She’s about to start painting.','She’s about to start to paint.'],
  [24,'He likes','sleep','He likes sleeping.','He likes to sleep.'],
  [15,'The dog loves','ride in the car','The dog loves riding in the car.','The dog loves to ride in the car.'],
  [14,'The cat hates','get wet','The cat hates getting wet.','The cat hates to get wet.'],
