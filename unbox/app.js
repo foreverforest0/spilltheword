@@ -14,6 +14,7 @@
  }
  const names={s:'Choose a relative word',d:'Make a definition',j:'Join two sentences',q:'Check and repair',w:'Whose parcel is it?',p:'The story of an object'};
  const descriptions={s:'Choose who, which, where or whose to match what you unpack.',d:'Build a definition from two short sentences.',j:'Join two sentences with a relative clause.',q:'Decide whether the sentence is correct, then repair it if needed.',w:'Join two clues about the owner using whose.',p:'Read the label and tell an object’s story in the passive.'};
+ names.mix='Relative clauses';
  const topic=g=>g==='p'?'Passive voice':'Relative clauses';
  const taskKeys=()=>['s','d','j','q'];
  let active=null, audio=null, spriteSerial=0;
@@ -30,10 +31,20 @@
  }
  function button(label,attrs=''){return `<button class="ub-button" type="button" ${attrs}>${label}</button>`}
  function back(){dispose();FY=null;VCUR=null;spSetup()}
- function makeSession(gid,lv){const D=FYO[lv],simple=lv==='1'&&['w','p'].includes(gid);return {gid,lv,D,G:D[gid],items:shuffle(D[gid].items.slice()),i:0,notes:[],stars:0,simple,mode:simple?'t':S.unboxMode||'n',contents:simple?'both':S.unboxContents||'both',phase:'sealed',started:true,open:false,tok:Date.now()}}
+ function makeSession(gid,lv){const D=FYO[lv],simple=lv==='1'&&['w','p','mix'].includes(gid);
+ const items=gid==='mix'?mixedRelativeItems(D):shuffle(D[gid].items.slice());
+ return {gid,lv,D,G:D[gid],items,i:0,notes:[],stars:0,simple,mode:simple?'t':S.unboxMode||'n',contents:simple?'both':S.unboxContents||'both',phase:'sealed',started:true,open:false,tok:Date.now()}}
+ function mixedRelativeItems(bank){
+  const make=(kind,items)=>shuffle(items).slice(0,4).map(it=>({...it,kind}));
+  const describe=bank.d.items.filter(it=>it.c.includes(1)).map(it=>({...it,cue:it.b.replace(/^It /,'').replace(/\.$/,'')}));
+  const repair=bank.q.items.filter(it=>!it.good&&it.ok);
+  const groups=[make('join',bank.j.items),make('describe',describe),make('repair',repair)];
+  return groups[0].flatMap((_,i)=>shuffle(groups.map(g=>g[i]).filter(Boolean)));
+ }
  function settings(gid,lv){
   dispose();const selected=gid||FY?.gid||'d',level=lv||FY?.lv||'1',mode=FY?.mode||S.unboxMode||'n',contents=FY?.contents||S.unboxContents||'both';
-  FY=makeSession(selected,level);if(FY.simple){fyScene();return}FY.mode=mode;FY.contents=contents;
+  const key=level==='1'&&!['w','p'].includes(selected)?'mix':selected;
+  FY=makeSession(key,level);if(FY.simple){fyScene();return}FY.mode=mode;FY.contents=contents;
   setView(`<section class="ub-page ub-setup"><div class="ub-header">${button('← Topics','id="ub-back"')}<h2>Unbox it<span>${topic(selected)} · ${level==='1'?'B1':'B2'}</span></h2><span></span></div><div class="ub-setup-art">${sprite('closed')}</div><div class="ub-settings"><p class="ub-eyebrow">A LITTLE SOMETHING TO FIGURE OUT</p><h3>Choose your parcel</h3><fieldset><legend>Your task</legend><div class="ub-task-options">${taskKeys(selected,level).map(k=>[k,names[k]]).map(([k,n])=>`<button type="button" class="ub-option${k===selected?' selected':''}" data-task="${k}" aria-pressed="${k===selected}"><b>${n}</b><small>${descriptions[k]}</small></button>`).join('')}</div></fieldset><fieldset id="ub-mode-field"><legend>Your answer</legend><div class="ub-choices">${[['n','Build with word tiles'],['t','Type the sentence']].map(([k,n])=>`<button type="button" class="ub-option${k===mode?' selected':''}" data-mode="${k}" aria-pressed="${k===mode}">${n}</button>`).join('')}</div></fieldset><fieldset><legend>Inside the box</legend><div class="ub-choices">${[['both','Object + card'],['object','Object'],['card','Card']].map(([k,n])=>`<button type="button" class="ub-option${k===contents?' selected':''}" data-contents="${k}" aria-pressed="${k===contents}">${n}</button>`).join('')}</div></fieldset><p class="ub-setup-hint">Take the knife, cut the tape, then lift the wrapping paper to discover your task.</p>${button('Open my first parcel →','id="ub-start"')}</div></section>`);
   $('#ub-back').onclick=back;
   const choose=(attribute,key)=>document.querySelectorAll(`[data-${attribute}]`).forEach(b=>b.onclick=()=>{FY[key]=b.dataset[attribute];document.querySelectorAll(`[data-${attribute}]`).forEach(x=>{const on=x===b;x.classList.toggle('selected',on);x.setAttribute('aria-pressed',String(on))});if(key==='gid')$('#ub-mode-field').hidden=FY.gid==='s'});
@@ -50,39 +61,43 @@
  }
  function unwrap(run){
   if(run.phase!=='paper')return;setPhase(run,'unwrapping');sound('paper');run.root.querySelector('#ub-paper').disabled=true;instruction(run,'A little something for you…');
-  later(run,800,()=>{setPhase(run,'revealed');run.owner.open=true;instruction(run,'Your task is ready. Take a look at the card.');const task=run.root.querySelector('#fztask');task.hidden=false;fyTask();if(innerWidth<700)task.scrollIntoView({behavior:reduced?'instant':'smooth',block:'nearest'})});
+  later(run,800,()=>{setPhase(run,'revealed');run.owner.open=true;instruction(run,'');const task=run.root.querySelector('#fztask');task.hidden=false;fyTask();if(innerWidth<700)task.scrollIntoView({behavior:reduced?'instant':'smooth',block:'nearest'})});
  }
  function bindCut(run){
   const stage=run.root.querySelector('#ub-stage'),parcel=run.root.querySelector('#ub-parcel'),knife=run.root.querySelector('#ub-knife'),ghost=run.root.querySelector('#ub-knife-ghost'),guide=run.root.querySelector('#ub-guide'),mark=run.root.querySelector('#ub-cut-mark'),progress=run.root.querySelector('#ub-progress');
-  const A={x:530,y:220},B={x:420,y:373},dx=B.x-A.x,dy=B.y-A.y,len2=dx*dx+dy*dy;run.seam={a:A,b:B};run.bins=new Uint8Array(64);
+  const A={x:507,y:254},B={x:449,y:332},dx=B.x-A.x,dy=B.y-A.y,len2=dx*dx+dy*dy;run.seam={a:A,b:B};run.bins=new Uint8Array(64);
   const point=e=>{const r=parcel.getBoundingClientRect();return {x:(e.clientX-r.left)*1000/r.width,y:(e.clientY-r.top)*(2000/3)/r.height}};
   const ghostAt=e=>{const r=stage.getBoundingClientRect();ghost.style.left=(e.clientX-r.left)+'px';ghost.style.top=(e.clientY-r.top)+'px'};
-  const sample=p=>{const t=((p.x-A.x)*dx+(p.y-A.y)*dy)/len2;if(t<-.08||t>1.08)return;const clamped=Math.max(0,Math.min(1,t)),distance=Math.hypot(p.x-A.x-clamped*dx,p.y-A.y-clamped*dy);if(distance>23)return;const bin=Math.min(63,Math.floor(clamped*64));run.bins[bin]=1};
+  const sample=p=>{const t=((p.x-A.x)*dx+(p.y-A.y)*dy)/len2;if(t<-.08||t>1.08)return;const clamped=Math.max(0,Math.min(1,t)),distance=Math.hypot(p.x-A.x-clamped*dx,p.y-A.y-clamped*dy);if(distance>44)return;const bin=Math.min(63,Math.floor(clamped*64));run.bins[bin]=1};
   const record=p=>{
    if(run.previous){const a=run.previous,d=Math.hypot(p.x-a.x,p.y-a.y),steps=Math.min(350,Math.max(1,Math.ceil(d/3)));for(let i=1;i<=steps;i++)sample({x:a.x+(p.x-a.x)*i/steps,y:a.y+(p.y-a.y)*i/steps})}else sample(p);
    run.previous=p;const n=run.bins.reduce((s,v)=>s+v,0);progress.value=n;run.root.dataset.cut=String(n);
    let paths='';for(let i=0;i<64;i++)if(run.bins[i]){const t=i/64,t2=(i+1)/64;paths+=`M${A.x+dx*t},${A.y+dy*t} L${A.x+dx*t2},${A.y+dy*t2} `}mark.setAttribute('d',paths);
    if(n>run.lastSound&&performance.now()-(run.soundAt||0)>80){sound('cut');run.lastSound=n;run.soundAt=performance.now()}
-   if(n>=57&&run.bins.slice(0,4).some(Boolean)&&run.bins.slice(60).some(Boolean)){guide.style.opacity='0';openBox(run)}
+   if(n>=38){guide.style.opacity='0';openBox(run)}
   };
   const take=e=>{
-   if(run.phase!=='sealed')return;run.held=true;run.root.classList.add('ub-holding');knife.setAttribute('aria-pressed','true');instruction(run,'Draw the blade along the tape, from one end of the dotted seam to the other.');sound('take');if(e)ghostAt(e);
+   if(run.phase!=='sealed')return;run.held=true;run.root.classList.add('ub-holding');knife.setAttribute('aria-pressed','true');instruction(run,'Swipe along the short dotted line, or tap the box.');sound('take');if(e)ghostAt(e);
   };
-  const start=e=>{if(run.phase!=='sealed'||!run.held||e.button!==0)return;e.preventDefault();run.drawing=true;run.previous=null;stage.setPointerCapture(e.pointerId);ghostAt(e);record(point(e))};
+  const start=e=>{if(run.phase!=='sealed'||!run.held||e.button!==0)return;e.preventDefault();run.tap=parcel.contains(e.target)?{x:e.clientX,y:e.clientY}:null;run.drawing=true;run.previous=null;stage.setPointerCapture(e.pointerId);ghostAt(e);record(point(e))};
   knife.onpointerdown=e=>{e.stopPropagation();take(e);start(e)};
-  knife.onclick=e=>{if(e.detail===0){take();parcel.focus()}};
+  knife.onclick=()=>{if(run.phase==='sealed'){take();parcel.focus()}};
   stage.onpointerdown=e=>{if(e.target.closest('#ub-paper'))return;start(e)};
   stage.onpointermove=e=>{if(!run.held)return;ghostAt(e);if(run.drawing&&run.phase==='sealed')record(point(e))};
   const finish=e=>{run.drawing=false;run.previous=null;if(stage.hasPointerCapture(e.pointerId))stage.releasePointerCapture(e.pointerId)};
-  stage.onpointerup=finish;stage.onpointercancel=finish;
-  parcel.onkeydown=e=>{if((e.key==='Enter'||e.key===' ')&&run.held&&run.phase==='sealed'){e.preventDefault();run.bins.fill(1);progress.value=64;openBox(run)}else if(e.key==='Escape'&&run.phase==='sealed'){returnKnife(run);instruction(run,'Take the knife, then cut the tape along the seam.')}};
+  stage.onpointerup=e=>{
+   const tap=run.tap;run.tap=null;finish(e);
+   if(tap&&Math.hypot(e.clientX-tap.x,e.clientY-tap.y)<10)openBox(run);
+  };
+  stage.onpointercancel=e=>{run.tap=null;finish(e)};
+  parcel.onkeydown=e=>{if((e.key==='Enter'||e.key===' ')&&run.held&&run.phase==='sealed'){e.preventDefault();run.bins.fill(1);progress.value=64;openBox(run)}else if(e.key==='Escape'&&run.phase==='sealed'){returnKnife(run);instruction(run,'Take the knife. Swipe the dotted line or tap the box.')}};
  }
  const oldTask=fyTask;
  fyStart=(gid,lv)=>settings(gid,lv);
  fyScene=()=>{
   dispose();if(!FY)return;const owner=FY;if(owner.i>=owner.items.length){fyEnd();return}
   const it=owner.items[owner.i],revealed=owner.phase==='revealed',pattern=owner.i%6,label=owner.gid==='s'?it.l:it.n;
-  setView(`<section class="ub-page" data-phase="${revealed?'revealed':'sealed'}"><div class="ub-header">${button('← Topics','id="ub-back"')}<h2>Unbox it<span>${esc(names[owner.gid])}</span></h2><div class="ub-header-end"><span>Parcel ${owner.i+1} / ${owner.items.length}</span>${owner.simple?'':button('Choose task','id="ub-settings"')}</div></div><div class="ub-stage" id="ub-stage"><div class="ub-instruction-note">${sprite('redCard')}<p id="ub-instruction" role="status" aria-live="polite">${revealed?'Your task is ready. Take a look at the card.':'Take the knife, then cut the tape along the seam.'}</p></div><div class="ub-parcel" id="ub-parcel" tabindex="0" role="group" aria-label="Parcel. Take the knife, then drag along the tape. Keyboard: take the knife with Enter, then press Enter here to cut."><div class="ub-open"><img src="${OPEN}" alt="Open cardboard parcel" draggable="false"></div><div class="ub-inside ub-inside--${owner.contents}" aria-hidden="true">${objectMarkup(it)}<div class="ub-inner-card">${sprite('redCard')}<span class="${owner.gid==='p'?'ub-tag-copy':''}">${owner.gid==='p'?esc(it.b):'A LITTLE<br>CHALLENGE'}</span></div></div><div class="ub-paper-mask"><button class="ub-paper" id="ub-paper" type="button" disabled aria-label="Lift the wrapping paper">${paperTexture(pattern)}<span class="ub-paper-fold"></span></button></div><img class="ub-front" src="${OPEN}" alt="" draggable="false"><div class="ub-closed">${sprite('closed')}</div><div class="ub-flap ub-flap--back">${sprite('flap')}</div><div class="ub-flap ub-flap--front">${sprite('flap')}</div><svg class="ub-cut-overlay" viewBox="0 0 1000 666.6667" aria-hidden="true"><path id="ub-guide" d="M530 220L420 373"/><path id="ub-cut-mark"/></svg><div class="ub-loose-tape">${sprite('peeled')}</div></div><button type="button" class="ub-knife" id="ub-knife" aria-label="Take the knife" aria-pressed="false">${sprite('knife')}<span>Take the knife</span></button><div class="ub-knife-ghost" id="ub-knife-ghost" aria-hidden="true">${sprite('knife')}</div><progress id="ub-progress" class="ub-sr-only" max="64" value="0" aria-label="Tape cut progress"></progress></div><div class="ub-item-label" aria-hidden="true">${esc(label)}</div><div class="ub-task" data-topic="${topic(owner.gid)}" id="fztask"${revealed?'':' hidden'}></div></section>`);
+  setView(`<section class="ub-page" data-collection="${owner.gid}" data-phase="${revealed?'revealed':'sealed'}"><div class="ub-header">${button('← Topics','id="ub-back"')}<h2>${owner.gid==='p'?esc(names.p):'Unbox it · '+esc(names[owner.gid])}</h2><div class="ub-header-end">${owner.gid==='p'?'':`<span>Parcel ${owner.i+1} / ${owner.items.length}</span>`}${owner.simple?'':button('Choose task','id="ub-settings"')}</div></div><div class="ub-stage" id="ub-stage"><div class="ub-instruction-note">${owner.gid==='p'?'':sprite('redCard')}<p id="ub-instruction" role="status" aria-live="polite">${revealed?'':'Take the knife. Swipe the dotted line or tap the box.'}</p></div><div class="ub-parcel" id="ub-parcel" tabindex="0" role="group" aria-label="Parcel. Take the knife, then drag along the tape. Keyboard: take the knife with Enter, then press Enter here to cut."><div class="ub-open"><img src="${OPEN}" alt="Open cardboard parcel" draggable="false"></div><div class="ub-inside ub-inside--${owner.contents}" aria-hidden="true">${objectMarkup(it)}${owner.lv==='2'?`<div class="ub-inner-card">${sprite('redCard')}<span>A LITTLE<br>CHALLENGE</span></div>`:''}</div><div class="ub-paper-mask"><button class="ub-paper" id="ub-paper" type="button" disabled aria-label="Lift the wrapping paper">${paperTexture(pattern)}<span class="ub-paper-fold"></span></button></div><img class="ub-front" src="${OPEN}" alt="" draggable="false"><div class="ub-closed">${sprite('closed')}</div><div class="ub-flap ub-flap--back">${sprite('flap')}</div><div class="ub-flap ub-flap--front">${sprite('flap')}</div><svg class="ub-cut-overlay" viewBox="0 0 1000 666.6667" aria-hidden="true"><path id="ub-guide" d="M507 254L449 332"/><path id="ub-cut-mark"/></svg><div class="ub-loose-tape">${sprite('peeled')}</div></div><button type="button" class="ub-knife" id="ub-knife" aria-label="Take the knife" aria-pressed="false">${sprite('knife')}<span>Take the knife</span></button><div class="ub-knife-ghost" id="ub-knife-ghost" aria-hidden="true">${sprite('knife')}</div><progress id="ub-progress" class="ub-sr-only" max="64" value="0" aria-label="Tape cut progress"></progress></div><div class="ub-item-label" aria-hidden="true">${esc(label)}</div><div class="ub-task" data-topic="${topic(owner.gid)}" id="fztask"${revealed?'':' hidden'}></div></section>`);
   const root=$('.ub-page'),run={owner,root,phase:revealed?'revealed':'sealed',held:false,drawing:false,timers:new Set(),lastSound:0};active=run;
   $('#ub-back').onclick=back;const settingsButton=$('#ub-settings');if(settingsButton)settingsButton.onclick=()=>settings(owner.gid,owner.lv);
   const paper=$('#ub-paper');let paperTouch=null;
@@ -95,9 +110,16 @@
   if(revealed)fyTask();
  };
  fyTask=()=>{const task=$('#fztask');if(!task||!FY)return;task.hidden=false;
+  if(FY.gid==='mix'){
+   const it=FY.items[FY.i];
+   const directions={join:'Join the two sentences using who, which, that or where.',describe:'Describe the object in one sentence. Use which or that.',repair:'Fix the underlined word. Write the whole sentence.'};
+   const clue=it.kind==='join'?[it.a,it.b].map(v=>`<div>${esc(v)}</div>`).join(''):it.kind==='describe'?`<div>${esc(it.n)} · ${esc(it.cue)}</div>`:`<div>${fyHi(it.s,it.hl)}</div>`;
+   task.innerHTML=`<div class="evq">${directions[it.kind]}</div><div class="fzcard">${clue}</div><div id="fzans"></div>`;
+   fyBuild($('#fzans'),it,'',0,(s,f,r)=>fyDone(task,s,f,r));return;
+  }
   if(FY.gid==='w'||FY.gid==='p'){
    const it=FY.items[FY.i],passive=FY.gid==='p';
-   task.innerHTML=`<div class="evq">${passive?'Describe the object using the label.':'Join the two clues using whose.'}</div>${passive?`<div class="ub-label"><p class="ub-label-name">${esc(it.n)}</p><div class="ub-label-facts">${it.b.split(' · ').map(f=>`<span>${esc(f)}</span>`).join('')}</div></div><p class="fzhint"><b>${esc(it.tenseName)}</b><br>Start: ${esc(it.start)}</p>`:`<div class="fzcard"><div>${esc(it.a)}</div><div>${esc(it.b)}</div></div>`}<div id="fzans"></div>`;
+   task.innerHTML=`<div class="evq">${passive?'Describe the object using the label.':'Join the two clues using whose.'}</div>${passive?`<div class="ub-label"><p class="ub-label-name">${esc(it.n)}</p><div class="ub-label-facts">${it.b.split(' · ').map(f=>`<span>${esc(f)}</span>`).join('')}</div></div>`:`<div class="fzcard"><div>${esc(it.a)}</div><div>${esc(it.b)}</div></div>`}<div id="fzans"></div>`;
    fyBuild($('#fzans'),it,'',0,(s,f,r)=>fyDone(task,s,f,r));return;
   }
   oldTask();task.querySelectorAll('.fypb span').forEach(x=>x.remove());const q=task.querySelector('.evq');if(FY.gid==='s'&&q)q.textContent='Which relative word fits this person, thing or place?'};
@@ -121,7 +143,8 @@
   const menu=lv==='1'?'fyB1':'fyB2';SPSHORT[menu]='Unbox it: relative clauses';
  }
  // New B1 collections are registered in their grammar topics as well as the parcel setup.
- VG.fyB1[1].push(['fw1',names.w]);
+ VG.fyB1[1].splice(0,VG.fyB1[1].length,['fd1',names.mix],['fw1',names.w]);
+ for(const group of SPGRP.b1){group[1]=group[1].filter(id=>!['fs1','fj1','fq1'].includes(id));}
  for(const g of ['w','p']){const id='f'+g+'1';SPSHORT[id]='Unbox it: '+names[g];DMT[id]=1;DMTF[id]=()=>fyStart(g,'1');SPT.push({id,n:SPSHORT[id],d:descriptions[g]});}
  const passiveGroup=SPGRP.b1.find(g=>g[1].includes('cwa'));if(passiveGroup&&!passiveGroup[1].includes('fp1'))passiveGroup[1].push('fp1');
  const relativeGroup=SPGRP.b1.find(g=>g[1].includes('fyB1'));if(relativeGroup&&!relativeGroup[1].includes('fw1'))relativeGroup[1].push('fw1');

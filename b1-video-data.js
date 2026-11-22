@@ -2211,3 +2211,24 @@ window.B1VideoData = {
     }
   ]
 };
+
+for(const topic of B1VideoData.topics){
+ for(const stage of topic.stages){
+  if(topic.number===6){
+   stage.tasks=stage.tasks.map(task=>{
+    const speaker=task.prompt.match(/^Imagine (.+?), “/)?.[1];
+    const quote=task.prompt.match(/“[^”]+”/)?.[0]||'';
+    const prompt=stage.title==='Questions without question order'||/asks them/.test(task.prompt)
+     ?'Report the quoted question.':stage.title==='Requests, orders and invitations'
+     ?'Report the quoted request, order or invitation.':'Report the quoted statement.';
+    return {...task,prompt,context:(speaker?speaker.charAt(0).toUpperCase()+speaker.slice(1)+': ':'')+quote+(stage.title==='Retell it tomorrow'?' · Report it the next day.':'')};
+   });
+   continue;
+  }
+  const direct=stage.tasks.filter(task=>!/\bimagine\b/i.test(task.prompt+' '+task.context));
+  if(direct.length){stage.tasks=direct;continue}
+  const task=stage.tasks[0];
+  if(topic.number===3)stage.tasks=[{...task,prompt:'Watch the two people meet. Complete: Before the journey, they …',context:'Use hadn’t met.'}];
+  if(topic.number===7)stage.tasks=[{...task,prompt:'Which woman is with the cart? Describe her in one sentence with whose.',context:'chair · on the cart'}];
+ }
+}

@@ -2,7 +2,7 @@ try{if(window.parent!==window)window.parent.SharedGame?.attachFrame(window)}catc
 /* Shared visual language for the main app and embedded games. */
 (()=>{
  const wave=[0,-.55,-1,-.72,-.12,.6,1,.72,.15,-.5];
- const doodles=Array.from({length:8},(_,i)=>`<image href="${new URL(`assets/pencils/pencil-${i+1}.svg`,document.currentScript?.src||document.baseURI)}" x="15" width="18" height="48"/>`);
+ const doodles=Array.from({length:8},(_,i)=>`<image href="${new URL(`assets/pencils/pencil-${i+1}.svg`,document.currentScript?.src||document.baseURI)}" x="9" width="30" height="48"/>`);
  const gameNames=new Set(['Word Craft','Absurd Choices','Scrambl','Sentence Expander','Shop','Creative Writing','Grammar Dice','Gachapon']);
  function decorate(title){
   if(title.tagName==='H3'&&!gameNames.has(title.textContent.replace(/\s+/g,' ').trim()))return;
@@ -17,7 +17,12 @@ try{if(window.parent!==window)window.parent.SharedGame?.attachFrame(window)}catc
    if(wi<words.length-1){f.appendChild(document.createTextNode(' '));if(wi===0||(wi>2&&wi%3===0)){const icon=document.createElementNS('http://www.w3.org/2000/svg','svg');icon.classList.add('stw-title-doodle');icon.setAttribute('viewBox','0 0 48 48');icon.setAttribute('aria-hidden','true');icon.innerHTML=doodles[wi%doodles.length];f.appendChild(icon)}}
   });title.replaceChildren(f);
  }
- function enhanceTitles(root=document){schedulePencils();if(root.matches?.('h1,h2,h3,.brand,.game-nav>span,.stw-home .category'))decorate(root);root.querySelectorAll?.('h1,h2,h3,.brand,.game-nav>span,.stw-home .category').forEach(decorate)}
+ function enhanceTitles(root=document){
+  root.querySelectorAll?.('#view button,#view a').forEach(control=>{
+   if(!/^(?:←\s*)?(?:back to )?topics$/i.test(control.textContent.trim())||control.classList.contains('stw-back-to-topics'))return;
+   control.classList.add('stw-back-to-topics');control.textContent='← Back to topics';
+  });
+  schedulePencils();if(root.matches?.('h1,h2,h3,.brand,.game-nav>span,.stw-home .category'))decorate(root);root.querySelectorAll?.('h1,h2,h3,.brand,.game-nav>span,.stw-home .category').forEach(decorate)}
  function keepPencilsClear(){
   const pencils=[...document.querySelectorAll('.home-pencil-row img')];if(!pencils.length)return;
   const obstacles=[...document.querySelectorAll('body button,body a,body input')].filter(el=>!el.closest('.stw-home')&&getComputedStyle(el).position==='fixed').map(el=>el.getBoundingClientRect());

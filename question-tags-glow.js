@@ -16,11 +16,11 @@
 
   function check(card, answer) {
     const text = normalize(answer);
-    if (!text) return ['empty', 'Write the tag or switch to Oral.'];
+    if (!text) return ['empty', 'Write the question tag first.'];
     const stem = normalize(card.stem) + ' ';
     const tag = text.startsWith(stem) ? text.slice(stem.length) : text;
     const models = card.tags.map(normalize);
-    if (models.includes(tag)) return ['correct', 'That tag fits the sentence and the situation.'];
+    if (models.includes(tag)) return ['correct', 'That tag fits the sentence.'];
     const contrast = models[0].replace(/n't /, ' ');
     if (contrast !== models[0] && contrast === tag) return ['review', card.hint];
     return ['review', 'Compare with the example. Check the auxiliary, polarity and pronoun.'];
@@ -31,7 +31,7 @@
     seaOff();
     S.splevel = level;
     const cards = levels[level];
-    const state = saved[level] ??= { index: 0, oral: false, drafts: {} };
+    const state = saved[level] ??= { index: 0, drafts: {} };
     let audioContext, oscillator, timer, playback = 0;
 
     function stop() {
@@ -56,20 +56,13 @@
           </header>
           <div class="qtg-workspace">
             <div class="qtg-top"><h2>${esc(card.title)}</h2><output aria-label="Situation ${state.index + 1} of ${cards.length}">${state.index + 1} / ${cards.length}</output></div>
-            <p class="qtg-context">${esc(card.context)}</p>
             <p class="qtg-stem">${esc(card.stem)}, <span aria-label="missing question tag">…?</span></p>
-            <div class="qtg-mode" role="group" aria-label="Practice mode">
-              <button id="qtgWritten" type="button" aria-pressed="${!state.oral}">Written</button>
-              <button id="qtgOral" type="button" aria-pressed="${state.oral}">Oral</button>
-            </div>
-            ${state.oral ? '<p>Say the full sentence with a tag. Then compare with the example.</p>' : `
               <form id="qtgForm">
                 <label for="qtgAnswer">Add the question tag.</label>
                 <input id="qtgAnswer" type="text" maxlength="300" autocomplete="off" spellcheck="false" value="${esc(draft.text)}">
                 <button type="submit">Check tag</button>
               </form>
               <p id="qtgFeedback" role="status" data-result="${esc(draft.result?.[0])}">${esc(draft.result?.[1])}</p>
-            `}
             <section class="qtg-pitch" aria-label="Intonation">
               <div class="qtg-halo" aria-hidden="true"></div>
               <h3>How would you say the tag?</h3>
@@ -84,7 +77,7 @@
               <p id="qtgPitchFeedback" role="status"></p>
             </section>
             <details id="qtgHint" ${draft.hint ? 'open' : ''}><summary>Hint</summary><p>${esc(card.hint)}</p></details>
-            <details id="qtgExample" ${draft.example ? 'open' : ''}><summary>Show example</summary>
+            <details id="qtgExample" ${draft.example ? 'open' : ''}><summary>Show the right answer</summary>
               <p>${esc(card.stem)}, <strong>${esc(card.tags[0])}?</strong></p>
               <p><strong>${directions[card.direction]} pitch.</strong> ${esc(card.reason)}</p>
             </details>
@@ -181,8 +174,6 @@
       }
       get('qtgHint').ontoggle = event => { draft.hint = event.currentTarget.open; save(); };
       get('qtgExample').ontoggle = event => { draft.example = event.currentTarget.open; save(); };
-      get('qtgWritten').onclick = () => { if (state.oral) { state.oral = false; render('qtgWritten'); } };
-      get('qtgOral').onclick = () => { if (!state.oral) { state.oral = true; render('qtgOral'); } };
       get('qtgPrev').onclick = () => { state.index--; render(state.index === 0 ? 'qtgNext' : 'qtgPrev'); };
       get('qtgNext').onclick = () => { state.index++; render(state.index === cards.length - 1 ? 'qtgPrev' : 'qtgNext'); };
       get('qtgBack').onclick = () => {
@@ -203,7 +194,7 @@
     DMT[id] = 1;
     DMTF[id] = () => open(level);
     SPSHORT[id] = 'Question tags · voice glow';
-    SPT.push({ id, n: SPSHORT[id], d: 'Build the tag and choose the intonation that suits the situation.' });
+    SPT.push({ id, n: SPSHORT[id], d: 'Add a question tag and practise its intonation.' });
     const topics = SPGRP[level];
     const topic = topics.find(([name]) => /^\d+\s*·/.test(name) && /question tags|tag questions/i.test(name));
     if (topic) topic[1].push(id);

@@ -2871,3 +2871,31 @@ window.FutureLevelData={
     ]
   }
 };
+
+// Fictional booking times and prices for language practice.
+{
+ const tickets=[
+  ['The British Museum','London','10:30','£0','visit','the British Museum','opens'],
+  ['Paddington 2','BFI Southbank, London','17:00','£12','see','Paddington 2','starts'],
+  ['Flight to Paris','London Heathrow','08:15','£79','fly','to Paris','departs'],
+  ['Hotel check-in','Hotel Ibis, Paris','15:00','€89','check in','at the hotel','starts'],
+  ['Louvre Museum','Paris','11:00','€22','visit','the Louvre','opens'],
+  ['The London Eye','London','14:30','£30','ride','the London Eye','opens'],
+  ['Central Park bike tour','New York','09:45','$28','join','the bike tour','starts'],
+  ['Disneyland Park','Anaheim','10:00','$99','visit','Disneyland','opens'],
+  ['Ferry to the Statue of Liberty','Battery Park, New York','12:15','$25','take','the ferry','departs'],
+  ['Amsterdam canal cruise','Amsterdam','16:30','€18','take','the canal cruise','starts']
+ ];
+ const traveller='Oliver';
+ const documents=window.FutureLevelData.b1.documents;
+ documents.will=tickets.map(([title,place,time,cost,verb,detail],i)=>{
+  const action=verb+' '+detail;
+  const answer=i%3===1?`${traveller} will ${action} at ${time}.`:i%3===2?`Will ${traveller} ${action} at ${time}?`:`When will ${traveller} ${action}?`;
+  const prompt=i%3===1?`When will ${traveller} ${action}? Answer in a full sentence.`:i%3===2?`Ask a yes/no question about ${traveller}’s plan.`:`Ask when ${traveller} will ${action}.`;
+  return {id:'b1-ticket-will-'+i,kind:'will',title,facts:[place,time,cost],prompt,hint:'A statement uses will + verb. For a question, put will before the subject.',answers:[answer]};
+ });
+ documents.timetable=tickets.map(([title,place,time,cost],i)=>{
+  const verb=tickets[i][6],subject=/^(Flight |Ferry |Louvre Museum|Central Park bike tour|Amsterdam canal cruise)/.test(title)?'The '+title.replace(/^(Flight|Ferry)/,word=>word.toLowerCase()):title;
+  return {id:'b1-ticket-time-'+i,kind:'timetable',title,facts:[place,time,cost],prompt:'Say when this event happens. Use the Present Simple.',hint:'Use the name on the ticket as the subject.',answers:[`${subject} ${verb} at ${time}.`]};
+ });
+}

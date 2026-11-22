@@ -1,0 +1,34 @@
+body.stw-site-theme .stw-title-doodle{width:.73em;height:1.25em;margin:0 .16em}
+body.stw-site-theme #view .blobb{width:115px}
+body.stw-site-theme #view .blobb img{width:28px;height:65px}
+body #view .stw-back-to-topics{
+ display:inline-flex!important;align-items:center;justify-content:center;min-height:40px;
+ padding:7px 13px!important;border:1px solid currentColor!important;border-radius:5px!important;
+ background:#fbf8ee!important;color:var(--lesson-ink,#26422b)!important;
+ font:16px/1.2 Georgia,serif!important;white-space:nowrap;
+}
+body #view .stw-back-to-topics:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.ft-print-bar{position:relative;z-index:4;display:flex;justify-content:center;padding:10px 8px}
+body #view .ft-print-bar #ftPrint{border:1px solid currentColor!important;background:#fbf8ee!important;color:#44030b!important}
+.ft-printer-page .tt-housing{top:66px}
+.ft-printer-page .tt-paper-window{margin-top:calc(9.5cqw + 16px)}
+body #view .pn-right-page{min-height:0;align-self:start}
+body.stw-site-theme #view .pn-right-page textarea{height:176px!important;min-height:0!important;resize:vertical}
+.pn-model{margin:12px 0}
+@media(min-width:1000px){body #view .pn-book{grid-template-columns:minmax(0,3fr) minmax(235px,1fr);align-items:start}}
+body #view .b1-fridge.blue .b1-prefix:not([hidden]){
+ color:#13244c!important;background:#fff4d9;line-height:1.35;padding:7px 10px;border-radius:4px;
+}
+body #view .b1-fridge-input{width:100%;min-width:0;resize:vertical}
+.b1-cues{color:var(--lesson-ink,#26422b);font:21px/1.45 Georgia,serif;width:100%;margin:.2rem 0}
+body #view .ub-page[data-collection="p"] .ub-header h2{font-size:clamp(24px,4vw,46px)!important}
+body #view .ub-page[data-phase="revealed"] .ub-instruction-note{display:none}
+body #view .ub-page[data-collection="mix"] .ub-task details,body #view .ub-page[data-collection="p"] .ub-task details{margin:12px 0}
+body #view .ft-print-bar #ftPrint{margin-top:0}
+.ub-page[data-collection="p"] .ub-instruction-note{
+ position:relative;inset:auto;width:auto;min-height:0;max-width:none;padding:0;
+}
+.ub-page[data-collection="p"] .ub-instruction-note p{
+ position:static;transform:none;margin:8px auto;text-align:center;color:#26422b;
+}
+.cw-model{margin:8px 16px 16px}

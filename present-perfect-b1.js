@@ -22,14 +22,14 @@
   ['They have put the recycling bins in the garden.','Where have they put the recycling bins?','Where','they','place',T(3,7,'recycling bins')],
   ['He has kept his diary in the cupboard.','Where has he kept his diary?','Where','he','place',T(4,1,'keep a diary')],
   ['She has left her smartphone in the kitchen.','Where has she left her smartphone?','Where','she','place',T(3,3,'smartphone')],
-  ['Yes, she has applied for a part-time job.','Has she applied for a part-time job?','Has','she','yes/no; keep the activity',B(5,'part-time job')],
-  ['No, they have not met a famous person.','Have they met a famous person?','Have','they','positive yes/no; keep the activity',T(4,1,'meet a famous person')],
-  ['Yes, he has eaten sushi.','Has he eaten sushi?','Has','he','yes/no; keep the activity',T(4,1,'eat sushi')],
-  ['No, she has not ridden a horse.','Has she ridden a horse?','Has','she','positive yes/no; keep the activity',T(4,1,'ride a horse')],
+  ['Yes, she has applied for a part-time job.','Has she applied for a part-time job?','Has','she','yes/no',B(5,'part-time job')],
+  ['No, they have not met a famous person.','Have they met a famous person?','Have','they','a positive yes/no question',T(4,1,'meet a famous person')],
+  ['Yes, he has eaten sushi.','Has he eaten sushi?','Has','he','yes/no',T(4,1,'eat sushi')],
+  ['No, she has not ridden a horse.','Has she ridden a horse?','Has','she','a positive yes/no question',T(4,1,'ride a horse')],
   ['He has quit because he has felt stressed at work.','Why has he quit?','Why','he','reason for quitting',B(5,'quit')],
   ['She has felt exhausted because she has worked overtime.','Why has she felt exhausted?','Why','she','reason for feeling exhausted',B(6,'overtime')],
-  ['They have spent fifty pounds on a birthday present.','How much have they spent on a birthday present?','How much','they','amount of money; keep on a birthday present',T(2,1,'spend')],
-  ['She has paid twenty pounds for the board game.','How much has she paid for the board game?','How much','she','amount of money; keep for the board game',T(2,1,'pay')]
+  ['They have spent fifty pounds on a birthday present.','How much have they spent on a birthday present?','How much','they','amount of money spent on a birthday present',T(2,1,'spend')],
+  ['She has paid twenty pounds for the board game.','How much has she paid for the board game?','How much','she','amount of money paid for the board game',T(2,1,'pay')]
  ].map(([answer,question,start,subject,focus,vocab])=>({answer,question,start,subject,focus,vocab}));
  const timeRows=[
   ['She has known her flatmate ___ 2019.','since',B(3,'be friendly with')],
@@ -91,8 +91,8 @@
   ['They have already payed the bill.','They have already paid the bill.','participle',B(9,'bill')],
   ['She has forgot her bank card.','She has forgotten her bank card.','participle',T(2,1,'bank card')]
  ].map(([wrong,answer,error,vocab])=>({wrong,answer,error,vocab}));
- const questionCue=q=>`Answer: ${q.answer}\nAsk about ${q.focus}. Start with “${q.start}”. Use “${q.subject}”. Keep the other necessary words; add no extra words.`;
- const questionHint=q=>`${q.start} + ${/^(Have|Has)$/.test(q.start)?'subject + V3':'have / has + subject + V3'}?`;
+ const questionCue=q=>`Answer: ${q.answer}\nAsk about ${q.focus}.`;
+ const questionHint=q=>`Start with “${q.start}”. Use “${q.subject}”. Keep the other necessary words. ${q.start} + ${/^(Have|Has)$/.test(q.start)?'subject + V3':'have / has + subject + V3'}?`;
  function addDrill(id,label,C){
   TYD[id]=C;SPSHORT[id]=label;DMT[id]=1;DMTF[id]=()=>tyDrillStart(id);
   SPT.push({id,n:label,d:C.help});const group=SPGRP.b1.find(g=>g[0].startsWith('1 ·'));
@@ -104,21 +104,26 @@
   pool(){return timeRows.map(r=>({p:r.sentence,a:[r.answer],h:'For + a duration; since + a starting point or a past event.',nl:true}))},fmt:(it,i)=>({t:i+'. '+it.p,nl:true})
  });
  addDrill('tppq','Typewriter: Build the question',{
-  title:'Typewriter: Present Perfect — build the question',multilineAnswers:true,help:'Read the answer and the fixed question focus. Type the complete question using the given opening and subject.',modes:[['all','Build the question']],
+  title:'Typewriter: Present Perfect — build the question',multilineAnswers:true,help:'Read the answer and ask about the detail shown.',modes:[['all','Build the question']],
   pool(){return questions.map(q=>({p:questionCue(q),a:[q.question],h:questionHint(q),nl:true}))},fmt:(it,i)=>({t:i+'. '+it.p,nl:true})
  });
  const cfg=B1MAG.mb1pf;
- cfg.guidedLabel='Sentence magnets';
- cfg.types=[['sent','Sentences: mixed types'],['time','For / since']];
- cfg.help='Build a full Present Perfect sentence. Sentences mixes statements, negatives and questions. For / since practises durations and starting points separately.';
- const sentences=buildRows.map(r=>['sent',[r.answer],null,null,{prompt:r.cue,vocab:r.vocab}]);
- const timeMagnets=timeRows.map(r=>{
-  const answer=r.sentence.replace('___',r.answer),tokens=answer.replace(/[.,?!]/g,'').split(' ');
-  const freePieces=tokens.concat(r.answer==='for'?'since':'for').map(word=>({word,forms:[word],fi:0}));
-  return ['time',[answer],null,null,{prompt:'Choose for or since, then build the complete sentence. '+r.sentence,tokens,freePieces,vocab:r.vocab}];
- });
- cfg.items=()=>sentences.concat(timeMagnets);
- cfg.hints=['have / has + V3. Negatives: have / has not + V3. Questions: have / has + subject + V3?','For + duration. Since + starting point or a past event. Leave the unused time word in the bank.'];
+ cfg.types=[['sent','Present Perfect'],['all','Mixed forms']];
+ cfg.help='Use the cues to make a full sentence. In Mixed forms, choose for or since where needed.';
+ const sentences=buildRows.map(r=>['sent',[r.answer],null,null,{cue:r.cue.replace(/^Ask a yes\/no question: (.*)$/,'$1 / ?'),vocab:r.vocab}]);
+ const mixed=[
+  ['I / not use / my bank card / yesterday','I haven’t used my bank card since yesterday.'],
+  ['she / know / her flatmate / 2019','She has known her flatmate since 2019.'],
+  ['they / stay in touch / five years','They have stayed in touch for five years.'],
+  ['he / have / this laptop / ages / ?','Has he had this laptop for ages?'],
+  ['we / not see / our landlord / last Friday','We haven’t seen our landlord since last Friday.'],
+  ['she / earn / pocket money / two weeks / ?','Has she been earning pocket money for two weeks?'],
+  ['they / practise / all morning','They have been practising all morning.'],
+  ['I / buy / this camera / yesterday','I bought this camera yesterday.'],
+  ['he / wait / twenty minutes / still waiting','He has been waiting for twenty minutes.']
+ ].map(([cue,answer])=>['mixed',[answer],null,null,{cue}]);
+ cfg.items=()=>sentences.concat(mixed);
+ cfg.hints=['Have / has + past participle. Use Past Simple for a finished action at a finished time.','For + duration. Since + starting point. Have / has been + -ing for an activity still in progress.'];
  // Discard only cached rounds for this exercise; saved course choices are untouched.
  for(const key of Object.keys(MGXQ))if(key.startsWith('mb1pf'))delete MGXQ[key];
  const pond={

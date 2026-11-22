@@ -713,3 +713,33 @@ window.PastNotebookData=[
     }
   }
 ];
+
+{
+ const endings={
+  dog:['London','Max escaped from Amelia’s work bag during Leo’s interview and ate Ben’s sandwich. Amelia had brought Max to work because the dog sitter had cancelled. The manager moved the interview to 10:30.'],
+  farewell:['Manchester','Ben had left the office group chat. Amelia saw only a cropped message and thought he had quit his job. The team bought him a farewell cake before anyone read the whole message.'],
+  proposal:['Paris','The kitchen had sent a ring and a dessert for table 21. The waiter read the number as 12 and took them to Amelia and Ben. Amelia thought Ben had planned to propose.'],
+  gift:['York','Leo gave Aunt Rose a teapot. Rose passed the unopened box on to Amelia the following Christmas. A year later, Amelia wrapped the same box for Rose because she had never looked inside it.'],
+  santa:['Bristol','Ben posted a joke about quitting in the office chat, then deleted it. Amelia had already saved a screenshot. She printed it on a Secret Santa mug because she thought everyone knew the joke.'],
+  'side-b':['London','Oliver thought Harry hadn’t paid his share of the electricity bill. Harry had already paid and had left the receipt with some chocolate. Years later, Oliver heard Harry’s apology on side B and invited him for coffee.'],
+  'room-1301':['London','Florence booked room 1301 after her train was cancelled. She gave her room to a family with a baby and got a refund. She played UNO with two other guests and slept in the breakfast room.'],
+  'take-four':['New York','A film assistant mistook Harry Mason for the actor Harry Reed. Harry missed his coffee meeting because he had stepped onto a film set. He stayed to help after the crew explained the mistake.']
+ };
+ const clues={
+  dog:{object:'Ben’s lunch box · empty under the interview table. Max was licking crumbs beside it.','paper-3':'10:07 · Max ran out of Amelia’s bag during Leo’s interview. Ben will take him outside. Move Leo’s interview to 10:30.'},
+  farewell:{'paper-3':'Thursday · Team chat\nAmelia: The screenshot only says “I’m leaving…” Does Ben mean the company?\nCharlotte: I’ll pick up a cake just in case.'},
+  proposal:{'paper-3':'20:40 · Table 12 was given table 21’s dessert by mistake. The ring was for the couple at table 21. Table 12 will not be charged.'},
+  gift:{'paper-3':'Two Christmases ago · Leo → Aunt Rose\nI hope you enjoy this teapot, Rose!'},
+  santa:{'gum-note':'Thursday · Amelia’s reminder\nUse the screenshot I saved before Ben deleted the joke. Print it on his Secret Santa mug.'},
+  'side-b':{'packing-list':'Oliver’s moving checklist\nPlay both sides of the tape before donating it. Harry wrote “For Oliver” beside Side B.'},
+  'room-1301':{train:'19:10 · The last train from London at 20:15 has been cancelled. No more trains are running tonight.',reception:'20:10 · Florence gave up room 1301 for the family with a baby. We refunded her £89. A camp bed will be ready for Florence in the breakfast room after midnight.'},
+  'take-four':{'call-sheet':'10:00 · Scene 4 · Actor booked: Harry Reed\nAssistant’s correction: I stopped Harry Mason outside the station by mistake. He was on his way for coffee.'}
+ };
+ for(const story of PastNotebookData){
+  [story.city,story.model]=endings[story.id];
+  for(const piece of story.pieces){
+   const revised=clues[story.id][piece.id];
+   if(revised)piece.text=revised;
+  }
+ }
+}

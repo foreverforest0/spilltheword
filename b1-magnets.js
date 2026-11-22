@@ -6,7 +6,7 @@ function b1Rows(type, text) {
 function b1Add(key,title,group,types,items,hints) {
  const id='mb1'+key;
  const cfg={title:'Fridge magnets: '+title,b1:true,types:[['all','Mixed / all types'],...types],items:()=>items,
-  help:'Choose a mode. Drag or tap magnets to build the answer, then press Check. Tap a magnet on the door to return it. Try the challenge for extra forms.',
+  help:'Use the cues to write or say a complete sentence. Then check or reveal an answer.',
   hints:hints||['Read the context and find the subject and auxiliary first.','Check the word order, verb form and time words.']};
  B1MAG[id]=cfg;MGXC[id]=cfg;DMT[id]=1;DMTF[id]=()=>dmMagnets(id,cfg);
  SPSHORT[id]='Fridge magnets: '+title;SPGRP.b1[group][1].push(id);SPLV.find(l=>l[0]==='b1')[2].push(id);
@@ -78,7 +78,7 @@ const B1PAST=[
  ['She failed the test because','she hadn’t studied enough.'],['Before you bought the car,','had you checked the engine?'],
  ['When we reached the hotel,','they had given our room to someone else.'],['I recognised the woman because','I had seen her on TV.']
 ];
-b1Add('pp','Past Perfect',3,[['full','Whole sentence'],['part','Finish the sentence']], B1PAST.flatMap(([prefix,tail])=>[
+b1Add('pp','Past Perfect',3,[], B1PAST.flatMap(([prefix,tail])=>[
  ['full',[prefix+' '+tail]],['part',[tail],null,null,{prefix,prompt:'Complete the sentence using Past Perfect.'}]
 ]),['Earlier past action: had + V3. Negative: hadn’t + V3.','Use Past Simple for the later event. In questions: Had + subject + V3?']);
 const B1COND1=[
@@ -272,8 +272,11 @@ function b1MagnetRound(st,mb,id,cfg,round){
  prompt.hidden=!extra.prompt||/^(Build the sentence|Complete the sentence using|Add the question tag)/i.test(extra.prompt);
  blobSet(cfg.help+' Drag or tap magnets to build your answer. Tap a placed magnet to return it. Drag it before another magnet to change the order.');
  const blue=cfg.b1||['b1','b2','c1'].includes(S.splevel)||(!S.splevel&&['b1','b2','c1'].includes(S.glevel));
- st.innerHTML=`<div class="b1-magnet-layout"><div class="b1-fridge${blue?' blue':''}" aria-label="${blue?'Blue':'Beige'} fridge"><img class="magnet-fridge-art" src="${blue?'ch/magnets-fridge-blue.png':'ch/mf_fridge.webp'}" alt=""><p class="b1-prefix"></p><div class="b1-strip" role="group" aria-label="Your answer on the fridge door"></div></div><div class="b1-bank-side"><details class="b1-settings"><summary>Practice options</summary></details><div class="b1-magnet-picture"></div><div class="b1-bank" role="group" aria-label="Available magnets"></div><div class="b1-controls"><div class="b1-new-row"></div><div class="b1-check-row"><button class="lvb" id="mgchk">✓ Check</button><button class="lvb" id="mgans">Show answer</button></div></div><div class="b1-answer" role="status" aria-live="polite"></div></div></div>`;
- st.querySelector('.b1-settings').append(mb);if(cfg.b1)st.querySelector('.b1-settings').append(level);
+ st.innerHTML=`<div class="b1-magnet-layout"><div class="b1-fridge${blue?' blue':''}" aria-label="${blue?'Blue':'Beige'} fridge"><img class="magnet-fridge-art" src="${blue?'ch/magnets-fridge-blue.png':'ch/mf_fridge.webp'}" alt=""><p class="b1-prefix"></p><div class="b1-strip" role="group" aria-label="Your answer on the fridge door"></div></div><div class="b1-bank-side"><details class="b1-settings"><summary>Practice options</summary></details><div class="b1-magnet-picture"></div><div class="b1-bank" role="group" aria-label="Available magnets"></div><div class="b1-controls"><div class="b1-new-row"></div><div class="b1-check-row"><button class="lvb" id="mgchk">✓ Check</button><button class="lvb" id="mgans">Show the right answer</button></div></div><div class="b1-answer" role="status" aria-live="polite"></div></div></div>`;
+ const writeFromCues=cfg.b1;
+ st.querySelector('.b1-settings').append(mb);
+ if(cfg.b1&&!writeFromCues)st.querySelector('.b1-settings').append(level);
+ if(id==='mb1pp')mb.hidden=true;
  st.querySelector('.b1-bank-side').insertBefore(prompt,st.querySelector('.b1-magnet-picture'));
  st.querySelector('.b1-new-row').appendChild($('#dmnew'));
  const noHints=['mkb','mgb'].includes(id);
@@ -319,6 +322,35 @@ function b1MagnetRound(st,mb,id,cfg,round){
 
  const prefix=st.querySelector('.b1-prefix');prefix.textContent=extra.prefix||'';prefix.hidden=!extra.prefix;
  const strip=st.querySelector('.b1-strip'),bank=st.querySelector('.b1-bank'),result=st.querySelector('.b1-answer');
+ if(writeFromCues){
+  const regularForms=WCL.b1.v.flatMap(base=>{
+   const stem=base.endsWith('e')?base.slice(0,-1):base;
+   const past=base.endsWith('e')?base+'d':base+'ed';
+   return [[past,base],[stem+'ing',base]];
+  });
+  const verbForms=new Map([...regularForms,...[...MGV,...TYV3].flatMap(([base,...forms])=>forms.filter(form=>typeof form==='string').flatMap(form=>form.split('|').map(word=>[word,base])))]);
+  const cues=sentence=>sentence.replace(/\b(?:hasn’t|haven’t|hadn’t)\b/gi,'not')
+   .replace(/\b(?:had|has|have)\b(?!\s*(?:[.!?]|$))/gi,'').replace(/\bbeen\s+(?=\w+ing\b)/gi,'').replace(/[.,]/g,' · ')
+   .trim().split(/\s+/).map(word=>verbForms.get(word.replace(/[.!?]$/,'').toLowerCase())||word.replace(/[.!?]$/,'')).join(' ');
+  const fullAnswer=answer=>extra.prefix?extra.prefix+' '+answer:answer;
+  const answer=answers[0],wordCue=cues(answer);
+  const hasContext=extra.prompt&&!/^(Build the sentence|Complete the sentence using|Add the question tag)/i.test(extra.prompt);
+  const cue=extra.cue||(hasContext?extra.prompt:wordCue+(answer.endsWith('?')?' · ?':''));
+  const model=extra.word?(extra.prompt||'').replace('___',extra.word):fullAnswer(answer);
+  prompt.hidden=false;prompt.textContent=round.t==='part'?'Finish the sentence.':extra.word?'Build the missing word.':'Make a complete sentence.';
+  bank.innerHTML=`<p class="b1-cues">${esc(cue)}</p><textarea class="b1-fridge-input" rows="3" aria-label="Your sentence"></textarea>`;
+  const input=bank.querySelector('textarea');
+  $('#mgans').onclick=()=>{result.textContent=model};
+  $('#mgchk').onclick=()=>{
+   const value=input.value.trim();
+   if(!value){result.textContent='Write an answer first.';return}
+   const correct=answers.some(answer=>b1AnswerMatch(value,answer)||b1AnswerMatch(value,fullAnswer(answer)))
+    ||b1AnswerMatch(value,model)||(extra.word&&b1AnswerMatch(value,extra.word));
+   result.textContent=correct?'✓ Correct!':'Try again. Check the verb form and word order.';
+  };
+  blobSet('Use the cues to write or say a full sentence. Reveal a model when you’re ready.');
+  return;
+ }
  const tokens=extra.tokens||answers[0].replace(/[.,?!]/g,'').split(' ');
  const variants={reading:['read','reading','to read'],opening:['open','opening','to open'],driving:['drive','driving','to drive'],going:['go','going','to go'],learning:['learn','learning','to learn'],saying:['say','saying','to say'],seeing:['see','seeing','to see'],being:['be','being','to be'],Learning:['Learn','Learning','To learn'],raining:['rain','raining','to rain'],drinking:['drink','drinking','to drink'],locking:['lock','locking','to lock'], 'to take':['take','taking','to take'], 'to help':['help','helping','to help'], 'to finish':['finish','finishing','to finish'], 'to buy':['buy','buying','to buy'], 'to drive':['drive','driving','to drive'], 'to rent':['rent','renting','to rent'], 'to get':['get','getting','to get'], 'to dance':['dance','dancing','to dance'], 'to lock':['lock','locking','to lock'],turning:['turn','turning','to turn'],waiting:['wait','waiting','to wait'],restarting:['restart','restarting','to restart']};
  let pieces=extra.freePieces?extra.freePieces.map((p,index)=>({...p,index})):tokens.map((word,index)=>({word,index,forms:extra.forms&&variants[word]?variants[word]:[word],fi:0}));
