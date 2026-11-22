@@ -1,0 +1,16 @@
+#view .kp-game{max-width:1080px;margin:auto;padding:12px;color:#001166}
+#view .kp-game header{display:flex!important;gap:.8rem;align-items:center}
+body.embed #view .kp-game header{display:none!important}
+.kp-game h1{font-size:clamp(1.8rem,5vw,3rem)}
+.kp-game h2{font-size:clamp(1.3rem,4vw,2rem)}
+.kp-game nav,.kp-controls{display:flex;align-items:center;flex-wrap:wrap;gap:.55rem;margin:.5rem 0}
+#view .kp-game button:not(.kp-spot){border:1px solid #001166;border-radius:8px;background:#f9f5e6;color:#001166;padding:.45rem .7rem;font:inherit;cursor:pointer}
+#view .kp-game button[aria-pressed=true]{background:#001166;color:#fff}
+#view .kp-game #kpShow{background:#824015;color:#fff}
+.kp-game .kp-stage{position:relative;width:100%;height:auto;overflow:hidden;margin:auto}
+.kp-picture{position:absolute;transform:translate(-50%,-50%);height:auto;pointer-events:none}
+.kp-controls #kpObject{display:inline-flex;align-items:center;gap:.5rem;touch-action:none}
+.kp-controls #kpObject img{width:42px;height:44px;object-fit:contain;pointer-events:none}
+.kp-game .kp-spot{position:absolute;z-index:50;transform:translate(-50%,-50%);width:36px;height:36px;background:#f9f5e6c9;border:2px dashed #001166;border-radius:50%;cursor:pointer;padding:0}
+.kp-game .kp-select .kp-spot{background:#dfe54c;border-style:solid}
+.kp-ghost{width:64px;height:64px;object-fit:contain;position:fixed;z-index:9999;pointer-events:none;transform:translate(-50%,-50%)}
