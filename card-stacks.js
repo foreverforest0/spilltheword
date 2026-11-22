@@ -18,7 +18,7 @@
   const api={host,cards,items,flips,get index(){return index},get busy(){return busy},get current(){return cards[index]},go,flip,fit,setBack,dispose};host._cardDeck=api;instances.add(api);
   function content(value,item,i){const wrap=document.createElement('div');wrap.className='cs-content';const result=typeof value==='function'?value(item,i):value;if(result instanceof Node)wrap.appendChild(result);else wrap.innerHTML=result||'';return wrap}
   items.forEach((item,i)=>{
-   const card=document.createElement('article');card.className='cs-card '+(item.className||'');card.dataset.stackCard=i;card.setAttribute('role','button');card.setAttribute('tabindex','-1');card.setAttribute('aria-label','Turn card '+(i+1));
+   const card=document.createElement('article');card.className='cs-card '+(item.className||'');card.dataset.stackCard=i;if(!item.static){card.setAttribute('role','button');card.setAttribute('aria-label','Turn card '+(i+1))}card.setAttribute('tabindex','-1');
    for(const [key,value]of Object.entries(item.data||{}))card.dataset[key]=value;
    const colour=item.colour||palette[i%palette.length];card.style.setProperty('--cs-colour',colour);card.style.setProperty('--cs-ink',ink(colour));card.innerHTML='<div class="cs-rotor"><div class="cs-face cs-front"></div><div class="cs-face cs-reverse"></div></div>';
    card._built={};stack.appendChild(card);cards.push(card);
@@ -49,7 +49,7 @@
    },direction);
   }
   function flip(value){
-   if(busy||!alive)return;busy=true;flips[index]=typeof value==='boolean'?value:!flips[index];state();options.onFlip?.(index,flips[index],api);
+   if(busy||!alive||items[index].static)return;busy=true;flips[index]=typeof value==='boolean'?value:!flips[index];state();options.onFlip?.(index,flips[index],api);
    timer=setTimeout(()=>{timer=null;finish()},reduced()?0:440);
   }
   function setBack(i,html,open=true){cards[i]._built.back=true;const wrap=content(html,items[i],i);cards[i].querySelector('.cs-reverse').replaceChildren(wrap);observer.observe(wrap);if(index!==i){index=i;state()}flip(open)}
@@ -67,8 +67,9 @@
   setView(`<section class="panel k-card cbpanel cs-question-page"><div class="cbbar"><button class="lvb" id="cbback">← Topics</button><h2>${esc(SPSHORT[CB.task]||'Cards')}</h2><div>${shared?'<button class="lvb" id="cbsharedhint">Hint</button> ':''}<button class="lvb" id="cbnew">New cards</button></div></div>${VCUR&&VG[VCUR.g]?.[1].some(v=>v[0]===CB.task)?vBar():''}<div class="cbh" id="cbsharedh" hidden role="status"></div><div id="cboard"></div></section>`);vBind();
   $('#cbback').onclick=spSetup;$('#cbnew').onclick=renderCards;
   const models=items.map((it,i)=>{
-   const caption=(it.qo||it.q)&&it.t===SPSHORT[CB.task]?'':it.t,question=it.qo||it.q||'';
-   const front=paper(image(it),it.frontImageOnly?'':`${caption?'<p class="cbt">'+esc(caption)+'</p>':''}${question&&question!==it.t?'<p class="cbq">'+esc(question)+'</p>':''}`);
+   const style=it.pastQuestion?'a2-past-question':'',colour=it.pastQuestion?['#FFB2D1','#CCE5FF','#E5E88A','#DCD4FA','#FDE0C2'][i%5]:undefined;
+   const caption=it.pastQuestion?'':(it.qo||it.q)&&it.t===SPSHORT[CB.task]?'':it.t,question=it.qo||it.q||'';
+   const front=paper(image(it),it.frontImageOnly||it.promptOnly?'':`${caption?'<p class="cbt">'+esc(caption)+'</p>':''}${question&&question!==it.t?'<p class="cbq">'+esc(question)+'</p>':''}`,style);
    let copy='';
    if(it.noHints)copy=`<p class="ownership-context">${esc(it.ownerContext)}</p>${it.backPrompts.map(p=>`<p class="ownership-prompt">${esc(p)}</p>`).join('')}`;
    else if(it.answers)copy='<ul class="interview-answers">'+it.answers.map(a=>'<li>'+esc(a)+'</li>').join('')+'</ul>';
@@ -77,11 +78,11 @@
     const answer=it.a||it.modes?.s?.[1];if(answer)copy+='<p class="cs-model">'+esc(clean(answer))+'</p>';
     if(!shared&&it.hints?.length)copy+='<button type="button" class="lvb cs-item-hint">Hint</button><div class="cbh cs-item-hint-copy" hidden></div>';
    }
-   return {front,back:paper(image(it),copy),className:'cbc',data:{i}};
+   return {front,back:paper(image(it),copy,style),colour,static:it.promptOnly,className:'cbc',data:{i}};
   });
   deck=create($('#cboard'),models,{label:SPSHORT[CB.task],beforeChange:(_,old)=>{sharedStates[old]={hidden:$('#cbsharedh').hidden,text:$('#cbsharedh').textContent}},onChange:i=>{CB.active=i;$('#cbsharedh').hidden=sharedStates[i].hidden;$('#cbsharedh').textContent=sharedStates[i].text},onBuild:(card,i,side)=>{if(side!=='back')return;const b=card.querySelector('.cs-item-hint');if(b)b.onclick=()=>{const box=card.querySelector('.cs-item-hint-copy');box.hidden=!box.hidden;box.textContent=(items[i].hints||[]).join(' ');deck.fit()}}});
   if(shared)$('#cbsharedhint').onclick=()=>{const i=deck.index,lines=items[i].hints||[],box=$('#cbsharedh');box.hidden=false;box.textContent=lines[Math.min(counts[i]++,lines.length-1)]||'Ask a question about the picture.'};
-  blobSet(CB.task==='who'?'Turn the picture over and complete both sentences.':'Click the card to turn it over. Next and Back move through the same set.');
+  blobSet(CB.task==='who'?'Turn the picture over and complete both sentences.':CB.task==='pqs'?'': 'Click the card to turn it over. Next and Back move through the same set.');
  }
  function process(grid){
   if(grid._cardDeck)return;const cards=[...grid.querySelectorAll('.process-card')];
