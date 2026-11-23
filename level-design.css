@@ -77,3 +77,24 @@ body.stw-site-theme[data-study-level] #view [data-lesson-control][hidden]{displa
  body.stw-site-theme #view .b1-magnet-layout .b1-fridge{width:var(--fridge-width,68%);margin-inline:auto}
  body.stw-site-theme #view .b1-magnet-layout .b1-bank-side{height:auto}
 }
+
+/* Keep the refrigerator clear of the task controls. */
+body.stw-site-theme #view .b1-magnet-layout .b1-fridge{
+ inset-inline-start:clamp(8px,1.2vw,15px);
+ margin-block-start:-8px;
+}
+body.stw-site-theme #view .b1-magnet-layout .b1-bank-side{
+ position:relative;
+ min-width:0;
+}
+body.stw-site-theme #view .b1-magnet-layout .b1-check-row{
+ position:relative;
+ z-index:1;
+}
+@media(max-width:560px){
+ body.stw-site-theme #view .b1-magnet-layout .b1-fridge{
+  inset-inline-start:8px;
+  margin-block-start:-4px;
+  min-height:0;
+ }
+}
