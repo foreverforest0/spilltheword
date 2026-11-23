@@ -11272,29 +11272,29 @@ function vmStart(){
 function tyDrillStart(id){
  a1css();gcInject();const C=TYD[id];S.tdm=S.tdm||{};
  const D={id,C,mode:C.modes.some(x=>x[0]===S.tdm[id])?S.tdm[id]:C.modes[0][0],q:[],i:0,score:0,tries:0,busy:true,ansL:0,ansC:0,title:C.title};
- D.bar=`<div class="tybar"><button id="drback">← Topics</button><span class="sep"></span>${C.modes.map(x=>`<button data-m="${x[0]}"${x[0]===D.mode?' class="on"':''}>${esc(x[1])}</button>`).join('')}<span class="sep"></span><button id="drhint">Hint</button><button id="drshow">Show the right answer</button><button id="drnew">↻ New round</button><span class="muted small" id="drsc"></span></div><p class="muted small" style="margin:0 0 6px">${esc(C.help)}</p><div class="drq" id="drres">Get ready…</div>`;
+ D.bar=`<div class="tybar"><button id="drback">← Topics</button><span class="sep"></span>${C.hideModes?'':C.modes.map(x=>`<button data-m="${x[0]}"${x[0]===D.mode?' class="on"':''}>${esc(x[1])}</button>`).join('')}<span class="sep"></span><button id="drhint">Hint</button><button id="drshow">Show the right answer</button><button id="drnew">↻ New round</button><span class="muted small" id="drsc"></span></div><p class="muted small" style="margin:0 0 6px">${esc(C.help)}</p><div class="drq" id="drres">Get ready…</div>`;
  const live=()=>TYDR===D&&$('#typ');
  D.say=(h,cls)=>{const r=$('#drres');if(!r)return;r.className='drq'+(cls?' '+cls:'');if(cls==='bad'){void r.offsetWidth}r.innerHTML=h};
  D.sc=()=>{const e=$('#drsc');if(e)e.textContent=Math.min(D.i+1,D.q.length)+' / '+D.q.length+' · score '+D.score};
- D.type=(q,cb)=>{D.busy=true;const generation=D.generation;const iv=setInterval(()=>{if(!live()||D.generation!==generation){clearInterval(iv);return}if(!q.length){clearInterval(iv);D.busy=false;cb&&cb();return}const c=q.shift();if(c==='\n')tyRet(true,true);else tyType(c,true)},34)};
+ D.type=(q,cb)=>{D.busy=true;const generation=D.generation;const iv=setInterval(()=>{if(!live()||D.generation!==generation){clearInterval(iv);return}if(!q.length){clearInterval(iv);D.busy=false;cb&&cb();return}const c=q.shift();if(c===null)return;if(c==='\n')tyRet(true,true);else tyType(c,true)},34)};
  D.next=()=>{if(!live())return;if(D.i>=D.q.length){D.end();return}
   const it=D.q[D.i],f=C.fmt(it,D.i+1);let q=[];if(TY.col>0)q.push('\n');if(D.i>0)q.push('\n');
-  q=q.concat(f.t.split('\n').flatMap((line,i)=>[...(i?['\n']:[]),...tyWords(line,0)]));if(f.nl)q.push('\n',' ',' ',' ','>',' ');else q.push(' ');
+  q=q.concat(f.t.split('\n').flatMap((line,i)=>[...(i?['\n']:[]),...tyWords(line,0)]));if(C.notes)q.push(null,null,null,null,null,null);if(f.nl)q.push('\n',' ',' ',' ','>',' ');else q.push(' ');
   D.tries=0;D.sc();D.say('Type your answer on the typewriter and press <b>Enter</b>.');
   D.type(q,()=>{D.ansL=TY.L;D.ansC=TY.col;const t=$('#tyta');if(t)t.focus({preventScroll:true})})};
  D.answer=()=>C.multilineAnswers?[tyLineStr(TY.lines[D.ansL]).slice(D.ansC),...TY.lines.slice(D.ansL+1,TY.L+1).map(tyLineStr)].join(' ').trim():tyLineStr(TY.lines[TY.L]).slice(D.ansC).trim();
  D.norm=s=>s.toLowerCase().replace(/[’‘]/g,"'").replace(/[.,!?]/g,'').replace(/\s+/g,' ').trim();
  D.check=()=>{if(D.busy||!live())return;const a=D.norm(D.answer());if(!a){D.say('Type your answer first, then press <b>Enter</b>.');return}
   const it=D.q[D.i];
-  if(it.a.some(x=>b1AnswerMatch(a,x))){tySnd('bell');if(!D.tries)D.score++;D.say('✓ <b>Correct!</b> '+esc(it.a[0]),'good');D.i++;D.sc();D.busy=true;const generation=D.generation;setTimeout(()=>{if(live()&&D.generation===generation)D.next()},1000)}
+  if(it.a.some(x=>b1AnswerMatch(a,x,it.p))){tySnd('bell');if(!D.tries)D.score++;if(C.notes){const note=document.createElement('li');note.textContent=it.note;$('#verbHabitNotes').append(note);if($('#verbHabitNotes').children.length>4)$('#verbHabitNotes').firstElementChild.remove()}D.say('✓ <b>Correct!</b> '+esc(it.a[0]),'good');D.i++;D.sc();D.busy=true;const generation=D.generation;setTimeout(()=>{if(live()&&D.generation===generation)D.next()},1000)}
   else{D.tries++;sfx('pop');D.say(D.tries>1?'Not yet. 💡 '+esc(it.h)+' Use Backspace and try again.':'Not quite. Use Backspace and try again.','bad')}};
  D.show=()=>{if(D.busy||!live()||D.i>=D.q.length)return;const it=D.q[D.i];while((C.multilineAnswers&&TY.L>D.ansL)||(TY.L===D.ansL&&TY.col>D.ansC))tyBack(false);
   D.type(it.a[0].split(''),()=>{D.say('The answer: <b>'+esc(it.a.join(' / '))+'</b>');D.i++;D.sc();D.busy=true;const generation=D.generation;setTimeout(()=>{if(live()&&D.generation===generation)D.next()},1500)})};
  D.end=()=>{D.busy=true;tySnd('bell');D.sc();D.say(`Round finished: <b>${D.score} / ${D.q.length}</b>. ${D.score>=D.q.length*.8?'Great job!':'Good practice! Try another round.'}`,'good')};
- D.restart=()=>{D.generation=(D.generation||0)+1;clearInterval(TYAUTO);TYAUTO=null;D.q=shuffle(C.pool(D.mode).slice()).slice(0,10);D.i=0;D.score=0;D.busy=true;tyNew(false);D.next()};
+ D.restart=()=>{D.generation=(D.generation||0)+1;clearInterval(TYAUTO);TYAUTO=null;const pool=C.pool(D.mode).slice();D.q=(C.ordered?pool:shuffle(pool)).slice(0,C.limit||10);if(C.notes)$('#verbHabitNotes').replaceChildren();D.i=0;D.score=0;D.busy=true;tyNew(false);D.next()};
  D.keyc=k=>{if(D.busy)return;if(k==='Enter')D.check();else if(k==='Backspace'){if((C.multilineAnswers&&TY.L>D.ansL)||(TY.L===D.ansL&&TY.col>D.ansC))tyBack(true)}};
  D.key=e=>{if(e.key==='Enter'||e.key==='Backspace'||e.key==='Tab'){e.preventDefault();D.keyc(e.key)}};
- D.init=()=>{$('#drback').onclick=()=>{D.busy=true;TYDR=null;spSetup()};
+ D.init=()=>{if(C.notes)$('#drres').insertAdjacentHTML('afterend','<ul id="verbHabitNotes" class="verb-habit-notes" aria-label="Saved patterns"></ul>');$('#drback').onclick=()=>{D.busy=true;TYDR=null;spSetup()};
   document.querySelector('.tybar').onclick=e=>{const b=e.target.closest('[data-m]');if(!b)return;S.tdm[id]=b.dataset.m;save();D.mode=b.dataset.m;document.querySelectorAll('.tybar [data-m]').forEach(x=>x.classList.toggle('on',x===b));D.restart()};
   $('#drhint').onclick=()=>{const it=D.q[D.i];if(it)D.say(esc(it.h||C.help))};$('#drshow').onclick=D.show;$('#drnew').onclick=D.restart;D.restart()};
  tySetup(true,D)}
@@ -12825,7 +12825,7 @@ async function boot(){
  go('home')}
 </script>
 <script src="level-design.js?v=20261123-unified"></script>
-<script src="b1-magnets.js?v=20261123-underline"></script>
+<script src="b1-magnets.js?v=20261123-verb"></script>
 <script src="grammar-practice-refresh.js?v=wobbly-20261116-1"></script>
 <script src="kids-present-simple.js"></script>
 <script src="grammar-scenes-booth.js"></script>
@@ -12836,11 +12836,12 @@ async function boot(){
 <script src="time-workshop.js"></script>
 <script src="practical-actions.js"></script>
 <script src="grammar-perspectives.js?v=kids-20261121"></script>
-<script src="b1-content.js?v=20261122-b1-f2"></script>
+<script src="grammar-articles.js?v=20261123-1"></script>
+<script src="b1-content.js?v=20261123-verb"></script>
 <link rel="stylesheet" href="question-pond.css?v=20261123-water">
 <script src="pond-questions.js?v=kids-20261121"></script>
 <script src="present-perfect-b1.js?v=20261122-b1"></script>
-<script src="question-pond.js?v=20261123-water"></script>
+<script src="question-pond.js?v=20261123-verb"></script>
 <script src="unbox/tasks.js"></script>
 <script src="unbox/app.js?v=20261122-b1-2"></script>
 <link rel="stylesheet" href="sentence-expander.css?v=sx-20261109-2">
@@ -12907,40 +12908,40 @@ async function boot(){
 <script src="conditional-folders.js?v=20261119-cream-1"></script>
 <link rel="stylesheet" href="reported-badges.css?v=20261119-1">
 <script src="reported-badges-data.js?v=20261119-1"></script>
-<script src="reported-badges-checker.js?v=20261119-1"></script>
+<script src="reported-badges-checker.js?v=20261123-verb"></script>
 <script src="reported-badges.js?v=20261119-cream-1"></script>
 <link rel="stylesheet" href="deduction-toggle.css?v=20261119-1">
 <script src="deduction-toggle-data.js?v=20261119-1"></script>
-<script src="deduction-toggle-checker.js?v=20261119-1"></script>
+<script src="deduction-toggle-checker.js?v=20261123-verb"></script>
 <script src="deduction-toggle.js?v=20261119-cream-1"></script>
 <link rel="stylesheet" href="relative-lens.css?v=20261119-1">
 <link rel="stylesheet" href="reference-practice-theme.css?v=20261120-1">
 <script src="relative-lens-data.js?v=20261119-1"></script>
-<script src="relative-lens-checker.js?v=20261119-1"></script>
+<script src="relative-lens-checker.js?v=20261123-verb"></script>
 <script src="relative-lens.js?v=20261122-b1"></script>
 <link rel="stylesheet" href="ellipsis-dust.css?v=20261120-1">
 <script src="ellipsis-dust-data.js?v=20261120-1"></script>
-<script src="ellipsis-dust-checker.js?v=20261120-1"></script>
+<script src="ellipsis-dust-checker.js?v=20261123-verb"></script>
 <script src="ellipsis-dust.js?v=20261120-1"></script>
 <link rel="stylesheet" href="linking-ink.css?v=20261120-2">
 <script src="linking-ink-data.js?v=20261120-3"></script>
-<script src="linking-ink-checker.js?v=20261120-2"></script>
+<script src="linking-ink-checker.js?v=20261123-verb"></script>
 <script src="linking-ink.js?v=20261122-b1-f2"></script>
 <link rel="stylesheet" href="wish-tabs.css?v=20261120-2">
 <script src="wish-tabs-data.js?v=20261120-1"></script>
-<script src="wish-tabs.js?v=20261122-b1-f2"></script>
+<script src="wish-tabs.js?v=20261123-verb"></script>
 <link rel="stylesheet" href="causative-scene.css?v=20261120-1">
 <script src="causative-scene-data.js?v=20261122-b1-f2"></script>
-<script src="causative-scene.js?v=20261122-b1-f2"></script>
+<script src="causative-scene.js?v=20261123-verb"></script>
 <link rel="stylesheet" href="future-orders.css?v=20261120-1">
 <script src="future-orders-data.js?v=20261122-b1-f2"></script>
-<script src="future-orders.js?v=20261122-b1-f2"></script>
+<script src="future-orders.js?v=20261123-verb"></script>
 <link rel="stylesheet" href="question-tags-glow.css?v=20261120-1">
 <script src="question-tags-glow-data.js?v=20261120-1"></script>
 <script src="question-tags-glow.js?v=20261122-b1"></script>
 <link rel="stylesheet" href="work-hours.css?v=20261120-1">
 <script src="work-hours-data.js?v=20261122-b1-f2"></script>
-<script src="work-hours.js?v=20261122-b1-f2"></script>
+<script src="work-hours.js?v=20261123-verb"></script>
 <link rel="stylesheet" href="indirect-marker.css?v=20261120-2">
 <script src="indirect-marker.js?v=20261122-b1-f2"></script>
 <script src="grammar-embed.js?v=20261120-1"></script>
@@ -12951,16 +12952,17 @@ async function boot(){
 <link rel="stylesheet" href="like-actions-a1.css?v=20261122-1">
 <script src="like-actions-a1.js?v=20261122-1"></script>
 <link rel="stylesheet" href="a1-time-switch.css?v=20261122-1">
-<script src="a1-time-switch.js?v=20261122-1"></script>
+<script src="a1-time-switch.js?v=20261123-verb"></script>
 <link rel="stylesheet" href="a2-card-polish.css?v=20261122-2">
 <script src="b1-followup.js?v=20261122-photos"></script>
-<script src="conditional-capsules.js?v=20261123-1"></script>
+<script src="verb-habits-typewriter.js?v=20261123-1"></script>
+<script src="conditional-capsules.js?v=20261123-verb"></script>
 <script src="shared-game.js?v=embed-20261112-1"></script>
 <script>
 window.addEventListener('hashchange',()=>location.reload());
 boot();
 </script>
-<link rel="stylesheet" href="level-design.css?v=20261123-capsules">
+<link rel="stylesheet" href="level-design.css?v=20261123-verb">
 <link rel="stylesheet" href="b1-followup.css?v=20261122-1">
 <link rel="stylesheet" href="b1-revision.css?v=20261122-1">
 </body>

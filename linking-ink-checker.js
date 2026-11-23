@@ -10,7 +10,7 @@
   function check(link, models, value) {
     const text = normalize(value);
     if (!text) return { state: 'empty', message: 'Write your sentence or switch to Oral.' };
-    if (models.some(model => normalize(model) === text)) {
+    if (models.some(model => (globalThis.GrammarArticles?.equivalent(text,normalize(model)) ?? (normalize(model)===text)))) {
       return { state: 'correct', message: 'That works. You kept both facts and used the linker correctly.' };
     }
     if (/\bdespite of\b/.test(text)) {

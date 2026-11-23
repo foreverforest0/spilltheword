@@ -27,7 +27,7 @@
     const text = normalize(answer);
     if (!text) return ['empty', 'Write a sentence.'];
     const models = card.answers.map(normalize);
-    if (models.includes(text)) return ['correct', 'That works. The future form fits the situation.'];
+    if (models.some(model=>GrammarArticles.equivalent(text,model,card.prompt))) return ['correct', 'That works. The future form fits the situation.'];
     const commonErrors = [
       ['will be editing', 'will editing'],
       ['will be hiking', 'will hiking'],

@@ -13,7 +13,7 @@
   for(let i=0;i<5&&out.some(x=>/\b(?:he|she|it|that|there|here|who|what|where|how|when)'s\b|'d\b/.test(x));i++)out=out.flatMap(x=>/\b(he|she|it|that|there|here|who|what|where|how|when)'s\b/.test(x)?[x.replace(/\b(he|she|it|that|there|here|who|what|where|how|when)'s\b/,'$1 is'),x.replace(/\b(he|she|it|that|there|here|who|what|where|how|when)'s\b/,'$1 has')]:/'d\b/.test(x)?[x.replace(/'d\b/,' had'),x.replace(/'d\b/,' would')]:[x]);
   return out.map(x=>x.replace(/'/g,'').replace(/\s+/g,' ').trim());
  }
- const matches=(answer,expected)=>{const actual=new Set(forms(answer));return expected.some(e=>forms(e).some(v=>actual.has(v)))};
+ const matches=(answer,expected,prompt)=>{const actual=new Set(forms(answer));return expected.some(e=>forms(e).some(v=>[...actual].some(a=>GrammarArticles.equivalent(a,v,prompt))))};
  function validDrawing(strokes){
   return Array.isArray(strokes)&&strokes.length>0&&strokes.length<=120&&strokes.every(s=>s&&palette.includes(s.color)&&Number.isFinite(s.width)&&s.width>=.002&&s.width<=.08&&Array.isArray(s.points)&&s.points.length>=2&&s.points.length%2===0&&s.points.every(v=>Number.isFinite(v)&&v>=0&&v<=1))&&strokes.reduce((n,s)=>n+s.points.length/2,0)<=4000;
  }
@@ -179,7 +179,7 @@
    $('#pondReturn').onclick=()=>{if(phase!=='releasing')idle()};
    if(mode==='catch'){
     $('#pondCheck').onclick=()=>{if(!input.value.trim()){input.focus();$('#pondFeedback').textContent='Write your answer first.';return}
-     const ok=matches(input.value,current.answers);root.dataset.outcome=ok?'correct':'incorrect';$('#pondFeedback').textContent=ok?'Yes! Catch another fish when you’re ready.':'Not quite. Check the words and the verb form, then try again.';
+     const ok=matches(input.value,current.answers,current.question);root.dataset.outcome=ok?'correct':'incorrect';$('#pondFeedback').textContent=ok?'Yes! Catch another fish when you’re ready.':'Not quite. Check the words and the verb form, then try again.';
      if(ok){phase='answered';root.dataset.phase=phase;$('#pondCheck').disabled=true;input.readOnly=true;$('#pondReturn').textContent='Catch another fish';later(()=>{if(phase==='answered'&&selected)returnFish(true)},900)}
     };
    }else $('#pondStartDrawing').onclick=()=>{if(!input.value.trim()){input.focus();$('#pondFeedback').textContent='Write your answer first.';return}studio()};
@@ -210,7 +210,7 @@
    const input=$('#pondAnswer');if(!input.value.trim()){input.focus();$('#pondFeedback').textContent='Write your answer first.';return}
    const src=validDrawing(strokes)&&artFromStrokes(strokes);if(!src){$('#pondFeedback').textContent='Draw a little fish before releasing it.';return}
    phase='releasing';root.dataset.phase=phase;const releaseButton=$('#pondRelease');releaseButton.disabled=true;input.readOnly=true;
-   const ok=matches(input.value,current.answers);root.dataset.outcome=ok?'correct':'incorrect';
+   const ok=matches(input.value,current.answers,current.question);root.dataset.outcome=ok?'correct':'incorrect';
    drawnFish=addFish(src,fish.length,true);drawnFish.x=.55;drawnFish.y=.66;drawnFish.busy=true;motion(drawnFish,performance.now());drawnFish.el.disabled=true;drawnFish.el.classList.add(ok?'released':'jumped');splash(.55,.66);
    status.textContent=ok?'Your fish is swimming.':'Your fish jumped out. Try correcting your answer.';
    $('#pondFeedback').textContent=ok?'Correct — your fish can stay in the pond!':'Not quite — your fish jumped out. Check your answer and release it again.';

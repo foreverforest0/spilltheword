@@ -81,7 +81,7 @@
   e.preventDefault();if(phase!=='answering'||locked)return;
   const run=session,t=tasks[frame],answer=t.mode==='1'?selected:$('#answer').value;
   if(!answer.trim()){feedback(t.mode==='1'?'Choose an answer first.':'Type an answer first.','error');return}
-  if(!t.answers.some(a=>norm(a)===norm(answer))){feedback('Not quite. Check the instruction and try again.','error');return}
+  if(!t.answers.some(a=>GrammarArticles.equivalent(norm(answer),norm(a),t.prompt))){feedback('Not quite. Check the instruction and try again.','error');return}
   locked=true;$('#check').disabled=true;$('#answer').disabled=true;$('#choices').querySelectorAll('button').forEach(x=>x.disabled=true);
   if(innerWidth<=700)booth.scrollIntoView({block:'start',behavior:reduced?'instant':'smooth'});
   setPhase('shooting');feedback('Correct — your photograph is developing!','success');$('#machine-caption').textContent='Hold still…';if(!await pause(650,run))return;

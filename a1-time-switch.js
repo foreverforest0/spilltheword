@@ -54,7 +54,7 @@
      e.preventDefault();
      const value=clean(input.value), model=clean(answer);
      const wrong=clean(marker?(active?simple:continuous):sentence(active?simple:continuous));
-     $('#atsFeedback').textContent=!value?'Write an answer, or say it aloud and use Show answer.':(value===model||marker&&value===clean(sentence(verb)))?'Correct!':value===wrong?'Look at the new time clue. '+(active?'Use am, is or are + -ing.':'Use the Present Simple.'):'Compare with the example. Check that your verb fits the time clue.';
+     $('#atsFeedback').textContent=!value?'Write an answer, or say it aloud and use Show answer.':(GrammarArticles.equivalent(value,model)||marker&&GrammarArticles.equivalent(value,clean(sentence(verb))))?'Correct!':value===wrong?'Look at the new time clue. '+(active?'Use am, is or are + -ing.':'Use the Present Simple.'):'Compare with the example. Check that your verb fits the time clue.';
     };
     $('#atsShow').onclick=()=>{shown=!shown;$('#atsExample').hidden=!shown;$('#atsShow').textContent=shown?'Hide answer':'Show answer';$('#atsShow').setAttribute('aria-expanded',String(shown))};
    }

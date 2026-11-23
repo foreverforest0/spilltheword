@@ -1,7 +1,7 @@
 /* Deliberately bounded checking: unfamiliar paraphrases are offered comparison, never labelled wrong. */
 (()=>{'use strict';
 function normalise(s){return String(s||'').normalize('NFKC').toLowerCase().replace(/[’‘]/g,"'").replace(/\bcan(?:no|')t\b/g,'cannot').replace(/\bcouldn't\b/g,'could not').replace(/\bmustn't\b/g,'must not').replace(/\bmightn't\b/g,'might not').replace(/\bmayn't\b/g,'may not').replace(/\bi'm\b/g,'i am').replace(/\b(they|we|you)'re\b/g,'$1 are').replace(/[^a-z0-9' ]/g,' ').replace(/\s+/g,' ').trim()}
-function check(t,mode,value){const b=t[mode],s=normalise(value);if(!s)return {status:'empty',message:'Write a deduction, or answer aloud and show an example.'};if(b.answers.some(a=>normalise(a)===s))return {status:'correct',message:'Yes — this fits the evidence.'};
+function check(t,mode,value){const b=t[mode],s=normalise(value);if(!s)return {status:'empty',message:'Write a deduction, or answer aloud and show an example.'};if(b.answers.some(a=>(globalThis.GrammarArticles?.equivalent(s,normalise(a),t.prompt) ?? (normalise(a)===s))))return {status:'correct',message:'Yes — this fits the evidence.'};
 if(/\bmust not\b/.test(s))return {status:'retry',message:'Mustn’t means prohibition. For a negative deduction, try can’t or couldn’t have.'};
 if(/\b(must|might|may|could|cannot|could not) (?:has|had|to|of)\b/.test(s))return {status:'retry',message:'After a modal, use the base form: be, have, take…'};
 if(/\b(must|might|may|could|cannot|could not) have (?:be|being)\b/.test(s))return {status:'retry',message:'For a past state, use modal + have been.'};

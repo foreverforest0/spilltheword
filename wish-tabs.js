@@ -27,7 +27,7 @@
     const value = normalize(response);
     if (!value) return ['empty', 'Write a sentence.'];
     const models = card.answers.map(normalize);
-    if (models.includes(value)) return ['correct', 'That works. Your sentence expresses the wish in this situation.'];
+    if (models.some(model=>GrammarArticles.equivalent(value,model,card.prompt))) return ['correct', 'That works. Your sentence expresses the wish in this situation.'];
     const likelyErrors = {
       now: [
         [/\bi (?:were|was)\b/, 'i am'],

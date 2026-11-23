@@ -2,7 +2,7 @@
    Course vocabulary: B2 ALH units/lessons in docs/b2-alh-approved.json. */
 (()=>{
  const phone=['You didn’t charge your phone.','You missed an important call.','You can’t use your phone now.',
-  'If I had charged my phone, I wouldn’t have missed the call.','If I had charged my phone, I could use it now.'];
+  'If I had charged my phone, I wouldn’t have missed the call.','If I had charged my phone, I could use it now.', ['If I had charged my phone, I wouldn’t have missed an important call.']];
  const b2=[phone,
   ['You didn’t swap your shift.','You missed your job interview.','You’re still looking for a job.',
    'If I had swapped my shift, I wouldn’t have missed my job interview.','If I had swapped my shift, I might have a new job now.'],
@@ -35,7 +35,7 @@
    <section id="yesterdayRound" hidden>
     <div class="gcs A"><small>Past event</small><div class="gv" id="yesterdayEvent"></div></div>
     <div class="gcs B"><small>Result</small><div class="gv" id="yesterdayResult" aria-live="polite"></div></div>
-    <div class="result-switch" role="group" aria-label="When is the result?"><button class="lvb" type="button" data-result-time="0">THEN</button><button class="lvb" type="button" data-result-time="1">NOW</button></div>
+    <div class="result-switch" id="yesterdaySwitch" data-time="0" role="group" aria-label="When is the result?"><button class="lvb" type="button" data-result-time="0">THEN</button><button class="lvb" type="button" data-result-time="1">NOW</button></div>
     <p id="yesterdayPrompt"></p>
     <form id="yesterdayForm"><textarea id="yesterdayAnswer" rows="2" aria-label="Your conditional sentence"></textarea><button class="lvb" type="submit">Check</button></form>
     <p id="yesterdayFeedback" role="status"></p>
@@ -45,7 +45,7 @@
   const tray=get('Tray'),knob=get('Turn'),next=get('New'),answer=get('Answer');
   function paint(){
    const row=deck[index];const ready=opened.every(Boolean);
-   get('Round').hidden=false;get('Event').textContent=opened[0]?row[0]:'—';get('Result').textContent=opened[1]?row[mode+1]:'—';
+   get('Round').hidden=false;get('Switch').dataset.time=mode;get('Event').textContent=opened[0]?row[0]:'—';get('Result').textContent=opened[1]?row[mode+1]:'—';
    root.querySelectorAll('[data-result-time]').forEach(button=>{
     button.disabled=!ready;button.setAttribute('aria-pressed',String(+button.dataset.resultTime===mode));
    });
@@ -78,7 +78,7 @@
   root.querySelectorAll('[data-result-time]').forEach(button=>button.onclick=()=>{drafts[mode]=answer.value;mode=+button.dataset.resultTime;paint()});
   get('Form').onsubmit=e=>{
    e.preventDefault();const value=answer.value.trim();
-   get('Feedback').textContent=!value?'Write a sentence first.':b1AnswerMatch(value,deck[index][mode+3])?'✓ Correct.':'Compare your condition and result with the model.';
+   get('Feedback').textContent=!value?'Write a sentence first.':[deck[index][mode+3],...(!mode?deck[index][5]||[]:[])].some(model=>b1AnswerMatch(value,model))?'✓ Correct.':'Compare your condition and result with the model.';
   };
  }
  for(const level of ['b2','c1']){

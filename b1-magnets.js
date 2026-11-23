@@ -289,7 +289,7 @@ function b1MagnetRound(st,mb,id,cfg,round){
  const kids=S.splevel==='kids';
  const fit=()=>{
   if(!st.isConnected)return;
-  const layout=st.querySelector('.b1-magnet-layout'),w=layout.clientWidth,gap=w<620?10:24;
+  const layout=st.querySelector('.b1-magnet-layout'),w=layout.clientWidth,gap=parseFloat(getComputedStyle(layout).columnGap)||24;
   const stacked=window.innerWidth<=560;
   const side=w<620?Math.min(245,w*.44):Math.min(360,w*.40);
   const available=Math.max(w<620?440:780,window.innerHeight-st.getBoundingClientRect().top-36);
@@ -297,6 +297,7 @@ function b1MagnetRound(st,mb,id,cfg,round){
   const height=blue?Math.min(available,width/aspect):width/aspect;
   layout.style.setProperty('--fridge-width',width+'px');
   layout.style.setProperty('--fridge-height',height+'px');
+  layout.style.setProperty('--fridge-seam',Math.round(width/aspect*(blue?.302:.343))+'px');
   layout.style.setProperty('--fridge-art-scale',String(width/aspect/height));
   if(round.pic){
    const box=st.querySelector('.b1-magnet-picture');
@@ -348,8 +349,8 @@ function b1MagnetRound(st,mb,id,cfg,round){
   $('#mgchk').onclick=()=>{
    const value=input.value.trim();
    if(!value){result.textContent='Write an answer first.';return}
-   const correct=answers.some(answer=>b1AnswerMatch(value,answer)||b1AnswerMatch(value,fullAnswer(answer)))
-    ||b1AnswerMatch(value,model)||(extra.word&&b1AnswerMatch(value,extra.word));
+   const correct=answers.some(answer=>b1AnswerMatch(value,answer,extra.prompt)||b1AnswerMatch(value,fullAnswer(answer),extra.prompt))
+    ||b1AnswerMatch(value,model,extra.prompt)||(extra.word&&b1AnswerMatch(value,extra.word));
    result.textContent=correct?'✓ Correct!':'Try again. Check the verb form and word order.';
   };
   blobSet('Use the cues to write or say a full sentence. Reveal a model when you’re ready.');
@@ -406,7 +407,7 @@ function b1MagnetRound(st,mb,id,cfg,round){
  $('#mgchk').onclick=()=>{
   if(!order.length){result.textContent='Put some magnets on the door first.';return}
   const mine=norm(order.map(p=>p.word).join(' '));
-  const correct=answers.some(a=>norm(a)===mine);
+  const correct=answers.some(a=>GrammarArticles.equivalent(mine,norm(a),extra.prompt));
   order.forEach(p=>p.el.classList.toggle('good',correct));
   if(correct){
    result.textContent=extra.word?`Correct: ${tokens.join(' + ')} → ${extra.word}. ${extra.prompt.replace('___',extra.word)} Read it aloud.`:`Perfect! ${(extra.prefix?extra.prefix+' ':'')+order.map(p=>p.word).join(' ')}. Read it aloud, then make a similar example of your own.`;

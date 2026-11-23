@@ -80,8 +80,8 @@ body.stw-site-theme[data-study-level] #view [data-lesson-control][hidden]{displa
 
 /* Keep the refrigerator clear of the task controls. */
 body.stw-site-theme #view .b1-magnet-layout .b1-fridge{
- inset-inline-start:clamp(8px,1.2vw,15px);
- margin-block-start:-8px;
+ inset-inline-start:clamp(12px,2.2vw,28px);
+ margin-block-start:-15px;
 }
 body.stw-site-theme #view .b1-magnet-layout .b1-bank-side{
  position:relative;
@@ -106,7 +106,6 @@ body.stw-site-theme #view .b1-magnet-layout .b1-check-row{
 .conditional-capsules .gcs .gv{font:22px/1.27 Georgia,serif}
 .conditional-capsules #yesterdayRound{margin-top:14px}
 .conditional-capsules #yesterdayAnswer{display:block;box-sizing:border-box;width:100%;margin:0 0 8px}
-body[data-study-level] #view .conditional-capsules [data-result-time][aria-pressed=true]{background:var(--lesson-button)!important;color:#fff!important}
 body[data-study-level] #view .fridge-word{
  text-decoration:underline;
  text-decoration-color:var(--lesson-button,var(--lesson-ink));
@@ -118,10 +117,34 @@ body[data-study-level] #view .b1-fridge.blue .b1-strip .fridge-word{
 }
 body[data-study-level] #view .b1-strip .b1-magnet.bad .fridge-word{text-decoration:none}
 #view .conditional-capsules .result-switch{
- display:inline-grid;grid-template-columns:1fr 1fr;gap:3px;padding:3px;
+ display:inline-grid;position:relative;isolation:isolate;grid-template-columns:1fr 1fr;gap:0;padding:3px;
  border:1px solid var(--lesson-button);border-radius:999px;background:var(--lesson-button-soft);
 }
 body[data-study-level] #view .conditional-capsules .result-switch button{
  min-height:38px;border-radius:999px;border:0;font:600 13px/1.2 Georgia,serif!important;
  letter-spacing:.06em;padding:7px 13px;
 }
+
+#view .conditional-capsules .result-switch::before{
+ content:'';position:absolute;z-index:-1;inset:3px auto 3px 3px;width:calc(50% - 3px);
+ border-radius:999px;background:var(--lesson-button);pointer-events:none;
+ transition:transform .34s cubic-bezier(.21,.9,.27,1.24);
+}
+#view .conditional-capsules .result-switch[data-time="1"]::before{transform:translateX(100%)}
+#view .conditional-capsules .result-switch:has(button:active)::before{scale:1.12 1}
+body.stw-site-theme[data-study-level] #view .conditional-capsules .result-switch [data-result-time]{
+ background:transparent!important;color:var(--lesson-ink)!important;
+}
+body.stw-site-theme[data-study-level] #view .conditional-capsules .result-switch [data-result-time][aria-pressed=true]{color:#fff!important}
+@media(prefers-reduced-motion:reduce){#view .conditional-capsules .result-switch::before{transition:none}}
+@media(min-width:561px){
+ body.stw-site-theme #view .b1-magnet-layout{column-gap:40px}
+ body.stw-site-theme #view .b1-magnet-layout .b1-bank-side{
+  height:auto;margin-block-start:max(0px,calc(var(--fridge-seam,0px) - 15px));
+ }
+}
+.verb-habit-notes{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;padding:0;list-style:none}
+.verb-habit-notes li{position:relative;padding:10px 15px;background:var(--lesson-button-soft,#ffe9a5);color:var(--lesson-ink);box-shadow:0 2px 5px #0002;animation:verb-note-pin .35s ease-out both}
+.verb-habit-notes li::before{position:absolute;left:50%;top:-3px;width:7px;height:7px;content:'';border-radius:50%;background:var(--lesson-button)}
+@keyframes verb-note-pin{from{translate:0 22px;rotate:-4deg;opacity:0}to{translate:0;rotate:-1deg;opacity:1}}
+@media(prefers-reduced-motion:reduce){.verb-habit-notes li{animation:none}}

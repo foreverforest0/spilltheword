@@ -497,7 +497,7 @@ in spite of | In spite of feeling nervous, I really enjoyed the lesson.`
 })();
 
 // A typed contraction may stand for either auxiliary; the authored model determines the intended one.
-function b1AnswerMatch(input,expected){
+function b1AnswerMatch(input,expected,prompt){
  const clean=s=>cwNorm(String(s)).replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim();
  const past=/^(?:(?:already|just|never|ever) )?(?:been|got|had|seen|gone|done|made|taken|given|said|written|eaten|read|sent|found|lost|left|bought|brought|caught|forgotten|broken|known|told|won|grown|flown|worn|chosen|drunk|begun|met|put|cut|built|heard|kept|paid|run|slept|spoken|understood|[a-z]+ed)\b/;
  const result=clean(expected)
@@ -510,5 +510,5 @@ function b1AnswerMatch(input,expected){
  const expand=(pattern,options)=>{values=values.flatMap(v=>pattern.test(v)?options.map(o=>v.replace(pattern,o)):[v])};
  expand(/\b(i|you|he|she|it|we|they)'d\b/,["$1 would","$1 had"]);
  expand(/\b(he|she|it|that|there|who|nobody|somebody|everyone|someone|what)'s\b/,["$1 is","$1 has"]);
- return values.includes(result);
+ return values.some(value=>GrammarArticles.equivalent(value,result,prompt));
 }

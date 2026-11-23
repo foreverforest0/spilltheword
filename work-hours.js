@@ -23,7 +23,7 @@
     const text = normalize(answer);
     if (!text) return ['empty', 'Write a sentence.'];
     const models = card.answers.map(normalize);
-    if (models.includes(text)) return ['correct', 'That works. Your sentence matches the situation.'];
+    if (models.some(model=>GrammarArticles.equivalent(text,model,card.prompt))) return ['correct', 'That works. Your sentence matches the situation.'];
     const substitutions = {
       too: [[/too expensive/, 'expensive too'], [/too many hours/, 'too much hours']],
       adj: [[/(cheap|affordable|low) enough/, 'enough $1']],

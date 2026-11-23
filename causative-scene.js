@@ -24,7 +24,7 @@
     const text = normalize(answer);
     if (!text) return ['empty', 'Write a sentence.'];
     const models = card.answers.map(normalize);
-    if (models.includes(text)) return ['correct', 'That works. Your sentence matches the roles in the scene.'];
+    if (models.some(model=>GrammarArticles.equivalent(text,model,card.prompt))) return ['correct', 'That works. Your sentence matches the roles in the scene.'];
     const [verb] = card.action.toLowerCase().split(' ');
     const nearError = models.some(model => {
       if (card.kind === 'self') return false;
