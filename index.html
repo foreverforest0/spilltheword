@@ -12798,7 +12798,13 @@ async function boot(){
  const wc=hq('w');if(wc){STUDENT=true;document.body.classList.add('student');wvStudent(wc).catch(e=>console.warn(e))}
  const gm=location.hash.match(/^#g=(\w+)/);
  if(gm&&NAV.includes(gm[1])){try{
-  const tp=hq('tp');
+  const tp=hq('tp'),lv=hq('lv');
+  if(tp&&(gm[1]==='gram'||(gm[1]==='speak'&&tp==='inv'))){
+   const level=tp==='inv'?'c1':lv;
+   if(SPGRP[level]?.some(group=>group[1].includes(tp))){
+    window.openSharedGrammar(tp,level);return;
+   }
+  }
   if(gm[1]==='speak'&&tp){STUDENT=true;document.body.classList.add('student');const lv=hq('lv');if(lv)S.splevel=lv;const m=hq('m');if(m){S.tdm=S.tdm||{};S.mgxt=S.mgxt||{};S.tdm[tp]=m;S.mgxt[tp]=m}
    go('speak');spOpen(tp);return}
   go(gm[1]);return}catch(e){console.warn(e)}}
