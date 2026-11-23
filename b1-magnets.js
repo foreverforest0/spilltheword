@@ -233,7 +233,7 @@ const B1WORDS=[
 b1Add('wf','Word Formation',11,[['prefix','Prefixes'],['suffix','Suffixes'],['spelling','Word building / spelling']],B1WORDS.map(([t,p,a,b,word])=>[t,[word],null,null,{prompt:p,cue:p+' ('+(t==='prefix'?b:a)+')',word,follow:'Read the complete sentence aloud.'}]),['Change the word in brackets so it fits the gap.','Some spellings change: happy + ness → happiness; decide + ion → decision; fame + ous → famous.']);
 const B1MAGSTYLE=document.createElement('style');
 B1MAGSTYLE.textContent=`
-.b1-magnet-layout{display:grid;grid-template-columns:var(--fridge-width,280px) minmax(0,1fr);gap:24px;align-items:start;max-width:1000px;margin:auto;height:var(--fridge-height,648px)}
+.b1-magnet-layout{display:grid;grid-template-columns:var(--fridge-width,280px) minmax(0,1fr);gap:24px;align-items:start;max-width:1180px;margin:auto;min-height:var(--fridge-height,648px)}
 .b1-fridge{position:relative;width:100%;height:var(--fridge-height,648px);background:transparent;border:0;padding:0;box-shadow:none}
 .magnet-fridge-art{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
 .b1-fridge.blue{overflow:hidden;border-radius:22px 22px 10px 10px}.b1-fridge.blue .magnet-fridge-art{object-fit:cover;object-position:center top}
@@ -286,13 +286,14 @@ function b1MagnetRound(st,mb,id,cfg,round){
  const hint=$('#dmh');if(noHints)hint?.remove();else if(hint)st.querySelector('.b1-settings').append(hint);
  fridgeResizeCleanup();
  const aspect=blue?754/2086:560/1294;
+ const kids=S.splevel==='kids';
  const fit=()=>{
   if(!st.isConnected)return;
   const layout=st.querySelector('.b1-magnet-layout'),w=layout.clientWidth,gap=w<620?10:24;
-  const side=w<620?Math.min(blue?140:150,w*(blue ? .38 : .41)):Math.min(400,w*.45);
-  const kids=S.splevel==='kids';
-  const available=Math.max(kids?490:blue?240:540,window.innerHeight-st.getBoundingClientRect().top-56);
-  const width=Math.min(available*aspect*(blue?1.25:1.28),w-side-gap,kids?490:blue?400:440);
+  const stacked=window.innerWidth<=560;
+  const side=w<620?Math.min(245,w*.44):Math.min(360,w*.40);
+  const available=Math.max(w<620?440:780,window.innerHeight-st.getBoundingClientRect().top-36);
+  const width=stacked?Math.min(w*.68,255):Math.min(Math.max(available*aspect*1.37,w*.45),w-side-gap,w<620?300:510);
   const height=blue?Math.min(available,width/aspect):width/aspect;
   layout.style.setProperty('--fridge-width',width+'px');
   layout.style.setProperty('--fridge-height',height+'px');

@@ -9995,8 +9995,8 @@ const SPT=[
  {id:'gwt',n:'Guess what? (describe it, don’t name it)',d:'One player sees a picture and describes it with who / which / that / where / whose, without naming it. The other player guesses. In a room the guesser does not see the picture.'},
  {id:'thr',n:'There is / There are: describe the room',d:'A room appears with a question. Answer using there is / there are (and some, any, how many, prepositions of place).'}];
 const SPM={
- pres:[['now','сейчас'],['right now','прямо сейчас'],['at the moment','в данный момент'],['at present','в настоящее время'],['currently','в данный период'],['today','сегодня'],['these days','в эти дни'],['this week','на этой неделе'],['Look!','Смотри!'],['Listen!','Слушай!']],
- past:[['yesterday','вчера'],['last night','вчера вечером'],['at 6 o’clock yesterday','вчера в 6 часов'],['this time last week','в это же время на прошлой неделе'],['all day / all evening','весь день / весь вечер'],['at that moment','в тот момент'],['while','пока'],['when','когда'],['at midnight','в полночь']]};
+ pres:[['now',''],['right now',''],['at the moment',''],['at present',''],['currently',''],['today',''],['these days',''],['this week',''],['Look!',''],['Listen!','']],
+ past:[['yesterday',''],['last night',''],['at 6 o’clock yesterday',''],['this time last week',''],['all day / all evening',''],['at that moment',''],['while',''],['when',''],['at midnight','']]};
 const PPCS=[{"k":"ppc wet hair","q":[["Look at her hair. What has she been doing?","She has been swimming. / She has been standing in the rain."],["Why is her hair wet? How long has she been doing it?","She has been swimming for an hour."]]},{"k":"ppc muddy shoes","q":[["Why are these shoes so dirty? What has this person been doing?","They’ve been hiking. / They’ve been walking through mud."],["How long do you think they have been walking?","They have been walking for hours / since the morning."]]},{"k":"ppc flour hands","q":[["What has he been doing? How can you tell?","He has been baking / making dough. There is flour on his hands."],["How long has he been cooking?","He has been cooking for an hour / since 5 o’clock."]]},{"k":"ppc paint hand","q":[["Look at her hand. What has she been doing?","She has been painting."],["Why are her hands so colourful? How long has she been painting?","She has been painting all afternoon."]]},{"k":"ppc crying","q":[["Why does she look like this? What has she been doing?","She has been crying."],["What do you think she has been watching or reading?","She has been watching a sad film."]]},{"k":"ppc cobwebs","q":[["Look at all these cobwebs. What has been happening here?","Spiders have been making webs. Nobody has been cleaning."],["How long do you think the house has been empty?","It’s been empty for years. Nobody’s been cleaning it."]]},{"k":"ppc runner","q":[["Why is he so tired? What has he been doing?","He has been running. / He has been taking part in a race."],["How long has he been running?","He has been running for two hours."]]},{"k":"ppc asleep books","q":[["Why is he asleep with a book on his face? What has he been doing?","He has been studying / reading all night."],["How long has he been studying?","He’s been studying since early last night."]]}];
 const PPFS=[{"k":"pp dead phone","q":[["She realised that …","her phone had died. / she had forgotten to charge it."],["She couldn’t call anyone because …","her battery had run out. / she had left the charger at home."]]},{"k":"pp empty cinema","q":[["When she woke up, she noticed that …","the film had finished and everyone had left."],["By the time she opened her eyes, …","all her friends had gone home."]]},{"k":"pp missed bus","q":[["By the time she got to the bus stop, …","the bus had already left."],["She was late because …","she had left home too late. / she had stopped to buy a drink."]]},{"k":"pp burnt pie","q":[["She opened the oven and saw that …","the pie had burnt. / it had turned black."],["Why had the pie burnt by the time she got back?","She’d forgotten to set a timer. / She’d left it in the oven too long."]]},{"k":"pp flooded floor","q":[["He came into the kitchen and noticed that …","water had spilled all over the floor."],["The floor was wet because …","someone had left the tap on. / a pipe had burst."]]},{"k":"pp empty wallet","q":[["He looked in his wallet and realised that …","he had spent all his money."],["Before he looked in his wallet, he …","had gone shopping. / had bought too many things."]]},{"k":"pp broken key","q":[["He couldn’t get into the flat because …","the key had broken in the lock."],["Before the key broke, he …","had turned it too hard. / had used an old key."]]},{"k":"pp empty fridge","q":[["She opened the fridge and found out that …","someone had eaten everything."],["Why couldn’t she make dinner?","She hadn’t bought any food. / Someone had eaten everything."]]}];
 const SHDS=[
@@ -10181,18 +10181,18 @@ const SCENES=[
   ['Is there a church in the picture?','No, there isn’t. But there is a tower behind the houses.'],
   ['Are there any children?','Yes, there is one boy. He has a purple hat.'],
   ['Is there a sun in the picture?','Yes, there is. It is in the sky, in the middle.']]}];
-SPM.ppf=[['I realised that …','я понял(а), что …'],['I noticed that …','я заметил(а), что …'],['By the time …','к тому времени как …'],['Before … / After …','до того как … / после того как …'],['had + past participle','past perfect'],['hadn’t + past participle','отрицание'],['already','уже'],['just','только что'],['never … before','никогда раньше'],['because …','потому что …'],['first … then …','сначала … потом …']];
-SPM.shd=[['should / shouldn’t','следует / не следует'],['I think you should …','я думаю, тебе стоит …'],['Why don’t you …?','почему бы тебе не …?'],['You’d better …','тебе лучше …'],['If I were you, I’d …','на твоём месте я бы …'],['It’s a good idea to …','хорошая идея …'],['You need to …','тебе нужно …']];
-SPM.be=[['I am / you are / he, she is','am, is, are'],['My name is … / Her name is …','меня зовут …'],['I’m … years old','мне … лет'],['I’m from … / He’s from …','я из …'],['She’s a … / He’s a …','она / он … (профессия)'],['Is he …? Yes, he is. / No, he isn’t.','вопросы и ответы'],['happy / sad / tired / fine','эмоции'],['old / young','старый / молодой']];
-SPM.rcl=[['who (about people)','который (о людях)'],['which / that (about things)','который (о вещах)'],['where (about places)','где'],['whose (belongs to)','чей'],['It is a … that / which …','это … который …'],['It is a person who …','это человек, который …'],['It is a place where …','это место, где …'],['no comma (defining)','без запятой']];
-SPM.gwt=[['It is a thing that …','это вещь, которая …'],['It is a person who …','это человек, который …'],['It is a place where …','это место, где …'],['It is something which …','это то, что …'],['… whose … is …','у которого … это …'],['You can find it …','его можно найти …'],['People use it to …','люди используют это, чтобы …'],['Is it a …? / Is it something that …?','вопросы для угадывающего'],['Is it bigger than …?','оно больше, чем …?']];
-SPM.pfm=[['has / have + past participle','Present Perfect'],['just','только что'],['already','уже'],['yet (not … yet / … yet?)','ещё (не) / уже?'],['ever / never','когда-либо / никогда'],['Have you ever …? Yes, I have. / No, I haven’t.','вопросы и ответы'],['I have been to … / I have never been to …','я был / я никогда не был'],['so far / today / this week','пока что / сегодня / на этой неделе']];
-SPM.ust=[['I used to …','раньше я …'],['I didn’t use to …','раньше я не …'],['Did you use to …?','ты раньше …?'],['Yes, I did. / No, I didn’t.','да / нет'],['when I was a child','когда я был ребёнком'],['but now …','но сейчас …'],['every day / all the time','каждый день / постоянно']];
-SPM.ifw=[['If I were …, I would be …','если бы я был …, я бы был …'],['… because …','потому что …'],['I wouldn’t want to be …','я бы не хотел быть …'],['I would never be …','я бы никогда не стал …'],['I’d = I would','краткая форма'],['Why? / Why not?','почему? / почему нет?']];
-SPM.hab=[['always','всегда'],['usually','обычно'],['often','часто'],['sometimes','иногда'],['rarely','редко'],['never','никогда'],['every day / evening','каждый день / вечер'],['once / twice a week','раз / два раза в неделю'],['How often …?','как часто …?'],['she + verb-s','она …-ет']];
-SPM.rtn=[['at + time','в … часов'],['in the morning / afternoon / evening','утром / днём / вечером'],['then / after that','потом / после этого'],['before / after','до / после'],['get up / wake up','вставать / просыпаться'],['have breakfast / lunch / dinner','завтракать / обедать / ужинать'],['go to work / go home','идти на работу / домой'],['What time …?','во сколько …?'],['he + verb-s','он …-ет']];
-SPM.ppc=[['has / have been + -ing','present perfect continuous'],['for + a period','for two hours'],['since + a point','since 9 o’clock'],['all day / all night','весь день / всю ночь'],['recently / lately','недавно'],['How long …?','как долго …?'],['What have you been doing?','чем ты занимался?'],['because …','потому что …']];
-SPM.thr=[['There is a …','есть (ед. число)'],['There are …','есть (мн. число)'],['There isn’t a …','нет (ед.)'],['There aren’t any …','нет (мн.)'],['Is there …?','есть ли …?'],['Are there any …?','есть ли …? (мн.)'],['some','несколько / немного'],['any','какие-нибудь'],['a lot of','много'],['how many','сколько'],['on','на'],['in','в'],['under','под'],['next to','рядом с'],['between','между'],['behind','позади'],['in front of','перед'],['on the left / right','слева / справа']];
+SPM.ppf=[['I realised that …',''],['I noticed that …',''],['By the time …',''],['Before … / After …',''],['had + past participle','past perfect'],['hadn’t + past participle',''],['already',''],['just',''],['never … before',''],['because …',''],['first … then …','']];
+SPM.shd=[['should / shouldn’t',''],['I think you should …',''],['Why don’t you …?',''],['You’d better …',''],['If I were you, I’d …',''],['It’s a good idea to …',''],['You need to …','']];
+SPM.be=[['I am / you are / he, she is','am, is, are'],['My name is … / Her name is …',''],['I’m … years old',''],['I’m from … / He’s from …',''],['She’s a … / He’s a …',''],['Is he …? Yes, he is. / No, he isn’t.',''],['happy / sad / tired / fine',''],['old / young','']];
+SPM.rcl=[['who (about people)',''],['which / that (about things)',''],['where (about places)',''],['whose (belongs to)',''],['It is a … that / which …',''],['It is a person who …',''],['It is a place where …',''],['no comma (defining)','']];
+SPM.gwt=[['It is a thing that …',''],['It is a person who …',''],['It is a place where …',''],['It is something which …',''],['… whose … is …',''],['You can find it …',''],['People use it to …',''],['Is it a …? / Is it something that …?',''],['Is it bigger than …?','']];
+SPM.pfm=[['has / have + past participle','Present Perfect'],['just',''],['already',''],['yet (not … yet / … yet?)',''],['ever / never',''],['Have you ever …? Yes, I have. / No, I haven’t.',''],['I have been to … / I have never been to …',''],['so far / today / this week','']];
+SPM.ust=[['I used to …',''],['I didn’t use to …',''],['Did you use to …?',''],['Yes, I did. / No, I didn’t.',''],['when I was a child',''],['but now …',''],['every day / all the time','']];
+SPM.ifw=[['If I were …, I would be …',''],['… because …',''],['I wouldn’t want to be …',''],['I would never be …',''],['I’d = I would',''],['Why? / Why not?','']];
+SPM.hab=[['always',''],['usually',''],['often',''],['sometimes',''],['rarely',''],['never',''],['every day / evening',''],['once / twice a week',''],['How often …?',''],['she + verb-s','']];
+SPM.rtn=[['at + time',''],['in the morning / afternoon / evening',''],['then / after that',''],['before / after',''],['get up / wake up',''],['have breakfast / lunch / dinner',''],['go to work / go home',''],['What time …?',''],['he + verb-s','']];
+SPM.ppc=[['has / have been + -ing','present perfect continuous'],['for + a period','for two hours'],['since + a point','since 9 o’clock'],['all day / all night',''],['recently / lately',''],['How long …?',''],['What have you been doing?',''],['because …','']];
+SPM.thr=[['There is a …',''],['There are …',''],['There isn’t a …',''],['There aren’t any …',''],['Is there …?',''],['Are there any …?',''],['some',''],['any',''],['a lot of',''],['how many',''],['on',''],['in',''],['under',''],['next to',''],['between',''],['behind',''],['in front of',''],['on the left / right','']];
 const SPPAST=['at 7 pm yesterday','at 9 o’clock this morning','at midnight','this time last Saturday','at 6 o’clock last night','at noon yesterday','at 8 am today','at 3 o’clock yesterday afternoon'];
 const SPPRES=['What is she doing right now?','What is she doing at the moment?','Look! What is she doing?','What is she doing today?'];
 
@@ -12769,8 +12769,8 @@ homeBind=function(){
  const baseCatalogView=setView;
  setView=function(html){baseCatalogView(html);if(tab!=='gram'||!grammarActivity||!grammarCurrent)return;
   const bar=document.createElement('div');bar.className='grammar-exercise-back';
-  const native=[...$('#view').querySelectorAll('button')].find(b=>/^←\s*(?:Topics|Exercises|Kids topics)\b/i.test(b.textContent.trim()));
-  if(native){native.textContent='← Topics';return}
+  const native=[...$('#view').querySelectorAll('button')].find(b=>/^(?:←\s*)?(?:Back to )?(?:Topics|Exercises|Kids topics)$/i.test(b.textContent.trim())||/^Back to (?:(?:Kids|[ABC][12]) )?topics$/i.test(b.getAttribute('aria-label')||''));
+  if(native){native.textContent='← Back to topics';return}
   const back=document.createElement('button');back.type='button';back.className='grammar-back';back.textContent='← Topics';
   back.onclick=()=>{deskOff();grammarCatalog(grammarCurrent)};bar.appendChild(back);$('#view').prepend(bar);
  };
@@ -12824,8 +12824,8 @@ async function boot(){
  if(!STUDENT&&!document.body.classList.contains('embed')){const b=document.getElementById('wvbtn');if(b)b.hidden=false}
  go('home')}
 </script>
-<script src="level-design.js?v=time-lift-20261117-1"></script>
-<script src="b1-magnets.js?v=20261122-b1-f2"></script>
+<script src="level-design.js?v=20261123-unified"></script>
+<script src="b1-magnets.js?v=20261123-unified"></script>
 <script src="grammar-practice-refresh.js?v=wobbly-20261116-1"></script>
 <script src="kids-present-simple.js"></script>
 <script src="grammar-scenes-booth.js"></script>
@@ -12887,7 +12887,7 @@ async function boot(){
 <script src="future-time.js?v=20261122-b1"></script>
 <link rel="stylesheet" href="future-calendar.css?v=20261118-1">
 <script src="future-calendar-data.js?v=20261118-1"></script>
-<script src="future-calendar.js?v=20261122-b1"></script>
+<script src="future-calendar.js?v=20261123-unified"></script>
 <link rel="stylesheet" href="site-interactions.css?v=topic-balls-20261117-1">
 <script src="site-interactions.js?v=topic-balls-20261117-1"></script>
 <link rel="stylesheet" href="topic-ball.css?v=topic-balls-20261117-1">
@@ -12898,10 +12898,10 @@ async function boot(){
 <link rel="stylesheet" href="revision-room.css?v=20261119-main-1">
 <link rel="stylesheet" href="revision-room-scroll.css?v=20261119-main-1">
 <script src="revision-room-data.js?v=20261119-main-1"></script>
-<script src="revision-room.js?v=20261119-main-1"></script>
+<script src="revision-room.js?v=20261123-unified"></script>
 <link rel="stylesheet" href="kids-search.css?v=20261119-1">
-<script src="kids-search-data.js?v=20261119-1"></script>
-<script src="kids-search.js?v=20261119-1"></script>
+<script src="kids-search-data.js?v=20261123-unified"></script>
+<script src="kids-search.js?v=20261123-unified"></script>
 <link rel="stylesheet" href="conditional-folders.css?v=20261119-check-1">
 <script src="conditional-folders-data.js?v=20261119-1"></script>
 <script src="conditional-folders.js?v=20261119-cream-1"></script>
@@ -12959,7 +12959,7 @@ async function boot(){
 window.addEventListener('hashchange',()=>location.reload());
 boot();
 </script>
-<link rel="stylesheet" href="level-design.css?v=time-lift-20261117-1">
+<link rel="stylesheet" href="level-design.css?v=20261123-unified">
 <link rel="stylesheet" href="b1-followup.css?v=20261122-1">
 <link rel="stylesheet" href="b1-revision.css?v=20261122-1">
 </body>

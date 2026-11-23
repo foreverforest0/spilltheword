@@ -6,33 +6,33 @@ window.KidsSearchScenes=[
     "tasks": [
       {
         "prompt": "Find a toy robot.",
-        "topic": "Поиск / toys",
-        "key": "Средний этаж, витрина игрушек слева; серый робот с красными деталями."
+        "topic": "Find / toys",
+        "key": "Middle floor, toy window on the left. Look for the grey robot with red details."
       },
       {
         "prompt": "Find a purple backpack.",
-        "topic": "Поиск / bags",
-        "key": "Средний этаж, отдел сумок справа от обувного магазина."
+        "topic": "Find / bags",
+        "key": "Middle floor, in the bag shop to the right of the shoe shop."
       },
       {
         "prompt": "Find a blue teapot.",
-        "topic": "Поиск / household objects",
-        "key": "Средний этаж, отдел посуды справа, синий чайник на полке."
+        "topic": "Find / household objects",
+        "key": "Middle floor, kitchenware shop on the right. The blue kettle is on a shelf."
       },
       {
         "prompt": "Find a green watering can.",
-        "topic": "Поиск / objects",
-        "key": "Нижний этаж, цветочный магазин слева от центрального прохода."
+        "topic": "Find / objects",
+        "key": "Bottom floor, in the flower shop to the left of the centre aisle."
       },
       {
         "prompt": "Find a pair of red boots.",
-        "topic": "Поиск / clothes",
-        "key": "Средний этаж, обувной магазин в центре: красные сапоги на полке."
+        "topic": "Find / clothes",
+        "key": "Middle floor, centre shoe shop. The red boots are on the shelf."
       },
       {
         "prompt": "Find a yellow hat.",
-        "topic": "Поиск / colours",
-        "key": "Верхний этаж, отдел одежды: жёлтая шляпа над вешалками."
+        "topic": "Find / colours",
+        "key": "Top floor, clothing shop. The yellow hat is above the clothes racks."
       },
       {
         "prompt": "Where is the purple backpack?",
@@ -42,12 +42,12 @@ window.KidsSearchScenes=[
       {
         "prompt": "What is the man in the armchair doing?",
         "topic": "Present Continuous",
-        "key": "He is reading a book. Верхний этаж справа."
+        "key": "He is reading a book. Top floor, on the right."
       },
       {
         "prompt": "What is the person in the shoe shop doing?",
         "topic": "Present Continuous",
-        "key": "The person is trying on shoes. Средний этаж, сидящий покупатель."
+        "key": "The person is trying on shoes. Look for the seated shopper on the middle floor."
       },
       {
         "prompt": "Is the teapot blue?",
@@ -57,12 +57,12 @@ window.KidsSearchScenes=[
       {
         "prompt": "Point to three cups.",
         "topic": "Numbers / plural nouns",
-        "key": "Ребёнок показывает любые три чашки. Затем можно попросить: I can see three cups."
+        "key": "Point to any three cups. Model answer: I can see three cups."
       },
       {
         "prompt": "What has the person in the bookshop got?",
         "topic": "Have got",
-        "key": "The person has got a purple backpack. Укажите на покупателя с рюкзаком внизу слева."
+        "key": "The person has got a purple backpack. Look at the bottom left."
       }
     ]
   },
@@ -73,33 +73,33 @@ window.KidsSearchScenes=[
     "tasks": [
       {
         "prompt": "Find a red backpack.",
-        "topic": "Поиск / objects",
-        "key": "Верхний ярус: красный рюкзак на скамейке между зонами жирафов и слонов."
+        "topic": "Find / objects",
+        "key": "Upper level, on the bench between the giraffe and elephant areas."
       },
       {
         "prompt": "Find a green bucket.",
-        "topic": "Поиск / colours",
-        "key": "Справа у пингвинов, возле сотрудника зоопарка."
+        "topic": "Find / colours",
+        "key": "On the right by the penguins, near the zookeeper."
       },
       {
         "prompt": "Find a toy zebra.",
-        "topic": "Поиск / animals and toys",
-        "key": "Нижний правый угол: сувенирный магазин, верхняя полка с игрушками."
+        "topic": "Find / animals and toys",
+        "key": "Bottom right, on the top shelf in the gift shop."
       },
       {
         "prompt": "Find a yellow hat.",
-        "topic": "Поиск / clothes",
-        "key": "У жирафов на верхнем ярусе: посетитель в жёлтой шляпе."
+        "topic": "Find / clothes",
+        "key": "On the upper level, beside the giraffes. Look for the visitor in a yellow hat."
       },
       {
         "prompt": "Find a striped umbrella.",
-        "topic": "Поиск / patterns",
-        "key": "Слева в зоне кафе: красно-белый полосатый зонтик."
+        "topic": "Find / patterns",
+        "key": "On the left, in the café area. Look for the red-and-white striped umbrella."
       },
       {
         "prompt": "Find a blue watering can.",
-        "topic": "Поиск / objects",
-        "key": "Около помещения смотрителя у лестницы в нижней центральной части."
+        "topic": "Find / objects",
+        "key": "Near the keeper’s room, by the stairs at the lower centre."
       },
       {
         "prompt": "Where is the red backpack?",
@@ -109,27 +109,27 @@ window.KidsSearchScenes=[
       {
         "prompt": "How many giraffes are there in the enclosure?",
         "topic": "There are / numbers",
-        "key": "There are two giraffes. Считаем живых жирафов в верхнем левом вольере."
+        "key": "There are two giraffes. Count the giraffes in the top-left enclosure."
       },
       {
         "prompt": "What is the man with the camera doing?",
         "topic": "Present Continuous",
-        "key": "He is taking a photo. Посетитель у ограждения жирафов."
+        "key": "He is taking a photo. Look for the visitor by the giraffe fence."
       },
       {
         "prompt": "What is the person next to the goat doing?",
         "topic": "Present Continuous",
-        "key": "The person is feeding a goat. Средний ярус в центре."
+        "key": "The person is feeding a goat. Look in the centre of the middle level."
       },
       {
         "prompt": "Find two people with backpacks.",
         "topic": "Have got / plural nouns",
-        "key": "Выбрать любых двух посетителей с рюкзаками. Для устного ответа: They have got backpacks."
+        "key": "Point to any two visitors carrying backpacks. Model answer: They have got backpacks."
       },
       {
         "prompt": "Is the giraffe taller than the elephant?",
-        "topic": "Comparatives — дополнительное задание",
-        "key": "Yes, it is. Для ребёнка, который уже знает taller than."
+        "topic": "Comparatives",
+        "key": "Yes, it is."
       }
     ]
   },
@@ -140,33 +140,33 @@ window.KidsSearchScenes=[
     "tasks": [
       {
         "prompt": "Find a red glove.",
-        "topic": "Поиск / clothes",
-        "key": "На скамейке внизу слева, рядом с синим рюкзаком."
+        "topic": "Find / clothes",
+        "key": "On the bench at the bottom left, next to the blue backpack."
       },
       {
         "prompt": "Find a blue backpack.",
-        "topic": "Поиск / colours",
-        "key": "На той же скамейке внизу слева."
+        "topic": "Find / colours",
+        "key": "On the same bench at the bottom left."
       },
       {
         "prompt": "Find a pair of binoculars.",
-        "topic": "Поиск / objects",
-        "key": "На ближайшем к зрителю столике, рядом с зелёной бутылкой."
+        "topic": "Find / objects",
+        "key": "On the nearest table, next to the green bottle."
       },
       {
         "prompt": "Find a striped scarf.",
-        "topic": "Поиск / patterns",
-        "key": "Красно-белый шарф висит на спинке стула внизу справа от центра."
+        "topic": "Find / patterns",
+        "key": "On the back of a chair, just right of centre near the bottom."
       },
       {
         "prompt": "Find a white dog.",
-        "topic": "Поиск / animals",
-        "key": "На дорожке в нижней центральной части картинки."
+        "topic": "Find / animals",
+        "key": "On the path near the bottom centre."
       },
       {
         "prompt": "Find a toy robot.",
-        "topic": "Поиск / toys",
-        "key": "Витрина игрушек слева, над игрой с жёлтыми уточками."
+        "topic": "Find / toys",
+        "key": "In the toy display on the left, above the yellow duck game."
       },
       {
         "prompt": "Where is the red glove?",
@@ -176,22 +176,22 @@ window.KidsSearchScenes=[
       {
         "prompt": "What is the man with the map doing?",
         "topic": "Present Continuous",
-        "key": "He is reading a map. У столиков в нижней части, слева от центра."
+        "key": "He is reading a map. Look near the tables at the bottom, just left of centre."
       },
       {
         "prompt": "What is the man bending down doing?",
         "topic": "Present Continuous",
-        "key": "He is tying his shoelaces. На дорожке около центра картинки."
+        "key": "He is tying his shoelaces. Look on the path near the centre."
       },
       {
         "prompt": "What is the person with the ice cream doing?",
         "topic": "Present Continuous",
-        "key": "The person is eating an ice cream. Выберите и покажите одного такого посетителя."
+        "key": "The person is eating an ice cream. Point to any one person eating one."
       },
       {
         "prompt": "Point to four yellow ducks.",
         "topic": "Numbers / colours / plural nouns",
-        "key": "Ребёнок показывает любые четыре жёлтые уточки в игровом бассейне слева. Не требуется считать всех уточек на картинке."
+        "key": "Point to any four yellow ducks in the pool on the left."
       },
       {
         "prompt": "Is the dog black?",

@@ -48,3 +48,32 @@ body:is([data-study-level=kids],[data-study-level=a1],[data-study-level=a2]) #vi
 body:is([data-study-level=kids],[data-study-level=a1],[data-study-level=a2]) #view :is(.cs-model,.cs-deck .cbh,.sx-starter){background:var(--lesson-card-2)!important;color:var(--lesson-ink)!important}
 body:is([data-study-level=kids],[data-study-level=a1],[data-study-level=a2]) #view .grammar-topic{border-bottom:4px solid var(--lesson-accent)!important}
 body:is([data-study-level=kids],[data-study-level=a1],[data-study-level=a2]) #view :is(.process-verbs span,.there-noun){background:var(--lesson-card-2)!important;color:var(--lesson-ink)!important}
+
+/* Every level uses the same control shape and a level-specific colour. */
+body.stw-site-theme[data-study-level] #view [data-lesson-control]{
+ display:inline-flex;align-items:center;justify-content:center;gap:.35em;box-sizing:border-box;
+ min-height:44px;max-width:100%;padding:9px 15px!important;
+ border:1px solid var(--lesson-button)!important;border-radius:7px!important;
+ background:var(--lesson-button-soft)!important;color:var(--lesson-button)!important;
+ font:16px/1.2 Georgia,serif!important;text-align:center;text-decoration:none!important;
+ box-shadow:none!important;cursor:pointer;
+}
+body.stw-site-theme[data-study-level] #view [data-lesson-control]:is([data-lesson-control=back],[data-lesson-control=primary]){
+ background:var(--lesson-button)!important;color:#fff!important;
+}
+body.stw-site-theme[data-study-level] #view details>summary[data-lesson-control]{width:fit-content;list-style:none}
+body.stw-site-theme[data-study-level] #view [data-lesson-control]:focus-visible{outline:2px solid var(--lesson-button);outline-offset:3px}
+body.stw-site-theme[data-study-level] #view [data-lesson-control]:disabled{opacity:.5;cursor:default}
+body.stw-site-theme[data-study-level] #view .b1-controls [data-lesson-control]{min-height:48px;padding:10px 15px!important}
+body.stw-site-theme[data-study-level] #view .blobw .blobb[data-lesson-control]{min-height:44px;height:auto;width:auto}
+body.stw-site-theme[data-study-level] #view .blobw .blobb[data-lesson-control] img{width:22px;height:35px}
+body.stw-site-theme[data-study-level] #view .b1-fridge.blue .b1-prefix:not([hidden]){color:#152957!important}
+@media(max-width:620px){
+ body.stw-site-theme[data-study-level] #view .b1-controls [data-lesson-control]{min-height:46px;padding:8px 10px!important}
+}
+body.stw-site-theme[data-study-level] #view [data-lesson-control][hidden]{display:none!important}
+@media(max-width:560px){
+ body.stw-site-theme #view .b1-magnet-layout{grid-template-columns:minmax(0,1fr);gap:16px}
+ body.stw-site-theme #view .b1-magnet-layout .b1-fridge{width:var(--fridge-width,68%);margin-inline:auto}
+ body.stw-site-theme #view .b1-magnet-layout .b1-bank-side{height:auto}
+}
