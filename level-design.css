@@ -98,3 +98,30 @@ body.stw-site-theme #view .b1-magnet-layout .b1-check-row{
   min-height:0;
  }
 }
+
+.conditional-capsules .gcw{align-items:flex-start}
+.conditional-capsules .gck,.conditional-capsules .gcc{border:0;padding:0;box-shadow:none}
+.conditional-capsules .gcc{background:transparent}
+.conditional-capsules .gcc img{display:block;width:100%;height:auto}
+.conditional-capsules .gcs .gv{font:22px/1.27 Georgia,serif}
+.conditional-capsules #yesterdayRound{margin-top:14px}
+.conditional-capsules #yesterdayAnswer{display:block;box-sizing:border-box;width:100%;margin:0 0 8px}
+body[data-study-level] #view .conditional-capsules [data-result-time][aria-pressed=true]{background:var(--lesson-button)!important;color:#fff!important}
+body[data-study-level] #view .fridge-word{
+ text-decoration:underline;
+ text-decoration-color:var(--lesson-button,var(--lesson-ink));
+ text-decoration-thickness:.11em;
+ text-underline-offset:.19em;
+}
+body[data-study-level] #view .b1-fridge.blue .b1-strip .fridge-word{
+ text-decoration-color:var(--lesson-button-soft,var(--lesson-paper));
+}
+body[data-study-level] #view .b1-strip .b1-magnet.bad .fridge-word{text-decoration:none}
+#view .conditional-capsules .result-switch{
+ display:inline-grid;grid-template-columns:1fr 1fr;gap:3px;padding:3px;
+ border:1px solid var(--lesson-button);border-radius:999px;background:var(--lesson-button-soft);
+}
+body[data-study-level] #view .conditional-capsules .result-switch button{
+ min-height:38px;border-radius:999px;border:0;font:600 13px/1.2 Georgia,serif!important;
+ letter-spacing:.06em;padding:7px 13px;
+}

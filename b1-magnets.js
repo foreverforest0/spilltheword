@@ -323,7 +323,8 @@ function b1MagnetRound(st,mb,id,cfg,round){
  requestAnimationFrame(fit);
  if(extra.free){$('#mgchk').hidden=true;$('#mgans').hidden=true;$('#dmnew').onclick=()=>{MGKEEP={items:order.map(p=>({word:p.word,forms:p.forms,fi:p.fi}))};dmMagnets(id,null)}}
 
- const prefix=st.querySelector('.b1-prefix');prefix.textContent=extra.prefix||'';prefix.hidden=!extra.prefix;
+ const underline=text=>text.split(/([A-Za-z0-9]+(?:[’'-][A-Za-z0-9]+)*)/g).map((part,i)=>i%2?'<span class="fridge-word">'+esc(part)+'</span>':esc(part)).join('');
+ const prefix=st.querySelector('.b1-prefix');prefix.innerHTML=underline(extra.prefix||'');prefix.hidden=!extra.prefix;
  const strip=st.querySelector('.b1-strip'),bank=st.querySelector('.b1-bank'),result=st.querySelector('.b1-answer');
  if(writeFromCues){
   const regularForms=WCL.b1.v.flatMap(base=>{
@@ -341,7 +342,7 @@ function b1MagnetRound(st,mb,id,cfg,round){
   const cue=extra.cue||(hasContext?extra.prompt:wordCue+(answer.endsWith('?')?' · ?':''));
   const model=extra.word?(extra.prompt||'').replace('___',extra.word):fullAnswer(answer);
   prompt.hidden=false;prompt.textContent=round.t==='part'?'Finish the sentence.':extra.word?'Build the missing word.':'Make a complete sentence.';
-  bank.innerHTML=`<p class="b1-cues">${esc(cue)}</p><textarea class="b1-fridge-input" rows="3" aria-label="Your sentence"></textarea>`;
+  bank.innerHTML=`<p class="b1-cues">${underline(cue)}</p><textarea class="b1-fridge-input" rows="3" aria-label="Your sentence"></textarea>`;
   const input=bank.querySelector('textarea');
   $('#mgans').onclick=()=>{result.textContent=model};
   $('#mgchk').onclick=()=>{
@@ -374,7 +375,7 @@ function b1MagnetRound(st,mb,id,cfg,round){
   [...order,...bankOrder.filter(p=>!order.includes(p))].forEach(p=>{
    const on=order.includes(p),el=document.createElement('button');p.el=el;el.type='button';el.className='b1-magnet';el.dataset.piece=p.index;
    const pin=MGN[p.index%MGN.length];
-   el.innerHTML=`<img src="ch/mg_${pin}.webp" alt="" draggable="false"><span>${esc(p.word)}</span>`;
+   el.innerHTML=`<img src="ch/mg_${pin}.webp" alt="" draggable="false"><span>${on?underline(p.word):esc(p.word)}</span>`;
    el.setAttribute('aria-label',p.word+(on?' — return to bank':' — add to answer'));
    let wasDragged=false;el.onclick=()=>{if(wasDragged){wasDragged=false;return}order=on?order.filter(x=>x!==p):[...order,p];result.textContent='';paint()};
    // Pointer drag works with mouse and touch; a click remains a keyboard alternative.

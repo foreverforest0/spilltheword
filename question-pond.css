@@ -85,3 +85,30 @@
 .pond-model-answer{margin:16px 0 0;padding:14px 16px;background:#F9F5E6;border-left:3px solid #26422B;border-radius:2px;color:#26422B;overflow-wrap:anywhere}
 .pond-model-answer>span{display:block;font:13px/1.4 Georgia,serif;margin-bottom:7px}
 #view .pond-model-text{font:21px/1.45 Georgia,serif;margin:0;white-space:pre-wrap}
+
+/* Original overhead garden pond with photographic water and koi. */
+#view .pond-water{
+ background:#193d39 url('assets/pond/garden-water.jpg') center/cover no-repeat;
+ border-radius:18px;box-shadow:inset 0 0 55px #0b292780,0 8px 25px #21362838;
+}
+#view .pond-water::before{
+ content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+ background:linear-gradient(140deg,#224d4740,transparent 45%,#12353564);
+}
+#view .pond-water::after{
+ inset:-10%;background:radial-gradient(ellipse at 26% 17%,#ebf9bf22,transparent 25%),
+ radial-gradient(ellipse at 75% 76%,#d5fbea18,transparent 16%);
+ opacity:.75;mix-blend-mode:screen;
+}
+#view .pond-fish:not(.caught) .pond-house-fish{filter:brightness(.87) saturate(.82) drop-shadow(2px 5px 4px #102e3970)}
+#view .pond-house-fish{background-image:url('assets/pond/koi-sprites.png');background-size:200% 200%;top:25%;bottom:25%}
+.pond-pad{
+ position:absolute;z-index:3;display:block;pointer-events:none;width:13%;aspect-ratio:1;
+ border-radius:54% 48% 51% 48%;background:
+ repeating-conic-gradient(from 14deg at 50% 50%,#b0d59b38 0deg 1deg,transparent 1deg 21deg),
+ radial-gradient(ellipse at 48% 48%,#6d9b47,#345f39 76%,#254839);
+ clip-path:polygon(0 0,100% 0,100% 39%,54% 53%,100% 52%,100% 100%,0 100%);
+ box-shadow:inset 4px -5px 10px #17382677;
+}
+.pond-pad-one{top:-3%;right:8%;rotate:24deg}
+.pond-pad-two{bottom:-4%;left:11%;rotate:179deg;width:10%}
