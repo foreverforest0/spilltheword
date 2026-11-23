@@ -1,0 +1,16 @@
+body.stw-site-theme #view .a2-film-page button {
+  background: var(--lesson-card-2);
+  color: var(--lesson-ink);
+}
+body.stw-site-theme #view .a2-film-page :is(#a2FilmShow, #a2FilmNext, .bv-back) {
+  background: var(--lesson-strong);
+  color: var(--lesson-on-strong);
+  padding-inline: 15px;
+}
+body.stw-site-theme #view .a2-film-page button:disabled {
+  opacity: .48;
+  cursor: default;
+}
+.a2-film-page :is(h1, h2) {
+  color: var(--lesson-ink) !important;
+}
