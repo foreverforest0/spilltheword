@@ -56,3 +56,8 @@ body.stw-site-theme[data-study-level] #view .rb-room .rb-sentence{background:tra
 @media(prefers-reduced-motion:reduce){.rb-receipt-card{animation:none!important;transform:rotate(var(--settle))}.rb-lex-object{animation:none!important;transform:none}.rb-drawer{transition:none!important}.rb-svg-paper{animation:none!important;transition:none!important}.rb-arriving[data-arrival=cards]{animation:none!important}}
 
 .rb-heading{display:flex;align-items:center;gap:18px}.rb-room .rb-catalog-back{font-size:11px;color:#888;white-space:nowrap}@media(max-width:700px){.rb-heading{gap:9px}.rb-room .rb-catalog-back{font-size:10px}.rb-top{padding-left:10px;padding-right:10px}.rb-top nav{gap:9px}}
+
+#view .rb-room .rb-finish {
+ display:block;margin:24px auto 0;padding:10px 16px;border-radius:7px;
+ background:var(--lesson-button,#001166);color:#fff;font-size:16px;
+}

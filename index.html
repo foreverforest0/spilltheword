@@ -12767,7 +12767,7 @@ homeBind=function(){
  const baseSpeakingSetup=spSetup;
  spSetup=function(){if(tab==='gram'&&grammarCurrent){grammarCatalog(grammarCurrent);return}return baseSpeakingSetup()};
  const baseCatalogView=setView;
- setView=function(html){baseCatalogView(html);if(tab!=='gram'||!grammarActivity||!grammarCurrent)return;
+ setView=function(html){baseCatalogView(html);if(tab!=='gram'||!grammarActivity||!grammarCurrent||$('#rbStory'))return;
   const bar=document.createElement('div');bar.className='grammar-exercise-back';
   const native=[...$('#view').querySelectorAll('button')].find(b=>/^(?:←\s*)?(?:Back to )?(?:Topics|Exercises|Kids topics)$/i.test(b.textContent.trim())||/^Back to (?:(?:Kids|[ABC][12]) )?topics$/i.test(b.getAttribute('aria-label')||''));
   if(native){native.textContent='← Back to topics';return}
@@ -12896,10 +12896,10 @@ async function boot(){
 <link rel="stylesheet" href="cleft-focus.css?v=cleft-20261117-1">
 <script src="cleft-focus-data.js?v=cleft-20261117-1"></script>
 <script src="cleft-focus.js?v=cleft-20261117-1"></script>
-<link rel="stylesheet" href="revision-room.css?v=20261119-main-1">
+<link rel="stylesheet" href="revision-room.css?v=revision-reset-1">
 <link rel="stylesheet" href="revision-room-scroll.css?v=20261119-main-1">
 <script src="revision-room-data.js?v=20261119-main-1"></script>
-<script src="revision-room.js?v=20261123-unified"></script>
+<script src="revision-room.js?v=revision-reset-1"></script>
 <link rel="stylesheet" href="kids-search.css?v=20261119-1">
 <script src="kids-search-data.js?v=20261123-unified"></script>
 <script src="kids-search.js?v=20261123-unified"></script>
