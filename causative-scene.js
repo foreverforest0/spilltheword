@@ -99,11 +99,11 @@
       const gradingCard = { ...card, answers: [...baseAnswers, ...timed] };
       setView(`
         <section id="causativeScene" data-practice-level="${level}" data-stw-plain>
-          <header class="ce-header">
+          <div class="ce-header">
             <button type="button" id="ceBack">← Back to topics</button>
             <h1>Have / get something done</h1>
             <button type="button" id="ceSound" aria-pressed="${soundOn}">Park sounds</button>
-          </header>
+          </div>
           <p id="ceInstruction">Tap a person.</p>
           <div class="ce-park" role="group" aria-label="Park">
             <div class="ce-meadow" aria-hidden="true"></div>
