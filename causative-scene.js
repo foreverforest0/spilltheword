@@ -38,8 +38,8 @@
   window.CausativeSceneChecker = { check };
 
   const props = {
-    b1: ['ch/r_camera.webp','ch/r_tv.webp','ch/b_jacket.webp','assets/wobbly/pictures/bicycle.png','ch/cw_o_letter.webp','ch/cw_o_painting.webp','ch/r_shelf.webp','ch/cw_o_envelope.webp','ch/b_ticket.webp','ch/b_jacket.webp'],
-    b2: ['ch/r_ac.webp','ch/r_ac.webp','ch/r_camera.webp','ch/r_camera.webp','ch/cw_o_watch.webp','ch/r_door.webp','ch/cw_o_window.webp','ch/r_tv.webp','assets/wobbly/pictures/backpack.png','ch/p_bread.webp'],
+    b1: ['ch/r_camera.webp','assets/wobbly/pictures/rtn-tv.png','ch/b_jacket.webp','assets/wobbly/pictures/bicycle.png','ch/cw_o_letter.webp','ch/cw_o_painting.webp','ch/r_shelf.webp','ch/cw_o_envelope.webp','ch/b_ticket.webp','ch/b_jacket.webp'],
+    b2: ['ch/r_ac.webp','ch/r_ac.webp','ch/r_camera.webp','ch/r_camera.webp','ch/cw_o_watch.webp','assets/wobbly/pictures/rtn-home-door.png','ch/cw_o_window.webp','assets/wobbly/pictures/rtn-tv.png','assets/wobbly/pictures/backpack.png','ch/p_bread.webp'],
     c1: ['ch/r_camera.webp','ch/r_ac.webp','ch/cw_o_watch.webp','ch/cw_o_painting.webp','ch/r_camera.webp','ch/r_camera.webp','ch/cw_o_painting.webp','ch/town_map.webp','ch/cw_o_window.webp','ch/r_camera.webp'],
   };
   const times = {
@@ -52,8 +52,8 @@
     'b1-06':'last week','b1-07':'yesterday','b1-09':'last Friday','b1-10':'yesterday',
     'b2-02':'last winter','b2-07':'yesterday','b2-10':'this morning','c1-04':'last month',
   };
-  const homes = [[16,49],[40,39],[65,56],[83,43],[38,77],[74,78]];
-  const foliage = [[3,34],[10,29],[18,32],[25,24],[48,28],[57,30],[67,24],[74,31],[91,27],[96,36],[6,71],[92,80]];
+  const homes = [[23,46],[38,40],[62,53],[79,47],[39,70],[68,73]];
+  const foliage = [[12,43],[18,37],[24,32],[32,28],[48,27],[57,30],[67,31],[74,34],[82,36],[88,43],[16,66],[84,67]];
   const posture = '<span class="ce-figure" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
   let destroyPark;
   const previousView = setView;
@@ -106,9 +106,14 @@
           </div>
           <p id="ceInstruction">Tap a person.</p>
           <div class="ce-park" role="group" aria-label="Park">
-            <div class="ce-meadow" aria-hidden="true"></div>
-            <div class="ce-path" aria-hidden="true"></div>
-            <div class="ce-pond" aria-hidden="true"></div>
+            <div class="ce-island" aria-hidden="true">
+              <div class="ce-meadow"></div>
+              <div class="ce-stream"></div>
+              <div class="ce-path"></div>
+              <div class="ce-pond"></div>
+            </div>
+            <div class="ce-cloud ce-cloud-left" aria-hidden="true"></div>
+            <div class="ce-cloud ce-cloud-right" aria-hidden="true"></div>
             <div class="ce-mill" aria-hidden="true"><div class="ce-blades"><i></i><i></i><i></i><i></i></div></div>
             ${foliage.map(([x,y],i) => `<i class="ce-tree" style="--x:${x}%;--y:${y}%;--tree-size:${36+i%4*9}px" aria-hidden="true"></i>`).join('')}
             ${homes.map(([x,y],i) => `<button type="button" class="ce-walker ce-walker-${i}" aria-label="Person ${i+1}" style="left:${x}%;top:${y}%">${posture}<span class="ce-name"></span></button>`).join('')}
@@ -189,7 +194,8 @@
           const x = (position.left + position.width / 2 - bounds.left) / bounds.width * 100;
           const y = (position.top + position.height * .7 - bounds.top) / bounds.height * 100;
           const direction = x <= 50 ? 1 : -1;
-          const gap = Math.min(23, Math.max(13, 155 / bounds.width * 100));
+          const gap = Math.min(32, Math.max(22, 250 / bounds.width * 100));
+          const propX = x + direction * gap * (partner ? .5 : .72);
           move(walker, x, y, 0);
           if (partner) {
             partner.classList.add('ce-approaching');
@@ -198,7 +204,7 @@
           revealTimer = setTimeout(() => {
             partner?.classList.remove('ce-approaching');
             const prop = root.querySelector('.ce-prop');
-            prop.style.left = (x + direction * gap * (partner ? .5 : .72)) + '%';
+            prop.style.left = propX + '%';
             prop.style.top = (y - 8) + '%';
             prop.hidden = false;
             get('ceInstruction').hidden = true;
