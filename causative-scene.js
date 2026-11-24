@@ -52,8 +52,7 @@
     'b1-06':'last week','b1-07':'yesterday','b1-09':'last Friday','b1-10':'yesterday',
     'b2-02':'last winter','b2-07':'yesterday','b2-10':'this morning','c1-04':'last month',
   };
-  const homes = [[23,46],[38,40],[62,53],[79,47],[39,70],[68,73]];
-  const foliage = [[12,43],[18,37],[24,32],[32,28],[48,27],[57,30],[67,31],[74,34],[82,36],[88,43],[16,66],[84,67]];
+  const homes = [[50,24],[67,22],[80,22],[35,79],[55,85],[76,84]];
   const posture = '<span class="ce-figure" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
   let destroyPark;
   const previousView = setView;
@@ -106,16 +105,7 @@
           </div>
           <p id="ceInstruction">Tap a person.</p>
           <div class="ce-park" role="group" aria-label="Park">
-            <div class="ce-island" aria-hidden="true">
-              <div class="ce-meadow"></div>
-              <div class="ce-stream"></div>
-              <div class="ce-path"></div>
-              <div class="ce-pond"></div>
-            </div>
-            <div class="ce-cloud ce-cloud-left" aria-hidden="true"></div>
-            <div class="ce-cloud ce-cloud-right" aria-hidden="true"></div>
-            <div class="ce-mill" aria-hidden="true"><div class="ce-blades"><i></i><i></i><i></i><i></i></div></div>
-            ${foliage.map(([x,y],i) => `<i class="ce-tree" style="--x:${x}%;--y:${y}%;--tree-size:${36+i%4*9}px" aria-hidden="true"></i>`).join('')}
+            <div class="ce-blades" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
             ${homes.map(([x,y],i) => `<button type="button" class="ce-walker ce-walker-${i}" aria-label="Person ${i+1}" style="left:${x}%;top:${y}%">${posture}<span class="ce-name"></span></button>`).join('')}
             <div class="ce-prop" hidden>
               <img src="${props[level][state.index]}" alt="">
@@ -154,7 +144,7 @@
       }
       function stroll(walker, i) {
         const [x,y] = homes[i];
-        move(walker, x + (Math.random() - .5) * 17, y + (Math.random() - .5) * 18, 2600 + Math.random() * 1400);
+        move(walker, x + (Math.random() - .5) * 8, y + (Math.random() - .5) * 6, 2600 + Math.random() * 1400);
       }
       function wander() {
         if (document.activeElement?.classList.contains('ce-walker')) return;
@@ -181,7 +171,8 @@
           chosen = true;
           clearInterval(wanderTimer);
           clearTimeout(startTimer);
-          const partner = card.kind === 'self' ? null : people[(i + 3) % people.length];
+          const bank = Math.floor(i / 3) * 3;
+          const partner = card.kind === 'self' ? null : people[bank + (i + 1) % 3];
           const performers = partner ? [walker, partner] : [walker];
           park.classList.add('ce-meeting');
           performers.forEach((person, n) => {
@@ -193,7 +184,7 @@
           const position = walker.getBoundingClientRect();
           const x = (position.left + position.width / 2 - bounds.left) / bounds.width * 100;
           const y = (position.top + position.height * .7 - bounds.top) / bounds.height * 100;
-          const direction = x <= 50 ? 1 : -1;
+          const direction = x <= (bank ? 55 : 63) ? 1 : -1;
           const gap = Math.min(32, Math.max(22, 250 / bounds.width * 100));
           const propX = x + direction * gap * (partner ? .5 : .72);
           move(walker, x, y, 0);

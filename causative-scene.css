@@ -11,58 +11,15 @@
 .ce-park {
   position: relative;
   isolation: isolate;
-  height: clamp(310px, 48vw, 485px);
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 9px;
-  background: linear-gradient(#d8edec 0 23%, #b8d395 24% 37%, #a9c37f 66%, #91af6d);
-  box-shadow: inset 0 0 38px #6c864451;
+  background: #afba75 url(assets/causative-park/diorama.webp) center / 100% 100% no-repeat;
 }
-.ce-meadow, .ce-path, .ce-pond, .ce-tree, .ce-mill { position: absolute; pointer-events: none; }
-.ce-meadow {
-  inset: 17% -15% 0;
-  background:
-    radial-gradient(ellipse at 35% 74%, #c2d68a 0 18%, transparent 32%),
-    radial-gradient(ellipse at 74% 64%, #93b472 0 20%, transparent 35%),
-    repeating-linear-gradient(167deg, #fff1 0 1px, transparent 1px 7px);
-  border-radius: 61% 70% 0 0 / 23% 28% 0 0;
-}
-.ce-path {
-  left: -12%; top: 45%; width: 124%; height: 35%;
-  border: clamp(13px, 3vw, 32px) solid #eee0b5;
-  border-color: #eee0b5 transparent transparent;
-  border-radius: 50%;
-  transform: rotate(-7deg);
-  opacity: .91;
-}
-.ce-pond {
-  left: 2%; bottom: 2%; width: 24%; height: 24%;
-  border-radius: 50% 43% 51% 42%;
-  transform: rotate(-9deg);
-  background: repeating-radial-gradient(ellipse at 55% 46%, #9dcac4 0 11%, #a9d2c8 12% 13%, #91c5c0 14% 25%);
-  border: 5px solid #d4d7a5;
-  box-shadow: 0 4px 0 #76975c80;
-}
-.ce-tree {
-  left: var(--x); top: var(--y); width: calc(var(--tree-size) * .75); height: var(--tree-size);
-  transform: translate(-50%, -75%);
-  background: radial-gradient(ellipse at 34% 28%, #99b579, #71975e 60%, #50734c);
-  border-radius: 48% 55% 43% 57%;
-  box-shadow: inset -4px -4px #698d50;
-}
-.ce-tree::after { content: ''; position: absolute; left: 46%; top: 91%; width: 10%; height: 27%; background: #866d4e; border-radius: 3px; }
-.ce-mill {
-  top: 11%; left: 32%;
-  width: clamp(37px, 6vw, 69px); height: clamp(66px, 10vw, 105px);
-  background: linear-gradient(90deg, #bf875e, #ebc59b 50%, #c59870);
-  border-radius: 35% 35% 5px 5px;
-  border-top: 10px solid #785847;
-  box-shadow: 8px 5px 0 #617b4d4d;
-}
-.ce-mill::after { content: ''; position: absolute; bottom: 0; left: 36%; width: 29%; height: 28%; border-radius: 50% 50% 0 0; background: #805746; }
-.ce-blades { position: absolute; z-index: 1; left: 50%; top: 27%; animation: ce-turn 11s linear infinite; }
+.ce-blades { position: absolute; z-index: 1; left: 32%; top: 21.8%; animation: ce-turn 11s linear infinite; }
 .ce-blades::after { content: ''; position: absolute; left: -5px; top: -5px; width: 10px; height: 10px; border-radius: 50%; background: #694f3d; }
 .ce-blades i {
-  position: absolute; top: -7px; left: 0; width: clamp(34px, 6vw, 65px); height: clamp(9px, 1.7vw, 17px);
+  position: absolute; top: -7px; left: 0; width: clamp(22px, 6vw, 74px); height: clamp(7px, 1.5vw, 15px);
   transform: rotate(calc(var(--blade, 0) * 90deg));
   transform-origin: 0 50%;
   border: 2px solid #87664a;
@@ -88,9 +45,9 @@
 #causativeScene .ce-walker-3 { --coat: #8b5073; }
 #causativeScene .ce-walker-4 { --coat: #345942; }
 #causativeScene .ce-walker-5 { --coat: #575482; }
-.ce-figure { position: absolute; inset: 1px; filter: drop-shadow(3px 5px 1px #35432847); animation: ce-step .66s alternate infinite ease-in-out; }
-.ce-figure::before { content: ''; position: absolute; z-index: 2; width: 23px; height: 24px; left: 15px; top: 7px; border-radius: 48% 46% 43% 47%; border-top: 5px solid #523b2d; background: #e6ae86; }
-.ce-figure::after { content: ''; position: absolute; z-index: 2; width: 28px; height: 31px; top: 27px; left: 12px; border-radius: 46% 46% 18% 18%; background: var(--coat); }
+.ce-figure { position: absolute; inset: 1px; filter: drop-shadow(8px 6px 2px #28341288); animation: ce-step .66s alternate infinite ease-in-out; }
+.ce-figure::before { content: ''; position: absolute; z-index: 2; width: 23px; height: 24px; left: 15px; top: 7px; border-radius: 48% 46% 43% 47%; border-top: 5px solid #523b2d; background: radial-gradient(circle at 33% 22%, #f8cfaa, #bc815d 77%); }
+.ce-figure::after { content: ''; position: absolute; z-index: 2; width: 28px; height: 31px; top: 27px; left: 12px; border-radius: 46% 46% 18% 18%; background: radial-gradient(ellipse at 32% 20%, #fff4, #0005 95%), var(--coat); }
 .ce-figure i { position: absolute; width: 8px; border-radius: 8px; transform-origin: center top; }
 .ce-figure i:nth-child(-n+2) { background: #3f4744; top: 52px; left: 17px; height: 20px; animation: ce-leg .65s alternate infinite ease-in-out; }
 .ce-figure i:nth-child(2) { left: 28px; animation-direction: alternate-reverse; }
@@ -141,68 +98,9 @@ body[data-study-level] #causativeScene :is(#ceBack, #ceForm button, #ceExample s
 }
 #ceExample summary { padding: 5px 10px; margin-top: 4px; }
 
-/* An angled paper landscape with the scene's interactive figures above it. */
-.ce-park {
-  height: clamp(330px, 57vw, 590px);
-  background: #eee8d8;
-  background-image: repeating-linear-gradient(33deg, #b4a18511 0 1px, transparent 1px 4px);
-  box-shadow: inset 0 0 55px #b5a48040;
-}
-.ce-island {
-  position: absolute;
-  inset: 15% 6% 8%;
-  isolation: isolate;
-  filter: drop-shadow(7px 15px 4px #786d4e55);
-}
-.ce-meadow {
-  inset: 0;
-  border-radius: 0;
-  clip-path: polygon(0% 34%,8% 22%,20% 13%,42% 1%,57% 3%,76% 12%,94% 28%,100% 42%,97% 61%,87% 75%,66% 95%,54% 100%,38% 93%,22% 82%,9% 67%,3% 52%);
-  background:
-    repeating-linear-gradient(151deg, #46673820 0 1px, transparent 1px 5px),
-    repeating-linear-gradient(26deg, #e8e1a62e 0 1px, transparent 1px 4px),
-    radial-gradient(ellipse at 33% 41%, #c9cb79, transparent 48%),
-    radial-gradient(ellipse at 80% 24%, #778f4e, transparent 58%),
-    linear-gradient(20deg, #7d9c56, #a4b779 52%, #b3bc76);
-}
-.ce-path {
-  left: 9%; top: 45%; width: 83%; height: 35%;
-  border-width: clamp(9px, 2vw, 22px);
-  transform: rotate(-9deg);
-  border-top-color: #e0c6a0;
-}
-.ce-pond { left: 62%; bottom: 15%; width: 24%; height: 23%; }
-.ce-stream {
-  position: absolute;
-  left: 2%; top: 38%; width: 39%; height: 13%;
-  transform: rotate(34deg);
-  border: solid #d2c29c;
-  border-width: 3px 0;
-  border-radius: 42% 19% 43% 30%;
-  background: repeating-linear-gradient(4deg, #81a9a1 0 8px, #9fbbb0 8px 10px);
-}
-.ce-mill { top: 19%; left: 28%; background: repeating-linear-gradient(0deg, #b3a68c 0 8px, #c8bba2 8px 9px); border-top-color: #995643; }
-.ce-cloud {
-  position: absolute;
-  top: 10%;
-  width: 10%;
-  height: 7%;
-  border-radius: 47%;
-  background: #fffcf1;
-  opacity: .72;
-  box-shadow: inset -3px -4px 0 #d3c9b780;
-  animation: ce-drift 13s infinite alternate ease-in-out;
-  pointer-events: none;
-}
-.ce-cloud-left { left: 12%; }
-.ce-cloud-right { left: 76%; top: 16%; width: 13%; animation-delay: -5s; }
-@keyframes ce-drift { to { transform: translateX(38%); } }
-#causativeScene .ce-walker { scale: .9; }
+#causativeScene .ce-walker { scale: .87; }
 .ce-prop { width: min(20%, 132px); }
 .ce-prop img { height: clamp(50px, 11vw, 105px); }
 @media (max-width: 520px) {
   #causativeScene .ce-walker { scale: .75; }
-  .ce-island { inset-inline: 1%; }
-  .ce-tree { scale: .7; }
 }
-@media (prefers-reduced-motion: reduce) { .ce-cloud { animation: none; } }
