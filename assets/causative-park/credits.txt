@@ -1,0 +1,10 @@
+Park ambience, CC0 1.0
+
+prairie.mp3 — PrairieSummer_ambience.wav by dsebeste
+https://freesound.org/people/dsebeste/sounds/351609/
+
+grass-wind.mp3 — In the grass.m4a by JeanetteDominguez
+https://freesound.org/people/JeanetteDominguez/sounds/593817/
+
+MP3 versions sourced from https://github.com/wfcsilence/sheep-pasture/tree/main/sounds
+License https://creativecommons.org/publicdomain/zero/1.0/

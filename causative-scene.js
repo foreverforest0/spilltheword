@@ -37,165 +37,206 @@
   }
   window.CausativeSceneChecker = { check };
 
-  const roles = {
-    arrange: ['Organises the service', 'Does the work'],
-    self: ['Does it personally', 'Does something else'],
-    event: ['Experiences the event', 'Causes the event'],
+  const props = {
+    b1: ['ch/r_camera.webp','ch/r_tv.webp','ch/b_jacket.webp','assets/wobbly/pictures/bicycle.png','ch/cw_o_letter.webp','ch/cw_o_painting.webp','ch/r_shelf.webp','ch/cw_o_envelope.webp','ch/b_ticket.webp','ch/b_jacket.webp'],
+    b2: ['ch/r_ac.webp','ch/r_ac.webp','ch/r_camera.webp','ch/r_camera.webp','ch/cw_o_watch.webp','ch/r_door.webp','ch/cw_o_window.webp','ch/r_tv.webp','assets/wobbly/pictures/backpack.png','ch/p_bread.webp'],
+    c1: ['ch/r_camera.webp','ch/r_ac.webp','ch/cw_o_watch.webp','ch/cw_o_painting.webp','ch/r_camera.webp','ch/r_camera.webp','ch/cw_o_painting.webp','ch/town_map.webp','ch/cw_o_window.webp','ch/r_camera.webp'],
   };
-  const actionMenu = {
-    arrange: 'Arrange the service',
-    self: 'Help with something else',
-    event: 'Experience the incident',
+  const times = {
+    b1: ['yesterday','last night','yesterday','before the trip','yesterday','last week','yesterday','every year · before the deadline','last Friday','yesterday'],
+    b2: ['this week','last winter','in progress now','overnight','next week · plan','first','yesterday','before the screening · necessary','while on a hike','this morning'],
+    c1: ['before the festival opened','by the time her guests arrive','when another guest caught it on a bag by accident','last month','before she posts anything · wants to','twice this month','after the backlash · considered it','during her digital detox','before winter · should have','during a scroll-free weekend · without permission'],
   };
-  const photos=['ch/r_camera.webp','ch/r_tv.webp','ch/b_jacket.webp','assets/wobbly/pictures/bicycle.png','ch/cw_o_letter.webp','ch/cw_o_painting.webp','ch/r_shelf.webp','ch/cw_o_envelope.webp','ch/b_ticket.webp','ch/b_jacket.webp'];
+  const extraTime = {
+    'b1-01':'yesterday','b1-02':'last night','b1-03':'yesterday','b1-05':'yesterday',
+    'b1-06':'last week','b1-07':'yesterday','b1-09':'last Friday','b1-10':'yesterday',
+    'b2-02':'last winter','b2-07':'yesterday','b2-10':'this morning','c1-04':'last month',
+  };
+  const homes = [[16,49],[40,39],[65,56],[83,43],[26,77],[74,78]];
+  const foliage = [[3,34],[10,29],[18,32],[25,24],[48,28],[57,30],[67,24],[74,31],[91,27],[96,36],[6,71],[92,80]];
+  const posture = '<span class="ce-figure" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
+  let destroyPark;
+  const previousView = setView;
+  setView = function (html) {
+    destroyPark?.();
+    destroyPark = null;
+    return previousView(html);
+  };
 
   function open(level) {
     seaOff();
     S.splevel = level;
+    const cards = levels[level];
     const state = saved[level] ??= { index: 0, drafts: {} };
-    state.index=Math.max(0,Math.min(levels[level].length-1,state.index||0));
-    let actor = null, revealed = false;
-    let feedback = '';
-    let animation;
-    const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+    state.index = Math.max(0, Math.min(cards.length - 1, state.index || 0));
+    let soundOn = false;
+    const audio = ['prairie','grass-wind'].map((file, i) => {
+      const track = new Audio('assets/causative-park/' + file + '.mp3');
+      track.loop = true;
+      track.volume = i ? .13 : .22;
+      track.preload = 'none';
+      return track;
+    });
+    function sound(play) {
+      audio.forEach(track => {
+        if (play) track.play().catch(() => {});
+        else track.pause();
+      });
+    }
 
     function render(focusId) {
-      const cards = levels[level];
       const card = cards[state.index];
-      const performer = card.kind === 'self' ? 0 : 1;
       const draft = state.drafts[card.id] ??= {};
-      const shown = revealed || !!draft.complete;
-      const prompt=level==='b1'&&state.index===3?'What will Noah have done before his trip?':level==='b1'&&state.index===7?'What does Max have done every year?':card.kind==='arrange'?'What did '+card.people[0]+' have or get done?':card.kind==='self'?'What did '+card.people[0]+' do?':'What happened to '+card.people[0]+'?';
-      const menu = [card.action, actionMenu[card.kind]];
-      const ordered = state.index % 2 ? menu : menu.slice().reverse();
+      const time = times[level][state.index];
+      const reminder = extraTime[card.id];
+      const baseAnswers = card.answers.flatMap(answer => card.kind !== 'self' ? [answer] : [
+        answer, answer.replace(/ (?:himself|herself)(?=[.!?]?$)/i, ''),
+      ]);
+      const timed = reminder ? baseAnswers.flatMap(answer => [
+        answer.replace(/[.]$/, '') + ' ' + reminder + '.',
+        reminder[0].toUpperCase() + reminder.slice(1) + ', ' + answer,
+      ]) : [];
+      const gradingCard = { ...card, answers: [...baseAnswers, ...timed] };
       setView(`
         <section id="causativeScene" data-practice-level="${level}" data-stw-plain>
           <header class="ce-header">
-            <button type="button" id="ceBack">Topics</button>
+            <button type="button" id="ceBack">← Back to topics</button>
             <h1>Have / get something done</h1>
-            <span class="ce-level">${level.toUpperCase()}</span>
+            <button type="button" id="ceSound" aria-pressed="${soundOn}">Park sounds</button>
           </header>
-          <div class="ce-workspace">
-            <div class="ce-meta">
-
-              <output aria-label="Situation ${state.index + 1} of ${cards.length}">${state.index + 1} / ${cards.length}</output>
+          <p id="ceInstruction">Tap a person.</p>
+          <div class="ce-park" role="group" aria-label="Park">
+            <div class="ce-meadow" aria-hidden="true"></div>
+            <div class="ce-path" aria-hidden="true"></div>
+            <div class="ce-pond" aria-hidden="true"></div>
+            <div class="ce-mill" aria-hidden="true"><div class="ce-blades"><i></i><i></i><i></i><i></i></div></div>
+            ${foliage.map(([x,y],i) => `<i class="ce-tree" style="--x:${x}%;--y:${y}%;--tree-size:${36+i%4*9}px" aria-hidden="true"></i>`).join('')}
+            ${homes.map(([x,y],i) => `<button type="button" class="ce-walker ce-walker-${i}" aria-label="Person ${i+1}" style="left:${x}%;top:${y}%">${posture}<span class="ce-name"></span></button>`).join('')}
+            <div class="ce-prop" hidden>
+              <img src="${props[level][state.index]}" alt="">
+              <span>${esc(card.object)}</span>
             </div>
-            <h2>${esc(card.title)}</h2>
-            <p class="ce-context">${esc(card.context)}</p>
-            <p id="ceTask">${shown?'Who does the work?':'Tap the person to open the scene.'}</p>
-            <div class="ce-scene" data-scene="${card.scene}" data-complete="${!!draft.complete}" aria-describedby="ceTask">
-              <div class="ce-land" aria-hidden="true"><i></i><i></i><i></i></div>
-              ${shown?`<div class="ce-object">${level==='b1'?'<img src="'+photos[state.index]+'" alt="">':'<i aria-hidden="true"></i>'}<span>${esc(card.object)}</span></div>`:''}
-              ${card.people.map((name, i) => i===1&&!shown?'':`
-                <div class="ce-person ce-person-${i}" data-selected="${actor === i}" data-performer="${performer === i}">
-                  <button type="button" class="ce-actor" id="ce-actor-${i}" data-actor="${i}" aria-expanded="${actor === i}" aria-controls="ceTools">
-                    <span class="ce-figure" aria-hidden="true"><i></i><i></i><i></i></span>
-                    <span class="ce-name">${esc(name)}</span>
-                    ${draft.complete ? `<small>${roles[card.kind][i]}</small>` : ''}
-                  </button>
-                </div>
-              `).join('')}
-              <div class="ce-tools" id="ceTools" data-actor="${actor ?? ''}" role="group" aria-label="${actor === null ? 'Actions' : `Actions for ${esc(card.people[actor])}`}" ${actor === null ? 'hidden' : ''}>
-                ${ordered.map((verb, i) => `<button type="button" id="ce-action-${i}" data-does="${verb === card.action}">${esc(verb)}</button>`).join('')}
-              </div>
-            </div>
-            <p id="ceSceneNote" role="status">${esc(feedback)}</p>
-            <p id="cePrompt">${esc(prompt)}</p>
-
-              <form id="ceForm">
-                <textarea id="ceAnswer" aria-label="Your sentence" aria-describedby="cePrompt" rows="3" maxlength="1200">${esc(draft.text)}</textarea>
-                <button type="submit">Check</button>
-              </form>
-              <p id="ceFeedback" role="status" data-result="${esc(draft.result?.[0])}">${esc(draft.result?.[1])}</p>
-            <details id="ceHint" ${draft.hint ? 'open' : ''}><summary>Hint</summary><p>${esc(card.hint)}</p></details>
-            <details id="ceExample" ${draft.example ? 'open' : ''}><summary>Show answer</summary><p>${esc(card.answers[0])}</p></details>
-            <nav aria-label="Situations">
-              <button type="button" id="cePrev" ${state.index === 0 ? 'disabled' : ''}>Previous</button>
-              <button type="button" id="ceNext" ${state.index === cards.length - 1 ? 'disabled' : ''}>Next</button>
-            </nav>
           </div>
+          <section id="ceTask" aria-label="Write a full sentence" hidden>
+            <p class="ce-clues" id="ceClues"></p>
+            <form id="ceForm">
+              <textarea id="ceAnswer" aria-label="Your full sentence" aria-describedby="ceClues" rows="2" maxlength="1200" placeholder="Write a full sentence.">${esc(draft.text)}</textarea>
+              <button type="submit">Check</button>
+            </form>
+            <p id="ceFeedback" role="status" data-result="${esc(draft.result?.[0])}">${esc(draft.result?.[1])}</p>
+            <details id="ceHint" ${draft.hint ? 'open' : ''}><summary>Hint</summary><p>${esc(card.hint)}</p></details>
+            <details id="ceExample" ${draft.example ? 'open' : ''}><summary>Show answer</summary><p>${esc(timed[0] || card.answers[0])}</p></details>
+          </section>
+          <p id="ceLive" class="ce-sr" role="status"></p>
+          <nav aria-label="Situations">
+            <button type="button" id="cePrev" ${state.index === 0 ? 'disabled' : ''}>Previous</button>
+            <span>${state.index + 1} / ${cards.length}</span>
+            <button type="button" id="ceNext">Next</button>
+          </nav>
         </section>`);
 
       const root = document.getElementById('causativeScene');
       const get = id => root.querySelector('#' + id);
-      get('ceBack').onclick = () => { S.glevel = level; go('gram'); };
-
-      root.querySelectorAll('button[data-actor]').forEach(button => {
-        button.onclick = () => {
-          if(!shown){revealed=true;render('ce-actor-1');return}
-          const next = Number(button.dataset.actor);
-          actor = next === actor ? null : next;
-          feedback = '';
-          render(actor === null ? button.id : 'ce-action-0');
-        };
-      });
-      get('ceTools').onkeydown = event => {
-        if (event.key === 'Escape') {
-          const target = 'ce-actor-' + actor;
-          actor = null;
-          render(target);
-        }
-      };
-      root.querySelectorAll('[data-does]').forEach(button => {
-        button.onclick = () => {
-          if (actor === performer && button.dataset.does === 'true') {
-            draft.complete = true;
-            feedback = card.kind === 'arrange' ? `${card.people[1][0].toUpperCase()+card.people[1].slice(1)} does the work.` :
-              card.kind === 'event' ? `${card.people[0]} experiences the event without arranging it.` :
-              `${card.people[0]} does the work personally.`;
-            actor = null;
-            render('ce-actor-' + performer);
-            const scene = document.querySelector('#causativeScene .ce-scene');
-            if (!reduced()) {
-              animation?.cancel();
-              const figure = scene.querySelector('[data-performer=true] .ce-figure');
-              const direction = performer === 0 ? '1' : '-1';
-              animation = figure.animate([
-                { transform: 'translateX(0) rotate(0deg)' },
-                { transform: `translateX(calc(${direction} * 22px)) rotate(${performer === 0 ? 12 : -12}deg) translateY(-8px)` },
-                { transform: 'translateX(0) rotate(0deg)' },
-              ], { duration: 670, easing: 'ease-in-out' });
-              scene.querySelector('.ce-object img,.ce-object i').animate([
-                { opacity: .88, scale: 1 }, { opacity: 1, scale: 1.17 }, { opacity: .88, scale: 1 },
-              ], { duration: 680, delay: 160, easing: 'ease-out' });
-            }
-          } else {
-            const message = actor !== performer ? 'Try the other person.' :
-              'Choose their action.';
-            feedback = message;
-            get('ceSceneNote').textContent = message;
-          }
-        };
-      });
-      const input = get('ceAnswer');
-      if (input) {
-        const status = get('ceFeedback');
-        input.oninput = () => {
-          draft.text = input.value;
-          delete draft.result;
-          status.textContent = '';
-          delete status.dataset.result;
-          save();
-        };
-        get('ceForm').onsubmit = event => {
-          event.preventDefault();
-          draft.result = check(card, input.value);
-          status.dataset.result = draft.result[0];
-          status.textContent = draft.result[1];
-          save();
-        };
+      const park = root.querySelector('.ce-park');
+      const people = [...root.querySelectorAll('.ce-walker')];
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let chosen = false;
+      let revealTimer;
+      function move(walker, x, y, ms) {
+        walker.style.transitionDuration = (reduced ? 0 : ms) + 'ms';
+        walker.style.left = x + '%';
+        walker.style.top = y + '%';
       }
+      function stroll(walker, i) {
+        const [x,y] = homes[i];
+        move(walker, x + (Math.random() - .5) * 17, y + (Math.random() - .5) * 18, 2600 + Math.random() * 1400);
+      }
+      function wander() {
+        if (document.activeElement?.classList.contains('ce-walker')) return;
+        people.forEach(stroll);
+      }
+      const wanderTimer = reduced ? undefined : setInterval(wander, 3600);
+      const startTimer = reduced ? undefined : setTimeout(wander, 120);
+      destroyPark = () => {
+        clearInterval(wanderTimer);
+        clearTimeout(startTimer);
+        clearTimeout(revealTimer);
+        sound(false);
+      };
+      if (soundOn) sound(true);
+      get('ceSound').onclick = event => {
+        soundOn = !soundOn;
+        event.currentTarget.setAttribute('aria-pressed', String(soundOn));
+        sound(soundOn);
+      };
+      const input = get('ceAnswer');
+      people.forEach((walker,i) => {
+        walker.onclick = event => {
+          if (chosen) return;
+          chosen = true;
+          clearInterval(wanderTimer);
+          clearTimeout(startTimer);
+          const partner = card.kind === 'self' ? null : people[(i + 3) % people.length];
+          const performers = partner ? [walker, partner] : [walker];
+          park.classList.add('ce-meeting');
+          performers.forEach((person, n) => {
+            person.classList.add('ce-participant');
+            person.querySelector('.ce-name').textContent = card.people[n];
+          });
+          people.forEach(person => { person.disabled = true; });
+          const bounds = park.getBoundingClientRect();
+          const position = walker.getBoundingClientRect();
+          const x = (position.left + position.width / 2 - bounds.left) / bounds.width * 100;
+          const y = (position.top + position.height * .7 - bounds.top) / bounds.height * 100;
+          const direction = x <= 50 ? 1 : -1;
+          const gap = Math.min(23, Math.max(13, 155 / bounds.width * 100));
+          move(walker, x, y, 0);
+          if (partner) {
+            partner.classList.add('ce-approaching');
+            move(partner, x + direction * gap, y, 740);
+          }
+          revealTimer = setTimeout(() => {
+            partner?.classList.remove('ce-approaching');
+            const prop = root.querySelector('.ce-prop');
+            prop.style.left = (x + direction * gap * (partner ? .5 : .72)) + '%';
+            prop.style.top = (y - 3) + '%';
+            prop.hidden = false;
+            get('ceInstruction').hidden = true;
+            const names = partner ? card.people.join(' + ') : card.people[0];
+            get('ceClues').textContent = [names, card.action, time].join(' · ');
+            get('ceTask').hidden = false;
+            get('ceLive').textContent = partner
+              ? card.people[1] + ' joined ' + card.people[0] + '.'
+              : card.people[0] + ' is alone.';
+            if (event.detail === 0) input.focus({ preventScroll: true });
+          }, reduced ? 0 : 760);
+        };
+      });
+
+      get('ceBack').onclick = spSetup;
+      const status = get('ceFeedback');
+      input.oninput = () => {
+        draft.text = input.value;
+        delete draft.result;
+        status.textContent = '';
+        delete status.dataset.result;
+        save();
+      };
+      get('ceForm').onsubmit = event => {
+        event.preventDefault();
+        draft.result = check(gradingCard, input.value);
+        status.dataset.result = draft.result[0];
+        status.textContent = draft.result[1];
+        save();
+      };
       get('ceHint').ontoggle = event => { draft.hint = event.currentTarget.open; save(); };
       get('ceExample').ontoggle = event => { draft.example = event.currentTarget.open; save(); };
-      function move(index, target) {
-        actor = null;
-        revealed = false;
-        feedback = '';
+      function moveCard(index, target) {
         state.index = index;
         render(target);
       }
-      get('cePrev').onclick = () => move(state.index - 1, state.index === 1 ? 'ceNext' : 'cePrev');
-      get('ceNext').onclick = () => move(state.index + 1, state.index === cards.length - 2 ? 'cePrev' : 'ceNext');
+      get('cePrev').onclick = () => moveCard(state.index - 1, state.index === 1 ? 'ceNext' : 'cePrev');
+      get('ceNext').onclick = () => moveCard((state.index + 1) % cards.length, 'ceNext');
       if (focusId) get(focusId)?.focus({ preventScroll: true });
       save();
     }
@@ -208,8 +249,8 @@
     const id = 'causative_scene_' + level;
     DMT[id] = 1;
     DMTF[id] = () => open(level);
-    SPSHORT[id] = 'Have / get something done · scene editor';
-    SPT.push({ id, n: SPSHORT[id], d: 'Choose who performs the action, then describe what happened.' });
+    SPSHORT[id] = 'Have / get something done · Park';
+    SPT.push({ id, n: SPSHORT[id], d: 'Tap a person and write a sentence about what happens.' });
     const topics = SPGRP[level];
     const matching = topics.find(([name]) => /^\d+\s*·/.test(name) && /causative|have\s*\/\s*get something done/i.test(name));
     if (matching) matching[1].push(id);
