@@ -52,7 +52,7 @@
     'b1-06':'last week','b1-07':'yesterday','b1-09':'last Friday','b1-10':'yesterday',
     'b2-02':'last winter','b2-07':'yesterday','b2-10':'this morning','c1-04':'last month',
   };
-  const homes = [[16,49],[40,39],[65,56],[83,43],[26,77],[74,78]];
+  const homes = [[16,49],[40,39],[65,56],[83,43],[38,77],[74,78]];
   const foliage = [[3,34],[10,29],[18,32],[25,24],[48,28],[57,30],[67,24],[74,31],[91,27],[96,36],[6,71],[92,80]];
   const posture = '<span class="ce-figure" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
   let destroyPark;
@@ -199,7 +199,7 @@
             partner?.classList.remove('ce-approaching');
             const prop = root.querySelector('.ce-prop');
             prop.style.left = (x + direction * gap * (partner ? .5 : .72)) + '%';
-            prop.style.top = (y - 3) + '%';
+            prop.style.top = (y - 8) + '%';
             prop.hidden = false;
             get('ceInstruction').hidden = true;
             const names = partner ? card.people.join(' + ') : card.people[0];
